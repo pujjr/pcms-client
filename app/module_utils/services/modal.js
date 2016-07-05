@@ -138,7 +138,7 @@ angular.module('pu.utils.services')
                         }
                     },
                     templateUrl: templateUrl,
-                    controller: function($scope,indata){
+                    controller: function($scope,indata,RestApi){
                         $scope.vm={};
                         $scope.vm.indata=indata;
                         $scope.vm.outdata={};

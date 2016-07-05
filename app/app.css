@@ -400,7 +400,7 @@ body:not(.home) .app__wrapper {
   background-color: #FAFAFA; }
 
 .panel-header-wrapper {
-  height: 48px;
+  height: 36px;
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -426,8 +426,8 @@ body:not(.home) .app__wrapper {
   -moz-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-size: 20px;
-  font-size: 1.25rem;
+  font-size: 14px;
+  font-size: 1rem;
   font-weight: 700; }
 
 

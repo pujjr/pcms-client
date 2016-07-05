@@ -1,7 +1,7 @@
-<div class="panel m" ng-init="initList()">
+<div class="panel m+" ng-init="initList()">
     <div class="panel-header">
         <div class="panel-header-wrapper">
-            <h2 class="panel-header-title">订单管理</h2>
+            <h2 class="panel-header-title">代办任务</h2>
         </div>
     </div>
     <div class="data-table-container">
@@ -10,29 +10,22 @@
                 <span class="fs-title"></span>
             </div>
             <div class="data-table-header__actions">
-                <lx-button ui-sref="app.order.add" lx-type="flat"><i class="mdi mdi-plus"></i>增加</lx-button>
             </div>
         </header>
         <table class="data-table">
             <thead>
             <tr>
-                <th>订单编号</th>
-                <th>订单名称</th>
-                <th>创建日期</th>
-                <th>订单状态</th>
+                <th>流程名称</th>
+                <th>创建时间</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="item in items">
-                <td>{{item.id}}</td>
-                <td>{{item.orderTitle}}</td>
-                <td>{{item.createTime|mysqlDatetime}}</td>
-                <td>{{item.orderStatus}}</td>
+                <td>{{item.proc_def_id}}</td>
+                <td>{{item.proc_def_name}}</td>
                 <td>
-                    <a href="javascript:"  ng-click="editOrder(item)">编辑</a>
-                    <a href="javascript:" ng-click="deleteOrder(item)">删除</a>
-                    <a href="javascript:" ng-click="trackOrder(item)">跟踪订单</a>
+                    <a href="javascript:" ng-click="showProcDefTasks(item)">办理任务</a>
                 </td>
             </tr>
             </tbody>

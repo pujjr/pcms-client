@@ -8,7 +8,7 @@ angular.module('app')
             });
         });
     }])
-    .factory('CarCreditRestangular', ['Restangular', '$state', 'modal', '$rootScope', '$injector', function (Restangular, $state, modal, $rootScope, $injector) {
+    .factory('RestApi', ['Restangular', '$state', 'modal', '$rootScope', '$injector', function (Restangular, $state, modal, $rootScope, $injector) {
         return Restangular.withConfig(function (RestangularConfigurer) {
             RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/gpsserver/api');
             RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
@@ -60,8 +60,13 @@ angular.module('app')
         });
     }])
     .factory('QuestionRestangular',function(CarCreditRestangular){
-        return CarCreditRestangular.withConfig(function(RestangularConfigurer){
+        return RestApi.withConfig(function(RestangularConfigurer){
             RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/gpsserver/');
+        })
+    })
+    .factory('CarCreditRestangular',function(RestApi){
+        return  RestApi.withConfig(function(RestangularConfigurer){
+            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/gpsserver/api');
         })
     })
 

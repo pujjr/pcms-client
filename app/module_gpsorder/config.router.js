@@ -20,6 +20,16 @@ angular.module('app')
                     url: '/list',
                     templateUrl: 'module_gpsorder/tpl/order-list.html'
                 })
+                //GPS订单采购-增加订单
+                .state('app.order.add', {
+                    url: '/add',
+                    templateUrl: 'module_gpsorder/tpl/order-add.html'
+                })
+                //GPS订单采购-编辑订单
+                .state('app.order.edit', {
+                    url: '/edit',
+                    templateUrl: 'module_gpsorder/tpl/order-edit.html'
+                })
 
         }
     ]
