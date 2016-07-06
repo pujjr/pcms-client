@@ -1,4 +1,4 @@
-<div class="panel m" ng-init="initEditOrder()">
+<div class="panel m" ng-init="initApproveOrder()">
     <div class="panel-header">
         <div class="panel-header-wrapper">
             <span class="panel-header-title">审批订单</span>
@@ -10,13 +10,13 @@
         <span class="toolbar__label ">订单编号：{{order.id}}</span>
 
         <div class="toolbar__right">
-            <lx-button lx-type="flat" lx-size="l" lx-color="green" ng-click="commitOrder()"><i
+            <lx-button lx-type="raised" lx-size="m" lx-color="green" class="mr+" ng-click="approveOrder('审批通过')"><i
                     class="mdi mdi-content-save"></i>审批通过
             </lx-button>
-            <lx-button lx-type="flat" lx-size="l" lx-color="green" ng-click="saveOrder()"><i
+            <lx-button lx-type="raised" lx-size="m" lx-color="red" class="mr+" ng-click="approveOrder('审批拒绝')"><i
                     class="mdi mdi-content-save"></i>审批拒绝
             </lx-button>
-            <lx-button lx-type="flat" lx-size="l" lx-color="grey" ng-click="back()"><i
+            <lx-button lx-type="raised" lx-size="m" lx-color="grey" ng-click="back()"><i
                     class="mdi mdi-keyboard-backspace"></i>返回
             </lx-button>
         </div>
@@ -25,13 +25,13 @@
 
     <form name="form" class="p+">
         <div flex-container="column">
-            <lx-text-field lx-label="订单名称" lx-allow-clear="true" lx-valid="form.orderTitle.$valid"
+            <lx-text-field lx-label="订单名称" lx-allow-clear="false" lx-valid="form.orderTitle.$valid"
                            lx-error="form.orderTitle.$invalid">
-                <input type="text" name="orderTitle" ng-model="order.orderTitle" required>
+                <input type="text" name="orderTitle" ng-model="order.orderTitle" disabled>
             </lx-text-field>
-            <lx-text-field lx-label="订单描述" lx-allow-clear="true" lx-valid="form.orderComment.$valid"
+            <lx-text-field lx-label="订单描述" lx-allow-clear="false" lx-valid="form.orderComment.$valid"
                            lx-error="form.orderComment.$invalid">
-                <textarea type="text" name="orderComment" ng-model="order.orderComment"/>
+                <textarea type="text" name="orderComment" ng-model="order.orderComment" disabled/>
             </lx-text-field>
         </div>
         <div class="data-table-container">
@@ -40,7 +40,6 @@
                     <span class="fs-title"></span>
                 </div>
                 <div class="data-table-header__actions">
-                    <lx-button ng-click="addOrderDetail()" lx-type="flat"><i class="mdi mdi-plus"></i>增加明细</lx-button>
                 </div>
             </header>
             <table class="data-table">
@@ -53,7 +52,6 @@
                         <th>联系电话</th>
                         <th>GPS供应商</th>
                         <th>采购数量</th>
-                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,10 +63,6 @@
                     <td>{{detail.mobile}}</td>
                     <td>{{detail.factoryId}}</td>
                     <td>{{detail.number}}</td>
-                    <td>
-                        <a href="javascript:" ng-click="editOrderDetail(item)">编辑</a>
-                        <a href="javascript:" ng-click="deleteOrderDetail(item)">删除</a>
-                    </td>
                 </tr>
                 </tbody>
             </table>

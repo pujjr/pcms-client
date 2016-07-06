@@ -27,13 +27,15 @@ angular.module('app')
                 })
                 //GPS订单采购-编辑订单
                 .state('app.order.edit', {
-                    url: '/edit',
-                    templateUrl: 'module_gpsorder/tpl/order-edit.html'
+                    url: '/edit/:orderId',
+                    templateUrl: 'module_gpsorder/tpl/order-edit.html',
+                    controller:'OrderController'
                 })
                 //GPS订单采购-审批订单
                 .state('app.order.approve', {
-                    url: '/approve/:orderId',
-                    templateUrl: 'module_gpsorder/tpl/order-approve.html'
+                    url: '/approve/:taskId/:businessKey',
+                    templateUrl: 'module_gpsorder/tpl/order-approve.html',
+                    controller:'OrderController'
                 })
 
         }

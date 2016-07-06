@@ -30,7 +30,7 @@
                 <td>{{item.createTime|mysqlDatetime}}</td>
                 <td>{{item.orderStatus}}</td>
                 <td>
-                    <a href="javascript:"  ng-click="editOrder(item)">编辑</a>
+                    <a ui-sref="app.order.edit({orderId:item.id})">编辑</a>
                     <a href="javascript:" ng-click="deleteOrder(item)">删除</a>
                     <a href="javascript:" ng-click="trackOrder(item)">跟踪订单</a>
                 </td>

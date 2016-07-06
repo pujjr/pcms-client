@@ -27,11 +27,10 @@ angular.module("pu.gpsorder.controllers")
             $scope.order.orderDetails.push($scope.orderDetail);
         })
         //初始化编辑订单明细
-        $scope.editOrder = function(item){
-           RestApi.one("/order",item.id).get().then(function(response){
-               $scope.order = response;
-               $state.go("app.order.edit");
-           })
+        $scope.initEditOrder = function (){
+            RestApi.one("/order",$stateParams.orderId).get().then(function(response){
+                $scope.order = response;
+            })
         }
         //删除订单明细
         $scope.deleteOrder = function(item){
@@ -59,8 +58,18 @@ angular.module("pu.gpsorder.controllers")
         }
         //初始化审批订单
         $scope.initApproveOrder = function(){
-            RestApi.one("/order",item.id).get().then(function(response){
+            RestApi.one("/order",$stateParams.businessKey).get().then(function(response){
                 $scope.order = response;
+            })
+        }
+        //审批订单
+        $scope.approveOrder = function(decision){
+            var taskCommitVo = {};
+            taskCommitVo.decision = decision;
+            taskCommitVo.comment = "";
+            RestApi.all("/order/approve/"+$stateParams.taskId).post(taskCommitVo).then(function(response){
+                toaster.pop('success', '操作提醒', '提交成功');
+                $state.go("app.workflow.task");
             })
         }
 
