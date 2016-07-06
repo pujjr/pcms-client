@@ -25,6 +25,18 @@ angular.module('app')
                     url: '/tasks',
                     templateUrl: 'module_workflow/tpl/procdef-tasks-list.html'
                 })
+                //流程任务管理
+                .state('app.workflow', {
+                    abstract: true,
+                    url: '/procdef',
+                    template: '<div ui-view=""></div>',
+                    controller: 'WorkflowController'
+                })
+                //流程任务管理-查看代办任务
+                .state('app.workflow.task', {
+                    url: '/task',
+                    templateUrl:'module_workflow/tpl/task-list.html'
+                })
 
         }
     ]

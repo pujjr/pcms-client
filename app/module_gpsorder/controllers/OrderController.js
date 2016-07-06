@@ -57,6 +57,12 @@ angular.module("pu.gpsorder.controllers")
                 $state.go("app.order.list");
             })
         }
+        //初始化审批订单
+        $scope.initApproveOrder = function(){
+            RestApi.one("/order",item.id).get().then(function(response){
+                $scope.order = response;
+            })
+        }
 
     })
 ;
