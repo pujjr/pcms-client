@@ -1,0 +1,135 @@
+<div class="m" style="height: 500px" ng-init="init()">
+    <div flex-container="row" style="height:500px">
+        <div flex-item="3">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-header-wrapper">
+                        <h2 class="panel-header-title">流程分类</h2>
+                    </div>
+                </div>
+                <div class="toolbar">
+                    <lx-button   lx-type="flat" lx-color="blue" class="ml-"  ng-click="addType()"><i class="mdi mdi-plus"></i>增加分类</lx-button>
+                </div>
+                <div class="has-divider has-divider--dark"></div>
+                <div>
+                    <tree tree-data="workflowTypes" can-checked="false" name-field="typeName"></tree>
+                </div>
+            </div>
+        </div>
+        <div flex-item="9">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-header-wrapper">
+                        <h2 class="panel-header-title">流程定义</h2>
+                    </div>
+                </div>
+                <div class="data-table-container">
+                    <header class="data-table-header">
+                        <div class="data-table-header__label">
+                            <span class="fs-title"></span>
+                        </div>
+                        <div class="data-table-header__actions">
+                            <lx-button ng-click="showCreateWorkflowDefineDlg()" lx-type="flat"><i class="mdi mdi-plus"></i>增加</lx-button>
+                        </div>
+                    </header>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>流程名称</th>
+                                <th>流程标识</th>
+                                <th>主版本</th>
+                                <th>版本状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in workflowDefines">
+                            <td>{{item.WORKFLOW_NAME}}</td>
+                            <td>{{item.WORKFLOW_KEY}}</td>
+                            <td>{{item.VERSION}}</td>
+                            <td>{{item.VERSION_STATUS}}</td>
+                            <td>
+                                <a href="javascript:" ng-click="editWorkflow(item.ACTIVITI_MODEL_ID)">编辑流程图</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="has-divider has-divider--dark"></div>
+                    <div class="toolbar" ng-if="false">
+                        <div class="toolbar__left mr++">
+                <span ng-if="paginationInfo.totalItem==0">
+                    无查询结果
+                </span>
+                        </div>
+                            <span class="toolbar__label fs-title">
+
+                            </span>
+
+                        <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                            <div class="mr+++">
+                    <span>
+                    总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                            </div>
+                            <div>
+                                <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                                ng-model="paginationInfo.curPage"
+                                                items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                                last-text="&raquo;">
+                                </uib-pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <lx-dialog id="dlgCreateWorkflowDefine">
+        <lx-dialog-header>
+            <div class="toolbar bgc-primary">
+                <span class="toolbar__label tc-white fs-title">
+                    增加流程
+                </span>
+            </div>
+        </lx-dialog-header>
+        <lx-dialog-content>
+            <form name="form">
+                <div flex-container="column" class="ml++ mr++ pt-">
+                    <lx-text-field lx-label="流程名称" lx-allow-clear="true" lx-valid="form.workflowName.$valid"
+                                   lx-error="form.workflowName.$invalid">
+                        <input type="text" name="workflowName" ng-model="workflowDefine.workflowName" required>
+                    </lx-text-field>
+                    <lx-text-field lx-label="流程标识" lx-allow-clear="true" lx-valid="form.workflowKey.$valid"
+                                   lx-error="form.workflowKey.$invalid">
+                        <input type="text" name="workflowKey" ng-model="workflowDefine.workflowKey" required>
+                    </lx-text-field>
+                    <lx-select
+                            name="workflowTypes"
+                            ng-model="workflowDefine.workflowTypeId"
+                            lx-choices="workflowTypesSels"
+                            lx-allow-clear="true"
+                            lx-label="请选择流程分类"
+                            lx-multiple="false"
+                            lx-display-filter="true"
+                            lx-error="form.workflowTypes.$invalid"
+                            lx-track-by="id"
+                            required
+                            >
+                        <lx-select-selected required>
+                            {{ $selected.typeName }}
+                        </lx-select-selected>
+                        <lx-select-choices>
+                            {{ $choice.typeName }}
+                        </lx-select-choices>
+                    </lx-select>
+                </div>
+            </form>
+        </lx-dialog-content>
+        <lx-dialog-footer>
+            <lx-button lx-color="black" lx-type="flat" lx-dialog-close>关闭</lx-button>
+            <lx-button lx-type="flat" ng-click="createWorkflowDefine()" lx-dialog-close>确定</lx-button>
+        </lx-dialog-footer>
+    </lx-dialog>
+</div>
