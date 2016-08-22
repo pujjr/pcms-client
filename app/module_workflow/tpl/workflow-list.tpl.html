@@ -50,6 +50,8 @@
                             <td>{{item.VERSION_STATUS}}</td>
                             <td>
                                 <a href="javascript:" ng-click="editWorkflow(item.ACTIVITI_MODEL_ID)">编辑流程图</a>
+                                <a href="javascript:" ng-click="showVersions(item.ID)">版本信息</a>
+                                <a href="javascript:" ng-click="showVersions(item.ID)">配置流程</a>
                             </td>
                         </tr>
                         </tbody>
@@ -130,6 +132,72 @@
         <lx-dialog-footer>
             <lx-button lx-color="black" lx-type="flat" lx-dialog-close>关闭</lx-button>
             <lx-button lx-type="flat" ng-click="createWorkflowDefine()" lx-dialog-close>确定</lx-button>
+        </lx-dialog-footer>
+    </lx-dialog>
+
+    <lx-dialog id="dlgWorkflowVersions">
+        <lx-dialog-header>
+            <div class="toolbar bgc-primary">
+                <span class="toolbar__label tc-white fs-title">
+                    历史版本
+                </span>
+            </div>
+        </lx-dialog-header>
+        <lx-dialog-content>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>版本号</th>
+                        <th>版本状态</th>
+                        <th>是否激活</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in workflowVersions">
+                        <td>{{item.VERSION}}</td>
+                        <td>{{item.VERSION_STATUS}}</td>
+                        <td>
+                            <lx-switch ng-model="item.isAct" ng-true-value="1" ng-change="setVersionAct(item.WORKFLOW_DEFINE_ID,item.ID)" ng-disabled="item.isAct==1" lx-color="blue"></lx-switch>
+                        </td>
+                        <td>
+                            <a href="javascript:" ng-click="editWorkflow(item.ACTIVITI_MODEL_ID)">编辑流程图</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="has-divider has-divider--dark"></div>
+                <div class="toolbar" ng-if="false">
+                    <div class="toolbar__left mr++">
+                <span ng-if="paginationInfo.totalItem==0">
+                    无查询结果
+                </span>
+                    </div>
+                            <span class="toolbar__label fs-title">
+
+                            </span>
+
+                    <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                        <div class="mr+++">
+                    <span>
+                    总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                        </div>
+                        <div>
+                            <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                            ng-model="paginationInfo.curPage"
+                                            items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                            last-text="&raquo;">
+                            </uib-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </lx-dialog-content>
+        <lx-dialog-footer>
+            <lx-button lx-color="black" lx-type="flat" lx-dialog-close>关闭</lx-button>
         </lx-dialog-footer>
     </lx-dialog>
 </div>

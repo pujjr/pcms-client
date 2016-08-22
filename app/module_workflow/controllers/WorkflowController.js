@@ -32,5 +32,15 @@ angular.module("pu.workflow.controllers")
         $scope.editWorkflow = function(modelId){
             $window.open("http://127.0.0.1:8080/gpsserver/modeler.html?modelId="+modelId);
         };
+        $scope.showVersions = function(defineId){
+            $scope.workflowVersions = RestApi.all("/workflowVersion/list").getList({"defineId":defineId}).$object;
+            LxDialogService.open("dlgWorkflowVersions");
+        };
+        $scope.setVersionAct = function(defineId,versionId){
+            RestApi.one("/workflow",defineId).one("/setActivateVersion",versionId).get().then(function(){
+                toaster.pop('success', '操作提醒', '设置主版本成功');
+                $scope.workflowVersions = RestApi.all("/workflowVersion/list").getList({"defineId":defineId}).$object;
+            })
+        }
     })
 ;
