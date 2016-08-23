@@ -1,0 +1,148 @@
+<div class="panel m" ng-init="initCreateOrder()">
+    <div class="panel-header">
+        <div class="panel-header-wrapper">
+            <span class="panel-header-title">增加订单</span>
+        </div>
+    </div>
+    <div class="toolbar">
+        <div class="toolbar__left">
+        </div>
+        <span class="toolbar__label ">订单编号：{{order.id}}</span>
+
+        <div class="toolbar__right">
+            <lx-button lx-type="flat" lx-size="l" lx-color="green" ng-click="commitOrder()"><i
+                    class="mdi mdi-content-save"></i>提交订单
+            </lx-button>
+            <lx-button lx-type="flat" lx-size="l" lx-color="green" ng-click="saveOrder()"><i
+                    class="mdi mdi-content-save"></i>保存订单
+            </lx-button>
+            <lx-button lx-type="flat" lx-size="l" lx-color="grey" ng-click="back()"><i
+                    class="mdi mdi-keyboard-backspace"></i>返回
+            </lx-button>
+        </div>
+    </div>
+    <div class="has-divider has-divider--dark"></div>
+
+    <form name="form" class="p+">
+        <div flex-container="column">
+            <lx-text-field lx-label="订单名称" lx-allow-clear="true" lx-valid="form.orderTitle.$valid"
+                           lx-error="form.orderTitle.$invalid">
+                <input type="text" name="orderTitle" ng-model="order.orderTitle" required>
+            </lx-text-field>
+            <lx-text-field lx-label="订单描述" lx-allow-clear="true" lx-valid="form.orderComment.$valid"
+                           lx-error="form.orderComment.$invalid">
+                <textarea type="text" name="orderComment" ng-model="order.orderComment"/>
+            </lx-text-field>
+        </div>
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                    <span class="fs-title"></span>
+                </div>
+                <div class="data-table-header__actions">
+                    <lx-button ng-click="addOrderDetail()" lx-type="flat"><i class="mdi mdi-plus"></i>增加明细</lx-button>
+                </div>
+            </header>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>经销商名称</th>
+                        <th>经销商地址</th>
+                        <th>联系人</th>
+                        <th>联系电话</th>
+                        <th>GPS供应商</th>
+                        <th>采购数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="detail in order.orderDetails">
+                    <td>{{$index+1}}</td>
+                    <td>{{detail.jxsId}}</td>
+                    <td>{{detail.address}}</td>
+                    <td>{{detail.linkman}}</td>
+                    <td>{{detail.mobile}}</td>
+                    <td>{{detail.factoryId}}</td>
+                    <td>{{detail.number}}</td>
+                    <td>
+                        <a href="javascript:" ng-click="editOrderDetail(item)">编辑</a>
+                        <a href="javascript:" ng-click="deleteOrderDetail(item)">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <lx-dialog id="detaildlg">
+        <lx-dialog-header>
+            <div class="toolbar bgc-primary">
+                <span class="toolbar__label tc-white fs-title">
+                    输入订单信息
+                </span>
+            </div>
+        </lx-dialog-header>
+        <lx-dialog-content>
+            <div flex-container="column" class="ml++ mr++ pt-">
+                <lx-select
+                        name="jxs"
+                        ng-model="orderDetail.jxsId"
+                        lx-choices="jxs"
+                        lx-allow-clear="true"
+                        lx-label="选择经销商"
+                        lx-multiple="false"
+                        lx-display-filter="true"
+                        lx-error="form.jxs.$invalid"
+                        lx-track-by="id"
+                        required
+                        >
+                    <lx-select-selected required>
+                        {{ $selected.branchname }}
+                    </lx-select-selected>
+                    <lx-select-choices>
+                        {{ $choice.branchname }}
+                    </lx-select-choices>
+                </lx-select>
+                <lx-text-field lx-label="经销商地址" lx-allow-clear="true" lx-valid="form.address.$valid"
+                               lx-error="form.address.$invalid">
+                    <input type="text" name="address" ng-model="orderDetail.address" required>
+                </lx-text-field>
+                <lx-text-field lx-label="联系人" lx-allow-clear="true" lx-valid="form.linkman.$valid"
+                               lx-error="form.linkman.$invalid">
+                    <input type="text" name="linkman" ng-model="orderDetail.linkman" required>
+                </lx-text-field>
+                <lx-text-field lx-label="联系电话" lx-allow-clear="true" lx-valid="form.mobile.$valid"
+                               lx-error="form.mobile.$invalid">
+                    <input type="text" name="mobile" ng-model="orderDetail.mobile" required>
+                </lx-text-field>
+                <lx-select
+                        name="factory"
+                        ng-model="orderDetail.factoryId"
+                        lx-choices="factory"
+                        lx-allow-clear="true"
+                        lx-label="选择GPS供应商"
+                        lx-multiple="false"
+                        lx-display-filter="true"
+                        lx-error="form.factory.$invalid"
+                        lx-track-by="id"
+                        required
+                        >
+                    <lx-select-selected required>
+                        {{ $selected.branchname }}
+                    </lx-select-selected>
+                    <lx-select-choices>
+                        {{ $choice.branchname }}
+                    </lx-select-choices>
+                </lx-select>
+                <lx-text-field lx-label="采购数量" lx-allow-clear="true" lx-valid="form.number.$valid"
+                               lx-error="form.number.$invalid">
+                    <input type="text" name="number" ng-model="orderDetail.number" required>
+                </lx-text-field>
+            </div>
+        </lx-dialog-content>
+        <lx-dialog-footer>
+            <lx-button lx-color="black" lx-type="flat" lx-dialog-close>关闭</lx-button>
+            <lx-button lx-type="flat" lx-dialog-close>确定</lx-button>
+        </lx-dialog-footer>
+    </lx-dialog>
+</div>
