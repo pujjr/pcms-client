@@ -42,5 +42,11 @@ angular.module("pu.workflow.controllers")
                 $scope.workflowVersions = RestApi.all("/workflowVersion/list").getList({"defineId":defineId}).$object;
             })
         }
+        $scope.goWorkflowConfig = function(workflowVersionId)
+        {
+            LxDialogService.close("dlgWorkflowVersions");
+            $state.go('app.workflow.config',{id:workflowVersionId});
+
+        }
     })
 ;

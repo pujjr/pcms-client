@@ -37,6 +37,12 @@ angular.module('app')
                     url: '/list',
                     templateUrl:'module_workflow/tpl/workflow-list.html'
                 })
+                //流程管理-配置流程信息
+                .state('app.workflow.config',{
+                    url:'/config/:id',
+                    controller:'WorkflowController',
+                    templateUrl:'module_workflow/tpl/workflow-config.html'
+                })
 
         }
     ]
