@@ -14664,7 +14664,7 @@ FBL.DomplateTag.prototype =
             {
                 var val = this.listeners[i+1];
                 var arg = generateArg(val, path, args);
-                //blocks.push('node.addEventListener("', this.listeners[i], '", __bind__(this, ', arg, '), false);');
+                //module_pageblocks.push('node.addEventListener("', this.listeners[i], '", __bind__(this, ', arg, '), false);');
                 blocks.push('addEvent(node, "', this.listeners[i], '", __bind__(this, ', arg, '), false);');
             }
         }
@@ -14758,7 +14758,7 @@ FBL.DomplateEmbed.prototype = copyObject(FBL.DomplateTag.prototype,
         }
 
         blocks.push('});');
-        //this.generateChildMarkup(topBlock, topOuts, blocks, info);
+        //this.generateChildMarkup(topBlock, topOuts, module_pageblocks, info);
     },
 
     generateDOM: function(path, blocks, args)

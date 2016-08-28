@@ -3050,7 +3050,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
       var injector = currentSpec.$injector;
       if (!injector) {
         if (strictDi) {
-          // If strictDi is enabled, annotate the providerInjector blocks
+          // If strictDi is enabled, annotate the providerInjector module_pageblocks
           angular.forEach(modules, function(moduleFn) {
             if (typeof moduleFn === "function") {
               angular.injector.$$annotate(moduleFn);

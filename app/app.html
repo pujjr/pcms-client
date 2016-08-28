@@ -1,85 +1,86 @@
-<div class="home">
-    <header class="header">
-        <div class="header-top" style="background-color: #1199C4">
-            <div class="header-top__wrapper">
-                <div class="header-top__left">
-                    <div class="header-top__logo">
-                        满意度调查
+<!-- navbar -->
+<div data-ng-include=" 'module_pageblocks/tpl/header.html' " class="app-header navbar">
+</div>
+<!-- / navbar -->
+
+<!-- menu -->
+<div data-ng-include=" 'module_pageblocks/tpl/aside.html' " class="app-aside hidden-xs {{app.settings.asideColor}}">
+</div>
+<!-- / menu -->
+
+<!-- content -->
+<div class="app-content">
+    <div ui-butterbar></div>
+    <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a>
+    <div class="app-content-body fade-in-up" ui-view></div>
+</div>
+<!-- /content -->
+
+<!-- aside right -->
+<div class="app-aside-right pos-fix no-padder w-md w-auto-xs bg-white b-l animated fadeInRight hide">
+    <div class="vbox">
+        <div class="wrapper b-b b-t b-light m-b">
+            <a href class="pull-right text-muted text-md" ui-toggle-class="show" target=".app-aside-right"><i class="icon-close"></i></a>
+            Chat
+        </div>
+        <div class="row-row">
+            <div class="cell">
+                <div class="cell-inner padder">
+                    <!-- chat list -->
+                    <div class="m-b">
+                        <a href class="pull-left thumb-xs avatar"><img src="img/a2.jpg" alt="..."></a>
+                        <div class="clear">
+                            <div class="pos-rlt wrapper-sm b b-light r m-l-sm">
+                                <span class="arrow left pull-up"></span>
+                                <p class="m-b-none">Hi John, What's up...</p>
+                            </div>
+                            <small class="text-muted m-l-sm"><i class="fa fa-ok text-success"></i> 2 minutes ago</small>
+                        </div>
                     </div>
-                </div>
-                <div class="header-top__right">
-                    <toaster-container>
-                    </toaster-container>
-                    <lx-dropdown lx-position="right" lx-over-toggle="true" lx-width="250">
-                        <lx-dropdown-toggle>
-                            <lx-button lx-type="flat" lx-color="white">
-                                {{account.name}}<i class="mdi mdi-chevron-down"></i>
-                            </lx-button>
-                        </lx-dropdown-toggle>
-                        <lx-dropdown-menu>
-                            <ul>
-                                <li class="dropdown-link">{{account.name}}<i class="mdi mdi-chevron-down"></i></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-link" ui-sref="access.modifypasswd">修改密码</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-link" ng-click="signup()">登出系统</a></li>
-                            </ul>
-                        </lx-dropdown-menu>
-                    </lx-dropdown>
+                    <div class="m-b">
+                        <a href class="pull-right thumb-xs avatar"><img src="img/a3.jpg" class="img-circle" alt="..."></a>
+                        <div class="clear">
+                            <div class="pos-rlt wrapper-sm bg-light r m-r-sm">
+                                <span class="arrow right pull-up arrow-light"></span>
+                                <p class="m-b-none">Lorem ipsum dolor :)</p>
+                            </div>
+                            <small class="text-muted">1 minutes ago</small>
+                        </div>
+                    </div>
+                    <div class="m-b">
+                        <a href class="pull-left thumb-xs avatar"><img src="img/a2.jpg" alt="..."></a>
+                        <div class="clear">
+                            <div class="pos-rlt wrapper-sm b b-light r m-l-sm">
+                                <span class="arrow left pull-up"></span>
+                                <p class="m-b-none">Great!</p>
+                            </div>
+                            <small class="text-muted m-l-sm"><i class="fa fa-ok text-success"></i>Just Now</small>
+                        </div>
+                    </div>
+                    <!-- / chat list -->
                 </div>
             </div>
         </div>
-</div>
-</header>
-</div>
-<div class="app">
-    <div class="app__wrapper">
-        <div class="app__sidebar" style="height:1000px">
-            <uib-accordion close-others="false">
-                <uib-accordion-group heading="系统管理" is-open="true">
-                    <ul class="sub-nav">
-                        <li><a class="sub-nav__link" ui-sref="app.sysaccounts.list" ui-sref-active="active"
-                               ng-if="hasPrimission('app.sysaccounts.list')">
-                            用户管理
-                        </a>
-                        </li>
-                        <li><a class="sub-nav__link" ui-sref="app.sysbranchs.list"
-                               ng-if="hasPrimission('app.sysbranchs.list')">机构管理</a></li>
-                        <li><a class="sub-nav__link" ui-sref="app.sysmenu.list"
-                               ng-if="hasPrimission('app.sysmenu.list')">菜单管理</a></li>
-                        <li><a class="sub-nav__link" ui-sref="app.sysrole.list"
-                               ng-if="hasPrimission('app.sysrole.list')">角色管理</a></li>
-                    </ul>
-                </uib-accordion-group>
-                <uib-accordion-group heading="问卷调查" is-open="true">
-                    <ul class="sub-nav">
-                        <li><a class="sub-nav__link" ui-sref="app.question.dept" ng-if="hasPrimission('app.question.dept')">调查部门管理</a></li>
-                        <li><a class="sub-nav__link" ui-sref="app.question.template.list" ng-if="hasPrimission('app.question.template.list')">调查模板管理</a></li>
-                        <li><a class="sub-nav__link" ui-sref="app.question.activity.list" ng-if="hasPrimission('app.question.activity.list')">调查活动管理</a></li>
-                    </ul>
-                </uib-accordion-group>
-                <uib-accordion-group heading="流程管理" is-open="true">
-                    <ul class="sub-nav">
-                        <li><a class="sub-nav__link" ui-sref="app.workflow.list">流程管理</a></li>
-                    </ul>
-
-                </uib-accordion-group>
-                <uib-accordion-group heading="任务管理" is-open="true">
-                    <ul class="sub-nav">
-                        <li><a class="sub-nav__link" ui-sref="app.order.list">订单管理</a></li>
-                        <li><a class="sub-nav__link" ui-sref="app.workflow.task">代办任务</a></li>
-                    </ul>
-                </uib-accordion-group>
-            </uib-accordion>
-        </div>
-        <div class="app__main">
-            <div ui-view>
-
-            </div>
+        <div class="wrapper m-t b-t b-light">
+            <form class="m-b-none">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Say something">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">SEND</button>
+            </span>
+                </div>
+            </form>
         </div>
     </div>
-
 </div>
-<div class="footer">
-    ccc
+<!-- / aside right -->
+
+<!-- footer -->
+<div class="app-footer wrapper b-t bg-light">
+    <span class="pull-right">{{app.version}} <a href ui-scroll="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
+    &copy; 2014 Copyright.
+</div>
+<!-- / footer -->
+
+<div data-ng-include=" 'module_pageblocks/tpl/settings.html' " class="settings panel panel-default">
 </div>
