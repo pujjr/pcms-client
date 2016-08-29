@@ -19,10 +19,12 @@ var app={
 }
 var src={
     js:['app/*.js','app/module*/**/**.js'],
-    css:['app/*.css'],
+    css:['assets/css/app.css','assets/css/font.css','assets/css/lumx.css'],
     jsTpl:[app.dist+"/template/*.js"],
     htmlTpl:['app/module**/tpl/*.tpl.html'],
     html:['app/*.html'],
+    font:['assets/fonts/**'],
+    img:[,'assets/img/**'],
 	lib:['bower_components/**']
 }
 
@@ -49,6 +51,14 @@ gulp.task('concat:css',function(){
         .pipe(minifyCss())
         .pipe(gulp.dest(app.dist+'/css'))
 })
+gulp.task('copy:font',function(){
+    return gulp.src(src.font)
+        .pipe(gulp.dest(app.dist+'/fonts'))
+})
+gulp.task('copy:img',function(){
+    return gulp.src(src.img)
+        .pipe(gulp.dest(app.dist+'/img'))
+})
 gulp.task('copy:html',function(){
     return gulp.src(src.html)
         .pipe(gulp.dest(app.dist))
@@ -69,7 +79,7 @@ gulp.task('rev',function(){
         .pipe(gulp.dest(app.dist))
 })
 gulp.task('build', function(cb) {
-    runSequence('clean',['concat:js','copy:lib','concat:css','copy:html'], cb);
+    runSequence('clean',['concat:js','copy:lib','concat:css','copy:font','copy:img','copy:html'], cb);
 });
 gulp.task('default',function(cb) {
   // 将你的默认的任务代码放在这

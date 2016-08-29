@@ -9,15 +9,16 @@
   <title>满意度调查</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
+  <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/simple-line-icons/2.2.3/css/simple-line-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body ng-controller="AppController">
-  <div ui-view>
-  </div>
-  <!--jquery-->
+<div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
+<!--jquery-->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <!--angular-->
   <script src="bower_components/angular/angular.js"></script>
@@ -28,12 +29,8 @@
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <script src="bower_components/lodash/lodash.js"></script>
   <script src="bower_components/angular-messages/angular-messages.js"></script>
-  <!--lumx-->
-  <script src="bower_components/velocity/velocity.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/lumx/dist/lumx.js"></script>
   <!--bootstrap-->
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
   <!--toaster-->
   <script src="bower_components/angularjs-toaster/toaster.js"></script>
   <!--fastui-->

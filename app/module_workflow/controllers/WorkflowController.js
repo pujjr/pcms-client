@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.workflow.controllers")
-    .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope, modal, toaster,ToolsService,LxDialogService,$window) {
+    .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope, modal, toaster,ToolsService,$window) {
         $scope.init= function () {
             RestApi.all("/workflowtype").getList().then(function(response){
                 $scope.workflowTypes=ToolsService.convertArrayToTree(response, {

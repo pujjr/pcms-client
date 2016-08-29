@@ -5,7 +5,6 @@ angular.module('app', [
     'ngCookies',
     'ngSanitize',
     'ngMessages',
-    'lumx',
     'ui.router',
     'restangular',
     'ui.bootstrap',

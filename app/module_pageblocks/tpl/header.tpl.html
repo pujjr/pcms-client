@@ -235,8 +235,8 @@
             </div>
             <!-- / dropdown -->
           </li>
-          <li class="dropdown" dropdown>
-            <a href class="dropdown-toggle clear" dropdown-toggle>
+          <li class="dropdown" uib-dropdown>
+            <a href class="dropdown-toggle clear" uib-dropdown-toggle>
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                 <img src="img/a0.jpg" alt="...">
                 <i class="on md b-white bottom"></i>
@@ -245,13 +245,9 @@
             </a>
             <!-- dropdown -->
             <ul class="dropdown-menu w">
-              <li>
-                <a ui-sref="access.modifypasswd"><i class="fa fa-shield m-r-sm"></i>修改密码</a>
-              </li>
+              <li role="menuitem"><a ui-sref="access.modifypasswd"><i class="fa fa-shield m-r-sm"></i>修改密码</a></li>
               <li class="divider"></li>
-              <li>
-                <a ng-click="signup()"><i class="fa fa-power-off m-r-sm"></i>登出系统</a>
-              </li>
+              <li role="menuitem"> <a ng-click="signup()"><i class="fa fa-power-off m-r-sm"></i>登出系统</a></li>
             </ul>
             <!-- / dropdown -->
           </li>
