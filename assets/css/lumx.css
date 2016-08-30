@@ -163,6 +163,7 @@
     display:-moz-flex;
     display:-ms-flexbox;
     display:flex;
+    height:48px;
     -webkit-box-orient:horizontal;
     -moz-box-orient:horizontal;
     box-orient:horizontal;
@@ -173,7 +174,8 @@
     -moz-flex-direction:row;
     flex-direction:row;
     -ms-flex-direction:row;
-    padding:0 16px
+    padding:0 0px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
 }
 .toolbar__left {
     display:-webkit-box;

@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.workflow.controllers")
-    .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope, modal, toaster,ToolsService,$window) {
+    .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope,$uibModal, modal, toaster,ToolsService,$window,WorkflowService) {
         $scope.init= function () {
             RestApi.all("/workflowtype").getList().then(function(response){
                 $scope.workflowTypes=ToolsService.convertArrayToTree(response, {
@@ -16,37 +16,70 @@ angular.module("pu.workflow.controllers")
             $scope.selType=event.targetScope.treeData;
             $scope.workflowDefines = RestApi.all("/workflow/list").getList({"workflow_type_id":$scope.selType.id}).$object;
         });
-        $scope.showCreateWorkflowDefineDlg=function(){
-            $scope.workflowDefine={};
-            RestApi.all("/workflowtype").getList().then(function(response){
-                $scope.workflowTypesSels=response;
-            })
-            LxDialogService.open("dlgCreateWorkflowDefine");
-        };
-        $scope.createWorkflowDefine = function(){
-            RestApi.all("/workflow/create").post($scope.workflowDefine).then(function(response){
-                toaster.pop('success', '操作提醒', '增加流程成功');
-                $scope.workflowDefines = RestApi.all("/workflow/list").getList({"workflow_type_id":$scope.workflowDefine.workflowTypeId}).$object;
+        $scope.createWorkflowDefine=function(){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                templateUrl :'module_workflow/tpl/dialog-create-workflowdefine.html',
+                controller:function($scope,RestApi){
+                    $scope.workflowDefine={};
+                    $scope.workflowTyps = RestApi.all("/workflowtype").getList().$object;
+                    $scope.ok=function(){
+                        modalInstance.close($scope.workflowDefine);
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                RestApi.all("/workflow/create").post(response).then(function(response){
+                    toaster.pop('success', '操作提醒', '增加流程成功');
+                    $scope.workflowDefines = RestApi.all("/workflow/list").getList({"workflow_type_id":$scope.selType.id}).$object;
+                })
             })
         };
         $scope.editWorkflow = function(modelId){
-            $window.open("http://127.0.0.1:8080/gpsserver/modeler.html?modelId="+modelId);
+            WorkflowService.showWorkflowEditor(modelId);
         };
-        $scope.showVersions = function(defineId){
-            $scope.workflowVersions = RestApi.all("/workflowVersion/list").getList({"defineId":defineId}).$object;
-            LxDialogService.open("dlgWorkflowVersions");
+        $scope.showWorkflowVersionsList = function(defineId){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                resolve: {
+                    defineId: function () {
+                        return defineId;
+                    }
+                },
+                templateUrl :'module_workflow/tpl/dialog-workflow-versions.html',
+                controller:function($scope,RestApi,WorkflowService){
+                    $scope.workflowVersions = RestApi.all("/workflowVersion/list").getList({"defineId":defineId}).$object;
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                    $scope.editWorkflow = function(modelId){
+                        WorkflowService.showWorkflowEditor(modelId);
+                    };
+                    $scope.setMainVersionAct = function(defineId,versionId){
+                        WorkflowService.setMainVersionAct(defineId,versionId).then(function(){
+                            toaster.pop('success', '操作提醒', '设置主版本成功');
+                            $scope.workflowVersions = WorkflowService.queryVersionListByDefineId(defineId).$object;
+                        })
+                    };
+                    $scope.configWorkflow = function(workflowVersionId)
+                    {
+                        modalInstance.dismiss('cancel');
+                        $state.go('app.workflow.config',{id:workflowVersionId});
+                    }
+                },
+                size:'lg'
+            });
         };
-        $scope.setVersionAct = function(defineId,versionId){
-            RestApi.one("/workflow",defineId).one("/setActivateVersion",versionId).get().then(function(){
-                toaster.pop('success', '操作提醒', '设置主版本成功');
-                $scope.workflowVersions = RestApi.all("/workflowVersion/list").getList({"defineId":defineId}).$object;
-            })
-        }
-        $scope.goWorkflowConfig = function(workflowVersionId)
-        {
-            LxDialogService.close("dlgWorkflowVersions");
+        $scope.configWorkflow = function(workflowVersionId) {
             $state.go('app.workflow.config',{id:workflowVersionId});
-
+        };
+        $scope.queryProcessUserTaskNodes = function(){
+            $scope.userTaskFormItems = WorkflowService.queryProcessUserTaskNodes($state.params.id).$object;
         }
     })
 ;

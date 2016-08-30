@@ -11,6 +11,12 @@
                 <th>表单路径</th>
                 <th>操作</th>
             </thead>
+            <tr ng-repeat="item in userTaskFormItems">
+                <td>{{item.seq}}</td>
+                <td>{{item.nodeName}}</td>
+                <td>{{item.formName}}</td>
+                <td></td>
+            </tr>
         </table>
     </div>
 </div>

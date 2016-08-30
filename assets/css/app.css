@@ -5252,11 +5252,15 @@ ul{
   }
 }
 
-.panel{
-  border: 1px solid rgba(0, 0, 0, 0.12);
+.panel_main{
   border-radius: 2px;
 }
-
+.panel-left{
+  border-left:1px solid rgba(0, 0, 0, 0.12);
+  border-top:1px solid rgba(0, 0, 0, 0.12);
+  border-bottom:1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
 .panel-header {
   padding: 0 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -5295,4 +5299,24 @@ ul{
   color: inherit;
   margin:0 !important;
   padding:0 !important;
+}
+.c_box {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #dedede;
+}
+.c_left_box {
+  width: 20%;
+  background: #f4f6f8;
+  float: left;
+  border-right: 1px solid #dedede;
+}
+
+.c_right_box {
+  width: 80%;
+  background: #fff;
+  float: left;
 }

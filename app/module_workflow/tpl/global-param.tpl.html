@@ -1,53 +1,52 @@
-<div class="panel">
-    <div class="toolbar">
-        <lx-button   lx-type="flat" lx-color="blue" class="ml-"  ng-click="addType()"><i class="mdi mdi-plus"></i>保存</lx-button>
+<div>
+    <div class="data-table-container">
+        <header class="data-table-header">
+            <div class="data-table-header__label">
+                <span class="fs-title"></span>
+            </div>
+            <div class="data-table-header__actions">
+                <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-search m-r-sm"></i>增加流程</button>
+            </div>
+        </header>
     </div>
-    <div class="has-divider has-divider--dark"></div>
-    <form name="form">
-        <div flex-container="column">
-            <div flex-container="row">
-                <div flex-item="4">
-                    <lx-checkbox ng-model="vm.checkboxes.basic.checked" class="mt++">是否跳过第一个节点</lx-checkbox>
+    <form class="container-fluid">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">参数设置</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="exampleInputName2">是否跳过第一个节点</label>
+                    <select  class="form-control" id="workflowTypeId"  ng-model="workflowDefine.workflowTypeId">
+                        <option value="0">否</option>`
+                        <option value="0">是</option>`
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputName2">流程启动前置处理器</label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="流程启动前置处理器">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputName2">流程启动后置处理器</label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="流程启动后置处理器">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputName2">流程结束处理器</label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="流程结束处理器">
                 </div>
             </div>
-            <div class="has-divider has-divider--dark"></div>
-            <div flex-container="row" flex-gutter="16">
-                <div flex-item="4">
-                    <lx-text-field   lx-label="流程启动前置处理器"  lx-allow-clear="true" lx-valid="form.actname.$valid" lx-error="form.actname.$invalid" >
-                        <input type="text" name="actname"  ng-model="activity.actname" >
-                    </lx-text-field>
-                </div>
-                <div flex-item="4">
-                    <lx-text-field   lx-label="流程启动后置处理器"  lx-allow-clear="true" lx-valid="form.actname.$valid" lx-error="form.actname.$invalid" >
-                        <input type="text" name="actname"  ng-model="activity.actname"  >
-                    </lx-text-field>
-                </div>
-                <div flex-item="4">
-                    <lx-text-field   lx-label="流程结束处理器"  lx-allow-clear="true" lx-valid="form.actname.$valid" lx-error="form.actname.$invalid" >
-                        <input type="text" name="actname"  ng-model="activity.actname"  >
-                    </lx-text-field>
-                </div>
-            </div>
-            <div class="has-divider has-divider--dark"></div>
-            <div class="panel">
-                <div class="panel-header">
-                    <div class="panel-header-wrapper">
-                        <h2 class="panel-header-title">事件脚本配置</h2>
-                    </div>
-                </div>
-                <lx-tabs>
-                    <lx-tab lx-label="流程启动执行脚本">
-                        <textarea ng-model="vm.textFields.textarea.description" style="width:100%;height:500px"></textarea>
-                    </lx-tab>
-                    <lx-tab lx-label="流程完成执行脚本">
-                        <textarea ng-model="vm.textFields.textarea.description" style="width:100%;height:500px"></textarea>
-                    </lx-tab>
-                    <lx-tab lx-label="流程取消执行脚本">
-                        <textarea ng-model="vm.textFields.textarea.description" style="width:100%;height:500px"></textarea>
-                    </lx-tab>
-                </lx-tabs>
-            </div>
-        </div>
+        </fieldset>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">事件脚本配置</legend>
+            <uib-tabset>
+                <uib-tab index="0" heading="流程启动执行脚本">
+                    <textarea class="form-control" rows="20" ng-model="vm.textFields.textarea.description" style="width:100%;"></textarea>
+                </uib-tab>
+                <uib-tab index="1" heading="流程完成执行脚本">
+                    <textarea class="form-control" rows="5" ng-model="vm.textFields.textarea.description" style="width:100%;" ></textarea>
+                </uib-tab>
+                <uib-tab index="2" heading="流程取消执行脚本">
+                    <textarea class="form-control" rows="5" ng-model="vm.textFields.textarea.description" style="width:100%;"></textarea>
+                </uib-tab>
+            </uib-tabset>
+        </fieldset>
     </form>
-
 </div>

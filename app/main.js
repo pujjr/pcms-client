@@ -37,6 +37,15 @@ angular.module("app")
                 container: false
             }
         }
+        $scope.$watch('app.settings', function(){
+            if( $scope.app.settings.asideDock  &&  $scope.app.settings.asideFixed ){
+                // aside dock and fixed must set the header fixed.
+                $scope.app.settings.headerFixed = true;
+            }
+            // save to local storage
+            $localStorage.settings = $scope.app.settings;
+        }, true);
+
         $scope.signup = function () {
             modal.confirm("操作提醒", "确认登出系统？").then(function () {
                 AuthService.signup();
