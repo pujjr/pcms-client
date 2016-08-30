@@ -80,6 +80,18 @@ angular.module("pu.workflow.controllers")
         };
         $scope.queryProcessUserTaskNodes = function(){
             $scope.userTaskFormItems = WorkflowService.queryProcessUserTaskNodes($state.params.id).$object;
-        }
+        };
+        $scope.queryProcessAllNodes = function(){
+            $scope.nodeItems = WorkflowService.queryProcessAllNodes($state.params.id).$object;
+        };
+        $scope.queryProcessGlobalParams = function(){
+            $scope.globalParam = WorkflowService.queryProcessGlobalParams($state.params.id).$object;
+        };
+        $scope.saveWorkflowGlobalParam = function(){
+            WorkflowService.saveWorkflowGlobalParam($state.params.id,$scope.globalParam).then(function(){
+                toaster.pop('success', '操作提醒', '保存全局参数成功');
+                $scope.queryProcessGlobalParams();
+            })
+        };
     })
 ;

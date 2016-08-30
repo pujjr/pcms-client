@@ -7,13 +7,17 @@
                         <h2 class="panel-header-title">流程分类</h2>
                     </div>
                 </div>
-                <div class="toolbar">
-                    <div class="toolbar__left">
-                    </div>
-                    <div class="toolbar__right">
-                        <button class="btn btn-sm btn-default" type="button" ng-click="exportCredit()"><i class="fa fa-search m-r-sm"></i>增加流程分类</button>
-                    </div>
+                <div class="data-table-container">
+                    <header class="data-table-header">
+                        <div class="data-table-header__label">
+                            <span class="fs-title"></span>
+                        </div>
+                        <div class="data-table-header__actions">
+                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-save m-r-sm"></i>保存</button>
+                        </div>
+                    </header>
                 </div>
+
                 <div>
                     <tree tree-data="workflowTypes" can-checked="false" name-field="typeName"></tree>
                 </div>
@@ -54,7 +58,7 @@
                             <td>
                                 <a href="javascript:" ng-click="editWorkflow(item.ACTIVITI_MODEL_ID)">编辑流程图</a>
                                 <a href="javascript:" ng-click="showWorkflowVersionsList(item.ID)">版本信息</a>
-                                <a href="javascript:" ng-click="configWorkflow(item.ID)">配置流程</a>
+                                <a href="javascript:" ng-click="configWorkflow(item.ACTIVATE_VERSION_ID)">配置流程</a>
                             </td>
                         </tr>
                         </tbody>

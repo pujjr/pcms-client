@@ -10,6 +10,15 @@ angular.module('pu.workflow.services')
             return RestApi.all("/workflowVersion/list").getList({"defineId":workflowDefineId});
         };
         this.queryProcessUserTaskNodes = function(workflowVersionId){
-            return RestApi.all("/workflow/config/"+workflowVersionId+"/nodeforms").getList();
+            return RestApi.all("/workflow/config/nodeforms/").all(workflowVersionId).getList();
+        }
+        this.queryProcessAllNodes = function(workflowVersionId){
+            return RestApi.all("/workflow/config/nodes/").all(workflowVersionId).getList();
+        }
+        this.queryProcessGlobalParams = function(workflowVersionId){
+            return RestApi.one("/workflow/config/globalparam",workflowVersionId).get();
+        }
+        this.saveWorkflowGlobalParam = function(workflowVersionId,params){
+            return RestApi.all("/workflow/config/globalparam/").all(workflowVersionId).post(params);
         }
     });

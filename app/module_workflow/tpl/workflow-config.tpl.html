@@ -11,14 +11,14 @@
         <div>
             <uib-tabset>
                 <uib-tab index="0" heading="流程信息">first</uib-tab>
-                <uib-tab index="1" heading="流程全局参数">
+                <uib-tab index="1" heading="流程全局参数" select="queryProcessGlobalParams()">
                     <div ng-include="'module_workflow/tpl/global-param.html'"></div>
                 </uib-tab>
                 <uib-tab index="2" heading="流程节点表单配置"  select="queryProcessUserTaskNodes()">
                     <div ng-include="'module_workflow/tpl/form-param.html'"></div>
                 </uib-tab>
                 <uib-tab index="3" heading="流程节点审批配置">first</uib-tab>
-                <uib-tab index="4" heading="流程节点参数配置">
+                <uib-tab index="4" heading="流程节点参数配置"  select="queryProcessAllNodes()">
                     <div ng-include="'module_workflow/tpl/node-param.html'"></div>
                 </uib-tab>
                 <uib-tab index="5" heading="流程授权">first</uib-tab>

@@ -1,9 +1,13 @@
-<div class="panel">
-    <div class="toolbar">
-        <lx-button   lx-type="flat" lx-color="blue" class="ml-"  ng-click="addType()"><i class="mdi mdi-plus"></i>保存</lx-button>
-    </div>
-    <div class="has-divider has-divider--dark"></div>
+<div>
     <div class="data-table-container">
+        <header class="data-table-header">
+            <div class="data-table-header__label">
+                <span class="fs-title"></span>
+            </div>
+            <div class="data-table-header__actions">
+                <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-save m-r-sm"></i>保存</button>
+            </div>
+        </header>
         <table class="data-table">
             <thead>
                 <th>序号</th>
@@ -12,6 +16,15 @@
                 <th>节点类型</th>
                 <th>操作</th>
             </thead>
+            <tbody>
+                <tr ng-repeat="item in nodeItems">
+                    <td>{{item.seq}}</td>
+                    <td>{{item.nodeName}}</td>
+                    <td>{{item.nodeId}}</td>
+                    <td>{{item.nodeType}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>
