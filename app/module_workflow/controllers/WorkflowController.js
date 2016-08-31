@@ -135,6 +135,13 @@ angular.module("pu.workflow.controllers")
                 $scope.queryProcessAllNodes();
             })
         }
-
+        $scope.startProcess = function(){
+            RestApi.all("/workflow/startProcess/proctest1:1:242514").post().then(function(){
+                toaster.pop('success', '操作提醒', '启动流程成功');
+            })
+        };
+        $scope.getWorkflowImgUrl = function(){
+            return "http://127.0.0.1:8080/gpsserver/service/workflow/config/img/"+$state.params.id;
+        }
     })
 ;
