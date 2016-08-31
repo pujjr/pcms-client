@@ -1,0 +1,44 @@
+<form name="form" class="container-fluid">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>节点参数配置</h4>
+    </div>
+    <div class="modal-body">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">参数设置</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="preHandle">任务创建前处理器</label>
+                    <input type="text" class="form-control" id="preHandle" ng-model="globalParam.workflowCreatePrehandle">
+                </div>
+                <div class="col-md-3">
+                    <label for="afterHandle">任务创建后处理器</label>
+                    <input type="text" class="form-control" id="afterHandle" ng-model="globalParam.workflowCreateAfterhandle">
+                </div>
+                <div class="col-md-3">
+                    <label for="endHandle">流程结束处理器</label>
+                    <input type="text" class="form-control" id="endHandle" ng-model="globalParam.workflowEndHandle">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">事件脚本配置</legend>
+            <uib-tabset>
+                <uib-tab index="0" heading="活动启动脚本">
+                    <textarea class="form-control" rows="20" ng-model="globalParam.workflowStartScript" style="width:100%;"></textarea>
+                </uib-tab>
+                <uib-tab index="1" heading="活动结束脚本">
+                    <textarea class="form-control" rows="20" ng-model="globalParam.workflowCompleteScript" style="width:100%;"></textarea>
+                </uib-tab>
+                <uib-tab index="2" heading="任务创建脚本">
+                    <textarea class="form-control" rows="20" ng-model="globalParam.workflowCancelScript" style="width:100%;"></textarea>
+                </uib-tab>
+                <uib-tab index="3" heading="任务结束脚本">
+                    <textarea class="form-control" rows="20" ng-model="globalParam.workflowCancelScript" style="width:100%;"></textarea>
+                </uib-tab>
+            </uib-tabset>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

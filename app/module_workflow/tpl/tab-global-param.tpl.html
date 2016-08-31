@@ -9,16 +9,13 @@
             </div>
         </header>
     </div>
-    <form class="container-fluid">
-        <fieldset class="scheduler-border">
+    <form class="container-fluid m-t-md">
+        <fieldset class="scheduler-border ">
             <legend class="scheduler-border">参数设置</legend>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 m-t-md" >
                     <label for="isJumpFirstTask">是否跳过第一个节点</label>
-                    <select  class="form-control" id="isJumpFirstTask"  ng-model="globalParam.isJumpFirstTask">
-                        <option value='false'>否</option>`
-                        <option value='true'>是</option>`
-                    </select>
+                    <input type="checkbox" id ='isJumpFirstTask' ng-checked="globalParam.isJumpFirstTask" ng-model="globalParam.isJumpFirstTask">
                 </div>
                 <div class="col-md-3">
                     <label for="preHandle">流程启动前置处理器</label>
@@ -34,8 +31,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="scheduler-border">
-            <legend class="scheduler-border">事件脚本配置</legend>
+        <fieldset>
             <uib-tabset>
                 <uib-tab index="0" heading="流程启动执行脚本">
                     <textarea class="form-control" rows="20" ng-model="globalParam.workflowStartScript" style="width:100%;"></textarea>

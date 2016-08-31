@@ -51,14 +51,14 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in workflowDefines">
-                            <td>{{item.WORKFLOW_NAME}}</td>
-                            <td>{{item.WORKFLOW_KEY}}</td>
-                            <td>{{item.VERSION}}</td>
-                            <td>{{item.VERSION_STATUS}}</td>
+                            <td>{{item.workflowName}}</td>
+                            <td>{{item.workflowKey}}</td>
+                            <td>{{item.version}}</td>
+                            <td>{{item.versionStatus}}</td>
                             <td>
-                                <a href="javascript:" ng-click="editWorkflow(item.ACTIVITI_MODEL_ID)">编辑流程图</a>
-                                <a href="javascript:" ng-click="showWorkflowVersionsList(item.ID)">版本信息</a>
-                                <a href="javascript:" ng-click="configWorkflow(item.ACTIVATE_VERSION_ID)">配置流程</a>
+                                <a href="javascript:" ng-click="editWorkflow(item.activitiModelId)">编辑流程图</a>
+                                <a href="javascript:" ng-click="showWorkflowVersionsList(item.id)">版本信息</a>
+                                <a href="javascript:" ng-click="configWorkflow(item.versionId)">配置流程</a>
                             </td>
                         </tr>
                         </tbody>

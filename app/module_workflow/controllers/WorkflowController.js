@@ -4,17 +4,18 @@
 angular.module("pu.workflow.controllers")
     .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope,$uibModal, modal, toaster,ToolsService,$window,WorkflowService) {
         $scope.init= function () {
-            RestApi.all("/workflowtype").getList().then(function(response){
+            WorkflowService.queryWorkflowTypes().then(function(response){
                 $scope.workflowTypes=ToolsService.convertArrayToTree(response, {
                     idKey: 'id',
                     parentKey: 'parentTypeId',
                     childrenKey: 'children'
                 });
-            })
+            });
+
         };
         $scope.$on("nodeClicked", function (event) {
             $scope.selType=event.targetScope.treeData;
-            $scope.workflowDefines = RestApi.all("/workflow/list").getList({"workflow_type_id":$scope.selType.id}).$object;
+            $scope.workflowDefines = WorkflowService.queryWorkflowDefines($scope.selType.id).$object;
         });
         $scope.createWorkflowDefine=function(){
             var modalInstance = $uibModal.open({
@@ -23,7 +24,7 @@ angular.module("pu.workflow.controllers")
                 templateUrl :'module_workflow/tpl/dialog-create-workflowdefine.html',
                 controller:function($scope,RestApi){
                     $scope.workflowDefine={};
-                    $scope.workflowTyps = RestApi.all("/workflowtype").getList().$object;
+                    $scope.workflowTyps =  WorkflowService.queryWorkflowTypes().$object;
                     $scope.ok=function(){
                         modalInstance.close($scope.workflowDefine);
                     };
@@ -35,7 +36,7 @@ angular.module("pu.workflow.controllers")
             modalInstance.result.then(function(response){
                 RestApi.all("/workflow/create").post(response).then(function(response){
                     toaster.pop('success', '操作提醒', '增加流程成功');
-                    $scope.workflowDefines = RestApi.all("/workflow/list").getList({"workflow_type_id":$scope.selType.id}).$object;
+                    $scope.workflowDefines =  WorkflowService.queryWorkflowDefines($scope.selType.id).$object;
                 })
             })
         };
@@ -93,5 +94,47 @@ angular.module("pu.workflow.controllers")
                 $scope.queryProcessGlobalParams();
             })
         };
+        $scope.saveWorkflowNodeForms = function(){
+            WorkflowService.saveWorkflowNodeForms($state.params.id,$scope.userTaskFormItems).then(function(){
+                toaster.pop('success', '操作提醒', '保存节点表单成功');
+                $scope.queryProcessUserTaskNodes();
+            })
+        };
+        $scope.configNodeParam = function(node){
+            var templateHtml = "dialog-normalnode-param.html";
+            if(node.nodeType == "userTask"){
+                templateHtml = "dialog-usertasknode-param.html";
+            }else if(node.nodeType.indexOf("Gateway")!=-1){
+                templateHtml = "dialog-gatewaynode-param.html";
+            }
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                resolve: {
+                    node: function(){
+                        return node;
+                    }
+                },
+                templateUrl :'module_workflow/tpl/'+templateHtml,
+                controller:function($scope,RestApi,WorkflowService){
+                    $scope.node = node;
+                    $scope.nodeParam = WorkflowService.queryWorkflowNodeParam(node.workflowVersionId,node.nodeId).$object;
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                    $scope.save = function(){
+                        WorkflowService.saveWorkflowNodeParam($scope.nodeParam.workflowVersionId,$scope.nodeParam).then(function(){
+                            modalInstance.close();
+                        })
+                    };
+                },
+                size:'lg'
+            });
+            modalInstance.result.then(function(){
+                toaster.pop('success', '操作提醒', '设置节点参数成功');
+                $scope.queryProcessAllNodes();
+            })
+        }
+
     })
 ;

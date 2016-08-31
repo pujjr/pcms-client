@@ -5,23 +5,24 @@
                 <span class="fs-title"></span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn btn-m btn-default" type="button" ng-click="saveWorkflowGlobalParam()"><i class="fa fa-save m-r-sm"></i>保存</button>
+                <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-save m-r-sm"></i>保存</button>
             </div>
         </header>
         <table class="data-table">
             <thead>
                 <th>序号</th>
                 <th>节点名称</th>
-                <th>表单路径</th>
+                <th>节点ID</th>
+                <th>节点类型</th>
+                <th>操作</th>
             </thead>
             <tbody>
-                <tr ng-repeat="item in userTaskFormItems">
+                <tr ng-repeat="item in nodeItems">
                     <td>{{item.seq}}</td>
                     <td>{{item.nodeName}}</td>
-                    <td ng-mouseleave="item.showEditForm=false" ng-dblclick="item.showEditForm=true">
-                        <span ng-show="!item.showEditForm">{{item.formName}}</span>
-                        <input  type="text" class="form-control" ng-model="item.formName" ng-show="item.showEditForm">
-                    </td>
+                    <td>{{item.nodeId}}</td>
+                    <td>{{item.nodeType}}</td>
+                    <td><a href="javascript:" ng-click="configNodeParam(item)">配置</a></td>
                 </tr>
             </tbody>
         </table>
