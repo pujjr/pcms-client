@@ -118,12 +118,12 @@ angular.module("pu.workflow.controllers")
                 templateUrl :'module_workflow/tpl/'+templateHtml,
                 controller:function($scope,RestApi,WorkflowService){
                     $scope.node = node;
-                    $scope.nodeParam = WorkflowService.queryWorkflowNodeParam(node.workflowVersionId,node.nodeId).$object;
+                    $scope.nodeParam = WorkflowService.queryWorkflowNodeParam(node.workflowVersionId,node.nodeId,node.nodeType).$object;
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };
                     $scope.save = function(){
-                        WorkflowService.saveWorkflowNodeParam($scope.nodeParam.workflowVersionId,$scope.nodeParam).then(function(){
+                        WorkflowService.saveWorkflowNodeParam($scope.nodeParam.workflowVersionId,node.nodeType,$scope.nodeParam).then(function(){
                             modalInstance.close();
                         })
                     };

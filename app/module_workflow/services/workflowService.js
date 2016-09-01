@@ -30,10 +30,20 @@ angular.module('pu.workflow.services')
         this.saveWorkflowNodeForms = function(workflowVersionId,params){
             return RestApi.all("/workflow/config/nodeforms/").all(workflowVersionId).post(params);
         };
-        this.queryWorkflowNodeParam = function(workflowVersionId,nodeId){
-            return RestApi.one("/workflow/config/nodeparam/"+workflowVersionId,nodeId).get();
-        }
-        this.saveWorkflowNodeParam = function(workflowVersionId,params){
-            return RestApi.all("/workflow/config/nodeparam/").all(workflowVersionId).post(params);
-        }
+        this.queryWorkflowNodeParam = function(workflowVersionId,nodeId,nodeType){
+            if(nodeType.indexOf("Gateway")!=-1){
+                return RestApi.one("/workflow/config/gatewayparam/"+workflowVersionId,nodeId).get();
+            }else{
+                return RestApi.one("/workflow/config/nodeparam/"+workflowVersionId,nodeId).get();
+            }
+
+        };
+        this.saveWorkflowNodeParam = function(workflowVersionId,nodeType,params){
+            if(nodeType.indexOf("Gateway")!=-1){
+                return RestApi.all("/workflow/config/gatewayparam/").all(workflowVersionId).post(params);
+            }else{
+                return RestApi.all("/workflow/config/nodeparam/").all(workflowVersionId).post(params);
+            }
+
+        };
     });
