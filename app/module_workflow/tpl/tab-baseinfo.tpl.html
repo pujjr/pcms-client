@@ -1,0 +1,77 @@
+<div class="container-fluid m-t-md">
+    <form class="form-horizontal" role="form">
+        <fieldset class="scheduler-border ">
+            <legend class="scheduler-border">基本信息</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">流程名称：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.workflowName}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">流程标识：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.workflowKey}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">流程定义ID：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.activitiProcdefId}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">版本号：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.version}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">创建时间：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.createTime|mysqlDatetime}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">创建人：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.createId}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">更新时间：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.updateTime|mysqlDatetime}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">更新人：</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{baseInfo.updateId}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

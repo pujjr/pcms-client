@@ -9,37 +9,64 @@
             </div>
         </header>
     </div>
-    <form class="container-fluid m-t-md">
+    <form class="container-fluid m-t-md form-horizontal">
         <fieldset class="scheduler-border ">
             <legend class="scheduler-border">参数设置</legend>
             <div class="row">
-                <div class="col-md-3 m-t-md" >
-                    <label for="isJumpFirstTask">是否跳过第一个节点</label>
-                    <input type="checkbox" id ='isJumpFirstTask' ng-checked="globalParam.isJumpFirstTask" ng-model="globalParam.isJumpFirstTask">
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="isJumpFirstTask" class="col-sm-4 control-label">是否跳过第一个节点：</label>
+                        <div class="col-sm-8">
+                            <input type="checkbox" id ='isJumpFirstTask' ng-checked="globalParam.isJumpFirstTask" ng-model="globalParam.isJumpFirstTask">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <label for="preHandle">流程启动前置处理器</label>
-                    <input type="text" class="form-control" id="preHandle" ng-model="globalParam.workflowCreatePrehandle">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="preHandle" class="col-sm-4 control-label">流程启动前置处理器：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="preHandle" ng-model="globalParam.workflowCreatePrehandle">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <label for="afterHandle">流程启动后置处理器</label>
-                    <input type="text" class="form-control" id="afterHandle" ng-model="globalParam.workflowCreateAfterhandle">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="afterHandle" class="col-sm-4 control-label">流程启动后置处理器：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="afterHandle" ng-model="globalParam.workflowCreateAfterhandle">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <label for="endHandle">流程结束处理器</label>
-                    <input type="text" class="form-control" id="endHandle" ng-model="globalParam.workflowEndHandle">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="endHandle" class="col-sm-4 control-label">流程结束处理器：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="endHandle" ng-model="globalParam.workflowEndHandle">
+                        </div>
+                    </div>
                 </div>
             </div>
         </fieldset>
         <fieldset>
             <uib-tabset>
-                <uib-tab index="0" heading="流程启动执行脚本">
+                <uib-tab index="0">
+                    <uib-tab-heading>
+                        <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;流程启动执行脚本
+                    </uib-tab-heading>
                     <textarea class="form-control" rows="20" ng-model="globalParam.workflowStartScript" style="width:100%;"></textarea>
                 </uib-tab>
-                <uib-tab index="1" heading="流程完成执行脚本">
+                <uib-tab index="1">
+                    <uib-tab-heading>
+                        <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;流程完成执行脚本
+                    </uib-tab-heading>
                     <textarea class="form-control" rows="20" ng-model="globalParam.workflowCompleteScript" style="width:100%;"></textarea>
                 </uib-tab>
-                <uib-tab index="2" heading="流程取消执行脚本">
+                <uib-tab index="2">
+                    <uib-tab-heading>
+                        <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;流程取消执行脚本
+                    </uib-tab-heading>
                     <textarea class="form-control" rows="20" ng-model="globalParam.workflowCancelScript" style="width:100%;"></textarea>
                 </uib-tab>
             </uib-tabset>

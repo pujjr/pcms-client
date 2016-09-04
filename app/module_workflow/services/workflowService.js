@@ -44,6 +44,8 @@ angular.module('pu.workflow.services')
             }else{
                 return RestApi.all("/workflow/config/nodeparam/").all(workflowVersionId).post(params);
             }
-
         };
+        this.queryWorkflowBaseInfo = function(workflowVersionId){
+            return RestApi.one("/workflow/config/baseinfo/",workflowVersionId).get();
+        }
     });

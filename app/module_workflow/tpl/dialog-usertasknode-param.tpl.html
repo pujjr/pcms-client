@@ -1,53 +1,79 @@
-<form name="form">
+<form name="form" class="form-horizontal">
     <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>节点参数配置</h4>
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>节点参数配置:{{node.nodeName}}</h4>
     </div>
     <div class="modal-body">
         <div  class="container-fluid">
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">参数设置</legend>
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="preHandle">任务创建前处理器</label>
-                        <input type="text" class="form-control" id="preHandle" ng-model="nodeParam.taskCreatePrehandle">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="afterHandle">任务创建后处理器</label>
-                        <input type="text" class="form-control" id="afterHandle" ng-model="nodeParam.taskCreateAfterhandle">
+                    <div class="col-md-12" >
+                        <div class="form-group">
+                            <label for="preHandle" class="col-sm-3 control-label">任务创建前处理器：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="preHandle" ng-model="nodeParam.taskCreatePrehandle">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="noticeType">节点通知方式</label>
-                        <div id="noticeType" class="checkbox">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="site"   ng-checked=nodeParam.onSiteNotice" ng-model="nodeParam.onSiteNotice"> 站内
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="msg"     ng-checked="nodeParam.onMsgNotice" ng-model="nodeParam.onMsgNotice"> 短信
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="mail"   ng-checked="nodeParam.onMailNotice" ng-model="nodeParam.onMailNotice"> 邮件
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="weixin"  ng-checked="nodeParam.onWeixinNotice" ng-model="nodeParam.onWeixinNotice"> 微信
-                            </label>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="afterHandle" class="col-sm-3 control-label">任务创建后处理器：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="afterHandle" ng-model="nodeParam.taskCreateAfterhandle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="afterHandle" class="col-sm-3 control-label">节点通知方式：</label>
+                            <div class="col-sm-9">
+                                <div id="noticeType" class="checkbox">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="site"   ng-checked=nodeParam.onSiteNotice" ng-model="nodeParam.onSiteNotice"> 站内
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="msg"     ng-checked="nodeParam.onMsgNotice" ng-model="nodeParam.onMsgNotice"> 短信
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="mail"   ng-checked="nodeParam.onMailNotice" ng-model="nodeParam.onMailNotice"> 邮件
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="weixin"  ng-checked="nodeParam.onWeixinNotice" ng-model="nodeParam.onWeixinNotice"> 微信
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </fieldset>
             <div>
                 <uib-tabset>
-                    <uib-tab index="0" heading="活动启动脚本">
+                    <uib-tab index="0">
+                        <uib-tab-heading>
+                            <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;活动启动脚本
+                        </uib-tab-heading>
                         <textarea class="form-control" rows="20" ng-model="nodeParam.actStartScript" style="width:100%;"></textarea>
                     </uib-tab>
-                    <uib-tab index="1" heading="活动结束脚本">
+                    <uib-tab index="1">
+                        <uib-tab-heading>
+                            <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;活动结束脚本
+                        </uib-tab-heading>
                         <textarea class="form-control" rows="20" ng-model="nodeParam.actEndScript" style="width:100%;"></textarea>
                     </uib-tab>
-                    <uib-tab index="2" heading="任务创建脚本">
+                    <uib-tab index="2">
+                        <uib-tab-heading>
+                            <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;任务创建脚本
+                        </uib-tab-heading>
                         <textarea class="form-control" rows="20" ng-model="nodeParam.taskCreateScript" style="width:100%;"></textarea>
                     </uib-tab>
-                    <uib-tab index="3" heading="任务结束脚本">
+                    <uib-tab index="3">
+                        <uib-tab-heading>
+                            <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;任务结束脚本
+                        </uib-tab-heading>
                         <textarea class="form-control" rows="20" ng-model="nodeParam.taskCompleteScript" style="width:100%;"></textarea>
                     </uib-tab>
                 </uib-tabset>

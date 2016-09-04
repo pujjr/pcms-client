@@ -1,14 +1,20 @@
 <form name="form" class="container-fluid">
     <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>节点参数配置</h4>
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>节点参数配置:{{node.nodeName}}</h4>
     </div>
     <div class="modal-body">
         <fieldset>
             <uib-tabset>
-                <uib-tab index="0" heading="活动启动脚本">
+                <uib-tab index="0">
+                    <uib-tab-heading>
+                        <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;活动启动脚本
+                    </uib-tab-heading>
                     <textarea class="form-control" rows="20" ng-model="nodeParam.actStartScript" style="width:100%;"></textarea>
                 </uib-tab>
-                <uib-tab index="1" heading="活动结束脚本">
+                <uib-tab index="1">
+                    <uib-tab-heading>
+                        <i class="fa fa-file-code-o fa-lg" aria-hidden="true"></i>&nbsp;活动结束脚本
+                    </uib-tab-heading>
                     <textarea class="form-control" rows="20" ng-model="nodeParam.actEndScript" style="width:100%;"></textarea>
                 </uib-tab>
             </uib-tabset>

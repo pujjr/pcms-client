@@ -1,27 +1,49 @@
-<div>
+<div ng-init="configInit()">
     <div class="panel">
         <div class="panel-header">
             <div class="panel-header-wrapper">
-                <h2 class="panel-header-title">流程参数配置</h2>
+                <h2 class="panel-header-title">流程参数配置-{{baseInfo.workflowName}}-{{baseInfo.activitiProcdefId}}</h2>
             </div>
         </div>
-        <div class="m-b-lg">
-            <img ng-src="http://127.0.0.1:8080/gpsserver/service/workflow/config/img/{{}}">
+        <div class="m-b-lg" style="overflow:auto;height:300px">
+            <img ng-src="{{workflowImgUrl}}">
         </div>
         <div>
             <uib-tabset>
-                <uib-tab index="0" heading="流程信息">first</uib-tab>
-                <uib-tab index="1" heading="流程全局参数" select="queryProcessGlobalParams()">
+                <uib-tab index="0">
+                    <uib-tab-heading>
+                        <i class="fa fa-list fa-lg" aria-hidden="true"></i>&nbsp;流程信息
+                    </uib-tab-heading>
+                    <div ng-include="'module_workflow/tpl/tab-baseinfo.html'"></div>
+                </uib-tab>
+                <uib-tab index="1"select="queryProcessGlobalParams()">
+                    <uib-tab-heading>
+                        <i class="fa fa-globe fa-lg" aria-hidden="true"></i>&nbsp;流程全局参数
+                    </uib-tab-heading>
                     <div ng-include="'module_workflow/tpl/tab-global-param.html'"></div>
                 </uib-tab>
-                <uib-tab index="2" heading="流程节点表单配置"  select="queryProcessUserTaskNodes()">
+                <uib-tab index="2" select="queryProcessUserTaskNodes()">
+                    <uib-tab-heading>
+                        <i class="fa fa-file  fa-lg" aria-hidden="true"></i>&nbsp;流程节点表单配置
+                    </uib-tab-heading>
                     <div ng-include="'module_workflow/tpl/tab-form-param.html'"></div>
                 </uib-tab>
-                <uib-tab index="3" heading="流程节点审批配置">first</uib-tab>
-                <uib-tab index="4" heading="流程节点参数配置"  select="queryProcessAllNodes()">
+                <uib-tab index="3" heading="流程节点审批配置">
+                    <uib-tab-heading>
+                        <i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;流程节点审批配置
+                    </uib-tab-heading>
+                </uib-tab>
+                <uib-tab index="4" select="queryProcessAllNodes()">
+                    <uib-tab-heading>
+                        <i class="fa fa-cogs fa-lg" aria-hidden="true"></i>&nbsp;流程节点参数配置
+                    </uib-tab-heading>
                     <div ng-include="'module_workflow/tpl/tab-node-param.html'"></div>
                 </uib-tab>
-                <uib-tab index="5" heading="流程授权">first</uib-tab>
+                <uib-tab index="5" heading="流程授权">
+                    <uib-tab-heading>
+                        <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>&nbsp;流程授权
+                    </uib-tab-heading>
+                </uib-tab>
             </uib-tabset>
         </div>
     </div>
