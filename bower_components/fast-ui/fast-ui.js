@@ -199,7 +199,7 @@ angular.module('fast.directive')
                 };
 
             },
-            templateUrl:'templates/treenode.html',
+            templateUrl:'templates/treenode.tpl.html',
             compile: function(tElement, tAttr) {
                 var contents = tElement.contents().remove();
                 var compiledContents;
@@ -224,7 +224,7 @@ angular.module('fast.template').run(['$templateCache', function($templateCache) 
   );
 
 
-  $templateCache.put('templates/treenode.html',
+  $templateCache.put('templates/treenode.tpl.html',
     "<i ng-class=\"$getItemIcon(treeData)\" ng-click=\"$itemExpand(treeData)\"></i> <span ng-click=\"$itemClicked(treeData)\"><input type=\"checkbox\" ng-if=\"canChecked\" ng-model=\"treeData.checked\" ng-change=\"$itemChecked(treeData)\"> {{treeData[nameField]}}</span><ul ng-show=\"treeData.$$expanded\" style=\"list-style: none\"><li ng-repeat=\"child in treeData.children\" style=\"padding-left: 25px;position: relative\"><tree tree-data=\"child\" can-checked=\"canChecked\" name-field=\"{{nameField}}\"></tree></li></ul>"
   );
 

@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font-family:"Times New Roamn","Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Microsoft YaHei","Times New Roamn","Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   line-height: 1.42857143;
@@ -5319,4 +5319,43 @@ ul{
   width: 80%;
   background: #fff;
   float: left;
+}
+.treeNode {
+  font-weight: normal;
+  cursor: pointer;
+  color: #555;
+  text-decoration: none;
+  padding: 8px 8px 8px 5px;!important;
+  display: block;
+  transition: all 0.25s;
+  position: relative;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 17px;
+
+}
+.treeNode:active{
+  padding: 8px 8px 8px 5px;!important;
+  font-size: 17px;
+}
+.treeNode:hover{
+  padding: 8px 8px 8px 5px;!important;
+  font-size: 17px;
+  background-color: #dedede;
+}
+.treeNode_sel{
+  font-weight: normal;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  padding: 8px 8px 8px 5px;!important;
+  display: block;
+  transition: all 0.25s;
+  position: relative;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 17px;
+  background-color: #38adff;
 }

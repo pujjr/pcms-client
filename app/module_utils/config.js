@@ -1,7 +1,9 @@
 angular.module('pu.utils',
     [
         'pu.utils.services',
-        'pu.utils.filters'
+        'pu.utils.filters',
+        'pu.utils.directives'
     ]);
 angular.module('pu.utils.services',[]);
 angular.module('pu.utils.filters',[])
+angular.module('pu.utils.directives',[])

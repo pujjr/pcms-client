@@ -1,0 +1,13 @@
+<div ng-class="$getNodeCss(treeData)"  ng-dblclick="$itemExpand(treeData)"   ng-click="$itemClicked(treeData)">
+    <i ng-class="$getItemIcon(treeData)"   ng-click="$itemExpand(treeData)"></i>
+    <span>
+        <input type="checkbox" ng-if="canChecked" ng-model="treeData.checked" ng-change="$itemChecked(treeData)"/>
+        {{treeData[nameField]}}
+    </span>
+</div>
+
+<ul  ng-show="treeData.$$expanded">
+    <li  ng-repeat="child in treeData.children" style="margin-left: -5px;!important;">
+        <tree tree-data="child" can-checked="canChecked" name-field="{{nameField}}"></tree>
+    </li>
+</ul>
