@@ -1,0 +1,22 @@
+<div ng-init="init()">
+    <div class="panel_main">
+        <div class="panel-header">
+            <div class="panel-header-wrapper">
+                <h2 class="panel-header-title">区域信息</h2>
+            </div>
+        </div>
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                    <span class="fs-title"></span>
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-m btn-default" type="button" ng-click="addSysArea()"><i class="fa fa-save m-r-sm"></i>增加区域</button>
+                </div>
+            </header>
+        </div>
+        <div>
+            <tree tree-data="sysAreaTree" can-checked="false" name-field="areaName"></tree>
+        </div>
+    </div>
+</div>

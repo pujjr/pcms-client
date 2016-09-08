@@ -10,7 +10,7 @@ angular.module('app')
     }])
     .factory('RestApi', ['Restangular', '$state', 'modal', '$rootScope', '$injector', function (Restangular, $state, modal, $rootScope, $injector) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/gpsserver/service');
+            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/service');
             RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
                 if (operation == 'getList') {
                     params.pageSize = params.pageSize || $rootScope.paginationInfo.pageSize;
@@ -61,12 +61,12 @@ angular.module('app')
     }])
     .factory('QuestionRestangular',function(CarCreditRestangular){
         return RestApi.withConfig(function(RestangularConfigurer){
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/gpsserver/');
+            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/');
         })
     })
     .factory('CarCreditRestangular',function(RestApi){
         return  RestApi.withConfig(function(RestangularConfigurer){
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/gpsserver/service');
+            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/service');
         })
     })
 

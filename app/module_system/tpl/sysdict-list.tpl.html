@@ -4,7 +4,7 @@
             <div class="panel_main">
                 <div class="panel-header">
                     <div class="panel-header-wrapper">
-                        <h2 class="panel-header-title">机构列表</h2>
+                        <h2 class="panel-header-title">数据字典类型</h2>
                     </div>
                 </div>
                 <div class="data-table-container">
@@ -13,12 +13,12 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-save m-r-sm"></i>增加机构</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="addSysDictType()"><i class="fa fa-plus m-r-sm"></i>增加类型</button>
                         </div>
                     </header>
                 </div>
                 <div>
-                    <tree tree-data="sysBranchTree" can-checked="false" name-field="branchName"></tree>
+                    <tree tree-data="sysDictTypeTree" can-checked="false" name-field="dictTypeName"></tree>
                 </div>
             </div>
         </div>
@@ -26,40 +26,40 @@
             <div class="panel_main">
                 <div class="panel-header">
                     <div class="panel-header-wrapper">
-                        <h2 class="panel-header-title">人员列表</h2>
+                        <h2 class="panel-header-title">数据字典明细</h2>
                     </div>
                 </div>
                 <div class="data-table-container">
                     <header class="data-table-header">
                         <div class="data-table-header__label">
-                            <span class="fs-title"></span>
+                            <span class="fs-title">{{selNode.dictTypeName}}</span>
+                            <button class="btn btn-m btn-default" type="button" ng-click="editSysDictType()"><i class="fa fa-edit m-r-sm"></i>编辑类型</button>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-search m-r-sm"></i>增加人员</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="addSysDictData()"><i class="fa fa-plus m-r-sm"></i>增加明细</button>
                         </div>
                     </header>
                     <table class="data-table">
                         <thead>
                         <tr>
-                            <th>人员编码</th>
-                            <th>姓名</th>
-                            <th>所属岗位</th>
-                            <th>手机号码</th>
-                            <th>当前状态</th>
+                            <th>显示序号</th>
+                            <th>数据编码</th>
+                            <th>数据名称</th>
+                            <th>是否启用</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="item in workflowDefines">
-                            <td>{{item.workflowName}}</td>
-                            <td>{{item.workflowKey}}</td>
-                            <td>{{item.version}}</td>
-                            <td>{{item.versionStatus}}</td>
+                        <tr ng-repeat="item in sysDictDatas">
+                            <td>{{item.showSeq}}</td>
+                            <td>{{item.dictDataCode}}</td>
+                            <td>{{item.dictDataName}}</td>
                             <td>
-                                <a href="javascript:" ng-click="editWorkflow(item.activitiModelId)">编辑流程图</a>
-                                <a href="javascript:" ng-click="showWorkflowVersionsList(item.id)">版本信息</a>
-                                <a href="javascript:" ng-click="configWorkflow(item.versionId)">配置流程</a>
-                                <a href="javascript:" ng-click="startProcess()">启动流程</a>
+                                <input type="checkbox" ng-model="item.enabled"  ng-click="modifyDictDataStatus(item)" ng-checked="item.enabled==1">是否启用
+                            </td>
+                            <td>
+                                <a href="javascript:" ng-click="modifyDictData(item)">编辑</a>
+                                <a href="javascript:" ng-click="deleteDictData(item.id)">删除</a>
                             </td>
                         </tr>
                         </tbody>

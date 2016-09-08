@@ -7,6 +7,7 @@ angular.module('pu.access.controllers')
         function ($scope, $http, $rootScope, $state, AuthRestangular, CarCreditRestangular, AuthService) {
             $scope.user = {};
             $scope.authError = null;
+            /*
             $scope.login = function () {
                 $scope.authError = null;
                 AuthService.login($scope.user.id, $scope.user.passwd).then(function (response) {
@@ -19,6 +20,9 @@ angular.module('pu.access.controllers')
                 }, function (response) {
                     $scope.authError = response;
                 })
-            };
+            };*/
+            $scope.login = function(){
+                $state.go('app.index');
+            }
         }])
 ;

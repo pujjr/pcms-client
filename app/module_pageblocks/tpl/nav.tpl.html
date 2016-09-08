@@ -44,10 +44,22 @@
       <span class="font-bold">用户管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.sysbranchs.list')">
-    <a ui-sref="app.sysbranchs.list">
+  <li ui-sref-active="active">
+    <a ui-sref="app.sysbranch.list">
       <i class="fa  fa-bank icon text-info-dker"></i>
       <span class="font-bold">机构管理</span>
+    </a>
+  </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.sysarea.list">
+      <i class="fa  fa-bank icon text-info-dker"></i>
+      <span class="font-bold">区域管理</span>
+    </a>
+  </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.sysdict.list">
+      <i class="fa  fa-bank icon text-info-dker"></i>
+      <span class="font-bold">数据字典管理</span>
     </a>
   </li>
   <li ui-sref-active="active" ng-if="hasPrimission('app.sysmenu.list')">
