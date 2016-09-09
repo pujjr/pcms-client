@@ -1,4 +1,10 @@
 angular.module('app')
+    .constant(
+        'BaseUrl','http://127.0.0.1:8080/pcms-web'
+    )
+    .constant(
+        'WorkflowUrl','/modeler.html?modelId='
+    )
     .run(
     ['$rootScope', '$state', '$stateParams', '$cacheFactory', 'AuthService',
         function ($rootScope, $state, $stateParams, $cacheFactory, AuthService) {

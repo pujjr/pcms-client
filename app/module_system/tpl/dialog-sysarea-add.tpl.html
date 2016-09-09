@@ -1,0 +1,33 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增区域</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="areaName" class="col-sm-3 control-label">区域名称：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="areaName" placeholder="区域名称" ng-model="item.areaName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="parentId" class="col-sm-3 control-label">上级区域：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="parentId"  ng-model="item.parentId" ng-options="o.id as o.areaName for o in sysAreas" required>
+                    <option value="">请选择上级区域</option>`
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="areaType" class="col-sm-3 control-label">区域类型：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="areaType"  ng-model="item.areaType" ng-options="o.dictDataCode as o.dictDataName for o in sysAreaTypes" required>
+                    <option value="">请选择区域类型</option>`
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

@@ -13,7 +13,7 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-save m-r-sm"></i>增加机构</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="addSysBranch()"><i class="fa fa-plus m-r-sm"></i>增加机构</button>
                         </div>
                     </header>
                 </div>
@@ -32,10 +32,11 @@
                 <div class="data-table-container">
                     <header class="data-table-header">
                         <div class="data-table-header__label">
-                            <span class="fs-title"></span>
+                            <span class="fs-title">{{selNode.branchName}}:{{selNode.branchCode}}</span>
+                            <button class="btn btn-m btn-default" type="button" ng-click="editSysBranch(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑机构</button>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-search m-r-sm"></i>增加人员</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="addSysAccount()"><i class="fa fa-fa-plus m-r-sm"></i>增加人员</button>
                         </div>
                     </header>
                     <table class="data-table">
@@ -50,22 +51,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="item in workflowDefines">
-                            <td>{{item.workflowName}}</td>
-                            <td>{{item.workflowKey}}</td>
-                            <td>{{item.version}}</td>
-                            <td>{{item.versionStatus}}</td>
+                        <tr ng-repeat="item in sysAccountList">
+                            <td>{{item.accountId}}</td>
+                            <td>{{item.accountName}}</td>
+                            <td>{{item.sysJob.postName}}</td>
+                            <td>{{item.mobile}}</td>
+                            <td>{{item.statusDict.dictDataName}}</td>
                             <td>
-                                <a href="javascript:" ng-click="editWorkflow(item.activitiModelId)">编辑流程图</a>
-                                <a href="javascript:" ng-click="showWorkflowVersionsList(item.id)">版本信息</a>
-                                <a href="javascript:" ng-click="configWorkflow(item.versionId)">配置流程</a>
-                                <a href="javascript:" ng-click="startProcess()">启动流程</a>
+                                <a href="javascript:" ng-click="editSysAccount(item)">编辑</a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="has-divider has-divider--dark"></div>
-                    <div class="toolbar" ng-if="false">
+                    <div class="toolbar">
                         <div class="toolbar__left mr++">
                     <span ng-if="paginationInfo.totalItem==0">
                         无查询结果

@@ -23,6 +23,8 @@ angular.module('pu.system.services')
         };
         this.modifySysDictData = function(item){
             return RestApi.one("/sysdict/dictdata",item.id).customPUT(item);
+        };
+        this.queryDictDataByTypeCode = function(dictTypeCode){
+            return RestApi.one("/sysdict/dicttypecode",dictTypeCode).all("dictdata").getList();
         }
-
     });

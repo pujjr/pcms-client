@@ -3,8 +3,11 @@
 /* Controllers */
 // signin controller
 angular.module("pu.system.controllers")
-    .controller('SysAreaController',function ($scope, $rootScope, $state, toaster, $uibModal,SysAreaService,ToolsService) {
+    .controller('SysAreaController',function ($scope, $rootScope, $state, toaster, $uibModal,SysAreaService,SysDictService,ToolsService) {
         $scope.init = function () {
+            $scope.querySysAreaList();
+        };
+        $scope.querySysAreaList = function(){
             SysAreaService.querySysAreaList().then(function(response){
                 $scope.sysAreaTree=ToolsService.convertArrayToTree(response, {
                     idKey: 'id',
@@ -12,17 +15,22 @@ angular.module("pu.system.controllers")
                     childrenKey: 'children'
                 });
             });
-        };
+        }
+        $scope.$on('nodeClicked',function (event) {
+            $scope.selNode=event.targetScope.treeData;
+            $scope.subSysAreas = SysAreaService.querySysAreaListByParentId($scope.selNode.id).$object;
+        });
         $scope.addSysArea = function(){
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
-                templateUrl :'module_workflow/tpl/dialog-add-sysarea.html',
+                templateUrl :'module_system/tpl/dialog-sysarea-add.html',
                 controller:function($scope,RestApi){
-                    $scope.sysArea={};
+                    $scope.item={};
                     $scope.sysAreas =  SysAreaService.querySysAreaList().$object;
+                    $scope.sysAreaTypes = SysDictService.queryDictDataByTypeCode("qylx").$object;
                     $scope.ok=function(){
-                        modalInstance.close($scope.workflowDefine);
+                        modalInstance.close($scope.item);
                     };
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
@@ -30,11 +38,45 @@ angular.module("pu.system.controllers")
                 }
             });
             modalInstance.result.then(function(response){
-                RestApi.all("/workflow/create").post(response).then(function(response){
-                    toaster.pop('success', '操作提醒', '增加流程成功');
-                    $scope.workflowDefines =  WorkflowService.queryWorkflowDefines($scope.selType.id).$object;
+                SysAreaService.addSysArea(response).then(function(){
+                    toaster.pop('success', '鎿嶄綔鎻愰啋', '澧炲姞鍖哄煙鎴愬姛');
+                    $scope.querySysAreaList();
                 })
             })
-        }
+        };
+        $scope.editSysArea = function(item){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                resolve: {
+                    item: function(){
+                        return item;
+                    }
+                },
+                templateUrl :'module_system/tpl/dialog-sysarea-edit.html',
+                controller:function($scope,RestApi){
+                    $scope.item=item;
+                    $scope.sysAreas =  SysAreaService.querySysAreaList().$object;
+                    $scope.sysAreaTypes = SysDictService.queryDictDataByTypeCode("qylx").$object;
+                    $scope.ok=function(){
+                        SysAreaService.modifySysArea($scope.item).then(function(){
+                            modalInstance.close('淇敼鍖哄煙鎴愬姛');
+                        })
+                    };
+                    $scope.delete = function(){
+                        SysAreaService.deleteSysArea(item.id).then(function(){
+                            modalInstance.close('鍒犻櫎鍖哄煙鎴愬姛');
+                        })
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '鎿嶄綔鎻愰啋',response );
+                $scope.querySysAreaList();
+            })
+        };
     })
 ;

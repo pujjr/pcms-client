@@ -21,7 +21,7 @@ angular.module("pu.system.controllers")
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
-                templateUrl :'module_system/tpl/dialog-add-sysdicttype.html',
+                templateUrl :'module_system/tpl/dialog-sysdicttype-add.html',
                 controller:function($scope,RestApi){
                     $scope.item={};
                     $scope.list =  SysDictService.querySysDictTypeList().$object;
@@ -50,7 +50,7 @@ angular.module("pu.system.controllers")
                         return item;
                     }
                 },
-                templateUrl :'module_system/tpl/dialog-edit-sysdicttype.html',
+                templateUrl :'module_system/tpl/dialog-sysdicttype-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;
                     $scope.list =  SysDictService.querySysDictTypeList().$object;
@@ -88,7 +88,7 @@ angular.module("pu.system.controllers")
                         return selDictType;
                     }
                 },
-                templateUrl :'module_system/tpl/dialog-add-sysdictdata.html',
+                templateUrl :'module_system/tpl/dialog-sysdictdata-add.html',
                 controller:function($scope,RestApi){
                     $scope.item={};
                     $scope.selDictType = selDictType;
@@ -130,7 +130,7 @@ angular.module("pu.system.controllers")
                         return item;
                     }
                 },
-                templateUrl :'module_system/tpl/dialog-edit-sysdictdata.html',
+                templateUrl :'module_system/tpl/dialog-sysdictdata-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;
                     $scope.list =  SysDictService.querySysDictTypeList().$object;

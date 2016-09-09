@@ -13,7 +13,7 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-save m-r-sm"></i>保存</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="addWorkflowType()"><i class="fa fa-plus m-r-sm"></i>增加流程分类</button>
                         </div>
                     </header>
                 </div>
@@ -33,10 +33,14 @@
                 <div class="data-table-container">
                     <header class="data-table-header">
                         <div class="data-table-header__label">
-                            <span class="fs-title"></span>
+                            <div class="fs-title">
+                                <span style="padding-top:10px">{{selType.typeName}}</span>
+                                <button class="btn btn-m btn-default" type="button" ng-click="editWorkflowType(selType)"><i class="fa fa-edit m-r-sm"></i>编辑流程分类</button>
+                            </div>
+
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-search m-r-sm"></i>增加流程</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-plus m-r-sm"></i>增加流程定义</button>
                         </div>
                     </header>
                     <table class="data-table">

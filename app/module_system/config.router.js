@@ -44,6 +44,18 @@ angular.module('app')
                     url: '/list',
                     templateUrl: 'module_system/tpl/sysdict-list.html'
                 })
+                //岗位管理
+                .state('app.sysjob',{
+                    abstract: true,
+                    url:'/sysjob',
+                    template:'<div ui-view=""></div>',
+                    controller: 'SysJobController'
+                })
+                //岗位管理-查询岗位列表
+                .state('app.sysjob.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/sysjob-list.html'
+                })
         }
     ]
 );

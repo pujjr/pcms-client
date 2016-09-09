@@ -1,13 +1,19 @@
 angular.module('pu.workflow.services')
-    .service("WorkflowService",function($window,RestApi){
+    .service("WorkflowService",function($window,RestApi,WorkflowUrl,BaseUrl){
         this.queryWorkflowTypes = function(){
             return RestApi.all("/workflowtype").getList();
         };
+        this.addWorkflowType = function(item){
+            return RestApi.all("/workflowtype").post(item);
+        };
+        this.modifyWorkflowType = function(item){
+            return RestApi.one("/workflowtype",item.id).customPUT(item);
+        }
         this.queryWorkflowDefines = function(workflowTypeId){
             return RestApi.all("/workflow/list").all(workflowTypeId).getList();
         };
         this.showWorkflowEditor=function(modelId){
-            $window.open("http://127.0.0.1:8080/gpsserver/modeler.html?modelId="+modelId);
+            $window.open(BaseUrl+WorkflowUrl+modelId);
         };
         this.setMainVersionAct = function(workflowDefineId,versionId){
             return RestApi.one("/workflow",workflowDefineId).one("/setActivateVersion",versionId).get();

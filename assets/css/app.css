@@ -5332,16 +5332,16 @@ ul{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 17px;
+  font-size: 15px;
 
 }
 .treeNode:active{
   padding: 8px 8px 8px 5px;!important;
-  font-size: 17px;
+  font-size: 15px;
 }
 .treeNode:hover{
   padding: 8px 8px 8px 5px;!important;
-  font-size: 17px;
+  font-size: 15px;
   background-color: #dedede;
 }
 .treeNode_sel{
@@ -5356,6 +5356,15 @@ ul{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 17px;
+  font-size: 15px;
   background-color: #38adff;
+}
+.btn-modal-left{
+  float:left;
+}
+.fs-title{
+  font-size:17px !important;
+  font-size:1.25rem;
+  font-weight: 500;
+  line-height:28px
 }

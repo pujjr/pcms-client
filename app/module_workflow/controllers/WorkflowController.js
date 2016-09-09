@@ -4,14 +4,69 @@
 angular.module("pu.workflow.controllers")
     .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope,$uibModal, modal, toaster,ToolsService,$window,WorkflowService) {
         $scope.init= function () {
+            $scope.queryWorkflowTypes();
+        };
+        $scope.queryWorkflowTypes = function(){
             WorkflowService.queryWorkflowTypes().then(function(response){
                 $scope.workflowTypes=ToolsService.convertArrayToTree(response, {
                     idKey: 'id',
                     parentKey: 'parentTypeId',
                     childrenKey: 'children'
                 });
-            });
+            })
 
+        };
+        $scope.addWorkflowType = function(){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                templateUrl :'module_workflow/tpl/dialog-workflowtype-add.html',
+                controller:function($scope,RestApi){
+                    $scope.item={};
+                    $scope.workflowTyps =  WorkflowService.queryWorkflowTypes().$object;
+                    $scope.ok=function(){
+                        WorkflowService.addWorkflowType($scope.item).then(function(){
+                            modalInstance.close("增加流程分类成功");
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒',response);
+                $scope.queryWorkflowTypes();
+            })
+        };
+        $scope.editWorkflowType = function(item){
+            var item = item;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                resolve: {
+                    item: function () {
+                        return item;
+                    }
+                },
+                templateUrl :'module_workflow/tpl/dialog-workflowtype-edit.html',
+                controller:function($scope,RestApi){
+                    $scope.item=item;
+                    $scope.workflowTyps =  WorkflowService.queryWorkflowTypes().$object;
+                    $scope.ok=function(){
+                        WorkflowService.modifyWorkflowType($scope.item).then(function(){
+                            modalInstance.close("修改流程分类成功");
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒',response);
+                $scope.queryWorkflowTypes();
+            })
         };
         $scope.$on("nodeClicked", function (event) {
             $scope.selType=event.targetScope.treeData;
@@ -21,7 +76,7 @@ angular.module("pu.workflow.controllers")
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
-                templateUrl :'module_workflow/tpl/dialog-create-workflowdefine.html',
+                templateUrl :'module_workflow/tpl/dialog-workflowdefine-add.html',
                 controller:function($scope,RestApi){
                     $scope.workflowDefine={};
                     $scope.workflowTyps =  WorkflowService.queryWorkflowTypes().$object;
