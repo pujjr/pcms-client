@@ -1,0 +1,98 @@
+<div ng-init="init()">
+    <div class="c_box">
+        <div class="c_left_box">
+            <div class="panel_main">
+                <div class="panel-header">
+                    <div class="panel-header-wrapper">
+                        <h2 class="panel-header-title">工作组列表</h2>
+                    </div>
+                </div>
+                <div class="data-table-container">
+                    <header class="data-table-header">
+                        <div class="data-table-header__label">
+                            <span class="fs-title"></span>
+                        </div>
+                        <div class="data-table-header__actions">
+                            <button class="btn btn-m btn-default" type="button" ng-click="addSysWorkgroup()"><i class="fa fa-plus m-r-sm"></i>增加工作组</button>
+                        </div>
+                    </header>
+                </div>
+                <div>
+                    <tree tree-data="workgroupTree" can-checked="false" name-field="workgroupName"></tree>
+                </div>
+            </div>
+        </div>
+        <div class="c_right_box">
+            <div class="panel_main">
+                <div class="panel-header">
+                    <div class="panel-header-wrapper">
+                        <h2 class="panel-header-title">人员列表</h2>
+                    </div>
+                </div>
+                <div class="data-table-container">
+                    <header class="data-table-header">
+                        <div class="data-table-header__label">
+                            <span class="fs-title">{{selNode.workgroupName}}</span>
+                            <button class="btn btn-m btn-default" type="button" ng-click="editSysWorkgroup(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑工作组</button>
+                        </div>
+                        <div class="data-table-header__actions">
+                            <button class="btn btn-m btn-default" type="button" ng-click="addSysAccount()"><i class="fa fa-fa-plus m-r-sm"></i>添加人员</button>
+                        </div>
+                    </header>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th>人员编码</th>
+                            <th>姓名</th>
+                            <th>所属岗位</th>
+                            <th>手机号码</th>
+                            <th>当前状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in sysAccountList">
+                            <td>{{item.accountId}}</td>
+                            <td>{{item.accountName}}</td>
+                            <td>{{item.sysJob.postName}}</td>
+                            <td>{{item.mobile}}</td>
+                            <td>{{item.statusDict.dictDataName}}</td>
+                            <td>
+                                <a href="javascript:" ng-click="editSysAccount(item)">移除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="has-divider has-divider--dark"></div>
+                    <div class="toolbar">
+                        <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                        </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                        <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                            <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                            </div>
+                            <div>
+                                <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                                ng-model="paginationInfo.curPage"
+                                                items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                                last-text="&raquo;">
+                                </uib-pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

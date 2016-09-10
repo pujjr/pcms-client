@@ -56,6 +56,19 @@ angular.module('app')
                     url:'/list',
                     templateUrl:'module_system/tpl/sysjob-list.html'
                 })
+                //工作组管理
+                .state('app.sysworkgroup',{
+                    abstract: true,
+                    url:'/sysworkgroup',
+                    template:'<div ui-view=""></div>',
+                    controller: 'SysWorkgroupController'
+                })
+                //工作组管理-查询工作组列表
+                .state('app.sysworkgroup.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/sysworkgroup-list.html'
+                })
+
         }
     ]
 );
