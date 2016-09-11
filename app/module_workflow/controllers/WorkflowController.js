@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.workflow.controllers")
-    .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope,$uibModal, modal, toaster,ToolsService,$window,WorkflowService) {
+    .controller("WorkflowController", function ($scope, RestApi, $state, $rootScope,$uibModal, modal, toaster,ToolsService,$window,WorkflowService,SysDictService,SysAccountService,SysWorkgroupService) {
         $scope.init= function () {
             $scope.queryWorkflowTypes();
         };
@@ -174,6 +174,8 @@ angular.module("pu.workflow.controllers")
                 controller:function($scope,RestApi,WorkflowService){
                     $scope.node = node;
                     $scope.nodeParam = WorkflowService.queryWorkflowNodeParam(node.workflowVersionId,node.nodeId,node.nodeType).$object;
+                    $scope.recommitModes = SysDictService.queryDictDataByTypeCode("cxtjfs").$object;
+                    $scope.userTaskNodes = WorkflowService.queryProcessUserTaskNodes(node.workflowVersionId).$object;
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };
@@ -199,9 +201,21 @@ angular.module("pu.workflow.controllers")
             return "http://127.0.0.1:8080/gpsserver/service/workflow/config/img/"+$state.params.id;
         }
         $scope.configInit = function(){
-            $scope.workflowImgUrl="http://127.0.0.1:8080/gpsserver/service/workflow/config/img/"+$state.params.id+"/";
+            $scope.workflowImgUrl=WorkflowService.getWorkflowImageUrl($state.params.id);
             WorkflowService.queryWorkflowBaseInfo($state.params.id).then(function(response){
                 $scope.baseInfo = response;
+            })
+        };
+        $scope.queryProcessUserTaskNodeAssignee = function(){
+            $scope.assigneeTypes = SysDictService.queryDictDataByTypeCode("sprlx").$object;
+            $scope.sysAccounts = SysAccountService.querySysAccount().$object;
+            $scope.sysWorkgroups=SysWorkgroupService.querySysWorkgroupList().$object;
+            $scope.nodeAssignees = WorkflowService.queryWorkflowNodeAssignee($state.params.id).$object;
+        };
+        $scope.saveWorkflowNodeAssignee = function(){
+            WorkflowService.saveWorkflowNodeAssignee($state.params.id,$scope.nodeAssignees).then(function(){
+                toaster.pop('success', '操作提醒', '保存节点审批参数成功');
+                $scope.queryProcessUserTaskNodeAssignee();
             })
         }
     })

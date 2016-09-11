@@ -76,7 +76,9 @@ angular.module("pu.system.controllers")
         };
         $scope.$on("nodeClicked", function (event) {
             $scope.selNode=event.targetScope.treeData;
-            $scope.sysDictDatas = SysDictService.queryDictDataListByDictTypeId($scope.selNode.id).$object;
+             SysDictService.queryDictDataListByDictTypeId($scope.selNode.id).then(function(response){
+                 $scope.sysDictDatas = response;
+            });
         });
         $scope.addSysDictData =function(){
             var selDictType = $scope.selNode;

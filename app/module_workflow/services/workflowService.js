@@ -15,6 +15,9 @@ angular.module('pu.workflow.services')
         this.showWorkflowEditor=function(modelId){
             $window.open(BaseUrl+WorkflowUrl+modelId);
         };
+        this.getWorkflowImageUrl = function (id){
+            return BaseUrl+"/service/workflow/config/img/"+id;
+        }
         this.setMainVersionAct = function(workflowDefineId,versionId){
             return RestApi.one("/workflow",workflowDefineId).one("/setActivateVersion",versionId).get();
         };
@@ -53,5 +56,11 @@ angular.module('pu.workflow.services')
         };
         this.queryWorkflowBaseInfo = function(workflowVersionId){
             return RestApi.one("/workflow/config/baseinfo/",workflowVersionId).get();
+        };
+        this.queryWorkflowNodeAssignee = function(workflowVersionId){
+            return RestApi.all("/workflow/config/assignee").all(workflowVersionId).getList();
+        };
+        this.saveWorkflowNodeAssignee = function(workflowVersionId,params){
+            return RestApi.all("/workflow/config/assignee").all(workflowVersionId).post(params);
         }
     });

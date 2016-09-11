@@ -18,7 +18,7 @@ angular.module("pu.system.controllers")
         }
         $scope.$on('nodeClicked',function (event) {
             $scope.selNode=event.targetScope.treeData;
-            SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selNode.id);
+            $scope.workgroupAccountsList = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selNode.id).$object;
         });
         $scope.addSysWorkgroup = function(){
             var modalInstance = $uibModal.open({
@@ -81,75 +81,20 @@ angular.module("pu.system.controllers")
         $scope.querySysAccountListByBranchId = function(branchId){
             $scope.sysAccountList = SysWorkgroupService.querySysAccountListByBranchId(branchId).$object;
         };
-        $scope.addSysAccount = function(selNode){
-            var selNode = $scope.selNode;
-            var modalInstance = $uibModal.open({
-                animation: true,
-                backdrop:'false',
-                size:'lg',
-                resolve: {
-                    selNode: function(){
-                        return selNode;
-                    }
-                },
-                templateUrl :'module_system/tpl/dialog-sysaccount-add.html',
-                controller:function($scope,RestApi){
-                    $scope.item={};
-                    $scope.item.branchId = selNode.id;
-                    $scope.branchList =  SysWorkgroupService.querySysWorkgroupList().$object;
-                    $scope.jobList = SysJobService.querySysJobList().$object;
-                    $scope.statusList = SysDictService.queryDictDataByTypeCode("ryzt").$object;
-                    $scope.ok=function(){
-                        SysAccountService.addSysAccount($scope.item).then(function(){
-                            modalInstance.close('增加人员成功');
-                        })
-                    };
-                    $scope.cancel = function () {
-                        modalInstance.dismiss('cancel');
-                    };
-                }
+        $scope.addWorkgroupAccounts = function(selNode){
+            SysWorkgroupService.selWorkgroupAccounts(selNode).then(function(response){
+                SysWorkgroupService.addSysAccountsToWorkgroup(selNode.id,response).then(function(){
+                    toaster.pop('success', '操作提醒', "添加组成员成功");
+                    $scope.workgroupAccountsList = SysWorkgroupService.querySysAccountListByWorkgroupId(selNode.id).$object;
+                })
             });
-            modalInstance.result.then(function(response){
-                toaster.pop('success', '操作提醒', response);
-                $scope.querySysAccountListByBranchId( $scope.selNode.id);
-            })
         };
-        $scope.editSysAccount = function(item){
-            var modalInstance = $uibModal.open({
-                animation: true,
-                backdrop:'false',
-                size:'lg',
-                resolve: {
-                    item: function(){
-                        return item;
-                    }
-                },
-                templateUrl :'module_system/tpl/dialog-sysaccount-edit.html',
-                controller:function($scope,RestApi){
-                    $scope.item=item;
-                    $scope.branchList =  SysWorkgroupService.querySysWorkgroupList().$object;
-                    $scope.jobList = SysJobService.querySysJobList().$object;
-                    $scope.statusList = SysDictService.queryDictDataByTypeCode("ryzt").$object;
-                    $scope.ok=function(){
-                        SysAccountService.modifySysAccount($scope.item).then(function(){
-                            modalInstance.close('修改人员信息成功');
-                        })
-                    };
-                    $scope.delete = function(){
-                        modal.confirm("删除确认","是否删除"+item.accountName).then(function(){
-                            SysAccountService.deleteSysAccount(item.id).then(function(){
-                                modalInstance.close('删除人员成功');
-                            })
-                        })
-                    }
-                    $scope.cancel = function () {
-                        modalInstance.dismiss('cancel');
-                    };
-                }
-            });
-            modalInstance.result.then(function(response){
-                toaster.pop('success', '操作提醒',response );
-                $scope.querySysAccountListByBranchId( $scope.selNode.id);
+        $scope.removeFromWorkgroup = function(item){
+            modal.confirm("操作确认","是否从工作组"+$scope.selNode.workgroupName+"移除"+item.accountName).then(function(){
+                SysWorkgroupService.removeSysAccountFromWorkgroup($scope.selNode.id,item.id).then(function(){
+                    toaster.pop('success', '操作提醒', "移除组成员成功");
+                    $scope.workgroupAccountsList = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selNode.id).$object;
+                })
             })
         }
     })

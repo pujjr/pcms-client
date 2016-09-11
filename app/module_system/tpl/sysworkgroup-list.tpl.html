@@ -36,7 +36,7 @@
                             <button class="btn btn-m btn-default" type="button" ng-click="editSysWorkgroup(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑工作组</button>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addSysAccount()"><i class="fa fa-fa-plus m-r-sm"></i>添加人员</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="addWorkgroupAccounts(selNode)"><i class="fa fa-fa-plus m-r-sm"></i>添加人员</button>
                         </div>
                     </header>
                     <table class="data-table">
@@ -51,14 +51,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="item in sysAccountList">
+                        <tr ng-repeat="item in workgroupAccountsList">
                             <td>{{item.accountId}}</td>
                             <td>{{item.accountName}}</td>
                             <td>{{item.sysJob.postName}}</td>
                             <td>{{item.mobile}}</td>
                             <td>{{item.statusDict.dictDataName}}</td>
                             <td>
-                                <a href="javascript:" ng-click="editSysAccount(item)">移除</a>
+                                <a href="javascript:" ng-click="removeFromWorkgroup(item)">移除</a>
                             </td>
                         </tr>
                         </tbody>

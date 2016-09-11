@@ -9,4 +9,7 @@ angular.module('pu.system.services')
         this.modifySysAccount = function(item){
             return  RestApi.one("/sysaccount",item.id).customPUT(item);
         }
+        this.querySysAccount  = function(){
+            return RestApi.all("/sysaccount").getList();
+        }
     });

@@ -49,6 +49,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="recommitMode" class="col-sm-3 control-label">回退重新提交处理方式：</label>
+                            <div class="col-sm-9">
+                                <select  class="form-control" id="recommitMode"  ng-model="nodeParam.recommitMode" ng-options="l.dictDataCode as l.dictDataName for l in recommitModes" required>
+                                    <option value="">请选择回退重新提交处理方式</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="backNodeId" class="col-sm-3 control-label">回退节点：</label>
+                            <div class="col-sm-9">
+                                <select  class="form-control" id="backNodeId"  ng-model="nodeParam.backNodeId" ng-options="l.nodeId as l.nodeName for l in userTaskNodes" required>
+                                    <option value="">请选择回退节点</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
             <div>
                 <uib-tabset>

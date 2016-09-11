@@ -28,10 +28,11 @@
                     </uib-tab-heading>
                     <div ng-include="'module_workflow/tpl/tab-form-param.html'"></div>
                 </uib-tab>
-                <uib-tab index="3" heading="流程节点审批配置">
+                <uib-tab index="3" heading="流程节点审批配置" select="queryProcessUserTaskNodeAssignee()">
                     <uib-tab-heading>
                         <i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;流程节点审批配置
                     </uib-tab-heading>
+                    <div ng-include="'module_workflow/tpl/tab-node-assignee.html'"></div>
                 </uib-tab>
                 <uib-tab index="4" select="queryProcessAllNodes()">
                     <uib-tab-heading>

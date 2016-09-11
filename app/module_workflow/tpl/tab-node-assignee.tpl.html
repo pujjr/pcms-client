@@ -1,0 +1,51 @@
+<div>
+    <div class="data-table-container">
+        <header class="data-table-header">
+            <div class="data-table-header__label">
+                <span class="fs-title"></span>
+            </div>
+            <div class="data-table-header__actions">
+                <button class="btn btn-m btn-default" type="button" ng-click="saveWorkflowNodeAssignee()"><i class="fa fa-save m-r-sm"></i>保存</button>
+            </div>
+        </header>
+        <table class="data-table">
+            <thead>
+                <th>序号</th>
+                <th>节点名称</th>
+                <th>审批人类型</th>
+                <th>参数</th>
+                <th>批量分单处理器</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in nodeAssignees">
+                    <td>{{item.seq}}</td>
+                    <td>{{item.nodeName}}</td>
+                    <td>
+                        <select  class="form-control" id="areaId"  ng-model="item.assigneeType" ng-options="l.dictDataCode as l.dictDataName for l in assigneeTypes" required>
+                            <option value="">请选择审批人类型</option>`
+                        </select>
+                    </td>
+                    <td>
+                        <input  type="text" class="form-control" ng-model="item.assigneeParam"
+                                ng-disabled="item.assigneeType == 'sprlx02'"
+                                ng-required="item.assigneeType != 'sprlx02'"
+                                ng-if="item.assigneeType == 'sprlx02' || item.assigneeType =='sprlx01'">
+                        <select  class="form-control" id="assigneeParam"  ng-model="item.assigneeParam" ng-options="l.id as l.accountName for l in sysAccounts" required
+                                 ng-if=" item.assigneeType == 'sprlx03'">
+                            <option value="">请选择指定用户</option>`
+                        </select>
+                        <select  class="form-control" id="assigneeParam"  ng-model="item.assigneeParam" ng-options="l.id as l.workgroupName for l in sysWorkgroups" required
+                                ng-if=" item.assigneeType == 'sprlx04'">
+                            <option value="">请选择工作组</option>`
+                        </select>
+                    </td>
+                    <td>
+                        <input  type="text" class="form-control" ng-model="item.assigneeHandle"
+                                ng-disabled="item.assigneeType == 'sprlx02' || item.assigneeType =='sprlx01'"
+                                ng-required="item.assigneeType =='sprlx04'">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
