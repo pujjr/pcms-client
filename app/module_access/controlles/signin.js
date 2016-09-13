@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-// signin controller
+// signin controllers
 angular.module('pu.access.controllers')
     .controller('SigninFormController', ['$scope', '$http', '$rootScope', '$state', 'AuthRestangular', 'CarCreditRestangular', 'AuthService',
         function ($scope, $http, $rootScope, $state, AuthRestangular, CarCreditRestangular, AuthService) {

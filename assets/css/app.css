@@ -5368,3 +5368,9 @@ ul{
   font-weight: 500;
   line-height:28px
 }
+.pull-left{
+  float: left !important;
+}
+.pull-right{
+  float: right !important;
+}

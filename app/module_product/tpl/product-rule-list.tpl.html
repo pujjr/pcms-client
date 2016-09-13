@@ -1,0 +1,65 @@
+<div ng-init="init()">
+    <div class="panel_main">
+        <div class="panel-header">
+            <div class="panel-header-wrapper">
+                <h2 class="panel-header-title">产品规则管理</h2>
+            </div>
+        </div>
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-m btn-default" type="button" ng-click="addProductRule()"><i class="fa fa-plus m-r-sm"></i>增加产品规则</button>
+                </div>
+            </header>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>规则名称</th>
+                    <th>创建时间</th>
+                    <th>创建人</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in productRuleList">
+                    <td>{{item.productName}}</td>
+                    <td>
+                        <input type="checkbox" ng-model="item.enable"  ng-checked="item.enable==1">是否启用
+                    </td>
+                    <td>{{item.repayModeDict.dictDataName}}</td>
+                    <td>
+                        <a href="javascript:" ng-click="editProduct(item)">编辑</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="has-divider has-divider--dark"></div>
+            <div class="toolbar">
+                <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                    <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                    </div>
+                    <div>
+                        <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                        ng-model="paginationInfo.curPage"
+                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                        last-text="&raquo;">
+                        </uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

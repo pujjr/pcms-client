@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-// signin controller
+// signin controllers
 angular.module("pu.system.controllers")
     .controller('SysAreaController',function ($scope, $rootScope, $state, toaster, $uibModal,SysAreaService,SysDictService,ToolsService) {
         $scope.init = function () {

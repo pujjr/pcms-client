@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-// signin controller
+// signin controllers
 angular.module("pu.system.controllers")
     .controller('SysWorkgroupController',function ($scope, $rootScope, $state, toaster,$uibModal,modal, SysWorkgroupService,SysAreaService,SysJobService,SysAccountService,SysDictService,ToolsService) {
         $scope.init = function () {

@@ -689,7 +689,7 @@ function ngMessageDirectiveFactory() {
 
                 // in the event that the element or a parent element is destroyed
                 // by another structural directive then it's time
-                // to deregister the message from the controller
+                // to deregister the message from the controllers
                 currentElement.on('$destroy', function() {
                   if (currentElement && currentElement.$$attachId === $$attachId) {
                     ngMessagesCtrl.deregister(commentNode);

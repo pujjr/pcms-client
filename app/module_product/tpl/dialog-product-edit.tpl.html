@@ -1,0 +1,132 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑产品</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="productType" class="col-sm-4 control-label">所属产品分类：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="productType"  ng-model="item.productTypeId" ng-options="o.id as o.productTypeName for o in productTypeList" required disabled>
+                            <option value="">所属产品分类</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="productName" class="col-sm-4 control-label">产品名称：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="productName" placeholder="产品名称" ng-model="item.productName" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="productCode" class="col-sm-4 control-label">产品编码：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="productCode" placeholder="产品编码" ng-model="item.productCode" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="loanCondition" class="col-sm-4 control-label">放款条件：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="loanCondition"  ng-model="item.loanCondition" ng-options="o.dictDataCode as o.dictDataName for o in fktjList" required>
+                            <option value="">请选择放款条件</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="minLoanAmount" class="col-sm-4 control-label">最低放款额度：</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control"   id="minLoanAmount" placeholder="最低放款额度" ng-model="item.minLoanAmount" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="maxLoanAmount" class="col-sm-4 control-label">最高放款额度：</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="maxLoanAmount" placeholder="最高放款额度" ng-model="item.maxLoanAmount" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="yearRate" class="col-sm-4 control-label">年利率：</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" step="0.01" id="yearRate" placeholder="年利率" ng-model="item.yearRate" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="dayLateRate" class="col-sm-4 control-label">日罚息率：</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" step="0.01" id="dayLateRate" placeholder="日罚息率" ng-model="item.dayLateRate" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="dayExtendRate" class="col-sm-4 control-label">日展期率：</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="dayExtendRate" placeholder="日展期率" ng-model="item.dayExtendRate" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="repayMode" class="col-sm-4 control-label">还款方式：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="repayMode"  ng-model="item.repayMode" ng-options="o.dictDataCode as o.dictDataName for o in hkfsList" required>
+                            <option value="">请选择还款方式</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="productRuleId" class="col-sm-4 control-label">还款规则：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="productRuleId"  ng-model="item.productRuleId" ng-options="o.dictDataCode as o.dictDataName for o in hkfsList" required>
+                            <option value="">请选择还款方式</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="enable" class="col-sm-4 control-label">是否启用：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="enable"  ng-model="item.enable "ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"   required>
+                            <option value="">是否启用</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-danger btn-modal-left"  type="button" ng-click="delete()">删除</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

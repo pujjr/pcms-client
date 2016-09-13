@@ -14,5 +14,6 @@ angular.module('app', [
     'pu.utils',
     'pu.question',
     'pu.workflow',
-    'pu.gpsorder'
+    'pu.gpsorder',
+    'pu.product'
 ])

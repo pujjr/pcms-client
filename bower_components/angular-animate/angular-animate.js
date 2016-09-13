@@ -452,7 +452,7 @@ var $$rAFSchedulerFactory = ['$$rAF', function($$rAF) {
  * @example
  * <example module="ngAnimateChildren" name="ngAnimateChildren" deps="angular-animate.js" animations="true">
      <file name="index.html">
-       <div ng-controller="mainController as main">
+       <div ng-controllers="mainController as main">
          <label>Show container? <input type="checkbox" ng-model="main.enterElement" /></label>
          <label>Animate children? <input type="checkbox" ng-model="main.animateChildren" /></label>
          <hr>
@@ -502,7 +502,7 @@ var $$rAFSchedulerFactory = ['$$rAF', function($$rAF) {
     </file>
     <file name="script.js">
       angular.module('ngAnimateChildren', ['ngAnimate'])
-        .controller('mainController', function() {
+        .controllers('mainController', function() {
           this.animateChildren = false;
           this.enterElement = false;
         });
@@ -3300,7 +3300,7 @@ var $$AnimationProvider = ['$animateProvider', function($animateProvider) {
  *          deps="angular-animate.js"
  *          animations="true" fixBase="true">
  *   <file name="index.html">
- *     <div class="container" ng-controller="AppCtrl">
+ *     <div class="container" ng-controllers="AppCtrl">
  *       <div ng-animate-swap="number" class="cell swap-animation" ng-class="colorClass(number)">
  *         {{ number }}
  *       </div>
@@ -3308,7 +3308,7 @@ var $$AnimationProvider = ['$animateProvider', function($animateProvider) {
  *   </file>
  *   <file name="script.js">
  *     angular.module('ngAnimateSwapExample', ['ngAnimate'])
- *       .controller('AppCtrl', ['$scope', '$interval', function($scope, $interval) {
+ *       .controllers('AppCtrl', ['$scope', '$interval', function($scope, $interval) {
  *         $scope.number = 0;
  *         $interval(function() {
  *           $scope.number++;
@@ -3946,11 +3946,11 @@ var ngAnimateSwapDirective = ['$animate', '$rootScope', function($animate, $root
         .config(['$routeProvider', function($routeProvider) {
           $routeProvider.when('/', {
             templateUrl: 'home.html',
-            controller: 'HomeController as home'
+            controllers: 'HomeController as home'
           });
           $routeProvider.when('/profile/:id', {
             templateUrl: 'profile.html',
-            controller: 'ProfileController as profile'
+            controllers: 'ProfileController as profile'
           });
         }])
         .run(['$rootScope', function($rootScope) {
@@ -3967,10 +3967,10 @@ var ngAnimateSwapDirective = ['$animate', '$rootScope', function($animate, $root
             { id:10, title: "Alexandrea Sauer" }
           ];
         }])
-        .controller('HomeController', [function() {
+        .controllers('HomeController', [function() {
           //empty
         }])
-        .controller('ProfileController', ['$rootScope', '$routeParams', function($rootScope, $routeParams) {
+        .controllers('ProfileController', ['$rootScope', '$routeParams', function($rootScope, $routeParams) {
           var index = parseInt($routeParams.id, 10);
           var record = $rootScope.records[index - 1];
 
@@ -4104,12 +4104,12 @@ var ngAnimateSwapDirective = ['$animate', '$rootScope', function($animate, $root
  * (Note that earlier versions of Angular prior to v1.4 required the promise code to be wrapped using `$scope.$apply(...)`. This is not the case
  * anymore.)
  *
- * In addition to the animation promise, we can also make use of animation-related callbacks within our directives and controller code by registering
+ * In addition to the animation promise, we can also make use of animation-related callbacks within our directives and controllers code by registering
  * an event listener using the `$animate` service. Let's say for example that an animation was triggered on our view
- * routing controller to hook into that:
+ * routing controllers to hook into that:
  *
  * ```js
- * ngModule.controller('HomePageController', ['$animate', function($animate) {
+ * ngModule.controllers('HomePageController', ['$animate', function($animate) {
  *   $animate.on('enter', ngViewElement, function(element) {
  *     // the animation for this route has completed
  *   }]);

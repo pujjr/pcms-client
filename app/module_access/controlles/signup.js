@@ -1,6 +1,6 @@
 'use strict';
 
-// signup controller
+// signup controllers
 angular.module('pu.access.controllers')
     .controller('SignupFormController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
         $scope.user = {};

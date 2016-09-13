@@ -59,7 +59,7 @@ var $sanitizeMinErr = angular.$$minErr('$sanitize');
    <file name="index.html">
      <script>
          angular.module('sanitizeExample', ['ngSanitize'])
-           .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
+           .controllers('ExampleController', ['$scope', '$sce', function($scope, $sce) {
              $scope.snippet =
                '<p style="color:blue">an html\n' +
                '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
@@ -69,7 +69,7 @@ var $sanitizeMinErr = angular.$$minErr('$sanitize');
              };
            }]);
      </script>
-     <div ng-controller="ExampleController">
+     <div ng-controllers="ExampleController">
         Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
        <table>
          <tr>
@@ -552,7 +552,7 @@ angular.module('ngSanitize', []).provider('$sanitize', $SanitizeProvider);
  * @example
    <example module="linkyExample" deps="angular-sanitize.js">
      <file name="index.html">
-       <div ng-controller="ExampleController">
+       <div ng-controllers="ExampleController">
        Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
        <table>
          <tr>
@@ -596,7 +596,7 @@ angular.module('ngSanitize', []).provider('$sanitize', $SanitizeProvider);
      </file>
      <file name="script.js">
        angular.module('linkyExample', ['ngSanitize'])
-         .controller('ExampleController', ['$scope', function($scope) {
+         .controllers('ExampleController', ['$scope', function($scope) {
            $scope.snippet =
              'Pretty text with some links:\n'+
              'http://angularjs.org/,\n'+

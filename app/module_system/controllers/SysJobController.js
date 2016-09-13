@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-// signin controller
+// signin controllers
 angular.module("pu.system.controllers")
     .controller('SysJobController',function ($scope, $rootScope, $state, toaster, $uibModal,SysJobService) {
         $scope.init = function () {

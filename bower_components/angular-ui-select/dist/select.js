@@ -267,7 +267,7 @@ uis.directive('uiSelectChoices',
  * Contains ui-select "intelligence".
  *
  * The goal is to limit dependency on the DOM whenever possible and
- * put as much logic in the controller (instead of the link functions) as possible so it can be easily tested.
+ * put as much logic in the controllers (instead of the link functions) as possible so it can be easily tested.
  */
 uis.controller('uiSelectCtrl',
   ['$scope', '$element', '$timeout', '$filter', '$$uisDebounce', 'uisRepeatParser', 'uiSelectMinErr', 'uiSelectConfig', '$parse', '$injector', '$window',

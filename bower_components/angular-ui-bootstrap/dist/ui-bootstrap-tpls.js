@@ -195,7 +195,7 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse', 'ui.bootstrap
   };
 }])
 
-// The accordion directive simply sets up the directive controller
+// The accordion directive simply sets up the directive controllers
 // and adds an accordion CSS class to itself element.
 .directive('uibAccordion', function() {
   return {
@@ -264,7 +264,7 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse', 'ui.bootstrap
     replace: true,
     require: '^uibAccordionGroup',
     link: function(scope, element, attrs, accordionGroupCtrl, transclude) {
-      // Pass the heading to the accordion-group controller
+      // Pass the heading to the accordion-group controllers
       // so that it can be transcluded into the right place in the template
       // [The second parameter to transclude causes the elements to be cloned so that they work in ng-repeat]
       accordionGroupCtrl.setHeading(transclude(scope, angular.noop));
@@ -273,7 +273,7 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse', 'ui.bootstrap
 })
 
 // Use in the accordion-group template to indicate where you want the heading to be transcluded
-// You must provide the property on the accordion-group controller that will hold the transcluded element
+// You must provide the property on the accordion-group controllers that will hold the transcluded element
 .directive('uibAccordionTransclude', function() {
   return {
     require: '^uibAccordionGroup',
@@ -4351,8 +4351,8 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap', 'ui.bootstrap.p
                 } else if (modalOptions.controller) {
                   constructLocals(ctrlLocals, true, false, true);
 
-                  // the third param will make the controller instantiate later,private api
-                  // @see https://github.com/angular/angular.js/blob/master/src/ng/controller.js#L126
+                  // the third param will make the controllers instantiate later,private api
+                  // @see https://github.com/angular/angular.js/blob/master/src/ng/controllers.js#L126
                   ctrlInstantiate = $controller(modalOptions.controller, ctrlLocals, true, modalOptions.controllerAs);
                   if (modalOptions.controllerAs && modalOptions.bindToController) {
                     ctrlInstance = ctrlInstantiate.instance;
@@ -4417,7 +4417,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap', 'ui.bootstrap.p
 
 angular.module('ui.bootstrap.paging', [])
 /**
- * Helper internal service for generating common controller code between the
+ * Helper internal service for generating common controllers code between the
  * pager and pagination components
  */
 .factory('uibPaging', ['$parse', function($parse) {
@@ -5824,7 +5824,7 @@ angular.module('ui.bootstrap.tabs', [])
       onDeselect: '&deselect'
     },
     controller: function() {
-      //Empty controller so other directives can require being 'under' a tab
+      //Empty controllers so other directives can require being 'under' a tab
     },
     controllerAs: 'tab',
     link: function(scope, elm, attrs, tabsetCtrl, transclude) {
