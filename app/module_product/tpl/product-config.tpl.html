@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="data-table-container">
-                    <header class="data-table-header">
+                    <header class="data-table-header" ng-show="selNode !=undefined && selNode.parentId!='0000'">
                         <div class="data-table-header__label">
                             <span class="fs-title">{{selNode.productTypeName}}</span>
                             <button class="btn btn-m btn-default" type="button" ng-click="editProductType(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑产品类别</button>
@@ -48,12 +48,13 @@
                             <th>年利率</th>
                             <th>还款方式</th>
                             <th>是否启用</th>
-                            <th>操作</th>
+                            <th>可选融资期数</th>
+                            <th>提前结清违约金</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in productList">
-                            <td>{{item.productName}}</td>
+                            <td><a href="javascript:" ng-click="editProduct(item)">{{item.productName}}</a></td>
                             <td>{{item.productCode}}</td>
                             <td>{{item.loanCondition}}</td>
                             <td>{{item.yearRate}}</td>
@@ -62,8 +63,18 @@
                             </td>
                             <td>{{item.repayModeDict.dictDataName}}</td>
                             <td>
-                                <a href="javascript:" ng-click="editProduct(item)">编辑</a>
+                                <a href="javascript:" ng-click="configProductPeriod(item)">
+                                    <span ng-if="item.productPeriodList.length>0">已配置</span>
+                                    <span ng-if="item.productPeriodList.length==0">未配置</span>
+                                </a>
                             </td>
+                            <td>
+                                <a href="javascript:" ng-click="configProductSettle(item)">
+                                   <span ng-if="item.productSettleList.length>0">已配置</span>
+                                    <span ng-if="item.productSettleList.length==0">未配置</span>
+                                </a>
+                            </td>
+
                         </tr>
                         </tbody>
                     </table>

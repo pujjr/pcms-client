@@ -144,7 +144,7 @@
                 <div class="form-group">
                     <label for="enableAssessFee" class="col-sm-4 control-label">是否可选评估费：</label>
                     <div class="col-sm-8">
-                        <input type="checkbox"  id="enableAssessFee" placeholder="是否可选评估费" ng-model="item.enableAssessFee" required>
+                        <input type="checkbox"  id="enableAssessFee"  placeholder="是否可选评估费" ng-model="item.enableAssessFee" >
                     </div>
                 </div>
             </div>
@@ -152,7 +152,7 @@
                 <div class="form-group">
                     <label for="isTotalRefinance" class="col-sm-4 control-label">加装费最大额度：</label>
                     <div class="col-sm-8">
-                        <input type="checkbox" id="isTotalRefinance" placeholder="是否全款再融" ng-model="item.isTotalRefinance" required>
+                        <input type="checkbox" id="isTotalRefinance"  placeholder="是否全款再融" ng-model="item.isTotalRefinance" >
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                 <div class="form-group">
                     <label for="hasServiceFee" class="col-sm-4 control-label">是否有服务费：</label>
                     <div class="col-sm-8">
-                        <input type="checkbox" id="hasServiceFee" placeholder="是否有服务费" ng-model="item.hasServiceFee" required>
+                        <input type="checkbox" id="hasServiceFee"  placeholder="是否有服务费" ng-model="item.hasServiceFee" >
                     </div>
                 </div>
             </div>
@@ -170,7 +170,7 @@
                 <div class="form-group">
                     <label for="hasPurchaseTax" class="col-sm-4 control-label">是否有购置税：</label>
                     <div class="col-sm-8">
-                        <input type="checkbox" id="hasPurchaseTax" placeholder="是否有购置税" ng-model="item.hasPurchaseTax" required>
+                        <input type="checkbox" id="hasPurchaseTax"  placeholder="是否有购置税" ng-model="item.hasPurchaseTax" >
                     </div>
                 </div>
             </div>
@@ -179,6 +179,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-danger btn-modal-left"  type="button" ng-click="delete()">删除</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>

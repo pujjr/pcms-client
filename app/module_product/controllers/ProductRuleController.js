@@ -20,8 +20,8 @@ angular.module("pu.product.controllers")
                 controller:function($scope,RestApi){
                     $scope.item={};
                     $scope.ok=function(){
-                        ProductService.addProductType($scope.item).then(function(){
-                            modalInstance.close('增加产品类别');
+                        ProductService.addProductRule($scope.item).then(function(){
+                            modalInstance.close('增加产品规则成功');
                         })
                     };
                     $scope.cancel = function () {
@@ -31,31 +31,31 @@ angular.module("pu.product.controllers")
             });
             modalInstance.result.then(function(response){
                 toaster.pop('success', '操作提醒', response);
-                $scope.queryProductTypeList();
+                $scope.queryProductRuleList();
             })
         };
-        $scope.editProductType = function(item){
+        $scope.editProductRule = function(item){
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
+                size:'lg',
                 resolve: {
                     item: function(){
                         return item;
                     }
                 },
-                templateUrl :'module_product/tpl/dialog-producttype-edit.html',
+                templateUrl :'module_product/tpl/dialog-productrule-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;
-                    $scope.productTypeList = ProductService.queryProductTypeList().$object;
                     $scope.ok=function(){
-                        ProductService.modifyProductType($scope.item).then(function(){
-                            modalInstance.close('修改产品类别');
+                        ProductService.modifyProductRule($scope.item).then(function(){
+                            modalInstance.close('修改产品规则类别');
                         })
                     };
                     $scope.delete = function(){
-                        modal.confirm("删除确认","是否删除"+item.productTypeName).then(function(){
-                            ProductService.deleteProductType($scope.item.id).then(function(){
-                                modalInstance.close('删除产品类别成功');
+                        modal.confirm("删除确认","是否删除"+$scope.item.ruleName).then(function(){
+                            ProductService.deleteProductRule($scope.item.id).then(function(){
+                                modalInstance.close('删除产品规则成功');
                             })
                         })
                     }
@@ -66,7 +66,7 @@ angular.module("pu.product.controllers")
             });
             modalInstance.result.then(function(response){
                 toaster.pop('success', '操作提醒', response);
-                $scope.queryProductTypeList();
+                $scope.queryProductRuleList();
             })
         };
 

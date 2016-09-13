@@ -19,17 +19,16 @@
                     <th>规则名称</th>
                     <th>创建时间</th>
                     <th>创建人</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in productRuleList">
-                    <td>{{item.productName}}</td>
+                    <td>{{item.ruleName}}</td>
+                    <td>{{item.createTime|mysqlDatetime}}</td>
+                    <td>{{item.createId}}</td>
                     <td>
-                        <input type="checkbox" ng-model="item.enable"  ng-checked="item.enable==1">是否启用
-                    </td>
-                    <td>{{item.repayModeDict.dictDataName}}</td>
-                    <td>
-                        <a href="javascript:" ng-click="editProduct(item)">编辑</a>
+                        <a href="javascript:" ng-click="editProductRule(item)">编辑</a>
                     </td>
                 </tr>
                 </tbody>

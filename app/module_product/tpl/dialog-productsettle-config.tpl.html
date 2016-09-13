@@ -1,0 +1,28 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>配置产品违约金率</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:300px">
+        <div class="panel-main">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>期数</th>
+                    <th>违约金率</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in productSettleList">
+                    <td>{{item.period}}</td>
+                    <td> <input type="number" class="form-control"  ng-model="item.reate"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

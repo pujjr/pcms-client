@@ -1,0 +1,27 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>配置产品融资期数参数</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:300px">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th style="width: 20px"><input type="checkbox" ng-model="selectall" ng-click="selectAll()"></th>
+                <th>期数</th>
+                <th>融资手续费</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in productPeriodList">
+                <td><input type="checkbox" ng-model="item.selected" ng-checked="item.selected==true" ng-click="addToSelected(item)"></td>
+                <td>{{item.period}}</td>
+                <td> <input type="number" class="form-control"  ng-model="item.reate"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

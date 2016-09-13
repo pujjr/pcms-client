@@ -24,6 +24,9 @@ angular.module('pu.product.services')
         this.deleteProduct = function(id) {
             return RestApi.one("/product", id).remove();
         };
+        this.queryProduct = function(id){
+            return RestApi.one("/product", id).get();
+        }
         this.queryProductRuleList = function(){
             return RestApi.all("/product/productrule").getList();
         };
@@ -34,7 +37,19 @@ angular.module('pu.product.services')
             return RestApi.one("/product/productrule",item.id).customPUT(item);
         };
         this.deleteProductRule = function(id){
-            return RestApi.one("/product/productrule",item.id).remove();
+            return RestApi.one("/product/productrule",id).remove();
+        };
+        this.queryProductSettleList = function(productId){
+            return RestApi.one("/product",productId).all("/productsettle").getList();
+        };
+        this.saveProductSettleList = function(productId,list){
+            return RestApi.one("/product",productId).all("/productsettle").post(list);
+        };
+        this.queryProductPeriodList = function(productId){
+            return RestApi.one("/product",productId).all("/productperiod").getList();
+        };
+        this.saveProductPeriodList = function(productId,list){
+            return RestApi.one("/product",productId).all("/productperiod").post(list);
         }
         this.removeSysAccountFromWorkgroup = function(workgroupId,accountId){
             return RestApi.all("/sysworkgroup").one(workgroupId,accountId).remove();
