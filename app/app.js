@@ -8,6 +8,7 @@ angular.module('app', [
     'ui.router',
     'restangular',
     'ui.bootstrap',
+    'ui.select',
     'toaster',
     'pu.system',
     'pu.access',

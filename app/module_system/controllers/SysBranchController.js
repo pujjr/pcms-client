@@ -56,10 +56,51 @@ angular.module("pu.system.controllers")
                 },
                 templateUrl :'module_system/tpl/dialog-sysbranch-edit.html',
                 controller:function($scope,RestApi){
-                    $scope.item=item;
+                    $scope.item=SysBranchService.querySysBranchByBranchId(item.id).$object;
                     $scope.branchList =  SysBranchService.querySysBranchList().$object;
                     $scope.areaList = SysAreaService.querySysAreaList().$object;
                     $scope.branchTypeList = SysDictService.queryDictDataByTypeCode("jglx").$object;
+                    $scope.ok=function(){
+                        SysBranchService.modifySysBranch($scope.item).then(function(){
+                            modalInstance.close('修改机构成功');
+                        })
+                    };
+                    $scope.delete = function(){
+                        modal.confirm("删除确认","是否删除"+item.branchName).then(function(){
+                            SysBranchService.deleteSysBranch($scope.item.id).then(function(){
+                                modalInstance.close('删除机构成功');
+                            })
+                        })
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.querySysBranchList();
+            })
+        };
+        $scope.editSysBranchDealer = function(item){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                size:'lg',
+                resolve: {
+                    item: function(){
+                        return item;
+                    }
+                },
+                templateUrl :'module_system/tpl/dialog-sysbranchdealer-edit.html',
+                controller:function($scope,RestApi){
+                    $scope.item=SysBranchService.querySysBranchByBranchId(item.id).$object;
+                    $scope.branchList =  SysBranchService.querySysBranchList().$object;
+                    $scope.areaList = SysAreaService.querySysAreaList().$object;
+                    $scope.branchTypeList = SysDictService.queryDictDataByTypeCode("jglx").$object;
+                    $scope.dealerLvlList = SysDictService.queryDictDataByTypeCode("jxsjb").$object;
+                    $scope.loanChannelList = SysDictService.queryDictDataByTypeCode("fkqd").$object;
+                    $scope.gpsLvlList = SysBranchService.queryAllGpsLvlList().$object;
                     $scope.ok=function(){
                         SysBranchService.modifySysBranch($scope.item).then(function(){
                             modalInstance.close('修改机构成功');

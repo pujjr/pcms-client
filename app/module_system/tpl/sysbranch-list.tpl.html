@@ -33,7 +33,7 @@
                     <header class="data-table-header">
                         <div class="data-table-header__label">
                             <span class="fs-title">{{selNode.branchName}}:{{selNode.branchCode}}</span>
-                            <button class="btn btn-m btn-default" type="button" ng-click="editSysBranch(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑机构</button>
+                            <button class="btn btn-m btn-default" type="button" ng-click="selNode.branchType!='JGLX02'?editSysBranch(selNode):editSysBranchDealer(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑机构</button>
                         </div>
                         <div class="data-table-header__actions">
                             <button class="btn btn-m btn-default" type="button" ng-click="addSysAccount()"><i class="fa fa-fa-plus m-r-sm"></i>增加人员</button>

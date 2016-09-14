@@ -7,25 +7,25 @@
         <div class="form-group">
             <label for="branchName" class="col-sm-3 control-label">机构名称：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="branchName" placeholder="机构名称" ng-model="item.branchName" required>
+                <input type="text" class="form-control" id="branchName" placeholder="机构名称" ng-model="item.sysBranch.branchName" required>
             </div>
         </div>
         <div class="form-group">
             <label for="branchCode" class="col-sm-3 control-label">机构编码：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="branchCode" placeholder="机构编码" ng-model="item.branchCode" required>
+                <input type="text" class="form-control" id="branchCode" placeholder="机构编码" ng-model="item.sysBranch.branchCode" required>
             </div>
         </div>
         <div class="form-group">
             <label for="branchFullname" class="col-sm-3 control-label">机构全称：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="branchFullname" placeholder="机构全称" ng-model="item.branchFullname" required>
+                <input type="text" class="form-control" id="branchFullname" placeholder="机构全称" ng-model="item.sysBranch.branchFullname" required>
             </div>
         </div>
         <div class="form-group">
             <label for="branchType" class="col-sm-3 control-label">机构类型：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="branchType"  ng-model="item.branchType" ng-options="l.dictDataCode as l.dictDataName for l in branchTypeList" required>
+                <select  class="form-control" id="branchType"  ng-model="item.sysBranch.branchType" ng-options="l.dictDataCode as l.dictDataName for l in branchTypeList" required>
                     <option value="">请选择机构类型</option>`
                 </select>
             </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             <label for="areaId" class="col-sm-3 control-label">所属区域：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="areaId"  ng-model="item.areaId" ng-options="l.id as l.areaName for l in areaList" required>
+                <select  class="form-control" id="areaId"  ng-model="item.sysBranch.areaId" ng-options="l.id as l.areaName for l in areaList" required>
                     <option value="">选择所属区域</option>`
                 </select>
             </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="enabled" class="col-sm-3 control-label">是否启用：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="enabled"  ng-model="item.enabled"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                <select  class="form-control" id="enabled"  ng-model="item.sysBranch.enabled"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
                     <option value="">是否启用</option>
                 </select>
             </div>
@@ -49,7 +49,7 @@
         <div class="form-group">
             <label for="parentId" class="col-sm-3 control-label">上级机构：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="parentId"  ng-model="item.parentId" ng-options="l.id as l.branchName for l in branchList" required>
+                <select  class="form-control" id="parentId"  ng-model="item.sysBranch.parentId" ng-options="l.id as l.branchName for l in branchList" required>
                     <option value="">请选择上级机构</option>`
                 </select>
             </div>

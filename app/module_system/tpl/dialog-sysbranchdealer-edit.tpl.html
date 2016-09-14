@@ -1,0 +1,166 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑经销商信息</h4>
+    </div>
+    <div class="modal-body">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">机构基本信息</legend>
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="branchName" class="col-sm-4 control-label">机构名称：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="branchName" placeholder="机构名称" ng-model="item.sysBranch.branchName" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="branchCode" class="col-sm-4 control-label">机构编码：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="branchCode" placeholder="机构编码" ng-model="item.sysBranch.branchCode" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" >
+                    <div class="form-group">
+                        <label for="branchFullname" class="col-sm-2 control-label">机构全称：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="branchFullname" placeholder="机构全称" ng-model="item.sysBranch.branchFullname" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="branchType" class="col-sm-4 control-label">机构类型：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="branchType"  ng-model="item.sysBranch.branchType" ng-options="l.dictDataCode as l.dictDataName for l in branchTypeList" required>
+                                <option value="">请选择机构类型</option>`
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="areaId" class="col-sm-4 control-label">所属区域：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="areaId"  ng-model="item.sysBranch.areaId" ng-options="l.id as l.areaName for l in areaList" required>
+                                <option value="">选择所属区域</option>`
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="enabled" class="col-sm-4 control-label">是否启用：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="enabled"  ng-model="item.sysBranch.enabled"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                                <option value="">是否启用</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="parentId" class="col-sm-4 control-label">上级机构：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="parentId"  ng-model="item.sysBranch.parentId" ng-options="l.id as l.branchName for l in branchList" required>
+                                <option value="">请选择上级机构</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">经销商信息</legend>
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="dealerLevel" class="col-sm-4 control-label">经销商级别：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="dealerLevel"  ng-model="item.sysBranchDealer.dealerLevel" ng-options="l.dictDataCode as l.dictDataName for l in dealerLvlList"  required>
+                                <option value="">请选择经销商级别</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="loanChannel" class="col-sm-4 control-label">放款渠道：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="loanChannel"  ng-model="item.sysBranchDealer.loanChannel"   ng-options="l.dictDataCode as l.dictDataName for l in loanChannelList"  required>
+                                <option value="">请选择放款渠道</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="bankId" class="col-sm-4 control-label">放款银行：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="bankId"  placeholder="放款银行" ng-model="item.sysBranchDealer.bankId" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="loanSubbranch" class="col-sm-4 control-label">放款支行：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="loanSubbranch"   placeholder="放款支行" ng-model="item.sysBranchDealer.loanSubbranch">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="loanAcctNo" class="col-sm-4 control-label">放款银行账号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="loanAcctNo" placeholder="放款银行账号" ng-model="item.sysBranchDealer.loanAcctNo" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="loanAcctName" class="col-sm-4 control-label">放款银行户名：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="loanAcctName" placeholder="放款银行户名" ng-model="item.sysBranchDealer.loanAcctName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">GPS档位设置</legend>
+            <div class="row" ng-repeat="l in item.gpsRuleVoList">
+                <div class="col-md-12" >
+                    <div class="form-group">
+                        <label for="gpsLvl" class="col-sm-2 control-label">{{l.ruleName}}</label>
+                        <div class="col-sm-10">
+                            <ui-select id="gpsLvl"  multiple ng-model="l.gpsLvls" close-on-select=false ng-required>
+                                <ui-select-match placeholder="请选择GPS档位" required>{{$item.lvlName}}</ui-select-match>
+                                <ui-select-choices repeat = "lvl in gpsLvlList">
+                                    {{lvl.lvlName}}
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-danger btn-modal-left"  type="button" ng-click="delete()">删除</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>
