@@ -5253,7 +5253,9 @@ ul{
 }
 
 .panel_main{
-  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
 .panel-left{
   border-left:1px solid rgba(0, 0, 0, 0.12);

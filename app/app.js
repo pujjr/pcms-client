@@ -10,11 +10,12 @@ angular.module('app', [
     'ui.bootstrap',
     'ui.select',
     'toaster',
+    'jcs-autoValidate',
     'pu.system',
     'pu.access',
     'pu.utils',
-    'pu.question',
     'pu.workflow',
-    'pu.gpsorder',
-    'pu.product'
+    'pu.product',
+    'pu.apply',
+    'pu.car'
 ])

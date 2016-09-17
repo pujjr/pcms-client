@@ -18,7 +18,4 @@ angular.module('pu.system.services')
         this.querySysBranchByBranchId = function(id){
             return RestApi.one("/sysbranch",id).get();
         };
-        this.queryAllGpsLvlList = function(){
-            return RestApi.all("/gps").getList();
-        }
     });

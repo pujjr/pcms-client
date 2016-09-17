@@ -1,0 +1,361 @@
+<!--承租人信息（基本信息）-->
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">承租人信息（基本信息）</legend>
+    <div class="row  m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">姓名：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.name" required placeholder="姓名">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label for="idType" class="col-sm-4 control-label">证件类型：</label>
+                <div class="col-sm-8">
+                    <select id="idType" class="form-control" ng-model="applyInfo.tenant.idType"
+                            ng-options="item.dictDataCode as item.dictDataName for item in idTypeList" required>
+                        <option value="">请选择证件</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label for="idNo" class="col-sm-4 control-label">证件号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" id="idNo" class="form-control" ng-model="applyInfo.tenant.idNo" placeholder="证件号码">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">年龄：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control"  ng-model="applyInfo.tenant.age" placeholder="年龄" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">性别：</label>
+                <div class="col-sm-8">
+                    <select id="sex" class="form-control" ng-model="applyInfo.tenant.sex"
+                            ng-options="item.dictDataCode as item.dictDataName for item in sexList" disabled required>
+                        <option value="">请选择性别</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.mobile" placeholder="手机号码">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">QQ号码(如有)：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.qq" placeholder="QQ号码">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">微信(如有)：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.weixin" placeholder="微信(如有)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">学历：</label>
+                <div class="col-sm-8" >
+                    <select id="education" class="form-control" ng-model="applyInfo.tenant.education"
+                            ng-options="item.dictDataCode as item.dictDataName for item in educationList" required>
+                        <option value="">请选择学历</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">婚姻状况：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="marryStatus" class="form-control" ng-model="applyInfo.tenant.marryStatus"
+                            ng-options="item.dictDataCode as item.dictDataName for item in marryStatusList" required>
+                        <option value="">请选择婚姻状况</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">来本地时长：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="liveTime" class="form-control" ng-model="applyInfo.tenant.liveTime"
+                            ng-options="item.dictDataCode as item.dictDataName for item in liveTimeList" required>
+                        <option value="">请选择来本地时长</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">家庭成员：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="liveTime" class="form-control" ng-model="applyInfo.tenant.familyMember"
+                            ng-options="item.dictDataCode as item.dictDataName for item in familyMemberList" required>
+                        <option value="">请选择家庭成员</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">现详细住址：</label>
+                <div class="col-sm-2">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrProvince">
+                        <option value="">省</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCity">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCounty">
+                        <option value="">县</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" >
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.addrExt" placeholder="详细地址">
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">住所权属：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="houseOwner" class="form-control" ng-model="applyInfo.tenant.houseOwner"
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseOwnerList" required>
+                        <option value="">请选择住所权属</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">同住人：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="houseMate" class="form-control" ng-model="applyInfo.tenant.houseMate"
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseMateList" required>
+                        <option value="">请选择同住人</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">户籍所属：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="houseHold" class="form-control" ng-model="applyInfo.tenant.houseHold"
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseHoldList" required>
+                        <option value="">请选择户籍所属</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-repeat="item in applyInfo.tenant.tenantHouses">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">房产一住址：</label>
+                <div class="col-sm-2">
+                    <select  class="form-control"  ng-model="item.addrProvince">
+                        <option value="">省</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="item.addrCity">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="item.addrCounty">
+                        <option value="">县</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" >
+                    <input type="text" class="form-control" ng-model="item.addrExt" placeholder="详细地址">
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">房产一状态：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="status" class="form-control" ng-model="item.status"
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseStatusList" required>
+                        <option value="">请选择房产状态</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-repeat="item in applyInfo.tenant.tenantCars">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">车产一品牌：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="item.carBrand" placeholder="车产一品牌">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">车产一车牌：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="item.carDetail" placeholder="车产一车牌">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">车产状态：</label>
+                <div class="col-sm-8" >
+                    <select  class="form-control" ng-model="item.carStatus" >
+                        <option value="">请选择车产状态</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+<!--承租人信息（工作及收入信息）-->
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">承租人信息（工作及收入信息）</legend>
+    <div class="row m-t-md">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">单位名称：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitName" placeholder="单位名称">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">单位类型：</label>
+                <div class="col-sm-8">
+                    <select id="unitType" class="form-control" ng-model="applyInfo.tenant.unitType"
+                            ng-options="item.dictDataCode as item.dictDataName for item in unitTypeList" required>
+                        <option value="">请选择单位类型</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">所属行业：</label>
+                <div class="col-sm-8">
+                    <select id="unitIndustry" class="form-control" ng-model="applyInfo.tenant.unitIndustry"
+                            ng-options="item.dictDataCode as item.dictDataName for item in unitIndustryList" required>
+                        <option value="">请选择所属行业</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">单位电话：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitTel" placeholder="单位名称">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">职  级：</label>
+                <div class="col-sm-8">
+                    <select id="rank" class="form-control" ng-model="applyInfo.tenant.rank"
+                            ng-options="item.dictDataCode as item.dictDataName for item in rankList" required>
+                        <option value="">请选择所属职级</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">职位名称：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.ranName" placeholder="职位名称">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">月收入：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.montyIncome" placeholder="月收入">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">年收入：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.yearIncome" placeholder="月收入">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">单位地址：</label>
+                <div class="col-sm-2">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrProvince">
+                        <option value="">省</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCity">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCounty">
+                        <option value="">县</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" >
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitAddrExt" placeholder="详细地址">
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

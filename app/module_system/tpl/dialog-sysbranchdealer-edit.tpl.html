@@ -140,6 +140,27 @@
             </div>
         </fieldset>
         <fieldset class="scheduler-border">
+            <legend class="scheduler-border">产品设置</legend>
+            <div class="row">
+                <div class="col-md-12" >
+                    <div class="form-group">
+                        <label for="product" class="col-sm-2 control-label">已选产品</label>
+                        <div class="col-sm-10">
+                            <ui-select id="product"  multiple ng-model="item.productList" close-on-select=false ng-required>
+                                <ui-select-match placeholder="请选择产品" required>{{$item.productName}}</ui-select-match>
+                                <ui-select-choices repeat = "product in allProductList | filter: $select.search track by product.id">
+                                    <div ng-bind-html="product.productName | highlight: $select.search"></div>
+                                    <small>
+                                        年利率：{{product.yearRate}}
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="scheduler-border">
             <legend class="scheduler-border">GPS档位设置</legend>
             <div class="row" ng-repeat="l in item.gpsRuleVoList">
                 <div class="col-md-12" >
@@ -148,8 +169,8 @@
                         <div class="col-sm-10">
                             <ui-select id="gpsLvl"  multiple ng-model="l.gpsLvls" close-on-select=false ng-required>
                                 <ui-select-match placeholder="请选择GPS档位" required>{{$item.lvlName}}</ui-select-match>
-                                <ui-select-choices repeat = "lvl in gpsLvlList">
-                                    {{lvl.lvlName}}
+                                <ui-select-choices repeat = "lvl in gpsLvlList | filter: $select.search track by lvl.id">
+                                    <div>{{lvl.lvlName}}</div>
                                 </ui-select-choices>
                             </ui-select>
                         </div>

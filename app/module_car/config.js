@@ -1,0 +1,11 @@
+angular.module("pu.car",
+    [
+        'pu.car.services',
+        'pu.car.controllers',
+        'pu.car.directives',
+        'pu.car.filters'
+    ]);
+angular.module('pu.car.services',[]);
+angular.module('pu.car.controllers',[]);
+angular.module('pu.car.directives',[]);
+angular.module('pu.car.filters',[]);

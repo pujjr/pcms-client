@@ -1,9 +1,0 @@
-angular.module('pu.gpsorder',
-    [
-        'pu.gpsorder.services',
-        'pu.gpsorder.filters',
-        'pu.gpsorder.controllers'
-    ]);
-angular.module('pu.gpsorder.services',[]);
-angular.module('pu.gpsorder.filters',[])
-angular.module('pu.gpsorder.controllers',[]);

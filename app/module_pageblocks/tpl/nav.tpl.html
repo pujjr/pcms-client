@@ -3,34 +3,10 @@
   <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
     <span>申请单管理</span>
   </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.leasingapps.list')">
-    <a ui-sref="app.leasingapps.list" >
+  <li ui-sref-active="active">
+    <a ui-sref="app.apply.list" >
       <i class="fa fa-file icon text-info-dker"></i>
       <span class="font-bold">申请单录入</span>
-    </a>
-  </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.leasingchecks.list')">
-    <a ui-sref="app.leasingchecks.list">
-      <i class="glyphicon glyphicon-question-sign icon text-info-dker"></i>
-      <span class="font-bold">申请单审核</span>
-    </a>
-  </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.leasingapproves.list')">
-    <a ui-sref="app.leasingapproves.list">
-      <i class="glyphicon glyphicon-info-sign icon text-info-dker"></i>
-      <span class="font-bold">申请单审批</span>
-    </a>
-  </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.leasingconfirms.list')">
-    <a ui-sref="app.leasingconfirms-list">
-      <i class="glyphicon glyphicon-ok-circle icon text-info-dker"></i>
-      <span class="font-bold">确认签约</span>
-    </a>
-  </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.manager.list')">
-    <a ui-sref="app.manager.list">
-      <i class="glyphicon  glyphicon-list-alt icon text-info-dker"></i>
-      <span class="font-bold">申请单管理</span>
     </a>
   </li>
   <li class="line dk"></li>

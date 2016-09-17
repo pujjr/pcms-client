@@ -1,0 +1,11 @@
+angular.module("pu.apply",
+    [
+        'pu.apply.services',
+        'pu.apply.controllers',
+        'pu.apply.directives',
+        'pu.apply.filters'
+    ]);
+angular.module('pu.apply.services',[]);
+angular.module('pu.apply.controllers',[]);
+angular.module('pu.apply.directives',[]);
+angular.module('pu.apply.filters',[]);
