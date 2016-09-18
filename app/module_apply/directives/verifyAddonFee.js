@@ -9,7 +9,7 @@ angular.module("app").
         },
         link: function ($scope, ele, attributes, ngModelController) {
             ngModelController.$validators.verifyAddonFee = function(modelVal){
-                if(modelVal==undefined){
+                if(modelVal==undefined || modelVal == 0){
                     return true;
                 }
                 if($scope.rule == undefined){

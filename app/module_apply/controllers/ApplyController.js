@@ -8,30 +8,133 @@ angular.module("pu.apply.controllers")
         $scope.initApplyAdd = function () {
             //申请信息
             $scope.applyInfo = {};
+            $scope.finance1 = {seq:1,select:true,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+            $scope.finance2 ={seq:2,select:false,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+            $scope.finance3 ={seq:3,select:false,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
             $scope.applyInfo.finances = [
-                {seq:1,select:true,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0},
-                {seq:2,select:false,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0},
-                {seq:3,select:false,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0}
+                $scope.finance1,
+                $scope.finance2,
+                $scope.finance3
             ];
             $scope.applyInfo.linkmans = [{seq:1,select:true},{seq:2,select:false}];
             $scope.initSelectList();
-
-
+            $scope.initWatchFinance1();
         };
-        //监视融资信息变化
-        $scope.$watch('applyInfo.finances',function(newVal,oldVal){
-            for(var i =0 ;i<newVal.length;i++){
-                if(newVal[i].select==true){
-                    if(!angular.equals(newVal[i],oldVal[i])){
-                        var item = newVal[i];
-                        $scope.gpsLvlList = GpsService.queryEnableGpsLvlList(item.salePrice,item.initPayPercent,$scope.applyInfo.product).$object;
+        $scope.initWatchFinance1 = function(){
+            //监视融资信息变化查询GPS档位
+            var watchFinance1Gps = $scope.$watchGroup(['finance1.salePrice','finance1.initPayPercent'],function(newVal,oldVal){
+                $scope.finance1.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance1.salePrice,$scope.finance1.initPayPercent,$scope.applyInfo.product).$object;
+            },true);
+            var watchFinance1 = $scope.$watch('finance1',function(newVal,oldVal){
+                //取融资手续费
+                var financeFee = 0;
+                var product = $scope.applyInfo.product;
+                for(var i = 0 ; i<product.productPeriodList.length;i++){
+                    if($scope.applyInfo.period==product.productPeriodList[i].period){
+                        financeFee = product.productPeriodList[i].financeFee;
                     }
                 }
-            }
-        },true);
-        $scope.queryEnableGpsLvl = function(item){
+                $scope.finance1.financeFee=financeFee;
+                //如果为全款再融
+                if($scope.applyInfo.product.isTotalRefinance){
+                    $scope.finance1.financeAmount = parseFloat($scope.finance1.salePrice)*parseFloat($scope.finance1.initPayPercent)/100+
+                        parseFloat($scope.finance1.gpsFee)+parseFloat($scope.finance1.purchaseTax)+parseFloat($scope.finance1.serviceFee)+
+                        parseFloat($scope.finance1.insuranceFee)+parseFloat($scope.finance1.delayInsuranceFee)+parseFloat($scope.finance1.transferFee)
+                        +parseFloat($scope.finance1.addonFee);
+                }else{
+                    $scope.finance1.financeAmount = parseFloat($scope.finance1.salePrice)*(1-parseFloat($scope.finance1.initPayPercent)/100)+
+                        parseFloat($scope.finance1.gpsFee)+parseFloat($scope.finance1.purchaseTax)+parseFloat($scope.finance1.serviceFee)+
+                        parseFloat($scope.finance1.insuranceFee)+parseFloat($scope.finance1.delayInsuranceFee)+parseFloat($scope.finance1.transferFee)
+                        +parseFloat($scope.finance1.addonFee);
+                }
+            },true);
+        };
 
+        var watchFinance2Gps ;
+        var watchFinance2;
+        $scope.initWatchFinance2 = function(){
+            //监视融资信息变化查询GPS档位
+            var watchFinance2Gps = $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
+                $scope.finance2.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance2.salePrice,$scope.finance2.initPayPercent,$scope.applyInfo.product).$object;
+            },true);
+            var watchFinance2 = $scope.$watch('finance2',function(newVal,oldVal){
+                //取融资手续费
+                var financeFee = 0;
+                var product = $scope.applyInfo.product;
+                for(var i = 0 ; i<product.productPeriodList.length;i++){
+                    if($scope.applyInfo.period==product.productPeriodList[i].period){
+                        financeFee = product.productPeriodList[i].financeFee;
+                    }
+                }
+                $scope.finance2.financeFee=financeFee;
+                //如果为全款再融
+                if($scope.applyInfo.product.isTotalRefinance){
+                    $scope.finance2.financeAmount = parseFloat($scope.finance2.salePrice)*parseFloat($scope.finance2.initPayPercent)/100+
+                        parseFloat($scope.finance2.gpsFee)+parseFloat($scope.finance2.purchaseTax)+parseFloat($scope.finance2.serviceFee)+
+                        parseFloat($scope.finance2.insuranceFee)+parseFloat($scope.finance2.delayInsuranceFee)+parseFloat($scope.finance2.transferFee)
+                        +parseFloat($scope.finance2.addonFee);
+                }else{
+                    $scope.finance2.financeAmount = parseFloat($scope.finance2.salePrice)*(1-parseFloat($scope.finance2.initPayPercent)/100)+
+                        parseFloat($scope.finance2.gpsFee)+parseFloat($scope.finance2.purchaseTax)+parseFloat($scope.finance2.serviceFee)+
+                        parseFloat($scope.finance2.insuranceFee)+parseFloat($scope.finance2.delayInsuranceFee)+parseFloat($scope.finance2.transferFee)
+                        +parseFloat($scope.finance2.addonFee);
+                }
+            },true);
+        };
+        var watchFinance3Gps ;
+        var watchFinance3;
+        $scope.initWatchFinance3 = function(){
+            //监视融资信息变化查询GPS档位
+            var watchFinance3Gps = $scope.$watchGroup(['finance3.salePrice','finance3.initPayPercent'],function(newVal,oldVal){
+                $scope.finance3.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance3.salePrice,$scope.finance3.initPayPercent,$scope.applyInfo.product).$object;
+            },true);
+            var watchFinance3 = $scope.$watch('finance3',function(newVal,oldVal){
+                //取融资手续费
+                var financeFee = 0;
+                var product = $scope.applyInfo.product;
+                for(var i = 0 ; i<product.productPeriodList.length;i++){
+                    if($scope.applyInfo.period==product.productPeriodList[i].period){
+                        financeFee = product.productPeriodList[i].financeFee;
+                    }
+                }
+                $scope.finance3.financeFee=financeFee;
+                //如果为全款再融
+                if($scope.applyInfo.product.isTotalRefinance){
+                    $scope.finance3.financeAmount = parseFloat($scope.finance3.salePrice)*parseFloat($scope.finance3.initPayPercent)/100+
+                        parseFloat($scope.finance3.gpsFee)+parseFloat($scope.finance3.purchaseTax)+parseFloat($scope.finance3.serviceFee)+
+                        parseFloat($scope.finance3.insuranceFee)+parseFloat($scope.finance3.delayInsuranceFee)+parseFloat($scope.finance3.transferFee)
+                        +parseFloat($scope.finance3.addonFee);
+                }else{
+                    $scope.finance3.financeAmount = parseFloat($scope.finance3.salePrice)*(1-parseFloat($scope.finance3.initPayPercent)/100)+
+                        parseFloat($scope.finance3.gpsFee)+parseFloat($scope.finance3.purchaseTax)+parseFloat($scope.finance3.serviceFee)+
+                        parseFloat($scope.finance3.insuranceFee)+parseFloat($scope.finance3.delayInsuranceFee)+parseFloat($scope.finance3.transferFee)
+                        +parseFloat($scope.finance3.addonFee);
+                }
+            },true);
+        };
+        $scope.activeFinance = function(item){
+            item.select=true;
+            if(item.seq ==2){
+                $scope.initWatchFinance2();
+
+            }else{
+                $scope.initWatchFinance3();
+            }
         }
+        //根据选择GPS档位计算GPS价格
+        $scope.onGpsLvlSelected = function(item){
+            if(item.isFinanceGps){
+                item.gpsFee = item.gpsLvl.salePrice;
+            }else{
+                item.gpsFee = 0;
+            }
+        };
+        //选择是否加融GPS费用
+        $scope.onIsFinanceGpsCheck = function(item){
+            $scope.onGpsLvlSelected(item);
+        };
+
+
         $scope.initSelectList = function(){
             //可选产品
             $scope.productList = ProductService.queryBranchEnableProductList().$object;

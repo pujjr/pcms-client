@@ -3,7 +3,7 @@
     <fieldset class="scheduler-border">
         <legend class="scheduler-border">融资信息一</legend>
         <div ng-if="item.select==false">
-            <button class="btn btn-link btn-lg m-t-md" type="button" ng-click="item.select=true"><i class="fa fa-plus-square-o  fa-2x m-r-sm"></i></button>
+            <button class="btn btn-link btn-lg m-t-md" type="button" ng-click="activeFinance(item)"><i class="fa fa-plus-square-o  fa-2x m-r-sm"></i></button>
         </div>
         <div ng-if="item.select==true">
             <div class="row m-t-md" >
@@ -66,7 +66,7 @@
                         <label  class="col-sm-4 control-label">首付/抵押比例：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control"  ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule" required placeholder="首付/抵押比例">
+                                <input type="text" class="form-control"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule" required placeholder="首付/抵押比例">
                                 <span class="input-group-addon">
                                     <b>%</b>
                                 </span>
@@ -80,12 +80,12 @@
                         <label  class="col-sm-4 control-label">GPS档位：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <select  class="form-control" ng-model="item.gpsLvl"
-                                        ng-options="lvl.lvlName for lvl in gpsLvlList" required>
+                                <select  class="form-control" ng-model="item.gpsLvl"  ng-change="onGpsLvlSelected(item)"
+                                        ng-options="lvl.lvlName for lvl in item.gpsLvlList" required>
                                     <option value="">请选择GPS档位</option>
                                 </select>
                                 <span class="input-group-addon">
-                                     <input type="checkbox" ng-click="onIsFinanceGpsClick(item)" ng-model="item.isFinanceGps">是否融
+                                     <input type="checkbox" ng-click="onIsFinanceGpsCheck(item)" ng-model="item.isFinanceGps">是否融
                                 </span>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                                        ng-disabled="item.isPurchaseTax ==false || item.isPurchaseTax ==undefined"
                                        placeholder="购置税">
                                 <span class="input-group-addon">
-                                    <input type="checkbox"  ng-model="item.isPurchaseTax">是否融
+                                    <input type="checkbox" ng-click="item.purchaseTax=0" ng-model="item.isPurchaseTax">是否融
                                 </span>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                                        ng-disabled="item.isServiceFee==false || item.isServiceFee == undefined"
                                        placeholder="服务费">
                                 <span class="input-group-addon">
-                                    <input type="checkbox"    ng-model="item.isServiceFee">是否融
+                                    <input type="checkbox" ng-click="item.serviceFee=0"   ng-model="item.isServiceFee">是否融
                                 </span>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                        verify-insurance-fee="applyInfo.product.productRule"
                                        ng-disabled="item.isInsuranceFee==false || item.isInsuranceFee == undefined" placeholder="保险费">
                                 <span class="input-group-addon">
-                                    <input type="checkbox"  ng-model="item.isInsuranceFee">是否融
+                                    <input type="checkbox" ng-click="item.insuranceFee=0"  ng-model="item.isInsuranceFee">是否融
                                 </span>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                                        ng-disabled="item.isDelayInsuranceFee==false || item.isDelayInsuranceFee == undefined"
                                        placeholder="延保费">
                                 <span class="input-group-addon">
-                                    <input type="checkbox" ng-click="onSFRZChecked()" ng-model="item.isDelayInsuranceFee">是否融
+                                    <input type="checkbox" ng-click="item.delayInsuranceFee=0" ng-model="item.isDelayInsuranceFee">是否融
                                 </span>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                                        ng-disabled="item.isTransferFee==false || item.isTransferFee == undefined"
                                        placeholder="过户费">
                                 <span class="input-group-addon">
-                                    <input type="checkbox" ng-click="onSFRZChecked()" ng-model="item.isTransferFee">是否融
+                                    <input type="checkbox" ng-click="item.transferFee=0" ng-model="item.isTransferFee">是否融
                                 </span>
                             </div>
 
@@ -192,7 +192,7 @@
                                        ng-disabled="item.isAddonFee==false || item.isAddonFee == undefined"
                                        placeholder="加装费">
                                 <span class="input-group-addon">
-                                    <input type="checkbox" ng-click="onSFRZChecked()" ng-model="item.isAddonFee">是否融
+                                    <input type="checkbox" ng-click="item.addonFee=0"  ng-model="item.isAddonFee">是否融
                                 </span>
                             </div>
                         </div>
