@@ -3,14 +3,35 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.apply.controllers")
-    .controller('ApplyController',function ($scope, $rootScope, $state, toaster, $uibModal,
+    .controller('ApplyController',function ($scope, $rootScope, $state, toaster, $uibModal,GpsService,
                                             SysDictService,ProductService,CarService) {
         $scope.initApplyAdd = function () {
             //申请信息
             $scope.applyInfo = {};
-            $scope.applyInfo.finances = [{seq:1,select:true},{seq:2,select:true},{seq:3,select:false}];
+            $scope.applyInfo.finances = [
+                {seq:1,select:true,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0},
+                {seq:2,select:false,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0},
+                {seq:3,select:false,salePrice:0,initPayPercent:0,gpsFee:0,purchaseTax:0,serviceFee:0,insuranceFee:0,delayInsuranceFee:0,transferFee:0,addonFee:0,assessPrice:0,collateral:0,financeAmount:0,financeFee:0}
+            ];
+            $scope.applyInfo.linkmans = [{seq:1,select:true},{seq:2,select:false}];
             $scope.initSelectList();
+
+
         };
+        //监视融资信息变化
+        $scope.$watch('applyInfo.finances',function(newVal,oldVal){
+            for(var i =0 ;i<newVal.length;i++){
+                if(newVal[i].select==true){
+                    if(!angular.equals(newVal[i],oldVal[i])){
+                        var item = newVal[i];
+                        $scope.gpsLvlList = GpsService.queryEnableGpsLvlList(item.salePrice,item.initPayPercent,$scope.applyInfo.product).$object;
+                    }
+                }
+            }
+        },true);
+        $scope.queryEnableGpsLvl = function(item){
+
+        }
         $scope.initSelectList = function(){
             //可选产品
             $scope.productList = ProductService.queryBranchEnableProductList().$object;
@@ -57,6 +78,10 @@ angular.module("pu.apply.controllers")
         };
         $scope.onIsFinanceGpsClick = function(item){
 
+        };
+
+        $scope.printVar = function(){
+            console.log($scope.applyInfo);
         }
     })
 ;

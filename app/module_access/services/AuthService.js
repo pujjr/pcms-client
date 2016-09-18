@@ -4,21 +4,23 @@ angular.module('pu.access.services')
         var authResource = {};
         this.login = function (id, passwd) {
             var user = {};
-            user.id = id;
-            user.passwd = passwd;
+            user.accountId = id;
+            user.password = passwd;
             var defered = $q.defer();
             AuthRestangular.all('auth').post(user).then(function (response) {
                 if (response.successResponse) {
                     window.localStorage.Authorization = response.data.Authorization;
                     window.localStorage.account = angular.toJson(response.data.account);
                     $rootScope.account = response.data.account;
+                    defered.resolve();
+                    /*
                     CarCreditRestangular.all('accounts').all("authmenu").all(user.id).getList().then(function (response) {
                         angular.forEach(response, function (item) {
                             authResource[item.routepath] = 'all';
                         })
                         isAuth = true;
                         defered.resolve();
-                    });
+                    });*/
                 }
                 else {
                     defered.reject(response.message);

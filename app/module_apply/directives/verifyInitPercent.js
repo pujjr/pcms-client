@@ -20,7 +20,7 @@ angular.module("app").
                         return true;
                     }else{
                         defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
-                            errorMessages['verifyInitPercent'] = $scope.rule.minSalePrice+'<=首付比例<='+$scope.rule.maxSalePrice;
+                            errorMessages['verifyInitPercent'] = $scope.rule.minInitPayPercent+'<=首付比例<='+$scope.rule.maxInitPayPercent;
                         });
                         return false;
                     }
