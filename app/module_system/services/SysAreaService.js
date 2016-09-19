@@ -14,5 +14,14 @@ angular.module('pu.system.services')
         };
         this.deleteSysArea = function(id){
             return RestApi.one("/sysarea",id).remove();
+        };
+        this.queryProvinceList = function(){
+            return RestApi.all("/sysarea/province").getList();
+        };
+        this.queryCityList = function(provinceId){
+            return RestApi.one("/sysarea/province",provinceId).all("city").getList();
+        };
+        this.queryCountyList = function(provinceId,cityId){
+            return RestApi.one("/sysarea/province",provinceId).one("/city",cityId).all("county").getList();
         }
     });

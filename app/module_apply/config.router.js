@@ -24,6 +24,12 @@ angular.module('app')
                     templateUrl:'module_apply/tpl/apply-add.html',
                     controller:'ApplyController'
                 })
+                //审核
+                .state('app.apply.check',{
+                    url:'/check/:id',
+                    templateUrl:'module_apply/tpl/apply-check.html',
+                    controller:'ApplyController'
+                })
         }
     ]
 );

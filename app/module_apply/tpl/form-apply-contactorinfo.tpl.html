@@ -1,10 +1,7 @@
 <!--联系人信息-->
 <fieldset class="scheduler-border" ng-repeat="item in applyInfo.linkmans">
-    <legend class="scheduler-border">联系人一信息</legend>
-    <div ng-if="item.select==false">
-        <button class="btn btn-link btn-lg m-t-md" type="button" ui-sref="app.apply.add"><i class="fa fa-plus-square-o  fa-2x m-r-sm"></i></button>
-    </div>
-    <div ng-if="item.select==true">
+    <legend class="scheduler-border">联系人{{item.seq | simpleChnUpperCase}}信息</legend>
+    <div>
         <div class="row m-t-md">
             <div class="col-md-4">
                 <div class="form-group form-group-sm">
@@ -39,17 +36,22 @@
                 <div class="form-group form-group-sm">
                     <label class="col-sm-2 control-label">住址：</label>
                     <div class="col-sm-2">
-                        <select  class="form-control"  ng-model="item.addrProvince">
+                        <select  class="form-control"  ng-model="item.addrProvince"
+                                 ng-options="item.id as item.areaName for item in provinceList"
+                                 ng-change="addressCtrl.onCommonProvinceChange(item)">
                             <option value="">省</option>
                         </select>
                     </div>
                     <div class="col-sm-2" >
-                        <select  class="form-control"  ng-model="item.addrCity">
+                        <select  class="form-control"  ng-model="item.addrCity"
+                                 ng-options="item.id as item.areaName for item in item.cityList"
+                                 ng-change="addressCtrl.onCommonCityChange(item)">
                             <option value="">市</option>
                         </select>
                     </div>
                     <div class="col-sm-2" >
-                        <select  class="form-control"  ng-model="item.addrCounty">
+                        <select  class="form-control"  ng-model="item.addrCounty"
+                                 ng-options="item.id as item.areaName for item in item.countyList">
                             <option value="">县</option>
                         </select>
                     </div>

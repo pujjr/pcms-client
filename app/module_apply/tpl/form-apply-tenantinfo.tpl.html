@@ -25,7 +25,7 @@
             <div class="form-group form-group-sm">
                 <label for="idNo" class="col-sm-4 control-label">证件号码：</label>
                 <div class="col-sm-8">
-                    <input type="text" id="idNo" class="form-control" ng-model="applyInfo.tenant.idNo" placeholder="证件号码">
+                    <input type="text" id="idNo" minlength="15" maxlength="18" class="form-control" ng-model="applyInfo.tenant.idNo"  ng-blur="inputIdNoComplete()" placeholder="证件号码">
                 </div>
             </div>
         </div>
@@ -128,17 +128,22 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label">现详细住址：</label>
                 <div class="col-sm-2">
-                    <select  class="form-control"  ng-model="applyInfo.tenant.addrProvince">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrProvince"
+                             ng-options="item.id as item.areaName for item in provinceList"
+                            ng-change="addressCtrl.onTenantProvinceChange()">
                         <option value="">省</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCity">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCity"
+                             ng-options="item.id as item.areaName for item in tenantCityList"
+                            ng-change="addressCtrl.onTenantCityChange()">
                         <option value="">市</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCounty">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCounty"
+                             ng-options="item.id as item.areaName for item in tenantCountyList">
                         <option value="">县</option>
                     </select>
                 </div>
@@ -187,19 +192,24 @@
     <div class="row" ng-repeat="item in applyInfo.tenant.tenantHouses">
         <div class="col-md-8">
             <div class="form-group form-group-sm">
-                <label class="col-sm-2 control-label">房产一住址：</label>
+                <label class="col-sm-2 control-label">房产{{item.seq | simpleChnUpperCase}}住址：</label>
                 <div class="col-sm-2">
-                    <select  class="form-control"  ng-model="item.addrProvince">
+                    <select  class="form-control"  ng-model="item.addrProvince"
+                             ng-options="item.id as item.areaName for item in provinceList"
+                             ng-change="addressCtrl.onCommonProvinceChange(item)">
                         <option value="">省</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="item.addrCity">
+                    <select  class="form-control"  ng-model="item.addrCity"
+                             ng-options="item.id as item.areaName for item in item.cityList"
+                             ng-change="addressCtrl.onCommonCityChange(item)">
                         <option value="">市</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="item.addrCounty">
+                    <select  class="form-control"  ng-model="item.addrCounty"
+                             ng-options="item.id as item.areaName for item in item.countyList">
                         <option value="">县</option>
                     </select>
                 </div>
@@ -211,7 +221,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">房产一状态：</label>
+                <label class="col-sm-4 control-label">房产{{item.seq | simpleChnUpperCase}}状态：</label>
                 <div class="col-sm-8 text-left">
                     <select id="status" class="form-control" ng-model="item.status"
                             ng-options="item.dictDataCode as item.dictDataName for item in houseStatusList" required>
@@ -224,7 +234,7 @@
     <div class="row" ng-repeat="item in applyInfo.tenant.tenantCars">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">车产一品牌：</label>
+                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}品牌：</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" ng-model="item.carBrand" placeholder="车产一品牌">
                 </div>
@@ -232,7 +242,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">车产一车牌：</label>
+                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}车牌：</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" ng-model="item.carDetail" placeholder="车产一车牌">
                 </div>
@@ -240,9 +250,10 @@
         </div>
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">车产状态：</label>
+                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}状态：</label>
                 <div class="col-sm-8" >
-                    <select  class="form-control" ng-model="item.carStatus" >
+                    <select  class="form-control" ng-model="item.carStatus"
+                             ng-options="item.dictDataCode as item.dictDataName for item in carStatusList" >
                         <option value="">请选择车产状态</option>
                     </select>
                 </div>
@@ -338,17 +349,22 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label">单位地址：</label>
                 <div class="col-sm-2">
-                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrProvince">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrProvince"
+                             ng-options="item.id as item.areaName for item in provinceList"
+                             ng-change="addressCtrl.onTenantUnitProvinceChange()">
                         <option value="">省</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCity">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCity"
+                             ng-options="item.id as item.areaName for item in tenantUnitCityList"
+                             ng-change="addressCtrl.onTenantUnitCityChange()">
                         <option value="">市</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCounty">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCounty"
+                             ng-options="item.id as item.areaName for item in tenantUnitCountyList">
                         <option value="">县</option>
                     </select>
                 </div>

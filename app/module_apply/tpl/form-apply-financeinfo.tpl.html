@@ -1,7 +1,7 @@
 <!--融资信息-->
 <div ng-repeat="item in applyInfo.finances">
     <fieldset class="scheduler-border">
-        <legend class="scheduler-border">融资信息一</legend>
+        <legend class="scheduler-border">融资信息{{item.seq | simpleChnUpperCase}}</legend>
         <div ng-if="item.select==false">
             <button class="btn btn-link btn-lg m-t-md" type="button" ng-click="activeFinance(item)"><i class="fa fa-plus-square-o  fa-2x m-r-sm"></i></button>
         </div>
@@ -55,7 +55,7 @@
                     <div class="form-group form-group-sm">
                         <label class="col-sm-4 control-label">裸车价:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control input-sm"  ng-model="item.salePrice" verify-sale-price="applyInfo.product.productRule"  required  placeholder="裸车价">
+                            <input type="number" class="form-control input-sm"  ng-model="item.salePrice" verify-sale-price="applyInfo.product.productRule"  required  placeholder="裸车价">
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         <label  class="col-sm-4 control-label">首付/抵押比例：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule" required placeholder="首付/抵押比例">
+                                <input type="number" class="form-control"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule" required placeholder="首付/抵押比例">
                                 <span class="input-group-addon">
                                     <b>%</b>
                                 </span>
@@ -106,7 +106,7 @@
                         <label  class="col-sm-4 control-label">购置税：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control input-sm"  ng-model="item.purchaseTax"
+                                <input type="number" class="form-control input-sm"  ng-model="item.purchaseTax"
                                        ng-disabled="item.isPurchaseTax ==false || item.isPurchaseTax ==undefined"
                                        placeholder="购置税">
                                 <span class="input-group-addon">
@@ -121,7 +121,7 @@
                         <label  class="col-sm-4 control-label">服务费：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control input-sm"  ng-model="item.serviceFee"
+                                <input type="number" class="form-control input-sm"  ng-model="item.serviceFee"
                                        verify-service-fee="applyInfo.product.productRule"
                                        ng-disabled="item.isServiceFee==false || item.isServiceFee == undefined"
                                        placeholder="服务费">
@@ -137,7 +137,7 @@
                         <label  class="col-sm-4 control-label">保险费：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control input-sm"  ng-model="item.insuranceFee"
+                                <input type="number" class="form-control input-sm"  ng-model="item.insuranceFee"
                                        verify-insurance-fee="applyInfo.product.productRule"
                                        ng-disabled="item.isInsuranceFee==false || item.isInsuranceFee == undefined" placeholder="保险费">
                                 <span class="input-group-addon">
@@ -154,12 +154,12 @@
                         <label  class="col-sm-4 control-label">延保费：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control input-sm"  ng-model="item.delayInsuranceFee"
+                                <input type="number" class="form-control input-sm"  ng-model="item.delayInsuranceFee"
                                        verify-delay-insurance-fee="applyInfo.product.productRule"
                                        ng-disabled="item.isDelayInsuranceFee==false || item.isDelayInsuranceFee == undefined"
                                        placeholder="延保费">
                                 <span class="input-group-addon">
-                                    <input type="checkbox" ng-click="item.delayInsuranceFee=0" ng-model="item.isDelayInsuranceFee">是否融
+                                    <input type="checkbox" ng-click="item.delayInsuranceFee=0"  ng-model="item.isDelayInsuranceFee">是否融
                                 </span>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                         <label  class="col-sm-4 control-label">过户费：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control input-sm"  ng-model="item.transferFee"
+                                <input type="number" class="form-control input-sm"  ng-model="item.transferFee"
                                        verify-transfer-fee="applyInfo.product.productRule"
                                        ng-disabled="item.isTransferFee==false || item.isTransferFee == undefined"
                                        placeholder="过户费">
@@ -187,7 +187,7 @@
                         <label  class="col-sm-4 control-label">加装费：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control input-sm"  ng-model="item.addonFee"
+                                <input type="number" class="form-control input-sm"  ng-model="item.addonFee"
                                        verify-addon-fee="applyInfo.product.productRule"
                                        ng-disabled="item.isAddonFee==false || item.isAddonFee == undefined"
                                        placeholder="加装费">
@@ -238,7 +238,7 @@
                     <div class="form-group form-group-sm">
                         <label  class="col-sm-4 control-label">售价/评估价：</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control input-sm"  ng-model="item.assessPrice" ng-disabled="edit" placeholder="售价/评估价">
+                            <input type="number" class="form-control input-sm"  ng-model="item.assessPrice" ng-disabled="edit" placeholder="售价/评估价">
                         </div>
                     </div>
                 </div>
@@ -246,7 +246,7 @@
                     <div class="form-group form-group-sm">
                         <label  class="col-sm-4 control-label">保证金：</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control input-sm"  ng-model="item.collateral"  placeholder="保证金">
+                            <input type="number" class="form-control input-sm"  ng-model="item.collateral"  placeholder="保证金">
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                     <div class="form-group form-group-sm">
                         <label  class="col-sm-4 control-label">融资金额：</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control input-sm"  ng-model="item.financeAmount" disabled placeholder="融资金额">
+                            <input type="number" class="form-control input-sm"  ng-model="item.financeAmount" disabled placeholder="融资金额">
                         </div>
                     </div>
                 </div>
@@ -264,7 +264,7 @@
                     <div class="form-group form-group-sm">
                         <label  class="col-sm-4 control-label">融资手续费：</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control input-sm"  ng-model="item.financeFee" disabled placeholder="融资手续费">
+                            <input type="number" class="form-control input-sm"  ng-model="item.financeFee" disabled placeholder="融资手续费">
                         </div>
                     </div>
                 </div>

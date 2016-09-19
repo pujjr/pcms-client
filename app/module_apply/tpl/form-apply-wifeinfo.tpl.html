@@ -140,17 +140,22 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label">单位地址：</label>
                 <div class="col-sm-2">
-                    <select  class="form-control"  ng-model="applyInfo.spouse.unitAddrProvince">
+                    <select  class="form-control"  ng-model="applyInfo.spouse.unitAddrProvince"
+                             ng-options="item.id as item.areaName for item in provinceList"
+                             ng-change="addressCtrl.onSpouseUnitProvinceChange()">
                         <option value="">省</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="applyInfo.spouse.unitAddrCity">
+                    <select  class="form-control"  ng-model="applyInfo.spouse.unitAddrCity"
+                             ng-options="item.id as item.areaName for item in spouseUnitCityList"
+                             ng-change="addressCtrl.onSpouseUnitCityChange()">
                         <option value="">市</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
-                    <select  class="form-control"  ng-model="applyInfo.spouse.unitAddrCounty">
+                    <select  class="form-control"  ng-model="applyInfo.spouse.unitAddrCounty"
+                             ng-options="item.id as item.areaName for item in spouseUnitCountyList">
                         <option value="">县</option>
                     </select>
                 </div>

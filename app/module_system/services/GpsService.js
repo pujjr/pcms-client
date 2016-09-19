@@ -10,6 +10,9 @@ angular.module('pu.system.services')
             }else{
                 amt = salePrice*(1-initPayPercent/100);
             }
+            if(isNaN(amt)){
+                return [];
+            }
             return RestApi.one("/gps",'enablegpslvl').all(amt).getList();
         }
     });
