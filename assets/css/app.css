@@ -5092,7 +5092,7 @@ a.text-#000000:hover {
 }
 
 fieldset.scheduler-border {
-  border: 1px solid #e0e0e0 !important;
+  border: 1px solid #afadad !important;
   border-radius: 1px;
   padding: 0 1.4em 1.4em 1.4em !important;
   margin: 0 0 1.5em 0 !important;
@@ -5375,4 +5375,34 @@ ul{
 }
 .pull-right{
   float: right !important;
+}
+.check-header{
+  border-radius: 4px;
+  background-color:#f0f3f4;
+  border:1px solid #e1e6eb;
+  width:100%;
+  position:fixed;
+  top:50px;
+  height:50px;
+  z-index: 1001;
+  padding-right: 200px;
+}
+.check-body{
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  overflow: auto; position:fixed; top:100px; bottom:200px;
+}
+.check-footer{
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  background-color:#f0f3f4;
+  border:1px solid #e1e6eb;
+  overflow: auto;
+  width:100%;
+  height:200px;
+  position:fixed;
+  bottom:0;
+  padding-right: 200px;
 }

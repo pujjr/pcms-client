@@ -1,19 +1,12 @@
-<div  class="panel" ng-init="initCheck()">
-    <div >
-        <div class="data-table-container white-only" style="background-color:rgba(255, 255, 255, 0.5);position: fixed;z-index: 10000;left: 200px;top: 100px;display:block;" >
-            <header class="data-table-header" style="min-height:72px !important;">
-                <div class="data-table-header__label">
-                    <span class="fs-title"><i class="fa fa-list-ul mr"></i>审核</span>
-                </div>
-                <div class="data-table-header__actions">
-                    <button class="btn  btn-link" type="button" ui-sref="app.product.config"><i class="fa fa-cab m-r-sm"></i>下一步</button>
-                    <button class="btn btn-link" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
-                    <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
-                </div>
-            </header>
+<div  ng-init="initCheck()">
+    <div class="check-header">
+        <div class="pull-right" style="position: relative;top:20%;right:0px;">
+            <button class="btn  btn-link" type="button" ui-sref="app.product.config"><i class="fa fa-cab m-r-sm"></i>下一步</button>
+            <button class="btn btn-link" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
+            <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
         </div>
     </div>
-    <div style="position: relative;z-index: 10000;top: 100px;display:block;overflow:auto;">
+    <div class="check-body">
         <uib-tabset>
             <uib-tab index="0">
                 <uib-tab-heading>
@@ -44,20 +37,10 @@
             </uib-tab>
         </uib-tabset>
     </div>
-    <div style="position: fixed;z-index: 10000;left: 200px;bottom: 0px;display:block;">
-        <header class="data-table-header" style="min-height:72px !important;">
-            <div class="data-table-header__label">
-                <span class="fs-title"><i class="fa fa-list-ul mr"></i>审核</span>
-            </div>
-            <div class="data-table-header__actions">
-                <button class="btn  btn-link" type="button" ui-sref="app.product.config"><i class="fa fa-cab m-r-sm"></i>下一步</button>
-                <button class="btn btn-link" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
-                <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
-            </div>
-        </header>
+    <div  class="check-footer">
+        <form class="container-fluid m-t-md form-horizontal">
+            <div ng-include="'module_apply/tpl/form-apply-tenantinfo.html'"></div>
+        </form>
+
     </div>
-
-
-
-
 </div>

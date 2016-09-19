@@ -13,7 +13,8 @@ angular.module('pu.workflow.services')
             return RestApi.all("/workflow/list").all(workflowTypeId).getList();
         };
         this.showWorkflowEditor=function(modelId){
-            $window.open(BaseUrl+WorkflowUrl+modelId);
+            var token = window.localStorage.Authorization;
+            $window.open(BaseUrl+WorkflowUrl+modelId+"&token="+token);
         };
         this.getWorkflowImageUrl = function (id){
             return BaseUrl+"/service/workflow/config/img/"+id;
