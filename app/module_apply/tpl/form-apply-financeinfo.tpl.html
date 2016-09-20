@@ -1,7 +1,9 @@
 <!--融资信息-->
 <div ng-repeat="item in applyInfo.finances">
     <fieldset class="scheduler-border">
-        <legend class="scheduler-border">融资信息{{item.seq | simpleChnUpperCase}}</legend>
+        <legend class="scheduler-border">融资信息{{item.seq | simpleChnUpperCase}}
+            <button class="btn  btn-link" type="button" ng-click="deActiveFinance(item)" ng-if="item.select==true && item.seq !=1"><i class="fa fa-trash fa-lg m-r-sm" style="color: red"></i></button>
+        </legend>
         <div ng-if="item.select==false">
             <button class="btn btn-link btn-lg m-t-md" type="button" ng-click="activeFinance(item)"><i class="fa fa-plus-square-o  fa-2x m-r-sm"></i></button>
         </div>
@@ -81,7 +83,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <select  class="form-control" ng-model="item.gpsLvl"  ng-change="onGpsLvlSelected(item)"
-                                        ng-options="lvl.lvlName for lvl in item.gpsLvlList" required>
+                                        ng-options="lvl.lvlName for lvl in item.gpsLvlList track by lvl.id" required>
                                     <option value="">请选择GPS档位</option>
                                 </select>
                                 <span class="input-group-addon">
@@ -252,6 +254,17 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label  class="col-sm-4 control-label">评估费：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control"  ng-model="item.assessFee">
+                                <option value=0>无</option>
+                                <option value=300>300元</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <div class="form-group form-group-sm">
                         <label  class="col-sm-4 control-label">融资金额：</label>

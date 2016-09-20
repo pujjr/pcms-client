@@ -3,4 +3,13 @@ angular.module('pu.apply.services')
         this.saveApplyInfo = function(item){
             return RestApi.all("/apply").post(item);
         };
+        this.queryApplyInfoByAppId  = function(appId){
+            return RestApi.one("/apply",appId).get();
+        };
+        this.queryUnCommitApplyInfoList = function(){
+            return RestApi.all("/apply/uncommit").getList();
+        }
+        this.commitApplyInfo = function(item){
+            return RestApi.all("/apply/commit").post(item);
+        }
     });

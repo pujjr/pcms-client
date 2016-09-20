@@ -3,68 +3,21 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.apply.controllers")
-    .controller('ApplyController',function ($scope, $rootScope, $state, toaster, $uibModal,GpsService,ToolsService,SysAreaService,
+    .controller('ApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,GpsService,ToolsService,SysAreaService,modal,
                                             SysDictService,ProductService,CarService,ApplyService) {
         $scope.initApplyAdd = function () {
             //申请信息初始化一些选项
             $scope.applyInfo = {};
-            //初始化融资信息
-            $scope.finance1 = {seq:1,select:true,salePrice:0,initPayPercent:0,
-                gpsFee:0, isFinanceGps:false,
-                purchaseTax:0,isPurchaseTax:false,
-                serviceFee:0,isServiceFee:false,
-                insuranceFee:0,isInsuranceFee:false,
-                delayInsuranceFee:0,isDelayInsuranceFee:false,
-                transferFee:0,isTransferFee:false,
-                addonFee:0,isAddonFee:false,
-                assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
-            $scope.finance2 ={seq:2,select:false,salePrice:0,initPayPercent:0,
-                gpsFee:0, isFinanceGps:false,
-                purchaseTax:0,isPurchaseTax:false,
-                serviceFee:0,isServiceFee:false,
-                insuranceFee:0,isInsuranceFee:false,
-                delayInsuranceFee:0,isDelayInsuranceFee:false,
-                transferFee:0,isTransferFee:false,
-                addonFee:0,isAddonFee:false,
-                assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
-            $scope.finance3 ={seq:3,select:false,salePrice:0,initPayPercent:0,
-                gpsFee:0, isFinanceGps:false,
-                purchaseTax:0,isPurchaseTax:false,
-                serviceFee:0,isServiceFee:false,
-                insuranceFee:0,isInsuranceFee:false,
-                delayInsuranceFee:0,isDelayInsuranceFee:false,
-                transferFee:0,isTransferFee:false,
-                addonFee:0,isAddonFee:false,
-                assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
-            $scope.applyInfo.finances = [
-                $scope.finance1,
-                $scope.finance2,
-                $scope.finance3
-            ];
-            //初始化承租人房产信息
-            $scope.tenantHouse1 = {seq:1};
-            $scope.tenantHouse2={seq:2};
+            $scope.applyInfo.finances = [];
             $scope.applyInfo.tenant={};
-            $scope.applyInfo.tenant.tenantHouses = [
-                $scope.tenantHouse1,
-                $scope.tenantHouse2
-            ];
-            //初始化承租人车产信息
-            $scope.tenantCar1 = {seq:1};
-            $scope.tenantCar2 = {seq:2};
-            $scope.applyInfo.tenant.tenantCars = [
-                $scope.tenantCar1,
-                $scope.tenantCar2
-            ];
-            //初始化联系人信息
-            $scope.linkman1 = {seq:1};
-            $scope.linkman2 = {seq:2};
-            $scope.applyInfo.linkmans = [
-                $scope.linkman1,
-                $scope.linkman2
-            ];
+            $scope.applyInfo.tenant.tenantHouses = [];
+            $scope.applyInfo.tenant.tenantCars = [ ];
+            $scope.applyInfo.linkmans = [];
+            $scope.initFinances($scope.applyInfo.finances);
+            $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
+            $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
+            $scope.initLinkmans($scope.applyInfo.linkmans);
             $scope.initSelectList();
-            $scope.initWatchFinance1();
         };
         $scope.initWatchFinance1 = function(){
             //监视融资信息变化查询GPS档位
@@ -107,10 +60,10 @@ angular.module("pu.apply.controllers")
         var watchFinance2;
         $scope.initWatchFinance2 = function(){
             //监视融资信息变化查询GPS档位
-            var watchFinance2Gps = $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
+            watchFinance2Gps = $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
                 $scope.finance2.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance2.salePrice,$scope.finance2.initPayPercent,$scope.applyInfo.product).$object;
             },true);
-            var watchFinance2 = $scope.$watch('finance2',function(newVal,oldVal){
+            watchFinance2 = $scope.$watch('finance2',function(newVal,oldVal){
                 //取融资手续费
                 var financeFee = 0;
                 var product = $scope.applyInfo.product;
@@ -145,10 +98,10 @@ angular.module("pu.apply.controllers")
         var watchFinance3;
         $scope.initWatchFinance3 = function(){
             //监视融资信息变化查询GPS档位
-            var watchFinance3Gps = $scope.$watchGroup(['finance3.salePrice','finance3.initPayPercent'],function(newVal,oldVal){
+            watchFinance3Gps = $scope.$watchGroup(['finance3.salePrice','finance3.initPayPercent'],function(newVal,oldVal){
                 $scope.finance3.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance3.salePrice,$scope.finance3.initPayPercent,$scope.applyInfo.product).$object;
             },true);
-            var watchFinance3 = $scope.$watch('finance3',function(newVal,oldVal){
+            watchFinance3 = $scope.$watch('finance3',function(newVal,oldVal){
                 //取融资手续费
                 var financeFee = 0;
                 var product = $scope.applyInfo.product;
@@ -187,6 +140,39 @@ angular.module("pu.apply.controllers")
             }else{
                 $scope.initWatchFinance3();
             }
+        };
+        //清除融资信息
+        $scope.deActiveFinance = function(item){
+            modal.confirm('操作提醒','是否清除融资信息？').then(function(){
+                if(item.seq == 2){
+                    var obj = {seq:2,select:false,salePrice:0,initPayPercent:0,
+                        gpsFee:0, isFinanceGps:false,
+                        purchaseTax:0,isPurchaseTax:false,
+                        serviceFee:0,isServiceFee:false,
+                        insuranceFee:0,isInsuranceFee:false,
+                        delayInsuranceFee:0,isDelayInsuranceFee:false,
+                        transferFee:0,isTransferFee:false,
+                        addonFee:0,isAddonFee:false,
+                        assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+                    angular.copy(obj,item);
+                    watchFinance2Gps() ;
+                    watchFinance2();
+                }
+                if(item.seq ==3){
+                    var obj = {seq:3,select:false,salePrice:0,initPayPercent:0,
+                        gpsFee:0, isFinanceGps:false,
+                        purchaseTax:0,isPurchaseTax:false,
+                        serviceFee:0,isServiceFee:false,
+                        insuranceFee:0,isInsuranceFee:false,
+                        delayInsuranceFee:0,isDelayInsuranceFee:false,
+                        transferFee:0,isTransferFee:false,
+                        addonFee:0,isAddonFee:false,
+                        assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+                    angular.copy(obj,item);
+                    watchFinance3Gps() ;
+                    watchFinance3();
+                }
+            })
         }
         //根据选择GPS档位计算GPS价格
         $scope.onGpsLvlSelected = function(item){
@@ -219,6 +205,19 @@ angular.module("pu.apply.controllers")
             $scope.applyInfo.tenant.sex = sex%2!=0?'xb01':'xb02';
         }
         $scope.addressCtrl = {
+            onEditRefresh : function(){
+                $scope.tenantCityList = SysAreaService.queryCityList($scope.applyInfo.tenant.addrProvince).$object;
+                $scope.tenantCountyList = SysAreaService.queryCountyList($scope.applyInfo.tenant.addrProvince,$scope.applyInfo.tenant.addrCity).$object;
+                $scope.tenantUnitCityList = SysAreaService.queryCityList($scope.applyInfo.tenant.unitAddrProvince).$object;
+                $scope.tenantUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.tenant.unitAddrProvince,$scope.applyInfo.tenant.unitAddrCity).$object;
+                $scope.spouseUnitCityList = SysAreaService.queryCityList($scope.applyInfo.spouse.unitAddrProvince).$object;
+                $scope.spouseUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.spouse.unitAddrProvince,$scope.applyInfo.spouse.unitAddrCity).$object;
+                $scope.cloesseeUnitCityList = SysAreaService.queryCityList($scope.applyInfo.cloessee.unitAddrProvince).$object;
+                $scope.cloesseeUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.cloessee.unitAddrProvince,$scope.applyInfo.cloessee.unitAddrCity).$object;
+                //刷新承租人房产地址
+                $scope.tenantHouse1.cityList  = SysAreaService.queryCityList($scope.tenantHouse1.addrProvince).$object;
+                $scope.tenantHouse2.cityList  = SysAreaService.queryCityList($scope.tenantHouse2.addrProvince).$object;
+            },
             //承租人现详细地址省
             onTenantProvinceChange : function(){
                 $scope.applyInfo.tenant.addrCity="";
@@ -325,10 +324,192 @@ angular.module("pu.apply.controllers")
         $scope.printVar = function(){
             console.log($scope.applyInfo);
         };
+       //查询未提交申请单列表
+        $scope.initQueryUnCommitApplyInfoList = function(){
+            $scope.unCommitApplyList = ApplyService.queryUnCommitApplyInfoList().$object;
+        };
+        //初始化编辑申请单时的融资信息
+        $scope.initFinances = function(finances){
+            for(var i = 1 ;i<=3; i++){
+                if(i>finances.length){
+                    if(i==1){
+                        var finance1 = {seq:1,select:true,salePrice:0,initPayPercent:0,
+                            gpsFee:0, isFinanceGps:false,
+                            purchaseTax:0,isPurchaseTax:false,
+                            serviceFee:0,isServiceFee:false,
+                            insuranceFee:0,isInsuranceFee:false,
+                            delayInsuranceFee:0,isDelayInsuranceFee:false,
+                            transferFee:0,isTransferFee:false,
+                            addonFee:0,isAddonFee:false,
+                            assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+                        finances.push(finance1);
+                    }
+                    if(i==2){
+                        var finance2 = {seq:2,select:false,salePrice:0,initPayPercent:0,
+                            gpsFee:0, isFinanceGps:false,
+                            purchaseTax:0,isPurchaseTax:false,
+                            serviceFee:0,isServiceFee:false,
+                            insuranceFee:0,isInsuranceFee:false,
+                            delayInsuranceFee:0,isDelayInsuranceFee:false,
+                            transferFee:0,isTransferFee:false,
+                            addonFee:0,isAddonFee:false,
+                            assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+                        finances.push(finance2);
+                    }
+                    if(i==3){
+                       var finance3 = {seq:3,select:false,salePrice:0,initPayPercent:0,
+                            gpsFee:0, isFinanceGps:false,
+                            purchaseTax:0,isPurchaseTax:false,
+                            serviceFee:0,isServiceFee:false,
+                            insuranceFee:0,isInsuranceFee:false,
+                            delayInsuranceFee:0,isDelayInsuranceFee:false,
+                            transferFee:0,isTransferFee:false,
+                            addonFee:0,isAddonFee:false,
+                            assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+                        finances.push(finance3);
+                    }
+                }
+            }
+            //放入scope
+             for(var i = 0 ;i<3;i++){
+                 if(i == 0){
+                     $scope.finance1 =finances[0];
+                 }
+                 if(i==1){
+                     $scope.finance2 =finances[1]
+                 }
+                 if(i==2){
+                     $scope.finance3 =finances[2]
+                 }
+             }
+            //启动watch操作
+            for(var i = 1 ;i<=finances.length;i++){
+                if(finances[i-1].select == true){
+                    if(i == 1){
+                        $scope.initWatchFinance1();
+                    }
+                    if(i==2){
+                        $scope.initWatchFinance2();
+                    }
+                    if(i==3){
+                        $scope.initWatchFinance3();
+                    }
+                }
+            }
+        }
+        //初始化编辑申请信息承租人房产信息
+        $scope.initTenantHouses = function(tenantHouses){
+            for(var i = 1 ; i<=2 ;i++){
+                if(i>tenantHouses.length){
+                    if(i==1){
+                        $scope.tenantHouse1 = {seq:1};
+                        tenantHouses.push($scope.tenantHouse1);
+                    }
+                    if(i==2){
+                        $scope.tenantHouse2={seq:2};
+                        tenantHouses.push($scope.tenantHouse2);
+                    }
+                }
+            };
+            //放入scope
+            for(var i = 1 ;i<=2;i++){
+                if(i == 1){
+                    $scope.tenantHouse1 =tenantHouses[0];
+                }
+                if(i==2){
+                    $scope.tenantHouse2 =tenantHouses[1];
+                }
+            }
+        };
+        //初始化编辑申请承租人车产信息
+        $scope.initTenantCars = function(tenantCars){
+            for(var i = 1 ; i<=2 ;i++){
+                if(i>tenantCars.length){
+                    if(i==1){
+                        $scope.tenantCar1 = {seq:1};
+                        tenantCars.push($scope.tenantCar1);
+                    }
+                    if(i==2){
+                        $scope.tenantCar2={seq:2};
+                        tenantCars.push($scope.tenantCar2);
+                    }
+                }
+            };
+            //放入scope
+            for(var i = 1 ;i<=2;i++){
+                if(i == 1){
+                    $scope.tenantCar1 =tenantCars[0];
+                }
+                if(i==2){
+                    $scope.tenantCar2 =tenantCars[1]
+                }
+            }
+        };
+        //初始化编辑申请联系人信息
+        $scope.initLinkmans = function(linkmans){
+            for(var i = 1 ; i<=2 ;i++){
+                if(i>linkmans.length){
+                    if(i==1){
+                        $scope.linkman1 = {seq:1};
+                        linkmans.push($scope.linkman1);
+                    }
+                    if(i==2){
+                        $scope.linkman2 = {seq:2};
+                        linkmans.push($scope.linkman2);
+                    }
+                }
+            };
+            //放入scope
+            for(var i = 1 ;i<=2;i++){
+                if(i == 1){
+                    $scope.linkman1 =linkmans[0];
+                }
+                if(i==2){
+                    $scope.linkman2 =linkmans[1];
+                }
+            }
+        }
+        //初始化编辑申请单
+        $scope.initApplyEdit = function(){
+            var appId = $stateParams.appId;
+            // 获取订单数据
+            ApplyService.queryApplyInfoByAppId(appId).then(function(response){
+                $scope.applyInfo =  response;
+                if($scope.applyInfo.finances == undefined){
+                    $scope.applyInfo.finances=[];
+                }
+                if($scope.applyInfo.tenant == undefined){
+                    $scope.applyInfo.tenant = {};
+                    if($scope.applyInfo.tenant.tenantHouses==undefined){
+                        $scope.applyInfo.tenant.tenantHouses = [];
+                    }
+                    if($scope.applyInfo.tenant.tenantCars ==undefined){
+                        $scope.applyInfo.tenant.tenantCars = [];
+                    }
+                }
+                if($scope.applyInfo.linkmans == undefined){
+                    $scope.applyInfo.linkmans = [];
+                }
+                $scope.initFinances($scope.applyInfo.finances);
+                $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
+                $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
+                $scope.initLinkmans($scope.applyInfo.linkmans);
+                $scope.initSelectList();
+                $scope.addressCtrl.onEditRefresh();
+            })
+        }
+        //保存申请信息
         $scope.saveApplyInfo = function(){
             ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
-
+                $state.go('app.apply.list');
+                toaster.pop('success', '操作提醒','保存申请信息成功');
             });
         };
+        //提交申请信息
+        $scope.commitApplyInfo = function(){
+            $state.go('app.apply.list');
+            toaster.pop('success', '操作提醒','提交申请信息成功');
+        }
+
     })
 ;

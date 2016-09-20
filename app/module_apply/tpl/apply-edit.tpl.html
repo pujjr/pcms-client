@@ -1,8 +1,9 @@
-<div  class="panel" ng-init="initApplyAdd()">
+<div  class="panel" ng-init="initApplyEdit()">
     <div class="data-table-container" >
         <header class="data-table-header" style="min-height:72px !important;">
             <div class="data-table-header__label">
-                <span class="fs-title"><i class="fa fa-list-ul mr"></i>新增申请单</span>
+                <span class="fs-title"><i class="fa fa-list-ul mr"></i>编辑申请单</span>
+                <span class="m-l-sm">申请单号：{{applyInfo.appId}}</span>
             </div>
             <div class="data-table-header__actions">
                 <button class="btn  btn-link" type="button" ui-sref="commitApplyInfo()"><i class="fa fa-cab m-r-sm"></i>提交任务</button>

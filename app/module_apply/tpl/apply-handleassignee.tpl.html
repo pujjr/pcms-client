@@ -1,8 +1,8 @@
-<div ng-init="initQueryUnCommitApplyInfoList()">
+<div ng-init="init()">
     <div class="panel_main">
         <div class="panel-header">
             <div class="panel-header-wrapper">
-                <h2 class="panel-header-title">申请单录入</h2>
+                <h2 class="panel-header-title">手工分单</h2>
             </div>
         </div>
         <div class="data-table-container">
@@ -11,36 +11,32 @@
                     <span class="fs-title"></span>
                     </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-m btn-default" type="button" ui-sref="app.apply.add"><i class="fa fa-plus m-r-sm"></i>新增申请单</button>
+                    <button class="btn btn-m btn-default" type="button" ui-sref="app.apply.add"><i class="fa fa-plus m-r-sm"></i>分配任务</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
+                    <th><input type="checkbox">全选</th>
                     <th>申请单编号</th>
-                    <th>申请产品</th>
+                    <th>产品名称</th>
                     <th>客户姓名</th>
                     <th>身份证号</th>
-                    <th>融资金额</th>
-                    <th>融资期限</th>
-                    <th>申请时间</th>
-                    <th>当前状态</th>
-                    <th>操作</th>
+                    <th>进件日期</th>
+                    <th>所属经销商</th>
+                    <th>案件状态</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in unCommitApplyList">
-                    <td>{{item.appId}}</td>
-                    <td>{{item.productName}}</td>
-                    <td>{{item.tenantName}}</td>
-                    <td>{{item.tenantIdNo}}</td>
-                    <td>{{item.totalFinanceAmt}}</td>
-                    <td>{{item.period}}</td>
-                    <td>{{item.createTime | mysqlDatetime}}</td>
-                    <td>{{item.status}}</td>
-                    <td>
-                        <a  ui-sref="app.apply.edit({appId:item.appId})">编辑</a>
-                    </td>
+                <tr ng-repeat="item in sysAccountList">
+                    <td><input type="checkbox" ng-model="item.checked"></td>
+                    <td>{{item.accountId}}</td>
+                    <td>{{item.accountName}}</td>
+                    <td>{{item.sysJob.postName}}</td>
+                    <td>{{item.mobile}}</td>
+                    <td>{{item.statusDict.dictDataName}}</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>

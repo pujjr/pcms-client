@@ -7,7 +7,7 @@
                 <label for="product" class="col-sm-4 control-label">融资产品：</label>
                 <div class="col-sm-8">
                     <select id="product" class="form-control" ng-model="applyInfo.product"
-                            ng-options="item.productName for item in productList" required >
+                            ng-options="item.productName for item in productList track by item.id" required >
                         <option value="">请选择产品</option>
                     </select>
                 </div>

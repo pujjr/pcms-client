@@ -1,5 +1,8 @@
-<div  ng-init="initCheck()">
+<div  ng-init="initApprove()">
     <div class="check-header">
+        <div class="pull-left" style="position: relative;top:15%;">
+            <h4>一级审批</h4>
+        </div>
         <div class="pull-right" style="position: relative;top:20%;right:0px;">
             <button class="btn  btn-link" type="button" ui-sref="app.product.config"><i class="fa fa-cab m-r-sm"></i>下一步</button>
             <button class="btn btn-link" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
@@ -39,7 +42,7 @@
     </div>
     <div  class="check-footer">
         <form class="container-fluid m-t-md form-horizontal">
-            <div ng-include="'module_apply/tpl/form-apply-check.html'"></div>
+            <div ng-include="'module_apply/tpl/form-apply-approvelvl3.html'"></div>
         </form>
     </div>
 </div>
