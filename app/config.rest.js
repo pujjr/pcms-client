@@ -1,7 +1,7 @@
 angular.module('app')
     .factory('AuthRestangular', ['Restangular', 'modal', function (Restangular, modal) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('http://172.18.10.41:8080/pcms-web');
+            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web');
             RestangularConfigurer.setErrorInterceptor(function (response, deferred, responseHandler) {
                 modal.error("系统错误，请重试");
 
@@ -10,7 +10,7 @@ angular.module('app')
     }])
     .factory('RestApi', ['Restangular', '$state', 'modal', '$rootScope', '$injector', function (Restangular, $state, modal, $rootScope, $injector) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('http://172.18.10.41:8080/pcms-web/service');
+            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/service');
             RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
                 if (operation == 'getList') {
                     params.pageSize = params.pageSize || $rootScope.paginationInfo.pageSize;

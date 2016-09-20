@@ -506,9 +506,12 @@ angular.module("pu.apply.controllers")
             });
         };
         //提交申请信息
-        $scope.commitApplyInfo = function(){
-            $state.go('app.apply.list');
-            toaster.pop('success', '操作提醒','提交申请信息成功');
+        $scope.commitApplyTask = function(){
+            ApplyService.commitApplyTask($scope.applyInfo).then(function(response){
+                $state.go('app.apply.list');
+                toaster.pop('success', '操作提醒','提交申请信息成功')
+            });
+            ;
         }
 
     })

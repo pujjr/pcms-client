@@ -7,9 +7,12 @@ angular.module('pu.apply.services')
             return RestApi.one("/apply",appId).get();
         };
         this.queryUnCommitApplyInfoList = function(){
-            return RestApi.all("/apply/uncommit").getList();
+            return RestApi.all("/apply/unCommit/list").getList();
         }
         this.commitApplyInfo = function(item){
             return RestApi.all("/apply/commit").post(item);
+        }
+        this.commitApplyTask = function(item){
+            return RestApi.all("/apply/commitApplyTask").post(item);
         }
     });

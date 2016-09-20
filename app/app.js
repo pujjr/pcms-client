@@ -17,5 +17,6 @@ angular.module('app', [
     'pu.workflow',
     'pu.product',
     'pu.apply',
-    'pu.car'
+    'pu.car',
+    'pu.task'
 ])
