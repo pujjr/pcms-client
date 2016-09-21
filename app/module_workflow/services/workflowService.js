@@ -17,7 +17,7 @@ angular.module('pu.workflow.services')
             $window.open(BaseUrl+WorkflowUrl+modelId+"&token="+token);
         };
         this.getWorkflowImageUrl = function (id){
-            return BaseUrl+"/service/workflow/config/img/"+id;
+            return BaseUrl+"/public/workflow/config/img/"+id;
         }
         this.setMainVersionAct = function(workflowDefineId,versionId){
             return RestApi.one("/workflow",workflowDefineId).one("/setActivateVersion",versionId).get();

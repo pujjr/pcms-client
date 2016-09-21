@@ -215,8 +215,32 @@ angular.module("pu.apply.controllers")
                 $scope.cloesseeUnitCityList = SysAreaService.queryCityList($scope.applyInfo.cloessee.unitAddrProvince).$object;
                 $scope.cloesseeUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.cloessee.unitAddrProvince,$scope.applyInfo.cloessee.unitAddrCity).$object;
                 //刷新承租人房产地址
-                $scope.tenantHouse1.cityList  = SysAreaService.queryCityList($scope.tenantHouse1.addrProvince).$object;
-                $scope.tenantHouse2.cityList  = SysAreaService.queryCityList($scope.tenantHouse2.addrProvince).$object;
+                SysAreaService.queryCityList($scope.tenantHouse1.addrProvince).then(function(response){
+                    $scope.tenantHouse1.cityList  = response;
+                    SysAreaService.queryCountyList($scope.tenantHouse1.addrProvince,$scope.tenantHouse1.addrCity).then(function(response){
+                        $scope.tenantHouse1.countyList = response;
+                    });
+                })
+                SysAreaService.queryCityList($scope.tenantHouse2.addrProvince).then(function(response){
+                    $scope.tenantHouse2.cityList  = response;
+                    SysAreaService.queryCountyList($scope.tenantHouse1.addrProvince,$scope.tenantHouse2.addrCity).then(function(response){
+                        $scope.tenantHouse2.countyList = response;
+                    });
+                })
+                //刷新联系人房产地址
+                SysAreaService.queryCityList($scope.linkman1.addrProvince).then(function(response){
+                    $scope.linkman1.cityList  = response;
+                    SysAreaService.queryCountyList($scope.linkman1.addrProvince,$scope.linkman1.addrCity).then(function(response){
+                        $scope.linkman1.countyList = response;
+                    });
+                });
+                 SysAreaService.queryCityList($scope.linkman2.addrProvince).then(function(response){
+                     $scope.linkman2.cityList  = response;
+                     SysAreaService.queryCountyList($scope.linkman2.addrProvince,$scope.linkman2.addrCity).then(function(response){
+                         $scope.linkman2.countyList = response;
+                     });
+                 });
+
             },
             //承租人现详细地址省
             onTenantProvinceChange : function(){
@@ -472,6 +496,10 @@ angular.module("pu.apply.controllers")
         //初始化编辑申请单
         $scope.initApplyEdit = function(){
             var appId = $stateParams.appId;
+            $scope.doInitApplyEdit(appId);
+        }
+        $scope.doInitApplyEdit = function(appId){
+
             // 获取订单数据
             ApplyService.queryApplyInfoByAppId(appId).then(function(response){
                 $scope.applyInfo =  response;
@@ -501,7 +529,7 @@ angular.module("pu.apply.controllers")
         //保存申请信息
         $scope.saveApplyInfo = function(){
             ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
-                $state.go('app.apply.list');
+                console.log(response);
                 toaster.pop('success', '操作提醒','保存申请信息成功');
             });
         };

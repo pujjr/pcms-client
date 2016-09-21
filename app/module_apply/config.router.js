@@ -37,18 +37,18 @@ angular.module('app')
                     templateUrl:'module_apply/tpl/apply-handleassignee.html',
                     controller:'ApplyController'
                 })
-                //审核
-                .state('app.apply.check',{
-                    url:'/check/:id',
+                .state('app.task.process', {
+                    url: '/process',
+                    abstract: true,
+                    template:'<div ui-view=""></div>',
+                    controller:'ApplyController'
+                })
+                .state('app.task.process.check',{
+                    url:'/check/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_apply/tpl/apply-check.html',
-                    controller:'ApplyController'
+                    controller:'CheckController'
                 })
-                //一级审批
-                .state('app.apply.approvelvl1',{
-                    url:'/approvelvl1/:id',
-                    templateUrl:'module_apply/tpl/apply-approvelvl1.html',
-                    controller:'ApplyController'
-                })
+
         }
     ]
 );

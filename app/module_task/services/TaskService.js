@@ -3,4 +3,7 @@ angular.module('pu.task.services')
         this.queryToDoTaskList = function(){
             return RestApi.all("/task/todolist").getList();
         };
+        this.queryTaskByTaskId = function(taskId){
+            return RestApi.one("/task",taskId).get();
+        }
     });

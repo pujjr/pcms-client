@@ -30,7 +30,7 @@
                                 ng-disabled="item.assigneeType == 'sprlx02'"
                                 ng-required="item.assigneeType != 'sprlx02'"
                                 ng-if="item.assigneeType == 'sprlx02' || item.assigneeType =='sprlx01'">
-                        <select  class="form-control" id="assigneeParam"  ng-model="item.assigneeParam" ng-options="l.id as l.accountName for l in sysAccounts" required
+                        <select  class="form-control" id="assigneeParam"  ng-model="item.assigneeParam" ng-options="l.accountId as l.accountName for l in sysAccounts" required
                                  ng-if=" item.assigneeType == 'sprlx03'">
                             <option value="">请选择指定用户</option>`
                         </select>

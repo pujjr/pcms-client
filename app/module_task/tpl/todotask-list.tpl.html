@@ -32,7 +32,7 @@
                     <td>{{item.inJumpType}}</td>
                     <td>{{item.parentAssignee}}</td>
                     <td>
-                        <a  ui-sref="app.apply.edit({appId:item.appId})">编辑</a>
+                        <a href="javascript:" ng-click="doTask(item)">处理任务</a>
                     </td>
                 </tr>
                 </tbody>
