@@ -20,6 +20,22 @@ angular.module('app')
                     templateUrl:'module_task/tpl/todotask-list.html',
                     controller:'TaskController'
                 })
+                .state('app.task.process', {
+                    url: '/process',
+                    abstract: true,
+                    template:'<div ui-view=""></div>',
+                    controller:'ApplyController'
+                })
+                .state('app.task.process.check',{
+                    url:'/check/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-check.html',
+                    controller:'CheckController'
+                })
+                .state('app.task.process.approve',{
+                    url:'/check/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-approve.html',
+                    controller:'ApproveController'
+                })
 
         }
     ]

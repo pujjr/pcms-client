@@ -5,5 +5,11 @@ angular.module('pu.task.services')
         };
         this.queryTaskByTaskId = function(taskId){
             return RestApi.one("/task",taskId).get();
+        };
+        this.commitApplyTask = function(item){
+            return RestApi.all("/task/commitApplyTask").post(item);
         }
+        this.commitCheckTask = function(applyVo,checkVo,taskId){
+            return RestApi.all("/task/commitCheckTask").all(taskId).post({"applyVo":applyVo,"checkVo":checkVo});
+        };
     });

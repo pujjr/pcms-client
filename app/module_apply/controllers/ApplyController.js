@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.apply.controllers")
-    .controller('ApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,GpsService,ToolsService,SysAreaService,modal,
+    .controller('ApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,GpsService,ToolsService,SysAreaService,TaskService,modal,
                                             SysDictService,ProductService,CarService,ApplyService) {
         $scope.initApplyAdd = function () {
             //申请信息初始化一些选项
@@ -535,7 +535,7 @@ angular.module("pu.apply.controllers")
         };
         //提交申请信息
         $scope.commitApplyTask = function(){
-            ApplyService.commitApplyTask($scope.applyInfo).then(function(response){
+            TaskService.commitApplyTask($scope.applyInfo).then(function(response){
                 $state.go('app.apply.list');
                 toaster.pop('success', '操作提醒','提交申请信息成功')
             });

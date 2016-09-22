@@ -31,23 +31,7 @@ angular.module('app')
                     templateUrl:'module_apply/tpl/apply-edit.html',
                     controller:'ApplyController'
                 })
-                //分单
-                .state('app.apply.taskassignee',{
-                    url:'/taskassignee',
-                    templateUrl:'module_apply/tpl/apply-handleassignee.html',
-                    controller:'ApplyController'
-                })
-                .state('app.task.process', {
-                    url: '/process',
-                    abstract: true,
-                    template:'<div ui-view=""></div>',
-                    controller:'ApplyController'
-                })
-                .state('app.task.process.check',{
-                    url:'/check/:procInstId/:taskId/:businessKey',
-                    templateUrl:'module_apply/tpl/apply-check.html',
-                    controller:'CheckController'
-                })
+
 
         }
     ]
