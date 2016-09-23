@@ -5,10 +5,44 @@
         <div class="row m-t-md">
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="repayMode" class="col-sm-4 control-label">客户类型：</label>
+                    <label for="totalFinanceAmt" class="col-sm-4 control-label">审核额度：</label>
                     <div class="col-sm-8">
-                        <select id="repayMode" class="form-control" ng-model="applyInfo.product.repayMode" required disabled>
-                            <option value="A">A类</option>
+                        <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">审核期数：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.period}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">放款金额：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.taotalLoanAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">月租金：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.monthRent}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="custType" class="col-sm-4 control-label">客户类型：</label>
+                    <div class="col-sm-8">
+                        <select id="custType" class="form-control" ng-model="applyInfo.custType" required disabled>
+                            <option value="A" selected>A类</option>
                             <option value="B">B类</option>
                             <option value="C">C类</option>
                         </select>
@@ -17,10 +51,10 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="repayMode" class="col-sm-4 control-label">放款条件：</label>
+                    <label  class="col-sm-4 control-label">放款条件：</label>
                     <div class="col-sm-8">
-                        <select id="repayMode" class="form-control" ng-model="applyInfo.product.repayMode"
-                                ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
+                        <select  class="form-control" ng-model="applyInfo.product.repayMode"
+                                 ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
                             <option value="">请选择放款条件</option>
                         </select>
                     </div>
@@ -28,113 +62,52 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">审核额度：</label>
+                    <label for="checkType" class="col-sm-4 control-label">审批结果：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{item.carStyle.carStyleName}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">审核期数：</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">{{item.carStyle.carStyleName}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">放款金额：</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">{{item.carStyle.carStyleName}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">月租金：</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">{{item.carStyle.carStyleName}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-2 control-label">网查结果：</label>
-                    <div class="col-sm-10">
-                        <select id="repayMode" class="form-control" ng-model="applyInfo.product.repayMode"
-                                ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required >
-                            <option value="">请选择网查结果</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-2 control-label">网查未通过原因：</label>
-                    <div class="col-sm-10">
-                        <select id="repayMode" class="form-control" ng-model="applyInfo.product.repayMode"
-                                ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required >
-                            <option value="">请选择网查未通过原因</option>
+                        <select id="checkType" class="form-control" ng-model="checkVo.result" required
+                                ng-options="item.dictDataCode as item.dictDataName for item in checkList" >
+                            <option value="">请选择审批结果</option>
                         </select>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row m-t-md" ng-if="checkVo.result=='tjlx102'">
             <div class="col-md-12">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-1 control-label">网查备注：</label>
+                    <label for="loanExtConditon" class="col-sm-1 control-label">放款附加条件：</label>
                     <div class="col-sm-11">
-                        <textarea type="text" class="form-control" id="comment" ng-model="applyInfo.comment" placeholder="网查备注"></textarea>
+                        <textarea type="text" class="form-control" id="loanExtConditon" ng-model="checkVo.loanExtConditon" placeholder="放款附加条件" ng-required="checkVo.result=='tjlx102'"></textarea>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-2 control-label">电审结果：</label>
-                    <div class="col-sm-10">
-                        <select id="repayMode" class="form-control" ng-model="applyInfo.product.repayMode"
-                                ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
-                            <option value="">请选择电审结果</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-2 control-label">电审未通过原因：</label>
-                    <div class="col-sm-10">
-                        <select id="repayMode" class="form-control" ng-model="applyInfo.product.repayMode"
-                                ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
-                            <option value="">请选择电审未通过原因</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row m-t-md" ng-if="checkVo.result=='tjlx104'">
             <div class="col-md-12">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-1 control-label">电审备注：</label>
+                    <label for="rejectReason" class="col-sm-1 control-label">拒绝原因：</label>
                     <div class="col-sm-11">
-                        <textarea type="text" class="form-control" id="comment" ng-model="applyInfo.comment" placeholder="电审备注"></textarea>
+                        <textarea type="text" class="form-control" id="rejectReason" ng-model="checkVo.rejectReason" placeholder="拒绝原因" ng-required="checkVo.result=='tjlx104'"></textarea>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row m-t-md" ng-if="checkVo.result=='tjlx103'">
             <div class="col-md-12">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-1 control-label">审核备注：</label>
+                    <label for="cancelReason" class="col-sm-1 control-label">取消原因：</label>
                     <div class="col-sm-11">
-                        <textarea type="text" class="form-control" id="comment" ng-model="applyInfo.comment" placeholder="审核备注"></textarea>
+                        <textarea type="text" class="form-control" id="cancelReason" ng-model="checkVo.cancelReason" placeholder="取消原因" ng-required="checkVo.result=='tjlx103'"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-t-md">
+            <div class="col-md-12">
+                <div class="form-group form-group-sm">
+                    <label for="comment" class="col-sm-1 control-label">审核备注：</label>
+                    <div class="col-sm-11">
+                        <textarea type="text" class="form-control" id="comment" ng-model="checkVo.comment" placeholder="审核备注"></textarea>
                     </div>
                 </div>
             </div>
