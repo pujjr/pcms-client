@@ -145,8 +145,9 @@ angular.module("pu.apply.controllers")
                             'finance3.assessFee',
                             'finance1.financeFee',
                             'finance2.financeFee',
-                            'finance3.financeFee'
-
+                            'finance3.financeFee',
+                            'applyInfo.product',
+                            'applyInfo.period'
                             ],function(newVal,oldVal){
             //获取总的融资金额
             var monthRate = $scope.applyInfo.product.yearRate/12;
@@ -162,11 +163,11 @@ angular.module("pu.apply.controllers")
                     item.financeAmount=0.00;
                 if(isNaN(item.gpsFee))
                     item.gpsFee=0.00;
-                if(isNaN(item.assessFee))
+                if(isNaN(parseFloat(item.assessFee)))
                     item.assessFee=0.00;
                 if(isNaN(item.financeFee))
                     item.financeFee=0.00;
-                $scope.applyInfo.totalLoanAmt += item.financeAmount - item.gpsFee - item.assessFee - item.financeFee;
+                $scope.applyInfo.totalLoanAmt += item.financeAmount - item.gpsFee - parseFloat(item.assessFee) - item.financeFee;
                 $scope.applyInfo.totalFinanceAmt += item.financeAmount;
             }
             //月租金

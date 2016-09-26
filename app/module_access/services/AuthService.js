@@ -1,7 +1,18 @@
 angular.module('pu.access.services')
-    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular', '$uibModal', 'toaster', function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular, $uibModal, toaster) {
+    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular', '$uibModal', 'toaster','$timeout', function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular, $uibModal, toaster,$timeout) {
         var isAuth = false;
         var authResource = {};
+        var timer;
+        var uploadStatus  = function(){
+            timer = $timeout(function(){
+                CarCreditRestangular.all("/sysaccount/heartbeat").post().then(function(){
+                    $rootScope.loginStatus = "在线";
+                },function(){
+                    $rootScope.loginStatus = "离线";
+                });
+                uploadStatus();
+            },15000);
+        };
         this.login = function (id, passwd) {
             var user = {};
             user.accountId = id;
@@ -12,6 +23,7 @@ angular.module('pu.access.services')
                     window.localStorage.Authorization = response.data.Authorization;
                     window.localStorage.account = angular.toJson(response.data.account);
                     $rootScope.account = response.data.account;
+                    uploadStatus();
                     defered.resolve();
                     /*
                     CarCreditRestangular.all('accounts').all("authmenu").all(user.id).getList().then(function (response) {
@@ -72,10 +84,13 @@ angular.module('pu.access.services')
             return regx.test(val) || val.length < 8;
         };
         this.signup = function () {
+            CarCreditRestangular.all("/sysaccount/loginout").post();
+            $timeout.cancel(timer);
             isAuth = false;
             authResource = {};
             window.localStorage.removeItem("Authorization");
             window.localStorage.removeItem("account");
+
         };
         this.initUserInfo = function () {
             $rootScope.account = window.localStorage.account;
