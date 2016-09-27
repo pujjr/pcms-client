@@ -1,0 +1,52 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>设置工作组分单规则</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group  form-group-sm">
+            <label  class="col-sm-4 control-label">首付/抵押比例：</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <input type="number" class="form-control"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule" required placeholder="首付/抵押比例">
+                                <span class="input-group-addon">
+                                    <b>%</b>
+                                </span>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="btn-group" uib-dropdown auto-close="outsideClick">
+                <button id="btn-append-to-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                    Dropdown on Body <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" uib-dropdown-menu  role="menu" aria-labelledby="btn-append-to-to-body">
+                    <tree tree-data="sysAreaTree" can-checked="true" name-field="areaName"></tree>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="parentId" class="col-sm-3 control-label">上级区域：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="parentId"  ng-model="item.parentId" ng-options="o.id as o.areaName for o in sysAreas" required>
+                    <option value="">请选择上级区域</option>`
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="areaType" class="col-sm-3 control-label">区域类型：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="areaType"  ng-model="item.areaType" ng-options="o.dictDataCode as o.dictDataName for o in sysAreaTypes" required>
+                    <option value="">请选择区域类型</option>`
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-danger btn-modal-left" type="button" ng-click="delete()">删除</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

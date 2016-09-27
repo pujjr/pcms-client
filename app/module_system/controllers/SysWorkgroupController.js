@@ -96,6 +96,29 @@ angular.module("pu.system.controllers")
                     $scope.workgroupAccountsList = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selNode.id).$object;
                 })
             })
+        };
+        $scope.setSysWorkgroupRule = function(item){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: 'false',
+                size: 'lg',
+                resolve: {
+                    selNode: function () {
+                        return item;
+                    }
+                },
+                templateUrl: 'module_system/tpl/dialog-sysworkgroup-rule.html',
+                controller:function($scope,selNode,SysAreaService,ToolsService){
+                    $scope.selNode = selNode;
+                    SysAreaService.querySysAreaList().then(function(response){
+                        $scope.sysAreaTree=ToolsService.convertArrayToTree(response, {
+                            idKey: 'id',
+                            parentKey: 'parentId',
+                            childrenKey: 'children'
+                        });
+                    });
+                }
+            });
         }
     })
 ;
