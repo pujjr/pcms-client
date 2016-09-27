@@ -8,6 +8,6 @@
 
 <ul  ng-show="treeData.$$expanded">
     <li  ng-repeat="child in treeData.children" style="margin-left: -5px;!important;">
-        <tree tree-data="child" can-checked="canChecked" name-field="{{nameField}}"></tree>
+        <tree tree-data="child" can-checked="canChecked" name-field="{{nameField}}"  check-handle="checkHandle(treeData)"></tree>
     </li>
 </ul>

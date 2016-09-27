@@ -13,7 +13,8 @@ angular.module('pu.utils.directives')
             scope: {
                 treeData: '=',
                 canChecked:'=',
-                nameField:'@'
+                nameField:'@',
+                checkHandle:'&'
             },
             controller:function($scope){
               $scope.$itemClicked=function(item) {
@@ -71,6 +72,9 @@ angular.module('pu.utils.directives')
                 $scope.$itemChecked=function(item){
                     $scope.$emit('childNodeChecked');
                     $scope.$broadcast('parentNodeChecked');
+                    if($scope.checkHandle !=undefined){
+                        $scope.checkHandle(item);
+                    }
                 };
                 $scope.$getItemIcon=function(item){
                     if($scope.$isLeaf(item)){

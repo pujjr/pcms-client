@@ -3,28 +3,11 @@
         <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>设置工作组分单规则</h4>
     </div>
     <div class="modal-body">
-        <div class="form-group  form-group-sm">
-            <label  class="col-sm-4 control-label">首付/抵押比例：</label>
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <input type="number" class="form-control"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule" required placeholder="首付/抵押比例">
-                                <span class="input-group-addon">
-                                    <b>%</b>
-                                </span>
-                </div>
-
-            </div>
-        </div>
         <div class="form-group">
-
-            <div class="btn-group" uib-dropdown auto-close="outsideClick">
-                <button id="btn-append-to-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                    Dropdown on Body <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" uib-dropdown-menu  role="menu" aria-labelledby="btn-append-to-to-body">
-                    <tree tree-data="sysAreaTree" can-checked="true" name-field="areaName"></tree>
+            <label for="parentId" class="col-sm-3 control-label">上级区域：</label>
+            <div class="col-sm-4">
+            <test tree-data="sysAreaTree" ng-model="item.parentId" can-checked="true" name-field="areaName" ng-required="true"></test>
                 </div>
-            </div>
         </div>
 
         <div class="form-group">
