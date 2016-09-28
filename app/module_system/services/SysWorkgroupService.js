@@ -21,7 +21,6 @@ angular.module('pu.system.services')
         this.addSysAccountsToWorkgroup=function(workgroupId,accounts){
             return RestApi.one("/sysworkgroup",workgroupId).all("/accounts").post(accounts);
         };
-
         this.selWorkgroupAccounts = function(selNode){
             var modalInstance = $uibModal.open({
                 animation: true,

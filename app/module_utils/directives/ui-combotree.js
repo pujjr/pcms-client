@@ -11,7 +11,8 @@ angular.module('pu.utils.directives')
                 convertTreeOption:'=',
                 trackBy:'@',
                 labelField:'@',
-                ngRequired:'@'
+                ngRequired:'@',
+                placeholder:'@'
             },
             templateUrl:'module_utils/tpl/ui-combotree.html',
             link:function($scope,element,attrs,ngModel){
@@ -51,9 +52,6 @@ angular.module('pu.utils.directives')
                     return tree[0];
                 };
                 $scope.$watch('attrs.ngModel',function(newVal,oldVal){
-                    if(newVal == oldVal){
-                        return;
-                    }
                     for(var i =0;i<$scope.choices.length;i++){
                         for(var j = 0 ;j<newVal.length;j++){
                             if($scope.choices[i][$scope.trackBy]==newVal[j][$scope.trackBy]){
@@ -65,28 +63,26 @@ angular.module('pu.utils.directives')
                     $scope.setViewValue(newVal);
                 })
                 $scope.$watch('choices',function(newVal,oldVal){
-                    if(newVal==oldVal){
-                        return;
-                    };
-                    if(ngModel.$modelValue==undefined){
-                        return;
-                    };
-                    for(var i =0;i<$scope.choices.length;i++){
-                        for(var j = 0 ;j<ngModel.$modelValue.length;j++){
-                            if($scope.choices[i][$scope.trackBy]==ngModel.$modelValue[j][$scope.trackBy]){
-                                $scope.choices[i].checked=true;
+                    if(ngModel.$modelValue!=undefined){
+                        for(var i =0;i<$scope.choices.length;i++){
+                            for(var j = 0 ;j<ngModel.$modelValue.length;j++){
+                                if($scope.choices[i][$scope.trackBy]==ngModel.$modelValue[j][$scope.trackBy]){
+                                    $scope.choices[i].checked=true;
+                                }
                             }
                         }
-                    }
+                        $scope.setViewValue(ngModel.$modelValue);
+                    };
                     $scope.treeData = $scope.convertArrayToTree($scope.choices,$scope.convertTreeOption);
-                    $scope.setViewValue(ngModel.$modelValue);
-                });
+                },true);
                 $scope.checkHandle = function(tree){
                     var checkList = $scope.getCheckItem(tree);
                     ngModel.$setViewValue(checkList);
                     $scope.setViewValue(checkList);
                 };
                 $scope.setViewValue = function(checkList){
+                    if(checkList == undefined)
+                        return;
                     var viewValue="";
                     for(var i =0 ;i<checkList.length ;i++){
                         viewValue+=checkList[i][$scope.labelField]+","

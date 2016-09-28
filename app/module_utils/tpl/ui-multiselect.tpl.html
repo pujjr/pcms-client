@@ -1,7 +1,7 @@
 <div  uib-dropdown auto-close="outsideClick">
     <input type="text" class="form-control" ng-model="selectedViewValue"  ng-required="ngRequired"  placeholder="{{placeholder}}" ng-disabled="ngDisabled"  uib-dropdown-toggle>
     <div uib-dropdown-menu  role="menu" style="width:100%">
-        <div class="m-l-xs" ng-repeat="item in choices" ng-click="onCheck(item)">
+        <div class="m-l-xs m-b-xs" ng-repeat="item in choices" ng-click="onCheck(item)">
             <input type="checkbox" ng-checked="item.checked"><span inner-transclude></span>
         </div>
     </div>

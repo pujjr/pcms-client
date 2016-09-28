@@ -4,44 +4,40 @@
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <label for="parentId" class="col-sm-3 control-label">上级区域：</label>
-            <div class="col-sm-4">
-            <ui-combotree choices="sysAreas"
-                          ng-model="selected"
+            <label for="minAmount" class="col-sm-3 control-label">最小分单金额：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="minAmount" placeholder="最小分单金额" ng-model="ruleVo.ruleFinanceAmount.minAmount" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="maxAmount" class="col-sm-3 control-label">最大分单金额：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="maxAmount" placeholder="最大分单金额" ng-model="ruleVo.ruleFinanceAmount.maxAmount" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">可分配经销商：</label>
+            <div class="col-sm-8">
+            <ui-combotree choices="parentRuleDealerList"
+                          ng-model="ruleVo.ruleDealerList"
                           convert-tree-option="{idKey: 'id',parentKey: 'parentId',childrenKey: 'children'}"
                           can-checked="true"
-                          label-field="areaName"
+                          label-field="branchName"
+                          placeholder="请选择可分配经销商"
                           ng-required="true"></ui-combotree>
                 </div>
         </div>
         <div class="form-group">
-            <label for="parentId" class="col-sm-3 control-label">上级区域：</label>
-            <div class="col-sm-4">
-                <ui-multiselect choices="list" ng-model="sel" track-by="dictDataCode" show-field="dictDataName" ng-required="true" placeholder="请选择">
-                    <span>{{item.dictDataName}}</span>
+            <label  class="col-sm-3 control-label">可分配产品：</label>
+            <div class="col-sm-8">
+                <ui-multiselect choices="parentRuleProductList" ng-model="ruleVo.ruleProductList" track-by="productCode" show-field="productName" ng-required="true" placeholder="请选择可分配产品">
+                    <span>{{item.productName}}</span>
                 </ui-multiselect>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="parentId" class="col-sm-3 control-label">上级区域：</label>
-            <div class="col-sm-8">
-                <select  class="form-control" id="parentId"  ng-model="item.parentId" ng-options="o.id as o.areaName for o in sysAreas" required>
-                    <option value="">请选择上级区域</option>`
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="areaType" class="col-sm-3 control-label">区域类型：</label>
-            <div class="col-sm-8">
-                <select  class="form-control" id="areaType"  ng-model="item.areaType" ng-options="o.dictDataCode as o.dictDataName for o in sysAreaTypes" required>
-                    <option value="">请选择区域类型</option>`
-                </select>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
-        <button class="btn btn-danger btn-modal-left" type="button" ng-click="delete()">删除</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>
