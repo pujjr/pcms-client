@@ -110,15 +110,23 @@ angular.module("pu.system.controllers")
                 templateUrl: 'module_system/tpl/dialog-sysworkgroup-rule.html',
                 controller:function($scope,selNode,SysAreaService,ToolsService){
                     $scope.selNode = selNode;
+                    $scope.list =  SysDictService.queryDictDataByTypeCode("jglx").$object;
+                    $scope.selected=[{"id":"0001","areaName":"中国","parentId":"0000","areaType":"qylx01","createTime":1472868510000,"createId":"admin","updateTime":1473324249000,"updateId":"admin"}];
                     SysAreaService.querySysAreaList().then(function(response){
+                        $scope.sysAreas = response;
                         $scope.sysAreaTree=ToolsService.convertArrayToTree(response, {
                             idKey: 'id',
                             parentKey: 'parentId',
                             childrenKey: 'children'
                         });
                     });
+                    $scope.ok = function(){
+                        console.log($scope.sel);
+                        console.log($scope.selected);
+                    }
                 }
             });
-        }
+        };
+
     })
 ;
