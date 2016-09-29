@@ -5,7 +5,7 @@
 angular.module("pu.task.controllers")
     .controller('AssigneeController',function ($scope, $rootScope, $state,$stateParams,modal, toaster, $uibModal,TaskService,SysDictService) {
         $scope.queryToAssigneeList = function(){
-            $scope.toDoTaskList = TaskService.queryToDoTaskList().$object;
+            $scope.toDoTaskList = TaskService.queryToDoTaskList('0').$object;
         };
         $scope.checkAll = function(){
             angular.forEach($scope.toDoTaskList,function(item){

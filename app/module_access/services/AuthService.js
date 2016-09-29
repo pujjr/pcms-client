@@ -1,11 +1,12 @@
 angular.module('pu.access.services')
-    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular', '$uibModal', 'toaster','$timeout', function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular, $uibModal, toaster,$timeout) {
+    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular','BackgroundRestApi', '$uibModal', 'toaster','$timeout',
+        function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular,BackgroundRestApi, $uibModal, toaster,$timeout) {
         var isAuth = false;
         var authResource = {};
         var timer;
         var uploadStatus  = function(){
             timer = $timeout(function(){
-                CarCreditRestangular.all("/sysaccount/heartbeat").post().then(function(){
+                BackgroundRestApi.all("/sysaccount/heartbeat").post().then(function(){
                     $rootScope.loginStatus = "在线";
                 },function(){
                     $rootScope.loginStatus = "离线";

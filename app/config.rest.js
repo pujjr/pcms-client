@@ -4,7 +4,18 @@ angular.module('app')
             RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web');
             RestangularConfigurer.setErrorInterceptor(function (response, deferred, responseHandler) {
                 modal.error("系统错误，请重试");
-
+            });
+        });
+    }])
+    .factory('BackgroundRestApi', ['Restangular', 'modal', function (Restangular) {
+        return Restangular.withConfig(function (RestangularConfigurer) {
+            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/service');
+            RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
+                return {
+                    headers: {
+                        'Authorization': window.localStorage.Authorization
+                    }
+                };
             });
         });
     }])
