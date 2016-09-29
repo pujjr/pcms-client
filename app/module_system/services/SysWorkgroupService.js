@@ -112,5 +112,6 @@ angular.module('pu.system.services')
                 }
             });
             return modalInstance.result;
-        }
+        };
+
     });

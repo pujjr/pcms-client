@@ -129,6 +129,53 @@ angular.module("pu.system.controllers")
                 toaster.pop('success', '操作提醒', response);
             })
         };
+        $scope.checkAll = function(){
+            angular.forEach($scope.workgroupAccountsList,function(item){
+                item.checked = $scope.selectAllStatus;
+            })
+        };
+        $scope.setSysWorkgroupMaxTaskCnt = function(){
+            var setAccounts=[];
+            angular.forEach($scope.workgroupAccountsList,function(item){
+                if(item.checked == true){
+                    setAccounts.push(item);
+                }
+            });
+            if(setAccounts.length==0){
+                modal.info("操作提醒","请选择至少一个用户");
+                return;
+            }
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: 'false',
+                resolve: {
+                    selNode: function () {
+                        return $scope.selNode;
+                    },
+                    setAccounts: function(){
+                        return setAccounts;
+                    }
+                },
+                templateUrl: 'module_system/tpl/dialog-sysworkgroup-taskcnt.html',
+                controller:function($scope,selNode,setAccounts,RuleService,ToolsService){
+                    $scope.workgroup = selNode;
+                    $scope.setAccounts = setAccounts;
+                    $scope.ok = function(){
+                        RuleService.batchSaveAccountAssigneeTaskCnt($scope.workgroup.id,$scope.maxTaskCnt,$scope.setAccounts).then(function(){
+                            modalInstance.close('设置参数成功');
+
+                        })
+                    }
+                    $scope.cancel = function(){
+                        modalInstance.dismiss('cancel');
+                    }
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.workgroupAccountsList = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selNode.id).$object;
+            })
+        }
 
     })
 ;

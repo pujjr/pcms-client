@@ -1,0 +1,34 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>选择人员</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:300px">
+        <div class="panel-main">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width:20px"><input type="checkbox" ng-model="selectAllStatus"  ng-click="checkAll()"></th>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th>当前任务数</th>
+                    <th>最大任务数</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in accounts">
+                    <td><input type="checkbox" ng-checked="item.checked" ng-click="item.checked = !item.checked"></td>
+                    <td>{{item.accountId}}</td>
+                    <td>{{item.accountName}}</td>
+                    <td>{{item.curTaskCnt}}</td>
+                    <td>{{item.maxTaxkCnt}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

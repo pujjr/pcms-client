@@ -68,6 +68,18 @@ angular.module('app')
                     url:'/list',
                     templateUrl:'module_system/tpl/sysworkgroup-list.html'
                 })
+                //系统参数管理
+                .state('app.sysparam',{
+                    abstract: true,
+                    url:'/sysparam',
+                    template:'<div ui-view=""></div>',
+                    controller: 'SysParamController'
+                })
+                //岗位管理-查询岗位列表
+                .state('app.sysparam.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/sysparam-list.html'
+                })
 
         }
     ]

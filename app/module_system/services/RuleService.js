@@ -14,5 +14,8 @@ angular.module('pu.system.services')
         };
         this.saveWorkgroupRule = function(workgroupId,vo){
             return RestApi.all("/rule/saveWorkgroupRule").all(workgroupId).post(vo);
+        };
+        this.batchSaveAccountAssigneeTaskCnt = function(workgroupId,maxAssigneeTaskCnt,accounts){
+            return RestApi.all("/rule/batchSetTaskCnt").all(workgroupId).all(maxAssigneeTaskCnt).post(accounts);
         }
     });

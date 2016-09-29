@@ -36,6 +36,11 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-approve.html',
                     controller:'ApproveController'
                 })
+                .state('app.task.handleassignee',{
+                    url:'/handleassignee',
+                    templateUrl:'module_task/tpl/handleassignee-list.html',
+                    controller:'AssigneeController'
+                })
 
         }
     ]
