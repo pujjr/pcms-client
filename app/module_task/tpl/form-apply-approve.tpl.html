@@ -1,11 +1,11 @@
 <!--申请信息-->
 <form class="container-fluid m-t-md form-horizontal">
     <fieldset class="scheduler-border">
-        <legend class="scheduler-border">审核信息</legend>
+        <legend class="scheduler-border">审批信息</legend>
         <div class="row m-t-md">
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="totalFinanceAmt" class="col-sm-4 control-label">审核额度：</label>
+                    <label for="totalFinanceAmt" class="col-sm-4 control-label">审批额度：</label>
                     <div class="col-sm-8">
                         <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
                     </div>
@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">审核期数：</label>
+                    <label for="period" class="col-sm-4 control-label">审批期数：</label>
                     <div class="col-sm-8">
                         <p class="form-control-static">{{applyInfo.period}}</p>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="form-group form-group-sm">
                     <label for="period" class="col-sm-4 control-label">放款金额：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.taotalLoanAmt}}</p>
+                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
                     </div>
                 </div>
             </div>
@@ -64,40 +64,40 @@
                 <div class="form-group form-group-sm">
                     <label for="checkType" class="col-sm-4 control-label">审批结果：</label>
                     <div class="col-sm-8">
-                        <select id="checkType" class="form-control" ng-model="checkVo.result" required
-                                ng-options="item.dictDataCode as item.dictDataName for item in checkList" >
+                        <select id="checkType" class="form-control" ng-model="approveVo.result" required
+                                ng-options="item.dictDataCode as item.dictDataName for item in approveList" >
                             <option value="">请选择审批结果</option>
                         </select>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row m-t-md" ng-if="checkVo.result=='tjlx102'">
+        <div class="row m-t-md" ng-if="approveVo.result=='tjlx202'">
             <div class="col-md-12">
                 <div class="form-group form-group-sm">
                     <label for="loanExtConditon" class="col-sm-1 control-label">放款附加条件：</label>
                     <div class="col-sm-11">
-                        <textarea type="text" class="form-control" id="loanExtConditon" ng-model="checkVo.loanExtConditon" placeholder="放款附加条件" ng-required="checkVo.result=='tjlx102'"></textarea>
+                        <textarea type="text" class="form-control" id="loanExtConditon" ng-model="approveVo.loanExtConditon" placeholder="放款附加条件" ng-required="approveVo.result=='tjlx202'"></textarea>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row m-t-md" ng-if="checkVo.result=='tjlx104'">
+        <div class="row m-t-md" ng-if="approveVo.result=='tjlx204'">
             <div class="col-md-12">
                 <div class="form-group form-group-sm">
                     <label for="rejectReason" class="col-sm-1 control-label">拒绝原因：</label>
                     <div class="col-sm-11">
-                        <textarea type="text" class="form-control" id="rejectReason" ng-model="checkVo.rejectReason" placeholder="拒绝原因" ng-required="checkVo.result=='tjlx104'"></textarea>
+                        <textarea type="text" class="form-control" id="rejectReason" ng-model="approveVo.rejectReason" placeholder="拒绝原因" ng-required="approveVo.result=='tjlx204'"></textarea>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row m-t-md" ng-if="checkVo.result=='tjlx103'">
+        <div class="row m-t-md" ng-if="approveVo.result=='tjlx203'">
             <div class="col-md-12">
                 <div class="form-group form-group-sm">
                     <label for="cancelReason" class="col-sm-1 control-label">取消原因：</label>
                     <div class="col-sm-11">
-                        <textarea type="text" class="form-control" id="cancelReason" ng-model="checkVo.cancelReason" placeholder="取消原因" ng-required="checkVo.result=='tjlx103'"></textarea>
+                        <textarea type="text" class="form-control" id="cancelReason" ng-model="approveVo.cancelReason" placeholder="取消原因" ng-required="approveVo.result=='tjlx203'"></textarea>
                     </div>
                 </div>
             </div>
@@ -105,9 +105,9 @@
         <div class="row m-t-md">
             <div class="col-md-12">
                 <div class="form-group form-group-sm">
-                    <label for="comment" class="col-sm-1 control-label">审核备注：</label>
+                    <label for="comment" class="col-sm-1 control-label">审批备注：</label>
                     <div class="col-sm-11">
-                        <textarea type="text" class="form-control" id="comment" ng-model="checkVo.comment" placeholder="审核备注"></textarea>
+                        <textarea type="text" class="form-control" id="comment" ng-model="approveVo.comment" placeholder="审批备注"></textarea>
                     </div>
                 </div>
             </div>

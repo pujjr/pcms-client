@@ -12,6 +12,9 @@ angular.module('pu.task.services')
         this.commitCheckTask = function(applyVo,checkVo,taskId){
             return RestApi.all("/task/commitCheckTask").all(taskId).post({"applyVo":applyVo,"checkVo":checkVo});
         };
+        this.commitApproveTask = function(applyVo,approveVo,taskId){
+            return RestApi.all("/task/commitApproveTask").all(taskId).post({"applyVo":applyVo,"approveVo":approveVo});
+        };
         this.queryCheckWorkgroupOnlineAcct = function(){
             return RestApi.all("/task/getCheckWorkgroupOnlineAcct").getList();
         };

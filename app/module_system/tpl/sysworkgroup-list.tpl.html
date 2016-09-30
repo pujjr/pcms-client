@@ -63,8 +63,8 @@
                             <td>{{item.mobile}}</td>
                             <td>{{item.statusDict.dictDataName}}</td>
                             <td>
-                                <span ng-if="item.assigneeTaskCnt ==undefined">未配置</span>
-                                <span ng-if="item.assigneeTaskCnt !=undefined">{{item.assigneeTaskCnt.maxTaskCnt}}</span>
+                                <span ng-if="item.assigneeTaskCnt ==undefined||item.assigneeTaskCnt ==0">未配置</span>
+                                <span ng-if="item.assigneeTaskCnt !=undefined&&item.assigneeTaskCnt !=0">{{item.assigneeTaskCnt}}</span>
                             <td>
                                 <a href="javascript:" ng-click="removeFromWorkgroup(item)">移除</a>
                             </td>

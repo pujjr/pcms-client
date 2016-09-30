@@ -32,7 +32,7 @@ angular.module('app')
                     controller:'CheckController'
                 })
                 .state('app.task.process.approve',{
-                    url:'/check/:procInstId/:taskId/:businessKey',
+                    url:'/approve/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-approve.html',
                     controller:'ApproveController'
                 })

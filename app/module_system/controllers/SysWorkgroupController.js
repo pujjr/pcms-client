@@ -130,6 +130,7 @@ angular.module("pu.system.controllers")
             })
         };
         $scope.checkAll = function(){
+            $scope.selectAllStatus = !$scope.selectAllStatus;
             angular.forEach($scope.workgroupAccountsList,function(item){
                 item.checked = $scope.selectAllStatus;
             })
