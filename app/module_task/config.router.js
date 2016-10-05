@@ -36,6 +36,11 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-approve.html',
                     controller:'ApproveController'
                 })
+                .state('app.task.process.sign',{
+                    url:'/sign/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-sign.html',
+                    controller:'SignController'
+                })
                 .state('app.task.handleassignee',{
                     url:'/handleassignee',
                     templateUrl:'module_task/tpl/handleassignee-list.html',

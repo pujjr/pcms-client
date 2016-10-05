@@ -19,7 +19,13 @@ var app={
 }
 var src={
     js:['app/*.js','app/module*/**/**.js'],
-    css:['assets/css/app.css','assets/css/font.css','assets/css/lumx.css'],
+    css:['assets/css/app.css',
+        'assets/css/font.css',
+        'assets/css/lumx.css',
+        'assets/css/animate.css',
+        'assets/css/font-awesome.min.css',
+        'assets/css/simple-line-icons.css'
+    ],
     jsTpl:[app.dist+"/template/*.js"],
     htmlTpl:['app/module**/tpl/*.tpl.html'],
     html:['app/*.html'],
