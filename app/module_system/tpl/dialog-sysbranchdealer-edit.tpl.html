@@ -107,7 +107,9 @@
                     <div class="form-group">
                         <label for="bankId" class="col-sm-4 control-label">放款银行：</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="bankId"  placeholder="放款银行" ng-model="item.sysBranchDealer.bankId" required>
+                            <select  class="form-control" id="bankId"  ng-model="item.sysBranchDealer.bankId"   ng-options="l.id as l.bankName for l in bankInfoList"  required>
+                                <option value="">请选择放款银行</option>
+                            </select>
                         </div>
                     </div>
                 </div>

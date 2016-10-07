@@ -12,8 +12,8 @@ angular.module("app")
             return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
         }
         $scope.app = {
-            name: '申请管理系统',
-            version: '1.3.3',
+            name: '信贷审批管理系统',
+            version: 'beta 0.0.1',
             // for chart colors
             color: {
                 primary: '#7266ba',

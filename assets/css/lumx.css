@@ -262,3 +262,15 @@
 .has-divider--light {
     border-bottom-color:rgba(255,255,255,.12)
 }
+.mr{
+    margin-right:5px;
+}
+.mr\+{
+    margin-right:10px;
+}
+.mr\+\+ {
+    margin-right: 15px;
+}
+.mr\+\+\+ {
+    margin-right: 20px;
+}

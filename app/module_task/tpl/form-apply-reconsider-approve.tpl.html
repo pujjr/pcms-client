@@ -1,0 +1,62 @@
+<!--申请信息-->
+<form class="container-fluid m-t-md form-horizontal">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">复议申请信息</legend>
+        <div class="row m-t-md">
+            <div class="col-md-12">
+                <div class="form-group form-group-sm">
+                    <label for="rejectReason" class="col-sm-1 control-label">拒绝原因：</label>
+                    <div class="col-sm-11">
+                        <textarea type="text" class="form-control" id="rejectReason" ng-model="reconsiderApproveVo.rejectReason" placeholder="拒绝原因" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group form-group-sm">
+                    <label  class="col-sm-2 control-label">复议原因：</label>
+                    <div class="col-sm-10">
+                        <select  class="form-control" ng-model="reconsiderApproveVo.recommitReason"
+                                 ng-options="item.dictDataCode as item.dictDataName for item in reconsiderReasonList" required disabled>
+                            <option value="">请选择复议原因</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group form-group-sm">
+                    <label for="recommitComment" class="col-sm-1 control-label">复议备注：</label>
+                    <div class="col-sm-11">
+                        <textarea type="text" class="form-control" id="recommitComment" ng-model="reconsiderApproveVo.recommitComment" placeholder="复议备注" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group form-group-sm">
+                    <label  class="col-sm-2 control-label">审批结果：</label>
+                    <div class="col-sm-10">
+                        <select  class="form-control" ng-model="reconsiderApproveVo.approveResult"
+                                 ng-options="item.dictDataCode as item.dictDataName for item in reconsiderApproveResultList" required>
+                            <option value="">请选择审批结果</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group form-group-sm">
+                    <label for="approveComment" class="col-sm-1 control-label">审批备注：</label>
+                    <div class="col-sm-11">
+                        <textarea type="text" class="form-control" id="approveComment" ng-model="reconsiderApplyVo.approveComment" placeholder="审批备注"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

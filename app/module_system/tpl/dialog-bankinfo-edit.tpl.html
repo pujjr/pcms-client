@@ -1,0 +1,40 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑银行信息</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="bankName" class="col-sm-3 control-label">银行名称：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="bankName" placeholder="银行名称" ng-model="item.bankName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="supportUnionpay" class="col-sm-3 control-label">支持银联代扣：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="supportUnionpay"  ng-model="item.supportUnionpay" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                    <option value="">是否支持银联代扣</option>`
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="unionpayCode" class="col-sm-3 control-label">银联代码：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="unionpayCode" placeholder="银联代码" ng-model="item.unionpayCode" ng-required="item.supportUnionpay==true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="enabled" class="col-sm-3 control-label">是否启用：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="enabled"  ng-model="item.enabled" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                    <option value="">是否启用</option>`
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-danger  btn-modal-left" type="button" ng-click="delete()">删除</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

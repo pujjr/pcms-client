@@ -41,6 +41,31 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-sign.html',
                     controller:'SignController'
                 })
+                .state('app.task.process.loancheck',{
+                    url:'/loancheck/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-loancheck.html',
+                    controller:'LoanCheckController'
+                })
+                .state('app.task.process.prevloanapprove',{
+                    url:'/prevloanapprove/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-prevloanapprove.html',
+                    controller:'LoanApproveController'
+                })
+                .state('app.task.process.loanapprove',{
+                    url:'/loanapprove/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-loanapprove.html',
+                    controller:'LoanApproveController'
+                })
+                .state('app.task.process.reconsider-apply',{
+                    url:'/reconsider-apply/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-reconsider.html',
+                    controller:'ReconsiderController'
+                })
+                .state('app.task.process.reconsider-approve',{
+                    url:'/reconsider-approve/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-reconsider-approve.html',
+                    controller:'ReconsiderController'
+                })
                 .state('app.task.handleassignee',{
                     url:'/handleassignee',
                     templateUrl:'module_task/tpl/handleassignee-list.html',

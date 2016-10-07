@@ -3,17 +3,18 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService) {
-        $scope.initApprove = function(){
+    .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService) {
+        $scope.initSign = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("sprwjglx").$object;
-            $scope.approveVo = {};
+            $scope.gpsSupplierList = GpsService.queryGpsSupplierList(true).$object;
+            $scope.unionPayBankList = BankService.queryUnionPayBankInfoList().$object;
+            $scope.signContractVo = TaskService.querySignInfo($stateParams.businessKey).$object;
         };
-        $scope.commitApproveTask = function(){
-            TaskService.commitApproveTask($scope.applyInfo,$scope.approveVo,$stateParams.taskId).then(function(response){
+        $scope.commitSignContractTask = function(){
+            TaskService.commitSignContractTask($scope.signContractVo,$stateParams.taskId).then(function(response){
                 $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交审批任务成功')
+                toaster.pop('success', '操作提醒','提交签约任务成功')
             })
         };
     })

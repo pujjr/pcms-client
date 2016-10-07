@@ -75,10 +75,46 @@ angular.module('app')
                     template:'<div ui-view=""></div>',
                     controller: 'SysParamController'
                 })
-                //岗位管理-查询岗位列表
+                //参数管理-查询参数列表
                 .state('app.sysparam.list',{
                     url:'/list',
                     templateUrl:'module_system/tpl/sysparam-list.html'
+                })
+                //银行信息管理
+                .state('app.bankinfo',{
+                    abstract: true,
+                    url:'/bankinfo',
+                    template:'<div ui-view=""></div>',
+                    controller: 'BankController'
+                })
+                //银行信息管理-查询列表
+                .state('app.bankinfo.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/bankinfo-list.html'
+                })
+                //GPS供应商参数管理
+                .state('app.gpssupplier',{
+                    abstract: true,
+                    url:'/gpssupplier',
+                    template:'<div ui-view=""></div>',
+                    controller: 'GpsController'
+                })
+                //GPS供应商参数管理-查询列表
+                .state('app.gpssupplier.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/gpssupplier-list.html'
+                })
+                //保险公司参数管理
+                .state('app.insurance',{
+                    abstract: true,
+                    url:'/insurance',
+                    template:'<div ui-view=""></div>',
+                    controller: 'InsuranceController'
+                })
+                //保险公司参数管理-查询列表
+                .state('app.insurance.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/insurancecompany-list.html'
                 })
 
         }

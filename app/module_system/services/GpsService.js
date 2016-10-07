@@ -15,4 +15,17 @@ angular.module('pu.system.services')
             }
             return RestApi.one("/gps",'enablegpslvl').all(amt).getList();
         }
+
+        this.queryGpsSupplierList = function(enabled){
+            return RestApi.all("/gps/gpssupplier").getList({'enabled':enabled});
+        };
+        this.addGpsSupplier = function(item){
+            return RestApi.all("/gps/gpssupplier").post(item);
+        };
+        this.modifyGpsSupplier = function(item){
+            return RestApi.one("/gps/gpssupplier",item.id).customPUT(item);
+        };
+        this.deleteGpsSupplier = function(id){
+            return RestApi.one("/gps/gpssupplier",id).remove();
+        }
     });

@@ -51,17 +51,17 @@ angular.module('pu.utils.directives')
 
                     return tree[0];
                 };
-                $scope.$watch('attrs.ngModel',function(newVal,oldVal){
+                ngModel.$formatters.push(function(modelValue){
                     for(var i =0;i<$scope.choices.length;i++){
-                        for(var j = 0 ;j<newVal.length;j++){
-                            if($scope.choices[i][$scope.trackBy]==newVal[j][$scope.trackBy]){
+                        for(var j = 0 ;j<modelValue.length;j++){
+                            if($scope.choices[i][$scope.trackBy]==modelValue[j][$scope.trackBy]){
                                 $scope.choices[i].checked=true;
                             }
                         }
                     }
                     $scope.treeData = $scope.convertArrayToTree($scope.choices,$scope.convertTreeOption);
-                    $scope.setViewValue(newVal);
-                })
+                    $scope.setViewValue(modelValue);
+                });
                 $scope.$watch('choices',function(newVal,oldVal){
                     if(ngModel.$modelValue!=undefined){
                         for(var i =0;i<$scope.choices.length;i++){

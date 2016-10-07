@@ -1,28 +1,29 @@
-<div class="panel" ng-init="initApprove()">
+<div class="panel" ng-init="initSign()">
     <div class="data-table-container" >
         <header class="data-table-header" style="min-height:72px !important;">
             <div class="data-table-header__label">
-                <span class="fs-title"><i class="fa fa-list-ul mr"></i>任务名称：{{task.name}}</span>
+                <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}</span>
                 <span class="m-l-sm">申请单号：{{applyInfo.appId}}</span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn  btn-link" type="button" ng-click="commitApplyTask()"><i class="fa fa-cab m-r-sm"></i>提交任务</button>
+                <button class="btn  btn-link" type="button" ng-click="commitSignContractTask()"><i class="fa fa-cab m-r-sm"></i>提交任务</button>
                 <button class="btn btn-link" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
                 <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
             </div>
         </header>
     </div>
+
     <div>
         <uib-tabset>
             <uib-tab index="0">
                 <uib-tab-heading>
-                    <i class="fa fa-list fa-lg" aria-hidden="true"></i>&nbsp;签约信息
+                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>&nbsp;签约
                 </uib-tab-heading>
                 <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
             </uib-tab>
             <uib-tab index="1">
                 <uib-tab-heading>
-                    <i class="fa fa-list fa-lg" aria-hidden="true"></i>&nbsp;申请信息
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>&nbsp;申请信息
                 </uib-tab-heading>
                 <div ng-include="'module_apply/tpl/form-apply.html'"></div>
             </uib-tab>

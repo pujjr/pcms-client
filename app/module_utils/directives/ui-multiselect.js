@@ -31,16 +31,27 @@ angular.module('pu.utils.directives')
                 if(!ngModel){
                     return;
                 }
+                /*
                 if(!angular.isArray($scope.choices)){
                     console.error("choices属性必须为列表格式");
                     return;
-                }
+                }*/
                 if($scope.showField == undefined){
                     console.error("未设置showField属性");
                     return;
                 }
-                //将模型值转换
+                if($scope.seperator == undefined){
+                    $scope.seperator=',';
+                }
+                if($scope.trackBy == undefined){
+                    $scope.trackBy='id';
+                }
+
                 ngModel.$formatters.push(function(modelValue){
+                    $scope.convertModelValue(modelValue);
+                });
+                //对模型值进行转换操作
+                $scope.convertModelValue = function(modelValue){
                     var modelValArray=[];
                     if(angular.isArray($scope.choices) && $scope.choices.length>0){
                         if($scope.modelFormat=='string'){
@@ -56,6 +67,8 @@ angular.module('pu.utils.directives')
                         if(!$scope.trackBy){
                             $scope.trackBy='id';
                         };
+                        if(modelValArray == undefined)
+                            return;
                         for(var i  = 0 ;i<modelValArray.length;i++){
                             for(var j = 0 ;j<$scope.choices.length;j++){
                                 if(angular.isString(modelValArray[i])){
@@ -72,7 +85,7 @@ angular.module('pu.utils.directives')
                         };
                         $scope.setViewValue();
                     }
-                });
+                }
                 ngModel.$parsers.push(function(viewValue){
                    return viewValue;
                 });
@@ -114,6 +127,12 @@ angular.module('pu.utils.directives')
                         viewValue = viewValue.substring(0,viewValue.length-1);
                     $scope.selectedViewValue = viewValue;
                 }
+                $scope.$watchCollection('choices',function(newVal,oldVal){
+                    if(newVal == oldVal){
+                        return;
+                    };
+                    $scope.convertModelValue(ngModel.$modelValue);
+                })
 
             }
 

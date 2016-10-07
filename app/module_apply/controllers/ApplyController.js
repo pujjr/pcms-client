@@ -571,6 +571,7 @@ angular.module("pu.apply.controllers")
         $scope.saveApplyInfo = function(){
             ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
                 console.log(response);
+                $scope
                 toaster.pop('success', '操作提醒','保存申请信息成功');
             });
         };

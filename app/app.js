@@ -9,6 +9,7 @@ angular.module('app', [
     'restangular',
     'ui.bootstrap',
     'ui.select',
+    'ui.load',
     'toaster',
     'jcs-autoValidate',
     'pu.system',
