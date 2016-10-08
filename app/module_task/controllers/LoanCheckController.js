@@ -5,6 +5,8 @@
 angular.module("pu.task.controllers")
     .controller('LoanCheckController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,
                                                 BankService,SysAreaService,InsuranceService) {
+        $scope.taskId = $stateParams.taskId;
+        $scope.businessKey = $stateParams.businessKey;
         $scope.initLoanCheck = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
@@ -19,11 +21,5 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','提交放款复核任务成功')
             })
         };
-        $scope.backTask = function(){
-            TaskService.backTask($stateParams.taskId).then(function(response){
-                $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交退回任务成功')
-            })
-        }
     })
 ;

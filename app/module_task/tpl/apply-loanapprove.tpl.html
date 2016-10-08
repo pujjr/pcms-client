@@ -9,7 +9,7 @@
             <button class="btn btn-link" type="button" ng-click="saveCheckInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
             <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
             -->
-            <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask()"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+            <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
             <button class="btn btn-success btn-sm" type="button"  ng-disabled="loanApproveForm.$invalid" ng-click="commitLoanApproveTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
             <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
         </div>
@@ -44,6 +44,13 @@
                 <uib-tab-heading>
                     <span>申请资料</span>
                 </uib-tab-heading>
+            </uib-tab>
+
+            <uib-tab index="5"  select="queryWorkflowProcessResult(taskId)">
+                <uib-tab-heading>
+                    <span>流程流转记录</span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
             </uib-tab>
         </uib-tabset>
     </div>

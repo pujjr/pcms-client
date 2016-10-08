@@ -16,6 +16,7 @@
             <table class="data-table">
                 <thead>
                 <tr>
+                    <th style="width: 5%"></th>
                     <th>任务名称</th>
                     <th>申请单号</th>
                     <th>产品名称</th>
@@ -30,7 +31,10 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in toDoTaskList">
-                    <td>{{item.taskName}}</td>
+                    <td><span ng-if="item.processTime==undefined"><i class="fa fa-circle" aria-hidden="true" style="color: rgba(182, 30, 22, 0.98)"></i></span></td>
+                    <td>
+                        {{item.taskName}}
+                    </td>
                     <td>{{item.businessKey}}</td>
                     <td>{{item.productName}}</td>
                     <td>{{item.tenantName}}</td>

@@ -12,13 +12,14 @@ angular.module('app')
                 .state('app.task', {
                     url: '/task',
                     abstract: true,
-                    template:'<div ui-view=""></div>'
+                    template:'<div ui-view=""></div>',
+                    controller:'TaskController'
                 })
                 //查询待办任务
                 .state('app.task.todolist',{
                     url:'/todo',
                     templateUrl:'module_task/tpl/todotask-list.html',
-                    controller:'TaskController'
+                    controller:'ToDoTaskController'
                 })
                 .state('app.task.process', {
                     url: '/process',

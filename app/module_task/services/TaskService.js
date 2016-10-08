@@ -50,7 +50,7 @@ angular.module('pu.task.services')
         };
         this.backTask = function(taskId){
             var defered=$q.defer();
-            modal.prompt('退回原因','请输入退回原因').then(function(response){
+            modal.prompt('回退原因','请输入回退原因').then(function(response){
                 RestApi.all("/task/backTask").all(taskId).post(response).then(function(response){
                     defered.resolve();
                 },function(response){
@@ -58,5 +58,8 @@ angular.module('pu.task.services')
                 });
             })
             return defered.promise;
+        };
+        this.queryWorkflowProcessResult = function(taskId){
+            return RestApi.all("/task/getWorkflowProcessResult").all(taskId).getList();
         }
     });
