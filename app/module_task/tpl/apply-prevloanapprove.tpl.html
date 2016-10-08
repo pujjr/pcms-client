@@ -2,13 +2,17 @@
     <div class="data-table-container" >
         <header class="data-table-header" style="min-height:72px !important;">
             <div class="data-table-header__label">
-                <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}</span>
-                <span class="m-l-sm">申请单号：{{applyInfo.appId}}</span>
+                <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
             </div>
             <div class="data-table-header__actions">
+                <!--
                 <button class="btn  btn-link" type="button" ng-click="commitPrevLoanApproveTask()"><i class="fa fa-cab m-r-sm"></i>提交任务</button>
                 <button class="btn btn-link" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
                 <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
+                -->
+                <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask()"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+                <button class="btn btn-success btn-sm" type="button"  ng-click="commitPrevLoanApproveTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
             </div>
         </header>
     </div>
@@ -17,26 +21,31 @@
         <uib-tabset>
             <uib-tab index="0">
                 <uib-tab-heading>
-                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>&nbsp;放款复核
+                    <span>放款复核信息</span>
                 </uib-tab-heading>
                 <div ng-include="'module_task/tpl/form-apply-loancheck.html'"></div>
             </uib-tab>
             <uib-tab index="1">
                 <uib-tab-heading>
-                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>&nbsp;签约信息
+                    <span>签约信息</span>
                 </uib-tab-heading>
                 <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
             </uib-tab>
             <uib-tab index="2">
                 <uib-tab-heading>
-                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>&nbsp;申请信息
+                    <span>签约资料</span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
+            </uib-tab>
+            <uib-tab index="3">
+                <uib-tab-heading>
+                    <span>申请信息</span>
                 </uib-tab-heading>
                 <div ng-include="'module_apply/tpl/form-apply.html'"></div>
             </uib-tab>
-
-            <uib-tab index="3">
+            <uib-tab index="4">
                 <uib-tab-heading>
-                    <i class="fa fa-globe fa-lg" aria-hidden="true"></i>&nbsp;上传申请资料
+                    <span>申请资料</span>
                 </uib-tab-heading>
             </uib-tab>
         </uib-tabset>

@@ -1,30 +1,38 @@
 <div ng-init="initApprove()">
     <div class="check-header">
         <div class="pull-left" style="position: relative;top:15%;right:0px;">
-            <h4>任务名称：{{task.name}}</h4>
+            <h4>任务名称：{{task.name}}-{{applyInfo.appId}}</h4>
         </div>
         <div class="pull-right" style="position: relative;top:20%;right:0px;">
+            <!--
             <button class="btn  btn-link" type="button"ng-click="commitApproveTask()"><i class="fa fa-cab m-r-sm"></i>提交任务</button>
             <button class="btn btn-link" type="button" ng-click="saveCheckInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
             <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
+            -->
+            <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask()"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+            <button class="btn btn-success btn-sm" type="button" ng-disabled="approveForm.$invalid"   ng-click="commitApproveTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+            <button class="btn btn-info btn-sm" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存申请单</button>
+            <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
         </div>
     </div>
     <div class="check-body">
         <uib-tabset>
             <uib-tab index="0">
                 <uib-tab-heading>
-                    <i class="fa fa-list fa-lg" aria-hidden="true"></i>&nbsp;录入申请信息
+                    <span>申请信息</span>
                 </uib-tab-heading>
                 <div ng-include="'module_apply/tpl/form-apply.html'"></div>
             </uib-tab>
             <uib-tab index="1">
                 <uib-tab-heading>
-                    <i class="fa fa-globe fa-lg" aria-hidden="true"></i>&nbsp;上传申请资料
+                    <span>申请资料</span>
                 </uib-tab-heading>
             </uib-tab>
         </uib-tabset>
     </div>
     <div  class="check-footer">
-        <div ng-include="'module_task/tpl/form-apply-approve.html'"></div>
+        <form class="container-fluid m-t-md form-horizontal" name="approveForm">
+            <div ng-include="'module_task/tpl/form-apply-approve.html'"></div>
+        </form>
     </div>
 </div>

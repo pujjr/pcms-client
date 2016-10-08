@@ -1,0 +1,27 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>分配结果</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:300px">
+        <div class="panel-main">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>申请单号</th>
+                    <th>处理结果</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in assigneeResults">
+                    <td>{{item.appId}}</td>
+                    <td>{{item.procResult}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+    </div>
+</form>

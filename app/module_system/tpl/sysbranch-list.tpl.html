@@ -13,7 +13,7 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addSysBranch()"><i class="fa fa-plus m-r-sm"></i>增加机构</button>
+                            <button class="btn btn-m btn-default btn-sm" type="button" ng-click="addSysBranch()"><i class="fa fa-plus m-r-sm"></i>增加机构</button>
                         </div>
                     </header>
                 </div>
@@ -32,11 +32,13 @@
                 <div class="data-table-container">
                     <header class="data-table-header">
                         <div class="data-table-header__label">
-                            <span class="fs-title">{{selNode.branchName}}:{{selNode.branchCode}}</span>
-                            <button class="btn btn-m btn-default" type="button" ng-click="selNode.branchType!='JGLX02'?editSysBranch(selNode):editSysBranchDealer(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑机构</button>
+                            <div   ng-show="selNode !=undefined && selNode.parentId!='0000'">
+                                <span class="fs-title">{{selNode.branchName}}-{{selNode.branchCode}}</span>
+                                <small><a href="javascript:" ng-click="selNode.branchType!='JGLX02'?editSysBranch(selNode):editSysBranchDealer(selNode)">编辑</a></span></small>
+                              </div>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addSysAccount()"><i class="fa fa-fa-plus m-r-sm"></i>增加人员</button>
+                            <button class="btn btn-m btn-default btn-sm" type="button" ng-click="addSysAccount()"><i class="fa fa-plus m-r-sm"></i>增加人员</button>
                         </div>
                     </header>
                     <table class="data-table">

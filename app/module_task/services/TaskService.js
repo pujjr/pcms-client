@@ -1,5 +1,5 @@
 angular.module('pu.task.services')
-    .service("TaskService",function($window,RestApi,$uibModal,ToolsService){
+    .service("TaskService",function($window,RestApi,$q,$uibModal,ToolsService,modal){
         this.queryToDoTaskList = function(queryType){
             return RestApi.all("/task/todolist").all(queryType).getList();
         };
@@ -48,4 +48,15 @@ angular.module('pu.task.services')
         this.commitReconsiderApproveTask = function(reconsiderApproveVo,taskId){
             return RestApi.all("/task/commitReconsiderApproveTask").all(taskId).post(reconsiderApproveVo);
         };
+        this.backTask = function(taskId){
+            var defered=$q.defer();
+            modal.prompt('退回原因','请输入退回原因').then(function(response){
+                RestApi.all("/task/backTask").all(taskId).post(response).then(function(response){
+                    defered.resolve();
+                },function(response){
+                    defered.reject();
+                });
+            })
+            return defered.promise;
+        }
     });

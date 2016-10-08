@@ -1,5 +1,5 @@
 angular.module("app")
-    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout) {
+    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService) {
 
         var isIE = !!navigator.userAgent.match(/MSIE/i);
         isIE && angular.element($window.document.body).addClass('ie');
@@ -51,5 +51,5 @@ angular.module("app")
                 AuthService.signup();
                 $rootScope.$state.go("access.signin");
             })
-        }
+        };
     })

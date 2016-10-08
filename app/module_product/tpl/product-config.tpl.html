@@ -13,7 +13,7 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addProductType()"><i class="fa fa-plus m-r-sm"></i>增加产品类别</button>
+                            <button class="btn btn-m btn-default btn-sm" type="button" ng-click="addProductType()"><i class="fa fa-plus m-r-sm"></i>增加产品类别</button>
                         </div>
                     </header>
                 </div>
@@ -32,11 +32,17 @@
                 <div class="data-table-container">
                     <header class="data-table-header" ng-show="selNode !=undefined && selNode.parentId!='0000'">
                         <div class="data-table-header__label">
+                            <div   ng-show="selNode !=undefined && selNode.parentId!='0000'">
+                                <span class="fs-title">{{selNode.productTypeName}}</span>
+                                <small><a href="javascript:" ng-click="editProductType(selNode)">编辑</a></span></small>
+                            </div>
+                            <!--
                             <span class="fs-title">{{selNode.productTypeName}}</span>
                             <button class="btn btn-m btn-default" type="button" ng-click="editProductType(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑产品类别</button>
+                            -->
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addProduct(selNode)"><i class="fa fa-plus m-r-sm"></i>增加产品</button>
+                            <button class="btn btn-m btn-default btn-sm" type="button" ng-click="addProduct(selNode)"><i class="fa fa-plus m-r-sm"></i>增加产品</button>
                         </div>
                     </header>
                     <table class="data-table">
@@ -46,8 +52,8 @@
                             <th>产品编码</th>
                             <th>放款条件</th>
                             <th>年利率</th>
-                            <th>还款方式</th>
                             <th>是否启用</th>
+                            <th>还款方式</th>
                             <th>可选融资期数</th>
                             <th>提前结清违约金</th>
                         </tr>

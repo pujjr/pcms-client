@@ -13,7 +13,7 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addSysDictType()"><i class="fa fa-plus m-r-sm"></i>增加类型</button>
+                            <button class="btn btn-m btn-default btn-sm" type="button" ng-click="addSysDictType()"><i class="fa fa-plus m-r-sm"></i>增加类型</button>
                         </div>
                     </header>
                 </div>
@@ -32,11 +32,17 @@
                 <div class="data-table-container">
                     <header class="data-table-header">
                         <div class="data-table-header__label">
+                            <div   ng-show="selNode !=undefined && selNode.parentId!='0000'">
+                                <span class="fs-title">{{selNode.dictTypeName}}</span>
+                                <small><a href="javascript:" ng-click="editSysDictType()">编辑</a></span></small>
+                            </div>
+                            <!--
                             <span class="fs-title">{{selNode.dictTypeName}}</span>
                             <button class="btn btn-m btn-default" type="button" ng-click="editSysDictType()"><i class="fa fa-edit m-r-sm"></i>编辑类型</button>
+                            -->
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addSysDictData()"><i class="fa fa-plus m-r-sm"></i>增加明细</button>
+                            <button class="btn btn-default btn-sm" type="button" ng-click="addSysDictData()"><i class="fa fa-plus m-r-sm"></i>增加明细</button>
                         </div>
                     </header>
                     <table class="data-table">

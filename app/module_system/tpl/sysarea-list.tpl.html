@@ -13,7 +13,7 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addSysArea()"><i class="fa fa-plus m-r-sm"></i>增加区域</button>
+                            <button class="btn btn-m btn-default btn-sm" type="button" ng-click="addSysArea()"><i class="fa fa-plus m-r-sm"></i>增加区域</button>
                         </div>
                     </header>
                 </div>
@@ -32,8 +32,14 @@
                 <div class="data-table-container">
                     <header class="data-table-header">
                         <div class="data-table-header__label">
+                            <div   ng-show="selNode !=undefined && selNode.parentId!='0000'">
+                                <span class="fs-title">{{selNode.areaName}}</span>
+                                <small><a href="javascript:" ng-click="editSysArea(selNode)">编辑</a></span></small>
+                            </div>
+                            <!--
                             <span class="fs-title">{{selNode.areaName}}</span>
                             <button class="btn btn-m btn-default" type="button" ng-click="editSysArea(selNode)"><i class="fa fa-edit m-r-sm"></i>编辑区域</button>
+                            -->
                         </div>
                         <div class="data-table-header__actions">
                         </div>

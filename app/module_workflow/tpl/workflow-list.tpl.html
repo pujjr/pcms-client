@@ -13,7 +13,7 @@
                             <span class="fs-title"></span>
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="addWorkflowType()"><i class="fa fa-plus m-r-sm"></i>增加流程分类</button>
+                            <button class="btn btn-sm btn-default" type="button" ng-click="addWorkflowType()"><i class="fa fa-plus m-r-sm"></i>增加流程分类</button>
                         </div>
                     </header>
                 </div>
@@ -34,13 +34,19 @@
                     <header class="data-table-header">
                         <div class="data-table-header__label">
                             <div class="fs-title">
+                                <div   ng-show="selType !=undefined && selType.parentTypeId!='0000'">
+                                    <span class="fs-title">{{selType.typeName}}</span>
+                                    <small><a href="javascript:"  ng-click="editWorkflowType(selType)">编辑</a></span></small>
+                                </div>
+                                <!--
                                 <span style="padding-top:10px">{{selType.typeName}}</span>
-                                <button class="btn btn-m btn-default" type="button" ng-click="editWorkflowType(selType)"><i class="fa fa-edit m-r-sm"></i>编辑流程分类</button>
+                                <button class="btn btn-sm btn-default" type="button" ng-click="editWorkflowType(selType)"><i class="fa fa-edit m-r-sm"></i>编辑流程分类</button>
+                                -->
                             </div>
 
                         </div>
                         <div class="data-table-header__actions">
-                            <button class="btn btn-m btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-plus m-r-sm"></i>增加流程定义</button>
+                            <button class="btn btn-sm btn-default" type="button" ng-click="createWorkflowDefine()"><i class="fa fa-plus m-r-sm"></i>增加流程定义</button>
                         </div>
                     </header>
                     <table class="data-table">

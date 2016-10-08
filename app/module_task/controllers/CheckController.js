@@ -18,6 +18,12 @@ angular.module("pu.task.controllers")
         };
         $scope.saveCheckInfo = function(){
 
+        };
+        $scope.backTask = function(){
+            TaskService.backTask($stateParams.taskId).then(function(response){
+                $state.go('app.task.todolist');
+                toaster.pop('success', '操作提醒','提交退回任务成功')
+            })
         }
     })
 ;

@@ -63,6 +63,25 @@ angular.module("pu.task.controllers")
                 })
                 TaskService.doCheckBatchAssigneeTask(selTask,selAccounts).then(function(response){
                     toaster.pop('success', '操作提醒', "分单成功");
+                    var modalInstance1 = $uibModal.open({
+                        animation: true,
+                        backdrop:'false',
+                        resolve:{
+                            assigneeResults:function(){
+                                return response;
+                            }
+                        },
+                        templateUrl :'module_task/tpl/dialog-showassigneeresult.html',
+                        controller:function($scope,RestApi,assigneeResults){
+                            $scope.assigneeResults = assigneeResults;
+                            $scope.ok=function(){
+                                modalInstance1.close();
+                            };
+                        }
+                    });
+                    modalInstance1.result.then(function(response){
+                        $scope.queryToAssigneeList();
+                    })
                 })
             })
         }

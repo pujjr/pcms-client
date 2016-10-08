@@ -19,5 +19,11 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','提交放款复核任务成功')
             })
         };
+        $scope.backTask = function(){
+            TaskService.backTask($stateParams.taskId).then(function(response){
+                $state.go('app.task.todolist');
+                toaster.pop('success', '操作提醒','提交退回任务成功')
+            })
+        }
     })
 ;
