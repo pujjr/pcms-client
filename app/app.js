@@ -12,6 +12,7 @@ angular.module('app', [
     'ui.load',
     'toaster',
     'jcs-autoValidate',
+    'angularFileUpload',
     'pu.system',
     'pu.access',
     'pu.utils',

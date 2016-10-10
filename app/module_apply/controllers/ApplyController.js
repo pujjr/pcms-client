@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.apply.controllers")
     .controller('ApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,GpsService,ToolsService,SysAreaService,TaskService,modal,
-                                            SysDictService,ProductService,CarService,ApplyService,CalService) {
+                                            SysDictService,ProductService,CarService,ApplyService,CalService,FileUploader,RestApi) {
         $scope.initApplyAdd = function () {
             //申请信息初始化一些选项
             $scope.applyInfo = {};
@@ -626,7 +626,53 @@ angular.module("pu.apply.controllers")
                 toaster.pop('success', '操作提醒','提交申请信息成功')
             });
             ;
-        }
+        };
+        $scope.uploader = new FileUploader({
+            url:'http://127.0.0.1:8080/pcms-web/service/uploadFile',
+            headers:{
+                'Authorization': window.localStorage.Authorization
+            }
+        });
 
+        $scope.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+            console.info('onWhenAddingFileFailed', item, filter, options);
+        };
+        $scope.uploader.onAfterAddingFile = function(fileItem) {
+            console.info('onAfterAddingFile', fileItem);
+        };
+        $scope.uploader.onAfterAddingAll = function(addedFileItems) {
+            console.info('onAfterAddingAll', addedFileItems);
+        };
+        $scope.uploader.onBeforeUploadItem = function(item) {
+            console.info('onBeforeUploadItem', item);
+        };
+        $scope.uploader.onProgressItem = function(fileItem, progress) {
+            console.info('onProgressItem', fileItem, progress);
+        };
+        $scope.uploader.onProgressAll = function(progress) {
+            console.info('onProgressAll', progress);
+        };
+        $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            console.info('onSuccessItem', fileItem, response, status, headers);
+        };
+        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
+            console.info('onErrorItem', fileItem, response, status, headers);
+        };
+        $scope.uploader.onCancelItem = function(fileItem, response, status, headers) {
+            console.info('onCancelItem', fileItem, response, status, headers);
+        };
+        $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            console.info('onCompleteItem', fileItem, response, status, headers);
+        };
+        $scope.uploader.onCompleteAll = function() {
+            console.info('onCompleteAll');
+        };
+        $scope.readFile = function(){
+            /*
+            $scope.thumbs={};
+            RestApi.one("/getFile","111").get({fileName:'北区.jpg'}).then(function(response){
+                $scope.data = response;
+            })*/
+        }
     })
 ;
