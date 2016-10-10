@@ -46,7 +46,7 @@ angular.module('app')
                     }
 
                 } else {
-                    modal.error("系统错误，请重试");
+                    modal.error("查询数据错误，请重试！");
                 }
                 ;
             });

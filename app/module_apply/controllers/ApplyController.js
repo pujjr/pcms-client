@@ -11,7 +11,7 @@ angular.module("pu.apply.controllers")
             $scope.applyInfo.finances = [];
             $scope.applyInfo.tenant={};
             $scope.applyInfo.tenant.tenantHouses = [];
-            $scope.applyInfo.tenant.tenantCars = [ ];
+            $scope.applyInfo.tenant.tenantCars = [];
             $scope.applyInfo.linkmans = [];
             $scope.initFinances($scope.applyInfo.finances);
             $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
@@ -19,12 +19,20 @@ angular.module("pu.apply.controllers")
             $scope.initLinkmans($scope.applyInfo.linkmans);
             $scope.initSelectList();
         };
+        /**一堆watch变量**/
+        var watchFinance1Gps;
+        var watchFinance1;
+        var watchFinance2Gps ;
+        var watchFinance2;
+        var watchFinance3Gps ;
+        var watchFinance3;
+        var watchTotalFinance;
         $scope.initWatchFinance1 = function(){
             //监视融资信息变化查询GPS档位
-            var watchFinance1Gps = $scope.$watchGroup(['finance1.salePrice','finance1.initPayPercent'],function(newVal,oldVal){
+            watchFinance1Gps = $scope.$watchGroup(['finance1.salePrice','finance1.initPayPercent'],function(newVal,oldVal){
                 $scope.finance1.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance1.salePrice,$scope.finance1.initPayPercent,$scope.applyInfo.product).$object;
             },true);
-            var watchFinance1 = $scope.$watch('finance1',function(newVal,oldVal){
+            watchFinance1 = $scope.$watch('finance1',function(newVal,oldVal){
                 //取融资手续费
                 var financeFee = 0;
                 var product = $scope.applyInfo.product;
@@ -56,8 +64,7 @@ angular.module("pu.apply.controllers")
             },true);
         };
 
-        var watchFinance2Gps ;
-        var watchFinance2;
+
         $scope.initWatchFinance2 = function(){
             //监视融资信息变化查询GPS档位
             watchFinance2Gps = $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
@@ -94,8 +101,7 @@ angular.module("pu.apply.controllers")
                 }
             },true);
         };
-        var watchFinance3Gps ;
-        var watchFinance3;
+
         $scope.initWatchFinance3 = function(){
             //监视融资信息变化查询GPS档位
             watchFinance3Gps = $scope.$watchGroup(['finance3.salePrice','finance3.initPayPercent'],function(newVal,oldVal){
@@ -133,7 +139,7 @@ angular.module("pu.apply.controllers")
             },true);
         };
         //计算还款月租金，需根据融资金额，期数，产品进行计算， 放款金额=融资金额-GPS费用-评估费-融资手续费 应watch这些变量
-        $scope.$watchGroup([
+        watchTotalFinance = $scope.$watchGroup([
                             'finance1.financeAmount',
                             'finance2.financeAmount',
                             'finance3.financeAmount',
@@ -540,7 +546,6 @@ angular.module("pu.apply.controllers")
             $scope.doInitApplyEdit(appId);
         }
         $scope.doInitApplyEdit = function(appId){
-
             // 获取订单数据
             ApplyService.queryApplyInfoByAppId(appId).then(function(response){
                 $scope.applyInfo =  response;
@@ -566,12 +571,51 @@ angular.module("pu.apply.controllers")
                 $scope.initSelectList();
                 $scope.addressCtrl.onEditRefresh();
             })
-        }
+        };
+        $scope.refreshApplyInfoFromServer= function (appId){
+            //关闭watch
+            if(watchFinance1Gps!=undefined)
+                watchFinance1Gps();
+            if(watchFinance1!=undefined)
+                watchFinance1();
+            if(watchFinance2Gps!=undefined)
+                watchFinance2Gps() ;
+            if(watchFinance2!=undefined)
+                watchFinance2();
+            if(watchFinance3Gps!=undefined)
+                watchFinance3Gps() ;
+            if(watchFinance3!=undefined)
+                watchFinance3();
+            if(watchTotalFinance!=undefined)
+                watchTotalFinance();
+            ApplyService.queryApplyInfoByAppId(appId).then(function(response){
+                $scope.applyInfo =  response;
+                if($scope.applyInfo.finances == undefined){
+                    $scope.applyInfo.finances=[];
+                }
+                if($scope.applyInfo.tenant == undefined){
+                    $scope.applyInfo.tenant = {};
+                    if($scope.applyInfo.tenant.tenantHouses==undefined){
+                        $scope.applyInfo.tenant.tenantHouses = [];
+                    }
+                    if($scope.applyInfo.tenant.tenantCars ==undefined){
+                        $scope.applyInfo.tenant.tenantCars = [];
+                    }
+                }
+                if($scope.applyInfo.linkmans == undefined){
+                    $scope.applyInfo.linkmans = [];
+                }
+                $scope.initFinances($scope.applyInfo.finances);
+                $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
+                $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
+                $scope.initLinkmans($scope.applyInfo.linkmans);
+            })
+        };
         //保存申请信息
         $scope.saveApplyInfo = function(){
             ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
-                console.log(response);
-                $scope
+                console.log(response.appId);
+                $scope.refreshApplyInfoFromServer(response.appId);
                 toaster.pop('success', '操作提醒','保存申请信息成功');
             });
         };

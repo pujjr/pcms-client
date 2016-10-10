@@ -19,9 +19,15 @@ angular.module('pu.system.services')
             return RestApi.all("/sysarea/province").getList();
         };
         this.queryCityList = function(provinceId){
+            if(provinceId==null || provinceId ==undefined){
+                return null;
+            }
             return RestApi.one("/sysarea/province",provinceId).all("city").getList();
         };
         this.queryCountyList = function(provinceId,cityId){
+            if(provinceId==null || provinceId ==undefined||cityId== null || cityId==undefined){
+                return  null;
+            }
             return RestApi.one("/sysarea/province",provinceId).one("/city",cityId).all("county").getList();
         }
     });
