@@ -1,0 +1,21 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <div class="pull-left">
+            <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增产品规则</h4>
+        </div>
+
+        <div class="pull-right">
+            <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-repeat"></i></button>
+            <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-undo"></i></button>
+            <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-arrows-alt"></i></button>
+            <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <img ng-src="{{item}}" class="img-responsive">
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

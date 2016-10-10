@@ -668,11 +668,37 @@ angular.module("pu.apply.controllers")
             console.info('onCompleteAll');
         };
         $scope.readFile = function(){
+            $scope.imgIds=[
+                'http://127.0.0.1:8080/pcms-web/public/img/1',
+                'http://127.0.0.1:8080/pcms-web/public/img/2'
+            ]
             /*
             $scope.thumbs={};
             RestApi.one("/getFile","111").get({fileName:'北区.jpg'}).then(function(response){
                 $scope.data = response;
             })*/
+        };
+        $scope.zoomInImage = function(item){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                size:'lg',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
+                templateUrl :'module_apply/tpl/dialog-image-zoom-in.html',
+                controller:function($scope,item){
+                    $scope.item=item;
+                    $scope.ok=function(){
+                        modalInstance.close();
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     })
 ;

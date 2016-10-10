@@ -39,9 +39,29 @@
             <uib-tab-heading>
                 <span>上传申请资料</span>
             </uib-tab-heading>
-            <div ng-repeat="item in thumbs">
-                <img ng-src="/getFile/" width="200px" height="200px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3"  ng-repeat="item in imgIds">
+                        <div class="thumbnail">
+                            <img ng-src="{{item}}"
+                                 alt="通用的占位符缩略图">
+                            <div class="caption">
+                                <h3>缩略图标签</h3>
+                                <p>一些示例文本。一些示例文本。</p>
+                                <p>
+                                    <a class="btn btn-primary" ng-click="zoomInImage(item)" role="button">
+                                        放大
+                                    </a>
+                                    <a href="#" class="btn btn-default" role="button">
+                                        按钮
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div nv-file-drop uploader="uploader" style="border: 2px solid red;width: 400px;height:200px">
 
             </div>
