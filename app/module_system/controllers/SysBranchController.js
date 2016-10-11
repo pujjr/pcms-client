@@ -68,7 +68,7 @@ angular.module("pu.system.controllers")
                     };
                     $scope.delete = function(){
                         modal.confirm("删除确认","是否删除"+item.branchName).then(function(){
-                            SysBranchService.deleteSysBranch($scope.item.id).then(function(){
+                            SysBranchService.deleteSysBranch($scope.item.sysBranch.id).then(function(){
                                 modalInstance.close('删除机构成功');
                             })
                         })
@@ -111,7 +111,7 @@ angular.module("pu.system.controllers")
                     };
                     $scope.delete = function(){
                         modal.confirm("删除确认","是否删除"+item.branchName).then(function(){
-                            SysBranchService.deleteSysBranch($scope.item.id).then(function(){
+                            SysBranchService.deleteSysBranch($scope.item.sysBranch.id).then(function(){
                                 modalInstance.close('删除机构成功');
                             })
                         })

@@ -678,7 +678,7 @@ angular.module("pu.apply.controllers")
                 $scope.data = response;
             })*/
         };
-        $scope.zoomInImage = function(item){
+        $scope.zoomInImage = function(item,imgUrls){
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
@@ -686,14 +686,49 @@ angular.module("pu.apply.controllers")
                 resolve:{
                     item:function(){
                         return item;
+                    },
+                    imgUrls:function(){
+                        return imgUrls;
                     }
                 },
                 templateUrl :'module_apply/tpl/dialog-image-zoom-in.html',
-                controller:function($scope,item){
+                controller:function($scope,item,imgUrls){
+                    $scope.rotate=0;
                     $scope.item=item;
+                    $scope.imgUrls = imgUrls;
+                    $scope.endIdx = imgUrls.length-1;
+                    for(var i = 0;i<imgUrls.length;i++){
+                        if(item == imgUrls[i]){
+                            $scope.curIdx = i ;
+                            break;;
+                        }
+                    }
                     $scope.ok=function(){
                         modalInstance.close();
                     };
+                    $scope.prevView = function(){
+                        $scope.rotate=0;
+                        $scope.item = imgUrls[--$scope.curIdx];
+                    }
+                    $scope.nextView = function(){
+                        $scope.rotate=0;
+                        $scope.item = imgUrls[++$scope.curIdx];
+                    }
+                    $scope.rotateLeft = function(){
+                        if($scope.rotate==0){
+                            $scope.rotate=270;
+                        }else{
+                            $scope.rotate -=90;
+                        }
+
+                    }
+                    $scope.rotateRight = function(){
+                        if($scope.rotate==360){
+                            $scope.rotate=90;
+                        }else{
+                            $scope.rotate+= 90;
+                        }
+                    }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };

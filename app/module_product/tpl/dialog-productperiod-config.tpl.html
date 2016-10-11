@@ -15,7 +15,7 @@
             <tr ng-repeat="item in productPeriodList">
                 <td><input type="checkbox" ng-model="item.selected" ng-checked="item.selected==true" ng-click="addToSelected(item)"></td>
                 <td>{{item.period}}</td>
-                <td> <input type="number" class="form-control"  ng-model="item.reate"></td>
+                <td> <input type="number" class="form-control"  ng-model="item.financeFee"></td>
             </tr>
             </tbody>
         </table>

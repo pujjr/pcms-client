@@ -1,21 +1,22 @@
-<form name="form" class="form-horizontal">
+<div>
     <div class="modal-header">
         <div class="pull-left">
             <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增产品规则</h4>
         </div>
-
         <div class="pull-right">
-            <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-repeat"></i></button>
-            <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-undo"></i></button>
+            <button class="btn btn-default" type="button" ng-click="rotateLeft()"><i class="fa fa-undo"></i></button>
+            <button class="btn btn-default" type="button" ng-click="rotateRight()"><i class="fa fa-repeat"></i></button>
             <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-arrows-alt"></i></button>
             <button class="btn btn-default" type="button" ng-click="ok()"><i class="fa fa-times"></i></button>
         </div>
     </div>
-    <div class="modal-body">
-        <img ng-src="{{item}}" class="img-responsive">
+    <div class="modal-body file-zoom-dialog">
+        <img ng-src="{{item}}" style="margin-top: 0px" class="img-responsive" ng-class="{'rotate-90':rotate==90,'rotate-180':rotate==180,'rotate-270':rotate==270}">
+        <button type="button" class="btn btn-navigate btn-prev" ng-disabled="curIdx==0" ng-click="prevView()" title="View previous file"><i class="glyphicon glyphicon-triangle-left"></i></button>
+        <button type="button" class="btn btn-navigate btn-next" ng-disabled="curIdx == endIdx" ng-click="nextView()" title="View next file"><i class="glyphicon glyphicon-triangle-right"></i></button>
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
-</form>
+</div>
