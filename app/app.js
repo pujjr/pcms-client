@@ -20,5 +20,6 @@ angular.module('app', [
     'pu.product',
     'pu.apply',
     'pu.car',
-    'pu.task'
+    'pu.task',
+    'pu.file'
 ])
