@@ -56,5 +56,8 @@ angular.module('pu.product.services')
         };
         this.queryBranchEnableProductList = function(){
             return RestApi.all("/product/branchenable").getList();
+        };
+        this.queryBranchEnableProductListByBranchCode = function(branchCode){
+            return RestApi.all("/product/branchenable").all(branchCode).getList();
         }
     });

@@ -17,7 +17,7 @@ angular.module("pu.apply.controllers")
             $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
             $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
             $scope.initLinkmans($scope.applyInfo.linkmans);
-            $scope.initSelectList();
+            $scope.initSelectList("add");
         };
         /**一堆watch变量**/
         var watchFinance1Gps;
@@ -345,9 +345,14 @@ angular.module("pu.apply.controllers")
                 item.countyList = SysAreaService.queryCountyList(item.addrProvince,item.addrCity).$object;
             }
         }
-        $scope.initSelectList = function(){
+        $scope.initSelectList = function(model){
             //可选产品
-            $scope.productList = ProductService.queryBranchEnableProductList().$object;
+            if(model=="add"){
+                $scope.productList = ProductService.queryBranchEnableProductList().$object;
+            }else{
+                $scope.productList = ProductService.queryBranchEnableProductListByBranchCode($scope.applyInfo.createBranchCode).$object;
+            }
+
             //可选还款方式可选项
             $scope.repayModeList  = SysDictService.queryDictDataByTypeCode('hkfs').$object;
             //证件类型可选项
@@ -568,7 +573,7 @@ angular.module("pu.apply.controllers")
                 $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
                 $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
                 $scope.initLinkmans($scope.applyInfo.linkmans);
-                $scope.initSelectList();
+                $scope.initSelectList("edit");
                 $scope.addressCtrl.onEditRefresh();
             })
         };
