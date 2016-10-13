@@ -18,10 +18,7 @@
                     </header>
                 </div>
                 <div>
-                    <ui-tree tree-data="dirTree" label="treeData.id">
-                    </ui-tree>
-                    <!--
-                    <tree tree-data="dirTree" can-checked="false" name-field="dirName"></tree>-->
+                    <ui-tree tree-data="dirTree" label="dirName" on-select="select($item)"></ui-tree>
                 </div>
             </div>
         </div>

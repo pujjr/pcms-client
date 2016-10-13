@@ -10,7 +10,8 @@ angular.module('pu.utils.directives')
                 choices:'=',
                 convertTreeOption:'=',
                 trackBy:'@',
-                labelField:'@',
+                label:'@',
+                checked:'=',
                 ngRequired:'@',
                 placeholder:'@'
             },
@@ -18,9 +19,12 @@ angular.module('pu.utils.directives')
             link:function($scope,element,attrs,ngModel){
                 if(!ngModel) return;
 
-                if(!$scope.trackBy){
+                if($scope.trackBy==undefined){
                     $scope.trackBy='id';
                 };
+                if($scope.checked==undefined){
+                    $scope.checked = false;
+                }
                 $scope.convertArrayToTree=function(data,options){
                     options = options || {};
                     var ID_KEY = options.idKey || 'id';
@@ -32,6 +36,7 @@ angular.module('pu.utils.directives')
                     var item, id, parentId;
 
                     for (var i = 0, length = data.length; i < length; i++) {
+                        data[i].$$expanded = true;
                         item = data[i];
                         id = item[ID_KEY];
                         parentId = item[PARENT_KEY] || 0;
@@ -48,44 +53,55 @@ angular.module('pu.utils.directives')
                             tree.push(item);
                         }
                     };
-
                     return tree[0];
                 };
-                ngModel.$formatters.push(function(modelValue){
-                    for(var i =0;i<$scope.choices.length;i++){
-                        for(var j = 0 ;j<modelValue.length;j++){
-                            if($scope.choices[i][$scope.trackBy]==modelValue[j][$scope.trackBy]){
-                                $scope.choices[i].checked=true;
-                            }
-                        }
-                    }
-                    $scope.treeData = $scope.convertArrayToTree($scope.choices,$scope.convertTreeOption);
-                    $scope.setViewValue(modelValue);
-                });
-                $scope.$watch('choices',function(newVal,oldVal){
-                    if(ngModel.$modelValue!=undefined){
+                $scope.initView = function(modelValue){
+                    if($scope.checked==true){
+                        //如果开启复选模式，则model的值应为array类型
                         for(var i =0;i<$scope.choices.length;i++){
-                            for(var j = 0 ;j<ngModel.$modelValue.length;j++){
-                                if($scope.choices[i][$scope.trackBy]==ngModel.$modelValue[j][$scope.trackBy]){
+                            for(var j = 0 ;j<modelValue.length;j++){
+                                if($scope.choices[i][$scope.trackBy]==modelValue[j][$scope.trackBy]){
                                     $scope.choices[i].checked=true;
                                 }
                             }
                         }
-                        $scope.setViewValue(ngModel.$modelValue);
+                        $scope.setViewValue(modelValue);
+                    }else{
+                        //单选模式下只支持字符串
+                        for(var i =0;i<$scope.choices.length;i++){
+                            if($scope.choices[i][$scope.trackBy]==modelValue){
+                                var tmp = [];
+                                tmp.push($scope.choices[i]);
+                                $scope.setViewValue(tmp);
+                                break;
+                            }
+                        }
+                    }
+                };
+                ngModel.$formatters.push(function(modelValue){
+                    $scope.treeData = $scope.convertArrayToTree($scope.choices,$scope.convertTreeOption);
+                    $scope.initView(modelValue);
+                });
+
+                $scope.$watch('choices',function(newVal,oldVal){
+                    if(ngModel.$modelValue!=undefined){
+                        $scope.initView(ngModel.$modelValue);
                     };
                     $scope.treeData = $scope.convertArrayToTree($scope.choices,$scope.convertTreeOption);
                 },true);
+
                 $scope.checkHandle = function(tree){
                     var checkList = $scope.getCheckItem(tree);
                     ngModel.$setViewValue(checkList);
                     $scope.setViewValue(checkList);
                 };
+
                 $scope.setViewValue = function(checkList){
                     if(checkList == undefined)
                         return;
                     var viewValue="";
                     for(var i =0 ;i<checkList.length ;i++){
-                        viewValue+=checkList[i][$scope.labelField]+","
+                        viewValue+=checkList[i][$scope.label]+","
                     }
                     if(viewValue.length>0){
                         viewValue = viewValue.substring(0,viewValue.length-1);
@@ -101,8 +117,15 @@ angular.module('pu.utils.directives')
                         checkList=checkList.concat($scope.getCheckItem(tree.children[i]));
                     }
                     return checkList;
+                };
+                //复选模式下关闭节点选择事件处理
+                if($scope.checked!=true){
+                    $scope.$on('nodeClicked',function (event) {
+                        $scope.selItem=event.targetScope.treeData;
+                        $scope.selectedViewValue = $scope.selItem[$scope.label];
+                        ngModel.$setViewValue($scope.selItem[$scope.trackBy]);
+                    });
                 }
-
             }
 
         }

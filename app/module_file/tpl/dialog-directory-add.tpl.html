@@ -12,9 +12,7 @@
         <div class="form-group">
             <label for="parentId" class="col-sm-3 control-label">上级目录：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="parentId"  ng-model="item.parentId" ng-options="o.id as o.dirName for o in dirList" required>
-                    <option value="">请选择上级目录</option>`
-                </select>
+                <ui-combotree id="parentId" choices="dirList" convert-tree-option="{idKey:'id',parentKey:'parentId',childrenKey:'children'}" ng-model="item.parentId" checked="false" label="dirName"  ng-required="true"></ui-combotree>
             </div>
         </div>
         <div class="form-group">

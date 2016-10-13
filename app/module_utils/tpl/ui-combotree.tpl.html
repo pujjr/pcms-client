@@ -1,6 +1,6 @@
 <div  uib-dropdown auto-close="outsideClick">
     <input type="text" class="form-control" ng-model="selectedViewValue" ng-required="ngRequired"  placeholder="{{placeholder}}"  uib-dropdown-toggle>
     <div uib-dropdown-menu  role="menu" style="width:100%">
-        <tree tree-data="treeData" can-checked="true" name-field="{{labelField}}" check-handle="checkHandle(treeData)"></tree>
+        <tree tree-data="treeData" can-checked="checked" name-field="{{label}}" check-handle="checkHandle(treeData)"></tree>
     </div>
 </div>

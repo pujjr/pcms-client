@@ -1,22 +1,16 @@
 <form name="form" class="form-horizontal">
     <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑目录</h4>
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增目录模板</h4>
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <label for="dirName" class="col-sm-3 control-label">目录名称：</label>
+            <label for="tplName" class="col-sm-3 control-label">模板名称：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="dirName" placeholder="目录名称" ng-model="item.dirName" required>
+                <input type="text" class="form-control" id="tplName" placeholder="模板名称" ng-model="item.tplName" required>
             </div>
         </div>
         <div class="form-group">
-            <label for="parentId" class="col-sm-3 control-label">上级目录：</label>
-            <div class="col-sm-8">
-                <ui-combotree id="parentId" choices="dirList" convert-tree-option="{idKey:'id',parentKey:'parentId',childrenKey:'children'}" ng-model="item.parentId" checked="false" label="dirName" ng-required="true"></ui-combotree>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="enabled" class="col-sm-3 control-label">是否启用：</label>
+            <label class="col-sm-3 control-label">是否启用：</label>
             <div class="col-sm-8">
                 <select  class="form-control" id="enabled"  ng-model="item.enabled" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
                     <option value="">是否启用</option>`

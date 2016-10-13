@@ -12,6 +12,7 @@ angular.module('pu.utils.services')
                 var item, id, parentId;
 
                 for (var i = 0, length = data.length; i < length; i++) {
+                    data[i].$$expanded = true;
                     item = data[i];
                     id = item[ID_KEY];
                     parentId = item[PARENT_KEY] || 0;

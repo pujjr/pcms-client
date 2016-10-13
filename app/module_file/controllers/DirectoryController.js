@@ -9,7 +9,6 @@ angular.module("pu.file.controllers")
         };
         $scope.queryDirectoryList = function(){
             DirectoryService.queryDirectoryList(false).then(function(response){
-                $scope.dirList = response;
                 $scope.dirTree=ToolsService.convertArrayToTree(response, {
                     idKey: 'id',
                     parentKey: 'parentId',
@@ -17,10 +16,6 @@ angular.module("pu.file.controllers")
                 });
             });
         }
-        $scope.$on('nodeClicked',function (event) {
-            $scope.selNode=event.targetScope.treeData;
-            $scope.subSysAreas = DirectoryService.queryDirectoryListByParentId($scope.selNode.id).$object;
-        });
         $scope.addDir = function(){
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -28,6 +23,7 @@ angular.module("pu.file.controllers")
                 templateUrl :'module_file/tpl/dialog-directory-add.html',
                 controller:function($scope,RestApi){
                     $scope.item={};
+                    $scope.item1=[];
                     $scope.dirList = DirectoryService.queryDirectoryList(false).$object;
                     $scope.ok=function(){
                         modalInstance.close($scope.item);
@@ -51,6 +47,7 @@ angular.module("pu.file.controllers")
                 templateUrl :'module_file/tpl/dialog-directory-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;
+                    $scope.dirList = DirectoryService.queryDirectoryList(false).$object;
                     $scope.ok=function(){
                         DirectoryService.modifyDirectory($scope.item).then(function(){
                             modalInstance.close('修改成功');
@@ -71,5 +68,12 @@ angular.module("pu.file.controllers")
                 $scope.queryDirectoryList();
             })
         };
+        $scope.select = function(item){
+            $scope.selNode=item;
+            $scope.subSysAreas = DirectoryService.queryDirectoryListByParentId($scope.selNode.id).$object;
+        }
+        $scope.checked = function(item){
+            console.log(item);
+        }
     })
 ;

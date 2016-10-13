@@ -1,8 +1,8 @@
-<div ng-class="$getNodeCss(treeData)"  ng-dblclick="$itemExpand(treeData)"   ng-click="$itemClicked(treeData)">
+<div ng-class="$getNodeCss(treeData)"     ng-click="$itemClicked(treeData)" onselectstart="return false" style="-moz-user-select:none;">
     <i ng-class="$getItemIcon(treeData)"   ng-click="$itemExpand(treeData)"></i>
     <span>
         <input type="checkbox" ng-if="canChecked" ng-model="treeData.checked" ng-change="$itemChecked(treeData)"/>
-        {{treeData[nameField]}}
+        <span ng-dblclick="$itemExpand(treeData)">{{treeData[nameField]}}</span>
     </span>
 </div>
 
