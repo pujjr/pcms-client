@@ -12,5 +12,8 @@ angular.module('pu.file.services')
         this.deleteCategory = function(id){
             return RestApi.one("/category",id).remove();
         };
+        this.queryCategoryByTemplateId = function(templateId){
+            return RestApi.all("/category/template").all(templateId).getList();
+        }
 
     });

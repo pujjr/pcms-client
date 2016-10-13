@@ -35,12 +35,17 @@ angular.module('app')
                 .state('app.template',{
                     url:'/template/config',
                     abstract:true,
-                    template: '<div ui-view=""></div>',
-                    controller:'TemplateController'
+                    template: '<div ui-view=""></div>'
                 })
                 .state('app.template.config-step1',{
                     url:'/config-step1/:tplId',
-                    templateUrl:'module_file/tpl/template-config-step1.html'
+                    templateUrl:'module_file/tpl/template-config-step1.html',
+                    controller:'TemplateController'
+                })
+                .state('app.template.config-step2',{
+                    url:'/config-step2/:tplId',
+                    templateUrl:'module_file/tpl/template-config-step2.html',
+                    controller:'TemplateController'
                 })
 
         }

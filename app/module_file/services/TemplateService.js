@@ -12,5 +12,11 @@ angular.module('pu.file.services')
         this.deleteTemplate = function(id){
             return RestApi.one("/template",id).remove();
         };
+        this.saveTemplateDirectory = function(templateId,dirs){
+            return RestApi.one("/template",templateId).all("/saveTemplateDirectory").post(dirs);
+        };
+        this.saveTemplateCategory = function(templateId,categorys){
+            return RestApi.one("/template",templateId).all("saveTemplateCategory").post(categorys);
+        }
 
     });

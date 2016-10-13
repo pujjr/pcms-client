@@ -45,5 +45,15 @@ angular.module('pu.utils.services')
         };
         this.getServerDateTime = function(){
            return  RestApi.one("common","getSystemDate").get();
-        }
+        };
+        this.getTreeCheckedList = function(tree){
+            var checkList = [];
+            if(tree.checked){
+                checkList.push(tree);
+            }
+            for(var i = 0;i<tree.children.length;i++){
+                checkList=checkList.concat(this.getTreeCheckedList(tree.children[i]));
+            }
+            return checkList;
+        };
     });

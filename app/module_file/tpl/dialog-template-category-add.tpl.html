@@ -1,0 +1,24 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>选择模板目录分类</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">目录分类列表：</label>
+            <div class="col-sm-8">
+                <ui-multiselect choices="categoryList"
+                                ng-model="templateCategoryList"
+                                track-by="id"
+                                show-field="categoryName"
+                                model-format="array"
+                                ng-required="true"
+                    <span>{{item.categoryName}}</span>
+                </ui-multiselect>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

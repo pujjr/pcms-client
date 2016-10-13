@@ -15,5 +15,8 @@ angular.module('pu.file.services')
         this.queryDirectoryListByParentId = function(parentId){
             return RestApi.one("/directory",parentId).all("/subdirectory").getList();
         };
+        this.queryDirectoryByTemplateId = function(templateId){
+            return RestApi.all("/directory/template").all(templateId).getList();
+        }
 
     });
