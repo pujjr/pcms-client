@@ -49,6 +49,7 @@ angular.module('pu.utils.directives')
 
                 ngModel.$formatters.push(function(modelValue){
                     $scope.convertModelValue(modelValue);
+                    return modelValue;
                 });
                 //对模型值进行转换操作
                 $scope.convertModelValue = function(modelValue){
@@ -56,7 +57,7 @@ angular.module('pu.utils.directives')
                     if(angular.isArray($scope.choices) && $scope.choices.length>0){
                         if($scope.modelFormat=='string'){
                             if($scope.seperator!=undefined){
-                                modelValArray = modelValue.split($scope.seperator)
+                                modelValArray = modelValue.split($scope.seperator);
                             }else{
                                 modelValArray = modelValue.split(",");
                             };
@@ -86,9 +87,6 @@ angular.module('pu.utils.directives')
                         $scope.setViewValue();
                     }
                 }
-                ngModel.$parsers.push(function(viewValue){
-                   return viewValue;
-                });
                 $scope.onCheck = function(item){
                     item.checked = !item.checked;
                     $scope.setViewValue();
@@ -96,16 +94,16 @@ angular.module('pu.utils.directives')
                 };
                 $scope.setModelValue = function(){
                     if($scope.modelFormat =="string"){
-                        var modelValue="";
+                        var newModelValue="";
                         angular.forEach($scope.choices,function(item){
                             if(item.checked==true){
-                                modelValue+=item[$scope.trackBy]+$scope.seperator;
+                                newModelValue+=item[$scope.trackBy]+$scope.seperator;
                             }
                         });
-                        if(modelValue.length>0){
-                            modelValue = modelValue.substring(0,modelValue.length-1);
+                        if(newModelValue.length>0){
+                            newModelValue = newModelValue.substring(0,newModelValue.length-1);
                         }
-                        ngModel.$setViewValue(modelValue);
+                        ngModel.$setViewValue(newModelValue);
                     }else{
                         var modelList =[];
                         angular.forEach($scope.choices,function(item){
@@ -127,12 +125,12 @@ angular.module('pu.utils.directives')
                         viewValue = viewValue.substring(0,viewValue.length-1);
                     $scope.selectedViewValue = viewValue;
                 }
-                $scope.$watchCollection('choices',function(newVal,oldVal){
+                var watchChoices = $scope.$watch('choices',function(newVal,oldVal){
                     if(newVal == oldVal){
                         return;
                     };
                     $scope.convertModelValue(ngModel.$modelValue);
-                })
+                },true)
 
             }
 

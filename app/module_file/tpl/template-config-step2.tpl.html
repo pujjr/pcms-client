@@ -10,8 +10,7 @@
                 <button class="btn btn-link" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
                 <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
                 -->
-                <button class="btn btn-success btn-sm" type="button"  ng-click="commitSignContractTask()"><i class="fa fa-check m-r-sm"></i>下一步</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>上一步</button>
+                <button class="btn btn-default btn-sm" type="button"  ng-click="backToStep1()"><i class="fa  fa-chevron-circle-left m-r-sm"></i>上一步</button>
             </div>
         </header>
     </div>
@@ -19,9 +18,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="console-step row m-b">
-                    <div class="step  col-md-4 ">1.设置模板目录</div>
-                    <div class="step  col-md-4 step-active">2.设置模板分类目录</div>
-                    <div class="step  col-md-4">3.设置分类目录必传项</div>
+                    <div class="step  col-md-6">1.设置模板目录</div>
+                    <div class="step  col-md-6 step-active">2.设置模板分类目录及必传项</div>
                 </div>
             </div>
         </div>
@@ -47,7 +45,8 @@
                 <td>{{item.categoryName}}</td>
                 <td>{{item.categoryKey}}</td>
                 <td>
-                    <a href="javascript:" ui-sref="app.template.config-step1({'tplId':item.id})">配置分类目录</a>
+                    <a href="javascript:" ng-click="configTemplateCategoryDir(item.id)">配置分类目录</a>
+                    <a href="javascript:" ng-click="configTemplateCategoryRequiredDir(item.id)">配置分类必传项</a>
                 </td>
             </tr>
             </tbody>

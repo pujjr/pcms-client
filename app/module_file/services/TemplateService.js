@@ -17,6 +17,15 @@ angular.module('pu.file.services')
         };
         this.saveTemplateCategory = function(templateId,categorys){
             return RestApi.one("/template",templateId).all("saveTemplateCategory").post(categorys);
+        };
+        this.queryTemplateCategoryInfo = function(templateId,categoryId){
+            return RestApi.all("/template/getTemplateCategoryInfo").one(templateId,categoryId).get();
+        };
+        this.saveTemplateCategoryDir = function(templateId,categoryId,dirs){
+            return RestApi.all("/template/saveTemplateCategoryDir").all(templateId).all(categoryId).post(dirs);
+        }
+        this.saveTemplateCategoryRequestDir = function(templateId,categoryId,dirs){
+            return RestApi.all("/template/saveTemplateCategoryRequestDir").all(templateId).all(categoryId).post(dirs);
         }
 
     });

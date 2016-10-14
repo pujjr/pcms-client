@@ -111,10 +111,13 @@ angular.module("pu.file.controllers")
                 templateUrl :'module_file/tpl/dialog-template-category-add.html',
                 controller:function($scope,RestApi,tplId){
                     $scope.tplId=tplId;
+                    CategoryService.queryCategoryByTemplateId($scope.tplId).then(function(response){
+                        $scope.selectTemplateCategoryList = response;
+                    });
                     $scope.categoryList = CategoryService.queryCategoryList().$object;
-                    $scope.templateCategoryList = CategoryService.queryCategoryByTemplateId($scope.tplId).$object;
+
                     $scope.ok=function(){
-                        TemplateService.saveTemplateCategory($scope.tplId,$scope.templateCategoryList).then(function(){
+                        TemplateService.saveTemplateCategory($scope.tplId,$scope.selectTemplateCategoryList).then(function(){
                             modalInstance.close('操作成功');
                         })
                     };
@@ -128,6 +131,116 @@ angular.module("pu.file.controllers")
                 $scope.initConfigTemplateCategory();
             })
         }
+        $scope.configTemplateCategoryDir = function(categoryId){
+            var tplId = $stateParams.tplId;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                resolve:{
+                    tplId:function(){
+                        return tplId;
+                    },
+                    categoryId:function(){
+                        return categoryId;
+                    }
+                },
+                templateUrl :'module_file/tpl/dialog-template-category-dir-add.html',
+                controller:function($scope,RestApi,tplId,categoryId){
+                    $scope.tplId=tplId;
+                    $scope.categoryId = categoryId;
+                    DirectoryService.queryDirectoryByTemplateId($scope.tplId).then(function(response){
+                        $scope.templateDirList = response;
+                        TemplateService.queryTemplateCategoryInfo($scope.tplId,$scope.categoryId).then(function(response){
+                            $scope.templateCategoryVo = response;
+                            angular.forEach($scope.templateCategoryVo.templateCategoryDirs,function(item){
+                                for(var i=0;i<$scope.templateDirList.length;i++){
+                                    if($scope.templateDirList[i].id==item.id){
+                                        $scope.templateDirList[i].checked=true;
+                                        break;
+                                    }
+                                }
+                            });
+                            $scope.templateDirTree = ToolsService.convertArrayToTree($scope.templateDirList,{
+                                idKey: 'id',
+                                parentKey: 'parentId',
+                                childrenKey: 'children'
+                            });
+                        })
+                    });
 
+                    $scope.ok=function(){
+                        var checkList = ToolsService.getTreeCheckedList($scope.templateDirTree);
+                        TemplateService.saveTemplateCategoryDir($scope.tplId,$scope.categoryId,checkList).then(function(){
+                            modalInstance.close('操作成功');
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.initConfigTemplateCategory();
+            })
+        };
+        $scope.configTemplateCategoryRequiredDir = function(categoryId){
+            var tplId = $stateParams.tplId;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                resolve:{
+                    tplId:function(){
+                        return tplId;
+                    },
+                    categoryId:function(){
+                        return categoryId;
+                    }
+                },
+                templateUrl :'module_file/tpl/dialog-template-category-required-dir-add.html',
+                controller:function($scope,RestApi,tplId,categoryId){
+                    $scope.tplId=tplId;
+                    $scope.categoryId = categoryId;
+                    TemplateService.queryTemplateCategoryInfo($scope.tplId,$scope.categoryId).then(function(response){
+                        $scope.templateCategoryVo = response;
+                        angular.forEach($scope.templateCategoryVo.templateCategoryRequireDirs,function(item){
+                            for(var i=0;i<$scope.templateCategoryVo.templateCategoryDirs.length;i++){
+                                if($scope.templateCategoryVo.templateCategoryDirs[i].id==item.id){
+                                    $scope.templateCategoryVo.templateCategoryDirs[i].checked=true;
+                                    break;
+                                }
+                            }
+                        });
+                        $scope.templateDirTree = ToolsService.convertArrayToTree($scope.templateCategoryVo.templateCategoryDirs,{
+                            idKey: 'id',
+                            parentKey: 'parentId',
+                            childrenKey: 'children'
+                        });
+                    })
+
+                    $scope.ok=function(){
+                        var checkList = ToolsService.getTreeCheckedList($scope.templateDirTree);
+                        TemplateService.saveTemplateCategoryRequestDir($scope.tplId,$scope.categoryId,checkList).then(function(){
+                            modalInstance.close('操作成功');
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.initConfigTemplateCategory();
+            })
+        };
+        $scope.backToStep1 = function(){
+            $state.go(
+                'app.template.config-step1',
+                {
+                    'tplId':$stateParams.tplId
+                }
+            )
+        }
     })
 ;

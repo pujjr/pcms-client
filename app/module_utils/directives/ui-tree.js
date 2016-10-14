@@ -14,6 +14,7 @@ angular.module('pu.utils.directives')
                 treeData: '=',
                 checked:'=',
                 label:'@',
+                mode:'@',
                 onSelect:'&',
                 onChecked:'&'
             },

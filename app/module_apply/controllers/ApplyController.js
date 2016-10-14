@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.apply.controllers")
     .controller('ApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,GpsService,ToolsService,SysAreaService,TaskService,modal,
-                                            SysDictService,ProductService,CarService,ApplyService,CalService,FileUploader,RestApi) {
+                                            SysDictService,ProductService,CarService,ApplyService,CalService,FileUploader,FileService,RestApi) {
         $scope.initApplyAdd = function () {
             //申请信息初始化一些选项
             $scope.applyInfo = {};
@@ -632,6 +632,15 @@ angular.module("pu.apply.controllers")
             });
             ;
         };
+        $scope.initUploadApplyFile = function(){
+            FileService.queryApplyFormCategoryDirectoryList($scope.applyInfo.appId,'sign').then(function(response){
+                $scope.signDirTree=ToolsService.convertArrayToTree(response, {
+                    idKey: 'dirId',
+                    parentKey: 'parentId',
+                    childrenKey: 'children'
+                });
+            })
+        }
         $scope.uploader = new FileUploader({
             url:'http://127.0.0.1:8080/pcms-web/service/uploadFile',
             headers:{
@@ -683,6 +692,7 @@ angular.module("pu.apply.controllers")
                 $scope.data = response;
             })*/
         };
+
         $scope.zoomInImage = function(item,imgUrls){
             var modalInstance = $uibModal.open({
                 animation: true,

@@ -35,13 +35,13 @@
             </form>
 
         </uib-tab>
-        <uib-tab index="1" select="readFile()">
+        <uib-tab index="1" select="initUploadApplyFile()">
             <uib-tab-heading>
                 <span>上传申请资料</span>
             </uib-tab-heading>
             <div style="height:100%;top: 0px;bottom: 1px;left: 0px;">
                 <div class="img-left">
-
+                    <ui-tree tree-data="signDirTree" label="dirName"  checked="false" on-select="select($item)"></ui-tree>
                 </div>
                 <div  class="img-center">
                     <div class="container">

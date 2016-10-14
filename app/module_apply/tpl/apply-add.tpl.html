@@ -35,10 +35,43 @@
             </form>
 
         </uib-tab>
-        <uib-tab index="1">
+        <uib-tab index="1" select="initUploadApplyFile()">
             <uib-tab-heading>
                 <span>上传申请资料</span>
             </uib-tab-heading>
+            <div style="height:100%;top: 0px;bottom: 1px;left: 0px;">
+                <div class="img-left">
+                    <ui-tree tree-data="signDirTree" label="dirName"  checked="true" on-select="select($item)"></ui-tree>
+                </div>
+                <div  class="img-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3"  ng-repeat="item in imgIds">
+                                <div class="thumbnail">
+                                    <a ng-click="zoomInImage(item,imgIds)" class="zoom-in">
+                                        <img ng-src="{{item}}"
+                                             alt="通用的占位符缩略图">
+                                    </a>
+
+                                    <div class="caption">
+                                        <p>
+                                            <a class="btn btn-primary" ng-click="zoomInImage(item,imgIds)" role="button">
+                                                放大
+                                            </a>
+                                            <a href="#" class="btn btn-default" role="button">
+                                                按钮
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-right">
+
+                </div>
+            </div>
         </uib-tab>
     </uib-tabset>
 
