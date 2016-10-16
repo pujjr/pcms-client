@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="modal-body file-zoom-dialog">
-        <img ng-src="{{item}}" style="margin-top: 0px" class="img-responsive" ng-class="{'rotate-90':rotate==90,'rotate-180':rotate==180,'rotate-270':rotate==270}">
+        <img ng-src="{{imgUrl}}" style="margin-top: 0px" class="img-responsive" ng-class="{'rotate-90':rotate==90,'rotate-180':rotate==180,'rotate-270':rotate==270}">
         <button type="button" class="btn btn-navigate btn-prev" ng-disabled="curIdx==0" ng-click="prevView()" title="View previous file"><i class="glyphicon glyphicon-triangle-left"></i></button>
         <button type="button" class="btn btn-navigate btn-next" ng-disabled="curIdx == endIdx" ng-click="nextView()" title="View next file"><i class="glyphicon glyphicon-triangle-right"></i></button>
     </div>

@@ -1,0 +1,18 @@
+/**
+ * Created by dengpan on 2016/10/16.
+ */
+var BASE_URL='http://127.0.0.1:8080/pcms-web';
+var URL = {
+    /**认证地址**/
+    AUTH_SERVER_URL:BASE_URL,
+    /**接口调用地址**/
+    API_SERVER_URL:BASE_URL+'/service',
+    /**文件下载地址**/
+    FILE_DOWNLOAD_URL:BASE_URL+'/image/file/img/',
+    /**文件上传地址**/
+    FILE_UPLOAD_URL:BASE_URL+'/service/file/uploadFile/',
+    /**流程编辑器地址**/
+    WORKFLOW_EDITOR_URL:BASE_URL+'/modeler.html?modelId=',
+    /**流程图片查看地址**/
+    WORKFLOW_IMG_URL:BASE_URL+'/public/workflow/config/img/'
+}

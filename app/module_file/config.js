@@ -1,7 +1,9 @@
 angular.module("pu.file",
     [
         'pu.file.services',
-        'pu.file.controllers'
+        'pu.file.controllers',
+        'pu.file.directives'
     ]);
 angular.module('pu.file.services',[]);
 angular.module('pu.file.controllers',[]);
+angular.module('pu.file.directives',[]);

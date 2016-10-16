@@ -1,7 +1,7 @@
 angular.module('app')
     .factory('AuthRestangular', ['Restangular', 'modal', function (Restangular, modal) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web');
+            RestangularConfigurer.setBaseUrl(URL.AUTH_SERVER_URL);
             RestangularConfigurer.setErrorInterceptor(function (response, deferred, responseHandler) {
                 modal.error("系统错误，请重试");
             });
@@ -9,7 +9,7 @@ angular.module('app')
     }])
     .factory('BackgroundRestApi', ['Restangular', 'modal', function (Restangular) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/service');
+            RestangularConfigurer.setBaseUrl(URL.API_SERVER_URL);
             RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
                 return {
                     headers: {
@@ -21,7 +21,7 @@ angular.module('app')
     }])
     .factory('RestApi', ['Restangular', '$state', 'modal', '$rootScope', '$injector', function (Restangular, $state, modal, $rootScope, $injector) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/service');
+            RestangularConfigurer.setBaseUrl(URL.API_SERVER_URL);
             RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
                 if (operation == 'getList') {
                     params.pageSize = params.pageSize || $rootScope.paginationInfo.pageSize;
@@ -72,12 +72,12 @@ angular.module('app')
     }])
     .factory('QuestionRestangular',function(CarCreditRestangular){
         return RestApi.withConfig(function(RestangularConfigurer){
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/');
+            RestangularConfigurer.setBaseUrl(URL.API_SERVER_URL);
         })
     })
     .factory('CarCreditRestangular',function(RestApi){
         return  RestApi.withConfig(function(RestangularConfigurer){
-            RestangularConfigurer.setBaseUrl('http://127.0.0.1:8080/pcms-web/service');
+            RestangularConfigurer.setBaseUrl(URL.API_SERVER_URL);
         })
     })
 

@@ -6,6 +6,7 @@ angular.module('pu.utils.services')
                 var ID_KEY = options.idKey || 'id';
                 var PARENT_KEY = options.parentKey || 'parent';
                 var CHILDREN_KEY = options.childrenKey || 'children';
+                var ignoreTopLevel = options.ignoreTopLevel || false;
 
                 var tree = [],
                     childrenOf = {};
@@ -29,7 +30,9 @@ angular.module('pu.utils.services')
                         tree.push(item);
                     }
                 };
-
+                if(ignoreTopLevel){
+                    return tree[0].children[0];
+                }
                 return tree[0];
             }
         };

@@ -197,9 +197,6 @@ angular.module("pu.workflow.controllers")
                 toaster.pop('success', '操作提醒', '启动流程成功');
             })
         };
-        $scope.getWorkflowImgUrl = function(){
-            return "http://127.0.0.1:8080/gpsserver/service/workflow/config/img/"+$state.params.id;
-        }
         $scope.configInit = function(){
             $scope.workflowImgUrl=WorkflowService.getWorkflowImageUrl($state.params.id);
             WorkflowService.queryWorkflowBaseInfo($state.params.id).then(function(response){

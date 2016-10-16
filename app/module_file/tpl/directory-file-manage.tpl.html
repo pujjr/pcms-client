@@ -1,0 +1,42 @@
+<div class="img-container" style="height:100%;top: 0px;bottom: 1px;left: 0px;">
+    <div class="img-left">
+        <ui-tree tree-data="dirTree" label="dirName"  checked="false" on-select="selectDir($item)"></ui-tree>
+    </div>
+    <div  class="img-center" >
+        <div class="data-table-container" >
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                    <span class="fs-title"></span>
+                </div>
+                <div class="data-table-header__actions">
+                    <button type="button" class="btn btn-default" ng-click="moveFile()">
+                        <i class="fa fa-briefcase m-r-sm" aria-hidden="true"></i>转移目录
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="fileUpload()"><i class="fa fa-cloud-upload m-r-sm" style="color:green"></i>上传附件</button>
+                </div>
+            </header>
+            <div class="container-fluid m-t" >
+                <div class="row" ng-repeat="colList in fileShowGrid">
+                    <div class="col-md-3"  ng-repeat="item in colList">
+                        <div ng-class="{'img-selected-theumbnail':item.selected==true}" class="thumbnail">
+                            <a ng-click="zoomInImage(item,fileList)" class="zoom-in">
+                                <img ng-src="{{item.imgUrl}}" alt="通用的占位符缩略图">
+                            </a>
+                            <div>
+                                <div class="caption">
+                                    <input type="checkbox" ng-model="item.selected">
+                                    <div class="pull-right">
+                                        <button type="button" class="btn btn-default btn-xs" style="min-height: 20px"><i class="glyphicon glyphicon-trash text-danger"></i></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

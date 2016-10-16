@@ -14,10 +14,10 @@ angular.module('pu.workflow.services')
         };
         this.showWorkflowEditor=function(modelId){
             var token = window.localStorage.Authorization;
-            $window.open(BaseUrl+WorkflowUrl+modelId+"&token="+token);
+            $window.open(URL.WORKFLOW_EDITOR_URL+modelId+"&token="+token);
         };
         this.getWorkflowImageUrl = function (id){
-            return BaseUrl+"/public/workflow/config/img/"+id;
+            return URL.WORKFLOW_IMG_URL+id;
         }
         this.setMainVersionAct = function(workflowDefineId,versionId){
             return RestApi.one("/workflow",workflowDefineId).one("/setActivateVersion",versionId).get();

@@ -12,7 +12,7 @@ angular.module('pu.access.services')
                     $rootScope.loginStatus = "离线";
                 });
                 uploadStatus();
-            },15000);
+            },60000);
         };
         this.login = function (id, passwd) {
             var user = {};

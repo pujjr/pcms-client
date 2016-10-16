@@ -35,57 +35,17 @@
             </form>
 
         </uib-tab>
-        <uib-tab index="1" select="initUploadApplyFile()">
+        <uib-tab index="1" select="initApplyFileManage()">
             <uib-tab-heading>
-                <span>上传申请资料</span>
+                <span>申请资料</span>
             </uib-tab-heading>
-            <div style="height:100%;top: 0px;bottom: 1px;left: 0px;">
-                <div class="img-left">
-                    <ui-tree tree-data="signDirTree" label="dirName"  checked="false" on-select="select($item)"></ui-tree>
-                </div>
-                <div  class="img-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3"  ng-repeat="item in imgIds">
-                                <div class="thumbnail">
-                                    <a ng-click="zoomInImage(item,imgIds)" class="zoom-in">
-                                        <img ng-src="{{item}}"
-                                             alt="通用的占位符缩略图">
-                                    </a>
-
-                                    <div class="caption">
-                                        <p>
-                                            <a class="btn btn-primary" ng-click="zoomInImage(item,imgIds)" role="button">
-                                                放大
-                                            </a>
-                                            <a href="#" class="btn btn-default" role="button">
-                                                按钮
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-right">
-
-                </div>
-            </div>
-
-
-<!--
-
-            <div nv-file-drop uploader="uploader" style="border: 2px solid red;width: 400px;height:200px">
-
-            </div>
-            <div ng-repeat="item in uploader.queue">
-                <span ng-bind="item.file.name"></span><br/>
-                <div ng-thumb="{ file: item._file, height:200,width:200}"></div>
-                <button type="button" ng-click="item.remove()">删除</button>
-            </div>
-            <button type="button" ng-click="uploader.uploadAll()">上传</button>
-            -->
+            <ng-file-manage on-init="initApplyFileComponent(interface)"></ng-file-manage>
+        </uib-tab>
+        <uib-tab index="2" select="initCheckFileManage()">
+            <uib-tab-heading>
+                <span>审核资料</span>
+            </uib-tab-heading>
+            <ng-file-manage on-init="initCheckFileComponent(interface)"></ng-file-manage>
         </uib-tab>
     </uib-tabset>
 

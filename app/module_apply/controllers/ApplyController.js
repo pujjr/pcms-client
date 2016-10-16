@@ -632,123 +632,19 @@ angular.module("pu.apply.controllers")
             });
             ;
         };
-        $scope.initUploadApplyFile = function(){
-            FileService.queryApplyFormCategoryDirectoryList($scope.applyInfo.appId,'sign').then(function(response){
-                $scope.signDirTree=ToolsService.convertArrayToTree(response, {
-                    idKey: 'dirId',
-                    parentKey: 'parentId',
-                    childrenKey: 'children'
-                });
-            })
+        $scope.initApplyFileManage=function(){
+            $scope.applyFileInterface.init($scope.applyInfo.appId,'sign');
+        };
+        $scope.initApplyFileComponent = function(fileInterface){
+            $scope.applyFileInterface = fileInterface;
+        };
+        $scope.initCheckFileComponent = function(fileInterface){
+            $scope.checkFileInterface = fileInterface;
+        };
+        $scope.initCheckFileManage=function(){
+            $scope.checkFileInterface.init($scope.applyInfo.appId,'check');
         }
-        $scope.uploader = new FileUploader({
-            url:'http://127.0.0.1:8080/pcms-web/service/uploadFile',
-            headers:{
-                'Authorization': window.localStorage.Authorization
-            }
-        });
 
-        $scope.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };
-        $scope.uploader.onAfterAddingFile = function(fileItem) {
-            console.info('onAfterAddingFile', fileItem);
-        };
-        $scope.uploader.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
-        };
-        $scope.uploader.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
-        };
-        $scope.uploader.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
-        };
-        $scope.uploader.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
-        };
-        $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-        };
-        $scope.readFile = function(){
-            $scope.imgIds=[
-                'http://127.0.0.1:8080/pcms-web/public/img/1',
-                'http://127.0.0.1:8080/pcms-web/public/img/2'
-            ]
-            /*
-            $scope.thumbs={};
-            RestApi.one("/getFile","111").get({fileName:'北区.jpg'}).then(function(response){
-                $scope.data = response;
-            })*/
-        };
 
-        $scope.zoomInImage = function(item,imgUrls){
-            var modalInstance = $uibModal.open({
-                animation: true,
-                backdrop:'false',
-                size:'lg',
-                resolve:{
-                    item:function(){
-                        return item;
-                    },
-                    imgUrls:function(){
-                        return imgUrls;
-                    }
-                },
-                templateUrl :'module_apply/tpl/dialog-image-zoom-in.html',
-                controller:function($scope,item,imgUrls){
-                    $scope.rotate=0;
-                    $scope.item=item;
-                    $scope.imgUrls = imgUrls;
-                    $scope.endIdx = imgUrls.length-1;
-                    for(var i = 0;i<imgUrls.length;i++){
-                        if(item == imgUrls[i]){
-                            $scope.curIdx = i ;
-                            break;;
-                        }
-                    }
-                    $scope.ok=function(){
-                        modalInstance.close();
-                    };
-                    $scope.prevView = function(){
-                        $scope.rotate=0;
-                        $scope.item = imgUrls[--$scope.curIdx];
-                    }
-                    $scope.nextView = function(){
-                        $scope.rotate=0;
-                        $scope.item = imgUrls[++$scope.curIdx];
-                    }
-                    $scope.rotateLeft = function(){
-                        if($scope.rotate==0){
-                            $scope.rotate=270;
-                        }else{
-                            $scope.rotate -=90;
-                        }
-
-                    }
-                    $scope.rotateRight = function(){
-                        if($scope.rotate==360){
-                            $scope.rotate=90;
-                        }else{
-                            $scope.rotate+= 90;
-                        }
-                    }
-                    $scope.cancel = function () {
-                        modalInstance.dismiss('cancel');
-                    };
-                }
-            });
-        }
     })
 ;

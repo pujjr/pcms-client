@@ -1,0 +1,39 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <div class="pull-left">
+            <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>上传文件({{uploader.queue.length}})-<small>请拖动文件至虚线框内</small></h4>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-primary file-button" type="button">
+                <i class="glyphicon glyphicon-folder-open"></i><input type="file" name="key" nv-file-select="" uploader="uploader" multiple />选择文件..
+            </button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div nv-file-drop nv-file-over  uploader="uploader" over-class="another-file-over-class"  class="well-lg" style="overflow-y: auto; overflow-x:hidden; border: dotted 3px lightgray;height:400px">
+                <div clas="row" ng-repeat="item in fileGrid">
+                    <div class="col-xs-3 col-md-3" ng-repeat="fileItem in item.fileGridCol">
+                        <div  class="thumbnail" >
+                            <div ng-thumb="{file:fileItem._file,width:150,height:150}">
+                                <canvas>
+                                </canvas>
+                            </div>
+                            <div class="caption">
+                                <uib-progressbar max="fileItem.max" value="fileItem.percent" ng-if="fileItem.status=='uploading'"><span style="color:white; white-space:nowrap;">{{fileItem.percent}} / {{fileItem.max}}</span></uib-progressbar>
+                                <button class="btn btn-default" ng-if="fileItem.status=='init'" type="button" ng-click="deleteFileItem(fileItem)"><i class="glyphicon glyphicon-trash text-danger"></i></button>
+                                <span ng-if="fileItem.status=='uploadSuccess'"><i class="fa fa-check-circle-o fa-2x text-success" aria-hidden="true"></i></span>
+                                <span ng-if="fileItem.status=='uploadError'"><i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="upload()"><i class="glyphicon glyphicon-arrow-up"></i>上传</button>
+        <button class="btn btn-danger btn-modal-left" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

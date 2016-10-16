@@ -24,6 +24,7 @@ angular.module('pu.utils.directives')
                     $scope.selItem=event.targetScope.treeData;
                     $scope.onSelect({$item:$scope.selItem});
                 });
+
             }
         };
     });
