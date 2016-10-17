@@ -21,5 +21,6 @@ angular.module('app', [
     'pu.apply',
     'pu.car',
     'pu.task',
-    'pu.file'
+    'pu.file',
+    'pu.gps'
 ])

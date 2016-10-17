@@ -92,18 +92,7 @@ angular.module('app')
                     url:'/list',
                     templateUrl:'module_system/tpl/bankinfo-list.html'
                 })
-                //GPS供应商参数管理
-                .state('app.gpssupplier',{
-                    abstract: true,
-                    url:'/gpssupplier',
-                    template:'<div ui-view=""></div>',
-                    controller: 'GpsController'
-                })
-                //GPS供应商参数管理-查询列表
-                .state('app.gpssupplier.list',{
-                    url:'/list',
-                    templateUrl:'module_system/tpl/gpssupplier-list.html'
-                })
+
                 //保险公司参数管理
                 .state('app.insurance',{
                     abstract: true,

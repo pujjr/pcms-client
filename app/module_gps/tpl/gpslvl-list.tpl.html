@@ -1,43 +1,31 @@
 <div ng-init="init()">
     <div class="panel_main">
-        <div class="panel-header">
-            <div class="panel-header-wrapper">
-                <h2 class="panel-header-title">GPS供应商管理</h2>
-            </div>
-        </div>
         <div class="data-table-container">
             <header class="data-table-header">
                 <div class="data-table-header__label">
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="addGpsSupplier()"><i class="fa fa-plus m-r-sm"></i>增加</button>
+                    <button class="btn btn-sm btn-default" type="button" ng-click="addGpsLvl()"><i class="fa fa-plus m-r-sm"></i>增加</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>供应商名称</th>
-                    <th>供应商地址</th>
-                    <th>供应商联系人</th>
-                    <th>供应商电话</th>
-                    <th>是否启用</th>
+                    <th>档位名称</th>
+                    <th>销售价</th>
+                    <th>成本价</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in gpsSupplierList">
+                <tr ng-repeat="item in gpsLvlList">
                     <td>{{$index+1}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.address}}</td>
-                    <td>{{item.linkman}}</td>
-                    <td>{{item.tel}}</td>
+                    <td>{{item.lvlName}}</td>
+                    <td>{{item.salePrice}}</td>
+                    <td>{{item.costPrice}}</td>
                     <td>
-                        <span ng-if="item.enabled==true">是</span>
-                        <span ng-if="item.enabled!=true">否</span>
-                    </td>
-                    <td>
-                        <a href="javascript:" ng-click="editGpsSupplier(item)">编辑</a>
+                        <a href="javascript:" ng-click="editGpsLvl(item)">编辑</a>
                     </td>
                 </tr>
                 </tbody>

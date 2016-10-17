@@ -100,6 +100,7 @@ angular.module("pu.system.controllers")
                     $scope.areaList = SysAreaService.querySysAreaList().$object;
                     $scope.branchTypeList = SysDictService.queryDictDataByTypeCode("jglx").$object;
                     $scope.dealerLvlList = SysDictService.queryDictDataByTypeCode("jxsjb").$object;
+                    $scope.dealerTypeList = SysDictService.queryDictDataByTypeCode("jxslx").$object;
                     $scope.loanChannelList = SysDictService.queryDictDataByTypeCode("fkqd").$object;
                     $scope.gpsLvlList = GpsService.queryAllGpsLvlList().$object;
                     $scope.allProductList = ProductService.queryAllEnableProductList().$object;
