@@ -88,16 +88,17 @@ angular.module('pu.file.services')
                     };
                     $scope.upload = function(){
                         if($scope.uploader.queue.length==0){
-                            modal.info('操作提醒','未选择文件');
+                            modal.info('操作提醒','文件队列为空');
                         }else{
-                            modal.confirm('操作提醒','是否上传文件').then(function(){
+                            modal.confirm('操作提醒','确认上传文件？').then(function(){
+                                $scope.uploadStatus='uploading';
                                 $scope.uploader.uploadAll();
                             })
                         }
                     }
                     $scope.cancel = function () {
                         if($scope.uploader.queue.length!=0){
-                            modal.confirm('操作提醒','有未上传文件，是否继续退出?').then(function(){
+                            modal.confirm('操作提醒','还有未上传文件，是否继续退出？').then(function(){
                                 modalInstance.close();
                             })
                         }else{
@@ -146,9 +147,13 @@ angular.module('pu.file.services')
                     };
                     $scope.uploader.onCompleteAll = function() {
                         console.info('onCompleteAll');
+                        $scope.uploadStatus='complete';
                     };
                 }
             });
             return modalInstance.result;
+        };
+        this.deleteFile = function(fileId){
+            return RestApi.one("/file",fileId).remove();
         }
     });

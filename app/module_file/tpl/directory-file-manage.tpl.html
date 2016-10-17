@@ -9,10 +9,10 @@
                     <span class="fs-title"></span>
                 </div>
                 <div class="data-table-header__actions">
-                    <button type="button" class="btn btn-default" ng-click="moveFile()">
+                    <button type="button" class="btn btn-default" ng-if="enableMove" ng-click="moveFile()">
                         <i class="fa fa-briefcase m-r-sm" aria-hidden="true"></i>转移目录
                     </button>
-                    <button type="button" class="btn btn-default" ng-click="fileUpload()"><i class="fa fa-cloud-upload m-r-sm" style="color:green"></i>上传附件</button>
+                    <button type="button" class="btn btn-default" ng-if="enableUpload" ng-click="fileUpload()"><i class="fa fa-cloud-upload m-r-sm" style="color:green"></i>上传附件</button>
                 </div>
             </header>
             <div class="container-fluid m-t" >
@@ -20,13 +20,13 @@
                     <div class="col-md-3"  ng-repeat="item in colList">
                         <div ng-class="{'img-selected-theumbnail':item.selected==true}" class="thumbnail">
                             <a ng-click="zoomInImage(item,fileList)" class="zoom-in">
-                                <img ng-src="{{item.imgUrl}}" alt="通用的占位符缩略图">
+                                <img ng-src="{{item.imgUrlPrev}}" alt="通用的占位符缩略图">
                             </a>
                             <div>
                                 <div class="caption">
                                     <input type="checkbox" ng-model="item.selected">
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-default btn-xs" style="min-height: 20px"><i class="glyphicon glyphicon-trash text-danger"></i></button>
+                                        <button type="button" ng-click="deleteFile(item.id)" class="btn btn-default btn-xs"  ng-if="enableDelete"  style="min-height: 20px"><i class="glyphicon glyphicon-trash text-danger"></i></button>
                                     </div>
                                 </div>
 

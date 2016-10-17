@@ -14,5 +14,7 @@ var URL = {
     /**流程编辑器地址**/
     WORKFLOW_EDITOR_URL:BASE_URL+'/modeler.html?modelId=',
     /**流程图片查看地址**/
-    WORKFLOW_IMG_URL:BASE_URL+'/public/workflow/config/img/'
+    WORKFLOW_IMG_URL:BASE_URL+'/public/workflow/config/img/',
+    /**OSS地址**/
+    OSS_URL:'http://pcms-test.oss-cn-hzfinance.aliyuncs.com/'
 }

@@ -4,7 +4,7 @@
             <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>上传文件({{uploader.queue.length}})-<small>请拖动文件至虚线框内</small></h4>
         </div>
         <div class="pull-right">
-            <button class="btn btn-primary file-button" type="button">
+            <button class="btn btn-primary file-button" ng-disabled="uploadStatus=='uploading'" type="button">
                 <i class="glyphicon glyphicon-folder-open"></i><input type="file" name="key" nv-file-select="" uploader="uploader" multiple />选择文件..
             </button>
         </div>
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success" type="button" ng-click="upload()"><i class="glyphicon glyphicon-arrow-up"></i>上传</button>
-        <button class="btn btn-danger btn-modal-left" type="button" ng-click="cancel()">关闭</button>
+        <button class="btn btn-success" ng-disabled="uploadStatus=='uploading'" type="button" ng-click="upload()"><i class="glyphicon glyphicon-arrow-up"></i>上传</button>
+        <button class="btn btn-danger btn-modal-left" ng-disabled="uploadStatus=='uploading'" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>

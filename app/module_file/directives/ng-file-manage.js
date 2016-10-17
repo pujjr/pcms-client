@@ -7,19 +7,32 @@
  * # tree
  */
 angular.module('pu.utils.directives')
-    .directive('ngFileManage', function ($compile,FileService,ToolsService,modal,$uibModal) {
+    .directive('ngFileManage', function ($compile,FileService,ToolsService,modal,$uibModal,toaster) {
         return {
             restrict: "E",
             scope:{
-                onInit:'&'
+                onInit:'&',
+                options:'='
             },
             templateUrl:'module_file/tpl/directory-file-manage.html',
             link:function($scope,element,attrs){
-                $scope.init = function(businessId,categoryKey,uploadOptions,authOptions){
+                $scope.options = $scope.options || {};
+                if($scope.options.enableMove == undefined){
+                    $scope.options.enableMove = true;
+                };
+                if($scope.options.enableUpload == undefined){
+                    $scope.options.enableUpload = true;
+                };
+                if($scope.options.enableDelete == undefined){
+                    $scope.options.enableDelete = true;
+                }
+                $scope.enableMove = $scope.options.enableMove;
+                $scope.enableUpload = $scope.options.enableUpload;
+                $scope.enableDelete = $scope.options.enableDelete;
+                $scope.init = function(businessId,categoryKey,uploadOptions){
                     $scope.businessId = businessId;
                     $scope.categoryKey = categoryKey;
                     $scope.uploadOptions = uploadOptions;
-                    $scope.authOptions = authOptions;
                     $scope.readDir();
                 };
                 $scope.reInit = function(){
@@ -51,7 +64,8 @@ angular.module('pu.utils.directives')
                     FileService.listFile($scope.businessId,dirId).then(function(response){
                         $scope.fileList = response;
                         angular.forEach($scope.fileList,function(item){
-                            item.imgUrl = URL.FILE_DOWNLOAD_URL+item.id;
+                            item.imgUrlPrev = URL.OSS_URL+item.ossKeyPreview;
+                            item.imgUrlOrigin = URL.OSS_URL+ item.ossKey;
                         });
                         $scope.fileShowGrid = FileService.convertToGird($scope.fileList,4);
                     })
@@ -87,6 +101,14 @@ angular.module('pu.utils.directives')
                         })
                     })
                 };
+                $scope.deleteFile = function(fileId){
+                    modal.confirm('操作提醒','是否删除文件').then(function(){
+                        FileService.deleteFile(fileId).then(function(){
+                            toaster.pop('success', '操作提醒','保存申请信息成功');
+                            $scope.reInit();
+                        });
+                    })
+                }
                 $scope.zoomInImage = function(item,fileList){
                     var modalInstance = $uibModal.open({
                         animation: true,
@@ -109,7 +131,7 @@ angular.module('pu.utils.directives')
                             for(var i = 0;i<fileList.length;i++){
                                 if(item.id == fileList[i].id){
                                     $scope.curIdx = i ;
-                                    $scope.imgUrl = fileList[i].imgUrl;
+                                    $scope.imgUrlOrigin = fileList[i].imgUrlOrigin;
                                     break;;
                                 }
                             }
@@ -118,11 +140,11 @@ angular.module('pu.utils.directives')
                             };
                             $scope.prevView = function(){
                                 $scope.rotate=0;
-                                $scope.imgUrl = fileList[--$scope.curIdx].imgUrl;
+                                $scope.imgUrlOrigin = fileList[--$scope.curIdx].imgUrlOrigin;
                             }
                             $scope.nextView = function(){
                                 $scope.rotate=0;
-                                $scope.imgUrl = fileList[++$scope.curIdx].imgUrl;
+                                $scope.imgUrlOrigin = fileList[++$scope.curIdx].imgUrlOrigin;
                             }
                             $scope.rotateLeft = function(){
                                 if($scope.rotate==0){
