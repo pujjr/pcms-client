@@ -24,9 +24,11 @@
         <div class="form-group">
             <label for="parentTypeId" class="col-sm-3 control-label">上级分类：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="parentTypeId"  ng-model="item.parentTypeId" ng-options="o.id as o.typeName for o in workflowTyps" required>
-                    <option value="">选择上级流程分类</option>`
-                </select>
+                <ui-combotree id="parentTypeId" choices="workflowTyps"
+                              convert-tree-option="{idKey:'id',parentKey:'parentTypeId',childrenKey:'children'}"
+                              ng-model="item.parentTypeId"
+                              placeholder="选择上级流程分类"
+                              checked="false" label="typeName" ng-required="true"></ui-combotree>
             </div>
         </div>
     </div>

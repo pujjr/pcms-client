@@ -12,14 +12,20 @@
         <div class="form-group">
             <label for="parentId" class="col-sm-3 control-label">上级工作组：</label>
             <div class="col-sm-8">
+                <ui-combotree id="parentId" choices="workgroupList"
+                              convert-tree-option="{idKey:'id',parentKey:'parentId',childrenKey:'children'}"
+                              ng-model="item.parentId"
+                              placeholder="请选择上级工作组"
+                              checked="false" label="workgroupName" ng-required="true"></ui-combotree>
+                <!--
                 <select  class="form-control" id="parentId"  ng-model="item.parentId" ng-options="o.id as o.workgroupName for o in workgroupList" required>
                     <option value="">请选择上级工作组</option>`
-                </select>
+                </select>-->
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>

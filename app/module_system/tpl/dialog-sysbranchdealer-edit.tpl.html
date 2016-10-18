@@ -162,6 +162,10 @@
                     <div class="form-group">
                         <label for="product" class="col-sm-2 control-label">已选产品</label>
                         <div class="col-sm-10">
+                            <ui-multiselect id ="product" choices="allProductList" ng-model="item.productList" track-by="id"  group-by="productTypeName" show-field="productName" ng-required="true" placeholder="请选择可分配产品">
+                                <span>{{item.productName}}</span>
+                            </ui-multiselect>
+                            <!--
                             <ui-select id="product"  multiple ng-model="item.productList" close-on-select=false ng-required>
                                 <ui-select-match placeholder="请选择产品" required>{{$item.productName}}</ui-select-match>
                                 <ui-select-choices repeat = "product in allProductList | filter: $select.search track by product.id">
@@ -171,6 +175,7 @@
                                     </small>
                                 </ui-select-choices>
                             </ui-select>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -183,12 +188,21 @@
                     <div class="form-group">
                         <label for="gpsLvl" class="col-sm-2 control-label">{{l.ruleName}}</label>
                         <div class="col-sm-10">
+                            <ui-multiselect id ="gpsLvl" choices="gpsLvlList"
+                                            ng-model="l.gpsLvls"
+                                            track-by="id"
+                                            show-field="lvlName"
+                                            ng-required="true" placeholder="请选择GPS档位">
+                                <span>{{item.lvlName}}</span>
+                            </ui-multiselect>
+                            <!--
                             <ui-select id="gpsLvl"  multiple ng-model="l.gpsLvls" close-on-select=false ng-required>
                                 <ui-select-match placeholder="请选择GPS档位" required>{{$item.lvlName}}</ui-select-match>
                                 <ui-select-choices repeat = "lvl in gpsLvlList | filter: $select.search track by lvl.id">
                                     <div>{{lvl.lvlName}}</div>
                                 </ui-select-choices>
                             </ui-select>
+                            -->
                         </div>
                     </div>
                 </div>

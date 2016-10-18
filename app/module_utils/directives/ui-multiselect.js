@@ -150,10 +150,11 @@ angular.module('pu.utils.directives')
                     $scope.selectedViewValue = viewValue;
                 }
                 var watchChoices = $scope.$watch('choices',function(newVal,oldVal){
-                    if(newVal == oldVal){
+                    if(newVal == oldVal || newVal==undefined){
                         return;
                     };
                     $scope.convertModelValue(ngModel.$modelValue);
+                    watchChoices();
                 },true)
 
             }

@@ -19,14 +19,15 @@
         <div class="form-group">
             <label for="parentType" class="col-sm-3 control-label">上级类型：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="parentType"  ng-model="item.parentId" ng-options="l.id as l.dictTypeName for l in list" required>
-                    <option value="">请选择上级类型</option>`
-                </select>
+                <ui-combotree id="parentType" choices="list"
+                              convert-tree-option="{idKey:'id',parentKey:'parentId',childrenKey:'children'}"
+                              ng-model="item.parentId"
+                              checked="false" label="dictTypeName" ng-required="true"></ui-combotree>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>

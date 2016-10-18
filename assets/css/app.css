@@ -4857,6 +4857,9 @@ ul{
   background: #fff;
   float: left;
 }
+.multiSelect:hover{
+  background-color: #dedede;
+}
 .treeNode {
   font-weight: normal;
   cursor: pointer;

@@ -18,14 +18,16 @@
         <div class="form-group">
             <label for="parentId" class="col-sm-3 control-label">上级产品类别：</label>
             <div class="col-sm-8">
-                <select  class="form-control" id="parentId"  ng-model="item.parentId" ng-options="o.id as o.productTypeName for o in productTypeList" required>
-                    <option value="">请选择上级产品类别</option>`
-                </select>
+                <ui-combotree id="parentId" choices="productTypeList"
+                              convert-tree-option="{idKey:'id',parentKey:'parentId',childrenKey:'children'}"
+                              ng-model="item.parentId"
+                              placeholder="请选择上级产品类别"
+                              checked="false" label="productTypeName" ng-required="true"></ui-combotree>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>
