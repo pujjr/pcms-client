@@ -18,7 +18,11 @@ angular.module("pu.apply.controllers")
             $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
             $scope.initLinkmans($scope.applyInfo.linkmans);
             $scope.initSelectList("add");
+            $scope.initWatchTotalFinance();
         };
+        $scope.refreshFormRequiredMap = function(){
+            $scope.requiredMap = ProductService.queryProductFormRequiredMap($scope.applyInfo.product.id).$object;
+        }
         /**一堆watch变量**/
         var watchFinance1Gps;
         var watchFinance1;
@@ -139,46 +143,49 @@ angular.module("pu.apply.controllers")
             },true);
         };
         //计算还款月租金，需根据融资金额，期数，产品进行计算， 放款金额=融资金额-GPS费用-评估费-融资手续费 应watch这些变量
-        watchTotalFinance = $scope.$watchGroup([
-                            'finance1.financeAmount',
-                            'finance2.financeAmount',
-                            'finance3.financeAmount',
-                            'finance1.gpsFee',
-                            'finance2.gpsFee',
-                            'finance3.gpsFee',
-                            'finance1.assessFee',
-                            'finance2.assessFee',
-                            'finance3.assessFee',
-                            'finance1.financeFee',
-                            'finance2.financeFee',
-                            'finance3.financeFee',
-                            'applyInfo.product',
-                            'applyInfo.period'
-                            ],function(newVal,oldVal){
-            //获取总的融资金额
-            var monthRate = $scope.applyInfo.product.yearRate/12;
-            var period = $scope.applyInfo.period;
-            var repayMode = $scope.applyInfo.product.repayMode;
-            //初始化放款总金额
-            $scope.applyInfo.totalLoanAmt = 0.00;
-            //初始化融资总金额
-            $scope.applyInfo.totalFinanceAmt = 0.00;
-            for(var i = 0 ;i<$scope.applyInfo.finances.length;i++){
-                var item = $scope.applyInfo.finances[i];
-                if(isNaN(item.financeAmount))
-                    item.financeAmount=0.00;
-                if(isNaN(item.gpsFee))
-                    item.gpsFee=0.00;
-                if(isNaN(parseFloat(item.assessFee)))
-                    item.assessFee=0.00;
-                if(isNaN(item.financeFee))
-                    item.financeFee=0.00;
-                $scope.applyInfo.totalLoanAmt += item.financeAmount - item.gpsFee - parseFloat(item.assessFee) - item.financeFee;
-                $scope.applyInfo.totalFinanceAmt += item.financeAmount;
-            }
-            //月租金
-            $scope.applyInfo.monthRent = CalService.calMonthRent($scope.applyInfo.totalFinanceAmt,period,monthRate,repayMode);
-        });
+        $scope.initWatchTotalFinance = function(){
+            watchTotalFinance = $scope.$watchGroup([
+                'finance1.financeAmount',
+                'finance2.financeAmount',
+                'finance3.financeAmount',
+                'finance1.gpsFee',
+                'finance2.gpsFee',
+                'finance3.gpsFee',
+                'finance1.assessFee',
+                'finance2.assessFee',
+                'finance3.assessFee',
+                'finance1.financeFee',
+                'finance2.financeFee',
+                'finance3.financeFee',
+                'applyInfo.product',
+                'applyInfo.period'
+            ],function(newVal,oldVal){
+                //获取总的融资金额
+                var monthRate = $scope.applyInfo.product.yearRate/12;
+                var period = $scope.applyInfo.period;
+                var repayMode = $scope.applyInfo.product.repayMode;
+                //初始化放款总金额
+                $scope.applyInfo.totalLoanAmt = 0.00;
+                //初始化融资总金额
+                $scope.applyInfo.totalFinanceAmt = 0.00;
+                for(var i = 0 ;i<$scope.applyInfo.finances.length;i++){
+                    var item = $scope.applyInfo.finances[i];
+                    if(isNaN(item.financeAmount))
+                        item.financeAmount=0.00;
+                    if(isNaN(item.gpsFee))
+                        item.gpsFee=0.00;
+                    if(isNaN(parseFloat(item.assessFee)))
+                        item.assessFee=0.00;
+                    if(isNaN(item.financeFee))
+                        item.financeFee=0.00;
+                    $scope.applyInfo.totalLoanAmt += item.financeAmount - item.gpsFee - parseFloat(item.assessFee) - item.financeFee;
+                    $scope.applyInfo.totalFinanceAmt += item.financeAmount;
+                }
+                //月租金
+                $scope.applyInfo.monthRent = CalService.calMonthRent($scope.applyInfo.totalFinanceAmt,period,monthRate,repayMode);
+            });
+        }
+
         //增加融资信息
         $scope.activeFinance = function(item){
             item.select=true;
@@ -575,6 +582,7 @@ angular.module("pu.apply.controllers")
                 $scope.initLinkmans($scope.applyInfo.linkmans);
                 $scope.initSelectList("edit");
                 $scope.addressCtrl.onEditRefresh();
+                $scope.initWatchTotalFinance();
             })
         };
         $scope.refreshApplyInfoFromServer= function (appId){
@@ -614,6 +622,7 @@ angular.module("pu.apply.controllers")
                 $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
                 $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
                 $scope.initLinkmans($scope.applyInfo.linkmans);
+                $scope.initWatchTotalFinance();
             })
         };
         //保存申请信息
@@ -638,13 +647,5 @@ angular.module("pu.apply.controllers")
         $scope.initApplyFileComponent = function(fileInterface){
             $scope.applyFileInterface = fileInterface;
         };
-        $scope.initCheckFileComponent = function(fileInterface){
-            $scope.checkFileInterface = fileInterface;
-        };
-        $scope.initCheckFileManage=function(){
-            $scope.checkFileInterface.init($scope.applyInfo.appId,'check');
-        }
-
-
     })
 ;

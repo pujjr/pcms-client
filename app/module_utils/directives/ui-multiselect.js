@@ -23,7 +23,8 @@ angular.module('pu.utils.directives')
                 modelFormat:'@',
                 ngRequired:'@',
                 ngDisabled:'@',
-                placeholder:'@'
+                placeholder:'@',
+                groupBy:'@'
             },
             transclude:true,
             templateUrl:'module_utils/tpl/ui-multiselect.html',
@@ -81,10 +82,33 @@ angular.module('pu.utils.directives')
                                         $scope.choices[j].checked=true;
                                     }
                                 }
-
                             }
                         };
+                        if($scope.groupBy != undefined){
+                            $scope.groupList = [];
+                            for(var i = 0 ;i<$scope.choices.length;i++){
+                                var item = $scope.choices[i];
+                                var findFlag = false;
+                                for(var j = 0 ; j<$scope.groupList.length;j++){
+                                    var groupItem = $scope.groupList[j];
+                                    //如果在组中找到了则加入当前节点INDEX至groupItem中
+                                    if(item[$scope.groupBy]==groupItem.key){
+                                        groupItem.child.push(item);
+                                        findFlag = true;
+                                        break;
+                                    }
+                                }
+                                if(findFlag==false){
+                                    var obj = {'key':item[$scope.groupBy],child:[]};
+                                    obj.child.push(item);
+                                    $scope.groupList.push(obj);
+                                }
+
+                            }
+                            console.log($scope.groupList);
+                        }
                         $scope.setViewValue();
+
                     }
                 }
                 $scope.onCheck = function(item){

@@ -10,6 +10,7 @@
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
             </div>
         </header>
+        <div class="alert alert-info" role="alert">...</div>
     </div>
 
     <uib-tabset>
@@ -40,12 +41,6 @@
                 <span>申请资料</span>
             </uib-tab-heading>
             <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false}"></ng-file-manage>
-        </uib-tab>
-        <uib-tab index="2" select="initCheckFileManage()">
-            <uib-tab-heading>
-                <span>审核资料</span>
-            </uib-tab-heading>
-            <ng-file-manage on-init="initCheckFileComponent(interface)"></ng-file-manage>
         </uib-tab>
     </uib-tabset>
 

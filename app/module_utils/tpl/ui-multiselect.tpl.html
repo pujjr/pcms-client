@@ -1,12 +1,20 @@
-<div  uib-dropdown auto-close="outsideClick">
+<div  uib-dropdown auto-close="outsideClick" >
     <div class="has-feedback">
         <input type="text" class="form-control" ng-model="selectedViewValue"  ng-required="ngRequired"  placeholder="{{placeholder}}" ng-disabled="ngDisabled"  uib-dropdown-toggle>
-        <span class="glyphicon glyphicon-chevron-down   form-control-feedback" aria-hidden="true"></span>
+        <span style="right:0px;!important" class="fa fa-sort-desc   form-control-feedback" aria-hidden="true"></span>
     </div>
 
-    <div uib-dropdown-menu  role="menu" style="width:100%">
+    <div uib-dropdown-menu  role="menu" style="width:100%;max-height: 400px;overflow-y:auto;" ng-if="groupBy == undefined" >
         <div class="m-l-xs m-b-xs" ng-repeat="item in choices" ng-click="onCheck(item)">
             <input type="checkbox" ng-checked="item.checked"><span inner-transclude></span>
+        </div>
+    </div>
+    <div  uib-dropdown-menu  role="menu" style="width:100%;max-height: 400px;overflow-y:auto;" ng-if="groupBy != undefined" >
+        <div ng-repeat="groupItem in groupList">
+            <div>{{groupItem.key}}</div>
+            <div class="m-l-xs m-b-xs" ng-repeat="item in groupItem.child" ng-click="onCheck(item)">
+                <input type="checkbox" ng-checked="item.checked"><span inner-transclude></span>
+            </div>
         </div>
     </div>
 </div>

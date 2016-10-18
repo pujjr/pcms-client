@@ -1,0 +1,22 @@
+<div  class="panel">
+    <div class="data-table-container" >
+        <header class="data-table-header" style="min-height:72px !important;">
+            <div class="data-table-header__label">
+                <span class="fs-title"><i class="fa fa-files-o mr"></i>表单管理</span>
+            </div>
+        </header>
+    </div>
+    <uib-tabset>
+        <uib-tab index="0" select="goField()">
+            <uib-tab-heading>
+                <span>表单字段管理</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="1" select="goTemplate()">
+            <uib-tab-heading>
+                <span>表单模板管理</span>
+            </uib-tab-heading>
+        </uib-tab>
+    </uib-tabset>
+    <div ui-view=""></div>
+</div>

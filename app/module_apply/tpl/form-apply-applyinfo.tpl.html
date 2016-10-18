@@ -6,8 +6,8 @@
             <div class="form-group form-group-sm">
                 <label for="product" class="col-sm-4 control-label">融资产品：</label>
                 <div class="col-sm-8">
-                    <select id="product" class="form-control" ng-model="applyInfo.product"
-                            ng-options="item.productName for item in productList track by item.id" required >
+                    <select id="product" class="form-control" ng-model="applyInfo.product" ng-change="refreshFormRequiredMap()"
+                            ng-options="item.productName group by item.productTypeName  for item in productList track by item.id" required >
                         <option value="">请选择产品</option>
                     </select>
                 </div>
@@ -29,7 +29,7 @@
                 <label for="period" class="col-sm-4 control-label">融资期限：</label>
                 <div class="col-sm-8">
                     <select id="period" class="form-control" ng-model="applyInfo.period"
-                            ng-options="item.period as (item.period+'期') for item in applyInfo.product.productPeriodList" required>
+                            ng-options="item.period as (item.period+'期') for item in applyInfo.product.productPeriodList"  ng-required="requiredMap.comment" >
                         <option value="">请选择融资期限</option>
                     </select>
                 </div>
@@ -41,7 +41,7 @@
             <div class="form-group form-group-sm">
                 <label for="comment" class="col-sm-2 control-label">申请备注：</label>
                 <div class="col-sm-10">
-                    <textarea type="text" class="form-control" id="comment" ng-model="applyInfo.comment" placeholder="申请备注"></textarea>
+                    <textarea type="text" class="form-control" id="comment" ng-model="applyInfo.comment" placeholder="申请备注" ng-required="requiredMap.comment"></textarea>
                 </div>
             </div>
         </div>

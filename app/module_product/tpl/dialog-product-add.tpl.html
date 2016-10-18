@@ -125,6 +125,16 @@
         <div class="row">
             <div class="col-md-6" >
                 <div class="form-group">
+                    <label for="formTemplateId" class="col-sm-4 control-label">必输项模板：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="formTemplateId"  ng-model="item.formTemplateId" ng-options="o.id as o.tplName for o in formTemplateList"   required>
+                            <option value="">请选择必输项模板</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" >
+                <div class="form-group">
                     <label for="enable" class="col-sm-4 control-label">是否启用：</label>
                     <div class="col-sm-8">
                         <select  class="form-control" id="enable"  ng-model="item.enable "ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"   required>

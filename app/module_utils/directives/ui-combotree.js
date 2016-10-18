@@ -24,7 +24,7 @@ angular.module('pu.utils.directives')
                 };
                 if($scope.checked==undefined){
                     $scope.checked = false;
-                }
+                };
                 $scope.convertArrayToTree=function(data,options){
                     options = options || {};
                     var ID_KEY = options.idKey || 'id';

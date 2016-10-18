@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.product.controllers")
-    .controller('ProductController',function ($scope, $rootScope, $state, toaster,$uibModal,modal,ProductService,SysDictService,ToolsService,TemplateService){
+    .controller('ProductController',function ($scope, $rootScope, $state, toaster,$uibModal,modal,ProductService,SysDictService,ToolsService,TemplateService,FormService){
         $scope.init = function () {
             $scope.queryProductTypeList();
         };
@@ -102,6 +102,7 @@ angular.module("pu.product.controllers")
                     $scope.hkfsList = SysDictService.queryDictDataByTypeCode("hkfs").$object;
                     $scope.productRuleList = ProductService.queryProductRuleList().$object;
                     $scope.dirTemplateList = TemplateService.queryTemplateList(true).$object;
+                    $scope.formTemplateList = FormService.queryFormFieldTemplateList().$object;
                     $scope.ok=function(){
                         ProductService.addProduct($scope.item).then(function(){
                             modalInstance.close('增加产品成功');
@@ -135,6 +136,7 @@ angular.module("pu.product.controllers")
                     $scope.hkfsList = SysDictService.queryDictDataByTypeCode("hkfs").$object;
                     $scope.productRuleList = ProductService.queryProductRuleList().$object;
                     $scope.dirTemplateList = TemplateService.queryTemplateList(true).$object;
+                    $scope.formTemplateList = FormService.queryFormFieldTemplateList().$object;
                     $scope.ok=function(){
                         ProductService.modifyProduct($scope.item).then(function(){
                             modalInstance.close('修改产品信息成功');

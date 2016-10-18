@@ -115,7 +115,7 @@
                 <div class="form-group">
                     <label for="directoryTemplateId" class="col-sm-4 control-label">文件目录模板：</label>
                     <div class="col-sm-8">
-                        <select  class="form-control" id="directoryTemplateId"  ng-model="item.directoryTemplateId "ng-options="o.id as o.tplName for o in dirTemplateList"   required>
+                        <select  class="form-control" id="directoryTemplateId"  ng-model="item.directoryTemplateId"ng-options="o.id as o.tplName for o in dirTemplateList"   required>
                             <option value="">请选择文件目录模板</option>`
                         </select>
                     </div>
@@ -123,6 +123,16 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label for="formTemplateId" class="col-sm-4 control-label">必输项模板：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="formTemplateId"  ng-model="item.formTemplateId" ng-options="o.id as o.tplName for o in formTemplateList"   required>
+                            <option value="">请选择必输项模板</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6" >
                 <div class="form-group">
                     <label for="enable" class="col-sm-4 control-label">是否启用：</label>
