@@ -7,7 +7,7 @@
                 <label for="product" class="col-sm-4 control-label">融资产品：</label>
                 <div class="col-sm-8">
                     <select id="product" class="form-control" ng-model="applyInfo.product" ng-change="refreshFormRequiredMap()"
-                            ng-options="item.productName group by item.productTypeName  for item in productList track by item.id" required >
+                            ng-options="item.productName group by item.productTypeName  for item in productList track by item.id"  ng-required="requiredMap.product" >
                         <option value="">请选择产品</option>
                     </select>
                 </div>
@@ -29,7 +29,7 @@
                 <label for="period" class="col-sm-4 control-label">融资期限：</label>
                 <div class="col-sm-8">
                     <select id="period" class="form-control" ng-model="applyInfo.period"
-                            ng-options="item.period as (item.period+'期') for item in applyInfo.product.productPeriodList"  ng-required="requiredMap.comment" >
+                            ng-options="item.period as (item.period+'期') for item in applyInfo.product.productPeriodList"  ng-required="requiredMap.period" >
                         <option value="">请选择融资期限</option>
                     </select>
                 </div>

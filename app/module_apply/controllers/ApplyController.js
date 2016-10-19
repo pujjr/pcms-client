@@ -47,7 +47,7 @@ angular.module("pu.apply.controllers")
                 }
                 $scope.finance1.financeFee=financeFee;
                 //如果为全款再融
-                if($scope.applyInfo.product.isTotalRefinance){
+                if($scope.applyInfo.product.productRule.isTotalRefinance){
                     $scope.finance1.financeAmount = Math.round((parseFloat($scope.finance1.salePrice)*parseFloat($scope.finance1.initPayPercent)/100+
                         parseFloat($scope.finance1.gpsFee)+parseFloat($scope.finance1.purchaseTax)+parseFloat($scope.finance1.serviceFee)+
                         parseFloat($scope.finance1.insuranceFee)+parseFloat($scope.finance1.delayInsuranceFee)+parseFloat($scope.finance1.transferFee)
@@ -85,7 +85,7 @@ angular.module("pu.apply.controllers")
                 }
                 $scope.finance2.financeFee=financeFee;
                 //如果为全款再融
-                if($scope.applyInfo.product.isTotalRefinance){
+                if($scope.applyInfo.product.productRule.isTotalRefinance){
                     $scope.finance2.financeAmount = Math.round((parseFloat($scope.finance2.salePrice)*parseFloat($scope.finance2.initPayPercent)/100+
                         parseFloat($scope.finance2.gpsFee)+parseFloat($scope.finance2.purchaseTax)+parseFloat($scope.finance2.serviceFee)+
                         parseFloat($scope.finance2.insuranceFee)+parseFloat($scope.finance2.delayInsuranceFee)+parseFloat($scope.finance2.transferFee)
@@ -122,7 +122,7 @@ angular.module("pu.apply.controllers")
                 }
                 $scope.finance3.financeFee=financeFee;
                 //如果为全款再融
-                if($scope.applyInfo.product.isTotalRefinance){
+                if($scope.applyInfo.product.productRule.isTotalRefinance){
                     $scope.finance3.financeAmount = Math.round((parseFloat($scope.finance3.salePrice)*parseFloat($scope.finance3.initPayPercent)/100+
                         parseFloat($scope.finance3.gpsFee)+parseFloat($scope.finance3.purchaseTax)+parseFloat($scope.finance3.serviceFee)+
                         parseFloat($scope.finance3.insuranceFee)+parseFloat($scope.finance3.delayInsuranceFee)+parseFloat($scope.finance3.transferFee)
@@ -257,6 +257,9 @@ angular.module("pu.apply.controllers")
                 $scope.applyInfo.tenant.age=parseInt(age);
             })
             $scope.applyInfo.tenant.sex = sex%2!=0?'xb01':'xb02';
+            var tmpStr = idNo.substring(6, 14);
+            tmpStr = tmpStr.substring(0, 4) + "-" + tmpStr.substring(4, 6) + "-" + tmpStr.substring(6);
+            $scope.applyInfo.tenant.birthday = tmpStr;
         }
         $scope.addressCtrl = {
             onEditRefresh : function(){
@@ -396,6 +399,10 @@ angular.module("pu.apply.controllers")
             $scope.isKnowBuyCarList = SysDictService.queryDictDataByTypeCode("sfzdgc").$object;
             //可选省份
             $scope.provinceList = SysAreaService.queryProvinceList().$object;
+            //名族
+            $scope.nationList = SysDictService.queryDictDataByTypeCode("mz").$object;
+            //驾照类型
+            $scope.driverLicenseTypeList = SysDictService.queryDictDataByTypeCode("jzlx").$object;
         }
         //选择车辆
         $scope.selectCar = function(item){

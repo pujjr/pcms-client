@@ -6,7 +6,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">姓名：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.name" required placeholder="姓名">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.name"  ng-required="requiredMap.tenantName"  placeholder="姓名">
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                 <label for="idType" class="col-sm-4 control-label">证件类型：</label>
                 <div class="col-sm-8">
                     <select id="idType" class="form-control" ng-model="applyInfo.tenant.idType"
-                            ng-options="item.dictDataCode as item.dictDataName for item in idTypeList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in idTypeList" ng-required="requiredMap.tenantIdType" >
                         <option value="">请选择证件</option>
                     </select>
                 </div>
@@ -25,7 +25,7 @@
             <div class="form-group form-group-sm">
                 <label for="idNo" class="col-sm-4 control-label">证件号码：</label>
                 <div class="col-sm-8">
-                    <input type="text" id="idNo" minlength="15" maxlength="18" verify-idno class="form-control" ng-model="applyInfo.tenant.idNo"  ng-blur="inputIdNoComplete()" placeholder="证件号码">
+                    <input type="text" id="idNo" minlength="15" maxlength="18" verify-idno class="form-control" ng-required="requiredMap.tenantIdNo" ng-model="applyInfo.tenant.idNo"  ng-blur="inputIdNoComplete()" placeholder="证件号码">
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <label  class="col-sm-4 control-label">性别：</label>
                 <div class="col-sm-8">
                     <select id="sex" class="form-control" ng-model="applyInfo.tenant.sex"
-                            ng-options="item.dictDataCode as item.dictDataName for item in sexList" disabled required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in sexList" disabled >
                         <option value="">请选择性别</option>
                     </select>
                 </div>
@@ -52,9 +52,38 @@
         </div>
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">手机号码：</label>
+                <label class="col-sm-4 control-label">生日：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" minlength="11" maxlength="11" verify-mobile ng-model="applyInfo.tenant.mobile" placeholder="手机号码">
+                    <input type="text" id="birthday" class="form-control"  ng-model="applyInfo.tenant.birthday" placeholder="生日" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label for="nation" class="col-sm-4 control-label">民族：</label>
+                <div class="col-sm-8">
+                    <select id="nation" class="form-control" ng-model="applyInfo.tenant.nation"
+                            ng-options="item.dictDataCode as item.dictDataName for item in nationList"  ng-required="requiredMap.nation">
+                        <option value="">请选择民族</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码1：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" minlength="11" maxlength="11" verify-mobile ng-required="requiredMap.mobile" ng-model="applyInfo.tenant.mobile" placeholder="手机号码1">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码2：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" minlength="11" maxlength="11" verify-mobile ng-required="requiredMap.mobile2" ng-model="applyInfo.tenant.mobile2" placeholder="手机号码2">
                 </div>
             </div>
         </div>
@@ -64,7 +93,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">QQ号码(如有)：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.qq" placeholder="QQ号码">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.qq" ng-required="requiredMap.qq" placeholder="QQ号码">
                 </div>
             </div>
         </div>
@@ -72,7 +101,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">微信(如有)：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.weixin" placeholder="微信(如有)">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.weixin" ng-required="requiredMap.weixin" placeholder="微信(如有)">
                 </div>
             </div>
         </div>
@@ -81,7 +110,7 @@
                 <label class="col-sm-4 control-label">学历：</label>
                 <div class="col-sm-8" >
                     <select id="education" class="form-control" ng-model="applyInfo.tenant.education"
-                            ng-options="item.dictDataCode as item.dictDataName for item in educationList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in educationList"  ng-required="requiredMap.education">
                         <option value="">请选择学历</option>
                     </select>
                 </div>
@@ -94,7 +123,7 @@
                 <label class="col-sm-4 control-label">婚姻状况：</label>
                 <div class="col-sm-8 text-left">
                     <select id="marryStatus" class="form-control" ng-model="applyInfo.tenant.marryStatus"
-                            ng-options="item.dictDataCode as item.dictDataName for item in marryStatusList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in marryStatusList" ng-required="requiredMap.marryStatus">
                         <option value="">请选择婚姻状况</option>
                     </select>
                 </div>
@@ -105,7 +134,7 @@
                 <label class="col-sm-4 control-label">来本地时长：</label>
                 <div class="col-sm-8 text-left">
                     <select id="liveTime" class="form-control" ng-model="applyInfo.tenant.liveTime"
-                            ng-options="item.dictDataCode as item.dictDataName for item in liveTimeList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in liveTimeList"  ng-required="requiredMap.liveTime">
                         <option value="">请选择来本地时长</option>
                     </select>
                 </div>
@@ -120,10 +149,52 @@
                                     track-by="dictDataCode"
                                     show-field="dictDataName"
                                     model-format="string"
-                                    ng-required="true"
+                                    ng-required="requiredMap.familyMember"
                                     placeholder="家庭成员">
                         <span>{{item.dictDataName}}</span>
                     </ui-multiselect>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label for="childCount" class="col-sm-4 control-label">子女数量：</label>
+                <div class="col-sm-8">
+                    <select id="childCount" class="form-control" ng-model="applyInfo.tenant.childCount" ng-required="requiredMap.childCount">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">驾照发证日期：</label>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <input type="text" id="driverLicenseDate" class="form-control" uib-datepicker-popup
+                               ng-required="requiredMap.driverLicenseDate"
+                               is-open="applyInfo.tenant.isOpenDriverLicenseDate" ng-model="applyInfo.tenant.driverLicenseDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"  ng-click="applyInfo.tenant.isOpenDriverLicenseDate=!applyInfo.tenant.isOpenDriverLicenseDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">驾照类型：</label>
+                <div class="col-sm-8">
+                    <select id="driverLicenseType" class="form-control" ng-model="applyInfo.tenant.driverLicenseType"
+                            ng-options="item.dictDataCode as item.dictDataName for item in driverLicenseTypeList" ng-required="requiredMap.driverLicenseType">
+                        <option value="">请选择来驾照类型</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -135,6 +206,7 @@
                 <div class="col-sm-2">
                     <select  class="form-control"  ng-model="applyInfo.tenant.addrProvince"
                              ng-options="item.id as item.areaName for item in provinceList"
+                             ng-required="requiredMap.addrProvince"
                             ng-change="addressCtrl.onTenantProvinceChange()">
                         <option value="">省</option>
                     </select>
@@ -142,18 +214,20 @@
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="applyInfo.tenant.addrCity"
                              ng-options="item.id as item.areaName for item in tenantCityList"
+                             ng-required="requiredMap.addrCity"
                             ng-change="addressCtrl.onTenantCityChange()">
                         <option value="">市</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="applyInfo.tenant.addrCounty"
+                             ng-required="requiredMap.addrCounty"
                              ng-options="item.id as item.areaName for item in tenantCountyList">
                         <option value="">县</option>
                     </select>
                 </div>
                 <div class="col-sm-4" >
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.addrExt" placeholder="详细地址">
+                    <input type="text" class="form-control" ng-required="requiredMap.addrExt" ng-model="applyInfo.tenant.addrExt" placeholder="详细地址">
                 </div>
 
             </div>
@@ -163,7 +237,7 @@
                 <label class="col-sm-4 control-label">住所权属：</label>
                 <div class="col-sm-8 text-left">
                     <select id="houseOwner" class="form-control" ng-model="applyInfo.tenant.houseOwner"
-                            ng-options="item.dictDataCode as item.dictDataName for item in houseOwnerList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseOwnerList"  ng-required="requiredMap.houseOwner">
                         <option value="">请选择住所权属</option>
                     </select>
                 </div>
@@ -180,7 +254,7 @@
                                     track-by="dictDataCode"
                                     show-field="dictDataName"
                                     model-format="string"
-                                    ng-required="true"
+                                    ng-required="requiredMap.houseMate"
                                     placeholder="请选择同住人">
                         <span>{{item.dictDataName}}</span>
                     </ui-multiselect>
@@ -192,7 +266,7 @@
                 <label class="col-sm-4 control-label">户籍所属：</label>
                 <div class="col-sm-8 text-left">
                     <select id="houseHold" class="form-control" ng-model="applyInfo.tenant.houseHold"
-                            ng-options="item.dictDataCode as item.dictDataName for item in houseHoldList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseHoldList" ng-required="requiredMap.houseHold">
                         <option value="">请选择户籍所属</option>
                     </select>
                 </div>
@@ -206,6 +280,7 @@
                 <div class="col-sm-2">
                     <select  class="form-control"  ng-model="item.addrProvince"
                              ng-options="item.id as item.areaName for item in provinceList"
+                             ng-required="requiredMap.tenantHouses_addrProvince"
                              ng-change="addressCtrl.onCommonProvinceChange(item)">
                         <option value="">省</option>
                     </select>
@@ -213,18 +288,20 @@
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="item.addrCity"
                              ng-options="item.id as item.areaName for item in item.cityList"
+                             ng-required="requiredMap.tenantHouses_addrCity"
                              ng-change="addressCtrl.onCommonCityChange(item)">
                         <option value="">市</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="item.addrCounty"
-                             ng-options="item.id as item.areaName for item in item.countyList">
+                             ng-options="item.id as item.areaName for item in item.countyList"
+                             ng-required="requiredMap.tenantHouses_addrCounty">
                         <option value="">县</option>
                     </select>
                 </div>
                 <div class="col-sm-4" >
-                    <input type="text" class="form-control" ng-model="item.addrExt" placeholder="详细地址">
+                    <input type="text" class="form-control" ng-model="item.addrExt" ng-required="requiredMap.tenantHouses_addrExt" placeholder="详细地址">
                 </div>
 
             </div>
@@ -234,7 +311,7 @@
                 <label class="col-sm-4 control-label">房产{{item.seq | simpleChnUpperCase}}状态：</label>
                 <div class="col-sm-8 text-left">
                     <select id="status" class="form-control" ng-model="item.status"
-                            ng-options="item.dictDataCode as item.dictDataName for item in houseStatusList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseStatusList" ng-required="requiredMap.tenantHouses_status">
                         <option value="">请选择房产状态</option>
                     </select>
                 </div>
@@ -246,7 +323,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}品牌：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="item.carBrand" placeholder="车产一品牌">
+                    <input type="text" class="form-control" ng-model="item.carBrand" ng-required="requiredMap.tenantCars_carBrand" placeholder="车产一品牌">
                 </div>
             </div>
         </div>
@@ -254,7 +331,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}车牌：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="item.carDetail" placeholder="车产一车牌">
+                    <input type="text" class="form-control" ng-model="item.carDetail"  ng-required="requiredMap.tenantCars_carDetail" placeholder="车产一车牌">
                 </div>
             </div>
         </div>
@@ -263,6 +340,7 @@
                 <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}状态：</label>
                 <div class="col-sm-8" >
                     <select  class="form-control" ng-model="item.carStatus"
+                             ng-required="requiredMap.tenantCars_carStatus"
                              ng-options="item.dictDataCode as item.dictDataName for item in carStatusList" >
                         <option value="">请选择车产状态</option>
                     </select>
@@ -280,7 +358,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label">单位名称：</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitName" placeholder="单位名称">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitName"  ng-required="requiredMap.tenant_unitName" placeholder="单位名称">
                 </div>
             </div>
         </div>
@@ -289,7 +367,8 @@
                 <label class="col-sm-4 control-label">单位类型：</label>
                 <div class="col-sm-8">
                     <select id="unitType" class="form-control" ng-model="applyInfo.tenant.unitType"
-                            ng-options="item.dictDataCode as item.dictDataName for item in unitTypeList" required>
+                            ng-required="requiredMap.tenant_unitType"
+                            ng-options="item.dictDataCode as item.dictDataName for item in unitTypeList">
                         <option value="">请选择单位类型</option>
                     </select>
                 </div>
@@ -302,7 +381,8 @@
                 <label class="col-sm-4 control-label">所属行业：</label>
                 <div class="col-sm-8">
                     <select id="unitIndustry" class="form-control" ng-model="applyInfo.tenant.unitIndustry"
-                            ng-options="item.dictDataCode as item.dictDataName for item in unitIndustryList" required>
+                            ng-required="requiredMap.tenant_unitIndustry"
+                            ng-options="item.dictDataCode as item.dictDataName for item in unitIndustryList" >
                         <option value="">请选择所属行业</option>
                     </select>
                 </div>
@@ -312,7 +392,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">单位电话：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitTel" placeholder="单位名称">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitTel"  ng-required="requiredMap.tenant_unitTel" placeholder="单位电话">
                 </div>
             </div>
         </div>
@@ -321,7 +401,8 @@
                 <label class="col-sm-4 control-label">职  级：</label>
                 <div class="col-sm-8">
                     <select id="rank" class="form-control" ng-model="applyInfo.tenant.rank"
-                            ng-options="item.dictDataCode as item.dictDataName for item in rankList" required>
+                            ng-options="item.dictDataCode as item.dictDataName for item in rankList"
+                            ng-required="requiredMap.tenant_rank">
                         <option value="">请选择所属职级</option>
                     </select>
                 </div>
@@ -333,7 +414,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">职位名称：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.ranName" placeholder="职位名称">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.ranName"  ng-required="requiredMap.tenant_ranName" placeholder="职位名称">
                 </div>
             </div>
         </div>
@@ -341,7 +422,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">月收入：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.montyIncome" placeholder="月收入">
+                    <input type="number" class="form-control" ng-model="applyInfo.tenant.montyIncome" ng-required="requiredMap.tenant_montyIncome" placeholder="月收入">
                 </div>
             </div>
         </div>
@@ -349,7 +430,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">年收入：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.yearIncome" placeholder="月收入">
+                    <input type="number" class="form-control" ng-model="applyInfo.tenant.yearIncome" ng-required="requiredMap.tenant_yearIncome" placeholder="年收入">
                 </div>
             </div>
         </div>
@@ -361,6 +442,7 @@
                 <div class="col-sm-2">
                     <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrProvince"
                              ng-options="item.id as item.areaName for item in provinceList"
+                             ng-required="requiredMap.tenant_unitAddrProvince"
                              ng-change="addressCtrl.onTenantUnitProvinceChange()">
                         <option value="">省</option>
                     </select>
@@ -368,18 +450,20 @@
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCity"
                              ng-options="item.id as item.areaName for item in tenantUnitCityList"
+                             ng-required="requiredMap.tenant_unitAddrCity"
                              ng-change="addressCtrl.onTenantUnitCityChange()">
                         <option value="">市</option>
                     </select>
                 </div>
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="applyInfo.tenant.unitAddrCounty"
+                             ng-required="requiredMap.tenant_unitAddrCounty"
                              ng-options="item.id as item.areaName for item in tenantUnitCountyList">
                         <option value="">县</option>
                     </select>
                 </div>
                 <div class="col-sm-4" >
-                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitAddrExt" placeholder="详细地址">
+                    <input type="text" class="form-control" ng-model="applyInfo.tenant.unitAddrExt"  ng-required="requiredMap.tenant_unitAddrExt" placeholder="详细地址">
                 </div>
             </div>
         </div>

@@ -68,6 +68,7 @@ angular.module("pu.form.controllers")
                         return tplId;
                     }
                 },
+                size:'lg',
                 templateUrl :'module_form/tpl/dialog-template-required-field.html',
                 controller:function($scope,RestApi,tplId){
                     $scope.tplId=tplId;

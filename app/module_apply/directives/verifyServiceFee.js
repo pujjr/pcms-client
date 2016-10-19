@@ -5,6 +5,7 @@ angular.module("app").
         restrict:'A',
         require:'ngModel',
         scope : {
+            salePrice:'=',
             rule : '=verifyServiceFee'
         },
         link: function ($scope, ele, attributes, ngModelController) {
@@ -16,11 +17,11 @@ angular.module("app").
                     return true;
                 }
                 if($scope.rule.hasOwnProperty('minServiceFee') && $scope.rule.hasOwnProperty('maxServiceFee')){
-                    if( modelVal >= $scope.rule.minServiceFee && modelVal<=$scope.rule.maxServiceFee){
+                    if( modelVal >= $scope.rule.minServiceFee && modelVal<=$scope.rule.maxServiceFee&&(modelVal<=$scope.rule.serviceFeePercent/100*$scope.salePrice)){
                         return true;
                     }else{
                         defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
-                            errorMessages['verifyServiceFee'] = $scope.rule.minServiceFee+'<=服务费<='+$scope.rule.maxServiceFee;
+                            errorMessages['verifyServiceFee'] = $scope.rule.minServiceFee+'<=服务费<='+$scope.rule.maxServiceFee+',并不大于裸车价'+$scope.rule.serviceFeePercent+"%";
                         });
                         return false;
                     }

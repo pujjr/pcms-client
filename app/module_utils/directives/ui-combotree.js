@@ -2,7 +2,7 @@
  * Created by dengpan on 2016/9/27.
  */
 angular.module('pu.utils.directives')
-    .directive('uiCombotree',function(){
+    .directive('uiCombotree',function($timeout){
         return {
             restrict:'E',
             require:'?ngModel',
@@ -83,11 +83,18 @@ angular.module('pu.utils.directives')
                     $scope.initView(modelValue);
                 });
 
-                $scope.$watch('choices',function(newVal,oldVal){
+                var watchChoices = $scope.$watch('choices',function(newVal,oldVal){
+                    if(newVal == oldVal|| newVal==undefined){
+                        return;
+                    }
                     if(ngModel.$modelValue!=undefined){
                         $scope.initView(ngModel.$modelValue);
                     };
-                    $scope.treeData = $scope.convertArrayToTree($scope.choices,$scope.convertTreeOption);
+                    $timeout(function(){
+                        $scope.treeData = $scope.convertArrayToTree($scope.choices,$scope.convertTreeOption);
+                        watchChoices();
+                    },1000);
+
                 },true);
 
                 $scope.checkHandle = function(tree){

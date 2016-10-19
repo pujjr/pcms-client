@@ -21,7 +21,7 @@ angular.module('pu.utils.directives')
                 trackBy:'@',
                 showField:'@',
                 modelFormat:'@',
-                ngRequired:'@',
+                ngRequired:'=',
                 ngDisabled:'@',
                 placeholder:'@',
                 groupBy:'@'

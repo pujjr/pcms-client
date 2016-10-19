@@ -3,6 +3,37 @@ angular.module('pu.car.services')
         this.queryCarBrandList = function(){
             return RestApi.all("/car/brand").getList();
         };
+        this.queryCarBrandPageList = function(queryParams){
+            return RestApi.all("/car/brand/pagelist").getList(queryParams);
+        }
+        this.addCarBrand = function(item){
+            return RestApi.all("/car/brand").post(item);
+        };
+        this.modifyCarBrand = function(item){
+            return RestApi.one("/car/brand",item.id).customPUT(item);
+        };
+        this.deleteCarBrand = function(id){
+            return RestApi.one("/car/brand",id).remove();
+        };
+        this.addCarSerial = function(item){
+            return RestApi.all("/car/serial").post(item);
+        };
+        this.modifyCarSerial = function(item){
+            return RestApi.one("/car/serial",item.id).customPUT(item);
+        };
+        this.deleteCarSerial = function(id){
+            return RestApi.one("/car/serial",id).remove();
+        };
+        this.addCarStyle = function(item){
+            return RestApi.all("/car/style").post(item);
+        };
+        this.modifyCarStyle = function(item){
+            return RestApi.one("/car/style",item.id).customPUT(item);
+        };
+        this.deleteCarStyle = function(id){
+            return RestApi.one("/car/style",id).remove();
+        }
+
         this.queryCarSerialList = function(carBrandId){
             return RestApi.one("/car/brand",carBrandId).all("/serial").getList();
         };
