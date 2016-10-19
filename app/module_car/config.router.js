@@ -40,7 +40,7 @@ angular.module('app')
                 //车系款式管理
                 .state('app.car.carstyle',{
                     url:'/carstyle',
-                    templateUrl:'module_car/tpl/carstylel-list.html',
+                    templateUrl:'module_car/tpl/carstyle-list.html',
                     controller: 'CarStyleController'
                 })
 

@@ -37,8 +37,14 @@ angular.module('pu.car.services')
         this.queryCarSerialList = function(carBrandId){
             return RestApi.one("/car/brand",carBrandId).all("/serial").getList();
         };
+        this.queryCarSerialPageList = function(queryParams){
+            return RestApi.all("/car/serial/pagelist").getList(queryParams);
+        }
         this.queryCarStyleList = function(carSerialId){
             return RestApi.one('/car/serial',carSerialId).all("/style").getList();
+        }
+        this.queryCarStylePageList = function(queryParams){
+            return RestApi.all("/car/style/pagelist").getList(queryParams);
         }
         this.selectCar = function(){
             var modalInstance = $uibModal.open({
@@ -57,7 +63,8 @@ angular.module('pu.car.services')
                         $scope.carSerialList = CarService.queryCarSerialList($scope.carBrand.id).$object;
                     };
                     $scope.carSerialChanged = function(){
-                        $scope.carStyleList = CarService.queryCarStyleList($scope.carSerial.id).$object;
+                       // $scope.carStyleList = CarService.queryCarStyleList($scope.carSerial.id).$object;
+                        $scope.carStyleList = CarService.queryCarStylePageList({'carSerialId':$scope.carSerial.id}).$object;
                     }
                     $scope.selectCar = function(item){
                         var carObj = {};

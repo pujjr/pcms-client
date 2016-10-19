@@ -27,12 +27,12 @@ angular.module('app')
                     params.pageSize = params.pageSize || $rootScope.paginationInfo.pageSize;
                     params.curPage = params.curPage || $rootScope.paginationInfo.curPage;
                 };
-                angular.extend($rootScope.vm, params);
+                //angular.extend($rootScope.vm, params);
                 return {
                     headers: {
                         'Authorization': window.localStorage.Authorization
                     },
-                    params: $rootScope.vm
+                    params:params
                 };
             });
             RestangularConfigurer.setErrorInterceptor(function (response, deferred, responseHandler) {

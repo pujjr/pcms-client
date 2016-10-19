@@ -1,0 +1,77 @@
+<div ng-init="init()">
+    <form class="form-inline m-t-md" role="form" >
+        <div class="form-group">
+            <select id="brandName" class="form-control" ng-model="queryParams.carBrandId" ng-change="carBrandChanged()"
+                    ng-options="item.id as item.brandName for item in carBrandList">
+                <option value="">请选择品牌</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="serialName" class="form-control" ng-model="queryParams.carSerialId"
+                    ng-options="item.id as item.carSerialName for item in carSerialList">
+                <option value="">请选择车系</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default btn-sm" ng-click="queryCarStyleList(queryParams)"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+    </form>
+    <div class="has-divider has-divider--dark"></div>
+    <div class="panel_main">
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-sm btn-default" type="button" ng-click="addCarStyle()"><i class="fa fa-plus m-r-sm"></i>增加</button>
+                </div>
+            </header>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>品牌</th>
+                    <th>车系</th>
+                    <th>车型名称</th>
+                    <th>指导价</th>
+                    <th>排量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in carStyleList">
+                    <td>{{item.carBrand.brandName}}</td>
+                    <td>{{item.carSerial.carSerialName}}</td>
+                    <td><a href="javascript:" ng-click="editCarStyle(item)">{{item.carStyleName}}</a></td>
+                    <td>{{item.guidePrice}}</td>
+                    <td>{{item.displacement}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="has-divider has-divider--dark"></div>
+            <div class="toolbar">
+                <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                    <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                    </div>
+                    <div>
+                        <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                        ng-model="paginationInfo.curPage"
+                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                        last-text="&raquo;">
+                        </uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

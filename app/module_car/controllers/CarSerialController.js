@@ -3,23 +3,25 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.car.controllers")
-    .controller('CarBrandController',function ($scope, $rootScope, $state, toaster, $uibModal,CarService,SysDictService,ToolsService) {
+    .controller('CarSerialController',function ($scope, $rootScope, $state, toaster, $uibModal,CarService,SysDictService,ToolsService) {
         $scope.queryParams={};
 
         $scope.init = function () {
-            $scope.queryCarBrandList($scope.queryParams);
+            $scope.queryCarSerialList($scope.queryParams);
+            $scope.carBrandList = CarService.queryCarBrandList().$object;
         };
 
-        $scope.queryCarBrandList = function(queryParams){
-            $scope.carBrandList = CarService.queryCarBrandPageList(queryParams).$object;
+        $scope.queryCarSerialList = function(queryParams){
+            $scope.carSerialList = CarService.queryCarSerialPageList(queryParams).$object;
         };
-        $scope.addCarBrand = function(){
+        $scope.addCarSerial = function(){
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
-                templateUrl :'module_car/tpl/dialog-carbrand-add.html',
+                templateUrl :'module_car/tpl/dialog-carserial-add.html',
                 controller:function($scope,RestApi){
                     $scope.item={};
+                    $scope.carBrandList = CarService.queryCarBrandList({}).$object;
                     $scope.ok=function(){
                         modalInstance.close($scope.item);
                     };
@@ -29,13 +31,13 @@ angular.module("pu.car.controllers")
                 }
             });
             modalInstance.result.then(function(response){
-                CarService.addCarBrand(response).then(function(){
+                CarService.addCarSerial(response).then(function(){
                     toaster.pop('success', '操作提醒', '增加成功');
-                    $scope.queryCarBrandList({});
+                    $scope.queryCarSerialList({});
                 })
             })
         };
-        $scope.editCarBrand = function(item){
+        $scope.editCarSerial = function(item){
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
@@ -44,16 +46,17 @@ angular.module("pu.car.controllers")
                         return item;
                     }
                 },
-                templateUrl :'module_car/tpl/dialog-carbrand-edit.html',
+                templateUrl :'module_car/tpl/dialog-carserial-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;
+                    $scope.carBrandList = CarService.queryCarBrandList({}).$object;
                     $scope.ok=function(){
-                        CarService.modifyCarBrand($scope.item).then(function(){
+                        CarService.modifyCarSerial($scope.item).then(function(){
                             modalInstance.close('修改成功');
                         })
                     };
                     $scope.delete = function(){
-                        CarService.deleteCarBrand(item.id).then(function(){
+                        CarService.deleteCarSerial(item.id).then(function(){
                             modalInstance.close('删除成功');
                         })
                     };
@@ -64,7 +67,7 @@ angular.module("pu.car.controllers")
             });
             modalInstance.result.then(function(response){
                 toaster.pop('success', '操作提醒',response );
-                $scope.queryCarBrandList({});
+                $scope.queryCarSerialList({});
             })
         };
     })
