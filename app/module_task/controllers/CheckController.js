@@ -18,8 +18,11 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','提交审核任务成功')
             })
         };
-        $scope.saveCheckInfo = function(){
-
+        $scope.initCheckFileManage=function(){
+            $scope.checkFileInterface.init($scope.applyInfo.appId,'check');
+        };
+        $scope.initCheckFileComponent = function(fileInterface){
+            $scope.checkFileInterface = fileInterface;
         };
     })
 ;

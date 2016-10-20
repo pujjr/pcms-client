@@ -4929,6 +4929,8 @@ ul{
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
+  width:100%;
+  padding-right: 200px;
   overflow: auto; position:fixed; top:100px; bottom:300px;
 }
 .check-body-full{
