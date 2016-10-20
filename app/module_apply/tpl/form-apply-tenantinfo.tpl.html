@@ -162,12 +162,8 @@
             <div class="form-group form-group-sm">
                 <label for="childCount" class="col-sm-4 control-label">子女数量：</label>
                 <div class="col-sm-8">
-                    <select id="childCount" class="form-control" ng-model="applyInfo.tenant.childCount" ng-required="requiredMap.childCount">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <select id="childCount" class="form-control" ng-model="applyInfo.tenant.childCount" ng-required="requiredMap.childCount"
+                            ng-options="o.key as o.val for o in [{key:1,val:'1'},{key:2,val:'2'},{key:3,val:'3'},{key:4,val:'4'},{key:5,val:'5'}]">
                     </select>
                 </div>
             </div>

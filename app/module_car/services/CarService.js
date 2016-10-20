@@ -48,11 +48,11 @@ angular.module('pu.car.services')
         }
         this.selectCar = function(){
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 backdrop:'false',
                 size:'lg',
                 templateUrl :'module_car/tpl/dialog-select-car.html',
-                controller:function($scope,RestApi,CarService){
+                controller:function($scope,RestApi,CarService,$timeout){
                     $scope.init = function(){
                         $scope.carBrand ={};
                         $scope.carSerial = {};
@@ -65,12 +65,21 @@ angular.module('pu.car.services')
                     $scope.carSerialChanged = function(){
                        // $scope.carStyleList = CarService.queryCarStyleList($scope.carSerial.id).$object;
                         $scope.carStyleList = CarService.queryCarStylePageList({'carSerialId':$scope.carSerial.id}).$object;
-                    }
+                    };
+                    var timeout;
+                    $scope.$watch('indexStr',function(newVal,oldVal){
+                        if(newVal!=oldVal && newVal !=undefined && newVal!= ''){
+                            if (timeout) $timeout.cancel(timeout);
+                            timeout=$timeout(function(){
+                                $scope.carStyleList = CarService.queryCarStylePageList({'indexStr':$scope.indexStr}).$object;
+                            },1500);
+                        }
+                    })
                     $scope.selectCar = function(item){
                         var carObj = {};
                         angular.copy(item,carObj);
-                        carObj.carBrand = $scope.carBrand;
-                        carObj.carSerial = $scope.carSerial;
+                        //carObj.carBrand = $scope.carBrand;
+                        //carObj.carSerial = $scope.carSerial;
                         modalInstance.close(carObj);
                     }
                     $scope.cancel = function () {

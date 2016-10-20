@@ -6,7 +6,7 @@
         <div class="panel">
             <div class="container-fluid form-horizontal">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group form-group-sm">
                             <label for="carbrand" class="col-sm-4 control-label">品牌：</label>
                             <div class="col-sm-8">
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group form-group-sm">
                             <label for="product" class="col-sm-4 control-label">车系：</label>
                             <div class="col-sm-8">
@@ -28,8 +28,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" id="brandName" placeholder="快速查找" ng-model="item.brandName" required>
+                    <div class="col-md-6">
+                        <label for="product" class="col-sm-4 control-label">快速查找：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="indexStr" placeholder="快速查找" ng-model="indexStr">
+                        </div>
+
                     </div>
                 </div>
             </div>

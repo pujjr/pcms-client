@@ -154,7 +154,7 @@ angular.module('pu.utils.directives')
                         return;
                     };
                     $scope.convertModelValue(ngModel.$modelValue);
-                    watchChoices();
+                   // watchChoices();
                 },true)
 
             }
