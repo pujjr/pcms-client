@@ -8,6 +8,9 @@ angular.module("pu.apply.controllers")
         $scope.initApplyAdd = function () {
             //申请信息初始化一些选项
             $scope.applyInfo = {};
+            $scope.totalFinanceAmt = 0.00;
+            $scope.totalLoanAmt = 0.00;
+            $scope.monthRent = 0.00;
             $scope.applyInfo.finances = [];
             $scope.applyInfo.tenant={};
             $scope.applyInfo.tenant.tenantHouses = [];
@@ -19,6 +22,7 @@ angular.module("pu.apply.controllers")
             $scope.initLinkmans($scope.applyInfo.linkmans);
             $scope.initSelectList("add");
             $scope.initWatchTotalFinance();
+            $scope.initWatchDebitInfo();
         };
         $scope.refreshFormRequiredMap = function(){
             $scope.requiredMap = ProductService.queryProductFormRequiredMap($scope.applyInfo.product.id).$object;
@@ -31,22 +35,17 @@ angular.module("pu.apply.controllers")
         var watchFinance3Gps ;
         var watchFinance3;
         var watchTotalFinance;
+        var watchDebitAmount;
         $scope.initWatchFinance1 = function(){
             //监视融资信息变化查询GPS档位
             watchFinance1Gps = $scope.$watchGroup(['finance1.salePrice','finance1.initPayPercent'],function(newVal,oldVal){
                 $scope.finance1.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance1.salePrice,$scope.finance1.initPayPercent,$scope.applyInfo.product).$object;
             },true);
             watchFinance1 = $scope.$watch('finance1',function(newVal,oldVal){
-                //取融资手续费
-                var financeFee = 0;
+
                 var product = $scope.applyInfo.product;
-                for(var i = 0 ; i<product.productPeriodList.length;i++){
-                    if($scope.applyInfo.period==product.productPeriodList[i].period){
-                        financeFee = product.productPeriodList[i].financeFee;
-                    }
-                }
-                $scope.finance1.financeFee=financeFee;
-                //如果为全款再融
+
+                //计算融资金额如果为全款再融
                 if($scope.applyInfo.product.productRule.isTotalRefinance){
                     $scope.finance1.financeAmount = Math.round((parseFloat($scope.finance1.salePrice)*parseFloat($scope.finance1.initPayPercent)/100+
                         parseFloat($scope.finance1.gpsFee)+parseFloat($scope.finance1.purchaseTax)+parseFloat($scope.finance1.serviceFee)+
@@ -58,13 +57,23 @@ angular.module("pu.apply.controllers")
                         parseFloat($scope.finance1.insuranceFee)+parseFloat($scope.finance1.delayInsuranceFee)+parseFloat($scope.finance1.transferFee)
                         +parseFloat($scope.finance1.addonFee)).toFixed(2));
                 };
+                //购置税
                 if($scope.finance1.isPurchaseTax){
                     if(parseFloat($scope.finance1.carStyle.displacement)>1.6){
                         $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*(1-$scope.finance1.initPayPercent/100)).toFixed(2));
                     }else{
                         $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*0.5).toFixed(2));
                     }
+                };
+                //取融资手续费
+                var financeFee = 0;
+                for(var i = 0 ; i<product.productPeriodList.length;i++){
+                    if($scope.applyInfo.period==product.productPeriodList[i].period){
+                        financeFee = ($scope.finance1.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                        break;
+                    }
                 }
+                $scope.finance1.financeFee=financeFee;
             },true);
         };
 
@@ -75,16 +84,9 @@ angular.module("pu.apply.controllers")
                 $scope.finance2.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance2.salePrice,$scope.finance2.initPayPercent,$scope.applyInfo.product).$object;
             },true);
             watchFinance2 = $scope.$watch('finance2',function(newVal,oldVal){
-                //取融资手续费
-                var financeFee = 0;
                 var product = $scope.applyInfo.product;
-                for(var i = 0 ; i<product.productPeriodList.length;i++){
-                    if($scope.applyInfo.period==product.productPeriodList[i].period){
-                        financeFee = product.productPeriodList[i].financeFee;
-                    }
-                }
-                $scope.finance2.financeFee=financeFee;
-                //如果为全款再融
+
+                //计算融资金额，如果为全款再融
                 if($scope.applyInfo.product.productRule.isTotalRefinance){
                     $scope.finance2.financeAmount = Math.round((parseFloat($scope.finance2.salePrice)*parseFloat($scope.finance2.initPayPercent)/100+
                         parseFloat($scope.finance2.gpsFee)+parseFloat($scope.finance2.purchaseTax)+parseFloat($scope.finance2.serviceFee)+
@@ -96,13 +98,24 @@ angular.module("pu.apply.controllers")
                         parseFloat($scope.finance2.insuranceFee)+parseFloat($scope.finance2.delayInsuranceFee)+parseFloat($scope.finance2.transferFee)
                         +parseFloat($scope.finance2.addonFee)).toFixed(2));
                 };
+                //购置税
                 if($scope.finance2.isPurchaseTax){
                     if(parseFloat($scope.finance2.carStyle.displacement)>1.6){
                         $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1*(1-$scope.finance2.initPayPercent/100)).toFixed(2));
                     }else{
                         $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1*0.5).toFixed(2));
                     }
+                };
+                //取融资手续费
+                var financeFee = 0;
+
+                for(var i = 0 ; i<product.productPeriodList.length;i++){
+                    if($scope.applyInfo.period==product.productPeriodList[i].period){
+                        financeFee = ($scope.finance2.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                        break;
+                    }
                 }
+                $scope.finance2.financeFee=financeFee;
             },true);
         };
 
@@ -112,16 +125,8 @@ angular.module("pu.apply.controllers")
                 $scope.finance3.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance3.salePrice,$scope.finance3.initPayPercent,$scope.applyInfo.product).$object;
             },true);
             watchFinance3 = $scope.$watch('finance3',function(newVal,oldVal){
-                //取融资手续费
-                var financeFee = 0;
                 var product = $scope.applyInfo.product;
-                for(var i = 0 ; i<product.productPeriodList.length;i++){
-                    if($scope.applyInfo.period==product.productPeriodList[i].period){
-                        financeFee = product.productPeriodList[i].financeFee;
-                    }
-                }
-                $scope.finance3.financeFee=financeFee;
-                //如果为全款再融
+                //计算融资金额，如果为全款再融
                 if($scope.applyInfo.product.productRule.isTotalRefinance){
                     $scope.finance3.financeAmount = Math.round((parseFloat($scope.finance3.salePrice)*parseFloat($scope.finance3.initPayPercent)/100+
                         parseFloat($scope.finance3.gpsFee)+parseFloat($scope.finance3.purchaseTax)+parseFloat($scope.finance3.serviceFee)+
@@ -133,13 +138,23 @@ angular.module("pu.apply.controllers")
                         parseFloat($scope.finance3.insuranceFee)+parseFloat($scope.finance3.delayInsuranceFee)+parseFloat($scope.finance3.transferFee)
                         +parseFloat($scope.finance3.addonFee)).toFixed(2));
                 };
+                //购置税
                 if($scope.finance3.isPurchaseTax){
                     if(parseFloat($scope.finance3.carStyle.displacement)>1.6){
                         $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1*(1-$scope.finance3.initPayPercent/100)).toFixed(2));
                     }else{
                         $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1*0.5).toFixed(2));
                     }
+                };
+                //取融资手续费
+                var financeFee = 0;
+                for(var i = 0 ; i<product.productPeriodList.length;i++){
+                    if($scope.applyInfo.period==product.productPeriodList[i].period){
+                        financeFee = ($scope.finance3.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                        break;
+                    }
                 }
+                $scope.finance3.financeFee=financeFee;
             },true);
         };
         //计算还款月租金，需根据融资金额，期数，产品进行计算， 放款金额=融资金额-GPS费用-评估费-融资手续费 应watch这些变量
@@ -180,10 +195,65 @@ angular.module("pu.apply.controllers")
                         item.financeFee=0.00;
                     $scope.applyInfo.totalLoanAmt += item.financeAmount - item.gpsFee - parseFloat(item.assessFee) - item.financeFee;
                     $scope.applyInfo.totalFinanceAmt += item.financeAmount;
+                    /**产品信息变化重新计算融资手续费**/
+                    var product = $scope.applyInfo.product;
+                    for(var j = 0 ; j<product.productPeriodList.length;j++){
+                        if($scope.applyInfo.period==product.productPeriodList[j].period){
+                            $scope.applyInfo.finances[i].financeFee = Math.round((($scope.applyInfo.finances[i].financeAmount/10000)*product.productPeriodList[j].financeFee).toFixed(2));
+                            break;
+                        }
+                    }
                 }
                 //月租金
                 $scope.applyInfo.monthRent = CalService.calMonthRent($scope.applyInfo.totalFinanceAmt,period,monthRate,repayMode);
             });
+        }
+        /**监视负债信息计算总金额**/
+        $scope.initWatchDebitInfo = function(){
+            watchDebitAmount = $scope.$watchGroup(
+                [
+                    'applyInfo.familyDebt.bankLoanAmount',
+                    'applyInfo.familyDebt.pettyLoanAmout',
+                    'applyInfo.familyDebt.creditLoanAmount',
+                    'applyInfo.familyDebt.relativeLoanAmount',
+                    'applyInfo.familyDebt.friendLoanAmount',
+                    'applyInfo.familyDebt.bankLoanYhk',
+                    'applyInfo.familyDebt.pettyLoanYhk',
+                    'applyInfo.familyDebt.creditLoanYhk',
+                    'applyInfo.familyDebt.relativeLoanYhk',
+                    'applyInfo.familyDebt.friendLoanYhk'
+                ],function(newVal,oldVal){
+                    if($scope.applyInfo.familyDebt.bankLoanAmount==undefined || $scope.applyInfo.familyDebt.bankLoanAmount == null || isNaN($scope.applyInfo.familyDebt.bankLoanAmount))
+                        $scope.applyInfo.familyDebt.bankLoanAmount = 0.00;
+                    if($scope.applyInfo.familyDebt.pettyLoanAmout==undefined || $scope.applyInfo.familyDebt.pettyLoanAmout == null || isNaN($scope.applyInfo.familyDebt.pettyLoanAmout))
+                        $scope.applyInfo.familyDebt.pettyLoanAmout = 0.00;
+                    if($scope.applyInfo.familyDebt.creditLoanAmount==undefined || $scope.applyInfo.familyDebt.creditLoanAmount == null || isNaN($scope.applyInfo.familyDebt.creditLoanAmount))
+                        $scope.applyInfo.familyDebt.creditLoanAmount = 0.00;
+                    if($scope.applyInfo.familyDebt.relativeLoanAmount==undefined || $scope.applyInfo.familyDebt.relativeLoanAmount == null || isNaN($scope.applyInfo.familyDebt.relativeLoanAmount))
+                        $scope.applyInfo.familyDebt.relativeLoanAmount = 0.00;
+                    if($scope.applyInfo.familyDebt.friendLoanAmount==undefined || $scope.applyInfo.familyDebt.friendLoanAmount == null || isNaN($scope.applyInfo.familyDebt.friendLoanAmount))
+                        $scope.applyInfo.familyDebt.friendLoanAmount = 0.00;
+                    if($scope.applyInfo.familyDebt.bankLoanYhk==undefined || $scope.applyInfo.familyDebt.bankLoanYhk == null || isNaN($scope.applyInfo.familyDebt.bankLoanYhk))
+                        $scope.applyInfo.familyDebt.bankLoanYhk = 0.00;
+                    if($scope.applyInfo.familyDebt.pettyLoanYhk==undefined || $scope.applyInfo.familyDebt.pettyLoanYhk == null || isNaN($scope.applyInfo.familyDebt.pettyLoanYhk))
+                        $scope.applyInfo.familyDebt.pettyLoanYhk = 0.00;
+                    if($scope.applyInfo.familyDebt.creditLoanYhk==undefined || $scope.applyInfo.familyDebt.creditLoanYhk == null || isNaN($scope.applyInfo.familyDebt.creditLoanYhk))
+                        $scope.applyInfo.familyDebt.creditLoanYhk = 0.00;
+                    if($scope.applyInfo.familyDebt.relativeLoanYhk==undefined || $scope.applyInfo.familyDebt.relativeLoanYhk == null || isNaN($scope.applyInfo.familyDebt.relativeLoanYhk))
+                        $scope.applyInfo.familyDebt.relativeLoanYhk = 0.00;
+                    if($scope.applyInfo.familyDebt.friendLoanYhk==undefined || $scope.applyInfo.familyDebt.friendLoanYhk == null || isNaN($scope.applyInfo.familyDebt.friendLoanYhk))
+                        $scope.applyInfo.familyDebt.friendLoanYhk = 0.00;
+                    $scope.applyInfo.familyDebt.loanTotal = $scope.applyInfo.familyDebt.bankLoanAmount+
+                        $scope.applyInfo.familyDebt.pettyLoanAmout+
+                        $scope.applyInfo.familyDebt.creditLoanAmount+
+                        $scope.applyInfo.familyDebt.relativeLoanAmount+
+                        $scope.applyInfo.familyDebt.friendLoanAmount;
+                    $scope.applyInfo.familyDebt.loanYhkTotal =  $scope.applyInfo.familyDebt.bankLoanYhk+
+                        $scope.applyInfo.familyDebt.pettyLoanYhk+
+                        $scope.applyInfo.familyDebt.creditLoanYhk+
+                        $scope.applyInfo.familyDebt.relativeLoanYhk+
+                        $scope.applyInfo.familyDebt.friendLoanYhk
+                });
         }
 
         //增加融资信息
@@ -263,14 +333,30 @@ angular.module("pu.apply.controllers")
         }
         $scope.addressCtrl = {
             onEditRefresh : function(){
-                $scope.tenantCityList = SysAreaService.queryCityList($scope.applyInfo.tenant.addrProvince).$object;
-                $scope.tenantCountyList = SysAreaService.queryCountyList($scope.applyInfo.tenant.addrProvince,$scope.applyInfo.tenant.addrCity).$object;
-                $scope.tenantUnitCityList = SysAreaService.queryCityList($scope.applyInfo.tenant.unitAddrProvince).$object;
-                $scope.tenantUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.tenant.unitAddrProvince,$scope.applyInfo.tenant.unitAddrCity).$object;
-                $scope.spouseUnitCityList = SysAreaService.queryCityList($scope.applyInfo.spouse.unitAddrProvince).$object;
-                $scope.spouseUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.spouse.unitAddrProvince,$scope.applyInfo.spouse.unitAddrCity).$object;
-                $scope.cloesseeUnitCityList = SysAreaService.queryCityList($scope.applyInfo.cloessee.unitAddrProvince).$object;
-                $scope.cloesseeUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.cloessee.unitAddrProvince,$scope.applyInfo.cloessee.unitAddrCity).$object;
+                SysAreaService.queryCityList($scope.applyInfo.tenant.addrProvince).then(function(response){
+                    $scope.tenantCityList = response;
+                });
+                SysAreaService.queryCountyList($scope.applyInfo.tenant.addrProvince,$scope.applyInfo.tenant.addrCity).then(function(response){
+                    $scope.tenantCountyList = response;
+                });
+                SysAreaService.queryCityList($scope.applyInfo.tenant.unitAddrProvince).then(function(response){
+                    $scope.tenantUnitCityList = response;
+                });
+                SysAreaService.queryCountyList($scope.applyInfo.tenant.unitAddrProvince,$scope.applyInfo.tenant.unitAddrCity).then(function(response){
+                    $scope.tenantUnitCountyList = response;
+                });
+                SysAreaService.queryCityList($scope.applyInfo.spouse.unitAddrProvince).then(function(response){
+                    $scope.spouseUnitCityList = response;
+                });
+                SysAreaService.queryCountyList($scope.applyInfo.spouse.unitAddrProvince,$scope.applyInfo.spouse.unitAddrCity).then(function(response){
+                    $scope.spouseUnitCountyList = response;
+                });
+                SysAreaService.queryCityList($scope.applyInfo.cloessee.unitAddrProvince).then(function(response){
+                    $scope.cloesseeUnitCityList = response;
+                });
+                SysAreaService.queryCountyList($scope.applyInfo.cloessee.unitAddrProvince,$scope.applyInfo.cloessee.unitAddrCity).then(function(response){
+                    $scope.cloesseeUnitCountyList = response;
+                });
                 //刷新承租人房产地址
                 SysAreaService.queryCityList($scope.tenantHouse1.addrProvince).then(function(response){
                     $scope.tenantHouse1.cityList  = response;
@@ -410,9 +496,6 @@ angular.module("pu.apply.controllers")
                 item.carStyle={};
                 angular.copy(response,item.carStyle);
             });
-        };
-        $scope.printVar = function(){
-            console.log($scope.applyInfo);
         };
        //查询未提交申请单列表
         $scope.initQueryUnCommitApplyInfoList = function(){
@@ -608,6 +691,8 @@ angular.module("pu.apply.controllers")
                 watchFinance3();
             if(watchTotalFinance!=undefined)
                 watchTotalFinance();
+            if(watchDebitAmount !=undefined)
+                watchDebitAmount();
             ApplyService.queryApplyInfoByAppId(appId).then(function(response){
                 $scope.applyInfo =  response;
                 if($scope.applyInfo.finances == undefined){
@@ -630,6 +715,7 @@ angular.module("pu.apply.controllers")
                 $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
                 $scope.initLinkmans($scope.applyInfo.linkmans);
                 $scope.initWatchTotalFinance();
+                $scope.initWatchDebitInfo();
             })
         };
         //保存申请信息

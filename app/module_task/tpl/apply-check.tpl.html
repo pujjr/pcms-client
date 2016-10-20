@@ -24,10 +24,18 @@
                     </uib-tab-heading>
                     <div ng-include="'module_apply/tpl/form-apply.html'"></div>
                 </uib-tab>
-                <uib-tab index="1">
+                <uib-tab index="1"  select="initApplyFileManage()">
                     <uib-tab-heading>
                         <span>申请资料</span>
                     </uib-tab-heading>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:false}"></ng-file-manage>
+                            </div>
+                        </div>
+                    </div>
+
                 </uib-tab>
                 <uib-tab index="2"  select="queryWorkflowProcessResult(taskId)">
                     <uib-tab-heading>

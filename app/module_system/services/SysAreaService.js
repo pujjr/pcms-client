@@ -20,13 +20,14 @@ angular.module('pu.system.services')
         };
         this.queryCityList = function(provinceId){
             if(provinceId==null || provinceId ==undefined){
-                return null;
+                provinceId ="provinceId";
             }
             return RestApi.one("/sysarea/province",provinceId).all("city").getList();
         };
         this.queryCountyList = function(provinceId,cityId){
             if(provinceId==null || provinceId ==undefined||cityId== null || cityId==undefined || provinceId==''||cityId==''){
-                return  null;
+                provinceId="provinceId";
+                cityId="city";
             }
             return RestApi.one("/sysarea/province",provinceId).one("/city",cityId).all("county").getList();
         }
