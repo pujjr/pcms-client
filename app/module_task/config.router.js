@@ -27,6 +27,18 @@ angular.module('app')
                     template:'<div ui-view=""></div>',
                     controller:'ApplyController'
                 })
+                //重新提交申请的
+                .state('app.task.process.reapply',{
+                    url:'/reapply/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/reapply.html',
+                    controller:'ReApplyController'
+                })
+                //初审
+                .state('app.task.process.precheck',{
+                    url:'/precheck/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-precheck.html',
+                    controller:'CheckController'
+                })
                 .state('app.task.process.check',{
                     url:'/check/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-check.html',

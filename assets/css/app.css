@@ -4916,12 +4916,14 @@ ul{
 }
 .check-header{
   border-radius: 4px;
-  background-color:#f0f3f4;
-  border:1px solid #e1e6eb;
+  background-color:#FFFFFF;
+  border-top:1px solid #e1e6eb;
+  border-right:1px solid #e1e6eb;
+  border-left:1px solid #e1e6eb;
   width:100%;
   position:fixed;
   top:50px;
-  height:50px;
+  height:72px;
   z-index: 1001;
   padding-right: 200px;
 }
@@ -4931,13 +4933,15 @@ ul{
   border-radius: 4px;
   width:100%;
   padding-right: 200px;
-  overflow: auto; position:fixed; top:100px; bottom:300px;
+  overflow: auto; position:fixed; top:122px; bottom:300px;
 }
 .check-body-full{
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
-  overflow-y:auto; position:fixed; top:100px;bottom:1px;
+  width:100%;
+  padding-right: 200px;
+  overflow-y:auto; position:fixed; top:122px;bottom:1px;
 }
 .check-footer{
   border-radius: 4px;

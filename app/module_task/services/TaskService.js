@@ -8,7 +8,13 @@ angular.module('pu.task.services')
         };
         this.commitApplyTask = function(item){
             return RestApi.all("/task/commitApplyTask").post(item);
-        }
+        };
+        this.commitReApplyTask = function(applyVo,taskId){
+            return RestApi.all("/task/commitReApplyTask").all(taskId).post(applyVo);
+        };
+        this.commitPreCheckTask = function(applyVo,checkVo,taskId){
+            return RestApi.all("/task/commitPreCheckTask").all(taskId).post();
+        };
         this.commitCheckTask = function(applyVo,checkVo,taskId){
             return RestApi.all("/task/commitCheckTask").all(taskId).post({"applyVo":applyVo,"checkVo":checkVo});
         };

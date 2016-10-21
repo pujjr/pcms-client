@@ -18,11 +18,11 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','提交审核任务成功')
             })
         };
-        $scope.initCheckFileManage=function(){
-            $scope.checkFileInterface.init($scope.applyInfo.appId,'check');
-        };
-        $scope.initCheckFileComponent = function(fileInterface){
-            $scope.checkFileInterface = fileInterface;
-        };
+        $scope.commitPreCheckTask = function(){
+            TaskService.commitPreCheckTask($stateParams.taskId).then(function(response){
+                $state.go('app.task.todolist');
+                toaster.pop('success', '操作提醒','提交初审任务成功')
+            })
+        }
     })
 ;
