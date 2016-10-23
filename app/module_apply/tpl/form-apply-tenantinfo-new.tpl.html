@@ -1,4 +1,4 @@
-<!--承租人信息（基本信息）-->
+<!--承租人信息（基本信息）模板用于经销商新增、编辑、签约环节环节-->
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">承租人信息（基本信息）</legend>
     <div class="row  m-t-md">
@@ -284,186 +284,87 @@
             </div>
         </div>
     </div>
-    <div  ng-repeat="item in applyInfo.tenant.tenantHouses">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-2 control-label">房产{{item.seq | simpleChnUpperCase}}住址：</label>
-                    <div class="col-sm-2">
-                        <select  class="form-control"  ng-model="item.addrProvince"
-                                 ng-disabled="editable==false"
-                                 ng-options="item.id as item.areaName for item in provinceList"
-                                 ng-required="requiredMap.tenantHouses_addrProvince"
-                                 ng-change="addressCtrl.onCommonProvinceChange(item)">
-                            <option value="">省</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-2" >
-                        <select  class="form-control"  ng-model="item.addrCity"
-                                 ng-disabled="editable==false"
-                                 ng-options="item.id as item.areaName for item in item.cityList"
-                                 ng-required="requiredMap.tenantHouses_addrCity"
-                                 ng-change="addressCtrl.onCommonCityChange(item)">
-                            <option value="">市</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-2" >
-                        <select  class="form-control"  ng-model="item.addrCounty"
-                                 ng-disabled="editable==false"
-                                 ng-options="item.id as item.areaName for item in item.countyList"
-                                 ng-required="requiredMap.tenantHouses_addrCounty">
-                            <option value="">县</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-4" >
-                        <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.addrExt" ng-required="requiredMap.tenantHouses_addrExt" placeholder="详细地址">
-                    </div>
+    <div class="row" ng-repeat="item in applyInfo.tenant.tenantHouses">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">房产{{item.seq | simpleChnUpperCase}}住址：</label>
+                <div class="col-sm-2">
+                    <select  class="form-control"  ng-model="item.addrProvince"
+                             ng-disabled="editable==false"
+                             ng-options="item.id as item.areaName for item in provinceList"
+                             ng-required="requiredMap.tenantHouses_addrProvince"
+                             ng-change="addressCtrl.onCommonProvinceChange(item)">
+                        <option value="">省</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="item.addrCity"
+                             ng-disabled="editable==false"
+                             ng-options="item.id as item.areaName for item in item.cityList"
+                             ng-required="requiredMap.tenantHouses_addrCity"
+                             ng-change="addressCtrl.onCommonCityChange(item)">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="item.addrCounty"
+                             ng-disabled="editable==false"
+                             ng-options="item.id as item.areaName for item in item.countyList"
+                             ng-required="requiredMap.tenantHouses_addrCounty">
+                        <option value="">县</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" >
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.addrExt" ng-required="requiredMap.tenantHouses_addrExt" placeholder="详细地址">
+                </div>
 
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">状态：</label>
-                    <div class="col-sm-8 text-left">
-                        <select id="status" class="form-control" ng-model="item.status"
-                                ng-disabled="editable==false"
-                                ng-options="item.dictDataCode as item.dictDataName for item in houseStatusList" ng-required="requiredMap.tenantHouses_status">
-                            <option value="">请选择房产状态</option>
-                        </select>
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">面积：</label>
-                    <div class="col-sm-8">
-                        <input type="number" step="0.01" class="form-control" ng-disabled="editable==false" ng-model="item.area" ng-required="requiredMap.area" placeholder="面积">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">贷款金额：</label>
-                    <div class="col-sm-8">
-                        <input type="number" class="form-control" ng-disabled="editable==false" ng-model="item.loanAmount" ng-required="requiredMap.loanAmount" placeholder="贷款金额">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">余额:</label>
-                    <div class="col-sm-8">
-                        <input type="number" class="form-control" ng-disabled="editable==false" ng-model="item.loanBalance" ng-required="requiredMap.loanBalance" placeholder="余额">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">月供：</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.monthRent" ng-required="requiredMap.monthRent" placeholder="月供">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-2 control-label">补充说明：</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.comment" ng-required="requiredMap.comment" placeholder="补充说明">
-                    </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">房产{{item.seq | simpleChnUpperCase}}状态：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="status" class="form-control" ng-model="item.status"
+                            ng-disabled="editable==false"
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseStatusList" ng-required="requiredMap.tenantHouses_status">
+                        <option value="">请选择房产状态</option>
+                    </select>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-repeat="item in applyInfo.tenant.tenantCars">
-        <div class="row" >
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}品牌：</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.carBrand" ng-required="requiredMap.tenantCars_carBrand" placeholder="车产一品牌">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}车牌：</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.carDetail"  ng-required="requiredMap.tenantCars_carDetail" placeholder="车产一车牌">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}状态：</label>
-                    <div class="col-sm-8" >
-                        <select  class="form-control" ng-model="item.carStatus"
-                                 ng-disabled="editable==false"
-                                 ng-required="requiredMap.tenantCars_carStatus"
-                                 ng-options="item.dictDataCode as item.dictDataName for item in carStatusList" >
-                            <option value="">请选择车产状态</option>
-                        </select>
-                    </div>
+    <div class="row" ng-repeat="item in applyInfo.tenant.tenantCars">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}品牌：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.carBrand" ng-required="requiredMap.tenantCars_carBrand" placeholder="车产一品牌">
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">新车上牌日期：</label>
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            <input type="text" id="registerDate" class="form-control" uib-datepicker-popup
-                                   ng-disabled="editable==false"
-                                   ng-required="requiredMap.registerDate"
-                                   is-open="item.isOpenDriverLicenseDate" ng-model="item.registerDate" >
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-disabled="editable==false"  ng-click="item.isOpenDriverLicenseDate=!item.isOpenDriverLicenseDate" ><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">贷款金额：</label>
-                    <div class="col-sm-8">
-                        <input type="number" class="form-control" ng-disabled="editable==false" ng-model="item.loanAmount" ng-required="requiredMap.loanAmount" placeholder="贷款金额">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">余额:</label>
-                    <div class="col-sm-8">
-                        <input type="number" class="form-control" ng-disabled="editable==false" ng-model="item.loanBalance" ng-required="requiredMap.loanBalance" placeholder="余额">
-                    </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}车牌：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.carDetail"  ng-required="requiredMap.tenantCars_carDetail" placeholder="车产一车牌">
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-4 control-label">月供：</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.monthRent" ng-required="requiredMap.monthRent" placeholder="月供">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="form-group form-group-sm">
-                    <label class="col-sm-2 control-label">补充说明：</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.comment" ng-required="requiredMap.comment" placeholder="补充说明">
-                    </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}状态：</label>
+                <div class="col-sm-8" >
+                    <select  class="form-control" ng-model="item.carStatus"
+                             ng-disabled="editable==false"
+                             ng-required="requiredMap.tenantCars_carStatus"
+                             ng-options="item.dictDataCode as item.dictDataName for item in carStatusList" >
+                        <option value="">请选择车产状态</option>
+                    </select>
                 </div>
             </div>
         </div>
     </div>
+
 </fieldset>
 <!--承租人信息（工作及收入信息）-->
 <fieldset class="scheduler-border">

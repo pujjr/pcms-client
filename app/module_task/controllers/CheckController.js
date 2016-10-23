@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('CheckController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService) {
+    .controller('CheckController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService,modal) {
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
         $scope.initCheck = function(){
@@ -22,6 +22,18 @@ angular.module("pu.task.controllers")
             TaskService.commitPreCheckTask($stateParams.taskId).then(function(response){
                 $state.go('app.task.todolist');
                 toaster.pop('success', '操作提醒','提交初审任务成功')
+            })
+        };
+        $scope.supplyCheckInfo = function(){
+            modal.prompt("备注","请输入审核补充资料备注").then(function(response){
+                var checkVo = {};
+                //提交类型为审核补充资料
+                checkVo.result = "shbczl"
+                checkVo.comment = response;
+                TaskService.commitCheckTask(null,checkVo,$stateParams.taskId).then(function(response){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交补充审核资料任务成功')
+                })
             })
         }
     })

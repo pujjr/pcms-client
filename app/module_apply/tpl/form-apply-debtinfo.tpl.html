@@ -22,19 +22,19 @@
                            欠款金额*
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_bankLoanAmount"  ng-model="applyInfo.familyDebt.bankLoanAmount"  placeholder="银行贷款">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_bankLoanAmount"  ng-model="applyInfo.familyDebt.bankLoanAmount"  placeholder="银行贷款">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_pettyLoanAmout"   ng-model="applyInfo.familyDebt.pettyLoanAmout"  placeholder="小贷/P2P">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_pettyLoanAmout"   ng-model="applyInfo.familyDebt.pettyLoanAmout"  placeholder="小贷/P2P">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_creditLoanAmount" ng-model="applyInfo.familyDebt.creditLoanAmount"  placeholder="信用卡">
+                            <input type="number" class="form-control input-sm"  ng-disabled="editable==false" ng-required="requiredMap.familyDebt_creditLoanAmount" ng-model="applyInfo.familyDebt.creditLoanAmount"  placeholder="信用卡">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_relativeLoanAmount" ng-model="applyInfo.familyDebt.relativeLoanAmount"  placeholder="亲戚">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_relativeLoanAmount" ng-model="applyInfo.familyDebt.relativeLoanAmount"  placeholder="亲戚">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_friendLoanAmount" ng-model="applyInfo.familyDebt.friendLoanAmount"  placeholder="朋友">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_friendLoanAmount" ng-model="applyInfo.familyDebt.friendLoanAmount"  placeholder="朋友">
                         </td>
                         <td>
                             <label class="col-sm-12 control-label">{{applyInfo.familyDebt.loanTotal}}</label>
@@ -43,19 +43,19 @@
                     <tr>
                         <td class="table-cell-back1 font-white">月还款*</td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm" ng-required="requiredMap.familyDebt_bankLoanYhk" ng-model="applyInfo.familyDebt.bankLoanYhk"  placeholder="银行贷款">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false" ng-required="requiredMap.familyDebt_bankLoanYhk" ng-model="applyInfo.familyDebt.bankLoanYhk"  placeholder="银行贷款">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_pettyLoanYhk" ng-model="applyInfo.familyDebt.pettyLoanYhk"  placeholder="小贷/P2P">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_pettyLoanYhk" ng-model="applyInfo.familyDebt.pettyLoanYhk"  placeholder="小贷/P2P">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_creditLoanYhk" ng-model="applyInfo.familyDebt.creditLoanYhk"  placeholder="信用卡">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_creditLoanYhk" ng-model="applyInfo.familyDebt.creditLoanYhk"  placeholder="信用卡">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_relativeLoanYhk" ng-model="applyInfo.familyDebt.relativeLoanYhk"  placeholder="亲戚">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_relativeLoanYhk" ng-model="applyInfo.familyDebt.relativeLoanYhk"  placeholder="亲戚">
                         </td>
                         <td class="row">
-                            <input type="number" class="form-control input-sm"  ng-required="requiredMap.familyDebt_friendLoanYhk" ng-model="applyInfo.familyDebt.friendLoanYhk"  placeholder="朋友">
+                            <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-required="requiredMap.familyDebt_friendLoanYhk" ng-model="applyInfo.familyDebt.friendLoanYhk"  placeholder="朋友">
                         </td>
                         <td>
                             <label class="col-sm-12 control-label">{{applyInfo.familyDebt.loanYhkTotal}}</label>

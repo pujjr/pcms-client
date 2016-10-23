@@ -735,7 +735,7 @@ angular.module("pu.apply.controllers")
             ;
         };
         $scope.initApplyFileManage=function(){
-            $scope.applyFileInterface.init($scope.applyInfo.appId,'sign');
+            $scope.applyFileInterface.init($scope.applyInfo.appId,'apply');
         };
         $scope.initApplyFileComponent = function(fileInterface){
             $scope.applyFileInterface = fileInterface;

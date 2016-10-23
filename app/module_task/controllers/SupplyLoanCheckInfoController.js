@@ -3,8 +3,8 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService) {
-        $scope.initSign = function(){
+    .controller('SupplyLoanCheckInfoController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService) {
+        $scope.initSupplyLoanCheckInfo = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.gpsSupplierList = GpsService.queryGpsSupplierList(true).$object;
@@ -15,11 +15,11 @@ angular.module("pu.task.controllers")
             TaskService.saveSignContractInfo($scope.signContractVo).then(function(response){
                 toaster.pop('success', '操作提醒','保存签约信息成功');
             })
-        }
-        $scope.commitSignContractTask = function(){
-            TaskService.commitSignContractTask($stateParams.businessKey,$stateParams.taskId).then(function(response){
+        };
+        $scope.commitSupplyLoanCheckTask = function(){
+            TaskService.commitSupplyLoanCheckTask($stateParams.taskId).then(function(response){
                 $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交签约任务成功')
+                toaster.pop('success', '操作提醒','提交补充放款资料任务成功')
             })
         };
     })

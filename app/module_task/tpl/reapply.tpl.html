@@ -11,7 +11,7 @@
             </div>
         </header>
     </div>
-
+    <div class="alert alert-danger" role="alert" ng-if="task.tips!=undefined">{{task.tips}}</div>
     <uib-tabset>
         <uib-tab index="0">
             <uib-tab-heading>
@@ -19,7 +19,7 @@
             </uib-tab-heading>
             <div ng-include="'module_apply/tpl/form-apply.html'"></div>
         </uib-tab>
-        <uib-tab index="1" select="initReApplyFileManage(applyInfo.appId,'sign')">
+        <uib-tab index="1" select="initReApplyFileManage(applyInfo.appId,'apply')">
             <uib-tab-heading>
                 <span>申请资料</span>
             </uib-tab-heading>

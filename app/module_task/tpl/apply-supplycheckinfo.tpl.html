@@ -1,30 +1,29 @@
-<div  class="panel" ng-init="initApplyEdit()">
+<div  class="panel" ng-init="initSupplyCheck()">
     <div class="data-table-container" >
         <header class="data-table-header" style="min-height:72px !important;">
             <div class="data-table-header__label">
-                <span class="fs-title"><i class="fa fa-pencil-square-o mr"></i>编辑申请单-{{applyInfo.appId}}</span>
+                <span class="fs-title"><i class="fa fa-pencil-square-o mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn btn-success btn-sm" type="button"  ng-click="commitApplyTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                <button class="btn btn-success btn-sm" type="button"  ng-click="commitSupplyCheckTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
                 <button class="btn btn-info btn-sm" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
             </div>
         </header>
     </div>
-
+    <div class="alert alert-danger" role="alert" ng-if="task.tips!=undefined">{{task.tips}}</div>
     <uib-tabset>
         <uib-tab index="0">
             <uib-tab-heading>
                 <span>申请信息</span>
             </uib-tab-heading>
-            <div  ng-include="'module_apply/tpl/form-apply-new.html'">
-            </div>
+            <div ng-include="'module_apply/tpl/form-apply.html'"></div>
         </uib-tab>
-        <uib-tab index="1" select="initApplyFileManage()">
+        <uib-tab index="1" select="initReApplyFileManage(applyInfo.appId,'sign')">
             <uib-tab-heading>
                 <span>申请资料</span>
             </uib-tab-heading>
-            <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:true}"></ng-file-manage>
+            <ng-file-manage on-init="initReApplyFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:true}"></ng-file-manage>
         </uib-tab>
     </uib-tabset>
 

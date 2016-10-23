@@ -1,6 +1,6 @@
 <!--融资信息-->
 <div ng-repeat="item in applyInfo.finances">
-    <fieldset class="scheduler-border">
+    <fieldset class="scheduler-border" ng-if="item.select==true">
         <legend class="scheduler-border">融资信息{{item.seq | simpleChnUpperCase}}
             <button class="btn  btn-link" type="button"ng-disabled="editable==false"  ng-click="deActiveFinance(item)" ng-if="item.select==true && item.seq !=1"><i class="fa fa-trash fa-lg m-r-sm" style="color: red"></i></button>
         </legend>

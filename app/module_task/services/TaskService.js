@@ -12,7 +12,10 @@ angular.module('pu.task.services')
         this.commitReApplyTask = function(applyVo,taskId){
             return RestApi.all("/task/commitReApplyTask").all(taskId).post(applyVo);
         };
-        this.commitPreCheckTask = function(applyVo,checkVo,taskId){
+        this.commitSupplyCheckTask = function(applyVo,taskId){
+            return RestApi.all("/task/commitSupplyCheckTask").all(taskId).post(applyVo);
+        };
+        this.commitPreCheckTask = function(taskId){
             return RestApi.all("/task/commitPreCheckTask").all(taskId).post();
         };
         this.commitCheckTask = function(applyVo,checkVo,taskId){
@@ -30,11 +33,20 @@ angular.module('pu.task.services')
         this.querySignInfo = function(appId){
             return RestApi.one("/task/querySignInfo",appId).get();
         };
-        this.commitSignContractTask = function(signContractVo,taskId){
-            return RestApi.all("/task/commitSignContractTask").all(taskId).post(signContractVo);
+        this.saveSignContractInfo = function(signContractVo){
+            return RestApi.all("/task/saveSignContractInfo").post(signContractVo);
         };
-        this.commitLoanCheckTask = function(signContractVo,taskId){
-            return RestApi.all("/task/commitLoanCheckTask").all(taskId).post(signContractVo);
+        this.commitSignContractTask = function(appId,taskId){
+            return RestApi.all("/task/commitSignContractTask").all(appId).all(taskId).post();
+        };
+        this.saveLoanCheckInfo = function(signContractVo){
+            return RestApi.all("/task/saveLoanCheckInfo").post(signContractVo);
+        };
+        this.commitSupplyLoanCheckTask = function(taskId){
+            return RestApi.all("/task/commitSupplyLoanCheckTask").all(taskId).post();
+        }
+        this.commitLoanCheckTask = function(signContractVo,commitType,taskId){
+            return RestApi.all("/task/commitLoanCheckTask").all(taskId).all(commitType).post(signContractVo);
         };
         this.commitPrevLoanApproveTask = function(taskId){
             return RestApi.all("/task/commitPrevLoanApproveTask").all(taskId).post();

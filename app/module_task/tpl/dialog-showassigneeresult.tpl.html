@@ -13,7 +13,11 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in assigneeResults">
-                    <td>{{item.appId}}</td>
+                    <td>
+                        <span ng-if="item.procStatus == true"><i class="fa fa-check fa-2x text-success" aria-hidden="true"></i></span>
+                        <span ng-if="item.procStatus == false"><i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i></span>
+                        {{item.appId}}
+                    </td>
                     <td>{{item.procResult}}</td>
                 </tr>
                 </tbody>
@@ -22,6 +26,6 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="ok()">关闭</button>
     </div>
 </form>

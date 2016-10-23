@@ -1,10 +1,5 @@
 <!--申请信息-->
-<form class="container-fluid m-t-md form-horizontal">
-    <div class="console-step row m-b">
-        <div class="step  col-md-4 step-active">1.录入签约信息</div>
-        <div class="step  col-md-4">2.打印合同</div>
-        <div class="step  col-md-4">3.上传签约资料、提交放款</div>
-    </div>
+<form class="container-fluid  form-horizontal m-t-sm">
    <div  ng-repeat="item in signContractVo.signFinanceList">
        <fieldset class="scheduler-border">
            <legend class="scheduler-border">车辆信息{{item.applyFinance.seq | simpleChnUpperCase}}</legend>

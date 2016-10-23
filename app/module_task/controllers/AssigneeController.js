@@ -62,10 +62,10 @@ angular.module("pu.task.controllers")
                     selAccounts.push(item.accountId);
                 })
                 TaskService.doCheckBatchAssigneeTask(selTask,selAccounts).then(function(response){
-                    toaster.pop('success', '操作提醒', "分单成功");
+                    //toaster.pop('success', '操作提醒', "分单成功");
                     var modalInstance1 = $uibModal.open({
                         animation: true,
-                        backdrop:'false',
+                        backdrop:'static',
                         resolve:{
                             assigneeResults:function(){
                                 return response;
@@ -84,6 +84,23 @@ angular.module("pu.task.controllers")
                     })
                 })
             })
+        };
+
+        $scope.taskId = $stateParams.taskId;
+        $scope.businessKey = $stateParams.businessKey;
+        $scope.initAssignee = function(){
+            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
+        };
+        $scope.doTask = function(item){
+            $state.go(
+                'app.task.process.assignee',
+                {
+                    "businessKey":item.businessKey,
+                    "procInstId":item.procInstId,
+                    "taskId":item.taskId
+                }
+            )
         }
     })
 ;

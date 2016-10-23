@@ -1,11 +1,11 @@
-<div class="panel" ng-init="initSign();editable=false">
+<div class="panel" ng-init="initSupplyLoanCheckInfo();editable=false">
     <div class="data-table-container" >
         <header class="data-table-header" style="min-height:72px !important;">
             <div class="data-table-header__label">
                 <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn btn-success btn-sm" type="button"  ng-click="commitSignContractTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                <button class="btn btn-success btn-sm" type="button"  ng-click="commitSupplyLoanCheckTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
             </div>
         </header>
@@ -40,7 +40,7 @@
                 <uib-tab-heading>
                     <span>签约资料</span>
                 </uib-tab-heading>
-                <ng-file-manage on-init="initSignFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:true}"></ng-file-manage>
+                <ng-file-manage on-init="initSignFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:false}"></ng-file-manage>
             </uib-tab>
             <uib-tab index="3">
                 <uib-tab-heading>

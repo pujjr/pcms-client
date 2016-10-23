@@ -6,7 +6,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">姓名：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.name" ng-required="requiredMap.cloessee_name" placeholder="姓名">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.cloessee.name" ng-required="requiredMap.cloessee_name" placeholder="姓名">
                 </div>
             </div>
         </div>
@@ -15,6 +15,7 @@
                 <label class="col-sm-4 control-label">证件类型：</label>
                 <div class="col-sm-8">
                     <select for="idType" class="form-control" ng-model="applyInfo.cloessee.idType"
+                            ng-disabled="editable==false"
                             ng-options="item.dictDataCode as item.dictDataName for item in idTypeList" ng-required="requiredMap.cloessee_idType" >
                         <option value="">请选择证件</option>
                     </select>
@@ -25,7 +26,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">证件号码：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" minlength="15" maxlength="18" verify-idno ng-model="applyInfo.cloessee.idNo" ng-required="requiredMap.cloessee_idNo" placeholder="证件号码">
+                    <input type="text" class="form-control" ng-disabled="editable==false" minlength="15" maxlength="18" verify-idno ng-model="applyInfo.cloessee.idNo" ng-required="requiredMap.cloessee_idNo" placeholder="证件号码">
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">手机号码：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control"  minlength="11" maxlength="11"  verify-mobile ng-model="applyInfo.cloessee.mobile" ng-required="requiredMap.cloessee_mobile" placeholder="手机号码">
+                    <input type="text" class="form-control" ng-disabled="editable==false"  minlength="11" maxlength="11"  verify-mobile ng-model="applyInfo.cloessee.mobile" ng-required="requiredMap.cloessee_mobile" placeholder="手机号码">
                 </div>
             </div>
         </div>
@@ -43,7 +44,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">QQ/微信(如有)：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.qq" placeholder="QQ号码" ng-required="requiredMap.cloessee_qq">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.cloessee.qq" placeholder="QQ号码" ng-required="requiredMap.cloessee_qq">
                 </div>
             </div>
         </div>
@@ -52,6 +53,7 @@
                 <label class="col-sm-4 control-label">与本人关系：</label>
                 <div class="col-sm-8">
                     <select id="idType" class="form-control" ng-model="applyInfo.cloessee.relation"
+                            ng-disabled="editable==false"
                             ng-options="item.dictDataCode as item.dictDataName for item in relateList" ng-required="requiredMap.cloessee_relation">
                         <option value="">请选择与本人关系</option>
                     </select>
@@ -64,7 +66,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label">单位名称：</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.unitName" placeholder="单位名称" ng-required="requiredMap.cloessee_unitName">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.cloessee.unitName" placeholder="单位名称" ng-required="requiredMap.cloessee_unitName">
                 </div>
             </div>
         </div>
@@ -73,6 +75,7 @@
                 <label class="col-sm-4 control-label">单位类型：</label>
                 <div class="col-sm-8">
                     <select id="unitType" class="form-control" ng-model="applyInfo.cloessee.unitType"
+                            ng-disabled="editable==false"
                             ng-options="item.dictDataCode as item.dictDataName for item in unitTypeList" ng-required="requiredMap.cloessee_unitType">
                         <option value="">请选择单位类型</option>
                     </select>
@@ -86,6 +89,7 @@
                 <label class="col-sm-4 control-label">所属行业：</label>
                 <div class="col-sm-8">
                     <select id="unitIndustry" class="form-control" ng-model="applyInfo.cloessee.unitIndustry"
+                            ng-disabled="editable==false"
                             ng-options="item.dictDataCode as item.dictDataName for item in unitIndustryList" ng-required="requiredMap.cloessee_unitIndustry">
                         <option value="">请选择所属行业</option>
                     </select>
@@ -96,7 +100,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">单位电话：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.unitTel" placeholder="单位电话" ng-required="requiredMap.cloessee_unitTel">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.cloessee.unitTel" placeholder="单位电话" ng-required="requiredMap.cloessee_unitTel">
                 </div>
             </div>
         </div>
@@ -105,6 +109,7 @@
                 <label class="col-sm-4 control-label">职  级：</label>
                 <div class="col-sm-8">
                     <select id="rank" class="form-control" ng-model="applyInfo.cloessee.rank"
+                            ng-disabled="editable==false"
                             ng-options="item.dictDataCode as item.dictDataName for item in rankList"  ng-required="requiredMap.cloessee_rank">
                         <option value="">请选择所属职级</option>
                     </select>
@@ -117,7 +122,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">职位名称：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.rankName" placeholder="职位名称" ng-required="requiredMap.cloessee_rankName">
+                    <input type="text" class="form-control"  ng-disabled="editable==false" ng-model="applyInfo.cloessee.rankName" placeholder="职位名称" ng-required="requiredMap.cloessee_rankName">
                 </div>
             </div>
         </div>
@@ -125,7 +130,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">月收入：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.monthIncome" placeholder="月收入" ng-required="requiredMap.cloessee_monthIncome">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.cloessee.monthIncome" placeholder="月收入" ng-required="requiredMap.cloessee_monthIncome">
                 </div>
             </div>
         </div>
@@ -133,7 +138,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">年收入：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.yearIncome" placeholder="年收入" ng-required="requiredMap.cloessee_yearIncome">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.cloessee.yearIncome" placeholder="年收入" ng-required="requiredMap.cloessee_yearIncome">
                 </div>
             </div>
         </div>
@@ -144,6 +149,7 @@
                 <label class="col-sm-2 control-label">单位地址：</label>
                 <div class="col-sm-2">
                     <select  class="form-control"  ng-model="applyInfo.cloessee.unitAddrProvince"
+                             ng-disabled="editable==false"
                              ng-options="item.id as item.areaName for item in provinceList"
                              ng-required="requiredMap.cloessee_unitAddrProvince"
                              ng-change="addressCtrl.onCloesseeUnitProvinceChange()">
@@ -152,6 +158,7 @@
                 </div>
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="applyInfo.cloessee.unitAddrCity"
+                             ng-disabled="editable==false"
                              ng-options="item.id as item.areaName for item in cloesseeUnitCityList"
                              ng-required="requiredMap.cloessee_unitAddrCity"
                              ng-change="addressCtrl.onCloesseeUnitCityChange()">
@@ -160,13 +167,14 @@
                 </div>
                 <div class="col-sm-2" >
                     <select  class="form-control"  ng-model="applyInfo.cloessee.unitAddrCounty"
+                             ng-disabled="editable==false"
                              ng-required="requiredMap.cloessee_unitAddrCounty"
                              ng-options="item.id as item.areaName for item in cloesseeUnitCountyList">
                         <option value="">县</option>
                     </select>
                 </div>
                 <div class="col-sm-4" >
-                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.unitAddrExt" ng-required="requiredMap.cloessee_unitAddrExt" placeholder="详细地址">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.cloessee.unitAddrExt" ng-required="requiredMap.cloessee_unitAddrExt" placeholder="详细地址">
                 </div>
             </div>
         </div>

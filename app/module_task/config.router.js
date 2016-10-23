@@ -27,11 +27,23 @@ angular.module('app')
                     template:'<div ui-view=""></div>',
                     controller:'ApplyController'
                 })
-                //重新提交申请的
+                //重新提交申请
                 .state('app.task.process.reapply',{
                     url:'/reapply/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/reapply.html',
                     controller:'ReApplyController'
+                })
+                //手工分单查看申请信息
+                .state('app.task.process.assignee',{
+                    url:'/assignee/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-handle-assignee.html',
+                    controller:'AssigneeController'
+                })
+                //补充审核资料
+                .state('app.task.process.supplycheckinfo',{
+                    url:'/supplycheckinfo/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-supplycheckinfo.html',
+                    controller:'SupplyCheckInfoController'
                 })
                 //初审
                 .state('app.task.process.precheck',{
@@ -39,41 +51,55 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-precheck.html',
                     controller:'CheckController'
                 })
+                //审核
                 .state('app.task.process.check',{
                     url:'/check/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-check.html',
                     controller:'CheckController'
                 })
+                //审批
                 .state('app.task.process.approve',{
                     url:'/approve/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-approve.html',
                     controller:'ApproveController'
                 })
+                //签约
                 .state('app.task.process.sign',{
                     url:'/sign/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-sign.html',
                     controller:'SignController'
                 })
+                //放款复核
                 .state('app.task.process.loancheck',{
                     url:'/loancheck/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-loancheck.html',
                     controller:'LoanCheckController'
                 })
+                //补充放款复核资料
+                .state('app.task.process.supplyloancheckinfo',{
+                    url:'/supplyloancheckinfo/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-supplyloancheckinfo.html',
+                    controller:'SupplyLoanCheckInfoController'
+                })
+                //放款初审
                 .state('app.task.process.prevloanapprove',{
                     url:'/prevloanapprove/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-prevloanapprove.html',
                     controller:'LoanApproveController'
                 })
+                //放款审批
                 .state('app.task.process.loanapprove',{
                     url:'/loanapprove/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-loanapprove.html',
                     controller:'LoanApproveController'
                 })
+                 //复议申请
                 .state('app.task.process.reconsider-apply',{
                     url:'/reconsider-apply/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-reconsider.html',
                     controller:'ReconsiderController'
                 })
+                //复议审核
                 .state('app.task.process.reconsider-approve',{
                     url:'/reconsider-approve/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-reconsider-approve.html',
