@@ -319,5 +319,232 @@
                </fieldset>
            </div>
        </fieldset>
+       <fieldset class="scheduler-border">
+           <legend class="scheduler-border">复核检查列表</legend>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">身份证：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.idnoCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="idnoCheckComment" class="form-control" ng-model="signContractVo.loanCheck.idnoCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">租赁申请表：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.applyFormCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="applyFormCheckComment" class="form-control" ng-model="signContractVo.loanCheck.applyFormCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">还款卡：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.repayCardCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="repayCardCheckComment" class="form-control" ng-model="signContractVo.loanCheck.repayCardCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">汽车销售发票（新车）：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.invoiceCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="invoiceCheckComment" class="form-control" ng-model="signContractVo.loanCheck.invoiceCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">车辆交强、商业保险单：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.insuranceCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="insuranceCheckComment" class="form-control" ng-model="signContractVo.loanCheck.insuranceCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">车辆抵押登记证书（二手车融、全款再融）：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.pledgeCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="pledgeCheckComment" class="form-control" ng-model="signContractVo.loanCheck.pledgeCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">融资租赁合同：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.leasingContractCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="leasingContractCheckComment" class="form-control" ng-model="signContractVo.loanCheck.leasingContractCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">抵押合同：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.pledgeContractCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="pledgeContractCheckCommet" class="form-control" ng-model="signContractVo.loanCheck.pledgeContractCheckCommet" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">共同还租承诺书（如有）：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.tenantCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="tenantCheckComment" class="form-control" ng-model="signContractVo.loanCheck.tenantCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">委托划款协议：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.trustCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="trustCheckComment" class="form-control" ng-model="signContractVo.loanCheck.trustCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">放款补充资料（如有）：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.loanAddCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="loanAddCheckComment" class="form-control" ng-model="signContractVo.loanCheck.loanAddCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">照片：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.photoCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="photoCheckComment" class="form-control" ng-model="signContractVo.loanCheck.photoCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">GPS查询：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.gpsCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="gpsCheckComment" class="form-control" ng-model="signContractVo.loanCheck.gpsCheckComment" >
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="form-group form-group-sm">
+                       <label for="impEndDate" class="col-sm-4 control-label">其他资料：</label>
+                       <div class="col-sm-8">
+                           <select class="form-control"  ng-model="signContractVo.loanCheck.otherCheckResult">
+                               <option value="1" selected>通过</option>
+                               <option value="2">不通过</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                   <input type="text" id="otherCheckComment" class="form-control" ng-model="signContractVo.loanCheck.otherCheckComment" >
+               </div>
+           </div>
+       </fieldset>
    </div>
 </form>

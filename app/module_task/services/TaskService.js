@@ -79,5 +79,8 @@ angular.module('pu.task.services')
         };
         this.queryWorkflowProcessResult = function(taskId){
             return RestApi.all("/task/getWorkflowProcessResult").all(taskId).getList();
+        };
+        this.commitCallBackTask = function(params,appId,taskId){
+            return RestApi.all("/task/commitCallBackTask").all(appId).all(taskId).post(params);
         }
     });

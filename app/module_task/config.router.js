@@ -69,6 +69,12 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-sign.html',
                     controller:'SignController'
                 })
+                //批核签约回访
+                .state('app.task.process.callback',{
+                    url:'/callback/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-callback.html',
+                    controller:'CallBackController'
+                })
                 //放款复核
                 .state('app.task.process.loancheck',{
                     url:'/loancheck/:procInstId/:taskId/:businessKey',

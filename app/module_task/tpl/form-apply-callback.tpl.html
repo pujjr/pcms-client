@@ -1,0 +1,79 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">回访项目</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4" >
+            <div class="form-group">
+                <label for="isSelfListen" class="col-sm-6 control-label">是否客户本人接听：</label>
+                <div class="col-sm-6">
+                    <select  class="form-control" id="isSelfListen"  ng-model="callBackVo.isSelfListen"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" >
+            <div class="form-group">
+                <label for="isSelfAuth" class="col-sm-6 control-label">是否本人签授权书：</label>
+                <div class="col-sm-6">
+                    <select  class="form-control" id="isSelfAuth"  ng-model="callBackVo.isSelfAuth"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" >
+            <div class="form-group">
+                <label for="isKnowFinanceAmtInfo" class="col-sm-6 control-label">是否熟知贷款金额、期限：</label>
+                <div class="col-sm-6">
+                    <select  class="form-control" id="isKnowFinanceAmtInfo"  ng-model="callBackVo.isKnowFinanceAmtInfo"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" >
+            <div class="form-group">
+                <label for="isSelfSign" class="col-sm-6 control-label">是否本人签约成功：</label>
+                <div class="col-sm-6">
+                    <select  class="form-control" id="isSelfSign"  ng-model="callBackVo.isSelfSign"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" >
+            <div class="form-group">
+                <label for="isKnowFinanceCarInfo" class="col-sm-6 control-label">是否熟知融资车辆信息：</label>
+                <div class="col-sm-6">
+                    <select  class="form-control" id="isKnowFinanceCarInfo"  ng-model="callBackVo.isKnowFinanceCarInfo"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" >
+            <div class="form-group">
+                <label for="callbackResult" class="col-sm-6 control-label">回访结果：</label>
+                <div class="col-sm-6">
+                    <select  class="form-control" id="callbackResult"  ng-model="callBackVo.callbackResult"  required>
+                        <option value="1">通过</option>
+                        <option value="2">拒绝</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="form-group">
+                <label for="comment" class="col-sm-2 control-label">备注：</label>
+                <div class="col-sm-6">
+                    <textarea type="text" class="form-control" id="comment" ng-model="callBackVo.comment" placeholder="备注"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</fieldset>

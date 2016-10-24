@@ -17,7 +17,7 @@ angular.module("pu.task.controllers")
         };
         $scope.saveLoanCheckInfo = function(){
             TaskService.saveLoanCheckInfo($scope.signContractVo).then(function(response){
-                toaster.pop('success', '操作提醒','提交放款复核任务成功')
+                toaster.pop('success', '操作提醒','保存放款复核信息成功')
             })
         }
         $scope.commitLoanCheckTask = function(commitType){
