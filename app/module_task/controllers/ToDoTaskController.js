@@ -16,7 +16,28 @@ angular.module("pu.task.controllers")
                         "taskId":item.taskId
                     }
             )
+        };
+        //执行变更申请
+        $scope.doChangeApply=function(item){
+            $state.go(
+                "app.task.process.changeapplyinfo",
+                {
+                    "businessKey":item.businessKey,
+                    "procInstId":item.procInstId,
+                    "taskId":item.taskId
+                }
+            )
         }
-
+        //执行取消申请
+        $scope.doCancelApply=function(item){
+            $state.go(
+                "app.task.process.cancelapplyinfo",
+                {
+                    "businessKey":item.businessKey,
+                    "procInstId":item.procInstId,
+                    "taskId":item.taskId
+                }
+            )
+        }
     })
 ;

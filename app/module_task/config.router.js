@@ -111,10 +111,35 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-reconsider-approve.html',
                     controller:'ReconsiderController'
                 })
+                //手工分单
                 .state('app.task.handleassignee',{
                     url:'/handleassignee',
                     templateUrl:'module_task/tpl/handleassignee-list.html',
                     controller:'AssigneeController'
+                })
+                //变更申请信息
+                .state('app.task.process.changeapplyinfo',{
+                    url:'/changeapplyinfo/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-changeinfo.html',
+                    controller:'ChangeApplyController'
+                })
+                //变更申请审批
+                .state('app.task.process.approve-changeapplyinfo',{
+                    url:'/approve-changeapplyinfo/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-approve-changeinfo.html',
+                    controller:'ChangeApplyController'
+                })
+                //取消申请信息
+                .state('app.task.process.cancelapplyinfo',{
+                    url:'/cancelapplyinfo/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-cancelinfo.html',
+                    controller:'ChangeApplyController'
+                })
+                //取消申请复核
+                .state('app.task.process.approve-cancelapplyinfo',{
+                    url:'/approve-cancelapplyinfo/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-approve-cancelinfo.html',
+                    controller:'ChangeApplyController'
                 })
 
         }

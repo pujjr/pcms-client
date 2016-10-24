@@ -1,0 +1,27 @@
+<!--申请信息-->
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">取消申请</legend>
+    <div class="row m-t-md">
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">取消原因：</label>
+                <div class="col-sm-8">
+                    <select  class="form-control" ng-model="cancelApplyInfoVo.cancelResult"
+                             ng-options="item.dictDataCode as item.dictDataName for item in cancelReasonList" required>
+                        <option value="">请选择取消原因</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-1 control-label">取消备注：</label>
+                <div class="col-sm-11">
+                    <textarea type="text" class="form-control" id="comment" ng-model="cancelApplyInfoVo.comment" required placeholder="取消备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

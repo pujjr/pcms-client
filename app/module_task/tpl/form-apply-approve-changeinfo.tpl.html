@@ -1,0 +1,50 @@
+<!--申请信息-->
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">变更信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">变更原因：</label>
+                <div class="col-sm-8">
+                    <select  class="form-control" ng-model="changeApplyInfoVo.changeResult"
+                             ng-options="item.dictDataCode as item.dictDataName for item in changeReasonList" required>
+                        <option value="">请选择变更原因</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-1 control-label">变更备注：</label>
+                <div class="col-sm-11">
+                    <textarea type="text" class="form-control" id="comment" ng-model="changeApplyInfoVo.comment" required placeholder="变更备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">审批结果：</label>
+                <div class="col-sm-8">
+                    <select  class="form-control" ng-model="changeApplyInfoVo.approveResult"
+                             ng-options="item.dictDataCode as item.dictDataName for item in approveResultList" required>
+                        <option value="">请选择审批结果</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <label for="approveComment" class="col-sm-1 control-label">审批备注：</label>
+                <div class="col-sm-11">
+                    <textarea type="text" class="form-control" id="approveComment" ng-model="changeApplyInfoVo.approveComment" required placeholder="审批备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

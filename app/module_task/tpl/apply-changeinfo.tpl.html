@@ -1,0 +1,37 @@
+<div ng-init="initChangeApply();editable=false">
+    <div class="check-header">
+        <div class="data-table-container" >
+            <header class="data-table-header" style="min-height:72px !important;">
+                <div class="data-table-header__label">
+                    <span class="fs-title"><i class="fa fa-plus-square mr"></i>任务名称：变更申请-{{applyInfo.appId}}</span>
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-success btn-sm" type="submit"  ng-disabled="checkForm.$invalid" ng-click="commitChangeApplyInfoTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                    <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
+                </div>
+            </header>
+        </div>
+
+    </div>
+    <div class="check-body">
+        <uib-tabset>
+            <uib-tab index="0">
+                <uib-tab-heading>
+                    <span>申请信息</span>
+                </uib-tab-heading>
+                <div ng-include="'module_apply/tpl/form-apply.html'"></div>
+            </uib-tab>
+            <uib-tab index="1"  select="initApplyFileManage()">
+                <uib-tab-heading>
+                    <span>申请资料</span>
+                </uib-tab-heading>
+                <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <div  class="check-footer">
+        <form class="container-fluid m-t-md form-horizontal" name="checkForm">
+            <div ng-include="'module_task/tpl/form-apply-changeinfo.html'"></div>
+        </form>
+    </div>
+</div>

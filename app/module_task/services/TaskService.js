@@ -82,5 +82,23 @@ angular.module('pu.task.services')
         };
         this.commitCallBackTask = function(params,appId,taskId){
             return RestApi.all("/task/commitCallBackTask").all(appId).all(taskId).post(params);
+        };
+        this.commitChangeApplyInfoTask = function(params,appId,taskId){
+            return RestApi.all("/task/commitChangeApplyInfoTask").all(appId).all(taskId).post(params);
+        };
+        this.queryLatestChangeApplyInfo = function(taskId){
+            return RestApi.one("/task/getLatestChangeApplyInfo",taskId).get();
+        };
+        this.commitApproveChangeApplyInfoTask = function(params,appId,taskId){
+            return RestApi.all("/task/commitApproveChangeApplyInfoTask").all(appId).all(taskId).post(params);
+        };
+        this.commitCancelApplyInfoTask = function(params,appId,taskId){
+            return RestApi.all("/task/commitCancelApplyInfoTask").all(appId).all(taskId).post(params);
+        };
+        this.queryLatestCancelApplyInfo = function(taskId){
+            return RestApi.one("/task/getLatestCancelApplyInfo",taskId).get();
+        };
+        this.commitApproveCancelApplyInfoTask = function(params,appId,taskId){
+            return RestApi.all("/task/commitApproveCancelApplyInfoTask").all(appId).all(taskId).post(params);
         }
     });
