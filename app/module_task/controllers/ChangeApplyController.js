@@ -43,7 +43,7 @@ angular.module("pu.task.controllers")
         $scope.initApproveCancelApply = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.cancelReasonList = SysDictService.queryDictDataByTypeCode("qxsqyy").$object;
-            $scope.cancelApplyInfoVo = TaskService.queryLatestChangeApplyInfo($stateParams.taskId).$object;
+            $scope.cancelApplyInfoVo = TaskService.queryLatestCancelApplyInfo($stateParams.taskId).$object;
             $scope.approveResultList =  SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
         };

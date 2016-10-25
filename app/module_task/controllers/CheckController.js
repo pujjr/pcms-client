@@ -9,6 +9,7 @@ angular.module("pu.task.controllers")
         $scope.initCheck = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
+            $scope.loanConditionList = SysDictService.queryDictDataByTypeCode("fktj").$object;
             $scope.checkList = SysDictService.queryDictDataByTypeCode("shrwjglx").$object;
             $scope.checkVo = {};
         };

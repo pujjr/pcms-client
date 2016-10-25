@@ -1,0 +1,132 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>设置自动分单参数</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="enabled" class="col-sm-3 control-label">是否开启：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="enabled"  ng-model="item.enabled"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"  required>
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div ng-if="item.enabled">
+            <div class="form-group">
+                <label for="startDate" class="col-sm-3 control-label">开始日期：</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input type="text" id="startDate" class="form-control" uib-datepicker-popup  is-open="item.isopenStartDate" ng-model="item.startDate"ng-required="item.enabled">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"  ng-click="item.isopenStartDate=!item.isopenStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" ng-model="item.startHour" ng-required="item.enabled">
+                        <option value="00">0点</option>
+                        <option value="01">1点</option>
+                        <option value="02">2点</option>
+                        <option value="03">3点</option>
+                        <option value="04">4点</option>
+                        <option value="05">5点</option>
+                        <option value="06">6点</option>
+                        <option value="07">7点</option>
+                        <option value="08">8点</option>
+                        <option value="09">9点</option>
+                        <option value="10">10点</option>
+                        <option value="11">11点</option>
+                        <option value="12">12点</option>
+                        <option value="13">13点</option>
+                        <option value="14">14点</option>
+                        <option value="15">15点</option>
+                        <option value="16">16点</option>
+                        <option value="17">17点</option>
+                        <option value="18">18点</option>
+                        <option value="19">19点</option>
+                        <option value="20">20点</option>
+                        <option value="21">21点</option>
+                        <option value="22">22点</option>
+                        <option value="23">23点</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" ng-model="item.startMinute" ng-required="item.enabled">
+                        <option value="00">0分</option>
+                        <option value="05">5分</option>
+                        <option value="10">5分</option>
+                        <option value="15">15分</option>
+                        <option value="20">20分</option>
+                        <option value="25">25分</option>
+                        <option value="30">30分</option>
+                        <option value="35">35分</option>
+                        <option value="40">40分</option>
+                        <option value="45">45分</option>
+                        <option value="50">50分</option>
+                        <option value="55">55分</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="endDate" class="col-sm-3 control-label">结束日期：</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input type="text" id="endDate" class="form-control" uib-datepicker-popup  is-open="item.isopenEndDate" ng-model="item.endDate" ng-required="item.enabled">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"  ng-click="item.isopenEndDate=!item.isopenEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" ng-model="item.endHour" ng-required="item.enabled">
+                        <option value="00">0点</option>
+                        <option value="01">1点</option>
+                        <option value="02">2点</option>
+                        <option value="03">3点</option>
+                        <option value="04">4点</option>
+                        <option value="05">5点</option>
+                        <option value="06">6点</option>
+                        <option value="07">7点</option>
+                        <option value="08">8点</option>
+                        <option value="09">9点</option>
+                        <option value="10">10点</option>
+                        <option value="11">11点</option>
+                        <option value="12">12点</option>
+                        <option value="13">13点</option>
+                        <option value="14">14点</option>
+                        <option value="15">15点</option>
+                        <option value="16">16点</option>
+                        <option value="17">17点</option>
+                        <option value="18">18点</option>
+                        <option value="19">19点</option>
+                        <option value="20">20点</option>
+                        <option value="21">21点</option>
+                        <option value="22">22点</option>
+                        <option value="23">23点</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control"  ng-model="item.endMinute" ng-required="item.enabled">
+                        <option value="00">0分</option>
+                        <option value="05">5分</option>
+                        <option value="10">5分</option>
+                        <option value="15">15分</option>
+                        <option value="20">20分</option>
+                        <option value="25">25分</option>
+                        <option value="30">30分</option>
+                        <option value="35">35分</option>
+                        <option value="40">40分</option>
+                        <option value="45">45分</option>
+                        <option value="50">50分</option>
+                        <option value="55">55分</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

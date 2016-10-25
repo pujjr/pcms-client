@@ -7,7 +7,7 @@
                 <label  class="col-sm-4 control-label">取消原因：</label>
                 <div class="col-sm-8">
                     <select  class="form-control" ng-model="cancelApplyInfoVo.cancelResult"
-                             ng-options="item.dictDataCode as item.dictDataName for item in cancelReasonList" required>
+                             ng-options="item.dictDataCode as item.dictDataName for item in cancelReasonList" disabled>
                         <option value="">请选择取消原因</option>
                     </select>
                 </div>
@@ -19,7 +19,7 @@
             <div class="form-group form-group-sm">
                 <label for="comment" class="col-sm-1 control-label">取消备注：</label>
                 <div class="col-sm-11">
-                    <textarea type="text" class="form-control" id="comment" ng-model="cancelApplyInfoVo.comment" required placeholder="取消备注"></textarea>
+                    <textarea type="text" class="form-control" id="comment" ng-model="cancelApplyInfoVo.comment" disabled placeholder="取消备注"></textarea>
                 </div>
             </div>
         </div>

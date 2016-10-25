@@ -11,6 +11,15 @@
                     <span class="fs-title"></span>
                     </div>
                 <div class="data-table-header__actions">
+                    <button class="btn btn-default m-r-md" type="button"  ng-click="setAutoAssigneeConfig()"
+                            ng-if="autoAssigneeConfig.enabled==false"><i class="fa fa-clock-o" aria-hidden="true"></i>开启自动分单</button>
+                    <button class="btn btn-default m-r-md" type="button"
+                            ng-click="setAutoAssigneeConfig()"
+                            ng-if="autoAssigneeConfig.enabled==true"
+                            tooltip-placement="top"
+                            tooltip-append-to-body="true"
+                            uib-tooltip="起止时间：{{autoAssigneeConfig.startDate|mysqlDate}} {{autoAssigneeConfig.startHour}}:{{autoAssigneeConfig.startMinute}}至{{autoAssigneeConfig.endDate|mysqlDate}} {{autoAssigneeConfig.endHour}}:{{autoAssigneeConfig.endMinute}}"
+                            ><i class="fa fa-clock-o text-success" aria-hidden="true"></i>关闭自动分单</button>
                     <button class="btn btn-info" type="button"  ng-click="selectAssigneeList()"><i class="fa fa-share-alt m-r-sm"></i>批量分单</button>
                 </div>
             </header>

@@ -20,6 +20,11 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','保存放款复核信息成功')
             })
         }
+        $scope.saveSignContractInfo = function(){
+            TaskService.saveSignContractInfo($scope.signContractVo).then(function(response){
+                toaster.pop('success', '操作提醒','保存签约信息成功');
+            })
+        }
         $scope.commitLoanCheckTask = function(commitType){
             if(commitType=='bcfkzl'){
                 modal.prompt("备注","请输入放款补充资料备注").then(function(response){

@@ -6,6 +6,7 @@ angular.module("pu.task.controllers")
     .controller('AssigneeController',function ($scope, $rootScope, $state,$stateParams,modal, toaster, $uibModal,TaskService,SysDictService) {
         $scope.queryToAssigneeList = function(){
             $scope.toDoTaskList = TaskService.queryToDoTaskList('0').$object;
+            $scope.autoAssigneeConfig = TaskService.queryAutoAssigneeConfigInfo().$object;
         };
         $scope.checkAll = function(){
             angular.forEach($scope.toDoTaskList,function(item){
@@ -101,6 +102,12 @@ angular.module("pu.task.controllers")
                     "taskId":item.taskId
                 }
             )
+        };
+        $scope.setAutoAssigneeConfig = function(){
+            TaskService.showAutoAssigneeConfigDialog().then(function(response){
+                toaster.pop('success', '操作提醒', "设置自动分单成功");
+                $scope.autoAssigneeConfig = TaskService.queryAutoAssigneeConfigInfo().$object;
+            })
         }
     })
 ;

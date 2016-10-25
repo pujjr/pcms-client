@@ -3,13 +3,12 @@
             <div class="data-table-container" >
                 <header class="data-table-header" style="min-height:72px !important;">
                     <div class="data-table-header__label">
-                        <span class="fs-title"><i class="fa fa-plus-square mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
+                        <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
                         <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                         <button class="btn btn-primary btn-sm" type="submit"  ng-click="supplyCheckInfo()"><i class="fa fa-check m-r-sm"></i>补充审核资料</button>
                         <button class="btn btn-success btn-sm" type="submit"  ng-disabled="checkForm.$invalid" ng-click="commitCheckTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
-                        <button class="btn btn-info btn-sm" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存申请单</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
                     </div>
                 </header>
@@ -22,6 +21,15 @@
                     <uib-tab-heading>
                         <span>申请信息</span>
                     </uib-tab-heading>
+                    <div class="data-table-container" >
+                        <header class="data-table-header" style="min-height:48px !important;">
+                            <div class="data-table-header__label">
+                            </div>
+                            <div class="data-table-header__actions">
+                                <button class="btn btn-info btn-sm" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存申请单</button>
+                            </div>
+                        </header>
+                    </div>
                     <div ng-include="'module_apply/tpl/form-apply.html'"></div>
                 </uib-tab>
                 <uib-tab index="1"  select="initApplyFileManage()">

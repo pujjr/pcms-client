@@ -49,10 +49,10 @@
         </div>
         <div class="col-md-3">
             <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">放款条件：</label>
+                <label  class="col-sm-4 control-label">放款方式：</label>
                 <div class="col-sm-8">
-                    <select  class="form-control" ng-model="applyInfo.product.repayMode"
-                             ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
+                    <select  class="form-control" ng-model="applyInfo.product.loanCondition"
+                             ng-options="item.dictDataCode as item.dictDataName for item in loanConditionList" required disabled>
                         <option value="">请选择放款条件</option>
                     </select>
                 </div>

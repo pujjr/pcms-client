@@ -1,5 +1,5 @@
 angular.module('pu.task.services')
-    .service("TaskService",function($window,RestApi,$q,$uibModal,ToolsService,modal){
+    .service("TaskService",function($window,RestApi,$q,$uibModal,ToolsService,modal,toaster){
         this.queryToDoTaskList = function(queryType){
             return RestApi.all("/task/todolist").all(queryType).getList();
         };
@@ -100,5 +100,31 @@ angular.module('pu.task.services')
         };
         this.commitApproveCancelApplyInfoTask = function(params,appId,taskId){
             return RestApi.all("/task/commitApproveCancelApplyInfoTask").all(appId).all(taskId).post(params);
+        };
+        this.queryAutoAssigneeConfigInfo = function(){
+            return RestApi.one("/task/getAutoAssigneeConfigInfo").get();
+        };
+        this.setAutoAssigneeConfigInfo = function(params){
+            return RestApi.all("/task/setAutoAssigneeConfigInfo").post(params);
+        }
+        this.showAutoAssigneeConfigDialog = function(){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                size:'lg',
+                backdrop:'false',
+                templateUrl :'module_task/tpl/dialog-auto-assignee-config.html',
+                controller:function($scope,RestApi,TaskService){
+                    $scope.item = TaskService.queryAutoAssigneeConfigInfo().$object;
+                    $scope.ok=function(){
+                        TaskService.setAutoAssigneeConfigInfo($scope.item).then(function(){
+                            modalInstance.close('设置成功');
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            return modalInstance.result;
         }
     });

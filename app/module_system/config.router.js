@@ -105,7 +105,30 @@ angular.module('app')
                     url:'/list',
                     templateUrl:'module_system/tpl/insurancecompany-list.html'
                 })
-
+                //菜单管理
+                .state('app.sysmenu',{
+                    abstract: true,
+                    url:'/sysmenu',
+                    template:'<div ui-view=""></div>',
+                    controller: 'SysMenuController'
+                })
+                //菜单管理-查询菜单列表
+                .state('app.sysmenu.list', {
+                    url: '/list',
+                    templateUrl: 'module_system/tpl/sysmenu-list.html'
+                })
+                //角色管理
+                .state('app.sysrole',{
+                    abstract: true,
+                    url:'/sysrole',
+                    template:'<div ui-view=""></div>',
+                    controller: 'SysRoleController'
+                })
+                //角色管理-查询角色列表
+                .state('app.sysrole.list', {
+                    url: '/list',
+                    templateUrl: 'module_system/tpl/sysrole-list.html'
+                })
         }
     ]
 );
