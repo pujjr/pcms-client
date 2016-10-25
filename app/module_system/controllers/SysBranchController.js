@@ -200,6 +200,11 @@ angular.module("pu.system.controllers")
                 toaster.pop('success', '操作提醒',response );
                 $scope.querySysAccountListByBranchId( $scope.selNode.id);
             })
+        };
+        $scope.setSysAccountRole = function(item){
+            SysBranchService.setAccountRole(item).then(function(response){
+                toaster.pop('success', '操作提醒',response );
+            });
         }
     })
 ;

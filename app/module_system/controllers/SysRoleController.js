@@ -59,5 +59,49 @@ angular.module("pu.system.controllers")
                 $scope.querySysRoleList();
             })
         };
+        $scope.setSysRoleMenu = function(item){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                templateUrl :'module_system/tpl/dialog-sysrole-setmenu.html',
+                controller:function($scope,RestApi,SysMenuService,ToolsService){
+                    $scope.item=item;
+                    SysMenuService.querySysMenuList().then(function(response){
+                        $scope.sysMenuList=response;
+                        SysRoleService.querySysRoleMenuList($scope.item.id).then(function(response){
+                            $scope.roleMenuList = response;
+                            for(var i =0 ;i<$scope.roleMenuList.length;i++){
+                                var tmp = $scope.roleMenuList[i];
+                                for(var j = 0;j<$scope.sysMenuList.length;j++){
+                                    var l = $scope.sysMenuList[j];
+                                    if(l.id == tmp.id){
+                                        $scope.sysMenuList[j].checked=true;
+                                        break;
+                                    }
+                                }
+                            }
+                        })
+                        $scope.sysMenuTree=ToolsService.convertArrayToTree($scope.sysMenuList, {
+                            idKey: 'id',
+                            parentKey: 'parentId',
+                            childrenKey: 'children'
+                        });
+                    });
+                    $scope.ok=function(){
+                        var checkList = ToolsService.getTreeCheckedList($scope.sysMenuTree);
+                        SysRoleService.saveSysRoleMenuList($scope.item.id,checkList).then(function(){
+                            modalInstance.close('设置角色权限成功');
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.querySysRoleList();
+            })
+        };
     })
 ;

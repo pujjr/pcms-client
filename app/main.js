@@ -37,6 +37,8 @@ angular.module("app")
                 container: false
             }
         }
+        $scope.app.settings.headerFixed = true;
+        $scope.app.settings.asideFixed =true;
         $scope.$watch('app.settings', function(){
             if( $scope.app.settings.asideDock  &&  $scope.app.settings.asideFixed ){
                 // aside dock and fixed must set the header fixed.

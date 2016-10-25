@@ -1,6 +1,6 @@
 angular.module('pu.access.services')
-    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular','BackgroundRestApi', '$uibModal', 'toaster','$timeout',
-        function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular,BackgroundRestApi, $uibModal, toaster,$timeout) {
+    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular','BackgroundRestApi', '$uibModal', 'toaster','$timeout','RestApi',
+        function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular,BackgroundRestApi, $uibModal, toaster,$timeout,RestApi) {
         var isAuth = false;
         var authResource = {};
         var timer;
@@ -25,15 +25,13 @@ angular.module('pu.access.services')
                     window.localStorage.account = angular.toJson(response.data.account);
                     $rootScope.account = response.data.account;
                     uploadStatus();
-                    defered.resolve();
-                    /*
-                    CarCreditRestangular.all('accounts').all("authmenu").all(user.id).getList().then(function (response) {
+                    RestApi.all('sysaccount').all("authmenu").all(id).getList().then(function (response) {
                         angular.forEach(response, function (item) {
-                            authResource[item.routepath] = 'all';
+                            authResource[item.menuId] = 'all';
                         })
                         isAuth = true;
                         defered.resolve();
-                    });*/
+                    });
                 }
                 else {
                     defered.reject(response.message);
@@ -95,9 +93,9 @@ angular.module('pu.access.services')
         };
         this.initUserInfo = function () {
             $rootScope.account = window.localStorage.account;
-            CarCreditRestangular.all('accounts').all("authmenu").all($rootScope.account.id).getList().then(function (response) {
+            CarCreditRestangular.all('sysaccount').all("authmenu").all($rootScope.account.accountId).getList().then(function (response) {
                 angular.forEach(response, function (item) {
-                    authResource[item.routepath] = 'all';
+                    authResource[item.menuId] = 'all';
                 })
                 isAuth = true;
             });
