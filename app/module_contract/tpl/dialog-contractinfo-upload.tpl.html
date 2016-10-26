@@ -1,0 +1,21 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>上传合同模板文件</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group m-t-md">
+            <div class="col-sm-4">
+                <button class="btn btn-primary file-button" ng-disabled="uploadStatus=='uploading'" type="button">
+                    <i class="glyphicon glyphicon-folder-open"></i><input type="file" name="key" nv-file-select="" uploader="uploader"  />选择文件..
+                </button>
+            </div>
+            <div class="col-sm-8">
+                <span>{{fileItem._file.name}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

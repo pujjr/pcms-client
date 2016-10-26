@@ -5061,3 +5061,9 @@ ul{
   /*兼容IE8及以下版本浏览器*/
   filter: alpha(opacity=30);
 }
+.pdf-container{
+  width:100%
+  position:fixed;
+  bottom:0;
+  padding-right: 200px;
+}

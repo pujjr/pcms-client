@@ -1,0 +1,32 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑合同信息</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="contractName" class="col-sm-3 control-label">合同名称：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="contractName" placeholder="合同名称" ng-model="item.contractName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contractKey" class="col-sm-3 control-label">合同标识：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="contractKey" placeholder="合同标识" ng-model="item.contractKey" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="enabled" class="col-sm-3 control-label">是否启用：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="enabled"  ng-model="item.enabled "ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]"   required>
+                    <option value="">是否启用</option>`
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-danger  btn-modal-left" type="button" ng-click="delete()">删除</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

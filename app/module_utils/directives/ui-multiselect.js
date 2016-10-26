@@ -14,7 +14,7 @@ angular.module('pu.utils.directives')
     .directive('uiMultiselect',function(){
         return {
             restrict:'E',
-            require:'?ngModel',
+            required:'^ngModel',
             scope:{
                 choices:'=',
                 seperator:'@',
@@ -22,14 +22,14 @@ angular.module('pu.utils.directives')
                 showField:'@',
                 modelFormat:'@',
                 ngRequired:'=',
-                ngDisabled:'@',
+                ngDisabled:'=',
                 placeholder:'@',
                 groupBy:'@'
             },
             transclude:true,
             templateUrl:'module_utils/tpl/ui-multiselect.html',
-            link:function($scope,element,attrs,ngModel){
-                if(!ngModel){
+            link:function($scope,element,attrs,ngModelCtrl){
+                if(!ngModelCtrl){
                     return;
                 }
                 /*
@@ -48,9 +48,8 @@ angular.module('pu.utils.directives')
                     $scope.trackBy='id';
                 }
 
-                ngModel.$formatters.push(function(modelValue){
+                ngModelCtrl.$formatters.push(function(modelValue){
                     $scope.convertModelValue(modelValue);
-                    return modelValue;
                 });
                 //对模型值进行转换操作
                 $scope.convertModelValue = function(modelValue){
@@ -127,7 +126,7 @@ angular.module('pu.utils.directives')
                         if(newModelValue.length>0){
                             newModelValue = newModelValue.substring(0,newModelValue.length-1);
                         }
-                        ngModel.$setViewValue(newModelValue);
+                        ngModelCtrl.$setViewValue(newModelValue);
                     }else{
                         var modelList =[];
                         angular.forEach($scope.choices,function(item){
@@ -135,7 +134,7 @@ angular.module('pu.utils.directives')
                                 modelList.push(item);
                             }
                         });
-                        ngModel.$setViewValue(modelList);
+                        ngModelCtrl.$setViewValue(modelList);
                     }
                 }
                 $scope.setViewValue = function(){
@@ -150,11 +149,11 @@ angular.module('pu.utils.directives')
                     $scope.selectedViewValue = viewValue;
                 }
                 var watchChoices = $scope.$watch('choices',function(newVal,oldVal){
-                    if(newVal == oldVal || newVal==undefined){
+                    if(newVal == oldVal || newVal==undefined || newVal.length==0){
                         return;
                     };
-                    $scope.convertModelValue(ngModel.$modelValue);
-                   // watchChoices();
+                    $scope.convertModelValue(ngModelCtrl.$modelValue);
+                    watchChoices();
                 },true)
 
             }

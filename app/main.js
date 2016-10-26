@@ -54,4 +54,5 @@ angular.module("app")
                 $rootScope.$state.go("access.signin");
             })
         };
+        $scope.screenHeight = $window.innerHeight;
     })

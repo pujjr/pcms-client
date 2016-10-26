@@ -1,0 +1,25 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>设置模板关联合同</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="contractName" class="col-sm-3 control-label">选择合同：</label>
+            <div class="col-sm-8">
+                <ui-multiselect choices="contractInfoList"
+                                ng-model="templateContractList"
+                                track-by="id"
+                                show-field="contractName"
+                                model-format="array"
+                                ng-required="true"
+                                placeholder="请选择合同">
+                    <span>{{item.contractName}}</span>
+                </ui-multiselect>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

@@ -22,5 +22,12 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','提交签约任务成功')
             })
         };
+        $scope.pdfStyle={
+            "width":"100%",
+            "position":"fixed",
+            "height":$scope.screenHeight-170,
+            "bottom":"0",
+            "padding-right": "200px"
+        };
     })
 ;
