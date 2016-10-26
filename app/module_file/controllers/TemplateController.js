@@ -111,6 +111,7 @@ angular.module("pu.file.controllers")
                 templateUrl :'module_file/tpl/dialog-template-category-add.html',
                 controller:function($scope,RestApi,tplId){
                     $scope.tplId=tplId;
+
                     CategoryService.queryCategoryByTemplateId($scope.tplId).then(function(response){
                         $scope.selectTemplateCategoryList = response;
                     });

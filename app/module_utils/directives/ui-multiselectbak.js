@@ -11,12 +11,12 @@
  * ngDisabled 是否禁用.
  */
 angular.module('pu.utils.directives')
-    .directive('uiMultiselect',function(){
+    .directive('uiMultiselectBak',function(){
         return {
             restrict:'E',
             require:'?^ngModel',
             scope:{
-                choices:'=',
+                choices:'@',
                 seperator:'@',
                 trackBy:'@',
                 showField:'@',
@@ -47,7 +47,7 @@ angular.module('pu.utils.directives')
                 if($scope.trackBy == undefined){
                     $scope.trackBy='id';
                 }
-                $scope.choicesItems=[];
+
                 ngModelCtrl.$formatters.push(function(modelValue){
                     $scope.convertModelValue(modelValue);
                     return modelValue;
@@ -55,7 +55,7 @@ angular.module('pu.utils.directives')
                 //对模型值进行转换操作
                 $scope.convertModelValue = function(modelValue){
                     var modelValArray=[];
-                    if(angular.isArray($scope.choicesItems) && $scope.choicesItems.length>0){
+                    if(angular.isArray($scope.choices) && $scope.choices.length>0){
                         if($scope.modelFormat=='string'){
                             if($scope.seperator!=undefined){
                                 modelValArray = modelValue.split($scope.seperator);
@@ -72,22 +72,22 @@ angular.module('pu.utils.directives')
                         if(modelValArray == undefined)
                             return;
                         for(var i  = 0 ;i<modelValArray.length;i++){
-                            for(var j = 0 ;j<$scope.choicesItems.length;j++){
+                            for(var j = 0 ;j<$scope.choices.length;j++){
                                 if(angular.isString(modelValArray[i])){
-                                    if($scope.choicesItems[j][$scope.trackBy]==modelValArray[i]){
-                                        $scope.choicesItems[j].checked=true;
+                                    if($scope.choices[j][$scope.trackBy]==modelValArray[i]){
+                                        $scope.choices[j].checked=true;
                                     }
                                 }else if(angular.isObject(modelValArray[i])){
-                                    if($scope.choicesItems[j][$scope.trackBy]==modelValArray[i][$scope.trackBy]){
-                                        $scope.choicesItems[j].checked=true;
+                                    if($scope.choices[j][$scope.trackBy]==modelValArray[i][$scope.trackBy]){
+                                        $scope.choices[j].checked=true;
                                     }
                                 }
                             }
                         };
                         if($scope.groupBy != undefined){
                             $scope.groupList = [];
-                            for(var i = 0 ;i<$scope.choicesItems.length;i++){
-                                var item = $scope.choicesItems[i];
+                            for(var i = 0 ;i<$scope.choices.length;i++){
+                                var item = $scope.choices[i];
                                 var findFlag = false;
                                 for(var j = 0 ; j<$scope.groupList.length;j++){
                                     var groupItem = $scope.groupList[j];
@@ -119,7 +119,7 @@ angular.module('pu.utils.directives')
                 $scope.setModelValue = function(){
                     if($scope.modelFormat =="string"){
                         var newModelValue="";
-                        angular.forEach($scope.choicesItems,function(item){
+                        angular.forEach($scope.choices,function(item){
                             if(item.checked==true){
                                 newModelValue+=item[$scope.trackBy]+$scope.seperator;
                             }
@@ -130,7 +130,7 @@ angular.module('pu.utils.directives')
                         ngModelCtrl.$setViewValue(newModelValue);
                     }else{
                         var modelList =[];
-                        angular.forEach($scope.choicesItems,function(item){
+                        angular.forEach($scope.choices,function(item){
                             if(item.checked==true){
                                 modelList.push(item);
                             }
@@ -140,7 +140,7 @@ angular.module('pu.utils.directives')
                 }
                 $scope.setViewValue = function(){
                     var viewValue="";
-                    angular.forEach($scope.choicesItems,function(item){
+                    angular.forEach($scope.choices,function(item){
                         if(item.checked==true){
                             viewValue+=item[$scope.showField]+",";
                         }
@@ -149,18 +149,20 @@ angular.module('pu.utils.directives')
                         viewValue = viewValue.substring(0,viewValue.length-1);
                     $scope.selectedViewValue = viewValue;
                 }
-                var watchChoices = $scope.$watch('choices',function(newVal,oldVal){
+                /*var watchChoices = $scope.$watch('choices',function(newVal,oldVal){
                     if(newVal==undefined || newVal.length==0){
                         return;
                     };
-
-                    angular.copy($scope.choices,$scope.choicesItems);
-                    angular.forEach($scope.choicesItems,function(item){
-                        item.checked=false;
-                    })
                     $scope.convertModelValue(ngModelCtrl.$modelValue);
                     watchChoices();
-                },true)
+                },true)*/
+                $scope.$watch(function(){
+                    return $scope.$parent.$eval(attrs['choices'])
+                },function(newVal,oldVal){
+                    $scope.choicesItem
+                    $scope.convertModelValue(ngModelCtrl.$modelValue);
+                })
+
             }
 
         }

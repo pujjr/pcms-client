@@ -5,7 +5,7 @@
     </div>
 
     <div uib-dropdown-menu  role="menu" style="width:100%;max-height: 400px;overflow-y:auto;" ng-if="groupBy == undefined" >
-        <div class="m-l-xs m-b-xs  multiSelect" ng-repeat="item in choices" ng-click="onCheck(item)">
+        <div class="m-l-xs m-b-xs  multiSelect" ng-repeat="item in choicesItems" ng-click="onCheck(item)">
             <input type="checkbox" ng-checked="item.checked"><span inner-transclude></span>
         </div>
     </div>
