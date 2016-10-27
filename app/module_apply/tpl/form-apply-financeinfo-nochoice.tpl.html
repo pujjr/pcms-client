@@ -2,7 +2,7 @@
 <div ng-repeat="item in applyInfo.finances">
     <fieldset class="scheduler-border" ng-if="item.select==true">
         <legend class="scheduler-border">融资信息{{item.seq | simpleChnUpperCase}}
-            <button class="btn  btn-link" type="button"ng-disabled="editable==false"  ng-click="deActiveFinance(item)" ng-if="item.select==true && item.seq !=1"><i class="fa fa-trash fa-lg m-r-sm" style="color: red"></i></button>
+            <button class="btn  btn-link" type="button" ng-disabled="editable==false"  ng-click="deActiveFinance(item)" ng-if="item.select==true && item.seq !=1"><i class="fa fa-trash fa-lg m-r-sm" style="color: red"></i></button>
         </legend>
         <div ng-if="item.select==false">
             <button class="btn btn-link btn-lg m-t-md" ng-disabled="editable==false" type="button" ng-click="activeFinance(item)"><i class="fa fa-plus-square-o  fa-2x m-r-sm" style="color: green"></i></button>
@@ -14,7 +14,7 @@
                         <label  class="col-sm-4 control-label">车辆品牌：</label>
                         <div class="col-sm-8">
                             <div class="m-t-xs">
-                                <span>{{item.carStyle.carBrand.brandName}}</span><a href="javascript:"   ng-disabled="editable==false"  ng-click="selectCar(item)"><i class="fa fa-plus-square-o m-r-sm"></i>选择车型</a>
+                                <span >{{item.carStyle.carBrand.brandName}}</span><a href="javascript:" ng-if="editable!=false"  ng-click="selectCar(item)" disabled="disabled"><i class="fa fa-plus-square-o m-r-sm"></i>选择车型</a>
                             </div>
                         </div>
                     </div>

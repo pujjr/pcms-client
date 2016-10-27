@@ -164,6 +164,18 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="reserver2" class="col-sm-4 control-label">可选车辆模板：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="reserver2"  ng-model="item.sysBranchDealer.reserver2"   ng-options="l.id as l.tplName for l in carTemplateList"  required>
+                                <option value="">请选择可选车辆模板</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </fieldset>
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">产品设置</legend>

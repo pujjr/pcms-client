@@ -1,0 +1,62 @@
+<div ng-init="init()">
+    <div class="panel_main">
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-sm btn-default" type="button" ng-click="addCarTemplate()"><i class="fa fa-plus m-r-sm"></i>增加</button>
+                </div>
+            </header>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>模板名称</th>
+                    <th>创建人</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in CarTemplateList">
+                    <td>{{item.tplName}}</a></td>
+                    <td>{{item.createId}}</td>
+                    <td>{{item.createTime|mysqlDatetime}}</td>
+                    <td>
+                        <a href="javascript:" ng-click="editCarTemplate(item)">编辑</a>
+                        <a href="javascript:" ng-click="setCarTemplateChoice(item)">关联模板车辆</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="has-divider has-divider--dark"></div>
+            <div class="toolbar" ng-if="false">
+                <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                    <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                    </div>
+                    <div>
+                        <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                        ng-model="paginationInfo.curPage"
+                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                        last-text="&raquo;">
+                        </uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

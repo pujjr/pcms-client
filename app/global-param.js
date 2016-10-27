@@ -3,18 +3,18 @@
  */
 var BASE_URL='http://127.0.0.1:8080/pcms-web';
 var URL = {
-    /**认证地址**/
+    /**璁よ瘉鍦板潃**/
     AUTH_SERVER_URL:BASE_URL,
-    /**接口调用地址**/
+    /**鎺ュ彛璋冪敤鍦板潃**/
     API_SERVER_URL:BASE_URL+'/service',
-    /**文件下载地址**/
+    /**鏂囦欢涓嬭浇鍦板潃**/
     FILE_DOWNLOAD_URL:BASE_URL+'/image/file/img/',
-    /**文件上传地址**/
+    /**鏂囦欢涓婁紶鍦板潃**/
     FILE_UPLOAD_URL:BASE_URL+'/service/file/uploadFile/',
-    /**流程编辑器地址**/
+    /**娴佺▼缂栬緫鍣ㄥ湴鍧�**/
     WORKFLOW_EDITOR_URL:BASE_URL+'/modeler.html?modelId=',
-    /**流程图片查看地址**/
+    /**娴佺▼鍥剧墖鏌ョ湅鍦板潃**/
     WORKFLOW_IMG_URL:BASE_URL+'/public/workflow/config/img/',
-    /**OSS地址**/
+    /**OSS鍦板潃**/
     OSS_URL:'http://pcms-test.oss-cn-hzfinance.aliyuncs.com/'
 }

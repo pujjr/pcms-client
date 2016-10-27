@@ -22,6 +22,9 @@ angular.module('app')
                         };
                         $scope.goCarStyle = function(){
                             $state.go('app.car.carstyle');
+                        };
+                        $scope.goCarTemplate = function(){
+                            $state.go('app.car.cartemplate');
                         }
                     }
                 })
@@ -42,6 +45,12 @@ angular.module('app')
                     url:'/carstyle',
                     templateUrl:'module_car/tpl/carstyle-list.html',
                     controller: 'CarStyleController'
+                })
+                //经销商可选车辆模板
+                .state('app.car.cartemplate',{
+                    url:'/cartemplate',
+                    templateUrl:'module_car/tpl/cartemplate-list.html',
+                    controller: 'CarTemplateController'
                 })
 
         }

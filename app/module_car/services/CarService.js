@@ -46,21 +46,27 @@ angular.module('pu.car.services')
         this.queryCarStylePageList = function(queryParams){
             return RestApi.all("/car/style/pagelist").getList(queryParams);
         }
-        this.selectCar = function(){
+        this.selectCar = function(appId){
             var modalInstance = $uibModal.open({
                 animation: false,
                 backdrop:'false',
                 size:'lg',
+                resolve:{
+                    appId:function(){
+                        return appId;
+                    }
+                },
                 templateUrl :'module_car/tpl/dialog-select-car.html',
                 controller:function($scope,RestApi,CarService,$timeout){
+                    $scope.appId = appId;
                     $scope.init = function(){
                         $scope.carBrand ={};
                         $scope.carSerial = {};
                         $scope.carStyle = {};
-                        $scope.carBrandList = CarService.queryCarBrandList().$object;
+                        $scope.carBrandList = CarService.queryCurrentApplyEnabledCarBrand($scope.appId).$object;
                     };
                     $scope.carBrandChanged = function(){
-                        $scope.carSerialList = CarService.queryCarSerialList($scope.carBrand.id).$object;
+                        $scope.carSerialList = CarService.queryCurrentApplyEnabledCarSerial($scope.appId,$scope.carBrand.id).$object;
                     };
                     $scope.carSerialChanged = function(){
                        // $scope.carStyleList = CarService.queryCarStyleList($scope.carSerial.id).$object;
@@ -88,5 +94,32 @@ angular.module('pu.car.services')
                 }
             });
             return modalInstance.result;
+        };
+        this.queryCarTemplateList = function(){
+            return RestApi.all("/car/template").getList();
+        };
+        this.addCarTemplate = function(item){
+            return RestApi.all("/car/template").post(item);
+        };
+        this.modifyCarTemplate = function(item){
+            return RestApi.one("/car/template",item.id).customPUT(item);
+        };
+        this.deleteCarTemplate = function(id){
+            return RestApi.one("/car/template",id).remove();
+        };
+        this.getCarTreeList = function(){
+            return RestApi.all("/car/getCarTreeList").getList();
+        };
+        this.getCarTemplateChoiceList = function(templateId){
+            return RestApi.all("/car/getCarTemplateChoiceList").all(templateId).getList();
+        };
+        this.saveCarTemplateChoice = function(templateId,params){
+            return RestApi.all("/car/saveCarTemplateChoice").all(templateId).post(params);
+        };
+        this.queryCurrentApplyEnabledCarBrand = function(appId){
+            return RestApi.all("/car/getCurrentApplyEnabledCarBrand").all(appId).getList();
+        };
+        this.queryCurrentApplyEnabledCarSerial = function(appId,carBrandId){
+            return RestApi.all("/car/getCurrentApplyEnabledCarSerial").all(appId).all(carBrandId).getList();
         }
     });

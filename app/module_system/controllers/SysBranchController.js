@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.system.controllers")
     .controller('SysBranchController',function ($scope, $rootScope, $state, toaster,$uibModal,modal, SysBranchService,SysAreaService,
-                                                SysJobService,SysAccountService,SysDictService,GpsService,ToolsService,ProductService,BankService,ContractService) {
+                                                SysJobService,SysAccountService,SysDictService,GpsService,ToolsService,ProductService,BankService,ContractService,CarService) {
         $scope.init = function () {
             $scope.querySysBranchList();
         };
@@ -106,6 +106,7 @@ angular.module("pu.system.controllers")
                     $scope.allProductList = ProductService.queryAllEnableProductList().$object;
                     $scope.bankInfoList = BankService.queryBankInfoList(false).$object;
                     $scope.contractTemplateList = ContractService.queryContractTemplateList().$object;
+                    $scope.carTemplateList = CarService.queryCarTemplateList().$object;
                     $scope.ok=function(){
                         SysBranchService.modifySysBranch($scope.item).then(function(){
                             modalInstance.close('修改机构成功');

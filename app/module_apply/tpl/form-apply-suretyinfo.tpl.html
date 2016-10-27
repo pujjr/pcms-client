@@ -7,7 +7,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">类型：</label>
                 <div class="col-sm-8">
-                    <select for="idType" class="form-control" ng-model="applyInfo.cloessee.type"
+                    <select for="type" class="form-control" ng-model="applyInfo.cloessee.type"
                             ng-disabled="editable==false"
                             ng-options="item.dictDataCode as item.dictDataName for item in cloesseeTypeList" ng-required="requiredMap.cloessee_type" >
                         <option value="">请选择类型</option>

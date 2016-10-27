@@ -18,8 +18,8 @@ angular.module('pu.contract.services')
         this.addContractTemplate = function(item){
             return RestApi.all("/contract/contracttemplate").post(item);
         };
-        this.modifyContractTemplate = function(templateId,item){
-            return RestApi.one("/contract/contracttemplate",templateId).customPUT(item);
+        this.modifyContractTemplate = function(item){
+            return RestApi.one("/contract/contracttemplate",item.id).customPUT(item);
         };
         this.deleteContractTemplateById = function(templateId){
             return RestApi.one("/contract/contracttemplate",templateId).remove();
