@@ -489,6 +489,8 @@ angular.module("pu.apply.controllers")
             $scope.nationList = SysDictService.queryDictDataByTypeCode("mz").$object;
             //驾照类型
             $scope.driverLicenseTypeList = SysDictService.queryDictDataByTypeCode("jzlx").$object;
+            //共租人类型
+            $scope.cloesseeTypeList = SysDictService.queryDictDataByTypeCode("gzrlx").$object;
         }
         //选择车辆
         $scope.selectCar = function(item){

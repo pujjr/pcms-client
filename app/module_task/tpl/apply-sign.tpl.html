@@ -28,13 +28,11 @@
                 </div>
                 <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
             </uib-tab>
-            <uib-tab index="1" >
+            <uib-tab index="1" select="printContract()">
                 <uib-tab-heading>
                     <span>打印合同</span>
                 </uib-tab-heading>
-                <embed src="http://pcms-test.oss-cn-hzfinance.aliyuncs.com/1.pdf" type="application/pdf" internalinstanceid="56" ng-style="pdfStyle"  title="">
-
-
+                <div ng-include="'module_task/tpl/form-apply-contract-print.html'"></div>
             </uib-tab>
             <uib-tab index="2"  select="initSignFileManage(applyInfo.appId)">
                 <uib-tab-heading>

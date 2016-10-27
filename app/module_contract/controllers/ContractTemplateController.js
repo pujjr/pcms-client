@@ -66,7 +66,9 @@ angular.module("pu.contract.controllers")
                 controller:function($scope,RestApi){
                     $scope.item=item;
                     $scope.contractInfoList= ContractService.queryContractInfoList().$object;
-                    $scope.templateContractList = ContractService.queryContractInfoListByContractTemplateId($scope.item.id).$object
+                    ContractService.queryContractInfoListByContractTemplateId($scope.item.id).then(function(response){
+                        $scope.templateContractList = response;
+                    })
                     $scope.ok=function(){
                         ContractService.saveContractTemplateRefContractList($scope.item.id,$scope.templateContractList).then(function(){
                             modalInstance.close('设置成功');

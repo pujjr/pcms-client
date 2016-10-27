@@ -23,11 +23,19 @@ angular.module("pu.task.controllers")
             })
         };
         $scope.pdfStyle={
-            "width":"100%",
+            "width":"80%",
             "position":"fixed",
             "height":$scope.screenHeight-170,
             "bottom":"0",
             "padding-right": "200px"
         };
+        $scope.printContract = function(){
+            $scope.contractList = TaskService.getContractInfoListByAppId($stateParams.businessKey).$object;
+        };
+        $scope.generateContract = function(contractKey){
+            TaskService.getContractOSSKey($stateParams.businessKey,contractKey).then(function(response){
+                $scope.pdfUrl = URL.OSS_URL+response.osskey;
+            })
+        }
     })
 ;

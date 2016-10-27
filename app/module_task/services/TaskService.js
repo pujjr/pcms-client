@@ -126,5 +126,11 @@ angular.module('pu.task.services')
                 }
             });
             return modalInstance.result;
+        };
+        this.getContractInfoListByAppId = function(appId){
+            return RestApi.all("/task/getContractInfoListByAppId").all(appId).getList();
+        };
+        this.getContractOSSKey = function(appId,contractKey){
+            return RestApi.all("/print/generateContract").one(appId,contractKey).get();
         }
     });

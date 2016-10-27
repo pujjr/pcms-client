@@ -2,7 +2,7 @@
     <div class="modal-header">
         <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑经销商信息</h4>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="max-height: 600px;overflow-y: auto">
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">机构基本信息</legend>
             <div class="row  m-t-md">
@@ -150,6 +150,16 @@
                         <label for="loanAcctName" class="col-sm-4 control-label">放款银行户名：</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="loanAcctName" placeholder="放款银行户名" ng-model="item.sysBranchDealer.loanAcctName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="reserver1" class="col-sm-4 control-label">合同模板：</label>
+                        <div class="col-sm-8">
+                            <select  class="form-control" id="reserver1"  ng-model="item.sysBranchDealer.reserver1"   ng-options="l.id as l.tplName for l in contractTemplateList"  required>
+                                <option value="">请选择合同模板</option>
+                            </select>
                         </div>
                     </div>
                 </div>

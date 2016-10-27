@@ -1,0 +1,22 @@
+<div>
+    <div class="c_box">
+        <div class="c_left_box">
+            <div class="panel_main">
+                <div class="panel-header">
+                    <div class="panel-header-wrapper">
+                        <h2 class="panel-header-title">可打印合同信息</h2>
+                    </div>
+                </div>
+                <div ng-repeat="item in contractList">
+                    <button type="button" class="btn btn-default btn-lg btn-block" ng-click="generateContract(item.contractKey)">{{item.contractName}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="c_right_box">
+            <div class="panel_main">
+                <embed embed-src="{{pdfUrl}}" type="application/pdf" ng-style="pdfStyle" internalinstanceid="56"   title="">
+            </div>
+        </div>
+    </div>
+
+</div>
