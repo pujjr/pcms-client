@@ -24,5 +24,6 @@ angular.module('app', [
     'pu.file',
     'pu.gps',
     'pu.form',
-    'pu.contract'
+    'pu.contract',
+    'pu.query'
 ])
