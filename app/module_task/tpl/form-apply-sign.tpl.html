@@ -1,6 +1,19 @@
-<!--申请信息-->
-<form class="container-fluid  form-horizontal m-t-sm">
-   <div  ng-repeat="item in signContractVo.signFinanceList">
+
+<form class="container-fluid  form-horizontal" name="signForm">
+    <!--申请信息-->
+    <div class="data-table-container" ng-if="signEditable!=false" >
+        <header class="data-table-header" style="min-height:48px !important;">
+            <div class="data-table-header__label">
+            </div>
+            <div class="data-table-header__actions">
+                <button class="btn btn-primary btn-sm" type="button" ng-disabled="signForm.$invalid "  ng-click="saveSignContractInfo()"><i class="fa fa-save m-r-sm"></i>保存签约信息</button>
+            </div>
+        </header>
+    </div>
+    <div class="alert alert-danger" role="alert" ng-if="signContractVo.contractNo == null">未录入签约信息</div>
+    <div class="alert alert-info" role="alert" ng-if="signContractVo.contractNo != null">合同编号： {{signContractVo.contractNo}}
+    </div>
+    <div  ng-repeat="item in signContractVo.signFinanceList">
        <fieldset class="scheduler-border">
            <legend class="scheduler-border">车辆信息{{item.applyFinance.seq | simpleChnUpperCase}}</legend>
            <div class="row m-t-md">
@@ -34,7 +47,10 @@
                    <div class="form-group form-group-sm">
                        <label for="invoiceSalePrice" class="col-sm-4 control-label">开票裸车价：</label>
                        <div class="col-sm-8">
-                           <input type="number" step="0.0001" id="invoiceSalePrice" verify-invoice-sale-price="item.applyFinance.salePrice" class="form-control" ng-model="item.signFinanceDetail.invoiceSalePrice" required>
+                           <input type="number" step="0.0001" id="invoiceSalePrice"
+                                  verify-invoice-sale-price="item.applyFinance.salePrice"
+                                  ng-disabled="signEditable==false"
+                                  class="form-control" ng-model="item.signFinanceDetail.invoiceSalePrice" required>
                        </div>
                    </div>
                </div>
@@ -45,7 +61,7 @@
                    <div class="form-group form-group-sm">
                        <label for="carVin" class="col-sm-4 control-label">车架号：</label>
                        <div class="col-sm-8">
-                           <input type="text" id="carVin" class="form-control" ng-model="item.signFinanceDetail.carVin">
+                           <input type="text" id="carVin" class="form-control" ng-disabled="signEditable==false" ng-model="item.signFinanceDetail.carVin">
                        </div>
                    </div>
                </div>
@@ -53,7 +69,7 @@
                    <div class="form-group form-group-sm">
                        <label for="carEngineNo" class="col-sm-4 control-label">发动机号：</label>
                        <div class="col-sm-8">
-                           <input type="text" id="carEngineNo" class="form-control" ng-model="item.signFinanceDetail.carEngineNo" required>
+                           <input type="text" id="carEngineNo" class="form-control"ng-disabled="signEditable==false"  ng-model="item.signFinanceDetail.carEngineNo" required>
                        </div>
                    </div>
                </div>
@@ -61,7 +77,7 @@
                    <div class="form-group form-group-sm">
                        <label for="plateNo" class="col-sm-4 control-label">车牌号：</label>
                        <div class="col-sm-8">
-                           <input type="text" id="plateNo" class="form-control" ng-model="item.signFinanceDetail.plateNo">
+                           <input type="text" id="plateNo" class="form-control" ng-disabled="signEditable==false" ng-model="item.signFinanceDetail.plateNo">
                        </div>
                    </div>
                </div>
@@ -72,7 +88,7 @@
                    <div class="form-group form-group-sm">
                        <label for="carColor" class="col-sm-4 control-label">车辆颜色：</label>
                        <div class="col-sm-8">
-                           <input type="text" id="carColor" class="form-control" ng-model="item.signFinanceDetail.carColor" required>
+                           <input type="text" id="carColor" class="form-control" ng-disabled="signEditable==false" ng-model="item.signFinanceDetail.carColor" required>
                        </div>
                    </div>
                </div>
@@ -81,6 +97,7 @@
                        <label for="gpsSupplierId" class="col-sm-4 control-label">GPS供应商：</label>
                        <div class="col-sm-8">
                            <select  class="form-control" id="gpsSupplierId" ng-model="item.signFinanceDetail.gpsSupplierId"
+                                    ng-disabled="signEditable==false"
                                     ng-options="item.id as item.name for item in gpsSupplierList" required>
                                <option value="">请选择GPS供应商</option>
                            </select>
@@ -91,7 +108,7 @@
                    <div class="form-group form-group-sm">
                        <label for="gpsWiredNo" class="col-sm-4 control-label">有线GPS编码：</label>
                        <div class="col-sm-8">
-                           <input type="text" id="gpsWiredNo" class="form-control" ng-model="item.signFinanceDetail.gpsWiredNo" required>
+                           <input type="text" id="gpsWiredNo" class="form-control" ng-disabled="signEditable==false" ng-model="item.signFinanceDetail.gpsWiredNo" required>
                        </div>
                    </div>
                </div>
@@ -101,7 +118,7 @@
                    <div class="form-group form-group-sm">
                        <label for="gpsWirelessNo" class="col-sm-4 control-label">无线GPS编码：</label>
                        <div class="col-sm-8">
-                           <input type="text" id="gpsWirelessNo" class="form-control" ng-model="item.signFinanceDetail.gpsWirelessNo">
+                           <input type="text" id="gpsWirelessNo" class="form-control" ng-disabled="signEditable==false" ng-model="item.signFinanceDetail.gpsWirelessNo">
                        </div>
                    </div>
                </div>
@@ -127,6 +144,7 @@
                         <label for="repayBankId" class="col-sm-6 control-label">默认还款银行：</label>
                         <div class="col-sm-6">
                             <select  class="form-control" id="repayBankId" ng-model="signContractVo.repayBankId"
+                                     ng-disabled="signEditable==false"
                                      ng-options="item.id as item.bankName for item in unionPayBankList" required>
                                 <option value="">默认还款银行</option>
                             </select>
@@ -145,7 +163,7 @@
                     <div class="form-group form-group-sm">
                         <label for="repayAcctNo" class="col-sm-6 control-label">默认还款银行账号：</label>
                         <div class="col-sm-6">
-                            <input type="text" id="repayAcctNo" class="form-control" ng-model="signContractVo.repayAcctNo" required>
+                            <input type="text" id="repayAcctNo" class="form-control" ng-disabled="signEditable==false" ng-model="signContractVo.repayAcctNo" required>
                         </div>
                     </div>
                 </div>
@@ -195,7 +213,7 @@
                     <div class="form-group form-group-sm">
                         <label for="signComment" class="col-sm-1 control-label">签约备注：</label>
                         <div class="col-sm-11">
-                            <textarea type="text" class="form-control" id="signComment" ng-model="signContractVo.signComment" ></textarea>
+                            <textarea type="text" class="form-control" id="signComment"  ng-disabled="signEditable==false" ng-model="signContractVo.signComment" ></textarea>
                         </div>
                     </div>
                 </div>

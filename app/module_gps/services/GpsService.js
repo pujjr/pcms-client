@@ -25,7 +25,7 @@ angular.module('pu.gps.services')
             return RestApi.one("/gps/gpsrule",id).remove();
         };
 
-        this.queryEnableGpsLvlList = function(salePrice,initPayPercent,product){
+        this.queryEnableGpsLvlList = function(appId,salePrice,initPayPercent,product){
             var amt =0.00;
             if(product.productRule.isTotalRefinance==true){
                 amt = salePrice*(initPayPercent/100);
@@ -35,7 +35,7 @@ angular.module('pu.gps.services')
             if(isNaN(amt)){
                 return [];
             }
-            return RestApi.one("/gps",'enablegpslvl').all(amt).getList();
+            return RestApi.one("/gps",'enablegpslvl').all(appId).all(amt).getList();
         }
 
         this.queryGpsSupplierList = function(enabled){

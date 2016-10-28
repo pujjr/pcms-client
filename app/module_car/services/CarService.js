@@ -77,7 +77,11 @@ angular.module('pu.car.services')
                         if(newVal!=oldVal && newVal !=undefined && newVal!= ''){
                             if (timeout) $timeout.cancel(timeout);
                             timeout=$timeout(function(){
-                                $scope.carStyleList = CarService.queryCarStylePageList({'indexStr':$scope.indexStr,'appId':$scope.appId}).$object;
+                                if($scope.indexStr==''){
+                                    $scope.carStyleList =[];
+                                }else{
+                                    $scope.carStyleList = CarService.queryCarStylePageList({'indexStr':$scope.indexStr,'appId':$scope.appId}).$object;
+                                }
                             },1500);
                         }
                     })

@@ -39,7 +39,7 @@ angular.module("pu.apply.controllers")
         $scope.initWatchFinance1 = function(){
             //监视融资信息变化查询GPS档位
             watchFinance1Gps = $scope.$watchGroup(['finance1.salePrice','finance1.initPayPercent'],function(newVal,oldVal){
-                $scope.finance1.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance1.salePrice,$scope.finance1.initPayPercent,$scope.applyInfo.product).$object;
+                $scope.finance1.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance1.salePrice,$scope.finance1.initPayPercent,$scope.applyInfo.product).$object;
             },true);
             watchFinance1 = $scope.$watch('finance1',function(newVal,oldVal){
 
@@ -81,7 +81,7 @@ angular.module("pu.apply.controllers")
         $scope.initWatchFinance2 = function(){
             //监视融资信息变化查询GPS档位
             watchFinance2Gps = $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
-                $scope.finance2.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance2.salePrice,$scope.finance2.initPayPercent,$scope.applyInfo.product).$object;
+                $scope.finance2.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance2.salePrice,$scope.finance2.initPayPercent,$scope.applyInfo.product).$object;
             },true);
             watchFinance2 = $scope.$watch('finance2',function(newVal,oldVal){
                 var product = $scope.applyInfo.product;
@@ -122,7 +122,7 @@ angular.module("pu.apply.controllers")
         $scope.initWatchFinance3 = function(){
             //监视融资信息变化查询GPS档位
             watchFinance3Gps = $scope.$watchGroup(['finance3.salePrice','finance3.initPayPercent'],function(newVal,oldVal){
-                $scope.finance3.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.finance3.salePrice,$scope.finance3.initPayPercent,$scope.applyInfo.product).$object;
+                $scope.finance3.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance3.salePrice,$scope.finance3.initPayPercent,$scope.applyInfo.product).$object;
             },true);
             watchFinance3 = $scope.$watch('finance3',function(newVal,oldVal){
                 var product = $scope.applyInfo.product;
@@ -675,6 +675,7 @@ angular.module("pu.apply.controllers")
                 $scope.initSelectList("edit");
                 $scope.addressCtrl.onEditRefresh();
                 $scope.initWatchTotalFinance();
+                $scope.refreshFormRequiredMap();
             })
         };
         $scope.refreshApplyInfoFromServer= function (appId){
@@ -725,6 +726,7 @@ angular.module("pu.apply.controllers")
             ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
                 console.log(response.appId);
                 $scope.refreshApplyInfoFromServer(response.appId);
+                $scope.form.$dirty=false;
                 toaster.pop('success', '操作提醒','保存申请信息成功');
             });
         };
@@ -742,5 +744,8 @@ angular.module("pu.apply.controllers")
         $scope.initApplyFileComponent = function(fileInterface){
             $scope.applyFileInterface = fileInterface;
         };
+        $scope.printForm = function(){
+            console.log($scope.form);
+        }
     })
 ;

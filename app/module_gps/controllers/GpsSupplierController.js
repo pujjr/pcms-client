@@ -14,6 +14,7 @@ angular.module("pu.gps.controllers")
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
+                size:'lg',
                 templateUrl :'module_gps/tpl/dialog-gpssupplier-add.html',
                 controller:function($scope,RestApi){
                     $scope.item={};
@@ -36,6 +37,7 @@ angular.module("pu.gps.controllers")
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
+                size:'lg',
                 templateUrl :'module_gps/tpl/dialog-gpssupplier-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;

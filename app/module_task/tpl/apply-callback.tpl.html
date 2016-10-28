@@ -1,9 +1,9 @@
-<div ng-init="initCallBack();editable=false">
+<div ng-init="initCallBack();editable=false;signEditable=false">
     <div class="check-header">
         <div class="data-table-container" >
             <header class="data-table-header" style="min-height:72px !important;">
                 <div class="data-table-header__label">
-                    <span class="fs-title"><i class="fa fa-plus-square mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
+                    <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
                 </div>
                 <div class="data-table-header__actions">
                     <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>

@@ -28,6 +28,18 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="wiredUrl" class="col-sm-3 control-label">有线URL：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="wiredUrl" placeholder="有线URL" ng-model="item.wiredUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="wirelessUrl" class="col-sm-3 control-label">无线URL：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="wirelessUrl" placeholder="无线URL" ng-model="item.wirelessUrl">
+            </div>
+        </div>
+        <div class="form-group">
             <label for="comment" class="col-sm-3 control-label">备注：</label>
             <div class="col-sm-8">
                 <textarea class="form-control" id="comment" placeholder="备注" ng-model="item.comment"/>
@@ -44,6 +56,6 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>

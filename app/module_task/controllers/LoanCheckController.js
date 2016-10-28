@@ -42,5 +42,50 @@ angular.module("pu.task.controllers")
             }
 
         };
+        $scope.openInsuranceUrl = function(index,type){
+            var item = $scope.signContractVo.signFinanceList[index];;
+
+            var url="";
+            var key ="";
+            if(type=="jqx"){
+                key = item.signFinanceDetail.insCompanyId;
+            }else if(type=='sybx'){
+                key = item.signFinanceDetail.busiCompanyId;
+            }else if(type=='lyx'){
+                key = item.signFinanceDetail.impCompanyId;
+            }
+            for(var i = 0 ;i<$scope.insuranceCompanyList.length;i++){
+                if(key == $scope.insuranceCompanyList[i].id){
+                    url = $scope.insuranceCompanyList[i].url;
+                    break;
+                }
+            }
+            if(url=="")
+                return;
+            window.open(url);
+        };
+        $scope.openGpsUrl = function(index,type){
+            var item = $scope.signContractVo.signFinanceList[index];
+            var url="";
+            var key =item.signFinanceDetail.gpsSupplierId;
+            if(type=="yx"){
+                for(var i = 0 ;i<$scope.gpsSupplierList.length;i++){
+                    if(key == $scope.gpsSupplierList[i].id){
+                        url = $scope.gpsSupplierList[i].wiredUrl;
+                        break;
+                    }
+                }
+            }else if(type=='wx'){
+                for(var i = 0 ;i<$scope.gpsSupplierList.length;i++){
+                    if(key == $scope.gpsSupplierList[i].id){
+                        url = $scope.gpsSupplierList[i].wirelessUrl;
+                        break;
+                    }
+                }
+            }
+            if(url=="")
+                return;
+            window.open(url);
+        }
     })
 ;

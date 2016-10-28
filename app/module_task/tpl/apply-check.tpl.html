@@ -8,53 +8,55 @@
                     <div class="data-table-header__actions">
                         <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                         <button class="btn btn-primary btn-sm" type="submit"  ng-click="supplyCheckInfo()"><i class="fa fa-check m-r-sm"></i>补充审核资料</button>
-                        <button class="btn btn-success btn-sm" type="submit"  ng-disabled="checkForm.$invalid" ng-click="commitCheckTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                        <button class="btn btn-success btn-sm" type="submit"  ng-disabled="form.$invalid" ng-click="commitCheckTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
                     </div>
                 </header>
             </div>
 
         </div>
-        <div class="check-body">
-            <uib-tabset>
-                <uib-tab index="0">
-                    <uib-tab-heading>
-                        <span>申请信息</span>
-                    </uib-tab-heading>
-                    <div class="data-table-container" >
-                        <header class="data-table-header" style="min-height:48px !important;">
-                            <div class="data-table-header__label">
-                            </div>
-                            <div class="data-table-header__actions">
-                                <button class="btn btn-info btn-sm" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存申请单</button>
-                            </div>
-                        </header>
-                    </div>
-                    <div ng-include="'module_apply/tpl/form-apply.html'"></div>
-                </uib-tab>
-                <uib-tab index="1"  select="initApplyFileManage()">
-                    <uib-tab-heading>
-                        <span>申请资料</span>
-                    </uib-tab-heading>
-                    <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:false}"></ng-file-manage>
-                </uib-tab>
-                <uib-tab index="2"  select="initCheckFileManage(applyInfo.appId)">
-                    <uib-tab-heading>
-                        <span>审核资料</span>
-                    </uib-tab-heading>
-                    <ng-file-manage on-init="initCheckFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:true}"></ng-file-manage>
-                </uib-tab>
-                <uib-tab index="3"  select="queryWorkflowProcessResult(taskId)">
-                    <uib-tab-heading>
-                        <span>流程流转记录</span>
-                    </uib-tab-heading>
-                    <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
-                </uib-tab>
-            </uib-tabset>
-        </div>
-        <div  class="check-footer">
-            <form class="container-fluid m-t-md form-horizontal" name="checkForm">
-                <div ng-include="'module_task/tpl/form-apply-check.html'"></div>
-            </form>
-        </div>
+        <ng-form  name="form" novalidate ng-cloak="">
+            <div class="check-body">
+                <uib-tabset>
+                    <uib-tab index="0">
+                        <uib-tab-heading>
+                            <span>申请信息</span>
+                        </uib-tab-heading>
+                        <div class="data-table-container" >
+                            <header class="data-table-header" style="min-height:48px !important;">
+                                <div class="data-table-header__label">
+                                </div>
+                                <div class="data-table-header__actions">
+                                    <button class="btn btn-info btn-sm" type="button" ng-click="saveApplyInfo()"><i class="fa fa-save m-r-sm"></i>保存申请单</button>
+                                </div>
+                            </header>
+                        </div>
+                        <div ng-include="'module_apply/tpl/form-apply.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="1"  select="initApplyFileManage()">
+                        <uib-tab-heading>
+                            <span>申请资料</span>
+                        </uib-tab-heading>
+                        <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:false}"></ng-file-manage>
+                    </uib-tab>
+                    <uib-tab index="2"  select="initCheckFileManage(applyInfo.appId)">
+                        <uib-tab-heading>
+                            <span>审核资料</span>
+                        </uib-tab-heading>
+                        <ng-file-manage on-init="initCheckFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:true}"></ng-file-manage>
+                    </uib-tab>
+                    <uib-tab index="3"  select="queryWorkflowProcessResult(taskId)">
+                        <uib-tab-heading>
+                            <span>流程流转记录</span>
+                        </uib-tab-heading>
+                        <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+            <div  class="check-footer">
+                <form class="container-fluid m-t-md form-horizontal" name="checkForm">
+                    <div ng-include="'module_task/tpl/form-apply-check.html'"></div>
+                </form>
+            </div>
+        </ng-form>
 </div>
