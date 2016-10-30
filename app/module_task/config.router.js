@@ -141,6 +141,12 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-approve-cancelinfo.html',
                     controller:'ChangeApplyController'
                 })
+                //放款
+                .state('app.task.loanlist',{
+                    url:'/loanlist',
+                    templateUrl:'module_task/tpl/apply-loan.html',
+                    controller:'LoanController'
+                })
 
         }
     ]

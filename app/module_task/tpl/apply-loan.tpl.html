@@ -1,0 +1,23 @@
+<div  class="panel">
+    <div class="data-table-container" >
+        <header class="data-table-header" style="min-height:72px !important;">
+            <div class="data-table-header__label">
+                <span class="fs-title"><i class="fa fa-jpy mr"></i>放款管理</span>
+            </div>
+        </header>
+    </div>
+    <uib-tabset>
+        <uib-tab index="0" select="queryWaitLoanTaskList()">
+            <uib-tab-heading>
+                <span>待放款任务</span>
+            </uib-tab-heading>
+            <div ng-include="'module_task/tpl/waitloantask-list.html'"></div>
+        </uib-tab>
+        <uib-tab index="1" select="queryLoaningTaskList()">
+            <uib-tab-heading>
+                <span>放款中任务</span>
+            </uib-tab-heading>
+            <div ng-include="'module_task/tpl/loaningtask-list.html'"></div>
+        </uib-tab>
+    </uib-tabset>
+</div>

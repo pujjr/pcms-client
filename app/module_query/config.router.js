@@ -15,10 +15,23 @@ angular.module('app')
                     template: '<div ui-view=""></div>',
                     controller:'QueryController'
                 })
-                //经销商申请单查询
+                //查询申请单列表
                 .state('app.query.applylist',{
                     url:'/applylist',
                     templateUrl:'module_query/tpl/apply-list.html',
+                    controller: 'QueryApplyController'
+                })
+                //查询申请单详细信息
+                .state('app.query.apply',{
+                    abstract:true,
+                    url:'/apply',
+                    template: '<div ui-view=""></div>',
+                    controller: 'ApplyController'
+                })
+                //查询申请信息
+                .state('app.query.apply.detail',{
+                    url:'/detail/:appId',
+                    templateUrl:'module_query/tpl/apply-detail.html',
                     controller: 'QueryApplyController'
                 })
 

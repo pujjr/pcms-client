@@ -4,9 +4,21 @@
 // signin controllers
 angular.module("pu.task.controllers")
     .controller('ToDoTaskController',function ($scope, $rootScope, $state, toaster, $uibModal,TaskService) {
-        $scope.queryToDoTaskList = function(){
-            $scope.toDoTaskList = TaskService.queryToDoTaskList('1').$object;
+        $scope.queryParam={};
+        $scope.init = function(){
+            $scope.queryToDoTaskList($scope.queryParam);
+        }
+        $scope.queryToDoTaskList = function(params){
+            angular.extend(params, {outTaskDefKeys:'sgfd,fk'});
+            $scope.toDoTaskList = TaskService.queryToDoTaskList(params).$object;
+            $scope.taskDefinGroupList = TaskService.getUserTaskDefineGroupInfo({outTaskDefKeys:'sgfd,fk'}).$object;
         };
+        $scope.queryToDoTaskFilterByDefKey = function(item){
+            $scope.queryToDoTaskList({inTaskDefKeys:item.taskDefKey});
+        };
+        $scope.queryToDoTaskListByFilter = function(){
+            $scope.queryToDoTaskList($scope.queryParam);
+        }
         $scope.doTask = function(item){
             $state.go(
                 item.taskRouter,

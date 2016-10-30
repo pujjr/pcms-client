@@ -329,7 +329,9 @@ angular.module("pu.apply.controllers")
             $scope.applyInfo.tenant.sex = sex%2!=0?'xb01':'xb02';
             var tmpStr = idNo.substring(6, 14);
             tmpStr = tmpStr.substring(0, 4) + "-" + tmpStr.substring(4, 6) + "-" + tmpStr.substring(6);
-            $scope.applyInfo.tenant.birthday = tmpStr;
+            tmpStr = tmpStr.replace(/-/g,"/");
+            var date = new Date(tmpStr );
+            $scope.applyInfo.tenant.birthday = date.getTime();
         }
         $scope.addressCtrl = {
             onEditRefresh : function(){

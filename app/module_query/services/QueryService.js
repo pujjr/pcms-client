@@ -5,5 +5,11 @@ angular.module('pu.query.services')
         };
         this.queryApplyConditionLoanCommentList = function(appId){
             return RestApi.all("/query/conditionLoanCommentList").all(appId).getList();
+        };
+        this.getWorkflowProcessResultByAppId = function(appId){
+            return RestApi.all("/query/getWorkflowProcessResult").all(appId).getList();
+        };
+        this.queryApplyRunPathNodeMap = function(appId){
+            return RestApi.one("/query/queryApplyRunPathNodeMap",appId).get();
         }
     });

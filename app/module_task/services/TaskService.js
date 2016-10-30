@@ -1,7 +1,7 @@
 angular.module('pu.task.services')
     .service("TaskService",function($window,RestApi,$q,$uibModal,ToolsService,modal,toaster){
-        this.queryToDoTaskList = function(queryType){
-            return RestApi.all("/task/todolist").all(queryType).getList();
+        this.queryToDoTaskList = function(param){
+            return RestApi.all("/task/todolist").getList(param);
         };
         this.queryTaskByTaskId = function(taskId){
             return RestApi.one("/task",taskId).get();
@@ -132,5 +132,11 @@ angular.module('pu.task.services')
         };
         this.getContractOSSKey = function(appId,contractKey){
             return RestApi.all("/print/generateContract").one(appId,contractKey).get();
+        };
+        this.getUserTaskDefineGroupInfo = function(param){
+            return RestApi.all("/task/getUserTaskDefineGroupInfo").getList(param);
+        };
+        this.batchDoLoanTask = function(params){
+            return RestApi.all("/task/batchDoLoanTask").post(params);
         }
     });

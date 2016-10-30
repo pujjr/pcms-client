@@ -62,5 +62,8 @@ angular.module('pu.product.services')
         };
         this.queryProductFormRequiredMap = function(productId){
             return RestApi.one("/product/getProductFormRequiredMap",productId).get();
+        };
+        this.queryAllProductList = function(){
+            return RestApi.all("/product/getAllProductList").getList();
         }
     });
