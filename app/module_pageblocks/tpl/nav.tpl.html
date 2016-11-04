@@ -1,33 +1,33 @@
 <!-- list -->
 <ul class="nav">
-  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs"  ng-if="hasPrimission('app.apply')">
     <span>申请单管理</span>
   </li>
-  <li ui-sref-active="active">
-    <a ui-sref="app.apply.list" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.apply.list')">
+    <a ui-sref="app.apply.list"  >
       <i class="fa fa-file icon text-info-dker"></i>
       <span class="font-bold">申请单录入</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.task.todolist')">
     <a ui-sref="app.task.todolist" >
       <i class="fa fa-tasks icon text-info-dker"></i>
       <span class="font-bold">待办任务</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.task.handleassignee')">
     <a ui-sref="app.task.handleassignee" >
       <i class="fa fa-hand-o-up icon text-info-dker"></i>
       <span class="font-bold">手工分单</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.task.loanlist')">
     <a ui-sref="app.task.loanlist" >
       <i class="fa fa-jpy icon text-info-dker"></i>
       <span class="font-bold">放款</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.query.applylist')">
     <a ui-sref="app.query.applylist" >
       <i class="fa fa-search icon text-info-dker"></i>
       <span class="font-bold">综合查询</span>
@@ -35,118 +35,106 @@
   </li>
   <li class="line dk"></li>
 
-  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs" ng-if="hasPrimission('app.system')">
     <span >系统管理</span>
   </li>
   <li ui-sref-active="active">
-    <a ui-sref="app.sysbranch.list">
+    <a ui-sref="app.sysbranch.list" ng-if="hasPrimission('app.sysbranch.list')">
       <i class="fa  fa-bank icon text-info-dker"></i>
       <span class="font-bold">机构管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.sysworkgroup.list')">
     <a ui-sref="app.sysworkgroup.list">
       <i class="fa  fa-users icon text-info-dker"></i>
       <span class="font-bold">工作组管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.product.config')">
     <a ui-sref="app.product.config">
       <i class="fa  fa-car icon text-info-dker"></i>
       <span class="font-bold">产品管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.sysarea.list')">
     <a ui-sref="app.sysarea.list">
       <i class="fa  fa-globe icon text-info-dker"></i>
       <span class="font-bold">区域管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.sysjob.list')">
     <a ui-sref="app.sysjob.list">
       <i class="fa  fa-android icon text-info-dker"></i>
       <span class="font-bold">岗位管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.sysdict.list')">
     <a ui-sref="app.sysdict.list">
       <i class="fa  fa-book icon text-info-dker"></i>
       <span class="font-bold">数据字典管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.sysmenu.list')">
-    <a ui-sref="app.sysmenu.list">
-      <i class="fa fa-bars icon text-info-dker"></i>
-      <span class="font-bold">菜单管理</span>
-    </a>
-  </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.sysrole.list')">
-    <a ui-sref="app.sysrole.list">
-      <i class="icon-user icon text-info-dker"></i>
-      <span class="font-bold">角色管理</span>
-    </a>
-  </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.sysparam.list')">
     <a ui-sref="app.sysparam.list">
       <i class="fa fa-database icon text-info-dker"></i>
       <span class="font-bold">系统参数管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.bankinfo.list')">
     <a ui-sref="app.bankinfo.list">
       <i class="fa fa-bank icon text-info-dker"></i>
       <span class="font-bold">银行参数管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.insurance.list')">
     <a ui-sref="app.insurance.list">
       <i class="fa fa-bank icon text-info-dker"></i>
       <span class="font-bold">保险公司管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.gps.gpssupplier')">
     <a ui-sref="app.gps.gpssupplier">
       <i class="fa fa-globe icon text-info-dker"></i>
       <span class="font-bold">GPS管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.file.directory')">
     <a ui-sref="app.file.directory">
       <i class="fa fa-files-o icon text-info-dker"></i>
       <span class="font-bold">目录管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.form.field')">
     <a ui-sref="app.form.field">
       <i class="fa fa-bank icon text-info-dker"></i>
       <span class="font-bold">表单配置</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.car.carbrand')">
     <a ui-sref="app.car.carbrand">
       <i class="fa fa-car icon text-info-dker"></i>
       <span class="font-bold">车辆管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.sysmenu.list')">
     <a ui-sref="app.sysmenu.list">
       <i class="fa fa-file icon text-info-dker"></i>
       <span class="font-bold">菜单管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.sysrole.list')">
     <a ui-sref="app.sysrole.list">
       <i class="fa fa-puzzle-piece icon text-info-dker"></i>
       <span class="font-bold">角色管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.contract.contractinfo')">
     <a ui-sref="app.contract.contractinfo">
       <i class="fa fa-anchor icon text-info-dker"></i>
       <span class="font-bold">合同管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active"ng-if="hasPrimission('app.workflow.list')">
     <a ui-sref="app.workflow.list">
       <i class="fa fa-bars icon text-info-dker"></i>
       <span class="font-bold">流程管理</span>

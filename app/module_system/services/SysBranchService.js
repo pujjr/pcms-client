@@ -12,8 +12,8 @@ angular.module('pu.system.services')
         this.deleteSysBranch = function(id){
             return RestApi.one("/sysbranch",id).remove();
         }
-        this.querySysAccountListByBranchId = function(branchId){
-            return RestApi.one("/sysbranch",branchId).all("/accounts").getList();
+        this.querySysAccountListByBranchId = function(branchId,extParam){
+            return RestApi.one("/sysbranch",branchId).all("/accounts").getList(extParam);
         };
         this.querySysBranchByBranchId = function(id){
             return RestApi.one("/sysbranch",id).get();

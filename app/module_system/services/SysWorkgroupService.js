@@ -39,7 +39,7 @@ angular.module('pu.system.services')
                         $scope.workgroupAccounts = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selWorkgroup.id).$object;
                     };
                     $scope.querySysAccountListByBranchId = function(branchId){
-                        $scope.sysAccountList = SysBranchService.querySysAccountListByBranchId(branchId).$object;
+                        $scope.sysAccountList = SysBranchService.querySysAccountListByBranchId(branchId,{pageSize:1000}).$object;
                     };
                     $scope.querySysBranchList = function(){
                         SysBranchService.querySysBranchList().then(function(response){
@@ -56,7 +56,7 @@ angular.module('pu.system.services')
 
                     });
                     $scope.queryCanSelAccountsByBranchId = function(branchId){
-                        SysBranchService.querySysAccountListByBranchId(branchId).then(function(response){
+                        SysBranchService.querySysAccountListByBranchId(branchId,{pageSize:1000}).then(function(response){
                             var accounts = [];
                             angular.copy(response,accounts);
                             for(var i = 0 ; i< accounts.length; i++){

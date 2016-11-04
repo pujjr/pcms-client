@@ -3,9 +3,11 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.query.controllers")
-    .controller('QueryApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,QueryService,GpsService,SysAreaService,InsuranceService,TaskService) {
+    .controller('QueryApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,QueryService,GpsService,SysAreaService,InsuranceService,TaskService,ProductService,SysDictService) {
         $scope.queryParam ={};
         $scope.init = function () {
+            $scope.productList = ProductService.queryAllProductList().$object;
+            $scope.appStatusList = SysDictService.queryDictDataByTypeCode("sqdzt").$object;
             $scope.queryApplyList();
         };
         $scope.queryApplyList = function(){

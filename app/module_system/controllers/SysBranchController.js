@@ -130,7 +130,7 @@ angular.module("pu.system.controllers")
             })
         };
         $scope.querySysAccountListByBranchId = function(branchId){
-            $scope.sysAccountList = SysBranchService.querySysAccountListByBranchId(branchId).$object;
+            $scope.sysAccountList = SysBranchService.querySysAccountListByBranchId(branchId,{}).$object;
         };
         $scope.addSysAccount = function(selNode){
             var selNode = $scope.selNode;

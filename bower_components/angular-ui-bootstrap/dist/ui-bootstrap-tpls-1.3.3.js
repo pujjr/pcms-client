@@ -7090,10 +7090,10 @@ angular.module("uib/template/datepickerPopup/popup.html", []).run(["$templateCac
     "    <li ng-transclude></li>\n" +
     "    <li ng-if=\"showButtonBar\" class=\"uib-button-bar\">\n" +
     "      <span class=\"btn-group pull-left\">\n" +
-    "        <button type=\"button\" class=\"btn btn-sm btn-info uib-datepicker-current\" ng-click=\"select('today', $event)\" ng-disabled=\"isDisabled('today')\">{{ getText('current') }}</button>\n" +
-    "        <button type=\"button\" class=\"btn btn-sm btn-danger uib-clear\" ng-click=\"select(null, $event)\">{{ getText('clear') }}</button>\n" +
+    "        <button type=\"button\" class=\"btn btn-sm btn-info uib-datepicker-current\" ng-click=\"select('today', $event)\" ng-disabled=\"isDisabled('today')\">今天</button>\n" +
+    "        <button type=\"button\" class=\"btn btn-sm btn-danger uib-clear\" ng-click=\"select(null, $event)\">清除</button>\n" +
     "      </span>\n" +
-    "      <button type=\"button\" class=\"btn btn-sm btn-success pull-right uib-close\" ng-click=\"close($event)\">{{ getText('close') }}</button>\n" +
+    "      <button type=\"button\" class=\"btn btn-sm btn-success pull-right uib-close\" ng-click=\"close($event)\">关闭</button>\n" +
     "    </li>\n" +
     "  </ul>\n" +
     "</div>\n" +
