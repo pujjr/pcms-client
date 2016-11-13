@@ -13,6 +13,7 @@ angular.module('app', [
     'toaster',
     'jcs-autoValidate',
     'angularFileUpload',
+    'ui.calendar',
     'pu.system',
     'pu.access',
     'pu.utils',
@@ -25,5 +26,6 @@ angular.module('app', [
     'pu.gps',
     'pu.form',
     'pu.contract',
-    'pu.query'
+    'pu.query',
+    'pu.holiday'
 ])

@@ -1,0 +1,63 @@
+<div  class="panel" ng-init="init()">
+    <div class="data-table-container" >
+        <header class="data-table-header" style="min-height:72px !important;">
+            <div class="data-table-header__label">
+                <span class="fs-title"><i class="fa fa-globe mr"></i>节假日设置-{{curYear}}年</span>
+            </div>
+            <div class="data-table-header__actions">
+                <button class="btn btn-sm btn-default" type="button" ng-click="addHoliday()"><i class="fa fa-plus m-r-sm"></i>增加节假日</button>
+                <button class="btn btn-sm btn-default" type="button" ng-click="preYear()"><i class="fa fa-chevron-left m-r-sm"></i>上一年</button>
+                <button class="btn btn-sm btn-default" type="button" ng-click="nextYear()"><i class="fa fa-chevron-right m-r-sm"></i>下一年</button>
+            </div>
+        </header>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM1" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM2" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM3" class="m-t-md" ng-model="eventSources"/>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM4" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM5" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM6" class="m-t-md" ng-model="eventSources"/>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM7" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM8" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM9" class="m-t-md" ng-model="eventSources"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM10" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM11" class="m-t-md" ng-model="eventSources"/>
+            </div>
+            <div class=" col-md-4">
+                <div ui-calendar="uiConfig.calendarM12" class="m-t-md" ng-model="eventSources"/>
+            </div>
+
+        </div>
+    </div>
+</div>
