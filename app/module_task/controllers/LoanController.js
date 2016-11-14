@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.task.controllers")
-    .controller('LoanController',function ($scope, $rootScope, $state, toaster, $uibModal,TaskService) {
+    .controller('LoanController',function ($scope, $rootScope, $state, toaster, $uibModal,modal,TaskService) {
         $scope.queryParam={};
         $scope.init = function(){
             $scope.selectAllStatus =false;
@@ -40,7 +40,15 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','添加放款任务成功');
                 $scope.init();
             })
+        };
 
+        $scope.commitLoanTask = function(item){
+            modal.confirm("操作提醒","确认提交放款").then(function(){
+                TaskService.commitLoanTask(item.taskId,item.businessKey).then(function(response){
+                    toaster.pop('success', '操作提醒','确认放款成功');
+                    $scope.queryLoaningTaskList()
+                })
+            })
         }
 
     })

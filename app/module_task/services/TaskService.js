@@ -138,5 +138,8 @@ angular.module('pu.task.services')
         };
         this.batchDoLoanTask = function(params){
             return RestApi.all("/task/batchDoLoanTask").post(params);
+        };
+        this.commitLoanTask = function(taskId,appId){
+            return RestApi.all("/task/commitLoanTask").all(taskId).all(appId).post();
         }
     });
