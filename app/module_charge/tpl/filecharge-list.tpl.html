@@ -1,52 +1,41 @@
-<div ng-init="init()">
+<div ng-init="initFileCharge()">
     <div class="panel_main">
-        <div class="panel-header">
-            <div class="panel-header-wrapper">
-                <h2 class="panel-header-title">银行参数</h2>
-            </div>
-        </div>
         <div class="data-table-container">
             <header class="data-table-header">
                 <div class="data-table-header__label">
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="addBankInfo()"><i class="fa fa-plus m-r-sm"></i>增加银行</button>
+                    <button class="btn btn-sm btn-default" type="button" ng-click="confirmManualOffer()"><i class="fa fa-plus m-r-sm"></i>确认手工报盘</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>银行名称</th>
-                    <th>是否启用</th>
-                    <th>支持银联代扣</th>
-                    <th>单笔代扣上限</th>
-                    <th>银联代码</th>
-                    <th>操作</th>
+                    <th>申请单号</th>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>报盘来源</th>
+                    <th>费用类型</th>
+                    <th>扣款金额</th>
+                    <th>报盘时间</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in bankInfoList">
+                <tr ng-repeat="item in manualOfferList">
                     <td>{{$index+1}}</td>
-                    <td>{{item.bankName}}</td>
-                    <td>
-                        <span ng-if="item.enabled==true">是</span>
-                        <span ng-if="item.enabled!=true">否</span>
-                    </td>
-                    <td>
-                        <span ng-if="item.supportUnionpay==true">是</span>
-                        <span ng-if="item.supportUnionpay!=true">否</span>
-                    </td>
-                    <td>{{item.unionpayCode}}</td>
-                    <th>{{item.maxChargeAmount}}</th>
-                    <td>
-                        <a href="javascript:" ng-click="editBankInfo(item)">编辑</a>
-                    </td>
+                    <td>{{item.appId}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.idNo}}</td>
+                    <td>{{item.offerSourceDesc}}</td>
+                    <td>{{item.feeTypeDesc}}</td>
+                    <td>{{item.offerAmount}}</td>
+                    <td>{{item.offerTime| mysqlDatetime}}</td>
                 </tr>
                 </tbody>
             </table>
             <div class="has-divider has-divider--dark"></div>
-            <div class="toolbar" ng-if="false">
+            <div class="toolbar">
                 <div class="toolbar__left mr++">
                     <span ng-if="paginationInfo.totalItem==0">
                         无查询结果

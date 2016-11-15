@@ -1,0 +1,19 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>选择商户</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="merchantNo" class="col-sm-3 control-label">商户：</label>
+            <div class="col-sm-8">
+                <select  class="form-control" id="merchantNo"  ng-model="item.merchantNo"  ng-options="l.merchantNo as l.merchantName for l in enabledMerchantList"  required >
+                    <option value="">请选择</option>`
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-disabled="form.$invalid" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

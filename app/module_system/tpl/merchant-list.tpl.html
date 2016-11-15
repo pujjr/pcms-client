@@ -2,7 +2,7 @@
     <div class="panel_main">
         <div class="panel-header">
             <div class="panel-header-wrapper">
-                <h2 class="panel-header-title">银行参数</h2>
+                <h2 class="panel-header-title">商户信息管理</h2>
             </div>
         </div>
         <div class="data-table-container">
@@ -10,37 +10,30 @@
                 <div class="data-table-header__label">
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="addBankInfo()"><i class="fa fa-plus m-r-sm"></i>增加银行</button>
+                    <button class="btn btn-sm btn-default" type="button" ng-click="addMerchant()"><i class="fa fa-plus m-r-sm"></i>增加</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>银行名称</th>
+                    <th>商户名称</th>
+                    <th>商户编号</th>
                     <th>是否启用</th>
-                    <th>支持银联代扣</th>
-                    <th>单笔代扣上限</th>
-                    <th>银联代码</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in bankInfoList">
+                <tr ng-repeat="item in merchantList">
                     <td>{{$index+1}}</td>
-                    <td>{{item.bankName}}</td>
+                    <td>{{item.merchantName}}</td>
+                    <td>{{item.merchantNo}}</td>
                     <td>
                         <span ng-if="item.enabled==true">是</span>
                         <span ng-if="item.enabled!=true">否</span>
                     </td>
                     <td>
-                        <span ng-if="item.supportUnionpay==true">是</span>
-                        <span ng-if="item.supportUnionpay!=true">否</span>
-                    </td>
-                    <td>{{item.unionpayCode}}</td>
-                    <th>{{item.maxChargeAmount}}</th>
-                    <td>
-                        <a href="javascript:" ng-click="editBankInfo(item)">编辑</a>
+                        <a href="javascript:" ng-click="editMerchant(item)">编辑</a>
                     </td>
                 </tr>
                 </tbody>

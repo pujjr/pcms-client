@@ -27,5 +27,6 @@ angular.module('app', [
     'pu.form',
     'pu.contract',
     'pu.query',
-    'pu.holiday'
+    'pu.holiday',
+    'pu.charge'
 ])

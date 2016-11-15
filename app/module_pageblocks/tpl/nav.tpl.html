@@ -27,6 +27,12 @@
       <span class="font-bold">放款</span>
     </a>
   </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.charge.waitingcharge" >
+      <i class="fa fa-jpy icon text-info-dker"></i>
+      <span class="font-bold">报盘扣款</span>
+    </a>
+  </li>
   <li ui-sref-active="active" ng-if="hasPrimission('app.query.applylist')">
     <a ui-sref="app.query.applylist" >
       <i class="fa fa-search icon text-info-dker"></i>
@@ -120,6 +126,12 @@
     <a ui-sref="app.holiday.setting">
       <i class="fa fa-car icon text-info-dker"></i>
       <span class="font-bold">节假日设置</span>
+    </a>
+  </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.merchant.list">
+      <i class="fa fa-car icon text-info-dker"></i>
+      <span class="font-bold">商户管理</span>
     </a>
   </li>
   <li ui-sref-active="active" ng-if="hasPrimission('app.sysmenu.list')">

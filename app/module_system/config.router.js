@@ -92,7 +92,18 @@ angular.module('app')
                     url:'/list',
                     templateUrl:'module_system/tpl/bankinfo-list.html'
                 })
-
+                //商户信息管理
+                .state('app.merchant',{
+                    abstract: true,
+                    url:'/merchant',
+                    template:'<div ui-view=""></div>',
+                    controller: 'MerchantController'
+                })
+                //银行信息管理-查询列表
+                .state('app.merchant.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/merchant-list.html'
+                })
                 //保险公司参数管理
                 .state('app.insurance',{
                     abstract: true,

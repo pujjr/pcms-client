@@ -1,0 +1,27 @@
+<div  class="panel">
+    <div class="data-table-container" >
+        <header class="data-table-header" style="min-height:72px !important;">
+            <div class="data-table-header__label">
+                <span class="fs-title"><i class="fa fa-globe mr"></i>报盘管理</span>
+            </div>
+        </header>
+    </div>
+    <uib-tabset>
+        <uib-tab index="0" select="goWaitingCharge()">
+            <uib-tab-heading>
+                <span>待扣款明细</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="1" select="goFileCharge()">
+            <uib-tab-heading>
+                <span>批量文件代扣明细</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="2" select="goRealtimeCharge()">
+            <uib-tab-heading>
+                <span>银联单笔实时代扣明细</span>
+            </uib-tab-heading>
+        </uib-tab>
+    </uib-tabset>
+    <div ui-view=""></div>
+</div>
