@@ -64,8 +64,8 @@ angular.module('pu.utils.directives')
                     FileService.listFile($scope.businessId,dirId).then(function(response){
                         $scope.fileList = response;
                         angular.forEach($scope.fileList,function(item){
-                            item.imgUrlPrev = URL.OSS_URL+item.ossKeyPreview;
-                            item.imgUrlOrigin = URL.OSS_URL+ item.ossKey;
+                            item.imgUrlPrev = SERVER_URL.OSS_URL+item.ossKeyPreview;
+                            item.imgUrlOrigin = SERVER_URL.OSS_URL+ item.ossKey;
                         });
                         $scope.fileShowGrid = FileService.convertToGird($scope.fileList,4);
                     })

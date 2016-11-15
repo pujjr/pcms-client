@@ -31,7 +31,11 @@ angular.module("pu.charge.controllers")
         $scope.confirmManualOffer = function(){
             MerchantService.selectMerchant().then(function(response){
                 ChargeService.confirmManualOffer(response.merchantNo).then(function(response){
-
+                    var ossKey = response.ossKey;
+                    var link = document.createElement('a');
+                    link.href=SERVER_URL.OSS_URL+ossKey;
+                    link.click();
+                    window.URL.revokeObjectURL(link.href);
                 })
             })
 

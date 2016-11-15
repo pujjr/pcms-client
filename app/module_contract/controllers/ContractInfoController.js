@@ -68,7 +68,7 @@ angular.module("pu.contract.controllers")
                     $scope.item=item;
                     var defered = $q.defer();
                     $scope.uploader = new FileUploader({
-                        url:URL.API_SERVER_URL+"/contract/uploadContractFile/"+$scope.item.id,
+                        url:SERVER_URL.API_SERVER_URL+"/contract/uploadContractFile/"+$scope.item.id,
                         headers:{
                             'Authorization': window.localStorage.Authorization
                         },

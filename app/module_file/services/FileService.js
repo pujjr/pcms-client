@@ -62,7 +62,7 @@ angular.module('pu.file.services')
                 controller:function($scope){
                     $scope.fileGirdColSize = 4;
                     $scope.uploader = new FileUploader({
-                        url:URL.FILE_UPLOAD_URL+businessId+"/"+dirId,
+                        url:SERVER_URL.FILE_UPLOAD_URL+businessId+"/"+dirId,
                         headers:{
                             'Authorization': window.localStorage.Authorization
                         },

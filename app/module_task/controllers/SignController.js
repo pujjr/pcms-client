@@ -40,7 +40,7 @@ angular.module("pu.task.controllers")
         };
         $scope.generateContract = function(contractKey){
             TaskService.getContractOSSKey($stateParams.businessKey,contractKey).then(function(response){
-                $scope.pdfUrl = URL.OSS_URL+response.osskey;
+                $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
             })
         }
     })

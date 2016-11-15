@@ -7,7 +7,7 @@ angular.module('pu.charge.services')
             return RestApi.all("/charge/setChargeMode").all(chargeMode).post(chargeIds);
         };
         this.confirmManualOffer = function(merchantNo){
-            return RestApi.all("/charge/confirmManualOffer").all(merchantNo).getList();
+            return RestApi.one("/charge/confirmManualOffer",merchantNo).get();
         };
         this.getWatingOfferChargeList = function(chargeMode){
             return RestApi.all("/charge/getWatingOfferChargeList").all(chargeMode).getList();
