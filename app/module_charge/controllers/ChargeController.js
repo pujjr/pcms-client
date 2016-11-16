@@ -59,7 +59,7 @@ angular.module("pu.charge.controllers")
 
                         modalInstance.close(file.files[0]);
                     };
-                    $scope.close=function(){
+                    $scope.cancel=function(){
                         modalInstance.dismiss('cancel');
                     }
                 }
@@ -72,6 +72,21 @@ angular.module("pu.charge.controllers")
                     $scope.initRetofferCharge();
                 });
             })
+        };
+        $scope.showOfferBatchDetail = function(item){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                size:'lg',
+                templateUrl :'module_charge/tpl/dialog-offerBatchDetail-list.html',
+                controller:function($scope,RestApi,$q){
+                    $scope.offerBatchId=item.id;
+                    $scope.offerBatchDetailList = ChargeService.getManualOfferBatchDetail($scope.offerBatchId).$object;
+                    $scope.cancel=function(){
+                        modalInstance.dismiss('cancel');
+                    }
+                }
+            });
         }
     })
 ;

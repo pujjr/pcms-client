@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>报盘明细</h4>
+</div>
+<div class="modal-body" style="height: 600px;overflow-y: auto">
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th style="width:200px">申请单号</th>
+                <th>姓名</th>
+                <th>身份证号</th>
+                <th>卡号</th>
+                <th>扣款状态</th>
+                <th>扣款金额</th>
+                <th>返回结果</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in offerBatchDetailList">
+                <td>{{item.appId}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.idNo}}</td>
+                <td>{{item.cardNo}}</td>
+                <td>{{item.chargeStatusDesc}}</td>
+                <td>{{item.chargeAmount}}</td>
+                <td>{{item.thirdPartResult}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="has-divider has-divider--dark"></div>
+        <div class="toolbar">
+            <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+            </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+            <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                </div>
+                <div>
+                    <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                    ng-model="paginationInfo.curPage"
+                                    items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                    last-text="&raquo;">
+                    </uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+</div>

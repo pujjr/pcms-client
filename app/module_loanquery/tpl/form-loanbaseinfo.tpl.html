@@ -1,0 +1,142 @@
+<!--还款信息-->
+<form  class="container-fluid m-t-md form-horizontal">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">应还信息</legend>
+        <div class="row m-t-md">
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="totalFinanceAmt" class="col-sm-4 control-label">融资金额：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">融资期数：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.period}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">还款方式：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">放款日期：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.monthRent}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="totalFinanceAmt" class="col-sm-4 control-label">应还本金：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">应还利息：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.period}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">应还罚息：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">应还合计：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.monthRent}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="totalFinanceAmt" class="col-sm-4 control-label">其他费用：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">其他费用罚息：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.period}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">剩余本金：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group form-group-sm">
+                    <label for="period" class="col-sm-4 control-label">挂账金额：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <uib-tabset>
+        <uib-tab index="0">
+            <uib-tab-heading>
+                <span>还款计划</span>
+            </uib-tab-heading>
+            <div ng-include="'module_loanquery/tpl/repayplan-list.html'"></div>
+        </uib-tab>
+        <uib-tab index="1">
+            <uib-tab-heading>
+                <span>其他费用</span>
+            </uib-tab-heading>
+            <div ng-include="'module_loanquery/tpl/otherfee-list.html'"></div>
+        </uib-tab>
+        <uib-tab index="2">
+            <uib-tab-heading>
+                <span>还款记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_loanquery/tpl/repaylog-list.html'"></div>
+        </uib-tab>
+        <uib-tab index="3">
+            <uib-tab-heading>
+                <span>扣款记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_loanquery/tpl/chargelog-list.html'"></div>
+        </uib-tab>
+        <uib-tab index="4">
+            <uib-tab-heading>
+                <span>挂账记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_loanquery/tpl/staylog-list.html'"></div>
+        </uib-tab>
+    </uib-tabset>
+
+</form>
+

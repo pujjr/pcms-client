@@ -1,0 +1,30 @@
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>金额</th>
+        <th>申请状态</th>
+        <th>还款状态</th>
+        <th>结清日期</th>
+        <th>累计逾期天数</th>
+        <th>累计罚息</th>
+        <th>申请人</th>
+        <th>申请日期</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in loanCustList">
+        <td>{{item.appId}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.idNo}}</td>
+        <td>{{item.mobile}}</td>
+        <td>{{item.totalFinanceAmt}}</td>
+        <td>{{item.period}}</td>
+        <td>{{item.remainCapital}}</td>
+        <td>{{item.repayStatusDesc}}</td>
+        <td>{{item.processStatusDesc}}</td>
+        <td>
+            <a href="javascript:" ui-sref="app.loanquery.loaninfo.detail({appId:item.appId})">详细</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

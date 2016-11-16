@@ -1,0 +1,28 @@
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>扣款方式</th>
+        <th>扣款日期</th>
+        <th>扣款金额</th>
+        <th>扣款卡号</th>
+        <th>扣款银行</th>
+        <th>扣款结果</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in loanCustList">
+        <td>{{item.appId}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.idNo}}</td>
+        <td>{{item.mobile}}</td>
+        <td>{{item.totalFinanceAmt}}</td>
+        <td>{{item.period}}</td>
+        <td>{{item.remainCapital}}</td>
+        <td>{{item.repayStatusDesc}}</td>
+        <td>{{item.processStatusDesc}}</td>
+        <td>
+            <a href="javascript:" ui-sref="app.loanquery.loaninfo.detail({appId:item.appId})">详细</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -28,5 +28,6 @@ angular.module('app', [
     'pu.contract',
     'pu.query',
     'pu.holiday',
-    'pu.charge'
+    'pu.charge',
+    'pu.loanquery'
 ])

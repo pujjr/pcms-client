@@ -18,5 +18,8 @@ angular.module('pu.charge.services')
         this.doFileRetOffer = function(filedata){
             return RestApi.all("/charge/doFileRetOffer").withHttpConfig({transformRequest: angular.identity})
                 .post(filedata, {}, {'Content-Type': undefined});
+        };
+        this.getManualOfferBatchDetail = function(offerBatchId){
+            return RestApi.all("/charge/getManualOfferBatchDetail").all(offerBatchId).getList();
         }
     });

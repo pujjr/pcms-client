@@ -1,43 +1,39 @@
-<div ng-init="initRetofferCharge()">
+<div ng-init="initList()" >
     <div class="panel_main">
         <div class="data-table-container">
-            <header class="data-table-header">
+            <header class="data-table-header" style="min-height:72px !important;">
                 <div class="data-table-header__label">
-                </div>
-                <div class="data-table-header__actions">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="doFileRetOffer()">文件回盘</button>
+                    <span class="fs-title"><i class="fa fa-globe mr"></i>贷后综合查询</span>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
-                    <th style="width:300px">报盘文件名</th>
-                    <th style="width:150px">报盘商户号</th>
-                    <th>报盘总笔数</th>
-                    <th>报盘总金额</th>
-                    <th>报盘时间</th>
-                    <th>回盘状态</th>
-                    <th>回盘总笔数</th>
-                    <th>回盘总金额</th>
-                    <th>回盘成功笔数</th>
-                    <th>回盘成功金额</th>
+                    <th>申请单号</th>
+                    <th>姓名</th>
+                    <th>证件号码</th>
+                    <th>手机号码</th>
+                    <th>融资金额</th>
+                    <th>融资期限</th>
+                    <th>剩余本金</th>
+                    <th>还款状态</th>
+                    <th>当前处理状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in offerBatchList">
-                    <td>{{item.offerFileName}}</td>
-                    <td>{{item.offerMerchantNo}}</td>
-                    <td>{{item.offerTotalCnt}}</td>
-                    <td>{{item.offerTotalAmount}}</td>
-                    <td>{{item.offerTime|mysqlDatetime}}</td>
-                    <td>{{item.offerStatus}}</td>
-                    <td>{{item.retofferTotalCnt}}</td>
-                    <td>{{item.retofferTotalAmount}}</td>
-                    <td>{{item.retofferSuccCnt}}</td>
-                    <td>{{item.retofferSuccAmount}}</td>
+                <tr ng-repeat="item in loanCustList">
+                    <td>{{item.appId}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.idNo}}</td>
+                    <td>{{item.mobile}}</td>
+                    <td>{{item.totalFinanceAmt}}</td>
+                    <td>{{item.period}}</td>
+                    <td>{{item.remainCapital}}</td>
+                    <td>{{item.repayStatusDesc}}</td>
+                    <td>{{item.processStatusDesc}}</td>
                     <td>
-                        <a href="javascript:" ng-click="showOfferBatchDetail(item)">查看明细</a>
+                        <a href="javascript:" ui-sref="app.loanquery.loaninfo.detail({appId:item.appId})">详细</a>
                     </td>
                 </tr>
                 </tbody>

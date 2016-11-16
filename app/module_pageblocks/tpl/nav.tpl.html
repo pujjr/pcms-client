@@ -27,12 +27,7 @@
       <span class="font-bold">放款</span>
     </a>
   </li>
-  <li ui-sref-active="active">
-    <a ui-sref="app.charge.waitingcharge" >
-      <i class="fa fa-jpy icon text-info-dker"></i>
-      <span class="font-bold">报盘扣款</span>
-    </a>
-  </li>
+
   <li ui-sref-active="active" ng-if="hasPrimission('app.query.applylist')">
     <a ui-sref="app.query.applylist" >
       <i class="fa fa-search icon text-info-dker"></i>
@@ -41,6 +36,25 @@
   </li>
   <li class="line dk"></li>
 
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs"  ng-if="hasPrimission('app.apply')">
+    <span>贷后管理</span>
+  </li>
+
+  <li ui-sref-active="active">
+    <a ui-sref="app.loanquery.list" >
+      <i class="fa fa-jpy icon text-info-dker"></i>
+      <span class="font-bold">贷后综合查询</span>
+    </a>
+  </li>
+
+  <li ui-sref-active="active">
+    <a ui-sref="app.charge.waitingcharge" >
+      <i class="fa fa-jpy icon text-info-dker"></i>
+      <span class="font-bold">报盘扣款</span>
+    </a>
+  </li>
+
+  <li class="line dk"></li>
   <li class="hidden-folded padder m-t m-b-sm text-muted text-xs" ng-if="hasPrimission('app.system')">
     <span >系统管理</span>
   </li>
