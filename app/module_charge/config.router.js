@@ -33,6 +33,12 @@ angular.module('app')
                     templateUrl:'module_charge/tpl/realtimecharge-list.html',
                     controller: 'ChargeController'
                 })
+                //文件报盘回盘
+                .state('app.charge.retoffer',{
+                    url:'/retoffer',
+                    templateUrl:'module_charge/tpl/retoffer-list.html',
+                    controller: 'ChargeController'
+                })
 
         }
     ]

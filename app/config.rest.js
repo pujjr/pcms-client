@@ -28,10 +28,12 @@ angular.module('app')
                     params.curPage = params.curPage || $rootScope.paginationInfo.curPage;
                 };
                 //angular.extend($rootScope.vm, params);
+                var newHeaders = {
+                    'Authorization': window.localStorage.Authorization
+                };
+                angular.extend(newHeaders,headers);
                 return {
-                    headers: {
-                        'Authorization': window.localStorage.Authorization
-                    },
+                    headers: newHeaders,
                     params:params
                 };
             });

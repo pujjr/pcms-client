@@ -11,5 +11,12 @@ angular.module('pu.charge.services')
         };
         this.getWatingOfferChargeList = function(chargeMode){
             return RestApi.all("/charge/getWatingOfferChargeList").all(chargeMode).getList();
+        };
+        this.getManualOfferHisList = function(){
+            return RestApi.all("/charge/getManualOfferHisList").getList();
+        };
+        this.doFileRetOffer = function(filedata){
+            return RestApi.all("/charge/doFileRetOffer").withHttpConfig({transformRequest: angular.identity})
+                .post(filedata, {}, {'Content-Type': undefined});
         }
     });

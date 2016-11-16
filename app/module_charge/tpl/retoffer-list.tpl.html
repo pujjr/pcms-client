@@ -1,0 +1,71 @@
+<div ng-init="initRetofferCharge()">
+    <div class="panel_main">
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-sm btn-default" type="button" ng-click="doFileRetOffer()">文件回盘</button>
+                </div>
+            </header>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width:300px">报盘文件名</th>
+                    <th style="width:150px">报盘商户号</th>
+                    <th>报盘总笔数</th>
+                    <th>报盘总金额</th>
+                    <th>报盘时间</th>
+                    <th>回盘状态</th>
+                    <th>回盘总笔数</th>
+                    <th>回盘总金额</th>
+                    <th>回盘成功笔数</th>
+                    <th>回盘成功金额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in offerBatchList">
+                    <td>{{item.offerFileName}}</td>
+                    <td>{{item.offerMerchantNo}}</td>
+                    <td>{{item.offerTotalCnt}}</td>
+                    <td>{{item.offerTotalAmount}}</td>
+                    <td>{{item.offerTime|mysqlDatetime}}</td>
+                    <td>{{item.offerStatus}}</td>
+                    <td>{{item.retofferTotalCnt}}</td>
+                    <td>{{item.retofferTotalAmount}}</td>
+                    <td>{{item.retofferSuccCnt}}</td>
+                    <td>{{item.retofferSuccAmount}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="has-divider has-divider--dark"></div>
+            <div class="toolbar">
+                <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                    <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                    </div>
+                    <div>
+                        <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                        ng-model="paginationInfo.curPage"
+                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                        last-text="&raquo;">
+                        </uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
