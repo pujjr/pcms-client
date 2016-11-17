@@ -36,8 +36,15 @@
   </li>
   <li class="line dk"></li>
 
-  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs"  ng-if="hasPrimission('app.apply')">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs" >
     <span>贷后管理</span>
+  </li>
+
+  <li ui-sref-active="active">
+    <a ui-sref="app.loantask.todolist" >
+      <i class="fa fa-tasks icon text-info-dker"></i>
+      <span class="font-bold">贷后代办任务</span>
+    </a>
   </li>
 
   <li ui-sref-active="active">

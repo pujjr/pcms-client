@@ -1,13 +1,13 @@
 <!--还款信息-->
 <form  class="container-fluid m-t-md form-horizontal">
     <fieldset class="scheduler-border">
-        <legend class="scheduler-border">应还信息</legend>
+        <legend class="scheduler-border">基本应还信息</legend>
         <div class="row m-t-md">
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="totalFinanceAmt" class="col-sm-4 control-label">融资金额：</label>
+                    <label for="financeAmt" class="col-sm-4 control-label">融资金额：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
+                        <p class="form-control-static">{{loanCustApplyInfo.financeAmt}}</p>
                     </div>
                 </div>
             </div>
@@ -15,23 +15,23 @@
                 <div class="form-group form-group-sm">
                     <label for="period" class="col-sm-4 control-label">融资期数：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.period}}</p>
+                        <p class="form-control-static">{{loanCustApplyInfo.period}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">还款方式：</label>
+                    <label for="repayModeDesc" class="col-sm-4 control-label">还款方式：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                        <p class="form-control-static">{{loanCustApplyInfo.repayModeDesc}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">放款日期：</label>
+                    <label for="loanDate" class="col-sm-4 control-label">放款日期：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.monthRent}}</p>
+                        <p class="form-control-static">{{loanCustApplyInfo.loanDate}}</p>
                     </div>
                 </div>
             </div>
@@ -39,25 +39,25 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="totalFinanceAmt" class="col-sm-4 control-label">应还本金：</label>
+                    <label for="repayCapital" class="col-sm-4 control-label">应还本金：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.repayCapital}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">应还利息：</label>
+                    <label for="repayInterest" class="col-sm-4 control-label">应还利息：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.period}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.repayInterest}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">应还罚息：</label>
+                    <label for="repayOverdueAmount" class="col-sm-4 control-label">应还罚息：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.repayOverdueAmount}}</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <div class="form-group form-group-sm">
                     <label for="period" class="col-sm-4 control-label">应还合计：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.monthRent}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.repayCapital+loanCustNeedRepayInfo.repayInterest+loanCustNeedRepayInfo.repayOverdueAmount}}</p>
                     </div>
                 </div>
             </div>
@@ -73,33 +73,33 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="totalFinanceAmt" class="col-sm-4 control-label">其他费用：</label>
+                    <label for="otherAmount" class="col-sm-4 control-label">其他费用：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.totalFinanceAmt}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.otherAmount}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">其他费用罚息：</label>
+                    <label for="otherOverdueAmount" class="col-sm-4 control-label">其他费用罚息：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.period}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.otherOverdueAmount}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">剩余本金：</label>
+                    <label for="remainCapital" class="col-sm-4 control-label">剩余本金：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.remainCapital}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">挂账金额：</label>
+                    <label for="stayAmount" class="col-sm-4 control-label">挂账金额：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{applyInfo.totalLoanAmt}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.stayAmount}}</p>
                     </div>
                 </div>
             </div>
@@ -118,13 +118,13 @@
             </uib-tab-heading>
             <div ng-include="'module_loanquery/tpl/otherfee-list.html'"></div>
         </uib-tab>
-        <uib-tab index="2">
+        <uib-tab index="2" select="queryRepayLog()">
             <uib-tab-heading>
                 <span>还款记录</span>
             </uib-tab-heading>
             <div ng-include="'module_loanquery/tpl/repaylog-list.html'"></div>
         </uib-tab>
-        <uib-tab index="3">
+        <uib-tab index="3" select="queryChargeLog()">
             <uib-tab-heading>
                 <span>扣款记录</span>
             </uib-tab-heading>

@@ -29,5 +29,7 @@ angular.module('app', [
     'pu.query',
     'pu.holiday',
     'pu.charge',
-    'pu.loanquery'
+    'pu.loanquery',
+    'pu.publicrepay',
+    'pu.loantask'
 ])

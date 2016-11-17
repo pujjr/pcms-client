@@ -3,11 +3,11 @@
         <header class="data-table-header" style="min-height:72px !important;">
             <div class="data-table-header__label">
                 <span class="fs-title">
-                    <i class="fa fa-globe mr"></i>贷款详细信息-{{applyInfo.appId}}-{{applyInfo.tenant.name}}<small>还款状态</small>
+                    <i class="fa fa-globe mr"></i>贷款详细信息-{{applyInfo.appId}}-{{applyInfo.tenant.name}}-{{loanCustApplyInfo.repayStatusDesc}}
                 </span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn btn-default btn-sm" type="button"  ng-click="back()"></i>对公还款</button>
+                <button class="btn btn-default btn-sm" type="button"  ng-click="doPublicRepay()"></i>对公还款</button>
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()">退款</button>
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()">减免</button>
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()">提前结清</button>
