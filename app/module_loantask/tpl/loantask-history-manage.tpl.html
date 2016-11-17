@@ -1,0 +1,42 @@
+<div  class="panel">
+    <div class="data-table-container" >
+        <header class="data-table-header" style="min-height:72px !important;">
+            <div class="data-table-header__label">
+                <span class="fs-title"><i class="fa fa-globe mr"></i>已申请任务管理</span>
+            </div>
+        </header>
+    </div>
+    <uib-tabset>
+        <uib-tab index="0" select="gpsSupplierManage()">
+            <uib-tab-heading>
+                <span>对公还款申请</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="1" select="gpslvlManage()">
+            <uib-tab-heading>
+                <span>减免</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="2" select="gpsRuleManage()">
+            <uib-tab-heading>
+                <span>退款</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="3" select="gpslvlManage()">
+            <uib-tab-heading>
+                <span>提前结清</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="4" select="gpsRuleManage()">
+            <uib-tab-heading>
+                <span>展期</span>
+            </uib-tab-heading>
+        </uib-tab>
+        <uib-tab index="5" select="gpsRuleManage()">
+            <uib-tab-heading>
+                <span>变更还款日</span>
+            </uib-tab-heading>
+        </uib-tab>
+    </uib-tabset>
+    <div ui-view=""></div>
+</div>

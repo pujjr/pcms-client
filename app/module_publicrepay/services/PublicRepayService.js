@@ -1,10 +1,19 @@
 angular.module('pu.publicrepay.services')
-    .service("PublicRepayService",function($window,RestApi,$uibModal){
+    .service("PublicRepayService",function($window,RestApi,$uibModal,toaster){
         this.getPublicRepayFeeItem = function(appId){
             return RestApi.one("/publicrepay/getPublicRepayFeeItem",appId).get();
         };
         this.commitApplyPublicRepayTask = function(appId,params){
             return RestApi.all("/publicrepay/commitApplyPublicRepayTask").all(appId).post(params);
+        };
+        this.getApplyPublicRepayInfo = function(id){
+            return RestApi.one("/publicrepay/getApplyPublicRepayInfo",id).get();
+        };
+        this.commitApprovePublicRepayTask = function(appId,params){
+            return RestApi.all("/publicrepay/commitApprovePublicRepayTask").all(appId).post(params);
+        };
+        this.getApplyPublicRepayTaskList = function(){
+            return RestApi.all("/publicrepay/getApplyPublicRepayTaskList").getList();
         }
         this.addPublicRepayApply = function(appId){
             var modalInstance = $uibModal.open({
@@ -41,6 +50,7 @@ angular.module('pu.publicrepay.services')
                 }
             });
             modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒', "提交任务成功");
             })
         }
     });

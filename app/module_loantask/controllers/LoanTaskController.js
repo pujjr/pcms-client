@@ -14,7 +14,8 @@ angular.module("pu.loantask.controllers")
                     "businessKey":item.businessKey,
                     "procInstId":item.procInstId,
                     "taskId":item.taskId,
-                    "appId":item.appId
+                    "appId":item.appId,
+                    "workflowKey":item.workflowKey
                 }
             )
         };

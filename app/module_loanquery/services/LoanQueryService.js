@@ -17,5 +17,8 @@ angular.module('pu.loanquery.services')
         };
         this.getLoanCustChargeLog = function(appId){
             return RestApi.all("/loanquery/getLoanCustChargeLog").all(appId).getList();
+        };
+        this.getTaskByTaskId = function(taskId,workflowKey){
+            return RestApi.all("/loanquery/getTaskByTaskId").one(taskId,workflowKey).get();
         }
     });

@@ -1,0 +1,27 @@
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">审批结果</legend>
+    <div class="row  m-t-md">
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label for="checkType" class="col-sm-4 control-label">审批结果：</label>
+                <div class="col-sm-8">
+                    <select id="checkType" class="form-control" ng-model="approveVo.approveResult" required
+                            ng-options="item.dictDataCode as item.dictDataName for item in approveList" >
+                        <option value="">请选择审批结果</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-1 control-label">审批备注：</label>
+                <div class="col-sm-11">
+                    <textarea type="text" class="form-control" id="comment" ng-model="approveVo.approveComment" placeholder="审批备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
