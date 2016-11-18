@@ -1,0 +1,171 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">融资基本信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">合同编号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.contractNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">申请单号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.appId}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">姓名：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">证件号码：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.idNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资金额：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.financeAmt}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资期限：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.period}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">还款方式：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.repayModeDesc}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">放款日期：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.loanDate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">结清信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">有效截止日期：</label>
+                <div class="col-sm-8">
+                    <p class="input-group">
+                        <input type="text" id="applyEffectDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
+                               placeholder="有效截止日期"
+                               is-open="isopenApplyEffectDate"
+                               ng-model="applyVo.applyEffectDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"   ng-click="isopenApplyEffectDate=!isopenApplyEffectDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">应还本金：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.repayCapital}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">应还利息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.repayInterest}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">应还罚息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.repayOverdueAmount}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">其他费用：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.otherAmount}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">其他费用罚息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.otherOverdueAmount}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">应还违约金：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.lateFee}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">结清本金：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.settleCapital}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">结清总金额：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.settleTotalAmount}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <div class="col-sm-12">
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyPublicRepayVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
