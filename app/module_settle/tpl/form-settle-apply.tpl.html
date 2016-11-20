@@ -76,6 +76,22 @@
     <div class="row m-t-md">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">结清开始期数：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.beginPeriod}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">结清截止期数：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.endPeriod}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">有效截止日期：</label>
                 <div class="col-sm-8">
                     <p class="input-group">
@@ -90,6 +106,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">应还本金：</label>
@@ -106,8 +124,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">应还罚息：</label>
@@ -116,6 +132,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">其他费用：</label>
@@ -132,8 +150,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label  class="col-sm-4 control-label">应还违约金：</label>
@@ -142,6 +158,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label  class="col-sm-4 control-label">结清本金：</label>
@@ -163,7 +181,7 @@
         <div class="col-md-12">
             <div class="form-group form-group-sm">
                 <div class="col-sm-12">
-                    <textarea  type="text" class="form-control" id="comment" ng-model="applyPublicRepayVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
                 </div>
             </div>
         </div>

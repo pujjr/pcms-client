@@ -20,5 +20,8 @@ angular.module('pu.loanquery.services')
         };
         this.getTaskByTaskId = function(taskId,workflowKey){
             return RestApi.all("/loanquery/getTaskByTaskId").one(taskId,workflowKey).get();
+        };
+        this.getAfterCurrentPeriodRemainPeroidList = function(appId){
+            return RestApi.all("/loanquery/getAfterCurrentPeriodRemainPeroidList").all(appId).getList();
         }
     });

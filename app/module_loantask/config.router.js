@@ -33,6 +33,24 @@ angular.module('app')
                     templateUrl:'module_publicrepay/tpl/publicrepay-approve.html',
                     controller:'PublicRepayController'
                 })
+                //提前结清审批
+                .state('app.loantask.process.settle-approve', {
+                    url: '/settle-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_settle/tpl/settle-approve.html',
+                    controller:'SettleController'
+                })
+                //提前结清申请确认入账
+                .state('app.loantask.process.settle-apply-confirm', {
+                    url: '/settle-apply-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_settle/tpl/settle-apply-confirm.html',
+                    controller:'SettleController'
+                })
+                //提前结清确认入账
+                .state('app.loantask.process.settle-confirm', {
+                    url: '/settley-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_settle/tpl/settle-confirm.html',
+                    controller:'SettleController'
+                })
                 //贷后历史任务查询
                 .state('app.loantask.history', {
                     url: '/history',
@@ -45,6 +63,12 @@ angular.module('app')
                     url: '/publicrepay',
                     templateUrl:'module_publicrepay/tpl/publicrepay-task-history.html',
                     controller:'PublicRepayController'
+                })
+                //对公还款任务查询
+                .state('app.loantask.history.settle', {
+                    url: '/settle',
+                    templateUrl:'module_settle/tpl/settle-task-history.html',
+                    controller:'SettleController'
                 })
         }
     ]

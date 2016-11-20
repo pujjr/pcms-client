@@ -7,5 +7,8 @@ angular.module("pu.loantask.controllers")
         $scope.showPublicRepayTask = function(){
             $state.go('app.loantask.history.publicrepay');
         };
+        $scope.showSettleTask = function(){
+            $state.go('app.loantask.history.settle');
+        }
     })
 ;
