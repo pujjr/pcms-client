@@ -36,6 +36,13 @@ angular.module('pu.alterrepaydate.services')
                         $scope.dateOptions.maxDate = ToolsService.addNumberMonth(response.closingDate,1);
                         $scope.applyVo.oldClosingDate = response.closingDate;
                     });
+                    $scope.$watch('applyVo.newClosingDate', function (newVal, oldVal) {
+                        if (newVal == oldVal || newVal == undefined)
+                            return;
+                        SettleService.getAllSettleFeeItem($scope.appId, $scope.applyVo.applyEffectDate).then(function (response) {
+                            $scope.applyVo.feeItem = response;
+                        })
+                    });
                     $scope.ok = function () {
                         modal.confirm("操作提醒", "确认提交申请").then(function () {
                             SettleService.commitApplySettleTask($scope.appId, 'jqlx01', $scope.applyVo).then(function () {
