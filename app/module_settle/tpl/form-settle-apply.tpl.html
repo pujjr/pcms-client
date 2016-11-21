@@ -98,6 +98,7 @@
                         <input type="text" id="applyEffectDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
                                placeholder="有效截止日期"
                                is-open="isopenApplyEffectDate"
+                               datepicker-options="dateOptions"
                                ng-model="applyVo.applyEffectDate" >
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"   ng-click="isopenApplyEffectDate=!isopenApplyEffectDate" ><i class="glyphicon glyphicon-calendar"></i></button>
@@ -160,6 +161,14 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">挂账金额：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.stayAmount}}</p>
+                </div>
+            </div>
+        </div>
         <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label  class="col-sm-4 control-label">结清本金：</label>

@@ -1,0 +1,158 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">融资基本信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">合同编号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.contractNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">申请单号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.appId}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">姓名：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">证件号码：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.idNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资金额：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.financeAmt}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资期限：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.period}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">还款方式：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.repayModeDesc}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">放款日期：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.loanDate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">变更信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">原结账日：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.oldClosingDate | mysqlDate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">新结账日：</label>
+                <div class="col-sm-8">
+                    <p class="input-group">
+                        <input type="text" id="newClosingDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
+                               placeholder="新结账日"
+                               is-open="isopenNewClosingDate"
+                               datepicker-options="dateOptions"
+                               ng-model="applyVo.newClosingDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"   ng-click="isopenNewClosingDate=!isopenNewClosingDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">变更天数：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.alterDay}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">变更利息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.alterInterest}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <div class="col-sm-12">
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<div class="data-table-container">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>期数</th>
+            <th>本金</th>
+            <th>利息</th>
+            <th>起息日</th>
+            <th>结账日</th>
+            <th>剩余本金</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in settleApplyList">
+            <td>{{item.appId}}</td>
+            <td>{{item.contractNo}}</td>
+            <td>{{item.custName}}</td>
+            <td>{{item.idNo}}</td>
+            <td>{{item.applyStatus}}</td>
+            <td>{{item.applyDate | mysqlDatetime}}</td>
+            <td>{{item.settleAmount }}</td>
+            <td>{{item.taskName}}</td>
+            <td>{{item.assignee}}</td>
+            <td>
+                <a href="javascript:" ng-click="doTask(item)">{{item.taskName}}</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

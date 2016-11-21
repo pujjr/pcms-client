@@ -23,5 +23,8 @@ angular.module('pu.loanquery.services')
         };
         this.getAfterCurrentPeriodRemainPeroidList = function(appId){
             return RestApi.all("/loanquery/getAfterCurrentPeriodRemainPeroidList").all(appId).getList();
+        };
+        this.getCurrentPeriodRepayPlan = function(appId){
+            return RestApi.one("/loanquery/getCurrentPeriodRepayPlan",appId).get();
         }
     });

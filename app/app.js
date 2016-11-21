@@ -32,5 +32,6 @@ angular.module('app', [
     'pu.loanquery',
     'pu.publicrepay',
     'pu.loantask',
-    'pu.settle'
+    'pu.settle',
+    'pu.alterrepaydate'
 ])

@@ -59,4 +59,20 @@ angular.module('pu.utils.services')
             }
             return checkList;
         };
+        this.addNumberMonth = function(value,i){
+            var dt = new Date(parseInt(value));
+            if(!angular.isDate(dt))
+            {
+                console.error("参数不为日期类型");
+                return;
+            }
+            var year = dt.getFullYear();
+            var month = dt.getMonth()+1;
+            var days = dt.getDate();
+            var newYear = year+parseInt((month+i)/12);
+            var newMonth = parseInt((month+i)%12);
+            var dd = newYear+"/"+newMonth+"/"+days;
+            var newDt = new Date(dd)
+            return newDt.getTime()-24*60*60*1000;
+        }
     });

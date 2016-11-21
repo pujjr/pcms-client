@@ -1,0 +1,12 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增还款日变更申请</h4>
+    </div>
+    <div class="modal-body" style="height: 700px;overflow-y: auto">
+        <div  ng-include="'module_alterrepaydate/tpl/form-alterrepaydate-apply.html'"/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-disabled="form.$invalid" ng-click="ok()">提交申请</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>
