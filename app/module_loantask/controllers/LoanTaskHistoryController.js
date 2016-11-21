@@ -9,6 +9,9 @@ angular.module("pu.loantask.controllers")
         };
         $scope.showSettleTask = function(){
             $state.go('app.loantask.history.settle');
+        };
+        $scope.showAlterRepayDateTask = function(){
+            $state.go('app.loantask.history.alterrepaydate');
         }
     })
 ;

@@ -1,4 +1,4 @@
-<div ng-init="initSettleHistoryTaskList()">
+<div ng-init="initAlterRepayDateHistoryTaskList()">
     <div class="panel_main">
         <div class="data-table-container">
             <table class="data-table">
@@ -10,21 +10,27 @@
                     <th>证件号码</th>
                     <th>申请状态</th>
                     <th>申请时间</th>
-                    <th>结清金额</th>
+                    <th>原还款日</th>
+                    <th>新还款日</th>
+                    <th>变更天数</th>
+                    <th>变更利息</th>
                     <th style="width: 15%">当前节点</th>
                     <th style="width: 5%">审批人</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in settleApplyList">
+                <tr ng-repeat="item in taskList">
                     <td>{{item.appId}}</td>
                     <td>{{item.contractNo}}</td>
                     <td>{{item.custName}}</td>
                     <td>{{item.idNo}}</td>
                     <td>{{item.applyStatus}}</td>
                     <td>{{item.applyDate | mysqlDatetime}}</td>
-                    <td>{{item.settleAmount }}</td>
+                    <td>{{item.oldClosingDate | mysqlDate }}</td>
+                    <td>{{item.newClosingDate | mysqlDate}}</td>
+                    <td>{{item.alterDay }}</td>
+                    <td>{{item.alterInterest }}</td>
                     <td>{{item.taskName}}</td>
                     <td>{{item.assignee}}</td>
                     <td>

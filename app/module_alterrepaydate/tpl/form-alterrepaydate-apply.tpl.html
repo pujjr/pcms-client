@@ -74,7 +74,7 @@
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">变更信息</legend>
     <div class="row m-t-md">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">原结账日：</label>
                 <div class="col-sm-8">
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">新结账日：</label>
                 <div class="col-sm-8">
@@ -99,19 +99,29 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">变更天数：</label>
                 <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.alterDay}}</p>
+                    <p class="form-control-static">{{applyVo.feeItem.alterDay}}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+     </div>
+    <div class="row">
+        <div class="col-md-4">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">变更利息：</label>
                 <div class="col-sm-8">
                     <p class="form-control-static">{{applyVo.feeItem.alterInterest}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">申请有效日期：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.applyEffectDate | mysqlDate}}</p>
                 </div>
             </div>
         </div>
@@ -133,25 +143,21 @@
             <th>期数</th>
             <th>本金</th>
             <th>利息</th>
+            <th>应还总额</th>
             <th>起息日</th>
             <th>结账日</th>
             <th>剩余本金</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in settleApplyList">
-            <td>{{item.appId}}</td>
-            <td>{{item.contractNo}}</td>
-            <td>{{item.custName}}</td>
-            <td>{{item.idNo}}</td>
-            <td>{{item.applyStatus}}</td>
-            <td>{{item.applyDate | mysqlDatetime}}</td>
-            <td>{{item.settleAmount }}</td>
-            <td>{{item.taskName}}</td>
-            <td>{{item.assignee}}</td>
-            <td>
-                <a href="javascript:" ng-click="doTask(item)">{{item.taskName}}</a>
-            </td>
+        <tr ng-repeat="item in applyVo.feeItem.newRepayPlanList">
+            <td>{{item.period}}</td>
+            <td>{{item.repayCapital}}</td>
+            <td>{{item.repayCnterest}}</td>
+            <td>{{item.repayTotalAmount}}</td>
+            <td>{{item.valueDate | mysqlDate}}</td>
+            <td>{{item.closingDate | mysqlDate}}</td>
+            <td>{{item.remainCapital}}</td>
         </tr>
         </tbody>
     </table>

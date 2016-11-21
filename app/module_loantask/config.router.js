@@ -51,6 +51,18 @@ angular.module('app')
                     templateUrl:'module_settle/tpl/settle-confirm.html',
                     controller:'SettleController'
                 })
+                //变更还款日申请
+                .state('app.loantask.process.alterrepaydate-approve', {
+                    url: '/alterrepaydate-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_alterrepaydate/tpl/alterrepaydate-approve.html',
+                    controller:'AlterRepayDateController'
+                })
+                //变更还款日确认
+                .state('app.loantask.process.alterrepaydate-confirm', {
+                    url: '/alterrepaydate-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_alterrepaydate/tpl/alterrepaydate-confirm.html',
+                    controller:'AlterRepayDateController'
+                })
                 //贷后历史任务查询
                 .state('app.loantask.history', {
                     url: '/history',
@@ -64,11 +76,17 @@ angular.module('app')
                     templateUrl:'module_publicrepay/tpl/publicrepay-task-history.html',
                     controller:'PublicRepayController'
                 })
-                //对公还款任务查询
+                //提起结清任务查询
                 .state('app.loantask.history.settle', {
                     url: '/settle',
                     templateUrl:'module_settle/tpl/settle-task-history.html',
                     controller:'SettleController'
+                })
+                //变更还款日任务查询
+                .state('app.loantask.history.alterrepaydate', {
+                    url: '/settle',
+                    templateUrl:'module_alterrepaydate/tpl/alterrepaydatee-task-history.html',
+                    controller:'AlterRepayDateController'
                 })
         }
     ]
