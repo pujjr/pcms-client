@@ -33,5 +33,7 @@ angular.module('app', [
     'pu.publicrepay',
     'pu.loantask',
     'pu.settle',
-    'pu.alterrepaydate'
+    'pu.alterrepaydate',
+    'pu.refund',
+    'pu.remission'
 ])

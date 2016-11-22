@@ -129,6 +129,35 @@ angular.module("pu.system.controllers")
                 toaster.pop('success', '操作提醒', response);
             })
         };
+        $scope.setSysWorkgroupRuleRemission = function(item){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: 'false',
+                size: 'lg',
+                resolve: {
+                    selNode: function () {
+                        return item;
+                    }
+                },
+                templateUrl: 'module_system/tpl/dialog-sysworkgroup-rule-remission.html',
+                controller:function($scope,selNode,RuleService,ToolsService){
+                    $scope.workgroup = selNode;
+                    $scope.ruleVo=RuleService.getWorkgroupRuleRemission($scope.workgroup.id).$object;
+                    $scope.parentRuleVo = RuleService.getParentWorkgroupRuleRemission($scope.workgroup.id).$object;
+                    $scope.ok = function(){
+                        RuleService.saveWorkgroupRuleRemission($scope.workgroup.id,$scope.ruleVo).then(function(){
+                            modalInstance.close('设置组分配规则成功');
+                        })
+                    }
+                    $scope.cancel = function(){
+                        modalInstance.dismiss('cancel');
+                    }
+                }
+            });
+            modalInstance.result.then(function(response){
+                toaster.pop('success', '操作提醒', response);
+            })
+        };
         $scope.checkAll = function(){
             $scope.selectAllStatus = !$scope.selectAllStatus;
             angular.forEach($scope.workgroupAccountsList,function(item){

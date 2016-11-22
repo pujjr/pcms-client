@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.loanquery.controllers")
-    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService) {
+    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService) {
         $scope.initList = function(){
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
@@ -30,6 +30,9 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.doAlterRepayDate = function(){
             AlterRepayDateService.addAlterRepayDateApply($stateParams.appId);
+        };
+        $scope.doRefund = function(){
+            RefundService.addRefundApply($stateParams.appId);
         }
 
     })

@@ -1,20 +1,18 @@
-<div ng-init="initAlterRepayDateHistoryTaskList()">
+<div ng-init="initRefundHistoryTaskList()">
     <div class="panel_main">
         <div class="data-table-container">
             <table class="data-table">
                 <thead>
                 <tr>
-                    <th style="width: 10%">申请单号</th>
+                    <th>申请单号</th>
                     <th>合同号</th>
                     <th>姓名</th>
                     <th>证件号码</th>
                     <th>申请状态</th>
                     <th>申请时间</th>
-                    <th>原还款日</th>
-                    <th>新还款日</th>
-                    <th>变更天数</th>
-                    <th>变更利息</th>
-                    <th style="width: 5%">当前节点</th>
+                    <th>挂账金额</th>
+                    <th>退款金额</th>
+                    <th style="width: 15%">当前节点</th>
                     <th style="width: 5%">审批人</th>
                     <th>操作</th>
                 </tr>
@@ -27,10 +25,8 @@
                     <td>{{item.idNo}}</td>
                     <td>{{item.applyStatus}}</td>
                     <td>{{item.applyDate | mysqlDatetime}}</td>
-                    <td>{{item.oldClosingDate | mysqlDate }}</td>
-                    <td>{{item.newClosingDate | mysqlDate}}</td>
-                    <td>{{item.alterDay }}</td>
-                    <td>{{item.alterInterest }}</td>
+                    <td>{{item.stayAmount }}</td>
+                    <td>{{item.refundAmount }}</td>
                     <td>{{item.taskName}}</td>
                     <td>{{item.assignee}}</td>
                     <td>

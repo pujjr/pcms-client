@@ -51,7 +51,7 @@ angular.module('app')
                     templateUrl:'module_settle/tpl/settle-confirm.html',
                     controller:'SettleController'
                 })
-                //变更还款日申请
+                //变更还款日审批
                 .state('app.loantask.process.alterrepaydate-approve', {
                     url: '/alterrepaydate-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
                     templateUrl:'module_alterrepaydate/tpl/alterrepaydate-approve.html',
@@ -62,6 +62,18 @@ angular.module('app')
                     url: '/alterrepaydate-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
                     templateUrl:'module_alterrepaydate/tpl/alterrepaydate-confirm.html',
                     controller:'AlterRepayDateController'
+                })
+                //退款审批
+                .state('app.loantask.process.refund-approve', {
+                    url: '/refund-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_refund/tpl/refund-approve.html',
+                    controller:'RefundController'
+                })
+                //退款财务确认
+                .state('app.loantask.process.refund-confirm', {
+                    url: '/refund-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_refund/tpl/refund-confirm.html',
+                    controller:'RefundController'
                 })
                 //贷后历史任务查询
                 .state('app.loantask.history', {
@@ -84,9 +96,15 @@ angular.module('app')
                 })
                 //变更还款日任务查询
                 .state('app.loantask.history.alterrepaydate', {
-                    url: '/settle',
+                    url: '/alterrepaydate',
                     templateUrl:'module_alterrepaydate/tpl/alterrepaydatee-task-history.html',
                     controller:'AlterRepayDateController'
+                })
+                //还款任务查询
+                .state('app.loantask.history.refund', {
+                    url: '/refund',
+                    templateUrl:'module_refund/tpl/refund-task-history.html',
+                    controller:'RefundController'
                 })
         }
     ]

@@ -1,0 +1,41 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>设置工作组减免规则</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="maxCapital" class="col-sm-3 control-label">最大减免本金：</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" id="maxCapital" placeholder="最大减免本金" min="0" ng-model="ruleVo.maxCapital" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="maxInterest" class="col-sm-3 control-label">最大减免利息：</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" id="maxInterest" placeholder="最大减免利息" min="0" ng-model="ruleVo.maxInterest" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="maxOverdueAmt" class="col-sm-3 control-label">最大减免罚息：</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" id="maxOverdueAmt" placeholder="最大减免利息" min="0" ng-model="ruleVo.maxOverdueAmt" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="maxOtherFee" class="col-sm-3 control-label">最大减免其他费用：</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" id="maxOtherFee" placeholder="最大减免其他费用" min="0" ng-model="ruleVo.maxOtherFee" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="maxLateFee" class="col-sm-3 control-label">最大减免违约金：</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" id="maxLateFee" placeholder="最大减免违约金" min="0" ng-model="ruleVo.maxLateFee" required>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button"  ng-disabled="form.$invalid" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>
