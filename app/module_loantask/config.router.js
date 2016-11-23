@@ -81,6 +81,30 @@ angular.module('app')
                     templateUrl:'module_remission/tpl/remission-approve.html',
                     controller:'RemissionController'
                 })
+                //展期审批
+                .state('app.loantask.process.extendperiod-approve', {
+                    url: '/extendperiod-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_extendperiod/tpl/extendperiod-approve.html',
+                    controller:'ExtendPeriodController'
+                })
+                //展期申请确认
+                .state('app.loantask.process.extendperiod-apply-confirm', {
+                    url: '/extendperiod-apply-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_extendperiod/tpl/extendperiod-apply-confirm.html',
+                    controller:'ExtendPeriodController'
+                })
+                //展期申请减免审批
+                .state('app.loantask.process.extendperiod-remission-approve', {
+                    url: '/extendperiod-remission-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_extendperiod/tpl/extendperiod-remission-approve.html',
+                    controller:'ExtendPeriodController'
+                })
+                //展期财务确认
+                .state('app.loantask.process.extendperiod-confirm', {
+                    url: '/extendperiod-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_extendperiod/tpl/extendperiod-confirm.html',
+                    controller:'ExtendPeriodController'
+                })
                 //贷后历史任务查询
                 .state('app.loantask.history', {
                     url: '/history',
@@ -111,6 +135,12 @@ angular.module('app')
                     url: '/refund',
                     templateUrl:'module_refund/tpl/refund-task-history.html',
                     controller:'RefundController'
+                })
+                //减免任务查询
+                .state('app.loantask.history.remission', {
+                    url: '/remission',
+                    templateUrl:'module_remission/tpl/remission-task-history.html',
+                    controller:'RemissionController'
                 })
         }
     ]

@@ -65,5 +65,8 @@ angular.module('pu.product.services')
         };
         this.queryAllProductList = function(){
             return RestApi.all("/product/getAllProductList").getList();
+        };
+        this.getProductExtendPeriodList = function(productCode,curPeriod){
+            return RestApi.all("/product/getProductExtendPeriodList").all(productCode).all(curPeriod).getList();
         }
     });

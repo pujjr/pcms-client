@@ -4,8 +4,8 @@
 // signin controllers
 angular.module("pu.remission.controllers")
     .controller('RemissionController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,RemissionService,SysDictService,ToolsService) {
-        $scope.initRefundHistoryTaskList = function(){
-            $scope.taskList = RefundService.getApplyRefundTaskList().$object;
+        $scope.initRemissionHistoryTaskList = function(){
+            $scope.taskList = RemissionService.getApplyRemissionTaskList().$object;
         };
         $scope.initApplyApprove = function(){
             $scope.procInstId = $stateParams.procInstId;

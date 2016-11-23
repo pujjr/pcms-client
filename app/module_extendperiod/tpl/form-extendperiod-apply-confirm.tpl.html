@@ -1,0 +1,256 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">融资基本信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">合同编号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.contractNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">申请单号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.appId}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">姓名：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">证件号码：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.idNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资金额：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.financeAmt}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资期限：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.period}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">还款方式：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.repayModeDesc}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">放款日期：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.loanDate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">展期信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">现融资期限：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.period}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">新融资期限：</label>
+                <div class="col-sm-8">
+                    <select id="period" class="form-control" ng-model="applyVo.newPeriod"
+                            ng-options="item.period as (item.period+'期') for item in extendPeriods" required>
+                        <option value="">新融资期数</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">新还款方式：</label>
+                <div class="col-sm-8">
+                    <select id="repayMode" class="form-control" ng-model="applyVo.newRepayMode"
+                            ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
+                        <option value="">请选择还款方式</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">应还本金：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.repayCapital}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">应还利息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.repayInterest}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">应还罚息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.repayOverdueAmount}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">其他费用：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.otherAmount}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">其他费用罚息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.otherOverdueAmount}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">剩余本金：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.remainCapital}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">新旧还款日利息：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.newOldInterest}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">新计息本金：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.newCapital}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">展期费用：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.feeItem.extendFee}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">申请有效日期：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.applyEndDate | mysqlDate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label  class="col-sm-4 control-label">减免展期费：</label>
+                <div class="col-sm-8">
+                    <input  type="number" class="form-control" ng-model="applyVo.remissionFeeItemVo.lateFee" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">减免日期：</label>
+                <div class="col-sm-8">
+                    <p class="input-group">
+                        <input type="text" id="remissionDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
+                               placeholder="减免日期"
+                               is-open="isopenRemissionDate"
+                               datepicker-options="dateOptions"
+                               ng-model="applyVo.remissionFeeItemVo.remissionDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"   ng-click="isopenRemissionDate=!isopenRemissionDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <div class="col-sm-12">
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<div class="data-table-container">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th style="width:100px">期数</th>
+            <th>本金</th>
+            <th>利息</th>
+            <th>应还总额</th>
+            <th>起息日</th>
+            <th>结账日</th>
+            <th>剩余本金</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in applyVo.feeItem.repayPlanList">
+            <td>{{item.period}}</td>
+            <td>{{item.repayCapital}}</td>
+            <td>{{item.repayInterest}}</td>
+            <td>{{item.repayTotalAmount}}</td>
+            <td>{{item.valueDate | mysqlDate}}</td>
+            <td>{{item.closingDate | mysqlDate}}</td>
+            <td>{{item.remainCapital}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

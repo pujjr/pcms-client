@@ -35,5 +35,6 @@ angular.module('app', [
     'pu.settle',
     'pu.alterrepaydate',
     'pu.refund',
-    'pu.remission'
+    'pu.remission',
+    'pu.extendperiod'
 ])

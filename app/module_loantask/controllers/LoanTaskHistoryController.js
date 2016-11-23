@@ -15,6 +15,9 @@ angular.module("pu.loantask.controllers")
         };
         $scope.showRefundTask = function(){
             $state.go("app.loantask.history.refund");
+        };
+        $scope.showRemissionTask = function(){
+            $state.go("app.loantask.history.remission");
         }
     })
 ;
