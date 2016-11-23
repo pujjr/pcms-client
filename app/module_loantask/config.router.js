@@ -45,6 +45,12 @@ angular.module('app')
                     templateUrl:'module_settle/tpl/settle-apply-confirm.html',
                     controller:'SettleController'
                 })
+                //提前申请减免审批
+                .state('app.loantask.process.settle-remission-approve', {
+                    url: '/settle-remission-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_settle/tpl/settle-remission-approve.html',
+                    controller:'SettleController'
+                })
                 //提前结清确认入账
                 .state('app.loantask.process.settle-confirm', {
                     url: '/settley-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
@@ -141,6 +147,12 @@ angular.module('app')
                     url: '/remission',
                     templateUrl:'module_remission/tpl/remission-task-history.html',
                     controller:'RemissionController'
+                })
+                //展期任务查询
+                .state('app.loantask.history.extendperiod', {
+                    url: '/extendperiod',
+                    templateUrl:'module_extendperiod/tpl/extendperiod-task-history.html',
+                    controller:'ExtendPeriodController'
                 })
         }
     ]

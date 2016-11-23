@@ -4,8 +4,8 @@
 // signin controllers
 angular.module("pu.extendperiod.controllers")
     .controller('ExtendPeriodController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,ExtendPeriodService,SysDictService,ProductService) {
-        $scope.initSettleHistoryTaskList = function(){
-            $scope.settleApplyList = SettleService.getApplySettleTaskList("jqlx01").$object;
+        $scope.initExtendPeriodHistoryTaskList = function(){
+            $scope.taskList = ExtendPeriodService.getApplyExtendPeriodTaskList().$object;
         };
         $scope.initData = function(){
             $scope.procInstId = $stateParams.procInstId;

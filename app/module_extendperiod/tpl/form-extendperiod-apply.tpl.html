@@ -97,12 +97,10 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">新还款方式：</label>
                 <div class="col-sm-8">
-                    <p class="input-group">
-                        <select id="repayMode" class="form-control" ng-model="applyVo.newRepayMode"
-                                ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
-                            <option value="">请选择还款方式</option>
-                        </select>
-                    </p>
+                    <select id="repayMode" class="form-control" ng-model="applyVo.newRepayMode"
+                            ng-options="item.dictDataCode as item.dictDataName for item in repayModeList" required disabled>
+                        <option value="">请选择还款方式</option>
+                    </select>
                 </div>
             </div>
         </div>
