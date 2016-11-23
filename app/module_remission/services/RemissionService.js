@@ -33,7 +33,7 @@ angular.module('pu.remission.services')
                         $scope.applyVo.stayAmount = response.stayAmount;
                     });
                     LoanQueryService.getLoanCustNeedRepayInfo($scope.appId).then(function(response){
-                        
+
                     })
                     $scope.ok = function () {
                         modal.confirm("操作提醒", "确认提交申请").then(function () {
