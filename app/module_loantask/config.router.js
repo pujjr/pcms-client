@@ -75,6 +75,12 @@ angular.module('app')
                     templateUrl:'module_refund/tpl/refund-confirm.html',
                     controller:'RefundController'
                 })
+                //减免审批
+                .state('app.loantask.process.remission-approve', {
+                    url: '/remission-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_remission/tpl/remission-approve.html',
+                    controller:'RemissionController'
+                })
                 //贷后历史任务查询
                 .state('app.loantask.history', {
                     url: '/history',
