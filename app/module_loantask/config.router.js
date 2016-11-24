@@ -111,6 +111,12 @@ angular.module('app')
                     templateUrl:'module_extendperiod/tpl/extendperiod-confirm.html',
                     controller:'ExtendPeriodController'
                 })
+                //其他费用审批
+                .state('app.loantask.process.otherfee-approve', {
+                    url: '/otherfee-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_otherfee/tpl/otherfee-approve.html',
+                    controller:'OtherFeeController'
+                })
                 //贷后历史任务查询
                 .state('app.loantask.history', {
                     url: '/history',

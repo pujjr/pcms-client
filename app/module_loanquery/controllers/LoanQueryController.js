@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.loanquery.controllers")
-    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,RemissionService,ExtendPeriodService) {
+    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,RemissionService,ExtendPeriodService,OtherFeeService) {
         $scope.initList = function(){
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
@@ -39,6 +39,9 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.doExtendPeriod = function(){
             ExtendPeriodService.addExtendPeriodApply($stateParams.appId);
+        };
+        $scope.doOtherFee = function(){
+            OtherFeeService.addOtherFeeApply($stateParams.appId);
         }
 
     })

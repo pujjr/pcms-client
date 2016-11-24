@@ -36,5 +36,6 @@ angular.module('app', [
     'pu.alterrepaydate',
     'pu.refund',
     'pu.remission',
-    'pu.extendperiod'
+    'pu.extendperiod',
+    'pu.otherfee'
 ])

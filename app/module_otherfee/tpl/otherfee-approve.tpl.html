@@ -1,0 +1,37 @@
+<div ng-init="initApplyApprove()">
+        <div class="check-header">
+            <div class="data-table-container" >
+                <header class="data-table-header" style="min-height:72px !important;">
+                    <div class="data-table-header__label">
+                        <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{appId}}</span>
+                    </div>
+                    <div class="data-table-header__actions">
+                        <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+                        <button class="btn btn-success btn-sm" type="submit"  ng-disabled="form.$invalid" ng-click="commitApproveOtherFeeTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                        <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
+                    </div>
+                </header>
+            </div>
+        </div>
+    <ng-form  name="form" novalidate ng-cloak="">
+        <div class="check-body-full">
+                <uib-tabset>
+                    <uib-tab index="0">
+                        <uib-tab-heading>
+                            <span>申请信息</span>
+                        </uib-tab-heading>
+                        <form class="container-fluid m-t-md form-horizontal">
+                            <div  ng-include="'module_otherfee/tpl/form-otherfee-approve.html'"/>
+                            <div  ng-include="'module_loantask/tpl/form-approve-result.html'"/>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="1"  select="queryWorkflowProcessResult(taskId)">
+                        <uib-tab-heading>
+                            <span>流程流转记录</span>
+                        </uib-tab-heading>
+                        <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+                    </uib-tab>
+                </uib-tabset>
+        </div>
+    </ng-form>
+</div>

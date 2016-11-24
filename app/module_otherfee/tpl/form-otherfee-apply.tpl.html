@@ -1,0 +1,131 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">融资基本信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">合同编号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.contractNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">申请单号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.appId}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">姓名：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">证件号码：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.idNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资金额：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.financeAmt}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资期限：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.period}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">还款方式：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.repayModeDesc}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">放款日期：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.loanDate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <div class="col-sm-12">
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<div class="panel panel-default">
+    <div class="panel-heading">其他费用明细</div>
+    <div class="panel-body">
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-sm btn-default" type="button" ng-click="addDetail()"><i class="fa fa-plus m-r-sm"></i>增加</button>
+                </div>
+            </header>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>明细项目</th>
+                    <th>明细金额</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in applyVo.detailList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.itemNameDesc}}</td>
+                    <td>{{item.itemAmount}}</td>
+                    <td>
+                        <a href="javascript:" ng-click="removeDetailItem($index)">移除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="has-divider has-divider--dark"></div>
+            <div class="toolbar">
+                <div class="toolbar__left mr++">
+                </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                <div class="toolbar__right">
+                    <div class="mr+++">
+                    <span>
+                        总金额：{{applyVo.feeTotalAmount}}
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
