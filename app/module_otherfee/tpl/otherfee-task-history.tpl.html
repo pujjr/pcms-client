@@ -1,4 +1,4 @@
-<div ng-init="initRefundHistoryTaskList()">
+<div ng-init="initOtherFeeHistoryTaskList()">
     <div class="panel_main">
         <div class="data-table-container">
             <table class="data-table">
@@ -10,8 +10,7 @@
                     <th>证件号码</th>
                     <th>申请状态</th>
                     <th>申请时间</th>
-                    <th>挂账金额</th>
-                    <th>退款金额</th>
+                    <th>费用总额</th>
                     <th style="width: 15%">当前节点</th>
                     <th style="width: 5%">审批人</th>
                     <th>操作</th>
@@ -25,8 +24,7 @@
                     <td>{{item.idNo}}</td>
                     <td>{{item.applyStatus}}</td>
                     <td>{{item.applyDate | mysqlDatetime}}</td>
-                    <td>{{item.stayAmount }}</td>
-                    <td>{{item.refundAmount }}</td>
+                    <td>{{item.feeTotalAmount }}</td>
                     <td>{{item.taskName}}</td>
                     <td>{{item.assignee}}</td>
                     <td>

@@ -20,7 +20,11 @@ angular.module('pu.settle.services')
         };
         this.commitRemissionApprove = function(taskId,params){
             return RestApi.all("/settle/commitApproveRemissionTask").all(taskId).post(params);
+        };
+        this.getPartSettleFeeItem = function(appId,beginPeriod,endPeriod,settleEffectDate){
+            return RestApi.one("/settle/getPartSettleFeeItem", appId).get({'beginPeriod':beginPeriod,'endPeriod':endPeriod,'settleEffectDateStr': settleEffectDate});
         }
+
         this.addSettleApply = function (appId) {
             var modalInstance = $uibModal.open({
                 animation: false,
@@ -45,6 +49,54 @@ angular.module('pu.settle.services')
                         if (newVal == oldVal || newVal == undefined)
                             return;
                         SettleService.getAllSettleFeeItem($scope.appId, $scope.applyVo.applyEffectDate).then(function (response) {
+                            $scope.applyVo.feeItem = response;
+                        })
+                    });
+                    $scope.ok = function () {
+                        modal.confirm("操作提醒", "确认提交申请").then(function () {
+                            SettleService.commitApplySettleTask($scope.appId, 'jqlx01', $scope.applyVo).then(function () {
+                                modalInstance.close();
+                            })
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function (response) {
+                toaster.pop('success', '操作提醒', "提交任务成功");
+            })
+        }
+        this.addPartSettleApply = function (appId) {
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop: 'static',
+                size: 'lg',
+                templateUrl: 'module_settle/tpl/dialog-partsettle-add.html',
+                controller: function ($scope, RestApi, SettleService, ToolsService, modal, LoanQueryService) {
+                    $scope.appId = appId;
+                    $scope.applyVo = {};
+                    //基本申请信息
+                    $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+                    //可选期数
+                    LoanQueryService.getAfterCurrentPeriodRemainPeroidList($scope.appId).then(function (response) {
+                        $scope.applyVo.beginPeriod = response[0];
+                        $scope.applyVo.endPeriod = response[response.length - 1];
+                    });
+                    //最小可选日期
+                    $scope.dateOptions = {
+                        minDate: new Date()
+                    };
+                    //最大可选截止日期为当期结账日前一天
+                    LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
+                        $scope.dateOptions.maxDate = response.closingDate;
+                    });
+                    //监视选择日期动作
+                    $scope.$watch('applyVo.applyEffectDate', function (newVal, oldVal) {
+                        if (newVal == oldVal || newVal == undefined)
+                            return;
+                        SettleService.getPartSettleFeeItem($scope.appId,$scope.applyVo.beginPeriod,$scope.applyVo.endPeriod, $scope.applyVo.applyEffectDate).then(function (response) {
                             $scope.applyVo.feeItem = response;
                         })
                     });

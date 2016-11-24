@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('TaskController',function ($scope, $rootScope, $state, toaster, $uibModal,TaskService) {
+    .controller('TaskController',function ($scope, $rootScope, $state, toaster, $uibModal,TaskService,QueryService) {
         $scope.backTask = function(taskId){
             TaskService.backTask(taskId).then(function(response){
                 $state.go('app.task.todolist');
@@ -13,6 +13,9 @@ angular.module("pu.task.controllers")
         $scope.queryWorkflowProcessResult = function(taskId){
             $scope.workflowProcessResultList = TaskService.queryWorkflowProcessResult(taskId).$object;
         };
+        $scope.getWorkflowProcessResultByAppId = function(appId){
+            $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByAppId(appId).$object;
+        }
         $scope.openWorkflowDiagram = function(taskId ) {
             TaskService.queryTaskByTaskId(taskId).then(function (response) {
                 var processDefinitionId = response.procDefId;

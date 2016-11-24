@@ -1,0 +1,28 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>对公还款任务详情</h4>
+    </div>
+    <div class="modal-body" style="height: 700px;overflow-y: auto">
+        <uib-tabset>
+            <uib-tab index="0">
+                <uib-tab-heading>
+                    <span>申请信息</span>
+                </uib-tab-heading>
+                <form class="container-fluid m-t-md form-horizontal">
+                    <fieldset disabled>
+                        <div  ng-include="'module_publicrepay/tpl/form-publicrepay-apply.html'"/>
+                    </fieldset>
+                </form>
+            </uib-tab>
+            <uib-tab index="1"  select="getWorkflowProcessResultByAppId(appId)">
+                <uib-tab-heading>
+                    <span>流程流转记录</span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

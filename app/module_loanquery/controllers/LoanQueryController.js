@@ -42,6 +42,9 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.doOtherFee = function(){
             OtherFeeService.addOtherFeeApply($stateParams.appId);
+        };
+        $scope.doPartSettle = function(){
+            SettleService.addPartSettleApply($stateParams.appId);
         }
 
     })

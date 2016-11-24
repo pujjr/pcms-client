@@ -4,8 +4,8 @@
 // signin controllers
 angular.module("pu.otherfee.controllers")
     .controller('OtherFeeController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,OtherFeeService,SysDictService,ToolsService) {
-        $scope.initRefundHistoryTaskList = function(){
-            $scope.taskList = RefundService.getApplyRefundTaskList().$object;
+        $scope.initOtherFeeHistoryTaskList = function(){
+            $scope.taskList = OtherFeeService.getApplyOtherFeeTaskList().$object;
         };
         $scope.initApplyApprove = function(){
             $scope.procInstId = $stateParams.procInstId;
@@ -20,7 +20,7 @@ angular.module("pu.otherfee.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApproveOtherFeeTask = function(){
-            RefundService.commitApproveRefundTask($scope.taskId,$scope.approveVo).then(function(response){
+            OtherFeeService.commitApproveOtherFeeTask($scope.taskId,$scope.approveVo).then(function(response){
                 toaster.pop('success', '操作提醒', "提交任务成功");
                 $state.go("app.loantask.todolist")
             })

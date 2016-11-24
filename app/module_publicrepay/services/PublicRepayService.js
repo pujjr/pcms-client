@@ -52,5 +52,28 @@ angular.module('pu.publicrepay.services')
             modalInstance.result.then(function(response){
                 toaster.pop('success', '操作提醒', "提交任务成功");
             })
+        };
+        this.showPublicRepayTaskDetail = function(businessKey,appId){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'static',
+                size:'lg',
+                templateUrl :'module_publicrepay/tpl/dialog-publicrepay-task-detail.html',
+                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,QueryService){
+                    $scope.businessKey = businessKey;
+                    $scope.appId = appId;
+                    PublicRepayService.getApplyPublicRepayInfo($scope.businessKey).then(function(response){
+                        $scope.applyPublicRepayVo = response;
+                        $scope.applyPublicRepayVo.totalRepayAmount = $scope.applyPublicRepayVo.feeItem.repayCapital+
+                            $scope.applyPublicRepayVo.feeItem.repayInterest+
+                            $scope.applyPublicRepayVo.feeItem.repayOverdueAmount+
+                            $scope.applyPublicRepayVo.feeItem.otherAmount+
+                            $scope.applyPublicRepayVo.feeItem.otherOverdueAmount;
+                    });
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     });

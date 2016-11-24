@@ -130,6 +130,7 @@ angular.module('app')
                     templateUrl:'module_publicrepay/tpl/publicrepay-task-history.html',
                     controller:'PublicRepayController'
                 })
+
                 //提起结清任务查询
                 .state('app.loantask.history.settle', {
                     url: '/settle',
@@ -159,6 +160,24 @@ angular.module('app')
                     url: '/extendperiod',
                     templateUrl:'module_extendperiod/tpl/extendperiod-task-history.html',
                     controller:'ExtendPeriodController'
+                })
+                //其他费用任务查询
+                .state('app.loantask.history.otherfee', {
+                    url: '/otherfee',
+                    templateUrl:'module_otherfee/tpl/otherfee-task-history.html',
+                    controller:'OtherFeeController'
+                })
+                .state('app.loantask.detail', {
+                    url: '/process',
+                    abstract: true,
+                    template:'<div ui-view=""></div>',
+                    controller:'ApplyController'
+                })
+                //对公还款任务明细查询
+                .state('app.loantask.detail.publicrepay', {
+                    url: '/publicrepay/:id/:appId',
+                    templateUrl:'module_publicrepay/tpl/publicrepay-task-detail.html',
+                    controller:'PublicRepayController'
                 })
         }
     ]

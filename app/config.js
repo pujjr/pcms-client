@@ -7,7 +7,7 @@ angular.module('app')
     )
     .run(
     ['$rootScope', '$state', '$stateParams', '$cacheFactory', 'AuthService',
-        function ($rootScope, $state, $stateParams, $cacheFactory, AuthService) {
+        function ($rootScope, $state, $stateParams, $cacheFactory, AuthService,QueryService) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.cache = $cacheFactory('$rootScope');

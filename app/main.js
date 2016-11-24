@@ -1,5 +1,5 @@
 angular.module("app")
-    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService) {
+    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService) {
 
         var isIE = !!navigator.userAgent.match(/MSIE/i);
         isIE && angular.element($window.document.body).addClass('ie');
@@ -55,4 +55,5 @@ angular.module("app")
             })
         };
         $scope.screenHeight = $window.innerHeight;
+
     })

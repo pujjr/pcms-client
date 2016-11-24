@@ -6,15 +6,12 @@ angular.module('pu.otherfee.services')
         this.getApplyOtherFeeTaskById = function (id) {
             return RestApi.one("/otherfee/getApplyOtherFeeTaskById", id).get();
         };
-        this.commitApproveRefundTask = function (taskId, params) {
-            return RestApi.all("/refund/commitApproveRefundTask").all(taskId).post(params);
+        this.commitApproveOtherFeeTask = function (taskId, params) {
+            return RestApi.all("/otherfee/commitApproveOtherFeeTask").all(taskId).post(params);
         };
-        this.getApplyRefundTaskList = function () {
-            return RestApi.all("/refund/getApplyRefundTaskList").getList();
+        this.getApplyOtherFeeTaskList = function () {
+            return RestApi.all("/otherfee/getApplyOtherFeeTaskList").getList();
         };
-        this.commitConfirmRefundTask = function(taskId){
-            return RestApi.all("/refund/commitConfirmRefundTask").all(taskId).post();
-        }
         this.addOtherFeeApply = function (appId) {
             var modalInstance = $uibModal.open({
                 animation: false,

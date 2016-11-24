@@ -21,6 +21,10 @@ angular.module("pu.loantask.controllers")
         };
         $scope.showExtendPeriodTask = function(){
             $state.go("app.loantask.history.extendperiod");
-        }
+        };
+        $scope.showOtherFeeTask = function(){
+            $state.go("app.loantask.history.otherfee");
+        };
+
     })
 ;
