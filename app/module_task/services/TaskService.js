@@ -141,5 +141,6 @@ angular.module('pu.task.services')
         };
         this.commitLoanTask = function(taskId,appId){
             return RestApi.all("/task/commitLoanTask").all(taskId).all(appId).post();
-        }
+        };
+
     });

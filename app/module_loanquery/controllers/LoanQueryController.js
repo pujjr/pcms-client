@@ -22,6 +22,9 @@ angular.module("pu.loanquery.controllers")
             $scope.chargeLogList = LoanQueryService.getLoanCustChargeLog($stateParams.appId).$object;
         };
 
+        $scope.queryOtherFeeList = function(){
+            $scope.otherFeeList = LoanQueryService.getOtherFeeList($stateParams.appId).$object;
+        }
         $scope.doPublicRepay = function(){
             PublicRepayService.addPublicRepayApply($stateParams.appId);
         };

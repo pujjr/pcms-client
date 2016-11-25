@@ -7,6 +7,9 @@ angular.module("pu.remission.controllers")
         $scope.initRemissionHistoryTaskList = function(){
             $scope.taskList = RemissionService.getApplyRemissionTaskList().$object;
         };
+        $scope.showRemissionTaskDetail = function(item){
+            RemissionService.showRemissionTaskDetail(item);
+        }
         $scope.initApplyApprove = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;

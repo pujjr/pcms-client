@@ -7,6 +7,9 @@ angular.module("pu.alterrepaydate.controllers")
         $scope.initAlterRepayDateHistoryTaskList = function(){
             $scope.taskList = AlterRepayDateService.getApplyAlterRepayDateTaskList().$object;
         };
+        $scope.showAlterRepayDateTaskDetail = function(item){
+            AlterRepayDateService.showAlterRepayDateTaskDetail(item);
+        }
         $scope.initApplyApprove = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;

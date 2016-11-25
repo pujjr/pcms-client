@@ -74,5 +74,48 @@ angular.module('pu.extendperiod.services')
             modalInstance.result.then(function (response) {
                 toaster.pop('success', '操作提醒', "提交任务成功");
             })
+        };
+        this.showExtendPeriodTaskDetail = function(item){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'static',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
+                size:'lg',
+                templateUrl :'module_extendperiod/tpl/dialog-extendperiod-task-detail.html',
+                controller:function($scope,RestApi,ExtendPeriodService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService,SysDictService,ProductService){
+                    $scope.businessKey = item.id;
+                    $scope.appId = item.appId;
+                    $scope.procDefId = item.procDefId;
+                    $scope.procInstId = item.procInstId;
+                    $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+                    //获取还款方式
+                    $scope.repayModeList  = SysDictService.queryDictDataByTypeCode('hkfs').$object;
+                    //获取基本信息
+                    LoanQueryService.getLoanCustApplyInfo($scope.appId).then(function(response){
+                        $scope.baseInfoVo = response;
+                        //获取展期可选期数
+                        $scope.extendPeriods = ProductService.getProductExtendPeriodList(response.productCode,response.period).$object;
+                        ExtendPeriodService.getApplyExtendPeriodTaskById($scope.businessKey).then(function(response){
+                            $scope.applyVo = response;
+                            $scope.applyVo.newPeriod = parseInt($scope.baseInfoVo.period)+parseInt(response.extendPeriod);
+                        });
+                    });
+                    $scope.getWorkflowProcessResultByProcInstId = function(){
+                        $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;
+                    };
+                    $scope.openWorkflowDiagram = function(taskId ) {
+                        var processDefinitionId = $scope.procDefId;
+                        var processInstanceId = $scope.procInstId;
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     });

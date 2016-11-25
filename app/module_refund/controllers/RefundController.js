@@ -7,6 +7,9 @@ angular.module("pu.refund.controllers")
         $scope.initRefundHistoryTaskList = function(){
             $scope.taskList = RefundService.getApplyRefundTaskList().$object;
         };
+        $scope.showRefundTaskDetail = function(item){
+            RefundService.showRefundTaskDetail(item);
+        }
         $scope.initApplyApprove = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;

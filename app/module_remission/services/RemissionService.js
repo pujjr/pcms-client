@@ -42,4 +42,39 @@ angular.module('pu.remission.services')
                 toaster.pop('success', '操作提醒', "提交任务成功");
             })
         }
+        this.showRemissionTaskDetail = function(item){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'static',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
+                size:'lg',
+                templateUrl :'module_remission/tpl/dialog-remission-task-detail.html',
+                controller:function($scope,RestApi,RemissionService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService){
+                    $scope.businessKey = item.id;
+                    $scope.appId = item.appId;
+                    $scope.procDefId = item.procDefId;
+                    $scope.procInstId = item.procInstId;
+                    $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+                    $scope.applyVo = RemissionService.getApplyRemissionTaskById($scope.businessKey).$object;
+                    LoanQueryService.getLoanCustNeedRepayInfo($scope.appId).then(function(response){
+                        $scope.applyVo.feeItem = response;
+                    })
+                    $scope.getWorkflowProcessResultByProcInstId = function(){
+                        $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;
+                    };
+                    $scope.openWorkflowDiagram = function(taskId ) {
+                        var processDefinitionId = $scope.procDefId;
+                        var processInstanceId = $scope.procInstId;
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        }
     });

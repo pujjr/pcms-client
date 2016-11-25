@@ -53,15 +53,22 @@ angular.module('pu.publicrepay.services')
                 toaster.pop('success', '操作提醒', "提交任务成功");
             })
         };
-        this.showPublicRepayTaskDetail = function(businessKey,appId){
+        this.showPublicRepayTaskDetail = function(item){
             var modalInstance = $uibModal.open({
                 animation: false,
                 backdrop:'static',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
                 size:'lg',
                 templateUrl :'module_publicrepay/tpl/dialog-publicrepay-task-detail.html',
-                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,QueryService){
-                    $scope.businessKey = businessKey;
-                    $scope.appId = appId;
+                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,QueryService,item,$uibModalInstance){
+                    $scope.businessKey = item.id;
+                    $scope.appId = item.appId;
+                    $scope.procDefId = item.procDefId;
+                    $scope.procInstId = item.procInstId;
                     PublicRepayService.getApplyPublicRepayInfo($scope.businessKey).then(function(response){
                         $scope.applyPublicRepayVo = response;
                         $scope.applyPublicRepayVo.totalRepayAmount = $scope.applyPublicRepayVo.feeItem.repayCapital+
@@ -70,6 +77,14 @@ angular.module('pu.publicrepay.services')
                             $scope.applyPublicRepayVo.feeItem.otherAmount+
                             $scope.applyPublicRepayVo.feeItem.otherOverdueAmount;
                     });
+                    $scope.getWorkflowProcessResultByProcInstId = function(){
+                        $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;
+                    };
+                    $scope.openWorkflowDiagram = function(taskId ) {
+                        var processDefinitionId = $scope.procDefId;
+                        var processInstanceId = $scope.procInstId;
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                    }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };

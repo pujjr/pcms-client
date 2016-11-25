@@ -1,4 +1,77 @@
 <fieldset class="scheduler-border">
+    <legend class="scheduler-border">融资基本信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">合同编号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.contractNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">申请单号：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.appId}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">姓名：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">证件号码：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.idNo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资金额：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.financeAmt}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">融资期限：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.period}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">还款方式：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.repayModeDesc}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">放款日期：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{baseInfoVo.loanDate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
     <legend class="scheduler-border">减免信息</legend>
     <div class="row  m-t-md">
         <div class="col-md-6">
@@ -115,77 +188,5 @@
         </div>
     </div>
 </fieldset>
-<fieldset class="scheduler-border">
-    <legend class="scheduler-border">融资基本信息</legend>
-    <div class="row m-t-md">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">合同编号：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.contractNo}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">申请单号：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.appId}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">姓名：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.name}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">证件号码：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.idNo}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">融资金额：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.financeAmt}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">融资期限：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.period}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">还款方式：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.repayModeDesc}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">放款日期：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{baseInfoVo.loanDate }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</fieldset>
+
 

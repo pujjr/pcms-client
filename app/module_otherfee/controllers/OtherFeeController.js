@@ -7,6 +7,9 @@ angular.module("pu.otherfee.controllers")
         $scope.initOtherFeeHistoryTaskList = function(){
             $scope.taskList = OtherFeeService.getApplyOtherFeeTaskList().$object;
         };
+        $scope.showOtherFeeTaskDetail = function(item){
+            OtherFeeService.showOtherFeeTaskDetail(item);
+        }
         $scope.initApplyApprove = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;

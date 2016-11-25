@@ -77,5 +77,37 @@ angular.module('pu.otherfee.services')
                 }
             });
             return modalInstance.result;
+        };
+        this.showOtherFeeTaskDetail = function(item){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'static',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
+                size:'lg',
+                templateUrl :'module_otherfee/tpl/dialog-otherfee-task-detail.html',
+                controller:function($scope,RestApi,OtherFeeService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService){
+                    $scope.businessKey = item.id;
+                    $scope.appId = item.appId;
+                    $scope.procDefId = item.procDefId;
+                    $scope.procInstId = item.procInstId;
+                    $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+                    $scope.applyVo = OtherFeeService.getApplyOtherFeeTaskById($scope.businessKey).$object
+                    $scope.getWorkflowProcessResultByProcInstId = function(){
+                        $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;
+                    };
+                    $scope.openWorkflowDiagram = function(taskId ) {
+                        var processDefinitionId = $scope.procDefId;
+                        var processInstanceId = $scope.procInstId;
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     });

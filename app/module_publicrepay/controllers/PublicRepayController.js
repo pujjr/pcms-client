@@ -8,7 +8,7 @@ angular.module("pu.publicrepay.controllers")
             $scope.publicRepayApplyList = PublicRepayService.getApplyPublicRepayTaskList().$object;
         };
         $scope.showPublicRepayTaskDetail = function(item){
-            PublicRepayService.showPublicRepayTaskDetail(item.id,item.appId);
+            PublicRepayService.showPublicRepayTaskDetail(item);
         }
         $scope.initApplyApprove = function(){
             $scope.procInstId = $stateParams.procInstId;
@@ -34,5 +34,4 @@ angular.module("pu.publicrepay.controllers")
                 $state.go("app.loantask.todolist")
             })
         }
-    })
-    ;
+    });

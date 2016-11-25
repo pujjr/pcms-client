@@ -9,6 +9,7 @@ angular.module("pu.holiday.controllers")
             $scope.curYear = date.getFullYear();
             $scope.getHolidayList();
             $scope.showYear($scope.curYear);
+
         };
         $scope.getHolidayList = function(){
             HolidayService.getHolidayList().then(function(response){
@@ -19,7 +20,8 @@ angular.module("pu.holiday.controllers")
                 //$scope.eventSources.push($scope.events);
 
             });
-        }
+        };
+
         $scope.preYear = function(){
             $scope.curYear =  $scope.curYear -1;
             $scope.showYear($scope.curYear);
@@ -352,6 +354,29 @@ angular.module("pu.holiday.controllers")
             });
             modalInstance.result.then(function(response){
                 HolidayService.addHoliday(response).then(function(){
+                    toaster.pop('success', '操作提醒', '增加成功');
+                    $scope.getHolidayList();
+                })
+            })
+        }
+
+        $scope.initHoliday = function(){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                templateUrl :'module_holiday/tpl/dialog-holiday-init.html',
+                controller:function($scope,RestApi){
+                    $scope.item={};
+                    $scope.ok=function(){
+                        modalInstance.close($scope.item);
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function(response){
+                HolidayService.initHoliday(response).then(function(){
                     toaster.pop('success', '操作提醒', '增加成功');
                     $scope.getHolidayList();
                 })

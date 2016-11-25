@@ -11,5 +11,8 @@ angular.module('pu.holiday.services')
         };
         this.deleteHoliday = function(id){
             return RestApi.one("/holiday",id).remove();
+        };
+        this.initHoliday = function(item){
+            return RestApi.one("/holiday/initHoliday",item.year).get();
         }
     });

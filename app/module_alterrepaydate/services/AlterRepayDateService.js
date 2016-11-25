@@ -66,5 +66,40 @@ angular.module('pu.alterrepaydate.services')
             modalInstance.result.then(function (response) {
                 toaster.pop('success', '操作提醒', "提交任务成功");
             })
+        };
+        this.showAlterRepayDateTaskDetail = function(item){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'static',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
+                size:'lg',
+                templateUrl :'module_alterrepaydate/tpl/dialog-alterrepaydate-task-detail.html',
+                controller:function($scope,RestApi,AlterRepayDateService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService){
+                    $scope.businessKey = item.id;
+                    $scope.appId = item.appId;
+                    $scope.procDefId = item.procDefId;
+                    $scope.procInstId = item.procInstId;
+                    $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+                    LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
+                        $scope.applyVo.closingDate = response.closingDate;
+                    });
+                    $scope.applyVo = AlterRepayDateService.getApplyAlterRepayDateTaskById($scope.businessKey).$object
+                    $scope.getWorkflowProcessResultByProcInstId = function(){
+                        $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;
+                    };
+                    $scope.openWorkflowDiagram = function(taskId ) {
+                        var processDefinitionId = $scope.procDefId;
+                        var processInstanceId = $scope.procInstId;
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     });

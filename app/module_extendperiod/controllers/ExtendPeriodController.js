@@ -7,6 +7,9 @@ angular.module("pu.extendperiod.controllers")
         $scope.initExtendPeriodHistoryTaskList = function(){
             $scope.taskList = ExtendPeriodService.getApplyExtendPeriodTaskList().$object;
         };
+        $scope.showExtendPeriodTaskDetail = function(item){
+            ExtendPeriodService.showExtendPeriodTaskDetail(item);
+        };
         $scope.initData = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;

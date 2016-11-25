@@ -11,5 +11,8 @@ angular.module('pu.query.services')
         };
         this.queryApplyRunPathNodeMap = function(appId){
             return RestApi.one("/query/queryApplyRunPathNodeMap",appId).get();
+        };
+        this.getWorkflowProcessResultByProcInstId = function(procInstId){
+            return RestApi.all("/query/getWorkflowProcessResultByProcInstId").all(procInstId).getList();
         }
     });
