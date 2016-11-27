@@ -33,7 +33,7 @@ angular.module('pu.publicrepay.services')
                             response.otherAmount+
                             response.otherOverdueAmount;
                         ToolsService.getServerDateTime().then(function(response){
-                            $scope.applyPublicRepayVo.chargeDate= response;
+                            $scope.applyPublicRepayVo.chargeDate= ToolsService.convertStr82Date(response).getTime();
                         })
                     })
                     $scope.ok=function(){

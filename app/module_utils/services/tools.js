@@ -59,6 +59,13 @@ angular.module('pu.utils.services')
             }
             return checkList;
         };
+        this.convertStr82Date = function(tmpStr){
+            tmpStr = ""+tmpStr;
+            tmpStr = tmpStr.substring(0, 4) + "-" + tmpStr.substring(4, 6) + "-" + tmpStr.substring(6);
+            tmpStr = tmpStr.replace(/-/g,"/");
+            var date = new Date(tmpStr );
+            return date;
+        }
         this.addNumberMonth = function(value,i){
             var dt = new Date(parseInt(value));
             if(!angular.isDate(dt))

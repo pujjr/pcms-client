@@ -19,5 +19,8 @@ angular.module("pu.loantask.controllers")
                 }
             )
         };
+        $scope.pageChanged = function(){
+            $scope.initList();
+        }
     })
 ;

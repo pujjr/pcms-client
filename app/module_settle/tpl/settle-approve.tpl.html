@@ -6,7 +6,7 @@
                         <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
-                        <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+                        <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                         <button class="btn btn-success btn-sm" type="submit"  ng-disabled="form.$invalid" ng-click="commitApproveSettleTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
                     </div>
@@ -21,7 +21,10 @@
                             <span>申请信息</span>
                         </uib-tab-heading>
                         <form class="container-fluid m-t-md form-horizontal">
-                            <div  ng-include="'module_settle/tpl/form-settle-apply.html'"/>
+                            <fieldset disabled>
+                                <div ng-if="applyVo.settleType=='jqlx01'" ng-include="'module_settle/tpl/form-settle-apply.html'"/>
+                                <div ng-if="applyVo.settleType=='jqlx02'" ng-include="'module_settle/tpl/form-partsettle-approve.html'"/>
+                            </fieldset>
                             <div  ng-include="'module_loantask/tpl/form-approve-result.html'"/>
                         </form>
                     </uib-tab>

@@ -7,7 +7,7 @@
                 <label class="col-sm-6 control-label">减免日期：</label>
                 <div class="col-sm-6">
                     <p class="input-group">
-                        <input type="text" id="remissionDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
+                        <input type="text" id="remissionDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd"
                                placeholder="减免日期"
                                is-open="isopenRemissionDate"
                                datepicker-options="dateOptions"
@@ -33,7 +33,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-6 control-label">减免金额：</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="capital" ng-model="applyVo.remissionFeeItemVo.capital" placeholder="减免金额">
+                    <input type="number" class="form-control" id="capital" ng-model="applyVo.remissionFeeItemVo.capital" verify-remission-amount="applyVo.feeItem.repayCapital" step="0.01" placeholder="减免金额">
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-6 control-label">减免金额：</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="interest" ng-model="applyVo.remissionFeeItemVo.interest" placeholder="减免金额">
+                    <input type="number" class="form-control" id="interest" ng-model="applyVo.remissionFeeItemVo.interest" verify-remission-amount="applyVo.feeItem.repayInterest" step="0.01" placeholder="减免金额">
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-6 control-label">减免金额：</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="overdueAmount" ng-model="applyVo.remissionFeeItemVo.overdueAmount" placeholder="减免金额">
+                    <input type="number" class="form-control" id="overdueAmount" ng-model="applyVo.remissionFeeItemVo.overdueAmount" verify-remission-amount="applyVo.feeItem.repayOverdueAmount" step="0.01" placeholder="减免金额">
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-6 control-label">减免金额：</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="otherFee" ng-model="applyVo.remissionFeeItemVo.otherFee" placeholder="减免金额">
+                    <input type="number" class="form-control" id="otherFee" ng-model="applyVo.remissionFeeItemVo.otherFee"  verify-remission-amount="applyVo.feeItem.otherAmount" step="0.01"  placeholder="减免金额">
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-6 control-label">减免金额：</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="otherOverdueAmount" ng-model="applyVo.remissionFeeItemVo.otherOverdueAmount" placeholder="减免金额">
+                    <input type="number" class="form-control" id="otherOverdueAmount" ng-model="applyVo.remissionFeeItemVo.otherOverdueAmount"   verify-remission-amount="applyVo.feeItem.otherOverdueAmount" step="0.01"  placeholder="减免金额">
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-6 control-label">减免金额：</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="lateFee" ng-model="applyVo.remissionFeeItemVo.lateFee" placeholder="减免金额">
+                    <input type="number" class="form-control" id="lateFee" ng-model="applyVo.remissionFeeItemVo.lateFee"   verify-remission-amount="applyVo.feeItem.lateFee" step="0.01"  placeholder="减免金额">
                 </div>
             </div>
         </div>

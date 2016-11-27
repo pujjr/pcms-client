@@ -20,7 +20,9 @@
                             <span>申请信息</span>
                         </uib-tab-heading>
                         <form class="container-fluid m-t-md form-horizontal">
-                            <div  ng-include="'module_alterrepaydate/tpl/form-alterrepaydate-apply.html'"/>
+                            <fieldset disabled>
+                                <div  ng-include="'module_alterrepaydate/tpl/form-alterrepaydate-apply.html'"/>
+                            </fieldset>
                         </form>
                     </uib-tab>
                     <uib-tab index="1"  select="queryWorkflowProcessResult(taskId)">

@@ -13,6 +13,7 @@ angular.module("pu.task.controllers")
             $scope.gpsSupplierList = GpsService.queryGpsSupplierList(true).$object;
             $scope.provinceList = SysAreaService.queryProvinceList().$object;
             $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
+            $scope.unionPayBankList = BankService.queryUnionPayBankInfoList().$object;
             $scope.signContractVo = TaskService.querySignInfo($stateParams.businessKey).$object;
         };
         $scope.saveLoanCheckInfo = function(){

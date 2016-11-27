@@ -32,11 +32,15 @@ angular.module('pu.otherfee.services')
                         $scope.applyVo.feeTotalAmount=parseFloat(tmp.toFixed(2));
                     })
                     $scope.ok = function () {
-                        modal.confirm("操作提醒", "确认提交申请").then(function () {
-                            OtherFeeService.commitApplyOtherFeeTask($scope.appId, $scope.applyVo).then(function () {
-                                modalInstance.close();
+                        if($scope.applyVo.detailList.length==0){
+                            modal.error("未录入费用明细")
+                        }else{
+                            modal.confirm("操作提醒", "确认提交申请").then(function () {
+                                OtherFeeService.commitApplyOtherFeeTask($scope.appId, $scope.applyVo).then(function () {
+                                    modalInstance.close();
+                                })
                             })
-                        })
+                        }
                     };
                     $scope.removeDetailItem = function(index){
                         $scope.applyVo.detailList.splice(index,1);
