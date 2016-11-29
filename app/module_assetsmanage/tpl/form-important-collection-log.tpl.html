@@ -1,0 +1,55 @@
+<div class="data-table-container">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th style="width:100px">序号</th>
+            <th>完成时间</th>
+            <th>操作人</th>
+            <th>状态</th>
+            <th>逾期原因</th>
+            <th>催收备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in importanCollectionLogList">
+            <td>{{$index+1}}</td>
+            <td>{{item.operTime |mysqlDatetime}}</td>
+            <td>{{item.operId}}</td>
+            <td>
+                <span ng-if="item.reserver1=='csrwlx01' || item.reserver1=='csrwlx02' || item.reserver1=='csrwlx03'">
+                    {{item.collectionStatus}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx04'">
+                    {{item.recoverStatus}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx05'">
+                    {{item.refundStatus}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx06'">
+                    {{item.disposeStatus}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx07'">
+                    {{item.lawsuitStatus}}
+                </span>
+            </td>
+            <td>
+                <span ng-if="item.reserver1=='csrwlx01' || item.reserver1=='csrwlx02' || item.reserver1=='csrwlx03'">
+                    {{item.collectionComment}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx04'">
+                    {{item.recoverComment}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx05'">
+                    {{item.refundComment}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx06'">
+                    {{item.disposeComment}}
+                </span>
+                <span ng-if="item.reserver1=='csrwlx07'">
+                    {{item.lawsuitComment}}
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

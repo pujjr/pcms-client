@@ -1,0 +1,24 @@
+<div class="data-table-container">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th style="width:100px">序号</th>
+            <th>完成时间</th>
+            <th>操作人</th>
+            <th>催收状态</th>
+            <th>逾期原因</th>
+            <th>催收备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in collectionLogList">
+            <td>{{$index+1}}</td>
+            <td>{{item.operTime|mysqlDatetime}}</td>
+            <td>{{item.operId}}</td>
+            <td>{{item.collectionStatus}}</td>
+            <td>{{item.overdueReason}}</td>
+            <td>{{item.collectionComment}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

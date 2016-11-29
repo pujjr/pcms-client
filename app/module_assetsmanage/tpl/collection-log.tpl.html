@@ -1,0 +1,53 @@
+<div class="m-t-md">
+    <uib-tabset>
+        <uib-tab index="0">
+            <uib-tab-heading>
+                <span>催收重大项记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-important-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="2"  select="getCollectionLog('csrwlx01')">
+            <uib-tab-heading>
+                <span>电话催收记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-phone-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="3" select="getCollectionLog('csrwlx02')">
+            <uib-tab-heading>
+                <span>上门催收记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-phone-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="4"  select="getCollectionLog('csrwlx03')">
+            <uib-tab-heading>
+                <span>委外催收记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-out-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="5"  select="getCollectionLog('csrwlx04')">
+            <uib-tab-heading>
+                <span>委外收车记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-recover-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="6"  select="getCollectionLog('csrwlx05')">
+            <uib-tab-heading>
+                <span>车辆退回记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-refund-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="7"  select="getCollectionLog('csrwlx06')">
+            <uib-tab-heading>
+                <span>资产处置记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-dispose-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="8"  select="getCollectionLog('csrwlx07')">
+            <uib-tab-heading>
+                <span>诉讼记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-lawsuit-collection-log.html'"></div>
+        </uib-tab>
+    </uib-tabset>
+</div>
+
