@@ -3,7 +3,8 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.loanquery.controllers")
-    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,RemissionService,ExtendPeriodService,OtherFeeService) {
+    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService) {
         $scope.initList = function(){
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
@@ -48,6 +49,11 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.doPartSettle = function(){
             SettleService.addPartSettleApply($stateParams.appId);
+        };
+        $scope.doPhoneCollection = function(){
+            CollectionService.createPhoneCollectionTask($stateParams.appId,"test").then(function(response){
+                toaster.pop('success', '操作提醒', '提交任务成功');
+            });
         }
 
     })
