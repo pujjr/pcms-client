@@ -2,7 +2,7 @@
     <div class="panel_main">
         <div class="panel-header">
             <div class="panel-header-wrapper">
-                <h2 class="panel-header-title">商户信息管理</h2>
+                <h2 class="panel-header-title">催收单位信息</h2>
             </div>
         </div>
         <div class="data-table-container">
@@ -10,32 +10,30 @@
                 <div class="data-table-header__label">
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="addMerchant()"><i class="fa fa-plus m-r-sm"></i>增加</button>
+                    <button class="btn btn-sm btn-default" type="button" ng-click="addUnitInfo()"><i class="fa fa-plus m-r-sm"></i>增加单位</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>扣款渠道</th>
-                    <th>商户名称</th>
-                    <th>商户编号</th>
+                    <th>单位类型</th>
+                    <th>单位名称</th>
                     <th>是否启用</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in merchantList">
+                <tr ng-repeat="item in unitInfoList">
                     <td>{{$index+1}}</td>
-                    <td>{{item.chnlTypeDesc}}</td>
-                    <td>{{item.merchantName}}</td>
-                    <td>{{item.merchantNo}}</td>
+                    <td>{{item.unitTypeDesc}}</td>
+                    <td>{{item.unitName}}</td>
                     <td>
                         <span ng-if="item.enabled==true">是</span>
                         <span ng-if="item.enabled!=true">否</span>
                     </td>
                     <td>
-                        <a href="javascript:" ng-click="editMerchant(item)">编辑</a>
+                        <a href="javascript:" ng-click="editUnitInfo(item)">编辑</a>
                     </td>
                 </tr>
                 </tbody>

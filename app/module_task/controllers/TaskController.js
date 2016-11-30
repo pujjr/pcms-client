@@ -10,6 +10,12 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','提交退回任务成功')
             })
         };
+        $scope.backTaskLoan = function(taskId){
+            TaskService.backTask(taskId).then(function(response){
+                $state.go('app.loantask.todolist');
+                toaster.pop('success', '操作提醒','提交退回任务成功')
+            })
+        };
         $scope.queryWorkflowProcessResult = function(taskId){
             $scope.workflowProcessResultList = TaskService.queryWorkflowProcessResult(taskId).$object;
         };

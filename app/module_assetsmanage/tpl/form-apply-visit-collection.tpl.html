@@ -1,0 +1,17 @@
+<div>
+    <div class="form-group">
+        <label for="visitReason" class="col-sm-2 control-label">上门催收原因：</label>
+        <div class="col-sm-9">
+            <select id="visitReason" class="form-control" ng-model="applyVo.visitReason"
+                    ng-options="item.dictDataCode as item.dictDataName for item in visitReasonList" required>
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="visitComment" class="col-sm-2 control-label">上门催收备注：</label>
+        <div class="col-sm-9">
+            <textarea  type="text" class="form-control" id="visitComment" ng-model="applyVo.visitComment" placeholder="上门催收备注"  rows="5" ></textarea>
+        </div>
+    </div>
+</div>

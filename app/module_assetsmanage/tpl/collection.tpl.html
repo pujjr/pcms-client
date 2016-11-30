@@ -1,0 +1,93 @@
+<div ng-init="initCollection();editable=false">
+        <div id ="check-header" class="check-header">
+            <div class="data-table-container" >
+                <header class="data-table-header" style="min-height:72px !important;">
+                    <div class="data-table-header__label">
+                        <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{appId}}</span>
+                    </div>
+                    <div class="data-table-header__actions">
+                        <div class="btn-group" uib-dropdown dropdown-append-to="appendToEl">
+                            <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
+                                申请其他催发方式<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                                <li role="menuitem"
+                                    ng-if="workflowKey=='DHCS'">
+                                    <a href="javascript:" ng-click="applyNewCollectionTask('csrwlx02')">上门催收</a>
+                                </li>
+                                <li role="menuitem"
+                                    ng-if="workflowKey=='DHCS' || workflowKey=='SMCS'">
+                                    <a href="javascript:" ng-click="applyNewCollectionTask('csrwlx03')">委外催收</a>
+                                </li>
+                                <li role="menuitem"
+                                    ng-if="workflowKey=='DHCS' || workflowKey=='SMCS' || workflowKey=='WWCS' ">
+                                    <a href="javascript:" ng-click="applyNewCollectionTask('csrwlx04')">委外收车</a>
+                                </li>
+                                <li role="menuitem"
+                                    ng-if="workflowKey=='DHCS' || workflowKey=='SMCS' || workflowKey=='WWCS' || workflowKey=='WWSC'">
+                                    <a href="javascript:" ng-click="applyNewCollectionTask('csrwlx05')">车辆退回</a>
+                                </li>
+                                <li role="menuitem"
+                                    ng-if="workflowKey=='DHCS' || workflowKey=='SMCS' || workflowKey=='WWCS' || workflowKey=='WWSC' || workflowKey=='CLTH'">
+                                    <a href="javascript:" ng-click="applyNewCollectionTask('csrwlx06')">资产处置</a>
+                                </li>
+                                <li role="menuitem"
+                                    ng-if="workflowKey=='DHCS' || workflowKey=='SMCS' || workflowKey=='WWCS' || workflowKey=='WWSC' || workflowKey=='CLTH' ||  workflowKey=='ZCCZ'">
+                                    <a href="javascript:" ng-click="applyNewCollectionTask('csrwlx07')">诉讼</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+                        <button class="btn btn-default btn-sm" type="button" ng-disabled="form.$invalid" ng-click="saveCollectionLog()"><i class="fa fa-save m-r-sm"></i>保存催收记录</button>
+                        <button class="btn btn-success btn-sm" type="submit"   ng-click="commitApproveSettleTask()"><i class="fa fa-check m-r-sm"></i>提交结案</button>
+                        <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
+                    </div>
+                </header>
+            </div>
+        </div>
+    <ng-form  name="form" novalidate ng-cloak="">
+        <div class="check-body-full">
+                <uib-tabset>
+                    <uib-tab index="0">
+                        <uib-tab-heading>
+                            <span>催收申请信息</span>
+                        </uib-tab-heading>
+                        <form class="container-fluid m-t-md form-horizontal">
+                            <div  ng-include="'module_assetsmanage/tpl/form-loanbaseinfo.html'"/>
+                            <div ng-if="workflowKey=='DHCS'"  ng-include="'module_assetsmanage/tpl/form-phone-collection.html'"></div>
+                            <div ng-if="workflowKey=='WWCS'"  ng-include="'module_assetsmanage/tpl/form-out-collection.html'"></div>
+                            <div ng-if="workflowKey=='SMCS'"  ng-include="'module_assetsmanage/tpl/form-visit-collection.html'"></div>
+                            <div ng-if="workflowKey=='WWSC'"  ng-include="'module_assetsmanage/tpl/form-recover-collection.html'"></div>
+                            <div ng-if="workflowKey=='CLTH'"  ng-include="'module_assetsmanage/tpl/form-refund-collection.html'"></div>
+                            <div ng-if="workflowKey=='ZCCZ'"  ng-include="'module_assetsmanage/tpl/form-dispose-collection.html'"></div>
+                            <div ng-if="workflowKey=='SS'"  ng-include="'module_assetsmanage/tpl/form-lawsuit-collection.html'"></div>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="2"  select="getImportantCollectionLog()">
+                        <uib-tab-heading>
+                            <span>催收记录</span>
+                        </uib-tab-heading>
+                        <div ng-include="'module_assetsmanage/tpl/collection-log.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="3">
+                        <uib-tab-heading>
+                            <span>申请信息</span>
+                        </uib-tab-heading>
+                        <div ng-include="'module_apply/tpl/form-apply.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="4"  select="initApplyFileManage()">
+                        <uib-tab-heading>
+                            <span>申请资料</span>
+                        </uib-tab-heading>
+                        <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
+                    </uib-tab>
+                    <uib-tab index="5"  select="queryWorkflowProcessResult(taskId)">
+                        <uib-tab-heading>
+                            <span>流程流转记录</span>
+                        </uib-tab-heading>
+                        <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+                    </uib-tab>
+                </uib-tabset>
+        </div>
+    </ng-form>
+</div>

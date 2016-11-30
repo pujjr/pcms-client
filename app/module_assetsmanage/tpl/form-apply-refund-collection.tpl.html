@@ -1,0 +1,17 @@
+<div>
+    <div class="form-group">
+        <label for="backReason" class="col-sm-2 control-label">车辆退回原因：</label>
+        <div class="col-sm-9">
+            <select id="backReason" class="form-control" ng-model="applyVo.backReason"
+                    ng-options="item.dictDataCode as item.dictDataName for item in backReasonList" required>
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="backComment" class="col-sm-2 control-label">车辆退回备注：</label>
+        <div class="col-sm-9">
+            <textarea  type="text" class="form-control" id="backComment" ng-model="applyVo.backComment" placeholder="车辆退回备注"  rows="5" ></textarea>
+        </div>
+    </div>
+</div>

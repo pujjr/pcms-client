@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.assetsmanage.controllers")
-    .controller('CollectionController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,CollectionService,LoanQueryService,SysDictService) {
+    .controller('CollectionController',function ($scope, $rootScope, $state,$stateParams, toaster,modal, $uibModal,CollectionService,LoanQueryService,SysDictService,UnitInfoService) {
         $scope.initCollectionData = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;
@@ -13,26 +13,153 @@ angular.module("pu.assetsmanage.controllers")
             $scope.doInitApplyEdit($stateParams.appId);
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
             $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
-            $scope.collectionStatusList = SysDictService.queryDictDataByTypeCode("cszt").$object;
-            $scope.overdueReasonList  =  SysDictService.queryDictDataByTypeCode("yqyy").$object;
-            $scope.recoverStatusList = SysDictService.queryDictDataByTypeCode("sczt").$object;
-            $scope.refundStatusList = SysDictService.queryDictDataByTypeCode("thzt").$object;
-            $scope.disposeStatusList = SysDictService.queryDictDataByTypeCode("czzt").$object;
-            $scope.lawsuitStatusList = SysDictService.queryDictDataByTypeCode("sszt").$object;
+
         };
-        $scope.initPhoneCollection = function(){
+        $scope.initCollection = function(){
             $scope.initCollectionData();
+            //根据不同的类型请求不同数据
+            if($scope.workflowKey =='DHCS' || $scope.workflowKey =='WWCS'||$scope.workflowKey =='SMCS'){
+                $scope.collectionStatusList = SysDictService.queryDictDataByTypeCode("cszt").$object;
+                $scope.overdueReasonList  =  SysDictService.queryDictDataByTypeCode("yqyy").$object;
+            }
+            if($scope.workflowKey =='WWSC'){
+                $scope.recoverStatusList = SysDictService.queryDictDataByTypeCode("sczt").$object;
+            }
+            if($scope.workflowKey =='CLTH'){
+                $scope.refundStatusList = SysDictService.queryDictDataByTypeCode("thzt").$object;
+            }
+            if($scope.workflowKey =='ZCCZ'){
+                $scope.disposeStatusList = SysDictService.queryDictDataByTypeCode("czzt").$object;
+            }
+            if($scope.workflowKey =='SS'){
+                $scope.lawsuitStatusList = SysDictService.queryDictDataByTypeCode("sszt").$object;
+            }
+            $scope.applyVo = CollectionService.getCollectionAppyInfo($scope.businessKey).$object;
         };
+        $scope.initCollectionApprove = function(){
+            $scope.initCollectionData();
+            CollectionService.getNewCollectionAppyInfo($scope.taskId).then(function(response){
+                $scope.applyVo = response;
+                var taskType = response.taskType;
+                $scope.approveVo = {};
+                if(taskType=='csrwlx02'){
+                    $scope.taskName = '上门催收';
+                    $scope.visitReasonList = SysDictService.queryDictDataByTypeCode("smcsyy").$object;
+                }
+                if(taskType =='csrwlx03'){
+                    $scope.taskName = '委外催收';
+                    $scope.outReasonList =  SysDictService.queryDictDataByTypeCode("wycsyy").$object;
+                    $scope.outUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx01').$object;
+                }
+                if(taskType =='csrwlx04'){
+                    $scope.taskName = '委外收车';
+                    $scope.recoverReasonList = SysDictService.queryDictDataByTypeCode("wwscyy").$object;
+                    $scope.recoverUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                }
+                if(taskType =='csrwlx05'){
+                    $scope.taskName = '车辆退回';
+                    $scope.backReasonList = SysDictService.queryDictDataByTypeCode("clthyy").$object;
+                }
+                if(taskType =='csrwlx06'){
+                    $scope.taskName = '资产处置';
+                    $scope.disposeReasonList = SysDictService.queryDictDataByTypeCode("zcczyy").$object;
+                    $scope.disposeUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                }
+                if(taskType =='csrwlx07'){
+                    $scope.taskName = '诉讼';
+                    $scope.lawsuitReasonList = SysDictService.queryDictDataByTypeCode("ssyy").$object;
+                    $scope.lawsuitUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx03').$object;
+                }
+            });
+        };
+        $scope.initRecoverCollectionApprove = function(){
+            $scope.initCollectionData();
+            $scope.applyVo = CollectionService.getCollectionAppyInfo($scope.businessKey).$object;
+            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
+            $scope.taskName = '委外收车';
+            $scope.recoverReasonList = SysDictService.queryDictDataByTypeCode("wwscyy").$object;
+            $scope.recoverUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+        }
         $scope.saveCollectionLog =function(){
             CollectionService.saveCollectionLog($scope.taskId,$scope.applyVo).then(function(response){
-                toaster.pop('success', '��������', '������־�ɹ� ');
+                toaster.pop('success', '操作提醒', '保存日志成功 ');
+                $scope.applyVo={};
             })
         };
+        $scope.commitApproveApplyNewCollectionTask = function(){
+            modal.confirm('操作提醒','确认提交？').then(function(){
+                CollectionService.commitApproveApplyNewCollectionTask($scope.taskId,$scope.approveVo).then(function(){
+                    toaster.pop('success', '操作提醒', '提交任务成功');
+                    $state.go('app.loantask.todolist');
+                })
+            })
+        }
         $scope.getImportantCollectionLog = function(){
             $scope.importanCollectionLogList = CollectionService.getImportanCollectionLogInfo($scope.appId).$object;
         };
         $scope.getCollectionLog = function(taskType){
             $scope.collectionLogList = CollectionService.getCollectionLogInfo($scope.appId,taskType).$object;
         };
+        $scope.appendToEl = angular.element(document.querySelector('#check-header'));
+
+        $scope.applyNewCollectionTask = function(taskType){
+            var appId = $scope.appId;
+            var taskId = $scope.taskId;
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop: 'static',
+                size: 'lg',
+                templateUrl: 'module_assetsmanage/tpl/dialog-collection-add.html',
+                controller: function ($scope, RestApi, SettleService, ToolsService, modal, LoanQueryService,UnitInfoService) {
+                    $scope.appId = appId;
+                    $scope.taskType = taskType;
+                    $scope.taskId = taskId;
+                    $scope.applyVo = {};
+                    if(taskType=='csrwlx02'){
+                        $scope.taskName = '上门催收';
+                        $scope.visitReasonList = SysDictService.queryDictDataByTypeCode("smcsyy").$object;
+
+                    }
+                    if(taskType =='csrwlx03'){
+                        $scope.taskName = '委外催收';
+                        $scope.outReasonList =  SysDictService.queryDictDataByTypeCode("wycsyy").$object;
+                        $scope.outUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx01').$object;
+                    }
+                    if(taskType =='csrwlx04'){
+                        $scope.taskName = '委外收车';
+                        $scope.recoverReasonList = SysDictService.queryDictDataByTypeCode("wwscyy").$object;
+                        $scope.recoverUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                    }
+                    if(taskType =='csrwlx05'){
+                        $scope.taskName = '车辆退回';
+                        $scope.backReasonList = SysDictService.queryDictDataByTypeCode("clthyy").$object;
+                    }
+                    if(taskType =='csrwlx06'){
+                        $scope.taskName = '资产处置';
+                        $scope.disposeReasonList = SysDictService.queryDictDataByTypeCode("zcczyy").$object;
+                        $scope.disposeUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                    }
+                    if(taskType =='csrwlx07'){
+                        $scope.taskName = '诉讼';
+                        $scope.lawsuitReasonList = SysDictService.queryDictDataByTypeCode("ssyy").$object;
+                        $scope.lawsuitUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx03').$object;
+                    }
+                    $scope.ok = function () {
+                        modal.confirm("操作提醒", "确认提交申请").then(function () {
+                            CollectionService.applyNewCollectionTask($scope.taskId,$scope.appId, $scope.taskType, $scope.applyVo).then(function () {
+                                modalInstance.close();
+                            })
+                        })
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function (response) {
+                toaster.pop('success', '操作提醒', "提交申请成功");
+                $state.go('app.loantask.todolist');
+            })
+        }
     })
 ;

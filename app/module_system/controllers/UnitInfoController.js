@@ -3,22 +3,21 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.system.controllers")
-    .controller('MerchantController',function ($scope, $rootScope, $state, toaster, $uibModal,MerchantService,BankService,SysDictService) {
+    .controller('UnitInfoController',function ($scope, $rootScope, $state, toaster, $uibModal,UnitInfoService,SysDictService) {
         $scope.init = function () {
-            $scope.queryMerchantList();
+            $scope.queryUnitInfoList();
         };
-        $scope.queryMerchantList = function(){
-            $scope.merchantList= MerchantService.queryMerchantList(false,'').$object;
+        $scope.queryUnitInfoList = function(){
+            $scope.unitInfoList= UnitInfoService.getUnitInfoList(false,'').$object;
         }
-        $scope.addMerchant = function(){
+        $scope.addUnitInfo = function(){
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
-                templateUrl :'module_system/tpl/dialog-merchant-add.html',
+                templateUrl :'module_system/tpl/dialog-unitinfo-add.html',
                 controller:function($scope,RestApi){
                     $scope.item={};
-                    $scope.chnlList = SysDictService.queryDictDataByTypeCode("shkkqd").$object;
-                    $scope.bankList = BankService.queryBankInfoList(false).$object;
+                    $scope.unitTypeList = SysDictService.queryDictDataByTypeCode("csdwlx").$object;
                     $scope.ok=function(){
                         modalInstance.close($scope.item);
                     };
@@ -28,28 +27,27 @@ angular.module("pu.system.controllers")
                 }
             });
             modalInstance.result.then(function(response){
-                MerchantService.addMerchant(response).then(function(){
-                    toaster.pop('success', '操作提醒', '增加商户成功');
-                    $scope.queryMerchantList();
+                UnitInfoService.addUnitInfo(response).then(function(){
+                    toaster.pop('success', '操作提醒', '增加银行参数成功');
+                    $scope.queryUnitInfoList();
                 })
             })
         };
-        $scope.editMerchant = function(item){
+        $scope.editUnitInfo = function(item){
             var modalInstance = $uibModal.open({
                 animation: true,
                 backdrop:'false',
-                templateUrl :'module_system/tpl/dialog-merchant-edit.html',
+                templateUrl :'module_system/tpl/dialog-unitinfo-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;
-                    $scope.chnlList = SysDictService.queryDictDataByTypeCode("shkkqd").$object;
-                    $scope.bankList = BankService.queryBankInfoList(false).$object;
+                    $scope.unitTypeList = SysDictService.queryDictDataByTypeCode("csdwlx").$object;
                     $scope.ok=function(){
-                        MerchantService.modifyMerchant($scope.item).then(function(){
+                        UnitInfoService.modifyUnitInfo($scope.item).then(function(){
                             modalInstance.close('修改成功');
                         })
                     };
                     $scope.delete = function(){
-                        MerchantService.deleteMerchant(item.id).then(function(){
+                        UnitInfoService.deleteUnitInfo(item.id).then(function(){
                             modalInstance.close('删除成功');
                         })
                     }
@@ -60,7 +58,7 @@ angular.module("pu.system.controllers")
             });
             modalInstance.result.then(function(response){
                 toaster.pop('success', '操作提醒', response);
-                $scope.queryMerchantList();
+                $scope.queryUnitInfoList();
             })
         };
     })

@@ -92,6 +92,18 @@ angular.module('app')
                     url:'/list',
                     templateUrl:'module_system/tpl/bankinfo-list.html'
                 })
+                //单位信息管理
+                .state('app.unitinfo',{
+                    abstract: true,
+                    url:'/unitinfo',
+                    template:'<div ui-view=""></div>',
+                    controller: 'UnitInfoController'
+                })
+                //银行信息管理-查询列表
+                .state('app.unitinfo.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/unitinfo-list.html'
+                })
                 //商户信息管理
                 .state('app.merchant',{
                     abstract: true,

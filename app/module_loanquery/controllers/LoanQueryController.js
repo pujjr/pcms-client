@@ -52,8 +52,13 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.doPhoneCollection = function(){
             CollectionService.createPhoneCollectionTask($stateParams.appId,"test").then(function(response){
-                toaster.pop('success', '操作提醒', '提交任务成功');
+                toaster.pop('success', '鎿嶄綔鎻愰啋', '鎻愪氦浠诲姟鎴愬姛');
             });
+        };
+        $scope.doRecoverCollectionTask = function(){
+            CollectionService.createRecoverCollectionTask($stateParams.appId).then(function(response){
+                toaster.pop('success', '鎿嶄綔鎻愰啋', '鎻愪氦浠诲姟鎴愬姛');
+            })
         }
 
     })

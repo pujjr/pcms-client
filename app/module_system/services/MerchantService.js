@@ -1,7 +1,7 @@
 angular.module('pu.system.services')
     .service("MerchantService",function($window,RestApi,$uibModal){
-        this.queryMerchantList = function(enabled){
-            return RestApi.all("/merchant").getList({'enabled':enabled});
+        this.queryMerchantList = function(enabled,chnlType){
+            return RestApi.all("/merchant").getList({'enabled':enabled,'chnlType':chnlType});
         };
         this.addMerchant = function(item){
             return RestApi.all("/merchant").post(item);
@@ -19,7 +19,7 @@ angular.module('pu.system.services')
                 templateUrl: 'module_system/tpl/dialog-merchant-sel.html',
                 controller: function ($scope) {
                     $scope.item = {};
-                    $scope.enabledMerchantList = RestApi.all("/merchant").getList({'enabled':true}).$object;
+                    $scope.enabledMerchantList = RestApi.all("/merchant").getList({'enabled':true,'chnlType':'shkkqd01'}).$object;
                     $scope.ok = function(item) {
                         $uibModalInstance.close($scope.item);
                     };

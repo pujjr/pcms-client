@@ -1,0 +1,17 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增{{taskName}}申请</h4>
+    </div>
+    <div class="modal-body">
+        <div ng-if="taskType == 'csrwlx02'"  ng-include="'module_assetsmanage/tpl/form-apply-visit-collection.html'"/>
+        <div ng-if="taskType == 'csrwlx03'"  ng-include="'module_assetsmanage/tpl/form-apply-out-collection.html'"/>
+        <div ng-if="taskType == 'csrwlx04'"  ng-include="'module_assetsmanage/tpl/form-apply-recover-collection.html'"/>
+        <div ng-if="taskType == 'csrwlx05'"  ng-include="'module_assetsmanage/tpl/form-apply-refund-collection.html'"/>
+        <div ng-if="taskType == 'csrwlx06'"  ng-include="'module_assetsmanage/tpl/form-apply-dispose-collection.html'"/>
+        <div ng-if="taskType == 'csrwlx07'"  ng-include="'module_assetsmanage/tpl/form-apply-lawsuit-collection.html'"/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-disabled="form.$invalid" ng-click="ok()">提交申请</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>
