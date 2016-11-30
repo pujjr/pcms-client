@@ -35,6 +35,9 @@ angular.module('pu.assetsmanage.services')
         };
         this.applyRecoverCollectionTask = function(appId,params){
             return RestApi.all("/collection/applyRecoverCollectionTask").all(appId).post(params);
+        };
+        this.commitApproveRecoverCollectionTask = function(taskId,params){
+            return RestApi.all("/collection/commitApproveRecoverCollectionTask").all(taskId).post(params);
         }
         this.createRecoverCollectionTask = function(appId){
             var modalInstance = $uibModal.open({
@@ -62,5 +65,41 @@ angular.module('pu.assetsmanage.services')
                 }
             });
             return modalInstance.result;
+        }
+        this.selectAssignee = function(taskId){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                templateUrl :'module_task/tpl/dialog-selectassignee.html',
+                controller:function($scope,RestApi,modal,CollectionService){
+                    $scope.taskId = taskId;
+                    $scope.accounts = CollectionService.getCollectionWorkgroupUserIdList($taskId).$object;
+                    $scope.checkAll = function(){
+                        angular.forEach($scope.accounts,function(item){
+                            item.checked = $scope.selectAllStatus;
+                        })
+                    };
+                    $scope.ok=function(){
+                        var setAccounts=[];
+                        angular.forEach($scope.accounts,function(item){
+                            if(item.checked == true){
+                                setAccounts.push(item);
+                            }
+                        });
+                        if(setAccounts.length==0){
+                            modal.info("操作提醒","请选择至少一个用户");
+                            return;
+                        }
+
+                        modalInstance.close(setAccounts);
+                    };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        };
+        this.applyReAssigneeTask  = function(taskId,reason){
+            return RestApi.all("/collection/applyReAssigneeTask").all(taskId).post(reason);
         }
     });

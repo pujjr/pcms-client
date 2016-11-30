@@ -17,7 +17,7 @@ angular.module("pu.assetsmanage.controllers")
         };
         $scope.initCollection = function(){
             $scope.initCollectionData();
-            //根据不同的类型请求不同数据
+            //鏍规嵁涓嶅悓鐨勭被鍨嬭姹備笉鍚屾暟鎹?
             if($scope.workflowKey =='DHCS' || $scope.workflowKey =='WWCS'||$scope.workflowKey =='SMCS'){
                 $scope.collectionStatusList = SysDictService.queryDictDataByTypeCode("cszt").$object;
                 $scope.overdueReasonList  =  SysDictService.queryDictDataByTypeCode("yqyy").$object;
@@ -74,6 +74,7 @@ angular.module("pu.assetsmanage.controllers")
         };
         $scope.initRecoverCollectionApprove = function(){
             $scope.initCollectionData();
+            $scope.approveVo = {};
             $scope.applyVo = CollectionService.getCollectionAppyInfo($scope.businessKey).$object;
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
             $scope.taskName = '委外收车';
@@ -82,14 +83,28 @@ angular.module("pu.assetsmanage.controllers")
         }
         $scope.saveCollectionLog =function(){
             CollectionService.saveCollectionLog($scope.taskId,$scope.applyVo).then(function(response){
-                toaster.pop('success', '操作提醒', '保存日志成功 ');
+                toaster.pop('success', '操作提醒', '提交任务成功 ');
                 $scope.applyVo={};
             })
         };
         $scope.commitApproveApplyNewCollectionTask = function(){
-            modal.confirm('操作提醒','确认提交？').then(function(){
+            modal.confirm('操作提醒','确认提交任务？').then(function(){
                 CollectionService.commitApproveApplyNewCollectionTask($scope.taskId,$scope.approveVo).then(function(){
-                    toaster.pop('success', '操作提醒', '提交任务成功');
+                    toaster.pop('success', '操作提醒', '提交任务成功 ');
+                    $state.go('app.loantask.todolist');
+                })
+            })
+        };
+        $scope.commitApproveRecoverCollectionTask = function(){
+            CollectionService.commitApproveRecoverCollectionTask($scope.taskId,$scope.approveVo).then(function(){
+                toaster.pop('success', '操作提醒', '提交任务成功 ');
+                $state.go('app.loantask.todolist');
+            })
+        };
+        $scope.applyReAssigneeTask = function(){
+            modal.prompt('调配原因','请输入调配原因').then(function(response){
+                CollectionService.applyReAssigneeTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', '提交任务成功 ');
                     $state.go('app.loantask.todolist');
                 })
             })
@@ -100,6 +115,10 @@ angular.module("pu.assetsmanage.controllers")
         $scope.getCollectionLog = function(taskType){
             $scope.collectionLogList = CollectionService.getCollectionLogInfo($scope.appId,taskType).$object;
         };
+        $scope.initCollectionAssignee = function(){
+            $scope.initCollectionData();
+            $scope.applyVo = CollectionService.getCollectionAppyInfo($scope.businessKey).$object;
+        }
         $scope.appendToEl = angular.element(document.querySelector('#check-header'));
 
         $scope.applyNewCollectionTask = function(taskType){
@@ -145,7 +164,7 @@ angular.module("pu.assetsmanage.controllers")
                         $scope.lawsuitUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx03').$object;
                     }
                     $scope.ok = function () {
-                        modal.confirm("操作提醒", "确认提交申请").then(function () {
+                        modal.confirm("操作提醒", "确认提交任务？").then(function () {
                             CollectionService.applyNewCollectionTask($scope.taskId,$scope.appId, $scope.taskType, $scope.applyVo).then(function () {
                                 modalInstance.close();
                             })
@@ -157,7 +176,7 @@ angular.module("pu.assetsmanage.controllers")
                 }
             });
             modalInstance.result.then(function (response) {
-                toaster.pop('success', '操作提醒', "提交申请成功");
+                toaster.pop('success', '操作提醒', "提交任务成功");
                 $state.go('app.loantask.todolist');
             })
         }

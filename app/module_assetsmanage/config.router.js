@@ -26,6 +26,12 @@ angular.module('app')
                     templateUrl:'module_assetsmanage/tpl/recover-collection-approve.html',
                     controller:'CollectionController'
                 })
+                //人收分单
+                .state('app.loantask.process.collection-assignee', {
+                    url: '/collection-assignee/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/collection-assignee.html',
+                    controller:'CollectionController'
+                })
                 //人手结案
                 .state('app.loantask.process.collection-handle-approve', {
                     url: '/collection-handle-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
