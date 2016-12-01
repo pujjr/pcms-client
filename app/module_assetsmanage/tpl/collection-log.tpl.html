@@ -2,49 +2,49 @@
     <uib-tabset>
         <uib-tab index="0">
             <uib-tab-heading>
-                <span>催收重大项记录</span>
+                <span>催收重大项记录<span class="badge text-primary">{{importanCollectionLogList.length}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-important-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="2"  select="getCollectionLog('csrwlx01')">
             <uib-tab-heading>
-                <span>电话催收记录</span>
+                <span>电话催收记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx01}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-phone-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="3" select="getCollectionLog('csrwlx02')">
             <uib-tab-heading>
-                <span>上门催收记录</span>
+                <span>上门催收记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx02}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-phone-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="4"  select="getCollectionLog('csrwlx03')">
             <uib-tab-heading>
-                <span>委外催收记录</span>
+                <span>委外催收记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx03}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-out-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="5"  select="getCollectionLog('csrwlx04')">
             <uib-tab-heading>
-                <span>委外收车记录</span>
+                <span>委外收车记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx04}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-recover-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="6"  select="getCollectionLog('csrwlx05')">
             <uib-tab-heading>
-                <span>车辆退回记录</span>
+                <span>车辆退回记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx05}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-refund-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="7"  select="getCollectionLog('csrwlx06')">
             <uib-tab-heading>
-                <span>资产处置记录</span>
+                <span>资产处置记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx06}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-dispose-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="8"  select="getCollectionLog('csrwlx07')">
             <uib-tab-heading>
-                <span>诉讼记录</span>
+                <span>诉讼记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx07}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-lawsuit-collection-log.html'"></div>
         </uib-tab>

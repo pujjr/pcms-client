@@ -141,6 +141,7 @@ angular.module("pu.assetsmanage.controllers")
             })
         }
         $scope.getImportantCollectionLog = function(){
+            $scope.collectionLogCntMap = CollectionService.getCollectionTaskCnt($scope.appId).$object;
             $scope.importanCollectionLogList = CollectionService.getImportanCollectionLogInfo($scope.appId).$object;
         };
         $scope.getCollectionLog = function(taskType){

@@ -91,5 +91,8 @@ angular.module('pu.assetsmanage.services')
         };
         this.applyReAssigneeTask  = function(taskId,reason){
             return RestApi.all("/collection/applyReAssigneeTask").all(taskId).post(reason);
+        };
+        this.getCollectionTaskCnt = function(appId){
+            return RestApi.one("/collection/getCollectionTaskCnt",appId).get();
         }
     });
