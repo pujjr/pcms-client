@@ -7,7 +7,7 @@
                     </div>
                     <div class="data-table-header__actions">
                         <button class="btn btn-danger btn-sm" type="button"    ng-click="backTaskLoan(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
-                        <button class="btn btn-success btn-sm" type="submit"   ng-click="commitApproveApplyNewCollectionTask()"><i class="fa fa-check m-r-sm"></i>审批通过</button>
+                        <button class="btn btn-success btn-sm" type="submit"  ng-disabled="form.$invalid" ng-click="commitApproveApplyNewCollectionTask()"><i class="fa fa-check m-r-sm"></i>审批通过</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
                     </div>
                 </header>

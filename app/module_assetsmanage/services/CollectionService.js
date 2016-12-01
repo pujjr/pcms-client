@@ -68,36 +68,26 @@ angular.module('pu.assetsmanage.services')
         }
         this.selectAssignee = function(taskId){
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 backdrop:'false',
-                templateUrl :'module_task/tpl/dialog-selectassignee.html',
+                templateUrl :'module_assetsmanage/tpl/dialog-selectassignee.html',
                 controller:function($scope,RestApi,modal,CollectionService){
                     $scope.taskId = taskId;
-                    $scope.accounts = CollectionService.getCollectionWorkgroupUserIdList($taskId).$object;
+                    $scope.accounts = CollectionService.getCollectionWorkgroupUserIdList($scope.taskId).$object;
                     $scope.checkAll = function(){
                         angular.forEach($scope.accounts,function(item){
                             item.checked = $scope.selectAllStatus;
                         })
                     };
-                    $scope.ok=function(){
-                        var setAccounts=[];
-                        angular.forEach($scope.accounts,function(item){
-                            if(item.checked == true){
-                                setAccounts.push(item);
-                            }
-                        });
-                        if(setAccounts.length==0){
-                            modal.info("操作提醒","请选择至少一个用户");
-                            return;
-                        }
-
-                        modalInstance.close(setAccounts);
-                    };
+                    $scope.select = function(item){
+                        modalInstance.close(item);
+                    }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };
                 }
             });
+            return modalInstance.result;
         };
         this.applyReAssigneeTask  = function(taskId,reason){
             return RestApi.all("/collection/applyReAssigneeTask").all(taskId).post(reason);

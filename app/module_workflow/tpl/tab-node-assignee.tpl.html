@@ -35,9 +35,20 @@
                             <option value="">请选择指定用户</option>`
                         </select>
                         <select  class="form-control" id="assigneeParam"  ng-model="item.assigneeParam" ng-options="l.id as l.workgroupName for l in sysWorkgroups" required
-                                ng-if=" item.assigneeType == 'sprlx04'">
+                                ng-if="false">
                             <option value="">请选择工作组</option>`
                         </select>
+                        <div ng-if=" item.assigneeType == 'sprlx04'">
+                            <ui-combotree choices="sysWorkgroups"
+                                          ng-model="item.assigneeParam"
+                                          convert-tree-option="{idKey: 'id',parentKey: 'parentId',childrenKey: 'children'}"
+                                          checked="false"
+                                          label="workgroupName"
+                                          placeholder="请选择工作组"
+
+                                          ng-required="true"></ui-combotree>
+                        </div>
+
                     </td>
                     <td>
                         <input  type="text" class="form-control" ng-model="item.assigneeHandle"

@@ -51,10 +51,20 @@
                 <uib-tabset>
                     <uib-tab index="0">
                         <uib-tab-heading>
-                            <span>催收申请信息</span>
+                            <span>催收任务信息</span>
                         </uib-tab-heading>
                         <form class="container-fluid m-t-md form-horizontal">
                             <div  ng-include="'module_assetsmanage/tpl/form-loanbaseinfo.html'"/>
+                            <fieldset class="scheduler-border" disabled>
+                                <legend class="scheduler-border">{{taskName}}任务申请信息</legend>
+                                <div ng-if="applyVo.taskType=='csrwlx01'"  ng-include="'module_assetsmanage/tpl/form-apply-phone-collection.html'"></div>
+                                <div ng-if="applyVo.taskType=='csrwlx02'"  ng-include="'module_assetsmanage/tpl/form-apply-visit-collection.html'"></div>
+                                <div ng-if="applyVo.taskType=='csrwlx03'"  ng-include="'module_assetsmanage/tpl/form-apply-out-collection.html'"></div>
+                                <div ng-if="applyVo.taskType=='csrwlx04'"  ng-include="'module_assetsmanage/tpl/form-apply-recover-collection.html'"></div>
+                                <div ng-if="applyVo.taskType=='csrwlx05'"  ng-include="'module_assetsmanage/tpl/form-apply-refund-collection.html'"></div>
+                                <div ng-if="applyVo.taskType=='csrwlx06'"  ng-include="'module_assetsmanage/tpl/form-apply-dispose-collection.html'"></div>
+                                <div ng-if="applyVo.taskType=='csrwlx07'"  ng-include="'module_assetsmanage/tpl/form-apply-lawsuit-collection.html'"></div>
+                            </fieldset>
                             <div ng-if="workflowKey=='DHCS'"  ng-include="'module_assetsmanage/tpl/form-phone-collection.html'"></div>
                             <div ng-if="workflowKey=='WWCS'"  ng-include="'module_assetsmanage/tpl/form-out-collection.html'"></div>
                             <div ng-if="workflowKey=='SMCS'"  ng-include="'module_assetsmanage/tpl/form-visit-collection.html'"></div>
