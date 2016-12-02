@@ -1,32 +1,40 @@
-<div>
-    <div class="form-group">
-        <label for="lawsuitUnitId" class="col-sm-2 control-label">诉讼单位：</label>
-        <div class="col-sm-9">
-            <select id="lawsuitUnitId" class="form-control" ng-model="applyVo.lawsuitUnitId"
-                    ng-options="item.id as item.unitName for item in lawsuitUnitList" required>
-                <option value=""></option>
-            </select>
+<div class="row m-t-md">
+    <div class="col-md-11">
+        <div class="form-group form-group-sm">
+            <label for="lawsuitUnitId" class="col-sm-2 control-label">诉讼单位：</label>
+            <div class="col-sm-10">
+                <select id="lawsuitUnitId" class="form-control" ng-model="applyVo.lawsuitUnitId"
+                        ng-options="item.id as item.unitName for item in lawsuitUnitList" required>
+                    <option value=""></option>
+                </select>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="lawyerName" class="col-sm-2 control-label">诉讼律师：</label>
-        <div class="col-sm-9">
-            <input  type="text" class="form-control" id="lawyerName" ng-model="applyVo.lawyerName" placeholder="诉讼律师"  rows="5" >
+    <div class="col-md-11">
+        <div class="form-group form-group-sm">
+            <label for="lawyerName" class="col-sm-2 control-label">诉讼律师：</label>
+            <div class="col-sm-10">
+                <input  type="text" class="form-control" id="lawyerName" ng-model="applyVo.lawyerName" placeholder="诉讼律师"  rows="5" >
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="lawsuitReason" class="col-sm-2 control-label">诉讼原因：</label>
-        <div class="col-sm-9">
-            <select id="lawsuitReason" class="form-control" ng-model="applyVo.lawsuitReason"
-                    ng-options="item.dictDataCode as item.dictDataName for item in lawsuitReasonList" required>
-                <option value=""></option>
-            </select>
+    <div class="col-md-11">
+        <div class="form-group form-group-sm">
+            <label for="lawsuitReason" class="col-sm-2 control-label">诉讼原因：</label>
+            <div class="col-sm-10">
+                <select id="lawsuitReason" class="form-control" ng-model="applyVo.lawsuitReason"
+                        ng-options="item.dictDataCode as item.dictDataName for item in lawsuitReasonList" required>
+                    <option value=""></option>
+                </select>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="lawsuitComment" class="col-sm-2 control-label">诉讼备注：</label>
-        <div class="col-sm-9">
-            <textarea  type="text" class="form-control" id="lawsuitComment" ng-model="applyVo.lawsuitComment" placeholder="诉讼备注"  rows="5" ></textarea>
+    <div class="col-md-11">
+        <div class="form-group form-group-sm">
+            <label for="lawsuitComment" class="col-sm-2 control-label">车辆退回原因：</label>
+            <div class="col-sm-10">
+                <textarea  type="text" class="form-control" id="lawsuitComment" ng-model="applyVo.lawsuitComment" placeholder="诉讼备注"  rows="5" ></textarea>
+            </div>
         </div>
     </div>
 </div>

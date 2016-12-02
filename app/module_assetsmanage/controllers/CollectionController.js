@@ -147,6 +147,9 @@ angular.module("pu.assetsmanage.controllers")
         $scope.getCollectionLog = function(taskType){
             $scope.collectionLogList = CollectionService.getCollectionLogInfo($scope.appId,taskType).$object;
         };
+        $scope.getCollectionTask = function(){
+            $scope.collectionTaskList = CollectionService.getCollectionApplyTask($scope.appId).$object;
+        }
         $scope.selectAssignee = function(){
             CollectionService.selectAssignee($scope.taskId).then(function(response){
                 modal.confirm("操作提醒","是否确认分配给"+response.accountName+"?").then(function(){

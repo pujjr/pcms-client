@@ -94,5 +94,8 @@ angular.module('pu.assetsmanage.services')
         };
         this.getCollectionTaskCnt = function(appId){
             return RestApi.one("/collection/getCollectionTaskCnt",appId).get();
+        };
+        this.getCollectionApplyTask = function(appId){
+            return RestApi.all("/collection/getCollectionApplyTask").all(appId).getList();
         }
     });

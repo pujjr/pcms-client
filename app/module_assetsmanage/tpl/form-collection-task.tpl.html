@@ -1,0 +1,28 @@
+<div class="data-table-container">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th style="width:100px">序号</th>
+            <th>申请类型</th>
+            <th>申请时间</th>
+            <th>申请人</th>
+            <th>审批时间</th>
+            <th>审批人</th>
+            <th>审批结果</th>
+            <th>审批备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in collectionTaskList">
+            <td>{{$index+1}}</td>
+            <td>{{item.taskType}}</td>
+            <td>{{item.createTime|mysqlDatetime}}</td>
+            <td>{{item.createId}}</td>
+            <td>{{item.approveTime|mysqlDatetime}}</td>
+            <td>{{item.approveId}}</td>
+            <td>{{item.applyStatus}}</td>
+            <td>{{item.approveComment}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

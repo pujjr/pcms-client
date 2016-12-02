@@ -1,26 +1,32 @@
-<div>
-    <div class="form-group">
-        <label for="recoverReason" class="col-sm-2 control-label">委外收车原因：</label>
-        <div class="col-sm-9">
-            <select id="recoverReason" class="form-control" ng-model="applyVo.recoverReason"
-                    ng-options="item.dictDataCode as item.dictDataName for item in recoverReasonList" required>
-                <option value=""></option>
-            </select>
+<div class="row m-t-md">
+    <div class="col-md-11">
+        <div class="form-group form-group-sm">
+            <label for="recoverReason" class="col-sm-2 control-label">委外收车原因：</label>
+            <div class="col-sm-10">
+                <select id="recoverReason" class="form-control" ng-model="applyVo.recoverReason"
+                        ng-options="item.dictDataCode as item.dictDataName for item in recoverReasonList" required>
+                    <option value=""></option>
+                </select>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="recoverUnitId" class="col-sm-2 control-label">收车单位：</label>
-        <div class="col-sm-9">
-            <select id="recoverUnitId" class="form-control" ng-model="applyVo.recoverUnitId"
-                    ng-options="item.id as item.unitName for item in recoverUnitList" required>
-                <option value=""></option>
-            </select>
+    <div class="col-md-11">
+        <div class="form-group form-group-sm">
+            <label for="recoverUnitId" class="col-sm-2 control-label">收车单位：</label>
+            <div class="col-sm-10">
+                <select id="recoverUnitId" class="form-control" ng-model="applyVo.recoverUnitId"
+                        ng-options="item.id as item.unitName for item in recoverUnitList" required>
+                    <option value=""></option>
+                </select>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="recoverComment" class="col-sm-2 control-label">委外收车备注：</label>
-        <div class="col-sm-9">
-            <textarea  type="text" class="form-control" id="recoverComment" ng-model="applyVo.recoverComment" placeholder="委外收车备注"  rows="5" ></textarea>
+    <div class="col-md-11">
+        <div class="form-group form-group-sm">
+            <label for="recoverComment" class="col-sm-2 control-label">委外收车备注：</label>
+            <div class="col-sm-10">
+                <textarea  type="text" class="form-control" id="recoverComment" ng-model="applyVo.recoverComment" placeholder="委外收车备注"  rows="5" ></textarea>
+            </div>
         </div>
     </div>
 </div>
