@@ -114,7 +114,16 @@ angular.module("pu.system.controllers")
                     $scope.parentRuleFinanceAmount = RuleService.queryParentWorkgroupFinanceAmountRule($scope.workgroup.id).$object;
                     $scope.parentRuleDealerList = RuleService.queryParentWorkgroupSysBranchRuleList($scope.workgroup.id).$object;
                     $scope.parentRuleProductList = RuleService.queryParentWorkgroupProductRuleList($scope.workgroup.id).$object;
-
+                    $scope.collectionTaskTypeList =
+                        [
+                            {'taskType':'csrwlx01','taskName':'电话催收'},
+                            {'taskType':'csrwlx02','taskName':'上门催收'},
+                            {'taskType':'csrwlx03','taskName':'委外催收'},
+                            {'taskType':'csrwlx04','taskName':'委外收车'},
+                            {'taskType':'csrwlx05','taskName':'车辆退回'},
+                            {'taskType':'csrwlx06','taskName':'资产处置'},
+                            {'taskType':'csrwlx07','taskName':'诉讼'},
+                        ]
                     $scope.ok = function(){
                         RuleService.saveWorkgroupRule($scope.workgroup.id,$scope.ruleVo).then(function(){
                             modalInstance.close('设置组分配规则成功');

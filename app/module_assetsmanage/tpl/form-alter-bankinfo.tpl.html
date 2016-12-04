@@ -1,0 +1,104 @@
+<fieldset class="scheduler-border" disabled>
+    <legend class="scheduler-border">原还款银行卡信息</legend>
+    <div class="m-t-md">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label for="repayBankId" class="col-sm-4 control-label">默认还款银行：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="repayBankId" ng-model="signContractVo.repayBankId"
+                                 ng-disabled="signEditable==false"
+                                 ng-options="item.id as item.bankName for item in unionPayBankList" required>
+                            <option value="">默认还款银行</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label for="repayAcctName" class="col-sm-4 control-label">默认还款户名：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{signContractVo.repayAcctName}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label for="repayAcctNo" class="col-sm-4 control-label">默认还款账号：</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="repayAcctNo" class="form-control" ng-disabled="signEditable==false" ng-model="signContractVo.repayAcctNo" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">新还款银行卡信息</legend>
+    <div class="m-t-md">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label for="repayBankId" class="col-sm-4 control-label">默认还款银行：</label>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="repayBankId" ng-model="newInfo.repayBankId"
+                                 ng-options="item.id as item.bankName for item in unionPayBankList" required>
+                            <option value="">默认还款银行</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label for="repayAcctName" class="col-sm-4 control-label">默认还款户名：</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{signContractVo.repayAcctName}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label for="repayAcctNo" class="col-sm-4 control-label">默认还款账号：</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="repayAcctNo" class="form-control"  ng-model="newInfo.repayAcctNo" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-2 control-label">变更备注：</label>
+                <div class="col-sm-10">
+                    <textarea  type="text" class="form-control" id="" ng-model="newApplyInfo.alterComment" placeholder="变更备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">历史还款卡号</legend>
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th style="width:100px">序号</th>
+                <th>银行卡号</th>
+                <th>银行名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in bankInfoHisList">
+                <td>{{$index+1}}</td>
+                <td>{{item.repayAcctNo}}</td>
+                <td>{{item.bankName}}</td>
+                <td>
+                    <a href="javascript:" ng-click="setDefault(item)">设置为默认</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</fieldset>

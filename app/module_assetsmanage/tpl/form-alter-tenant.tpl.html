@@ -1,0 +1,181 @@
+<fieldset class="scheduler-border" disabled>
+    <legend class="scheduler-border">原承租人信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码1：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" minlength="11" maxlength="11" verify-mobile ng-required="requiredMap.mobile" ng-model="applyInfo.tenant.mobile" placeholder="手机号码1">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码2：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" minlength="11" maxlength="11" verify-mobile ng-required="requiredMap.mobile2" ng-model="applyInfo.tenant.mobile2" placeholder="手机号码2">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">QQ号码(如有)：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.qq" ng-required="requiredMap.qq" placeholder="QQ号码">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">微信(如有)：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.weixin" ng-required="requiredMap.weixin" placeholder="微信(如有)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">住所权属：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="houseOwner" class="form-control" ng-model="applyInfo.tenant.houseOwner"
+                            ng-disabled="editable==false"
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseOwnerList"  ng-required="requiredMap.houseOwner">
+                        <option value="">请选择住所权属</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">现详细住址：</label>
+                <div class="col-sm-2">
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrProvince"
+                             ng-disabled="editable==false"
+                             ng-options="item.id as item.areaName for item in provinceList"
+                             ng-required="requiredMap.addrProvince"
+                             ng-change="addressCtrl.onTenantProvinceChange()">
+                        <option value="">省</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCity"
+                             ng-disabled="editable==false"
+                             ng-options="item.id as item.areaName for item in tenantCityList"
+                             ng-required="requiredMap.addrCity"
+                             ng-change="addressCtrl.onTenantCityChange()">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="applyInfo.tenant.addrCounty"
+                             ng-disabled="editable==false"
+                             ng-required="requiredMap.addrCounty"
+                             ng-options="item.id as item.areaName for item in tenantCountyList">
+                        <option value="">县</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" >
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-required="requiredMap.addrExt" ng-model="applyInfo.tenant.addrExt" placeholder="详细地址">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">新承租人信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码1：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control"  minlength="11" maxlength="11" verify-mobile ng-required="true" ng-model="newApplyInfo.mobile1" placeholder="手机号码1">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码2：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" minlength="11" maxlength="11" verify-mobile ng-required="true" ng-model="newApplyInfo.mobile2" placeholder="手机号码2">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">QQ号码(如有)：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="newApplyInfo.qq" ng-required="requiredMap.qq" placeholder="QQ号码">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">微信(如有)：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="newApplyInfo.weixin" ng-required="requiredMap.weixin" placeholder="微信(如有)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">住所权属：</label>
+                <div class="col-sm-8 text-left">
+                    <select id="houseOwner" class="form-control" ng-model="newApplyInfo.houseOwner"
+                            ng-options="item.dictDataCode as item.dictDataName for item in houseOwnerList"  ng-required="true">
+                        <option value="">请选择住所权属</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">现详细住址：</label>
+                <div class="col-sm-2">
+                    <select  class="form-control"  ng-model="newApplyInfo.addrProvince"
+                             ng-options="item.id as item.areaName for item in provinceList"
+                             ng-required="true"
+                             ng-change="addressCtrl.onTenantProvinceChange()">
+                        <option value="">省</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="newApplyInfo.addrCity"
+                             ng-options="item.id as item.areaName for item in newTenantCityList"
+                             ng-required="true"
+                             ng-change="addressCtrl.onTenantCityChange()">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" >
+                    <select  class="form-control"  ng-model="newApplyInfo.addrCounty"
+                             ng-required="true"
+                             ng-options="item.id as item.areaName for item in newTenantCountyList">
+                        <option value="">县</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" >
+                    <input type="text" class="form-control"  ng-required="true" ng-model="newApplyInfo.addrExt" placeholder="详细地址">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-2 control-label">变更备注：</label>
+                <div class="col-sm-10">
+                    <textarea  type="text" class="form-control" id="" ng-model="newApplyInfo.alterComment" placeholder="变更备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

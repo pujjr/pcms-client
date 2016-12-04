@@ -1,0 +1,12 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>变更承租人信息</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:700px">
+        <div  ng-include="'module_assetsmanage/tpl/form-alter-tenant.html'"/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-disabled="form.$invalid" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

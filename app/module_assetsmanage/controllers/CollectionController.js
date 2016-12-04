@@ -256,6 +256,14 @@ angular.module("pu.assetsmanage.controllers")
                 toaster.pop('success', '操作提醒', "提交任务成功");
                 $state.go('app.loantask.todolist');
             })
+        };
+        $scope.commitSettleApprove = function(){
+            modal.confirm("操作提醒", "确认提交任务？").then(function () {
+                CollectionService.commitSettleApprove($scope.taskId).then(function () {
+                    toaster.pop('success', '操作提醒', '提交任务成功 ');
+                    $state.go('app.loantask.todolist');
+                })
+            })
         }
     })
 ;

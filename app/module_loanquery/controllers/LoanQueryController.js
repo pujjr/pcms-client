@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.loanquery.controllers")
     .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,
-                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService) {
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService) {
         $scope.initList = function(){
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
@@ -59,7 +59,26 @@ angular.module("pu.loanquery.controllers")
             CollectionService.createRecoverCollectionTask($stateParams.appId).then(function(response){
                 toaster.pop('success', '操作提醒', '提交任务成功');
             })
+        };
+        $scope.doAlterTenantInfo = function(){
+            AlterCustInfoService.doAlterTenantInfo($stateParams.appId,$scope.applyInfo).then(function(response){
+                toaster.pop('success', '操作提醒', '提交变更成功');
+            })
+        };
+        $scope.doAlterColesseeInfo = function(){
+            AlterCustInfoService.doAlterColesseeInfo($stateParams.appId,$scope.applyInfo).then(function(response){
+                toaster.pop('success', '操作提醒', '提交变更成功');
+            })
+        };
+        $scope.doAlterLinkmanInfo = function(){
+            AlterCustInfoService.doAlterLinkmanInfo($stateParams.appId,$scope.applyInfo).then(function(response){
+                toaster.pop('success', '操作提醒', '提交变更成功');
+            })
+        };
+        $scope.doAlterBankInfo = function(){
+            AlterCustInfoService.doAlterBankInfo($stateParams.appId).then(function(response){
+                toaster.pop('success', '操作提醒', '提交变更成功');
+            })
         }
-
     })
 ;

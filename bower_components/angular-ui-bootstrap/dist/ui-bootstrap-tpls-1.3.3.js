@@ -3922,7 +3922,8 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap', 'ui.bootstrap.p
           $animate.enter(backdropDomEl, appendToElement);
           scrollbarPadding = $uibPosition.scrollbarPadding(appendToElement);
           if (scrollbarPadding.heightOverflow && scrollbarPadding.scrollbarWidth) {
-            appendToElement.css({paddingRight: scrollbarPadding.right + 'px'});
+            //去掉这里避免弹出框的CSS不会自动消失
+            //appendToElement.css({paddingRight: scrollbarPadding.right + 'px'});
           }
         }
 

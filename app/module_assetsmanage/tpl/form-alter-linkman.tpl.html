@@ -1,0 +1,79 @@
+<fieldset class="scheduler-border" disabled>
+    <legend class="scheduler-border">原联系人信息</legend>
+    <div class="m-t-md">
+        <div class="row"  ng-repeat="item in applyInfo.linkmans">
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-6 control-label">原联系人{{item.seq | simpleChnUpperCase}}姓名：</label>
+                    <div class="col-sm-6">
+                        <input type="text" ng-disabled="editable==false" class="form-control" ng-model="item.name" ng-required="requiredMap.linkmans_name" placeholder="姓名">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-6 control-label">原联系人{{item.seq | simpleChnUpperCase}}手机号：</label>
+                    <div class="col-sm-6">
+                        <input type="text" ng-disabled="editable==false" class="form-control" ng-model="item.mobile" ng-required="requiredMap.linkmans_mobile" placeholder="手机号">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-6 control-label">原联系人{{item.seq | simpleChnUpperCase}}与本人关系：</label>
+                    <div class="col-sm-6">
+                        <select id="rank" class="form-control" ng-model="item.tenantRelation"
+                                ng-options="item.dictDataCode as item.dictDataName for item in relateList"
+                                ng-required="requiredMap.linkmans_tenantRelation">
+                            <option value="">请选择与本人关系</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">新联系人信息</legend>
+    <div class="m-t-md">
+        <div class="row"  ng-repeat="item in tmpApplyInfo.linkmans">
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-6 control-label">原联系人{{item.seq | simpleChnUpperCase}}姓名：</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" ng-model="item.name" placeholder="姓名">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-6 control-label">原联系人{{item.seq | simpleChnUpperCase}}手机号：</label>
+                    <div class="col-sm-6">
+                        <input type="text"  class="form-control" ng-model="item.mobile"  verify-mobile  placeholder="手机号">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-6 control-label">原联系人{{item.seq | simpleChnUpperCase}}与本人关系：</label>
+                    <div class="col-sm-6">
+                        <select id="rank" class="form-control" ng-model="item.tenantRelation"
+                                ng-options="item.dictDataCode as item.dictDataName for item in relateList">
+                            <option value="">请选择与本人关系</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-2 control-label">变更备注：</label>
+                <div class="col-sm-10">
+                    <textarea  type="text" class="form-control" id="" ng-model="newApplyInfo.alterComment" placeholder="变更备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

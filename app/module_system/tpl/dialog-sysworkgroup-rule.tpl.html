@@ -35,9 +35,26 @@
                 </ui-multiselect>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">逾期天数：</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="beginDay" placeholder="开始逾期天数" ng-model="ruleVo.ruleOverdueDay.beginDay" required>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="endDay" placeholder="截止逾期天数" ng-model="ruleVo.ruleOverdueDay.endDay" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">催收可分单任务：</label>
+            <div class="col-sm-8">
+                <ui-multiselect choices="collectionTaskTypeList" ng-model="ruleVo.ruleCollectioTaskList" track-by="taskType"   show-field="taskName" ng-required="true" placeholder="请选择可分配产品">
+                    <span>{{item.taskName}}</span>
+                </ui-multiselect>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-success"  type="button" ng-click="ok()">确定</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>

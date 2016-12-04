@@ -1,0 +1,69 @@
+<fieldset class="scheduler-border" disabled>
+    <legend class="scheduler-border">原共租人信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" minlength="11" maxlength="11" verify-mobile ng-model="applyInfo.cloessee.mobile" placeholder="手机号码">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">qq号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control"  ng-model="applyInfo.cloessee.qq" placeholder="qq号码">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">微信号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="applyInfo.cloessee.weixin"  placeholder="微信号码">
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">新共租人信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">手机号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" minlength="11" maxlength="11" required verify-mobile ng-model="newApplyInfo.mobile" placeholder="手机号码">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">qq号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control"  ng-model="newApplyInfo.qq" placeholder="qq号码">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">微信号码：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="newApplyInfo.weixin"  placeholder="微信号码">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-2 control-label">变更备注：</label>
+                <div class="col-sm-10">
+                    <textarea  type="text" class="form-control" id="" ng-model="newApplyInfo.alterComment" placeholder="变更备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

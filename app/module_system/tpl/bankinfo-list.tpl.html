@@ -20,8 +20,8 @@
                     <th>银行名称</th>
                     <th>是否启用</th>
                     <th>支持银联代扣</th>
-                    <th>单笔代扣上限</th>
                     <th>银联代码</th>
+                    <th>单笔代扣上限</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -38,7 +38,7 @@
                         <span ng-if="item.supportUnionpay!=true">否</span>
                     </td>
                     <td>{{item.unionpayCode}}</td>
-                    <th>{{item.maxChargeAmount}}</th>
+                    <td>{{item.maxChargeAmount}}</td>
                     <td>
                         <a href="javascript:" ng-click="editBankInfo(item)">编辑</a>
                     </td>

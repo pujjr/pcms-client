@@ -7,16 +7,66 @@
                 </span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doRecoverCollectionTask()"></i>发起委外催收</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doPhoneCollection()"></i>电话催收</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doOtherFee()"></i>其他费用</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doPublicRepay()"></i>对公还款</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doRefund()">退款</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doRemission()">减免</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doSettle()">提前结清</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doPartSettle()">部分提前结清</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="doAlterRepayDate()">变更还款日</button>
-                <button class="btn btn-default m-r-lg btn-sm" type="button"  ng-click="doExtendPeriod()">展期</button>
+                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
+                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
+                         客户信息变更<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doAlterTenantInfo()">承租人信息变更</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doAlterColesseeInfo()">共租人信息变更</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doAlterLinkmanInfo()">联系人信息变更</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doAlterBankInfo()">银行卡信息变更</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
+                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
+                        发起催收<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doRecoverCollectionTask()">发起委外催收</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
+                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
+                        账务处理<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doPublicRepay()">对公还款</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doRefund()">退款</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doRemission()">减免</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doSettle()">提前结清</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doPartSettle()">部分提前结清</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doAlterRepayDate()">变更还款日</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doExtendPeriod()">展期</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doOtherFee()">新增其他费用</a>
+                        </li>
+                    </ul>
+                </div>
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
             </div>
         </header>

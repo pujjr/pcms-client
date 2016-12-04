@@ -97,5 +97,8 @@ angular.module('pu.assetsmanage.services')
         };
         this.getCollectionApplyTask = function(appId){
             return RestApi.all("/collection/getCollectionApplyTask").all(appId).getList();
+        };
+        this.commitSettleApprove = function(taskId){
+            return RestApi.all("/collection/commitSettleApprove").all(taskId).post();
         }
     });
