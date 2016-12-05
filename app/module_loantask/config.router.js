@@ -117,6 +117,12 @@ angular.module('app')
                     templateUrl:'module_otherfee/tpl/otherfee-approve.html',
                     controller:'OtherFeeController'
                 })
+                //保险续保
+                .state('app.loantask.process.insurance-continue', {
+                    url: '/insurance-continue/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/insurance-continue.html',
+                    controller:'InsManageController'
+                })
                 //贷后历史任务查询
                 .state('app.loantask.history', {
                     url: '/history',
