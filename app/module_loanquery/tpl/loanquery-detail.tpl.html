@@ -1,4 +1,4 @@
-<div  class="panel" ng-init="initLoanDetail();editable=false;">
+<div  class="panel" ng-init="initLoanDetail();editable=false;canAddInsurance=false">
     <div class="data-table-container" >
         <header class="data-table-header" style="min-height:72px !important;">
             <div class="data-table-header__label">
@@ -23,6 +23,9 @@
                         </li>
                         <li role="menuitem" >
                             <a href="javascript:" ng-click="doAlterBankInfo()">银行卡信息变更</a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="javascript:" ng-click="doInsuranceContinue()">发起保险续保</a>
                         </li>
                     </ul>
                 </div>
@@ -90,6 +93,12 @@
                 <span>申请资料</span>
             </uib-tab-heading>
             <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
+        </uib-tab>
+        <uib-tab index="3"  select="getInsuranceHisList()">
+            <uib-tab-heading>
+                <span>保险信息</span>
+            </uib-tab-heading>
+            <div  ng-include="'module_assetsmanage/tpl/form-his-insurance.html'"/>
         </uib-tab>
     </uib-tabset>
     <div ui-view=""></div>

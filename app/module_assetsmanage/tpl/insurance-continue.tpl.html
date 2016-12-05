@@ -1,4 +1,4 @@
-<div ng-init="initInsuranceContinue();editable=false">
+<div ng-init="initInsuranceContinue();editable=false; canAddInsurance=true">
         <div id ="check-header" class="check-header">
             <div class="data-table-container" >
                 <header class="data-table-header" style="min-height:72px !important;">
@@ -6,10 +6,7 @@
                         <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
-                        <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
-                        <button class="btn btn-default btn-sm" type="button"  ng-click="applyReAssigneeTask()">申请调配任务</button>
-                        <button class="btn btn-default btn-sm" type="button" ng-disabled="form.$invalid" ng-click="saveCollectionLog()"><i class="fa fa-save m-r-sm"></i>保存催收记录</button>
-                        <button class="btn btn-success btn-sm" type="submit"   ng-click="commitApproveSettleTask()"><i class="fa fa-check m-r-sm"></i>提交结案</button>
+                        <button class="btn btn-success btn-sm" type="submit"   ng-click="commitInsuranceContinue()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
                     </div>
                 </header>
@@ -24,6 +21,7 @@
                         </uib-tab-heading>
                         <form class="container-fluid m-t-md form-horizontal">
                             <div  ng-include="'module_assetsmanage/tpl/form-loanbaseinfo.html'"/>
+                            <div  ng-include="'module_assetsmanage/tpl/form-his-insurance.html'"/>
                         </form>
                     </uib-tab>
                     <uib-tab index="1"  select="queryWorkflowProcessResult(taskId)">

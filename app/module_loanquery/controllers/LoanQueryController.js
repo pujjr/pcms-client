@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.loanquery.controllers")
     .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,
-                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService) {
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService) {
         $scope.initList = function(){
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
@@ -79,6 +79,14 @@ angular.module("pu.loanquery.controllers")
             AlterCustInfoService.doAlterBankInfo($stateParams.appId).then(function(response){
                 toaster.pop('success', '操作提醒', '提交变更成功');
             })
+        };
+        $scope.doInsuranceContinue = function(){
+            InsManageService.createInsuranceContinueTask($stateParams.appId).then(function(response){
+                toaster.pop('success', '操作提醒', '发起任务成功');
+            })
+        };
+        $scope.getInsuranceHisList = function(){
+            $scope.insHisList = InsManageService.getInsuranceHisList($stateParams.appId).$object;
         }
     })
 ;
