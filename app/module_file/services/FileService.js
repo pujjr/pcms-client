@@ -155,5 +155,23 @@ angular.module('pu.file.services')
         };
         this.deleteFile = function(fileId){
             return RestApi.one("/file",fileId).remove();
-        }
+        };
+        this.chooseFile = function(){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop:'false',
+                templateUrl :'module_file/tpl/dialog-file-choose.html',
+                controller:function($scope,RestApi,$q){
+                    var defered = $q.defer();
+                    $scope.item={};
+                    $scope.ok=function(){
+                        modalInstance.close(file.files);
+                    };
+                    $scope.cancel=function(){
+                        modalInstance.dismiss('cancel');
+                    }
+                }
+            });
+            return modalInstance.result;
+        };
     });

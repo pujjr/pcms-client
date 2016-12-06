@@ -1,0 +1,24 @@
+<form name="form" class="form-horizontal" enctype="multipart/form-data">
+    <div class="data-table-container">
+        <header class="data-table-header">
+            <div class="data-table-header__label">
+                <span class="fs-title"></span>
+            </div>
+            <div class="data-table-header__actions">
+                <button class="btn btn-default file-button" type="button">
+                    <i class="glyphicon glyphicon-arrow-up"></i><input type="file" ng-model="file" id="file"  multiple onchange="angular.element(this).scope().fileChange()" />选择文件..
+                </button>
+            </div>
+        </header>
+        <table class="data-table">
+            <tbody>
+            <tr ng-repeat="item in files">
+                <td>{{item.name}}</td>
+                <td>
+                    <a href="javascript:" ng-click="remove($index)">删除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</form>

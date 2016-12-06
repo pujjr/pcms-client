@@ -4,9 +4,11 @@
     </div>
     <div class="modal-body" style="min-height: 500px;">
         <div  ng-include="'module_assetsmanage/tpl/form-add-business-insurance.html'"/>
+        <div><ng-file-choose ng-model="files"></ng-file-choose></div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-disabled="form.$invalid" ng-click="ok()">提交</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+        <button class="btn btn-default" type="button" ng-click="chooseFile()">上传文件</button>
     </div>
 </form>

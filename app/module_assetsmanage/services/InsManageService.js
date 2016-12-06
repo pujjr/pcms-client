@@ -1,5 +1,5 @@
 angular.module('pu.assetsmanage.services')
-    .service("InsManageService",function($window,RestApi,$uibModal,toaster){
+    .service("InsManageService",function($window,RestApi,$uibModal,toaster,ChargeService){
         this.getInsuranceHisList = function(appId){
             return RestApi.all("/insmanage/getInsuranceHisList").all(appId).getList();
         };
@@ -11,7 +11,7 @@ angular.module('pu.assetsmanage.services')
         };
         this.commitInsuranceContinue = function(taskId){
             return RestApi.all("/insmanage/commitInsuranceContinue").all(taskId).post();
-        }
+        };
         this.addBusinessInsurance = function(appId,signId,insType){
             var modalInstance = $uibModal.open({
                 animation: false,
@@ -26,7 +26,7 @@ angular.module('pu.assetsmanage.services')
                     $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
                     $scope.applyVo = {};
                     $scope.ok = function () {
-                        modal.confirm("操作提醒", "确认提交申请").then(function () {
+                        modal.confirm("操作提醒", "确认提交？").then(function () {
                             InsManageService.addInsurance($scope.appId,$scope.signId,$scope.insType, $scope.applyVo).then(function () {
                                 modalInstance.close();
                             })
@@ -48,6 +48,7 @@ angular.module('pu.assetsmanage.services')
                             return;
                         window.open(url);
                     };
+
                 }
             });
             return modalInstance.result;
