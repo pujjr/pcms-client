@@ -1,24 +1,15 @@
-<form name="form" class="form-horizontal" enctype="multipart/form-data">
-    <div class="data-table-container">
-        <header class="data-table-header">
-            <div class="data-table-header__label">
-                <span class="fs-title"></span>
-            </div>
-            <div class="data-table-header__actions">
-                <button class="btn btn-default file-button" type="button">
-                    <i class="glyphicon glyphicon-arrow-up"></i><input type="file" ng-model="file" id="file"  multiple onchange="angular.element(this).scope().fileChange()" />选择文件..
+<form name="form"  enctype="multipart/form-data"  ng-disabled="ngDisabled">
+    <div class="input-group">
+        <input type="text" class="form-control"  ng-required="ngRequired" placeholder="{{placeholder}}" ng-model="fileListName">
+        <span class="input-group-btn">
+               <button class="btn btn-default btn-sm file-button" type="button" ng-if="multiple==true">
+                   <i class="glyphicon glyphicon-arrow-up"></i>
+                   <input type="file" ng-model="file" id="file"  multiple="multiple" onchange="angular.element(this).scope().fileChange()" />选择文件..
+               </button>
+                <button class="btn btn-default btn-sm file-button" type="button" ng-if="multiple==false" >
+                    <i class="glyphicon glyphicon-arrow-up"></i>
+                    <input type="file" ng-model="file" id="file"  onchange="angular.element(this).scope().fileChange()" />选择文件..
                 </button>
-            </div>
-        </header>
-        <table class="data-table">
-            <tbody>
-            <tr ng-repeat="item in files">
-                <td>{{item.name}}</td>
-                <td>
-                    <a href="javascript:" ng-click="remove($index)">删除</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        </span>
     </div>
 </form>

@@ -6,8 +6,9 @@ angular.module('pu.assetsmanage.services')
         this.createInsuranceContinueTask = function(appId){
             return RestApi.all("/insmanage/createInsuranceContinueTask").all(appId).post();
         };
-        this.addInsurance = function(appId,signId,insType,params){
-            return RestApi.all("/insmanage/addInsurance").all(appId).all(signId).all(insType).post(params);
+        this.addInsurance = function(appId,signId,insType,params,files){
+            return RestApi.all("/insmanage/addInsurance").all(appId).all(signId).all(insType).withHttpConfig({transformRequest: angular.identity})
+                .post(files, params, {'Content-Type': undefined});
         };
         this.commitInsuranceContinue = function(taskId){
             return RestApi.all("/insmanage/commitInsuranceContinue").all(taskId).post();
@@ -25,9 +26,14 @@ angular.module('pu.assetsmanage.services')
                     //获取保险公司
                     $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
                     $scope.applyVo = {};
+                    $scope.attachment={};
                     $scope.ok = function () {
                         modal.confirm("操作提醒", "确认提交？").then(function () {
-                            InsManageService.addInsurance($scope.appId,$scope.signId,$scope.insType, $scope.applyVo).then(function () {
+                            var filedata = new FormData();
+                            angular.forEach($scope.attachment.files,function(item){
+                                filedata.append('file', item);
+                            })
+                            InsManageService.addInsurance($scope.appId,$scope.signId,$scope.insType, $scope.applyVo,filedata).then(function () {
                                 modalInstance.close();
                             })
                         })
