@@ -26,6 +26,7 @@ angular.module('app')
                 data.vm = $rootScope.vm;
                 $rootScope.cache.put(fromState.name, data);
                 $rootScope.cache.put("previousStateName", fromState.name);
+                $rootScope.cache.put("previousStateParams",fromParams);
                 if ($rootScope.stateConvertType != "toback") {
                     $rootScope.resetCache();
                 }
@@ -36,11 +37,13 @@ angular.module('app')
             });
             $rootScope.back = function () {
                 var previousStateName = $rootScope.cache.get("previousStateName");
+                var previousStateParams = $rootScope.cache.get("previousStateParams");
                 var data = $rootScope.cache.get(previousStateName);
                 $rootScope.paginationInfo = data.paginationInfo;
                 $rootScope.vm = data.vm;
                 $rootScope.stateConvertType = "toback";
-                $state.go(previousStateName);
+                //$state.go(previousStateName);
+                $state.transitionTo(previousStateName,previousStateParams);
             };
             $rootScope.hasPrimission = function (resourceId) {
                 return AuthService.hasAuthResource(resourceId);

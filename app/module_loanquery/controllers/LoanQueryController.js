@@ -9,6 +9,7 @@ angular.module("pu.loanquery.controllers")
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
         $scope.initLoanDetail = function(){
+            $scope.appId = $stateParams.appId;
             $scope.loanCustApplyInfo = LoanQueryService.getLoanCustApplyInfo($stateParams.appId).$object;
             $scope.loanCustNeedRepayInfo = LoanQueryService.getLoanCustNeedRepayInfo($stateParams.appId).$object;
             $scope.repayPlanList = LoanQueryService.getLoanCustRepayPlanList($stateParams.appId).$object;

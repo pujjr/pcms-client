@@ -38,6 +38,24 @@ angular.module('app')
                     templateUrl:'module_assetsmanage/tpl/collection-handle-approve.html',
                     controller:'CollectionController'
                 })
+                //电话回访
+                .state('app.loantask.process.tel-interview', {
+                    url: '/tel-interview/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/tel-interview.html',
+                    controller:'TelInterviewController'
+                })
+                //保险管理
+                .state('app.insurancemanage',{
+                    abstract:true,
+                    url:'/insurancemanage',
+                    template: '<div ui-view=""></div>'
+                })
+                //保险理赔
+                .state('app.insurancemanage.claims',{
+                    url:'/claims/:appId/:insuranceId/:insuranceType',
+                    templateUrl: 'module_assetsmanage/tpl/insurance-claims.html',
+                    controller:'InsManageController'
+                })
         }
     ]
 );

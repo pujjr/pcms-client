@@ -1,0 +1,36 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增商业保险</h4>
+    </div>
+    <div class="modal-body" style="min-height: 500px;">
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width:100px">序号</th>
+                    <th>保险类型</th>
+                    <th>保险公司</th>
+                    <th>保险单号</th>
+                    <th>保险金额</th>
+                    <th>保险开始日期</th>
+                    <th>保险结束日期</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in item.lyxHisList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.insTypeDesc}}</td>
+                    <td>{{item.insuranceCompanyName}}</td>
+                    <td>{{item.insPolicyNo}}</td>
+                    <td>{{item.insAmount}}</td>
+                    <td>{{item.insStartDate| mysqlDate}}</td>
+                    <td>{{item.insEndDate| mysqlDate}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>
