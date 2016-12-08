@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.loanquery.controllers")
     .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,
-                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService) {
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService) {
         $scope.initList = function(){
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
@@ -88,6 +88,17 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.getInsuranceHisList = function(){
             $scope.insHisList = InsManageService.getInsuranceHisList($stateParams.appId).$object;
-        }
+        };
+        $scope.createTelInterviewTask = function(){
+            TelInterviewService.createTelInterviewTask($stateParams.appId).then(function(response){
+                toaster.pop('success', '操作提醒', '发起任务成功');
+            })
+        };
+        $scope.getTelInterviewHisList = function(){
+            $scope.telInterviewHisList = TelInterviewService.getTelInterviewHisList($scope.appId).$object;
+        };
+        $scope.showTelInterviewDetail = function(item){
+            TelInterviewService.showTelInterviewDetail(item);
+        };
     })
 ;

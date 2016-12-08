@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>回访人</th>
+                <th >回访时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat=" item in telInterviewHisList">
+                <td>{{$index=1}}</td>
+                <td>{{item.createId}}</td>
+                <td>{{item.createTime | mysqlDatetime}}</td>
+                <td>
+                    <a href="javascript:" ng-click="showTelInterviewDetail(item)">查看</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

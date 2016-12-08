@@ -1,0 +1,59 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增电话来电记录</h4>
+    </div>
+    <div class="modal-body" >
+        <div class="form-group">
+            <label for="incomeTime" class="col-sm-3 control-label">来电日期：</label>
+            <div class="col-sm-3">
+                <p class="input-group">
+                    <input type="text" id="incomeTime" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
+                           placeholder="来电日期"
+                           is-open="isopenrefundTime"
+                           ng-model="item.incomeTime" >
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"   ng-click="isopenrefundTime=!isopenrefundTime" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                </p>
+            </div>
+            <label for="reserver1" class="col-sm-2 control-label">来电时间：</label>
+            <div class="col-sm-3">
+                <input type="time"  class="form-control" placeholder="来电时间" ng-model="item.incomeTime" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="incomeType" class="col-sm-3 control-label">来电事项类型：</label>
+            <div class="col-sm-8">
+                <select id="incomeType" class="form-control" ng-model="item.incomeType"
+                        ng-options="item.dictDataCode as item.dictDataName for item in incomeTypeList" required>
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="incomeComment" class="col-sm-3 control-label">来电备注：</label>
+            <div class="col-sm-8">
+                <textarea  type="text" class="form-control" id="incomeComment" ng-model="item.incomeComment" placeholder="来电备注"  rows="5" required ></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="processStatus" class="col-sm-3 control-label">处理情况：</label>
+            <div class="col-sm-8">
+                <select id="processStatus" class="form-control" ng-model="item.processStatus"
+                        ng-options="item.dictDataCode as item.dictDataName for item in processStatusList" required>
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="processComment" class="col-sm-3 control-label">处理备注：</label>
+            <div class="col-sm-8">
+                <textarea  type="text" class="form-control" id="processComment" ng-model="item.processComment" placeholder="处理备注"  rows="5"  ></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-disabled="form.$invalid" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

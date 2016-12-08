@@ -56,6 +56,19 @@ angular.module('app')
                     templateUrl: 'module_assetsmanage/tpl/insurance-claims.html',
                     controller:'InsManageController'
                 })
+                //电话记录
+                .state('app.telincome',{
+                    abstract:true,
+                    url:'/telincome',
+                    template: '<div ui-view=""></div>'
+                })
+                //保险理赔
+                .state('app.telincome.add',{
+                    url:'/add/:appId',
+                    templateUrl: 'module_assetsmanage/tpl/tel-income-add.html',
+                    controller:'TelInterviewController'
+                })
+
         }
     ]
 );

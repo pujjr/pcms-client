@@ -1,0 +1,141 @@
+<div class="panel panel-default">
+    <div class="panel-header">
+        <div class="panel-header-wrapper">
+            <h2 class="panel-header-title">电话回访项目</h2>
+        </div>
+    </div>
+    <div class="data-table-container">
+        <header class="data-table-header">
+            <div class="data-table-header__label">
+            </div>
+            <div class="data-table-header__actions">
+                <button class="btn btn-m btn-default btn-sm" type="button"  ng-click="addTelInterviewResult()"><i class="fa fa-save m-r-sm"></i>保存</button>
+            </div>
+        </header>
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th style="width:60px">序号</th>
+                <th style="width: 300px">回访项目</th>
+                <th style="width: 300px">客户情况</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>回访电话接听情况</td>
+                <td>
+                    <select  class="form-control" id="answerStatus"  ng-model="vo.answerStatus"  >
+                        <option value="">请选择</option>
+                        <option value="1">本人接听</option>`
+                        <option value="2">他人接听</option>`
+                        <option value="3">未接听</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.answerComment">
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>其他接听人</td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.otherAnswer">
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.otherComment">
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>客户是否知道已放款</td>
+                <td>
+                    <select  class="form-control" id="isKnowCharged"  ng-model="vo.isKnowCharged"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" >
+                        <option value="">请选择</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.isKnowChargedComment">
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>客户对融资额、还款时间、月供是否清楚</td>
+                <td>
+                    <select  class="form-control" id="isKnowFinanceInfo"  ng-model="vo.isKnowFinanceInfo"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" >
+                        <option value="">请选择</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.isKnowFinanceComment">
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>是否与客户核对还款卡</td>
+                <td>
+                    <select  class="form-control" id="isCheckRepayAcct"  ng-model="vo.isCheckRepayAcct"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" >
+                        <option value="">请选择</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.isCheckRepayAcctComment">
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>客户是否已提车（新车、二手车必填）</td>
+                <td>
+                    <select  class="form-control" id="isGetCar"  ng-model="vo.isGetCar"  ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" >
+                        <option value="">请选择</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.isGetCarComment">
+                </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>对本次融资满意度及建议</td>
+                <td>
+                    <select  class="form-control" id="isSatis"  ng-model="vo.isSatis">
+                        <option value="">请选择</option>
+                        <option value="1">满意</option>`
+                        <option value="2">一般</option>`
+                        <option value="3">不满意</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.isSatisComment">
+                </td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>是否发送账户信息</td>
+                <td>
+                    <select  class="form-control" id="isSendAcctInfo"  ng-model="vo.isSendAcctInfo"  ng-options="o.key as o.val for o in [{key:true,val:'已发送账户信息'},{key:false,val:'未发送账户信息'}]" >
+                        <option value="">请选择</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.isSendAcctInfoComment">
+                </td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>是否有影响客户还租的异常情况</td>
+                <td>
+                    <select  class="form-control" id="isRepayAbnormal"  ng-model="vo.isRepayAbnormal" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" >
+                        <option value="">请选择</option>`
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="vo.isRepayAbnormalComment">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
