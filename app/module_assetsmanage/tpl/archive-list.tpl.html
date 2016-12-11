@@ -1,0 +1,81 @@
+<div ng-init="initArchiveList()">
+    <div class="panel_main">
+        <div class="panel-header">
+            <div class="panel-header-wrapper">
+                <h2 class="panel-header-title">档案查询</h2>
+            </div>
+        </div>
+        <div class="data-table-container">
+            <header class="data-table-header">
+                <div class="data-table-header__label">
+                    <span class="fs-title"></span>
+                </div>
+                <div class="data-table-header__actions">
+
+                </div>
+            </header>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width:100px">档案编号</th>
+                    <th>申请单号</th>
+                    <th>客户姓名</th>
+                    <th>合同编号</th>
+                    <th>档案状态</th>
+                    <th>归档截止日期</th>
+                    <th>是否延期</th>
+                    <th>延期截止日期</th>
+                    <th>快递公司</th>
+                    <th>快递编号</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in archiveList">
+                    <td>{{item.archiveNo}}</td>
+                    <td>{{item.appId}}</td>
+                    <td>{{item.custName}}</td>
+                    <td>{{item.contractNo}}</td>
+                    <td>{{item.archiveStatusDesc}}<a href="javascript:" ng-if="item.archiveStatus=='dazt05'" ng-click="archiveDelay(item)">(延期)</a></td>
+                    <td>{{item.archiveEndDate}}</td>
+                    <td>
+                        <span ng-if="item.isDelay==true">是</span>
+                        <span ng-if="item.isDelay==false">否</span>
+                    </td>
+                    <td>{{item.delayEndDate}}</td>
+                    <td>{{item.expressCompanyDesc}}</td>
+                    <td>{{item.expressNo}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="has-divider has-divider--dark"></div>
+            <div class="toolbar">
+                <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                    <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                    </div>
+                    <div>
+                        <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                        ng-model="paginationInfo.curPage"
+                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                        last-text="&raquo;">
+                        </uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</div>

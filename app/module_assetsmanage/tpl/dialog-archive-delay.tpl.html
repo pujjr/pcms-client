@@ -1,0 +1,25 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>档案延期</h4>
+    </div>
+    <div class="modal-body" >
+        <div class="form-group">
+            <label for="delayEndDate" class="col-sm-3 control-label">快递公司：</label>
+            <div class="col-sm-8">
+                <p class="input-group">
+                    <input type="text" id="resaleTime" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
+                           placeholder="延期截止日期"
+                           is-open="isopenresaleTime"
+                           ng-model="item.delayEndDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"   ng-click="isopenresaleTime=!isopenresaleTime" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-disabled="form.$invalid" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

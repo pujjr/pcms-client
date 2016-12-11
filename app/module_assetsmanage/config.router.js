@@ -44,6 +44,18 @@ angular.module('app')
                     templateUrl:'module_assetsmanage/tpl/tel-interview.html',
                     controller:'TelInterviewController'
                 })
+                //已放款档案归档
+                .state('app.loantask.process.loan-archive-log', {
+                    url: '/loan-archive-log/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/loan-archive-log.html',
+                    controller:'ArchiveController'
+                })
+                //催收档案归档
+                .state('app.loantask.process.collection-archive-log', {
+                    url: '/collection-archive-log/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/collection-archive-log.html',
+                    controller:'ArchiveController'
+                })
                 //保险管理
                 .state('app.insurancemanage',{
                     abstract:true,
@@ -68,7 +80,24 @@ angular.module('app')
                     templateUrl: 'module_assetsmanage/tpl/tel-income-add.html',
                     controller:'TelInterviewController'
                 })
-
+                //档案管理
+                .state('app.archive',{
+                    abstract:true,
+                    url:'/archive',
+                    template: '<div ui-view=""></div>'
+                })
+                //档案整理
+                .state('app.archive.clear',{
+                    url:'/clear',
+                    templateUrl: 'module_assetsmanage/tpl/archive-clear-list.html',
+                    controller:'ArchiveController'
+                })
+                //档案管理
+                .state('app.archive.list',{
+                    url:'/list',
+                    templateUrl: 'module_assetsmanage/tpl/archive-list.html',
+                    controller:'ArchiveController'
+                })
         }
     ]
 );

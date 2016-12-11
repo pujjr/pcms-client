@@ -1,0 +1,37 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>打印核对归档信息</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:700px">
+        <div class="panel panel-default"  id="print-content">
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th style="width:60px">序号</th>
+                        <th style="width: 350px">资料名称</th>
+                        <th style="width: 300px">份数</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat=" item in archiveTaskDetail">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.fileNameDesc}}</td>
+                        <td>
+                            <input type="number" class="form-control" ng-model="item.fileCnt">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model="item.comment">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-disabled="form.$invalid" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.assetsmanage.controllers")
-    .controller('CollectionController',function ($scope, $rootScope, $state,$stateParams, toaster,modal, $uibModal,CollectionService,LoanQueryService,SysDictService,UnitInfoService) {
+    .controller('CollectionController',function ($scope, $rootScope, $state,$stateParams, toaster,modal, $uibModal,CollectionService,LoanQueryService,SysDictService,UnitInfoService,ArchiveService) {
         $scope.initCollectionData = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;
@@ -263,6 +263,33 @@ angular.module("pu.assetsmanage.controllers")
                     toaster.pop('success', '操作提醒', '提交任务成功 ');
                     $state.go('app.loantask.todolist');
                 })
+            })
+        };
+        $scope.doCreateCollectionArchiveTask = function(){
+            var archiveType="";
+            if($scope.workflowKey == 'DHCS'){
+                archiveType="dhcsgd";
+            }
+            if($scope.workflowKey == 'SMCS'){
+                archiveType="smcsgd";
+            }
+            if($scope.workflowKey == 'WWCS'){
+                archiveType="wwcsgd";
+            }
+            if($scope.workflowKey == 'WWSC'){
+                archiveType="wwscgd";
+            }
+            if($scope.workflowKey == 'CLTH'){
+                archiveType="clthgd";
+            }
+            if($scope.workflowKey == 'ZCCZ'){
+                archiveType="zcccgd";
+            }
+            if($scope.workflowKey == 'SS'){
+                archiveType="ssgd";
+            }
+            ArchiveService.doCreateCollectionArchiveTask($scope.appId,archiveType).then(function(){
+                toaster.pop('success', '操作提醒', '创建任务成功 ');
             })
         }
     })

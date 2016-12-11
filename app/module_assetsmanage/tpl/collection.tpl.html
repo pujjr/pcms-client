@@ -6,6 +6,7 @@
                         <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
+                        <button class="btn btn-default btn-sm" type="button"  ng-click="doCreateCollectionArchiveTask()">催收归档</button>
                         <div class="btn-group" uib-dropdown dropdown-append-to="appendToEl">
                             <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
                                 申请其他催发方式<span class="caret"></span>
