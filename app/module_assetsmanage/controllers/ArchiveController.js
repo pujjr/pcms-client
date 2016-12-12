@@ -103,7 +103,22 @@ angular.module("pu.assetsmanage.controllers")
             $scope.workflowKey = $stateParams.workflowKey;
             $scope.doInitApplyEdit($stateParams.appId);
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
-            $scope.archiveInfo = ArchiveService.getArchiveApplyInfo($scope.businessKey).$object;
+            ArchiveService.getArchiveApplyInfo($scope.businessKey).then(function(response){
+                $scope.archiveInfo = response;
+                angular.forEach($scope.archiveInfo.detailList,function(item){
+                    item.recvFileCnt = item.postFileCnt;
+                })
+            });
+        };
+        $scope.archiveSupply = function(){
+            ArchiveService.archiveSupply().then(function(response){
+                modal.confirm("操作提醒","确认提交？").then(function(){
+                    ArchiveService.applyArchiveSupply($scope.taskId,{'archiveTask':$scope.archiveInfo,'comment':response.comment,'supplyDetailList':response.archiveItemList}).then(function(){
+                        toaster.pop('success', '操作提醒', '提交补充归档资料任务成功');
+                        $state.go('app.loantask.todolist');
+                    })
+                })
+            })
         }
         $scope.initInsuranceContinue = function(){
             $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;

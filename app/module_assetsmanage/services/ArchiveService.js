@@ -17,6 +17,9 @@ angular.module('pu.assetsmanage.services')
         };
         this.saveArchiveDelay = function(params){
             return RestApi.all("/archive/archiveDelay").post(params);
+        };
+        this.applyArchiveSupply = function(taskId,params){
+            return RestApi.all("/archive/applyArchiveSupply").all(taskId).post(params);
         }
         this.printArchiveCheckInfo = function(archiveTaskId){
             var modalInstance = $uibModal.open({
@@ -54,6 +57,30 @@ angular.module('pu.assetsmanage.services')
                         ArchiveService.saveArchivePost($scope.item).then(function(response){
                             modalInstance.close();
                         })
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            return modalInstance.result;
+        };
+        this.archiveSupply = function(){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'false',
+                size:'lg',
+                templateUrl :'module_assetsmanage/tpl/dialog-archive-supply.html',
+                controller:function($scope,RestApi,modal,ArchiveService,SysDictService){
+                    $scope.supplyInfo ={};
+                    $scope.supplyInfo.archiveItemList = [];
+                    SysDictService.queryDictDataByTypeCode("fkwcgd").then(function(response){
+                        angular.forEach(response,function(item){
+                            $scope.supplyInfo.archiveItemList.push({'fileName':item.dictDataCode,'fileNameDesc':item.dictDataName});
+                        })
+                    });
+                    $scope.ok = function(){
+                        modalInstance.close($scope.supplyInfo);
                     }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');

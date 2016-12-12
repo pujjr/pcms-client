@@ -10,7 +10,7 @@
                     <tr>
                         <th style="width:60px">序号</th>
                         <th style="width: 350px">资料名称</th>
-                        <th style="width: 300px">份数</th>
+                        <th style="width: 300px">邮寄份数</th>
                         <th>备注</th>
                     </tr>
                     </thead>
@@ -19,7 +19,7 @@
                         <td>{{$index+1}}</td>
                         <td>{{item.fileNameDesc}}</td>
                         <td>
-                            <input type="number" class="form-control" ng-model="item.fileCnt">
+                            <input type="number" class="form-control" ng-model="item.postFileCnt">
                         </td>
                         <td>
                             <input type="text" class="form-control" ng-model="item.comment">
