@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th style="width:60px">序号</th>
+                <th style="width: 350px">资料名称</th>
+                <th style="width: 300px">邮寄份数</th>
+                <th>备注</th>
+                <th>实际收到份数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat=" item in archiveInfo.detailList">
+                <td>{{$index+1}}</td>
+                <td>{{item.fileNameDesc}}</td>
+                <td>
+                    <span>{{item.postFileCnt}}</span>
+                </td>
+                <td>
+                    <span>{{item.comment}}</span>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="item.recvFileCnt" required >
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

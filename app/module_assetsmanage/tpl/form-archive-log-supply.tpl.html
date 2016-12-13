@@ -1,0 +1,64 @@
+<div class="panel panel-default">
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th style="width:60px">序号</th>
+                <th style="width: 350px">资料名称</th>
+                <th >需补充份数</th>
+                <th >邮寄份数</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat=" item in archiveSupplyInfo.supplyDetailList">
+                <td>{{$index+1}}</td>
+                <td>{{item.fileNameDesc}}</td>
+                <td>
+                    <span>{{item.supplyFileCnt}}</span>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="item.postFileCnt" required >
+                </td>
+                <td>
+                    <span>{{item.comment}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">补充信息</legend>
+    <div class="row  m-t-md">
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label for="expressCompany" class="col-sm-4 control-label">快递公司：</label>
+                <div class="col-sm-8">
+                    <select id="expressCompany" class="form-control" ng-model="archiveSupplyInfo.supplyInfo.expressCompany" required
+                            ng-options="item.dictDataCode as item.dictDataName for item in expressCompanyList">
+                        <option value="">快递公司</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label for="expressCompany" class="col-sm-4 control-label">快递单号：</label>
+                <div class="col-sm-8">
+                    <input type="text"  id="expressNo" class="form-control" ng-model="archiveSupplyInfo.supplyInfo.expressNo" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group form-group-sm">
+                <label for="visitComment" class="col-sm-2 control-label">补充备注：</label>
+                <div class="col-sm-10">
+                    <textarea  type="text" class="form-control" id="visitComment" ng-model="archiveSupplyInfo.supplyInfo.comment" placeholder="补充备注"  rows="5" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
