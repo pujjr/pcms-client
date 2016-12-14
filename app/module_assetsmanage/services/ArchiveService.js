@@ -1,5 +1,5 @@
 angular.module('pu.assetsmanage.services')
-    .service("ArchiveService",function($window,RestApi,$uibModal,toaster){
+    .service("ArchiveService",function($window,RestApi,$uibModal,$q,toaster,modal){
         this.getArchiveToDoTaskList = function(appId,params){
             return RestApi.all("/archive/getArchiveToDoTaskList").getList();
         };
@@ -148,4 +148,48 @@ angular.module('pu.assetsmanage.services')
             });
             return modalInstance.result;
         };
+        this.getArchiveSupplyInfo = function(taskId){
+            return RestApi.one("/archive/getArchiveSupplyInfo",taskId).get();
+        };
+        this.commitArchiveSupplyTask = function(taskId,params){
+            return RestApi.all("/archive/commitArchiveSupplyTask").all(taskId).post(params);
+        };
+        this.commitArchiveLogSupplyTask = function(taskId,params){
+            return RestApi.all("/archive/commitArchiveLogSupplyTask").all(taskId).post(params);
+        };
+        this.reApplyArchiveSupply = function(taskId,params){
+            return RestApi.all("/archive/reApplyArchiveSupply").all(taskId).post(params);
+        };
+        this.getArchiveStoreList = function(appId){
+            return RestApi.all("/archive/getArchiveStoreList").all(appId).getList();
+        };
+        this.applyArchiveBorrow = function(appId,params){
+            return RestApi.all("/archive/applyArchiveBorrow").all(appId).post(params);
+        };
+        this.getArchiveBorrowInfo = function(borrowId){
+            return RestApi.one("/archive/getArchiveBorrowInfo",borrowId).get();
+        };
+        this.commitApproveArchiveBorrowTask = function(taskId,params){
+            return RestApi.all("/archive/commitApproveArchiveBorrowTask").all(taskId).post(params);
+        };
+        this.commitArchiveBorrowReturnTask = function(taskId,params){
+            return RestApi.all("/archive/commitArchiveBorrowReturnTask").all(taskId).post(params);
+        };
+        this.backArchiveBorrowTask = function(taskId,message){
+            return RestApi.all("/archive/backArchiveBorrowTask").all(taskId).post(message);
+        };
+        this.backTask = function(taskId){
+            var defered=$q.defer();
+            modal.prompt('回退原因','请输入回退原因').then(function(response){
+                RestApi.all("/archive/backArchiveBorrowTask").all(taskId).post(response).then(function(response){
+                    defered.resolve();
+                },function(response){
+                    defered.reject();
+                });
+            })
+            return defered.promise;
+        };
+        this.reApplyArchiveBorrow = function(taskId,params){
+            return RestApi.all("/archive/reApplyArchiveBorrow").all(taskId).post(params);
+        }
     });

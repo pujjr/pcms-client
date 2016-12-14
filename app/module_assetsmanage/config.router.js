@@ -56,6 +56,18 @@ angular.module('app')
                     templateUrl:'module_assetsmanage/tpl/collection-archive-log.html',
                     controller:'ArchiveController'
                 })
+                //补充归档资料
+                .state('app.loantask.process.archive-supply', {
+                    url: '/archive-supply/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/archive-supply.html',
+                    controller:'ArchiveController'
+                })
+                //已放款档案归档（补充）
+                .state('app.loantask.process.archive-log-supply', {
+                    url: '/archive-log-supply/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/archive-log-supply.html',
+                    controller:'ArchiveController'
+                })
                 //保险管理
                 .state('app.insurancemanage',{
                     abstract:true,
@@ -96,6 +108,30 @@ angular.module('app')
                 .state('app.archive.list',{
                     url:'/list',
                     templateUrl: 'module_assetsmanage/tpl/archive-list.html',
+                    controller:'ArchiveController'
+                })
+                //申请档案借阅
+                .state('app.archive.borrow',{
+                    url:'/borrow/:appId',
+                    templateUrl: 'module_assetsmanage/tpl/archive-borrow.html',
+                    controller:'ArchiveController'
+                })
+                //申请档案审批
+                .state('app.loantask.process.archive-borrow-approve', {
+                    url: '/archive-borrow-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/archive-borrow-approve.html',
+                    controller:'ArchiveController'
+                })
+                //档案借阅归还
+                .state('app.loantask.process.archive-borrow-return', {
+                    url: '/archive-borrow-return/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/archive-borrow-return.html',
+                    controller:'ArchiveController'
+                })
+                //档案借阅退回
+                .state('app.loantask.process.archive-borrow-back', {
+                    url: '/archive-borrow-back/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/archive-borrow-back.html',
                     controller:'ArchiveController'
                 })
         }

@@ -7,6 +7,7 @@
                 <th style="width: 350px">资料名称</th>
                 <th >需补充份数</th>
                 <th >邮寄份数</th>
+                <th >实际收到份数</th>
                 <th>备注</th>
             </tr>
             </thead>
@@ -18,7 +19,10 @@
                     <span>{{item.supplyFileCnt}}</span>
                 </td>
                 <td>
-                    <input type="text" class="form-control" ng-model="item.postFileCnt" required >
+                    <span>{{item.postFileCnt}}</span>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="item.recvFileCnt" required >
                 </td>
                 <td>
                     <span>{{item.comment}}</span>
@@ -35,7 +39,7 @@
             <div class="form-group form-group-sm">
                 <label for="expressCompany" class="col-sm-4 control-label">快递公司：</label>
                 <div class="col-sm-8">
-                    <select id="expressCompany" class="form-control" ng-model="archiveSupplyInfo.supplyInfo.expressCompany" required
+                    <select id="expressCompany" class="form-control" ng-model="archiveSupplyInfo.supplyInfo.expressCompany" required disabled
                             ng-options="item.dictDataCode as item.dictDataName for item in expressCompanyList">
                         <option value="">快递公司</option>
                     </select>
@@ -46,7 +50,7 @@
             <div class="form-group form-group-sm">
                 <label for="expressCompany" class="col-sm-4 control-label">快递单号：</label>
                 <div class="col-sm-8">
-                    <input type="text"  id="expressNo" class="form-control" ng-model="archiveSupplyInfo.supplyInfo.expressNo" required>
+                    <input type="text"  id="expressNo" class="form-control" ng-model="archiveSupplyInfo.supplyInfo.expressNo" required disabled>
                 </div>
             </div>
         </div>

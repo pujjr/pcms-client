@@ -108,12 +108,14 @@ angular.module('pu.utils.directives')
                             $scope.reInit();
                         });
                     })
-                }
+                };
+                $scope.appendToEl = angular.element(document.querySelector('#img-container'));
                 $scope.zoomInImage = function(item,fileList){
                     var modalInstance = $uibModal.open({
                         animation: true,
-                        backdrop:'false',
+                        backdrop:'static',
                         size:'lg',
+                        appendTo:$scope.appendToEl,
                         resolve:{
                             item:function(){
                                 return item;

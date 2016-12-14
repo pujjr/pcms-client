@@ -1,0 +1,110 @@
+<form class="container-fluid form-horizontal">
+    <fieldset class="scheduler-border" disabled>
+        <legend class="scheduler-border">借阅信息</legend>
+        <div class="row  m-t-md ">
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-4 control-label">借阅人：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control"  ng-model="applyBorrwoVo.borrowInfo.borrowId" required disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-4 control-label">借阅部门：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control"  ng-model="applyBorrwoVo.borrowInfo.borrowDept" required disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-4 control-label">借阅原因：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control"  ng-model="applyBorrwoVo.borrowInfo.borrowReason" required disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-4 control-label">借阅开始日期：</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="text" id="borrowStartDate" class="form-control" uib-datepicker-popup  is-open="isBorrowStartDate" disabled ng-model="applyBorrwoVo.borrowInfo.borrowStartDate" required>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"  ng-click="isBorrowStartDate=!isBorrowStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-4 control-label">借阅截止日期：</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="text" id="borrowEndDate" class="form-control" uib-datepicker-popup  is-open="isBorrowEndDate" disabled ng-model="applyBorrwoVo.borrowInfo.borrowEndDate" required>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"  ng-click="isBorrowEndDate=!isBorrowEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label">借阅备注：</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control"  ng-model="applyBorrwoVo.borrowInfo.borrowComment" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div  ng-include="'module_loantask/tpl/form-approve-result.html'"/>
+    <div class="panel panel-default">
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width:60px">序号</th>
+                    <th>资料名称</th>
+                    <th>借阅份数</th>
+                    <th>资料类型</th>
+                    <th>备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in applyBorrwoVo.detailList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.fileNameDesc}}</td>
+                    <td>
+                        <div class="form-group form-group-sm m-t-sm">
+                                <input type="number" class="form-control" min="0" verify-borrow-cnt="item.remainFileCnt" ng-model="item.borrowCnt" disabled >
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group form-group-sm m-t-sm">
+                            <select  class="form-control" id="fileType" ng-model="item.fileType"
+                                     ng-options="item.dictDataCode as item.dictDataName for item in fileTypeList" disabled >
+                                <option value="">请选择借阅类型</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group form-group-sm m-t-sm">
+                            <input type="text" class="form-control" ng-model="item.comment" disabled >
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</form>

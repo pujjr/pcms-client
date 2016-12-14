@@ -137,6 +137,139 @@ angular.module("pu.assetsmanage.controllers")
                     $state.go('app.loantask.todolist');
                 })
             })
+        };
+        $scope.initArchiveSupply = function(){
+            $scope.procInstId = $stateParams.procInstId;
+            $scope.taskId = $stateParams.taskId;
+            $scope.businessKey = $stateParams.businessKey;
+            $scope.appId = $stateParams.appId;
+            $scope.workflowKey = $stateParams.workflowKey;
+            $scope.doInitApplyEdit($stateParams.appId);
+            $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
+            $scope.expressCompanyList = SysDictService.queryDictDataByTypeCode("kdgs").$object;
+            $scope.archiveSupplyInfo = ArchiveService.getArchiveSupplyInfo($scope.taskId).$object;
+        };
+        $scope.commitArchiveSupplyTask = function(){
+            modal.confirm("操作提醒","确认提交任务").then(function(){
+                ArchiveService.commitArchiveSupplyTask($scope.taskId,$scope.archiveSupplyInfo).then(function(){
+                    toaster.pop('success', '操作提醒', '提交任务成功 ');
+                    $state.go('app.loantask.todolist');
+                })
+            })
+        };
+        $scope.commitArchiveLogSupplyTask = function(){
+            modal.confirm("操作提醒","确认提交任务").then(function(){
+                ArchiveService.commitArchiveLogSupplyTask($scope.taskId,$scope.archiveSupplyInfo).then(function(){
+                    toaster.pop('success', '操作提醒', '提交任务成功 ');
+                    $state.go('app.loantask.todolist');
+                })
+            })
+        };
+        $scope.reArchiveSupply = function(){
+            ArchiveService.archiveSupply().then(function(response){
+                modal.confirm("操作提醒","确认提交？").then(function(){
+                    ArchiveService.reApplyArchiveSupply($scope.taskId,{'oldSupplyVo':$scope.archiveSupplyInfo,'comment':response.comment,'supplyDetailList':response.archiveItemList}).then(function(){
+                        toaster.pop('success', '操作提醒', '提交补充归档资料任务成功');
+                        $state.go('app.loantask.todolist');
+                    })
+                })
+            })
+        };
+        $scope.initArchiveBorrow = function(){
+            $scope.appId = $stateParams.appId;
+            $scope.applyBorrwoVo = {};
+            $scope.applyBorrwoVo.borrowInfo = {};
+            $scope.applyBorrwoVo.detailList = ArchiveService.getArchiveStoreList($scope.appId).$object;
+            $scope.fileTypeList = SysDictService.queryDictDataByTypeCode("jyzllx").$object;
+        };
+        $scope.applyArchiveBorrow = function(){
+            modal.confirm("操作提醒","确认提交？").then(function(response){
+                ArchiveService.applyArchiveBorrow($scope.appId,$scope.applyBorrwoVo).then(function(){
+                    toaster.pop('success', '操作提醒', '提交申请成功');
+                    $state.go("app.loanquery.list");
+                })
+            })
+        };
+        $scope.initArchiveBorrowApprove = function(){
+            $scope.procInstId = $stateParams.procInstId;
+            $scope.taskId = $stateParams.taskId;
+            $scope.businessKey = $stateParams.businessKey;
+            $scope.appId = $stateParams.appId;
+            $scope.workflowKey = $stateParams.workflowKey;
+            $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
+            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
+            $scope.fileTypeList = SysDictService.queryDictDataByTypeCode("jyzllx").$object;
+            $scope.approveVo={};
+            $scope.applyBorrwoVo = ArchiveService.getArchiveBorrowInfo($scope.businessKey).$object;
+        };
+
+        $scope.commitApproveArchiveBorrowTask = function(){
+            modal.confirm("操作提醒","确认提交？").then(function(response){
+                ArchiveService.commitApproveArchiveBorrowTask($scope.taskId,$scope.approveVo).then(function(){
+                    toaster.pop('success', '操作提醒', '提交任务成功');
+                    $state.go('app.loantask.todolist');
+                })
+            })
+        };
+        $scope.initArchiveBorrowReturn = function(){
+            $scope.procInstId = $stateParams.procInstId;
+            $scope.taskId = $stateParams.taskId;
+            $scope.businessKey = $stateParams.businessKey;
+            $scope.appId = $stateParams.appId;
+            $scope.workflowKey = $stateParams.workflowKey;
+            $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
+            $scope.fileTypeList = SysDictService.queryDictDataByTypeCode("jyzllx").$object;
+            $scope.applyBorrwoVo = ArchiveService.getArchiveBorrowInfo($scope.businessKey).$object;
+        };
+        $scope.commitArchiveBorrowReturnTask = function(){
+            modal.confirm("操作提醒","确认提交？").then(function(response){
+                ArchiveService.commitArchiveBorrowReturnTask($scope.taskId,$scope.applyBorrwoVo).then(function(){
+                    toaster.pop('success', '操作提醒', '提交任务成功');
+                    $state.go('app.loantask.todolist');
+                })
+            })
+        };
+        $scope.initArchiveBorrowBack = function(){
+            $scope.procInstId = $stateParams.procInstId;
+            $scope.taskId = $stateParams.taskId;
+            $scope.businessKey = $stateParams.businessKey;
+            $scope.appId = $stateParams.appId;
+            $scope.workflowKey = $stateParams.workflowKey;
+            $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
+            $scope.fileTypeList = SysDictService.queryDictDataByTypeCode("jyzllx").$object;
+            ArchiveService.getArchiveStoreList($scope.appId).then(function(response){
+                var detailList = response;
+                ArchiveService.getArchiveBorrowInfo($scope.businessKey).then(function(response){
+                    $scope.applyBorrwoVo = response;
+                    var applyDetailList = response.detailList;
+                    angular.forEach(detailList,function(item){
+                        for(var i =0 ; i<applyDetailList.length; i++){
+                            if(item.archiveType == applyDetailList[i].archiveType && item.fileName == applyDetailList[i].fileName){
+                                item.borrowCnt = applyDetailList[i].borrowCnt;
+                                item.comment = applyDetailList[i].comment;
+                                item.fileType = applyDetailList[i].fileType;
+                                break;
+                            }
+                        }
+                    });
+                    $scope.applyBorrwoVo.detailList = detailList;
+                });
+            });
+        };
+        $scope.backArchiveBorrowTask = function(){
+            ArchiveService.backTask($scope.taskId).then(function(){
+                toaster.pop('success', '操作提醒', '退回任务成功');
+                $state.go('app.loantask.todolist');
+            })
+        };
+        $scope.reApplyArchiveBorrow = function(){
+            modal.confirm("操作提醒","确认提交？").then(function(response){
+                ArchiveService.reApplyArchiveBorrow($scope.taskId,$scope.applyBorrwoVo).then(function(){
+                    toaster.pop('success', '操作提醒', '提交任务成功');
+                    $state.go('app.loantask.todolist');
+                })
+            })
         }
+
     })
 ;
