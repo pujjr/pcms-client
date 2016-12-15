@@ -63,6 +63,12 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-approve.html',
                     controller:'ApproveController'
                 })
+                //审贷会
+                .state('app.task.process.countersign-approve',{
+                    url:'/countersign-approve/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-countersign-approve.html',
+                    controller:'ApproveController'
+                })
                 //签约
                 .state('app.task.process.sign',{
                     url:'/sign/:procInstId/:taskId/:businessKey',

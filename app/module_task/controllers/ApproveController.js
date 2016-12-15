@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('ApproveController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService) {
+    .controller('ApproveController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService,modal) {
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
         $scope.initApprove = function(){
@@ -19,5 +19,21 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒','提交审批任务成功')
             })
         };
+        $scope.initCounterSignApprove = function(){
+            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
+            $scope.approveList = SysDictService.queryDictDataByTypeCode("sdhjg").$object;
+            $scope.queryFraudInnerResult($stateParams.businessKey);
+            $scope.approveVo = {};
+        };
+        $scope.commitCounterSignApprove = function(){
+            modal.confirm("操作提醒","确认提交?").then(function(){
+                TaskService.commitCounterSignApprove($scope.taskId,$scope.approveVo).then(function(){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交审批任务成功')
+                })
+            })
+        }
+
     })
 ;

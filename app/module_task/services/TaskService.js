@@ -142,5 +142,8 @@ angular.module('pu.task.services')
         this.commitLoanTask = function(taskId,appId){
             return RestApi.all("/task/commitLoanTask").all(taskId).all(appId).post();
         };
+        this.commitCounterSignApprove = function(taskId,params){
+            return RestApi.all("/task/commitCounterSignApprove").all(taskId).post(params);
+        }
 
     });
