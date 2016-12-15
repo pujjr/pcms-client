@@ -493,6 +493,8 @@ angular.module("pu.apply.controllers")
             $scope.driverLicenseTypeList = SysDictService.queryDictDataByTypeCode("jzlx").$object;
             //共租人类型
             $scope.cloesseeTypeList = SysDictService.queryDictDataByTypeCode("gzrlx").$object;
+            //车辆类型
+            $scope.carTypeList = SysDictService.queryDictDataByTypeCode("cllx").$object;
         }
         //选择车辆
         $scope.selectCar = function(item){

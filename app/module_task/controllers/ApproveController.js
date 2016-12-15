@@ -10,6 +10,7 @@ angular.module("pu.task.controllers")
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.approveList = SysDictService.queryDictDataByTypeCode("sprwjglx").$object;
+            $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.approveVo = {};
         };
         $scope.commitApproveTask = function(){

@@ -14,5 +14,8 @@ angular.module('pu.query.services')
         };
         this.getWorkflowProcessResultByProcInstId = function(procInstId){
             return RestApi.all("/query/getWorkflowProcessResultByProcInstId").all(procInstId).getList();
+        };
+        this.queryFraudInnerResult = function(appId){
+            return RestApi.all("/query/queryFraudInnerResult").all(appId).getList();
         }
     });

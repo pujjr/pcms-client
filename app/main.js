@@ -56,4 +56,8 @@ angular.module("app")
         };
         $scope.screenHeight = $window.innerHeight;
 
+        //公共方法
+        $scope.queryFraudInnerResult = function(appId){
+            $scope.fraudInnerResultList = QueryService.queryFraudInnerResult(appId).$object;
+        }
     })

@@ -115,7 +115,6 @@ angular.module('pu.utils.directives')
                         animation: true,
                         backdrop:'static',
                         size:'lg',
-                        appendTo:$scope.appendToEl,
                         resolve:{
                             item:function(){
                                 return item;
