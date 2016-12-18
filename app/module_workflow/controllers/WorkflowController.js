@@ -174,6 +174,7 @@ angular.module("pu.workflow.controllers")
                 controller:function($scope,RestApi,WorkflowService){
                     $scope.node = node;
                     $scope.nodeParam = WorkflowService.queryWorkflowNodeParam(node.workflowVersionId,node.nodeId,node.nodeType).$object;
+                    $scope.counterSignModeList = SysDictService.queryDictDataByTypeCode("hqfs").$object;
                     $scope.recommitModes = SysDictService.queryDictDataByTypeCode("cxtjfs").$object;
                     $scope.userTaskNodes = WorkflowService.queryProcessUserTaskNodes(node.workflowVersionId).$object;
                     $scope.cancel = function () {

@@ -30,13 +30,28 @@
                         <span>回退原因：{{item.message}}</span>
                     </div>
                     <div ng-switch-when="COMMIT">
-                        <span>提交方式：提交</span>
-                        <br/>
-                        <span>处理结果：{{item.processResult}}</span>
-                        <br>
-                        <span>处理意见：{{item.processDesc}}</span>
-                        <br>
-                        <span>备注：{{item.comment}}</span>
+                        <div ng-if="item.multiAct==true">
+                            <div ng-repeat="itemDetail in item.multiTask">
+                                <span>提交方式：提交</span>
+                                <br/>
+                                <span>提交人：{{itemDetail.processUserid}}</span>
+                                <br/>
+                                <span>处理结果：{{itemDetail.processResult}}</span>
+                                <br>
+                                <span>处理意见：{{itemDetail.processDesc}}</span>
+                                <br>
+                                <span>备注：{{itemDetail.comment}}</span>
+                            </div>
+                        </div>
+                        <div ng-if="item.multiAct==false">
+                            <span>提交方式：提交</span>
+                            <br/>
+                            <span>处理结果：{{item.processResult}}</span>
+                            <br>
+                            <span>处理意见：{{item.processDesc}}</span>
+                            <br>
+                            <span>备注：{{item.comment}}</span>
+                        </div>
                     </div>
                 </div>
             </td>

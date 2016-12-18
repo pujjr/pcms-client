@@ -86,11 +86,36 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="backNodeId" class="col-sm-3 control-label">是否多实例节点：</label>
+                            <label for="backNodeId" class="col-sm-3 control-label">是否会签节点：</label>
                             <div class="col-sm-9">
                                 <select  class="form-control" id="isMulti"  ng-model="nodeParam.multi" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
                                     <option value="">是否启用</option>`
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="nodeParam.multi==true">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="multiPassMode" class="col-sm-3 control-label">会签通过模式：</label>
+                            <div class="col-sm-9">
+                                <select  class="form-control" id="multiPassMode"  ng-model="nodeParam.multiPassMode" ng-options="l.dictDataCode as l.dictDataName for l in counterSignModeList" required>
+                                    <option value="">会签通过模式</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="nodeParam.multi==true">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="multiPassCond" class="col-sm-3 control-label">会签通过条件：</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">&gt;</span>
+                                    <input type="text"  id="multiPassCond" class="form-control" ng-model="nodeParam.multiPassCond" required>
+                                </div>
                             </div>
                         </div>
                     </div>
