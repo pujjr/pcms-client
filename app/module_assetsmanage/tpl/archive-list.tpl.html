@@ -27,6 +27,7 @@
                     <th>延期截止日期</th>
                     <th>快递公司</th>
                     <th>快递编号</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,9 @@
                     <td>{{item.delayEndDate}}</td>
                     <td>{{item.expressCompanyDesc}}</td>
                     <td>{{item.expressNo}}</td>
+                    <td>
+                        <a href="javascript:" ui-sref="app.archive.borrow({appId:item.appId})">档案借阅</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
