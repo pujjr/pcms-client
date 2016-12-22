@@ -5,9 +5,10 @@
                 <thead>
                 <tr>
                     <th>手机号码</th>
-                    <th>短信内容</th>
+                    <th style="width: 60%">短信内容</th>
                     <th>发送时间</th>
                     <th>发送结果</th>
+                    <th>重发次数</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -15,10 +16,11 @@
                 <tr ng-repeat="item in historyList">
                     <td>{{item.mobile}}</td>
                     <td>{{item.content}}</td>
-                    <td>{{item.sendTime}}</td>
+                    <td>{{item.sendTime |mysqlDatetime}}</td>
                     <td>{{item.sendStatus}}</td>
+                    <td>{{item.resendCnt}}</td>
                     <td>
-                        <a href="javascript:" ng-click="editGpsSupplier(item)">编辑</a>
+                        <a href="javascript:" ng-click="resend(item)">重发</a>
                     </td>
                 </tr>
                 </tbody>

@@ -1,0 +1,36 @@
+<form name="form" class="form-horizontal" draggable>
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>发送短信</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="tplKey" class="col-sm-3 control-label">短信模板：</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-model="tplKey">
+                    <option  value="">请选择模板</option>
+                    <option value="overdue1to7">逾期1-7天</option>
+                    <option value="overdue8to15">逾期8-15</option>
+                    <option value="overdue16to30">逾期16-30</option>
+                    <option value="overdue30up">逾期30天以上</option>
+                    <option value="custom">自定义</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="mobile" class="col-sm-3 control-label">短信号码：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="mobile" placeholder="短信号码" ng-model="messageVo.mobile" required verify-mobile>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="message" class="col-sm-3 control-label">短信内容：</label>
+            <div class="col-sm-8">
+                <textarea type="text" class="form-control" id="message" placeholder="短信内容" ng-model="messageVo.message" rows="5" required/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-disabled="form.$invalid"  ng-click="ok()">发送</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

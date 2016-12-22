@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.loanquery.controllers")
     .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,
-                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService) {
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService,SmsService) {
         $scope.initList = function(){
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
@@ -100,5 +100,8 @@ angular.module("pu.loanquery.controllers")
         $scope.showTelInterviewDetail = function(item){
             TelInterviewService.showTelInterviewDetail(item);
         };
+        $scope.sendSms = function(appId){
+            SmsService.sendSms(appId);
+        }
     })
 ;
