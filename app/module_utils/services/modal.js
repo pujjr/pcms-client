@@ -3,7 +3,7 @@ angular.module('pu.utils.services')
         return {
             print: function (scope, templateUrl, size, actionButtons, wintype) {
                 var $uibModalInstance = $uibModal.open({
-                    animation: true,
+                    animation: false,
                     scope: scope,
                     backdrop: true,
                     templateUrl: 'module_utils/tpl/dialog-print.html',
@@ -26,7 +26,7 @@ angular.module('pu.utils.services')
             },
             error: function (errmsg) {
                 var $uibModalInstance = $uibModal.open({
-                    animation: true,
+                    animation: false,
                     backdrop: true,
                     resolve: {
                         error: function () {
@@ -51,7 +51,7 @@ angular.module('pu.utils.services')
             },
             info: function (title, info) {
                 var $uibModalInstance = $uibModal.open({
-                    animation: true,
+                    animation: false,
                     backdrop: true,
                     resolve: {
                         tips: function () {
@@ -77,7 +77,7 @@ angular.module('pu.utils.services')
             },
             confirm: function (title, info) {
                 var $uibModalInstance = $uibModal.open({
-                    animation: true,
+                    animation: false,
                     backdrop: true,
                     resolve: {
                         tips: function () {
@@ -103,7 +103,7 @@ angular.module('pu.utils.services')
             },
             prompt:function(title,placeholder){
                 var $uibModalInstance=$uibModal.open({
-                    animation: true,
+                    animation: false,
                     backdrop:'false',
                     resolve: {
                         title: function () {
@@ -130,7 +130,7 @@ angular.module('pu.utils.services')
             },
             show:function(templateUrl,indata){
                 var $uibModalInstance=$uibModal.open({
-                    animation: true,
+                    animation: false,
                     backdrop:'false',
                     resolve: {
                         indata: function () {

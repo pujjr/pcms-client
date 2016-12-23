@@ -38,6 +38,7 @@
                                 </li>
                             </ul>
                         </div>
+                        <button class="btn btn-default btn-sm" type="button" ng-click="sendSms(appId)">发送短信</button>
                         <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="applyReAssigneeTask()">申请调配任务</button>
                         <button class="btn btn-default btn-sm" type="button" ng-disabled="form.$invalid" ng-click="saveCollectionLog()"><i class="fa fa-save m-r-sm"></i>保存催收记录</button>

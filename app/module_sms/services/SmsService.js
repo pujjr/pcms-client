@@ -24,8 +24,8 @@ angular.module('pu.sms.services')
         this.sendSms = function(appId) {
             var modalInstance = $uibModal.open({
                 animation: false,
-                backdrop: 'static',
-                size: 'lg',
+                backdrop: false,
+                size: 'md',
                 templateUrl: 'module_sms/tpl/dialog-sendsms.html',
                 controller: function ($scope, RestApi, ToolsService, modal,SmsService,toaster) {
                     $scope.appId = appId;
@@ -35,7 +35,7 @@ angular.module('pu.sms.services')
                         $scope.messageVo = SmsService.genPostLoanSms($scope.tplKey,$scope.appId).$object;
                     });
                     $scope.ok = function () {
-                        modal.confirm("操作提醒", "确认发送").then(function () {
+                        modal.confirm("操作提醒", "确认发送？").then(function () {
                             SmsService.sendMessage($scope.appId, $scope.tplKey,$scope.messageVo).then(function () {
                                 modalInstance.close();
                             })

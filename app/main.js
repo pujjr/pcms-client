@@ -1,5 +1,5 @@
 angular.module("app")
-    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService) {
+    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService,SmsService) {
 
         var isIE = !!navigator.userAgent.match(/MSIE/i);
         isIE && angular.element($window.document.body).addClass('ie');
@@ -59,5 +59,9 @@ angular.module("app")
         //公共方法
         $scope.queryFraudInnerResult = function(appId){
             $scope.fraudInnerResultList = QueryService.queryFraudInnerResult(appId).$object;
+        }
+        //公共方法-发送短信
+        $scope.sendSms = function(appId){
+            SmsService.sendSms(appId);
         }
     })

@@ -7,7 +7,7 @@
                 </span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn btn-info btn-sm" type="button"  ui-sref="app.query.apply.detail({appId:applyInfo.appId})"><i class="fa fa-file-text m-r-sm"></i>申请详细信息</button>
+                <button class="btn btn-default btn-sm" type="button" ng-click="sendSms(applyInfo.appId)">发送短信</button>
                 <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
                     <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
                          客户信息变更<span class="caret"></span>

@@ -11,9 +11,9 @@ angular.module("pu.sms.controllers")
             $scope.historyList= SmsService.getSmsHistoryList().$object;
         };
         $scope.resend = function(item){
-            modal.confirm("操作提醒","确定重发？").then(function(response){
+            modal.confirm("操作提醒","确认重发？").then(function(response){
                 SmsService.resend(item.id).then(function(){
-                    toaster.pop('success', '操作提醒', "发送短信成功");
+                    toaster.pop('success', '操作提醒', "重发短信成功");
                     $scope.getSmsHistoryList();
                 })
             })
