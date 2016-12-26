@@ -11,6 +11,8 @@ angular.module("pu.task.controllers")
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.loanConditionList = SysDictService.queryDictDataByTypeCode("fktj").$object;
             $scope.checkList = SysDictService.queryDictDataByTypeCode("shrwjglx").$object;
+            $scope.checkRejectReasonList = SysDictService.queryDictDataByTypeCode("shjjyy").$object;
+            $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.checkVo = {};
         };

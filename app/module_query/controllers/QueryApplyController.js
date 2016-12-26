@@ -13,6 +13,9 @@ angular.module("pu.query.controllers")
         $scope.queryApplyList = function(){
             $scope.applyList= QueryService.queryApplyList($scope.queryParam).$object;
         };
+        $scope.pageChanged = function(){
+            $scope.queryApplyList();
+        }
         $scope.initApplyDetail = function(){
             $scope.doInitApplyEdit($stateParams.appId);
             $scope.nodeMap = QueryService.queryApplyRunPathNodeMap($stateParams.appId).$object;

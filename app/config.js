@@ -1,10 +1,4 @@
 angular.module('app')
-    .constant(
-        'BaseUrl','http://127.0.0.1:8080/pcms-web'
-    )
-    .constant(
-        'WorkflowUrl','/modeler.html?modelId='
-    )
     .run(
     ['$rootScope', '$state', '$stateParams', '$cacheFactory', 'AuthService',
         function ($rootScope, $state, $stateParams, $cacheFactory, AuthService,QueryService) {
@@ -14,7 +8,7 @@ angular.module('app')
             $rootScope.resetCache = function () {
                 $rootScope.paginationInfo = {
                     totalItem: 0,
-                    pageSize: 20,
+                    pageSize: 10,
                     curPage: 1,
                     maxSize: 5
                 };
@@ -51,5 +45,12 @@ angular.module('app')
             $rootScope.resetCache();
             // AuthService.initUserInfo();
         }
-    ]
-)
+    ])
+    .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        //cfpLoadingBarProvider.includeSpinner = true;
+        //cfpLoadingBarProvider.includeBar = true;
+        //cfpLoadingBarProvider.spinnerTemplate = "<span>Loading...</span>";
+    }])
+    .value('cgBusyDefaults',{
+        message:'正在加载'
+    });

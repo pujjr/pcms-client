@@ -13,6 +13,8 @@ angular.module('app', [
     'toaster',
     'jcs-autoValidate',
     'angularFileUpload',
+    'angular-loading-bar',
+    'cgBusy',
     'ui.calendar',
     'pu.system',
     'pu.access',

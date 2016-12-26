@@ -19,8 +19,8 @@
                 </uib-tab-heading>
                 <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
             </uib-tab>
-            <uib-tab index="1" select="printContract()">
-                <uib-tab-heading>
+            <uib-tab index="1" select="printContract()" disable="signContractVo.contractNo ==null">
+                <uib-tab-heading >
                     <span>打印合同</span>
                 </uib-tab-heading>
                 <div ng-include="'module_task/tpl/form-apply-contract-print.html'"></div>

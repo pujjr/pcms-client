@@ -2,7 +2,7 @@
     <i ng-class="$getItemIcon(treeData)"   ng-click="$itemExpand(treeData)"></i>
     <span>
         <input type="checkbox" ng-if="canChecked" ng-model="treeData.checked" ng-change="$itemChecked(treeData)"/>
-        <span ng-dblclick="$itemExpand(treeData)">{{treeData[nameField]}}</span>
+        <span ng-dblclick="$itemExpand(treeData)" ng-bind-html="treeData[nameField]|trustHtml"></span>
     </span>
 </div>
 

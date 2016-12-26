@@ -448,7 +448,10 @@ angular.module("pu.apply.controllers")
             if(model=="add"){
                 $scope.productList = ProductService.queryBranchEnableProductList().$object;
             }else{
-                $scope.productList = ProductService.queryBranchEnableProductListByBranchCode($scope.applyInfo.createBranchCode).$object;
+                //编辑的时候不让修改产品
+                //$scope.productList = ProductService.queryBranchEnableProductListByBranchCode($scope.applyInfo.createBranchCode).$object;
+                $scope.productList = [];
+                $scope.productList.push($scope.applyInfo.product);
             }
 
             //可选还款方式可选项
@@ -730,7 +733,6 @@ angular.module("pu.apply.controllers")
             ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
                 console.log(response.appId);
                 $scope.refreshApplyInfoFromServer(response.appId);
-                $scope.form.$dirty=false;
                 toaster.pop('success', '操作提醒','保存申请信息成功');
             });
         };

@@ -39,7 +39,7 @@ angular.module("pu.task.controllers")
             $scope.contractList = TaskService.getContractInfoListByAppId($stateParams.businessKey).$object;
         };
         $scope.generateContract = function(contractKey){
-            TaskService.getContractOSSKey($stateParams.businessKey,contractKey).then(function(response){
+            $scope.processGenContract = TaskService.getContractOSSKey($stateParams.businessKey,contractKey).then(function(response){
                 $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
             })
         }

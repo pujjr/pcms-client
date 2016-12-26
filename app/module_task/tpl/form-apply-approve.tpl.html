@@ -86,7 +86,10 @@
             <div class="form-group form-group-sm">
                 <label for="rejectReason" class="col-sm-1 control-label">拒绝原因：</label>
                 <div class="col-sm-11">
-                    <textarea type="text" class="form-control" id="rejectReason" ng-model="approveVo.rejectReason" placeholder="拒绝原因" ng-required="approveVo.result=='tjlx204'"></textarea>
+                    <select id="rejectReason" class="form-control" ng-model="approveVo.rejectReason" required
+                            ng-options="item.dictDataName as item.dictDataName for item in approveRejectReasonList" >
+                        <option value="">请选择拒绝原因</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -96,7 +99,10 @@
             <div class="form-group form-group-sm">
                 <label for="cancelReason" class="col-sm-1 control-label">取消原因：</label>
                 <div class="col-sm-11">
-                    <textarea type="text" class="form-control" id="cancelReason" ng-model="approveVo.cancelReason" placeholder="取消原因" ng-required="approveVo.result=='tjlx203'"></textarea>
+                    <select id="cancelReason" class="form-control" ng-model="approveVo.cancelReason" required
+                            ng-options="item.dictDataName as item.dictDataName for item in approveCancelReasonList" >
+                        <option value="">请选择取消原因</option>
+                    </select>
                 </div>
             </div>
         </div>

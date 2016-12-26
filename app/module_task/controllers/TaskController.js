@@ -57,6 +57,10 @@ angular.module("pu.task.controllers")
         $scope.initLoanCheckFileComponent = function(fileInterface){
             $scope.loanCheckFileInterface = fileInterface;
         };
+        /**显示征信报告**/
+        $scope.showCreditReport = function(appId){
+            TaskService.showCreditReport(appId);
+        }
 
     })
 ;

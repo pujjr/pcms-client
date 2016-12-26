@@ -1,0 +1,16 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>征信报告
+            <span ng-if="creditResponse.riskLevel==0" class="text-success">(风险等级：无数据)</span>
+            <span ng-if="creditResponse.riskLevel==1" class="text-primary">(风险等级：低风险)</span>
+            <span ng-if="creditResponse.riskLevel==2" class="text-danger">(风险等级：高风险)</span>
+        </h4>
+    </div>
+    <div class="modal-body" cg-busy="test">
+        <embed embed-src="{{pdfUrl}}" type="application/pdf" ng-style="pdfStyle" style="width: 100%;height:700px;" internalinstanceid="56"   title="">
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="refresh()">刷新</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

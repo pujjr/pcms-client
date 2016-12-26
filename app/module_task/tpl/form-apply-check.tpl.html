@@ -75,7 +75,7 @@
             <div class="form-group form-group-sm">
                 <label for="loanExtConditon" class="col-sm-1 control-label">放款附加条件：</label>
                 <div class="col-sm-11">
-                    <textarea type="text" class="form-control" id="loanExtConditon" ng-model="checkVo.loanExtConditon" placeholder="放款附加条件" ng-required="checkVo.result=='tjlx102'"></textarea>
+                    <textarea type="text" class="form-control" id="loanExtConditon" ng-model="checkVo.loanExtConditon" placeholder="放款附加条件" required ng-required="checkVo.result=='tjlx102'"></textarea>
                 </div>
             </div>
         </div>
@@ -85,7 +85,10 @@
             <div class="form-group form-group-sm">
                 <label for="rejectReason" class="col-sm-1 control-label">拒绝原因：</label>
                 <div class="col-sm-11">
-                    <textarea type="text" class="form-control" id="rejectReason" ng-model="checkVo.rejectReason" placeholder="拒绝原因" ng-required="checkVo.result=='tjlx104'"></textarea>
+                    <select id="rejectReason" class="form-control" ng-model="checkVo.rejectReason" required
+                            ng-options="item.dictDataName as item.dictDataName for item in checkRejectReasonList" >
+                        <option value="">请选择拒绝原因</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -95,7 +98,10 @@
             <div class="form-group form-group-sm">
                 <label for="cancelReason" class="col-sm-1 control-label">取消原因：</label>
                 <div class="col-sm-11">
-                    <textarea type="text" class="form-control" id="cancelReason" ng-model="checkVo.cancelReason" placeholder="取消原因" ng-required="checkVo.result=='tjlx103'"></textarea>
+                    <select id="cancelReason" class="form-control" ng-model="checkVo.cancelReason" required
+                            ng-options="item.dictDataName as item.dictDataName for item in checkCancelReasonList" >
+                        <option value="">请选择取消原因</option>
+                    </select>
                 </div>
             </div>
         </div>
