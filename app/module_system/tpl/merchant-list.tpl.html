@@ -20,6 +20,8 @@
                     <th>扣款渠道</th>
                     <th>商户名称</th>
                     <th>商户编号</th>
+                    <th>入账银行账号</th>
+                    <th>入账银行户名</th>
                     <th>是否启用</th>
                     <th>操作</th>
                 </tr>
@@ -30,6 +32,8 @@
                     <td>{{item.chnlTypeDesc}}</td>
                     <td>{{item.merchantName}}</td>
                     <td>{{item.merchantNo}}</td>
+                    <td>{{item.reserver2}}</td>
+                    <td>{{item.reserver3}}</td>
                     <td>
                         <span ng-if="item.enabled==true">是</span>
                         <span ng-if="item.enabled!=true">否</span>

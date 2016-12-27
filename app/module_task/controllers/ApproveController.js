@@ -16,9 +16,11 @@ angular.module("pu.task.controllers")
             $scope.approveVo = {};
         };
         $scope.commitApproveTask = function(){
-            TaskService.commitApproveTask($scope.applyInfo,$scope.approveVo,$stateParams.taskId).then(function(response){
-                $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交审批任务成功')
+            modal.confirm("操作提醒","确认提交申请？").then(function(){
+                TaskService.commitApproveTask($scope.applyInfo,$scope.approveVo,$stateParams.taskId).then(function(response){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交审批任务成功')
+                })
             })
         };
         /**初始化审贷会审批 **/
@@ -30,7 +32,7 @@ angular.module("pu.task.controllers")
             $scope.approveVo = {};
         };
         $scope.commitCounterSignApprove = function(){
-            modal.confirm("操作提醒","确认提交?").then(function(){
+            modal.confirm("操作提醒","确认提交申请?").then(function(){
                 TaskService.commitCounterSignApprove($scope.taskId,$scope.approveVo).then(function(){
                     $state.go('app.task.todolist');
                     toaster.pop('success', '操作提醒','提交审批任务成功')

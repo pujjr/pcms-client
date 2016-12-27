@@ -57,6 +57,7 @@ angular.module("pu.task.controllers")
             modalInstance.result.then(function(response){
                 if(selTask.length<response.length){
                     modal.info("操作提醒","任务数量小于分配用户数");
+                    return;
                 }
                 var selAccounts = [];
                 angular.forEach(response,function(item){
@@ -108,6 +109,9 @@ angular.module("pu.task.controllers")
                 toaster.pop('success', '操作提醒', "设置自动分单成功");
                 $scope.autoAssigneeConfig = TaskService.queryAutoAssigneeConfigInfo().$object;
             })
+        };
+        $scope.pageChanged = function(){
+            $scope.queryToAssigneeList();
         }
     })
 ;

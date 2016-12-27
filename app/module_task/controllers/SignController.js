@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService,QueryService) {
+    .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService,QueryService,modal) {
         $scope.initSign = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
@@ -22,10 +22,11 @@ angular.module("pu.task.controllers")
             })
         }
         $scope.commitSignContractTask = function(){
-            console.log($scope.signContractVo);
-            TaskService.commitSignContractTask($stateParams.businessKey,$stateParams.taskId).then(function(response){
-                $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交签约任务成功')
+            modal.confirm("操作提醒","确认提交签约？").then(function(response){
+                TaskService.commitSignContractTask($stateParams.businessKey,$stateParams.taskId).then(function(response){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交签约任务成功')
+                })
             })
         };
         $scope.pdfStyle={

@@ -1,68 +1,71 @@
-<div class="panel" ng-init="initLoanCheck();editable=false;signEditable=true;loanCheckEditable=true">
-    <div class="data-table-container" >
-        <header class="data-table-header" style="min-height:72px !important;">
-            <div class="data-table-header__label">
-                <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
-            </div>
-            <div class="data-table-header__actions">
-                <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
-                <button class="btn btn-primary btn-sm" type="submit"  ng-click="commitLoanCheckTask('bcfkzl')"><i class="fa fa-check m-r-sm"></i>补充放款资料</button>
-                <button class="btn btn-success btn-sm" type="submit" ng-disabled="form.$invalid"  ng-click="commitLoanCheckTask('commit')"><i class="fa fa-check m-r-sm"></i>提交任务</button>
-                <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
-            </div>
-        </header>
+<div ng-init="initLoanCheck();editable=false;signEditable=true;loanCheckEditable=true">
+    <div class="check-header">
+        <div class="data-table-container" >
+            <header class="data-table-header" style="min-height:72px !important;">
+                <div class="data-table-header__label">
+                    <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+                    <button class="btn btn-primary btn-sm" type="submit"  ng-click="commitLoanCheckTask('bcfkzl')"><i class="fa fa-plus m-r-sm"></i>补充放款资料</button>
+                    <button class="btn btn-success btn-sm" type="submit" ng-disabled="form.$invalid"  ng-click="commitLoanCheckTask('commit')"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                    <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
+                </div>
+            </header>
+        </div>
     </div>
     <ng-form  name="form" novalidate ng-cloak="">
-        <uib-tabset>
-            <uib-tab index="0">
-                <uib-tab-heading>
-                    <span>放款复核信息</span>
-                </uib-tab-heading>
-
-                <div ng-include="'module_task/tpl/form-apply-loancheck.html'"></div>
-            </uib-tab>
-            <uib-tab index="2"  select="initLoanCheckFileManage(applyInfo.appId)">
-                <uib-tab-heading>
-                    <span>放款资料</span>
-                </uib-tab-heading>
-                <ng-file-manage on-init="initLoanCheckFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:true}"></ng-file-manage>
-            </uib-tab>
-            <uib-tab index="3">
-                <uib-tab-heading>
-                    <span>签约信息</span>
-                </uib-tab-heading>
-                <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
-            </uib-tab>
-            <uib-tab index="4"  select="initSignFileManage(applyInfo.appId)">
-                <uib-tab-heading>
-                    <span>签约资料</span>
-                </uib-tab-heading>
-                <ng-file-manage on-init="initSignFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
-            </uib-tab>
-            <uib-tab index="5">
-                <uib-tab-heading>
-                    <span>申请信息</span>
-                </uib-tab-heading>
-                <div ng-include="'module_apply/tpl/form-apply.html'"></div>
-            </uib-tab>
-            <uib-tab index="6"  select="initApplyFileManage()">
-                <uib-tab-heading>
-                    <span>申请资料</span>
-                </uib-tab-heading>
-                <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
-            </uib-tab>
-            <uib-tab index="7"  select="initCheckFileManage(applyInfo.appId)">
-                <uib-tab-heading>
-                    <span>审核资料</span>
-                </uib-tab-heading>
-                <ng-file-manage on-init="initCheckFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
-            </uib-tab>
-            <uib-tab index="8"  select="queryWorkflowProcessResult(taskId)">
-                <uib-tab-heading>
-                    <span>流程流转记录</span>
-                </uib-tab-heading>
-                <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
-            </uib-tab>
-        </uib-tabset>
+        <div class="check-body-full">
+            <uib-tabset>
+                <uib-tab index="0">
+                    <uib-tab-heading>
+                        <span>放款复核信息</span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_task/tpl/form-apply-loancheck.html'"></div>
+                </uib-tab>
+                <uib-tab index="2"  select="initLoanCheckFileManage(applyInfo.appId)">
+                    <uib-tab-heading>
+                        <span>放款资料</span>
+                    </uib-tab-heading>
+                    <ng-file-manage on-init="initLoanCheckFileComponent(interface)" options="{enableUpload:true,enableMove:true,enableDelete:true}"></ng-file-manage>
+                </uib-tab>
+                <uib-tab index="3">
+                    <uib-tab-heading>
+                        <span>签约信息</span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
+                </uib-tab>
+                <uib-tab index="4"  select="initSignFileManage(applyInfo.appId)">
+                    <uib-tab-heading>
+                        <span>签约资料</span>
+                    </uib-tab-heading>
+                    <ng-file-manage on-init="initSignFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
+                </uib-tab>
+                <uib-tab index="5">
+                    <uib-tab-heading>
+                        <span>申请信息</span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_apply/tpl/form-apply.html'"></div>
+                </uib-tab>
+                <uib-tab index="6"  select="initApplyFileManage()">
+                    <uib-tab-heading>
+                        <span>申请资料</span>
+                    </uib-tab-heading>
+                    <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
+                </uib-tab>
+                <uib-tab index="7"  select="initCheckFileManage(applyInfo.appId)">
+                    <uib-tab-heading>
+                        <span>审核资料</span>
+                    </uib-tab-heading>
+                    <ng-file-manage on-init="initCheckFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
+                </uib-tab>
+                <uib-tab index="8"  select="queryWorkflowProcessResult(taskId)">
+                    <uib-tab-heading>
+                        <span>流程流转记录</span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
     </ng-form>
 </div>

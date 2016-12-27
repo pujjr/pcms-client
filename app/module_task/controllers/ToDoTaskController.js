@@ -7,6 +7,9 @@ angular.module("pu.task.controllers")
         $scope.queryParam={};
         $scope.init = function(){
             $scope.queryToDoTaskList($scope.queryParam);
+        };
+        $scope.pageChanged = function(){
+            $scope.init();
         }
         $scope.queryToDoTaskList = function(params){
             angular.extend(params, {outTaskDefKeys:'sgfd,fk'});

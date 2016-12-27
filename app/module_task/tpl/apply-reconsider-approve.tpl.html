@@ -1,26 +1,36 @@
 <div ng-init="initReconsiderApprove()">
     <div class="check-header">
-        <div class="pull-left" style="position: relative;top:15%;right:0px;">
-            <h4>任务名称：{{task.name}}</h4>
-        </div>
-        <div class="pull-right" style="position: relative;top:20%;right:0px;">
-            <button class="btn  btn-link" type="button"ng-click="commitReconsiderApprove()"><i class="fa fa-cab m-r-sm"></i>提交任务</button>
-            <button class="btn btn-link" type="button" ng-click="saveCheckInfo()"><i class="fa fa-save m-r-sm"></i>保存草稿</button>
-            <button class="btn btn-link" type="button"  ng-click="printVar()"><i class="fa fa-save m-r-sm"></i>打印变量</button>
+        <div class="data-table-container" >
+            <header class="data-table-header" style="min-height:72px !important;">
+                <div class="data-table-header__label">
+                    <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-success btn-sm" type="submit" ng-disabled="form.$invalid"  ng-click="commitReconsiderApprove()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                    <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
+                </div>
+            </header>
         </div>
     </div>
     <div class="check-body">
         <uib-tabset>
             <uib-tab index="0">
                 <uib-tab-heading>
-                    <i class="fa fa-list fa-lg" aria-hidden="true"></i>&nbsp;录入申请信息
+                    <span>申请信息</span>
                 </uib-tab-heading>
                 <div ng-include="'module_apply/tpl/form-apply.html'"></div>
             </uib-tab>
-            <uib-tab index="1">
+            <uib-tab index="1" select="initApplyFileManage()">
                 <uib-tab-heading>
-                    <i class="fa fa-globe fa-lg" aria-hidden="true"></i>&nbsp;上传申请资料
+                    <span>申请资料</span>
                 </uib-tab-heading>
+                <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
+            </uib-tab>
+            <uib-tab index="2"  select="queryWorkflowProcessResult(taskId)">
+                <uib-tab-heading>
+                    <span>流程流转记录</span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
             </uib-tab>
         </uib-tabset>
     </div>

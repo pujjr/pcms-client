@@ -36,9 +36,11 @@ angular.module("pu.task.controllers")
                     })
                 })
             }else{
-                TaskService.commitLoanCheckTask($scope.signContractVo,commitType,$stateParams.taskId).then(function(response){
-                    $state.go('app.task.todolist');
-                    toaster.pop('success', '操作提醒','提交放款复核任务成功')
+                modal.confirm("操作提醒","确认提交任务？").then(function(){
+                    TaskService.commitLoanCheckTask($scope.signContractVo,commitType,$stateParams.taskId).then(function(response){
+                        $state.go('app.task.todolist');
+                        toaster.pop('success', '操作提醒','提交放款复核任务成功')
+                    })
                 })
             }
 

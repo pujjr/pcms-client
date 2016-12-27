@@ -21,6 +21,12 @@ angular.module('app')
                     templateUrl:'module_query/tpl/apply-list.html',
                     controller: 'QueryApplyController'
                 })
+                //经销商查询申请单列表
+                .state('app.query.applylist-dealer',{
+                    url:'/applylist-dealer',
+                    templateUrl:'module_query/tpl/apply-list-dealer.html',
+                    controller: 'QueryApplyController'
+                })
                 //查询申请单详细信息
                 .state('app.query.apply',{
                     abstract:true,
@@ -34,7 +40,12 @@ angular.module('app')
                     templateUrl:'module_query/tpl/apply-detail.html',
                     controller: 'QueryApplyController'
                 })
-
+                //经销商查询申请信息
+                .state('app.query.apply.detail-dealer',{
+                    url:'/detail-dealer/:appId',
+                    templateUrl:'module_query/tpl/apply-detail-dealer.html',
+                    controller: 'QueryApplyController'
+                })
         }
     ]
 );

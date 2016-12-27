@@ -4,10 +4,15 @@
 // signin controllers
 angular.module("pu.loanquery.controllers")
     .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,
-                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService,SmsService) {
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService,SmsService,ProductService,SysDictService) {
         $scope.initList = function(){
+            $scope.productList = ProductService.queryAllProductList().$object;
+            $scope.repayStatusList = SysDictService.queryDictDataByTypeCode("hkzt").$object;
             $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
         };
+        $scope.queryLoanCustList = function(){
+            $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
+        }
         $scope.initLoanDetail = function(){
             $scope.appId = $stateParams.appId;
             $scope.loanCustApplyInfo = LoanQueryService.getLoanCustApplyInfo($stateParams.appId).$object;

@@ -25,11 +25,23 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="bankId" class="col-sm-3 control-label">开户银行：</label>
+            <label for="bankId" class="col-sm-3 control-label">入账银行：</label>
             <div class="col-sm-8">
                 <select  class="form-control" id="bankId"  ng-model="item.bankId"  ng-options="l.id as l.bankName for l in bankList"  required >
                     <option value="">请选择</option>`
                 </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reserver2" class="col-sm-3 control-label">入账银行账号：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="reserver2" placeholder="入账银行账号" ng-model="item.reserver2" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reserver3" class="col-sm-3 control-label">入账银行户名：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="reserver3" placeholder="入账银行户名" ng-model="item.reserver3" required>
             </div>
         </div>
         <div class="form-group">

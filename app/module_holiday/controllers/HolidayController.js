@@ -57,7 +57,7 @@ angular.module("pu.holiday.controllers")
             item.createId = date.createId;
             item.createTime = date.createTime;
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 backdrop:'false',
                 resolve: {
                     item: function(){

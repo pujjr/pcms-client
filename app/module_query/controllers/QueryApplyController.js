@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.query.controllers")
-    .controller('QueryApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,QueryService,GpsService,SysAreaService,InsuranceService,TaskService,ProductService,SysDictService) {
+    .controller('QueryApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,QueryService,GpsService,SysAreaService,InsuranceService,TaskService,ProductService,SysDictService,BankService) {
         $scope.queryParam ={};
         $scope.init = function () {
             $scope.productList = ProductService.queryAllProductList().$object;
@@ -11,7 +11,7 @@ angular.module("pu.query.controllers")
             $scope.queryApplyList();
         };
         $scope.queryApplyList = function(){
-            $scope.applyList= QueryService.queryApplyList($scope.queryParam).$object;
+            $scope.applyList= QueryService.queryApplyList().$object;
         };
         $scope.pageChanged = function(){
             $scope.queryApplyList();
@@ -22,6 +22,7 @@ angular.module("pu.query.controllers")
         };
         $scope.getSignInfo = function(){
             $scope.gpsSupplierList = GpsService.queryGpsSupplierList(true).$object;
+            $scope.unionPayBankList = BankService.queryUnionPayBankInfoList().$object;
             $scope.provinceList = SysAreaService.queryProvinceList().$object;
             $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
             $scope.signContractVo = TaskService.querySignInfo($stateParams.appId).$object;

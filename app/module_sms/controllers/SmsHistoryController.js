@@ -17,6 +17,9 @@ angular.module("pu.sms.controllers")
                     $scope.getSmsHistoryList();
                 })
             })
+        };
+        $scope.pageChanged = function(){
+            $scope.getSmsHistoryList();
         }
     })
 ;

@@ -17,9 +17,11 @@ angular.module("pu.task.controllers")
             $scope.checkVo = {};
         };
         $scope.commitCheckTask = function(){
-            TaskService.commitCheckTask($scope.applyInfo,$scope.checkVo,$stateParams.taskId).then(function(response){
-                $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交审核任务成功')
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                TaskService.commitCheckTask($scope.applyInfo,$scope.checkVo,$stateParams.taskId).then(function(response){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交审核任务成功')
+                })
             })
         };
         $scope.commitPreCheckTask = function(){

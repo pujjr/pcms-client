@@ -1,6 +1,10 @@
-<div ng-init="initList()" >
-    <div class="panel panel-default">
-        <div class="panel-heading">贷后综合查询</div>
+<div ng-init="init()">
+    <div class="panel_main">
+        <div class="panel-header">
+            <div class="panel-header-wrapper">
+                <h2 class="panel-header-title">综合查询</h2>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row m-t-sm">
                 <div class="col-sm-2">
@@ -43,6 +47,58 @@
                         <input type="text" class="form-control" id="sysBranchCode" ng-model="vm.sysBranchCode" placeholder="经销商编码">
                     </div>
                 </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <p class="input-group">
+                            <input type="text" id="applyStartDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup="yyyy-MM-dd"
+                                   placeholder="申请开始日期"
+                                   is-open="isopenApplyStartDate"
+                                   ng-model="vm.applyStartDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default m-b-ms"   ng-click="isopenApplyStartDate=!isopenApplyStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group">
+                            <input type="text" id="applyEndDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                   placeholder="申请截止日期"
+                                   is-open="isopenApplyeEndDate"
+                                   ng-model="vm.applyEndDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenApplyeEndDate=!isopenApplyeEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group">
+                            <input type="text" id="approveStartDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                   placeholder="审批通过开始日期"
+                                   is-open="isopenApproveStartDate"
+                                   ng-model="vm.approveStartDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenApproveStartDate=!isopenApproveStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group">
+                            <input type="text" id="approveEndDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                   placeholder="审核通过结束日期"
+                                   is-open="isopenApproveEndDate"
+                                   ng-model="vm.approveEndDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenApproveEndDate=!isopenApproveEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-2">
                     <div class="form-group form-group-sm">
                         <div class="input-group">
@@ -56,6 +112,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-2">
                     <div class="form-group form-group-sm">
                         <div class="input-group">
@@ -71,51 +129,50 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group form-group-sm">
-                        <select ng-model="vm.repayStatus"  class="form-control m-b-sm m-r-xs"
-                                ng-options="item.dictDataCode as item.dictDataName for item in repayStatusList" >
-                            <option value="">请选择还款状态</option>
+                        <select ng-model="vm.applyStatus"  class="form-control m-b-sm m-r-xs"
+                                ng-options="item.dictDataCode as item.dictDataName for item in appStatusList" >
+                            <option value="">请选择申请单状态</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-2">
-                    <div class="form-group form-group-sm">
-                        <input type="number" class="form-control" id="overdueDay" ng-model="vm.overdueDay" placeholder="逾期天数">
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="queryLoanCustList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                    <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="queryApplyList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
                 </div>
             </div>
         </div>
         <div class="data-table-container">
-            <table class="data-table">
+            <table class="data-table" style="overflow-x: auto">
                 <thead>
                 <tr>
-                    <th>申请单号</th>
-                    <th>姓名</th>
-                    <th>证件号码</th>
-                    <th>手机号码</th>
-                    <th>融资金额</th>
-                    <th>融资期限</th>
-                    <th>剩余本金</th>
-                    <th>还款状态</th>
-                    <th>当前处理状态</th>
-                    <th>操作</th>
+                    <th style="width: 8%">案件编号</th>
+                    <th style="width: 5%">产品名称</th>
+                    <th style="width: 5%">合同编号</th>
+                    <th style="width: 5%">客户姓名</th>
+                    <th style="width: 7%">身份证号</th>
+                    <th style="width: 5%">申请日期</th>
+                    <th style="width: 4%">案件状态</th>
+                    <th style="width: 5%">经销商</th>
+                    <th style="width: 5%">批核时间</th>
+                    <th style="width: 4%">批核金额</th>
+                    <th style="width: 2%">期数</th>
+                    <th style="width: 5%">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in loanCustList">
+                <tr ng-repeat="item in applyList">
                     <td>{{item.appId}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.contractNo}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.idNo}}</td>
-                    <td>{{item.mobile}}</td>
+                    <td>{{item.createTime|mysqlDate}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.branchName}}</td>
+                    <td>{{item.approveDate}}</td>
                     <td>{{item.totalFinanceAmt}}</td>
                     <td>{{item.period}}</td>
-                    <td>{{item.remainCapital}}</td>
-                    <td>{{item.repayStatusDesc}}</td>
-                    <td>{{item.processStatusDesc}}</td>
                     <td>
-                        <a href="javascript:" ui-sref="app.loanquery.loaninfo.detail({appId:item.appId})">详细</a>
+                        <a href="javascript:" ui-sref="app.query.apply.detail-dealer({appId:item.appId})">详细</a>
                     </td>
                 </tr>
                 </tbody>

@@ -62,7 +62,7 @@ angular.module("pu.apply.controllers")
                     if(parseFloat($scope.finance1.carStyle.displacement)>1.6){
                         $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*(1-$scope.finance1.initPayPercent/100)).toFixed(2));
                     }else{
-                        $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*0.5).toFixed(2));
+                        $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*0.75).toFixed(2));
                     }
                 };
                 //取融资手续费
@@ -654,7 +654,32 @@ angular.module("pu.apply.controllers")
         //初始化编辑申请单
         $scope.initApplyEdit = function(){
             var appId = $stateParams.appId;
-            $scope.doInitApplyEdit(appId);
+            ApplyService.queryApplyInfoByAppId(appId).then(function(response) {
+                $scope.applyInfo = response;
+                if ($scope.applyInfo.finances == undefined) {
+                    $scope.applyInfo.finances = [];
+                }
+                if ($scope.applyInfo.tenant == undefined) {
+                    $scope.applyInfo.tenant = {};
+                    if ($scope.applyInfo.tenant.tenantHouses == undefined) {
+                        $scope.applyInfo.tenant.tenantHouses = [];
+                    }
+                    if ($scope.applyInfo.tenant.tenantCars == undefined) {
+                        $scope.applyInfo.tenant.tenantCars = [];
+                    }
+                }
+                if ($scope.applyInfo.linkmans == undefined) {
+                    $scope.applyInfo.linkmans = [];
+                }
+                $scope.initFinances($scope.applyInfo.finances);
+                $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
+                $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
+                $scope.initLinkmans($scope.applyInfo.linkmans);
+                $scope.initSelectList("add");
+                $scope.addressCtrl.onEditRefresh();
+                $scope.initWatchTotalFinance();
+                $scope.refreshFormRequiredMap();
+            })
         }
         $scope.doInitApplyEdit = function(appId){
             // 获取订单数据
@@ -738,11 +763,12 @@ angular.module("pu.apply.controllers")
         };
         //提交申请信息
         $scope.commitApplyTask = function(){
-            TaskService.commitApplyTask($scope.applyInfo).then(function(response){
-                $state.go('app.apply.list');
-                toaster.pop('success', '操作提醒','提交申请信息成功')
+            modal.confirm("操作提醒","确认提交申请？").then(function(response){
+                TaskService.commitApplyTask($scope.applyInfo).then(function(response){
+                    $state.go('app.apply.list');
+                    toaster.pop('success', '操作提醒','提交申请信息成功')
+                });
             });
-            ;
         };
         $scope.initApplyFileManage=function(){
             $scope.applyFileInterface.init($scope.applyInfo.appId,'apply');
@@ -752,6 +778,9 @@ angular.module("pu.apply.controllers")
         };
         $scope.printForm = function(){
             console.log($scope.form);
+        };
+        $scope.pageChanged = function(){
+            $scope.initQueryUnCommitApplyInfoList();
         }
     })
 ;

@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('LoanApproveController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,
+    .controller('LoanApproveController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,modal,
                                                 BankService,SysAreaService,InsuranceService,SysDictService) {
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
@@ -26,15 +26,19 @@ angular.module("pu.task.controllers")
             $scope.loanApproveVo={};
         };
         $scope.commitPrevLoanApproveTask = function(){
-            TaskService.commitPrevLoanApproveTask($stateParams.taskId).then(function(response){
-                $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交放款初级审批任务成功')
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                TaskService.commitPrevLoanApproveTask($stateParams.taskId).then(function(response){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交放款初级审批任务成功')
+                })
             })
         };
         $scope.commitLoanApproveTask = function(){
-            TaskService.commitLoanApproveTask($scope.loanApproveVo,$stateParams.taskId).then(function(response){
-                $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交放款审批任务成功')
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                TaskService.commitLoanApproveTask($scope.loanApproveVo,$stateParams.taskId).then(function(response){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交放款审批任务成功')
+                })
             })
         };
     })
