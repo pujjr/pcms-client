@@ -27,8 +27,8 @@ angular.module('pu.product.services')
         this.queryProduct = function(id){
             return RestApi.one("/product", id).get();
         }
-        this.queryProductRuleList = function(){
-            return RestApi.all("/product/productrule").getList();
+        this.queryProductRuleList = function(param){
+            return RestApi.all("/product/productrule").getList(param);
         };
         this.addProductRule = function(item){
             return RestApi.all("/product/productrule").post(item);

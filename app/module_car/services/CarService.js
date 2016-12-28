@@ -37,14 +37,14 @@ angular.module('pu.car.services')
         this.queryCarSerialList = function(carBrandId){
             return RestApi.one("/car/brand",carBrandId).all("/serial").getList();
         };
-        this.queryCarSerialPageList = function(queryParams){
-            return RestApi.all("/car/serial/pagelist").getList(queryParams);
+        this.queryCarSerialPageList = function(){
+            return RestApi.all("/car/serial/pagelist").getList();
         }
         this.queryCarStyleList = function(carSerialId){
             return RestApi.one('/car/serial',carSerialId).all("/style").getList();
         }
-        this.queryCarStylePageList = function(queryParams){
-            return RestApi.all("/car/style/pagelist").getList(queryParams);
+        this.queryCarStylePageList = function(){
+            return RestApi.all("/car/style/pagelist").getList();
         }
         this.selectCar = function(appId){
             var modalInstance = $uibModal.open({

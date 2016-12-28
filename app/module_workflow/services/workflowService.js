@@ -1,5 +1,5 @@
 angular.module('pu.workflow.services')
-    .service("WorkflowService",function($window,RestApi,WorkflowUrl,BaseUrl){
+    .service("WorkflowService",function($window,RestApi){
         this.queryWorkflowTypes = function(){
             return RestApi.all("/workflowtype").getList();
         };

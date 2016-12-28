@@ -7,20 +7,22 @@ angular.module("pu.car.controllers")
         $scope.queryParams={};
 
         $scope.init = function () {
-            $scope.queryCarStyleList($scope.queryParams);
+            $scope.queryCarStyleList();
             $scope.carBrandList = CarService.queryCarBrandList().$object;
         };
         $scope.carBrandChanged = function(){
-            if($scope.queryParams.carBrandId==null) {
-                $scope.queryParams = {};
+            if($rootScope.vm.carBrandId==null) {
                 $scope.carSerialList=[];
             }else{
-                $scope.carSerialList = CarService.queryCarSerialList($scope.queryParams.carBrandId).$object;
+                $scope.carSerialList = CarService.queryCarSerialList($rootScope.vm.carBrandId).$object;
             }
         };
-        $scope.queryCarStyleList = function(queryParams){
-            $scope.carStyleList = CarService.queryCarStylePageList(queryParams).$object;
+        $scope.queryCarStyleList = function(){
+            $scope.carStyleList = CarService.queryCarStylePageList().$object;
         };
+        $scope.pageChanged = function(){
+            $scope.queryCarStyleList();
+        }
         $scope.addCarStyle = function(){
             var modalInstance = $uibModal.open({
                 animation: true,

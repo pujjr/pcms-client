@@ -1,0 +1,112 @@
+<div ng-init="init()" >
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>设置用户权限</h4>
+    </div>
+    <div class="modal-body" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">功能权限</h3>
+            </div>
+            <div class="panel-body">
+                <div class="c_box" style="min-height: 300px">
+                    <div class="c_left_box"  style="width: 50% !important;overflow-y: auto;height: 300px;">
+                        <div class="panel_main">
+                            <div class="panel-header">
+                                <div class="panel-header-wrapper">
+                                    <h2 class="panel-header-title">可选角色</h2>
+                                </div>
+                            </div>
+                            <div class="data-table-container">
+                                <table class="data-table">
+                                    <thead>
+                                    <tr>
+                                        <th>角色名称</th>
+                                        <th>组操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="overflow-y: auto;height: 400px;">
+                                    <tr ng-repeat="item in leftList">
+                                        <td>{{item.roleName}}</td>
+                                        <td>
+                                            <a href="javascript:" ng-click="addToRight(item)">加入</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c_right_box"  style="width: 50% !important;overflow-y: auto;height: 300px;">
+                        <div class="panel_main">
+                            <div class="panel-header">
+                                <div class="panel-header-wrapper">
+                                    <h2 class="panel-header-title">已选角色</h2>
+                                </div>
+                            </div>
+                            <div class="data-table-container">
+                                <table class="data-table">
+                                    <thead>
+                                    <tr>
+                                        <th>角色名称</th>
+                                        <th>组操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in rightList">
+                                        <td>{{item.roleName}}</td>
+                                        <td>
+                                            <a href="javascript:" ng-click="removeFromRight(item)">移除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">数据查询权限</h3>
+            </div>
+            <div class="panel-body container-fluid"  >
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <div class="radio">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="queryAuthLvl" id="queryAuthLvl" ng-model="requestData.queryAuthLvl" value="0">全部
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="queryAuthLvl" id="queryAuthLvl" value="1" ng-model="requestData.queryAuthLvl">所属机构及下属机构
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="queryAuthLvl" id="queryAuthLvl" value="2" ng-model="requestData.queryAuthLvl">所属机构
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="queryAuthLvl" id="queryAuthLvl" value="3" ng-model="requestData.queryAuthLvl">本人
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="queryAuthLvl" id="queryAuthLvl" value="4" ng-model="requestData.queryAuthLvl">自定义
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider divider--dark "></div>
+                <div class="row" style="overflow-y: auto;height: 300px;" ng-if="requestData.queryAuthLvl=='4'">
+                    <div class="col-md-12">
+                        <ui-tree tree-data="sysBranchTree" label="branchName" mode='cascade' checked="true" on-select="select($item)"></ui-tree>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</div>

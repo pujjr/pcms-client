@@ -21,6 +21,9 @@ angular.module("pu.system.controllers")
             $scope.selNode=event.targetScope.treeData;
             $scope.querySysAccountListByBranchId($scope.selNode.id);
         });
+        $scope.pageChanged = function(){
+            $scope.querySysAccountListByBranchId($scope.selNode.id);
+        }
         $scope.addSysBranch = function(){
             var modalInstance = $uibModal.open({
                 animation: true,

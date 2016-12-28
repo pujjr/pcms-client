@@ -20,7 +20,7 @@ angular.module('pu.system.services')
         };
         this.setAccountRole = function(item){
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 backdrop:'false',
                 size:'lg',
                 resolve: {
@@ -28,9 +28,10 @@ angular.module('pu.system.services')
                         return item;
                     }
                 },
-                templateUrl :'module_system/tpl/dialog-sysbranch-setuserrole.html',
-                controller:function($scope,RestApi,SysRoleService){
+                templateUrl :'module_system/tpl/dialog-sysbranch-setuserauth.html',
+                controller:function($scope,RestApi,SysRoleService,ToolsService,SysBranchService,SysAccountService){
                     $scope.item = item;
+                    $scope.requestData = {};
                     $scope.init = function(){
                         SysRoleService.querySysRoleList().then(function(response){
                             $scope.leftList = response;
@@ -46,6 +47,28 @@ angular.module('pu.system.services')
                                         }
                                     }
                                 }
+                            });
+                        });
+                        SysBranchService.getDealerList().then(function(response){
+                            //查询授权数据查询信息
+                            $scope.dealerList = response;
+                            SysAccountService.getAccountQueryAuthList($scope.item.id).then(function(response){
+                                $scope.requestData.queryAuthLvl = response.queryAuthLvl;
+                                $scope.queryAuthList = response.queryAuthList;
+                                angular.forEach($scope.dealerList,function(item){
+                                    for(var i = 0 ;i<$scope.queryAuthList.length;i++){
+                                        if($scope.queryAuthList[i].branchCode == item.branchCode){
+                                            item.checked=true;
+                                            break;
+                                        }
+                                    }
+                                })
+                            })
+                            $scope.sysBranchTree=ToolsService.convertArrayToTree($scope.dealerList, {
+                                idKey: 'id',
+                                parentKey: 'parentId',
+                                childrenKey: 'children',
+                                ignoreTopLevel:true
                             });
                         });
                     };
@@ -69,7 +92,10 @@ angular.module('pu.system.services')
                         $scope.leftList.push(item);
                     };
                     $scope.ok=function(){
-                        SysRoleService.saveAccountRoleList($scope.item.id,$scope.rightList).then(function(response){
+                        $scope.requestData.roleList = $scope.rightList;
+                        var checkList = ToolsService.getTreeCheckedList($scope.sysBranchTree);
+                        $scope.requestData.queryAuthBranchList = checkList;
+                        SysAccountService.saveAccountAuth($scope.item.id,$scope.requestData).then(function(response){
                             modalInstance.close('设置角色信息成功');
                         })
                     };
@@ -80,5 +106,8 @@ angular.module('pu.system.services')
             });
             return modalInstance.result;
         };
+        this.getDealerList = function(){
+            return RestApi.all("/sysbranch/getDealerList").getList();
+        }
 
     });

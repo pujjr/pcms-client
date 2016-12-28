@@ -144,13 +144,18 @@ angular.module('app')
                 .state('app.sysrole',{
                     abstract: true,
                     url:'/sysrole',
-                    template:'<div ui-view=""></div>',
+                    templateUrl:'module_system/tpl/sysrole-manage.html',
                     controller: 'SysRoleController'
                 })
-                //角色管理-查询角色列表
-                .state('app.sysrole.list', {
-                    url: '/list',
-                    templateUrl: 'module_system/tpl/sysrole-list.html'
+                //角色管理-功能角色列表
+                .state('app.sysrole.function-list', {
+                    url: '/function-list',
+                    templateUrl: 'module_system/tpl/sysrole-list-function.html'
+                })
+                //角色管理-数据角色列表
+                .state('app.sysrole.data-list', {
+                    url: '/data-list',
+                    templateUrl: 'module_system/tpl/sysrole-list-data.html'
                 })
         }
     ]

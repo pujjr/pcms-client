@@ -11,5 +11,11 @@ angular.module('pu.system.services')
         }
         this.querySysAccount  = function(){
             return RestApi.all("/sysaccount").getList();
+        };
+        this.saveAccountAuth = function(accountId,param){
+            return RestApi.all("/sysaccount/saveAccountAuth").all(accountId).post(param);
+        };
+        this.getAccountQueryAuthList = function(accountId){
+            return RestApi.one("/sysaccount/getAccountQueryAuthList",accountId).get();
         }
     });

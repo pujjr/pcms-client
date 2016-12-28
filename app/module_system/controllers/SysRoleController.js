@@ -61,7 +61,8 @@ angular.module("pu.system.controllers")
         };
         $scope.setSysRoleMenu = function(item){
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
+                size:'lg',
                 backdrop:'false',
                 templateUrl :'module_system/tpl/dialog-sysrole-setmenu.html',
                 controller:function($scope,RestApi,SysMenuService,ToolsService){

@@ -23,6 +23,9 @@ angular.module("pu.product.controllers")
         $scope.queryProductListByProductTypeId = function(productTypeId){
             $scope.productList = ProductService.queryProductListByProductTypeId($scope.selNode.id).$object;
         }
+        $scope.pageChanged = function(){
+            $scope.productList = ProductService.queryProductListByProductTypeId($scope.selNode.id).$object;
+        }
         $scope.addProductType = function(){
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -100,7 +103,7 @@ angular.module("pu.product.controllers")
                     $scope.productTypeList = ProductService.queryProductTypeList().$object;
                     $scope.fktjList = SysDictService.queryDictDataByTypeCode("fktj").$object;
                     $scope.hkfsList = SysDictService.queryDictDataByTypeCode("hkfs").$object;
-                    $scope.productRuleList = ProductService.queryProductRuleList().$object;
+                    $scope.productRuleList = ProductService.queryProductRuleList({pageSize:1000}).$object;
                     $scope.dirTemplateList = TemplateService.queryTemplateList(true).$object;
                     $scope.formTemplateList = FormService.queryFormFieldTemplateList().$object;
                     $scope.ok=function(){
@@ -134,7 +137,7 @@ angular.module("pu.product.controllers")
                     $scope.productTypeList = ProductService.queryProductTypeList().$object;
                     $scope.fktjList = SysDictService.queryDictDataByTypeCode("fktj").$object;
                     $scope.hkfsList = SysDictService.queryDictDataByTypeCode("hkfs").$object;
-                    $scope.productRuleList = ProductService.queryProductRuleList().$object;
+                    $scope.productRuleList = ProductService.queryProductRuleList({pageSize:1000}).$object;
                     $scope.dirTemplateList = TemplateService.queryTemplateList(true).$object;
                     $scope.formTemplateList = FormService.queryFormFieldTemplateList().$object;
                     $scope.ok=function(){

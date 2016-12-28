@@ -10,7 +10,9 @@ angular.module("pu.product.controllers")
         $scope.queryProductRuleList = function(){
             $scope.productRuleList = ProductService.queryProductRuleList().$object;
         }
-
+        $scope.pageChanged = function(){
+            $scope.queryProductRuleList();
+        }
         $scope.addProductRule = function(){
             var modalInstance = $uibModal.open({
                 animation: true,

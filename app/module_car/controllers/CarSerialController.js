@@ -7,13 +7,16 @@ angular.module("pu.car.controllers")
         $scope.queryParams={};
 
         $scope.init = function () {
-            $scope.queryCarSerialList($scope.queryParams);
+            $scope.queryCarSerialList();
             $scope.carBrandList = CarService.queryCarBrandList().$object;
         };
 
-        $scope.queryCarSerialList = function(queryParams){
-            $scope.carSerialList = CarService.queryCarSerialPageList(queryParams).$object;
+        $scope.queryCarSerialList = function(){
+            $scope.carSerialList = CarService.queryCarSerialPageList().$object;
         };
+        $scope.pageChanged = function(){
+            $scope.queryCarSerialList();
+        }
         $scope.addCarSerial = function(){
             var modalInstance = $uibModal.open({
                 animation: true,

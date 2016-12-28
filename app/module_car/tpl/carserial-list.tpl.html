@@ -1,12 +1,12 @@
 <div ng-init="init()">
     <form class="form-inline  m-md" role="form" >
         <div class="form-group">
-            <select id="brandName" class="form-control" ng-model="queryParams.carBrandId"
+            <select id="brandName" class="form-control" ng-model="vm.carBrandId"
                     ng-options="item.id as item.brandName for item in carBrandList">
                 <option value="">请选择品牌</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-default btn-sm" ng-click="queryCarSerialList(queryParams)"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+        <button type="submit" class="btn btn-default btn-sm" ng-click="queryCarSerialList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
     </form>
     <div class="has-divider has-divider--dark"></div>
     <div class="panel_main">
