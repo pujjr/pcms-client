@@ -44,8 +44,6 @@ angular.module("app")
                 // aside dock and fixed must set the header fixed.
                 $scope.app.settings.headerFixed = true;
             }
-            // save to local storage
-            $localStorage.settings = $scope.app.settings;
         }, true);
 
         $scope.signup = function () {
@@ -56,7 +54,7 @@ angular.module("app")
         };
         $scope.screenHeight = $window.innerHeight;
 
-        //公共方法
+        //公共方法-查询申请单反欺诈信息
         $scope.queryFraudInnerResult = function(appId){
             $scope.fraudInnerResultList = QueryService.queryFraudInnerResult(appId).$object;
         }

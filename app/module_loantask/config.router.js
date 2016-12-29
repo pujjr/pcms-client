@@ -126,7 +126,6 @@ angular.module('app')
                 //贷后历史任务查询
                 .state('app.loantask.history', {
                     url: '/history',
-                    abstract: true,
                     templateUrl:'module_loantask/tpl/loantask-history-manage.html',
                     controller:'LoanTaskHistoryController'
                 })

@@ -10,7 +10,6 @@ angular.module('app')
             $stateProvider
                 //短信管理
                 .state('app.sms',{
-                    abstract:true,
                     url:'/sms',
                     templateUrl:'module_sms/tpl/sms-manage.html',
                     controller:'SmsController'

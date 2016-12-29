@@ -26,7 +26,7 @@ angular.module("pu.task.controllers")
             TaskService.queryTaskByTaskId(taskId).then(function (response) {
                 var processDefinitionId = response.procDefId;
                 var processInstanceId = response.procInstId;
-                window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
             });
         }
         /**初始化重新申请文件目录**/

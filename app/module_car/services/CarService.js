@@ -43,8 +43,8 @@ angular.module('pu.car.services')
         this.queryCarStyleList = function(carSerialId){
             return RestApi.one('/car/serial',carSerialId).all("/style").getList();
         }
-        this.queryCarStylePageList = function(){
-            return RestApi.all("/car/style/pagelist").getList();
+        this.queryCarStylePageList = function(param){
+            return RestApi.all("/car/style/pagelist").getList(param);
         }
         this.selectCar = function(appId){
             var modalInstance = $uibModal.open({
@@ -57,7 +57,8 @@ angular.module('pu.car.services')
                     }
                 },
                 templateUrl :'module_car/tpl/dialog-select-car.html',
-                controller:function($scope,RestApi,CarService,$timeout){
+                controller:function($scope,RestApi,CarService,$timeout,$rootScope){
+                    $rootScope.resetCache();
                     $scope.appId = appId;
                     $scope.init = function(){
                         $scope.carBrand ={};
@@ -65,12 +66,22 @@ angular.module('pu.car.services')
                         $scope.carStyle = {};
                         $scope.carBrandList = CarService.queryCurrentApplyEnabledCarBrand($scope.appId).$object;
                     };
-                    $scope.carBrandChanged = function(){
+                    $scope.$getNodeCss = function(item){
+                        if( $scope.treeData !=undefined && item.isSelected){
+                            return 'treeNode_sel';
+                        }else{
+                            return 'treeNode';
+                        }
+                    }
+                    $scope.carBrandClicked = function(item){
+                        $scope.carBrand = item;
                         $scope.carSerialList = CarService.queryCurrentApplyEnabledCarSerial($scope.appId,$scope.carBrand.id).$object;
                     };
-                    $scope.carSerialChanged = function(){
-                       // $scope.carStyleList = CarService.queryCarStyleList($scope.carSerial.id).$object;
-                        $scope.carStyleList = CarService.queryCarStylePageList({'carSerialId':$scope.carSerial.id}).$object;
+                    $scope.carSerialClicked = function(item){
+                        $scope.carSerial = item;
+                        $scope.queryCarStyle = CarService.queryCarStylePageList({'carSerialId':$scope.carSerial.id}).then(function(response){
+                             $scope.carStyleList = response;
+                        });
                     };
                     var timeout;
                     $scope.$watch('indexStr',function(newVal,oldVal){
@@ -80,7 +91,10 @@ angular.module('pu.car.services')
                                 if($scope.indexStr==''){
                                     $scope.carStyleList =[];
                                 }else{
-                                    $scope.carStyleList = CarService.queryCarStylePageList({'indexStr':$scope.indexStr,'appId':$scope.appId}).$object;
+                                    $rootScope.resetCache();
+                                    $scope.queryCarStyle =  CarService.queryCarStylePageList({'indexStr':$scope.indexStr,'appId':$scope.appId}).then(function(response){
+                                        $scope.carStyleList = response;
+                                    });
                                 }
                             },1500);
                         }
@@ -88,8 +102,6 @@ angular.module('pu.car.services')
                     $scope.selectCar = function(item){
                         var carObj = {};
                         angular.copy(item,carObj);
-                        //carObj.carBrand = $scope.carBrand;
-                        //carObj.carSerial = $scope.carSerial;
                         modalInstance.close(carObj);
                     }
                     $scope.cancel = function () {

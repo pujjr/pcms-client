@@ -11,8 +11,15 @@ angular.module('app')
                 //产品管理
                 .state('app.product', {
                     url: '/product',
-                    abstract: true,
-                    templateUrl: 'module_product/tpl/product-manage.html'
+                    templateUrl: 'module_product/tpl/product-manage.html',
+                    controller:function($scope,$state){
+                        $scope.productConfig = function(){
+                            $state.go('app.product.config');
+                        }
+                        $scope.productRuleConfig = function(){
+                            $state.go('app.product.rule');
+                        }
+                    }
                 })
                 //产品管理-查询产品列表
                 .state('app.product.config', {

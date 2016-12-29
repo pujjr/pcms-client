@@ -10,7 +10,6 @@ angular.module('app')
             $stateProvider
                 //表单管理
                 .state('app.form',{
-                    abstract:true,
                     url:'/form',
                     templateUrl:'module_form/tpl/form-manage.html',
                     controller:function($scope,$state){

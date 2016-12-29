@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('app', [
-    'ngCookies',
+    'ipCookie',
     'ngSanitize',
     'ngMessages',
     'ui.router',

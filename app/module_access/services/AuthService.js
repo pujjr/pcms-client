@@ -1,6 +1,6 @@
 angular.module('pu.access.services')
-    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular','BackgroundRestApi', '$uibModal', 'toaster','$timeout','RestApi',
-        function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular,BackgroundRestApi, $uibModal, toaster,$timeout,RestApi) {
+    .service('AuthService', ['$rootScope', 'AuthRestangular', '$state', '$q', 'CarCreditRestangular','BackgroundRestApi', '$uibModal', 'toaster','$timeout','RestApi','ipCookie',
+        function ($rootScope, AuthRestangular, $state, $q, CarCreditRestangular,BackgroundRestApi, $uibModal, toaster,$timeout,RestApi,ipCookie) {
         var isAuth = false;
         var authResource = {};
         var timer;
@@ -21,11 +21,18 @@ angular.module('pu.access.services')
             var defered = $q.defer();
             AuthRestangular.all('auth').post(user).then(function (response) {
                 if (response.successResponse) {
-                    window.localStorage.Authorization = response.data.Authorization;
-                    window.localStorage.account = angular.toJson(response.data.account);
+                    //保存登陆验证成功信息
+                    ipCookie("Authorization", response.data.Authorization);
+                    ipCookie("account", response.data.account);
+                    //window.localStorage.Authorization = response.data.Authorization;
+                    //window.localStorage.account = angular.toJson(response.data.account);
+                    $rootScope.Authorization = response.data.Authorization;
                     $rootScope.account = response.data.account;
+                    //启动心跳服务
                     uploadStatus();
+                    //获取用户授权功能
                     RestApi.all('sysaccount').all("authmenu").all(id).getList().then(function (response) {
+                        authResource = {};
                         angular.forEach(response, function (item) {
                             authResource[item.menuId] = 'all';
                         })
@@ -51,7 +58,7 @@ angular.module('pu.access.services')
             user.oldPasswd = oldPasswd;
             user.newPasswd = newPasswd;
             var defered = $q.defer();
-            CarCreditRestangular.all('accounts').all('modifyPasswd').post(user).then(function (response) {
+            RestApi.all('accounts').all('modifyPasswd').post(user).then(function (response) {
                 defered.resolve();
             }, function (response) {
                 defered.reject(response.message);
@@ -82,27 +89,36 @@ angular.module('pu.access.services')
             var regx = /^[0-9]+$|^[a-z]+$|^[A-Z]+$/;
             return regx.test(val) || val.length < 8;
         };
+        //用户登出
         this.signup = function () {
-            CarCreditRestangular.all("/sysaccount/loginout").post();
+            RestApi.all("/sysaccount/loginout").post();
             $timeout.cancel(timer);
             isAuth = false;
             authResource = {};
-            window.localStorage.removeItem("Authorization");
-            window.localStorage.removeItem("account");
+            ipCookie.remove("Authorization");
+            ipCookie.remove("account");
+            ipCookie.remove("authMenu");
 
         };
-        this.initUserInfo = function () {
-            $rootScope.account = window.localStorage.account;
-            CarCreditRestangular.all('sysaccount').all("authmenu").all($rootScope.account.accountId).getList().then(function (response) {
-                angular.forEach(response, function (item) {
-                    authResource[item.menuId] = 'all';
-                })
-                isAuth = true;
-            });
+        this.initUserFormCookie = function () {
+            //从cookie获取token信息
+            $rootScope.Authorization  = ipCookie("Authorization");
+            if($rootScope.Authorization==undefined){
+                $state.go("access.signin");
+            }else{
+                //从cookie获取账户信息
+                $rootScope.account = ipCookie("account");
+                RestApi.all('sysaccount').all("authmenu").all($rootScope.account.accountId).getList().then(function (response) {
+                    angular.forEach(response, function (item) {
+                        authResource[item.menuId] = 'all';
+                    })
+                    isAuth = true;
+                });
+            }
         };
         this.resetPasswd = function (id) {
             var defered = $q.defer();
-            CarCreditRestangular.all("accounts").all("resetPasswd").post(id).then(function (response) {
+            RestApi.all("accounts").all("resetPasswd").post(id).then(function (response) {
                 defered.resolve();
             }, function (response) {
                 defered.reject(response.message);

@@ -13,11 +13,13 @@ angular.module("pu.holiday.controllers")
         };
         $scope.getHolidayList = function(){
             HolidayService.getHolidayList().then(function(response){
-                $scope.events.length=0;
+               // $scope.events.length=0;
+                $scope.eventSources.length=0;
+                var tmp = [];
                 angular.forEach(response,function(item){
-                    $scope.events.push({id:item.id,title:item.holidayDesc,start:new Date(parseInt(item.holidayDate)),createId:item.createId,createTime:item.createTime})
+                    tmp.push({id:item.id,title:item.holidayDesc,start:new Date(parseInt(item.holidayDate)),createId:item.createId,createTime:item.createTime})
                 });
-                //$scope.eventSources.push($scope.events);
+                $scope.eventSources.push(tmp);
 
             });
         };
@@ -98,15 +100,15 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
                 monthNamesShort:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
                 header:{
                     left: '',
                     center: 'title',
-                    right: 'today prev,next'
+                    right: ''
                 },
+                fixedWeekCount:true,
                 eventClick: $scope.alertEventOnClick,
                 eventRender: $scope.eventRender,
                 dayClick: function(date, jsEvent, view, resourceObj) {
@@ -117,7 +119,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-02-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -125,7 +127,7 @@ angular.module("pu.holiday.controllers")
                 header:{
                     left: '',
                     center: 'title',
-                    right: 'today prev,next'
+                    right: ''
                 },
                 eventClick: $scope.alertEventOnClick,
                 eventRender: $scope.eventRender,
@@ -137,7 +139,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-03-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -157,7 +159,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-04-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -177,7 +179,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-05-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -197,7 +199,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-06-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -217,7 +219,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-07-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -236,7 +238,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-08-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -256,7 +258,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-09-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -276,7 +278,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-10-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -296,7 +298,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-11-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -316,7 +318,7 @@ angular.module("pu.holiday.controllers")
                 height: 450,
                 aspectRatio: 1,
                 editable: false,
-                weekMode:'variable',
+                fixedWeekCount:true,
                 defaultDate:'2016-12-01',
                 dayNamesShort:['日', '一', '二', '三', '四', '五', '六'],
                 monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
@@ -334,11 +336,11 @@ angular.module("pu.holiday.controllers")
             }
         };
         $scope.events=[];
-        $scope.eventSources = [$scope.events];
+        $scope.eventSources = [];
 
         $scope.addHoliday = function(){
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 backdrop:'false',
                 templateUrl :'module_holiday/tpl/dialog-holiday-add.html',
                 controller:function($scope,RestApi){
@@ -361,7 +363,7 @@ angular.module("pu.holiday.controllers")
 
         $scope.initHoliday = function(){
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 backdrop:'false',
                 templateUrl :'module_holiday/tpl/dialog-holiday-init.html',
                 controller:function($scope,RestApi){

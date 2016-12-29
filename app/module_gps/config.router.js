@@ -10,7 +10,6 @@ angular.module('app')
             $stateProvider
                 //GPS管理
                 .state('app.gps',{
-                    abstract:true,
                     url:'/gps',
                     templateUrl:'module_gps/tpl/gps-manage.html',
                     controller:'GpsController'

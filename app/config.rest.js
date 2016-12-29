@@ -7,13 +7,13 @@ angular.module('app')
             });
         });
     }])
-    .factory('BackgroundRestApi', ['Restangular', 'modal', function (Restangular) {
+    .factory('BackgroundRestApi', ['Restangular', 'modal','$rootScope', function (Restangular,modal,$rootScope) {
         return Restangular.withConfig(function (RestangularConfigurer) {
             RestangularConfigurer.setBaseUrl(SERVER_URL.API_SERVER_URL);
             RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
                 return {
                     headers: {
-                        'Authorization': window.localStorage.Authorization
+                        'Authorization': $rootScope.Authorization
                     }
                 };
             });
@@ -29,7 +29,7 @@ angular.module('app')
                 };
                 angular.extend($rootScope.vm, params);
                 var newHeaders = {
-                    'Authorization': window.localStorage.Authorization
+                    'Authorization': $rootScope.Authorization
                 };
                 angular.extend(newHeaders,headers);
                 return {

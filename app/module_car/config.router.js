@@ -10,7 +10,6 @@ angular.module('app')
             $stateProvider
                 //车辆管理
                 .state('app.car',{
-                    abstract:true,
                     url:'/car',
                     templateUrl:'module_car/tpl/car-manage.html',
                     controller:function($scope,$state){

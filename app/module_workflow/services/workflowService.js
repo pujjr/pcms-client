@@ -1,5 +1,5 @@
 angular.module('pu.workflow.services')
-    .service("WorkflowService",function($window,RestApi){
+    .service("WorkflowService",function($window,RestApi,$rootScope){
         this.queryWorkflowTypes = function(){
             return RestApi.all("/workflowtype").getList();
         };
@@ -13,8 +13,7 @@ angular.module('pu.workflow.services')
             return RestApi.all("/workflow/list").all(workflowTypeId).getList();
         };
         this.showWorkflowEditor=function(modelId){
-            var token = window.localStorage.Authorization;
-            $window.open(SERVER_URL.WORKFLOW_EDITOR_URL+modelId+"&token="+token);
+            $window.open(SERVER_URL.WORKFLOW_EDITOR_URL+modelId+"&token="+$rootScope.Authorization);
         };
         this.getWorkflowImageUrl = function (id){
             return SERVER_URL.WORKFLOW_IMG_URL+id;

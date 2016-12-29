@@ -10,7 +10,6 @@ angular.module('app')
             $stateProvider
                 //报盘管理
                 .state('app.charge',{
-                    abstract:true,
                     url:'/charge',
                     templateUrl:'module_charge/tpl/charge-manage.html',
                     controller:'ChargeController'

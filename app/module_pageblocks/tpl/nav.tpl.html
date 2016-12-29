@@ -27,7 +27,7 @@
       <span class="font-bold">放款</span>
     </a>
   </li>
-  <li ui-sref-active="active" >
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.query.applylist-dealer')">
     <a ui-sref="app.query.applylist-dealer" >
       <i class="fa fa-search icon text-info-dker"></i>
       <span class="font-bold">申请单查询</span>
@@ -41,50 +41,50 @@
   </li>
   <li class="line dk"></li>
 
-  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs" >
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs"  ng-if="hasPrimission('app.loan')">
     <span>贷后管理</span>
   </li>
 
-  <li ui-sref-active="active">
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.loanquery.list')">
     <a ui-sref="app.loanquery.list" >
       <i class="fa fa-search icon text-info-dker"></i>
       <span class="font-bold">贷后综合管理</span>
     </a>
   </li>
 
-  <li ui-sref-active="active">
-    <a ui-sref="app.loantask.todolist" >
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.loantask.todolist')">
+    <a ui-sref="app.loantask.todolist">
       <i class="fa fa-tasks icon text-info-dker"></i>
       <span class="font-bold">贷后待办任务</span>
     </a>
   </li>
 
-  <li ui-sref-active="active">
-    <a ui-sref="app.loantask.history.publicrepay" >
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.loantask.history')">
+    <a ui-sref="app.loantask.history" >
       <i class="fa fa-tasks icon text-info-dker"></i>
       <span class="font-bold">我发起的任务</span>
     </a>
   </li>
-  <li ui-sref-active="active">
-    <a ui-sref="app.charge.waitingcharge" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.charge')">
+    <a ui-sref="app.charge" >
       <i class="fa fa-jpy icon text-info-dker"></i>
       <span class="font-bold">报盘扣款</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.archive.clear')">
     <a ui-sref="app.archive.clear" >
       <i class="fa fa-file icon text-info-dker"></i>
       <span class="font-bold">档案整理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.archive.list')">
     <a ui-sref="app.archive.list" >
       <i class="fa fa-file-archive-o icon text-info-dker"></i>
       <span class="font-bold">档案管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
-    <a ui-sref="app.sms.history" >
+  <li ui-sref-active="active" ng-if="hasPrimission('app.sms')">
+    <a ui-sref="app.sms" >
       <i class="fa fa-file-archive-o icon text-info-dker"></i>
       <span class="font-bold">短信管理</span>
     </a>
@@ -105,8 +105,8 @@
       <span class="font-bold">工作组管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.product.config')">
-    <a ui-sref="app.product.config">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.product')">
+    <a ui-sref="app.product">
       <i class="fa  fa-car icon text-info-dker"></i>
       <span class="font-bold">产品管理</span>
     </a>
@@ -147,8 +147,8 @@
       <span class="font-bold">保险公司管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.gps.gpssupplier')">
-    <a ui-sref="app.gps.gpssupplier">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.gps')">
+    <a ui-sref="app.gps">
       <i class="fa fa-globe icon text-info-dker"></i>
       <span class="font-bold">GPS管理</span>
     </a>
@@ -159,34 +159,34 @@
       <span class="font-bold">目录管理</span>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.form.field')">
-    <a ui-sref="app.form.field">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.form')">
+    <a ui-sref="app.form">
       <i class="fa fa-bank icon text-info-dker"></i>
       <span class="font-bold">表单配置</span>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="hasPrimission('app.car.carbrand')">
-    <a ui-sref="app.car.carbrand">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.car')">
+    <a ui-sref="app.car">
       <i class="fa fa-car icon text-info-dker"></i>
       <span class="font-bold">车辆管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.holiday.setting')">
     <a ui-sref="app.holiday.setting">
       <i class="fa fa-sun-o icon text-info-dker"></i>
       <span class="font-bold">节假日设置</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.merchant.list')">
     <a ui-sref="app.merchant.list">
       <i class="fa fa-bank icon text-info-dker"></i>
       <span class="font-bold">商户管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.unitinfo.list')">
     <a ui-sref="app.unitinfo.list">
       <i class="fa fa-bank icon text-info-dker"></i>
-      <span class="font-bold">单位管理</span>
+      <span class="font-bold">单位管理(贷后)</span>
     </a>
   </li>
   <li ui-sref-active="active" ng-if="hasPrimission('app.sysmenu.list')">

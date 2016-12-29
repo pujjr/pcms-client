@@ -1,92 +1,115 @@
 <form name="form" class="form-horizontal" ng-init="init()">
     <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>选择车型</h4>
+        <div class="pull-left"><h5><i class="fa fa-exclamation-circle"></i>选择车型</h5></div>
+        <div class="pull-right">
+            <input type="text" class="form-control" style="width:300px" id="indexStr" placeholder="快速查找"  ng-model="indexStr">
+        </div>
     </div>
-    <div class="modal-body" style="max-height: 600px;overflow-y: auto">
-        <div class="panel">
-            <div class="container-fluid form-horizontal">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group form-group-sm">
-                            <label for="carbrand" class="col-sm-4 control-label">品牌：</label>
-                            <div class="col-sm-8">
-                                <select id="carbrand" class="form-control" ng-model="carBrand" ng-change="carBrandChanged()"
-                                        ng-options="item.brandName for item in carBrandList" required >
-                                    <option value="">选择品牌</option>
-                                </select>
-                            </div>
+    <div class="modal-body">
+        <div class="c_box"  style="height: 600px;overflow-y: auto">
+            <div class="c_left_box">
+                <div class="panel_main">
+                    <div class="panel-header">
+                        <div class="panel-header-wrapper">
+                            <h2 class="panel-header-title">车辆品牌</h2>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group form-group-sm">
-                            <label for="product" class="col-sm-4 control-label">车系：</label>
-                            <div class="col-sm-8">
-                                <select id="product" class="form-control" ng-model="carSerial" ng-change="carSerialChanged()"
-                                        ng-options="item.carSerialName for item in carSerialList" required >
-                                    <option value="">选择车系</option>
-                                </select>
-                            </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="过滤条件：车辆品牌" ng-model="filterBrand">
+                    </div>
+                    <div  ng-repeat="item in carBrandList | filter:filterBrand" >
+                        <div ng-class="$getNodeCss(item)" ng-click="carBrandClicked(item)">
+                            <span >
+                            {{item.prefixLetter}}-{{item.brandName}}
+                            </span>
+                        </div>
+                        <div class="divider divider--dark">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="product" class="col-sm-4 control-label">快速查找：</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="indexStr" placeholder="快速查找" ng-model="indexStr">
-                        </div>
 
+                </div>
+            </div>
+            <div class="c_left_box">
+                <div class="panel_main">
+                    <div class="panel-header">
+                        <div class="panel-header-wrapper">
+                            <h2 class="panel-header-title">车辆系列</h2>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="过滤条件：车辆型号" ng-model="filterSerial">
+                    </div>
+                    <div  ng-repeat="item in carSerialList | filter:filterSerial" >
+                        <div ng-class="$getNodeCss(item)" ng-click="carSerialClicked(item)">
+                            <span >
+                            {{item.carSerialName}}
+                            </span>
+                        </div>
+                        <div class="divider divider--dark">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="data-table-container">
-                <table class="data-table"  >
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>品牌</th>
-                        <th>车系</th>
-                        <th>车型</th>
-                        <th>排量</th>
-                        <th>指导价</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in carStyleList">
-                        <td>{{$index+1}}</td>
-                        <td>{{item.carBrand.brandName}}</td>
-                        <td>{{item.carSerial.carSerialName}}</td>
-                        <td>{{item.carStyleName}}</td>
-                        <td>{{item.displacement}}</td>
-                        <td>{{item.guidePrice}}</td>
-                        <td>
-                            <a href="javascript:" ng-click="selectCar(item)">选择</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="has-divider has-divider--dark"></div>
-                <div class="toolbar">
-                    <div class="toolbar__left mr++">
-                    <span ng-if="paginationInfo.totalItem==0">
-                        无查询结果
-                    </span>
-                    </div>
-                <span class="toolbar__label fs-title">
-
-                </span>
-                    <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
-                        <div class="mr+++">
-                    <span>
-                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
-                    </span>
+            <div class="c_right_box">
+                <div class="panel_main">
+                    <div class="panel-header">
+                        <div class="panel-header-wrapper">
+                            <h2 class="panel-header-title">车型列表</h2>
                         </div>
-                        <div>
-                            <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
-                                            ng-model="paginationInfo.curPage"
-                                            items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
-                                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-                                            last-text="&raquo;">
-                            </uib-pagination>
+                    </div>
+                    <div class="data-table-container" cg-busy="queryCarStyle">
+                        <table class="data-table">
+                            <thead>
+                            <tr>
+                                <th>品牌</th>
+                                <th>车系</th>
+                                <th>车型</th>
+                                <th style="width: 40px">排量</th>
+                                <th style="width: 70px">指导价</th>
+                                <th style="width: 50px">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in carStyleList">
+                                    <td>{{item.carBrand.brandName}}</td>
+                                    <td>{{item.carSerial.carSerialName}}</td>
+                                    <td>{{item.carStyleName}}</td>
+                                    <td>{{item.displacement}}</td>
+                                    <td>{{item.guidePrice}}</td>
+                                    <td>
+                                        <a href="javascript:" ng-click="selectCar(item)">选择</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="has-divider has-divider--dark"></div>
+                        <div class="toolbar">
+                            <div class="toolbar__left mr++">
+                                <span ng-if="paginationInfo.totalItem==0">
+                                    无查询结果
+                                </span>
+                            </div>
+                            <span class="toolbar__label fs-title">
+
+                            </span>
+                            <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                                <div class="mr+++">
+                                    <span>
+                                    总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                                    </span>
+                                </div>
+                                <div>
+                                    <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                                    ng-model="paginationInfo.curPage"
+                                                    items-per-page="paginationInfo.pageSize"
+                                                    ng-change="pageChanged()"
+                                                    previous-text="&lsaquo;" next-text="&rsaquo;"
+                                                    first-text="&laquo;"
+                                                    last-text="&raquo;">
+                                    </uib-pagination>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
