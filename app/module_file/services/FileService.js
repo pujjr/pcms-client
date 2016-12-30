@@ -59,12 +59,12 @@ angular.module('pu.file.services')
                 backdrop:'static',
                 size:'lg',
                 templateUrl :'module_file/tpl/dialog-uploadFile.html',
-                controller:function($scope){
+                controller:function($scope,$rootScope){
                     $scope.fileGirdColSize = 4;
                     $scope.uploader = new FileUploader({
                         url:SERVER_URL.FILE_UPLOAD_URL+businessId+"/"+dirId,
                         headers:{
-                            'Authorization': window.localStorage.Authorization
+                            'Authorization':$rootScope.Authorization
                         },
                         removeAfterUpload:true
                     });

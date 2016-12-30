@@ -7,7 +7,7 @@
  * # tree
  */
 angular.module('pu.utils.directives')
-    .directive('ngFileManage', function ($compile,FileService,ToolsService,modal,$uibModal,toaster) {
+    .directive('ngFileManage', function ($compile,FileService,ToolsService,modal,$uibModal,toaster,$window) {
         return {
             restrict: "E",
             scope:{
@@ -58,6 +58,7 @@ angular.module('pu.utils.directives')
                 };
                 /**选择目录**/
                 $scope.selectDir = function(item){
+                    $scope.isViewModel = false;
                     $scope.readTopDirFileList(item.dirId);
                 };
                 $scope.readTopDirFileList = function(dirId){
@@ -110,6 +111,34 @@ angular.module('pu.utils.directives')
                     })
                 };
                 $scope.appendToEl = angular.element(document.querySelector('#img-container'));
+                $scope.innerWidth = $window.innerWidth;
+                $scope.innerHeight = $window.innerHeight;
+                $scope.leftStyle = {
+                    width:$scope.innerWidth-200-0.25*$scope.innerWidth+'px',
+                    height:($scope.innerHeight - 220)+'px'
+                };
+                $scope.rightStyle = {
+                    position: 'relative',
+                    'overflow-x': 'hidden',
+                    width:200+'px',
+                    height:($scope.innerHeight - 220)+'px'
+                };
+                $scope.prevSlide = {
+                    'max-height':($scope.innerHeight - 220)+'px',
+                    'overflow-x': 'hidden',
+                    'overflow-y': 'auto',
+                    'margin-left':'-30px',
+                    'margin-right':'-30px'
+                };
+                /**点击图片进入查看模式**/
+                $scope.imgViewerWidth =  angular.element(document.querySelector('#img_box'));
+                $scope.zoomIn = function(item){
+                    $scope.isViewModel = true;
+                };
+                /**图片查看模式查看大图**/
+                $scope.showOriginSrc = function(item){
+                    $scope.imgUrlOrigin = item.imgUrlOrigin;
+                }
                 $scope.zoomInImage = function(item,fileList){
                     var modalInstance = $uibModal.open({
                         animation: true,

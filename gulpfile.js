@@ -25,7 +25,8 @@ var src={
         'assets/css/animate.css',
         'assets/css/font-awesome.min.css',
         'assets/css/simple-line-icons.css',
-        'assets/css/filemanage.css'
+        'assets/css/filemanage.css',
+        'assets/css/imageView.css'
     ],
     jsTpl:[app.dist+"/template/*.js"],
     htmlTpl:['app/module**/tpl/*.tpl.html'],

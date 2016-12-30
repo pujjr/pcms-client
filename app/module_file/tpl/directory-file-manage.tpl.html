@@ -15,11 +15,11 @@
                     <button type="button" class="btn btn-default" ng-if="enableUpload" ng-click="fileUpload()"><i class="fa fa-cloud-upload m-r-sm" style="color:green"></i>上传附件</button>
                 </div>
             </header>
-            <div class="container-fluid m-t" >
+            <div class="container-fluid m-t" ng-if="isViewModel!=true">
                 <div class="row" ng-repeat="colList in fileShowGrid">
                     <div class="col-md-3"  ng-repeat="item in colList">
                         <div ng-class="{'img-selected-theumbnail':item.selected==true}" class="thumbnail">
-                            <a ng-click="zoomInImage(item,fileList)" class="zoom-in">
+                            <a ng-click="zoomIn(item)" class="zoom-in">
                                 <img ng-src="{{item.imgUrlPrev}}" alt="通用的占位符缩略图">
                             </a>
                             <div>
@@ -35,7 +35,27 @@
                     </div>
                 </div>
             </div>
+            <div ng-if="isViewModel==true">
+                <div id="img_box" class="img_box">
+                    <div class="img_left_box" ng-style="leftStyle">
+                        <div>
+                            <img  ng-src="{{imgUrlOrigin}}" width="768px"></a>
+                        </div>
+                    </div>
+                    <div class="img_right_box" ng-style="rightStyle" >
+                        <div ng-style="prevSlide">
+                            <ul>
+                                <li ng-repeat="item in  fileList" style="border-bottom: #dedede 2px solid;padding:5px" >
+                                    <a id="thumb_xixi-01" ng-click="showOriginSrc(item)" style="padding:5px" ><img ng-src="{{item.imgUrlPrev}}" width="140" height="100" ></a>
+                                </li>
+                            </ul>
+                        </div>
 
+                    </div>
+                </div>
+
+
+            </div>
         </div>
 
     </div>
