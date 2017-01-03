@@ -60,6 +60,7 @@ angular.module('pu.car.services')
                 controller:function($scope,RestApi,CarService,$timeout,$rootScope){
                     $rootScope.resetCache();
                     $scope.appId = appId;
+                    $scope.queryParam = {};
                     $scope.init = function(){
                         $scope.carBrand ={};
                         $scope.carSerial = {};
@@ -79,7 +80,8 @@ angular.module('pu.car.services')
                     };
                     $scope.carSerialClicked = function(item){
                         $scope.carSerial = item;
-                        $scope.queryCarStyle = CarService.queryCarStylePageList({'carSerialId':$scope.carSerial.id}).then(function(response){
+                        $scope.queryParam = {'carSerialId':$scope.carSerial.id};
+                        $scope.queryCarStyle = CarService.queryCarStylePageList($scope.queryParam).then(function(response){
                              $scope.carStyleList = response;
                         });
                     };
@@ -92,13 +94,19 @@ angular.module('pu.car.services')
                                     $scope.carStyleList =[];
                                 }else{
                                     $rootScope.resetCache();
-                                    $scope.queryCarStyle =  CarService.queryCarStylePageList({'indexStr':$scope.indexStr,'appId':$scope.appId}).then(function(response){
+                                    $scope.queryParam = {'indexStr':$scope.indexStr,'appId':$scope.appId};
+                                    $scope.queryCarStyle =  CarService.queryCarStylePageList( $scope.queryParam).then(function(response){
                                         $scope.carStyleList = response;
                                     });
                                 }
                             },1500);
                         }
                     })
+                    $scope.pageChanged = function(){
+                        $scope.queryCarStyle =  CarService.queryCarStylePageList( $scope.queryParam).then(function(response){
+                            $scope.carStyleList = response;
+                        });
+                    }
                     $scope.selectCar = function(item){
                         var carObj = {};
                         angular.copy(item,carObj);

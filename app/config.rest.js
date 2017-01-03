@@ -23,10 +23,12 @@ angular.module('app')
         return Restangular.withConfig(function (RestangularConfigurer) {
             RestangularConfigurer.setBaseUrl(SERVER_URL.API_SERVER_URL);
             RestangularConfigurer.setFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
+                var page = {};
                 if (operation == 'getList') {
-                    params.pageSize = params.pageSize || $rootScope.paginationInfo.pageSize;
-                    params.curPage = params.curPage || $rootScope.paginationInfo.curPage;
+                    page.pageSize = params.pageSize || $rootScope.paginationInfo.pageSize;
+                    page.curPage = params.curPage || $rootScope.paginationInfo.curPage;
                 };
+                angular.extend($rootScope.vm,page);
                 angular.extend($rootScope.vm, params);
                 var newHeaders = {
                     'Authorization': $rootScope.Authorization

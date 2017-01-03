@@ -1,4 +1,4 @@
-<div class="img-container" id="img-container" style="height:100%;top: 0px;bottom: 1px;left: 0px;">
+<div class="img-container" id="img-container" ng-style="imgContainerCss">
     <div class="img-left">
         <ui-tree tree-data="dirTree" label="dirName"  checked="false" on-select="selectDir($item)"></ui-tree>
     </div>
@@ -6,7 +6,14 @@
         <div class="data-table-container" >
             <header class="data-table-header">
                 <div class="data-table-header__label">
-                    <span class="fs-title"></span>
+                    <span class="fs-title">
+                        <button type="button" class="btn btn-default"  ng-click="setViewModel('grid')"><i class="fa fa-th-large"></i></button>
+                        <button type="button" class="btn btn-default"  ng-click="setViewModel('list')"><i class="fa fa-align-justify"></i></button>
+                        <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="rotateLeft()"><i class="fa fa-undo"></i></button>
+                        <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="rotateRight()"><i class="fa fa-repeat"></i></button>
+                         <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="zoomOutHandle()"><i class="fa fa-search-plus" aria-hidden="true"></i></button>
+                        <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img' " ng-click="zoomInHandle()"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
+                    </span>
                 </div>
                 <div class="data-table-header__actions">
                     <button type="button" class="btn btn-default" ng-if="enableMove" ng-click="moveFile()">
@@ -20,7 +27,7 @@
                     <div class="col-md-3"  ng-repeat="item in colList">
                         <div ng-class="{'img-selected-theumbnail':item.selected==true}" class="thumbnail">
                             <a ng-click="zoomIn(item)" class="zoom-in">
-                                <img ng-src="{{item.imgUrlPrev}}" alt="通用的占位符缩略图">
+                                <img ng-src="{{item.imgUrlPrev}}">
                             </a>
                             <div>
                                 <div class="caption">
@@ -29,7 +36,6 @@
                                         <button type="button" ng-click="deleteFile(item.id)" class="btn btn-default btn-xs"  ng-if="enableDelete"  style="min-height: 20px"><i class="glyphicon glyphicon-trash text-danger"></i></button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -38,15 +44,17 @@
             <div ng-if="isViewModel==true">
                 <div id="img_box" class="img_box">
                     <div class="img_left_box" ng-style="leftStyle">
-                        <div>
-                            <img  ng-src="{{imgUrlOrigin}}" width="768px"></a>
+                        <div ng-style="contentDivStyle" id ="contentDiv">
+                            <embed embed-src="{{imgUrlOrigin}}" id="pdfEle"  type="application/pdf" ng-style="pdfStyle" ng-if="srcType=='pdf' && isInitViewModel==false"/>
+                            <iframe ng-src="{{imgUrlOrigin}}" ng-style="pdfStyle" id="wordEle" ng-if="srcType=='mswd'&& isInitViewModel==false"/>
+                            <img  ng-src="{{imgUrlOrigin}}" id="imgEle" ng-style="imgStyle" class="img-responsive"  ng-if="srcType=='img'&& isInitViewModel==false"/>
                         </div>
                     </div>
                     <div class="img_right_box" ng-style="rightStyle" >
                         <div ng-style="prevSlide">
                             <ul>
                                 <li ng-repeat="item in  fileList" style="border-bottom: #dedede 2px solid;padding:5px" >
-                                    <a id="thumb_xixi-01" ng-click="showOriginSrc(item)" style="padding:5px" ><img ng-src="{{item.imgUrlPrev}}" width="140" height="100" ></a>
+                                    <a id="thumb_xixi-01" ng-click="clickShowOriginSrc(item)" style="padding:5px" ><img ng-src="{{item.imgUrlPrev}}" width="140" height="100" ></a>
                                 </li>
                             </ul>
                         </div>

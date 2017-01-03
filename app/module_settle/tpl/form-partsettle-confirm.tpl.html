@@ -86,10 +86,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">结清截止期数：</label>
                 <div class="col-sm-8">
-                    <select id="endPeriod" class="form-control" ng-model="applyVo.endPeriod" required
-                            ng-options="item.key as item.name for item in canSelSettlePeriod" >
-                        <option value="">请选择结清截止期数</option>
-                    </select>
+                    <p class="form-control-static">{{applyVo.endPeriod}}</p>
                 </div>
             </div>
         </div>
@@ -97,16 +94,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">有效截止日期：</label>
                 <div class="col-sm-8">
-                    <p class="input-group">
-                        <input type="text" id="applyEffectDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd" required
-                               placeholder="有效截止日期"
-                               is-open="isopenApplyEffectDate"
-                               datepicker-options="dateOptions"
-                               ng-model="applyVo.applyEffectDate" >
-                        <span class="input-group-btn">
-                            <button type="button" class="form-control btn btn-default"   ng-click="isopenApplyEffectDate=!isopenApplyEffectDate" ><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </p>
+                    <p class="form-control-static">{{applyVo.applyEffectDate |mysqlDate}}</p>
                 </div>
             </div>
         </div>
@@ -118,7 +106,10 @@
                 <tr>
                     <th style="width:150px">结清项目</th>
                     <th style="width:100px"></th>
-                    <th>结清金额</th>
+                    <th style="width:150px">结清金额</th>
+                    <th style="width:100px"></th>
+                    <th style="width:300px">减免金额</th>
+                    <th>结清项总额</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -126,53 +117,118 @@
                     <td>应还本金(+)</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.repayCapital}}</td>
+                    <td>-</td>
+                    <td>
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                            <input type="number" class="form-control" style="width:150px" id="capital" ng-model="applyVo.remissionFeeItemVo.capital"
+                                   verify-remission-amount="applyVo.feeItem.repayCapital" step="0.01" placeholder="减免本金">
+                        </div>
+                    </td>
+                    <td>{{applyVo.feeItem.repayCapital-applyVo.remissionFeeItemVo.capital}}</td>
                 </tr>
                 <tr>
                     <td>应还利息(+)</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.repayInterest}}</td>
+                    <td>-</td>
+                    <td>
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                            <input type="number" class="form-control"  style="width:150px" id="interest" ng-model="applyVo.remissionFeeItemVo.interest"
+                                   verify-remission-amount="applyVo.feeItem.repayInterest" step="0.01" placeholder="减免利息">
+                        </div>
+                    </td>
+                    <td>{{applyVo.feeItem.repayInterest-applyVo.remissionFeeItemVo.interest}}</td>
                 </tr>
                 <tr>
                     <td>应还罚息(+)</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
+                    <td>-</td>
+                    <td>
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                            <input type="number" class="form-control"  style="width:150px" id="overdueAmount" ng-model="applyVo.remissionFeeItemVo.overdueAmount"
+                                   verify-remission-amount="applyVo.feeItem.repayOverdueAmount" step="0.01" placeholder="减免罚息">
+                        </div>
+                    </td>
+                    <td>{{applyVo.feeItem.repayOverdueAmount-applyVo.remissionFeeItemVo.overdueAmount}}</td>
                 </tr>
                 <tr>
                     <td>其他费用(+)</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.otherAmount}}</td>
+                    <td>-</td>
+                    <td>
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                            <input type="number" class="form-control"  style="width:150px"  id="otherFee" ng-model="applyVo.remissionFeeItemVo.otherFee"
+                                   verify-remission-amount="applyVo.feeItem.otherAmount" step="0.01"  placeholder="减免其他费用">
+                        </div>
+                    </td>
+                    <td>{{applyVo.feeItem.otherAmount-applyVo.remissionFeeItemVo.otherFee}}</td>
                 </tr>
                 <tr>
                     <td>其他费用罚息(+)</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.otherOverdueAmount}}</td>
+                    <td>-</td>
+                    <td>
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                            <input type="number" class="form-control"  style="width:150px"   id="otherOverdueAmount" ng-model="applyVo.remissionFeeItemVo.otherOverdueAmount"
+                                   verify-remission-amount="applyVo.feeItem.otherOverdueAmount" step="0.01"  placeholder="减免其他费用罚息">
+                        </div>
+                    </td>
+                    <td>{{applyVo.feeItem.otherOverdueAmount-applyVo.remissionFeeItemVo.otherOverdueAmount}}</td>
                 </tr>
                 <tr  class="danger">
                     <td>挂账金额(-)</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.stayAmount}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>结清本金(+)</td>
                     <td>=</td>
-                    <td>
-                        <div class="form-group form-group-sm input-group" style="width: 300px;margin-bottom: 0px;!important;">
-                            <input type="number"  id="settleCapital" class="form-control"  ng-model="applyVo.feeItem.settleCapital" step="0.01" requried>
-                            <span class="input-group-addon">
-                                <a href="javascript:" ng-click="genRepayPlan()">生成还款计划</a>
-                            </span>
-                        </div>
-                    </td>
+                    <td>{{applyVo.feeItem.settleCapital}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>提前结清违约金(+)</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.lateFee}}</td>
+                    <td>-</td>
+                    <td>
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                            <input type="number" class="form-control"  style="width:150px"  id="lateFee" ng-model="applyVo.remissionFeeItemVo.lateFee"
+                                   verify-remission-amount="applyVo.feeItem.lateFee" step="0.01"  placeholder="减免提前结清违约金">
+                        </div>
+                    </td>
+                    <td>{{applyVo.feeItem.lateFee-applyVo.remissionFeeItemVo.lateFee}}</td>
                 </tr>
-                <tr  class="info">
+                <tr class="info">
                     <td>合计</td>
                     <td>=</td>
                     <td>{{applyVo.feeItem.settleTotalAmount}}</td>
+                    <td>-</td>
+                    <td>{{
+                        applyVo.remissionFeeItemVo.capital+
+                        applyVo.remissionFeeItemVo.interest+
+                        applyVo.remissionFeeItemVo.overdueAmount+
+                        applyVo.remissionFeeItemVo.otherFee+
+                        applyVo.remissionFeeItemVo.otherOverdueAmount+
+                        applyVo.remissionFeeItemVo.lateFee
+                        }}
+                    </td>
+                    <td>
+                        {{applyVo.feeItem.settleTotalAmount - (applyVo.remissionFeeItemVo.capital+
+                        applyVo.remissionFeeItemVo.interest+
+                        applyVo.remissionFeeItemVo.overdueAmount+
+                        applyVo.remissionFeeItemVo.otherFee+
+                        applyVo.remissionFeeItemVo.otherOverdueAmount+
+                        applyVo.remissionFeeItemVo.lateFee)}}
+                    </td>
                 </tr>
                 <tr>
                     <td>结清后剩余本金</td>
@@ -182,7 +238,6 @@
                 </tbody>
             </table>
         </div>
-
     </div>
     <div class="panel panel-default">
         <div class="data-table-container">
@@ -202,7 +257,7 @@
                 <tr ng-repeat="item in applyVo.repayPlanList">
                     <td>{{item.period}}</td>
                     <td>{{item.repayCapital}}</td>
-                    <td>{{item.repayInterest}}</td>
+                    <td>{{item.repayCnterest}}</td>
                     <td>{{item.repayTotalAmount}}</td>
                     <td>{{item.valueDate | mysqlDate}}</td>
                     <td>{{item.closingDate | mysqlDate}}</td>
@@ -216,9 +271,19 @@
         <div class="col-md-12">
             <div class="form-group form-group-sm">
                 <div class="col-sm-12">
-                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <div class="col-sm-12">
+                    <textarea  type="text"  class="form-control" id="remissionComment" ng-model="applyVo.remissionFeeItemVo.remissionComment" placeholder="减免备注"  rows="5" ></textarea>
                 </div>
             </div>
         </div>
     </div>
 </fieldset>
+

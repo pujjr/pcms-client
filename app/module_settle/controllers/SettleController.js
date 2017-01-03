@@ -5,7 +5,7 @@
 angular.module("pu.settle.controllers")
     .controller('SettleController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,SettleService,SysDictService) {
         $scope.initSettleHistoryTaskList = function(){
-            $scope.settleApplyList = SettleService.getApplySettleTaskList("jqlx01").$object;
+            $scope.settleApplyList = SettleService.getApplySettleTaskList("").$object;
         };
         $scope.initData = function(){
             $scope.procInstId = $stateParams.procInstId;

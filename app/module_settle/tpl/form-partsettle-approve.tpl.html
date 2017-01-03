@@ -99,127 +99,110 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayCapital}}</p>
-                </div>
-            </div>
+    <div class="panel panel-default">
+        <div class="data-table-container">
+            <table class="table data-table">
+                <thead>
+                <tr>
+                    <th style="width:150px">结清项目</th>
+                    <th style="width:100px"></th>
+                    <th>结清金额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>应还本金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayCapital}}</td>
+                </tr>
+                <tr>
+                    <td>应还利息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayInterest}}</td>
+                </tr>
+                <tr>
+                    <td>应还罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherOverdueAmount}}</td>
+                </tr>
+                <tr class="danger">
+                    <td>挂账金额(-)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.stayAmount}}</td>
+                </tr>
+                <tr>
+                    <td>结清本金(+)</td>
+                    <td>=</td>
+                    <td>
+                        {{applyVo.feeItem.settleCapital}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>提前结清违约金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.lateFee}}</td>
+                </tr>
+                <tr class="info">
+                    <td>合计</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.settleTotalAmount}}</td>
+                </tr>
+                <tr>
+                    <td>结清后剩余本金</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.settleAfterAmount}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还利息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayInterest}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还罚息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayOverdueAmount}}</p>
-                </div>
-            </div>
-        </div>
+
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">其他费用：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.otherAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">其他费用罚息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.otherOverdueAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">应还违约金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.lateFee}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">挂账金额：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.stayAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">结清本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.settleCapital}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">结清总金额：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.settleTotalAmount}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">结清后剩余本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.settleAfterAmount}}</p>
-                </div>
-            </div>
+    <div class="panel panel-default">
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width:100px">期数</th>
+                    <th>本金</th>
+                    <th>利息</th>
+                    <th>应还总额</th>
+                    <th>起息日</th>
+                    <th>结账日</th>
+                    <th>剩余本金</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in applyVo.repayPlanList">
+                    <td>{{item.period}}</td>
+                    <td>{{item.repayCapital}}</td>
+                    <td>{{item.repayCnterest}}</td>
+                    <td>{{item.repayTotalAmount}}</td>
+                    <td>{{item.valueDate | mysqlDate}}</td>
+                    <td>{{item.closingDate | mysqlDate}}</td>
+                    <td>{{item.remainCapital}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="form-group form-group-sm">
                 <div class="col-sm-12">
-                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" disabled></textarea>
                 </div>
             </div>
         </div>
     </div>
 </fieldset>
-<div class="data-table-container">
-    <table class="data-table">
-        <thead>
-        <tr>
-            <th style="width:100px">期数</th>
-            <th>本金</th>
-            <th>利息</th>
-            <th>应还总额</th>
-            <th>起息日</th>
-            <th>结账日</th>
-            <th>剩余本金</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in applyVo.repayPlanList">
-            <td>{{item.period}}</td>
-            <td>{{item.repayCapital}}</td>
-            <td>{{item.repayCnterest}}</td>
-            <td>{{item.repayTotalAmount}}</td>
-            <td>{{item.valueDate | mysqlDate}}</td>
-            <td>{{item.closingDate | mysqlDate}}</td>
-            <td>{{item.remainCapital}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+

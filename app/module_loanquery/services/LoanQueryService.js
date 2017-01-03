@@ -10,7 +10,7 @@ angular.module('pu.loanquery.services')
             return RestApi.one("/loanquery/getLoanCustNeedRepayInfo",appId).get();
         };
         this.getLoanCustRepayPlanList = function(appId){
-            return RestApi.all("/repay//select/list").all(appId).all(0).getList();
+            return RestApi.all("/repay/select/list").all(appId).all(0).getList();
         };
         this.getLoanCustRepayLog = function(appId){
             return RestApi.all("/loanquery/getLoanCustRepayLog").all(appId).getList();

@@ -29,6 +29,7 @@
                 <span ng-if="item.repayStatus =='hkzt01'">还款中</span>
                 <span ng-if="item.repayStatus =='hkzt02'">已结清</span>
                 <span ng-if="item.repayStatus =='hkzt03'">逾期</span>
+                <span ng-if="item.repayStatus =='hkzt04'">待还款</span>
             <td>{{item.settleDate|mysqlDate}}</td>
             <td>{{item.watingCharge.repayCapital}}</td>
             <td>{{item.watingCharge.repayInterest}}</td>

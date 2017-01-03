@@ -57,6 +57,13 @@ angular.module('app')
         //cfpLoadingBarProvider.includeBar = true;
         //cfpLoadingBarProvider.spinnerTemplate = "<span>Loading...</span>";
     }])
+    //加载进度条提示消息
     .value('cgBusyDefaults',{
         message:'正在加载'
-    });
+    })
+    //配置iframe跨域访问白名单
+    .config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+        'self',
+        'https://view.officeapps.live.com/**']);
+});

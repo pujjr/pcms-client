@@ -20,7 +20,9 @@ angular.module("pu.loanquery.controllers")
             $scope.repayPlanList = LoanQueryService.getLoanCustRepayPlanList($stateParams.appId).$object;
             $scope.doInitApplyEdit($stateParams.appId);
         };
-
+        $scope.pageChanged = function(){
+            $scope.queryLoanCustList();
+        }
         $scope.queryRepayLog = function(){
             $scope.repayLogList =LoanQueryService.getLoanCustRepayLog($stateParams.appId).$object;
         };

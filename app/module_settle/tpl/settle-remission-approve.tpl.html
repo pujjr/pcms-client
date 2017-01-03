@@ -22,8 +22,8 @@
                         </uib-tab-heading>
                         <form class="container-fluid m-t-md form-horizontal">
                             <fieldset disabled>
-                                <div  ng-include="'module_settle/tpl/form-settle-apply.html'"/>
-                                <div  ng-include="'module_settle/tpl/form-remission-info.html'"/>
+                                <div ng-if="applyVo.settleType=='jqlx01'" ng-include="'module_settle/tpl/form-settle-confirm.html'"/>
+                                <div ng-if="applyVo.settleType=='jqlx02'" ng-include="'module_settle/tpl/form-partsettle-confirm.html'"/>
                             </fieldset>
                             <div  ng-include="'module_loantask/tpl/form-approve-result.html'"/>
                         </form>

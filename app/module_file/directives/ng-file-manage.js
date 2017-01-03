@@ -7,7 +7,7 @@
  * # tree
  */
 angular.module('pu.utils.directives')
-    .directive('ngFileManage', function ($compile,FileService,ToolsService,modal,$uibModal,toaster,$window) {
+    .directive('ngFileManage', function ($compile,FileService,ToolsService,modal,$uibModal,toaster,$window,$sce) {
         return {
             restrict: "E",
             scope:{
@@ -45,6 +45,79 @@ angular.module('pu.utils.directives')
                         }
                     }
                 )
+                /**初始化界面高度和宽度**/
+                $scope.innerWidth = $window.innerWidth;
+                $scope.innerHeight = $window.innerHeight;
+                $scope.imgContainerCss = {
+                    height:($scope.innerHeight - 190)+'px',
+                    top: 0+'px',
+                    bottom: 1+'px',
+                    left: 0+'px'
+                }
+                var heightNum = ($scope.innerHeight - 260);
+                var height = heightNum+'px';
+                $scope.leftStyle = {
+                    width:$scope.innerWidth-200-0.25*$scope.innerWidth+'px',
+                    height:height
+                };
+                $scope.rightStyle = {
+                    position: 'relative',
+                    'overflow-x': 'hidden',
+                    width:200+'px',
+                    height:height
+                };
+                $scope.prevSlide = {
+                    'max-height':height,
+                    'overflow-x': 'hidden',
+                    'overflow-y': 'auto',
+                    'margin-left':'-30px',
+                    'margin-right':'-30px'
+                };
+                $scope.contentDivStyle = {
+                    height: height,
+                    'overflow-y': 'auto',
+                    'overflow-x': 'auto'
+                };
+                $scope.scale = 1;
+                $scope.offsetX = 0;
+                $scope.offsetY = 0;
+                $scope.rotate = 0;
+                $scope.imgStyle = {
+                    width:$scope.innerWidth-200-0.25*$scope.innerWidth-100+'px',
+                    'padding-bottom':10+'px',
+                    'padding-left':10+'px',
+                    'padding-right':10+'px',
+                    'overflow-y': 'auto',
+                    'transform':'scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)',
+                    '-webkit-transform':'scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)',
+                    'filter':'progid:DXImageTransform.Microsoft.BasicImage(rotation=3)'
+                };
+                $scope.pdfStyle={
+                    width:$scope.innerWidth-200-0.25*$scope.innerWidth-100+'px',
+                    height:height,
+                    'padding-bottom':10+'px',
+                    'padding-left':10+'px',
+                    'padding-right':10+'px',
+                    'overflow-y': 'auto'
+                };
+                $scope.zoomOutHandle = function(){
+                    $scope.scale+=0.1;
+                    $scope.offsetX += ($scope.innerWidth-200-0.25*$scope.innerWidth-100)*0.05;
+                    $scope.offsetY += heightNum*0.1;
+                    $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                    $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+
+                };
+                $scope.zoomInHandle = function(){
+                    if($scope.scale-0<0.0001) {
+                        return;
+                    }
+                    $scope.scale-=0.1;
+                    $scope.offsetX -= ($scope.innerWidth-200-0.25*$scope.innerWidth-100)*0.05;
+                    $scope.offsetY -= heightNum*0.1;
+                    $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                    $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                }
                 $scope.readDir = function(){
                     FileService.queryApplyFormCategoryDirectoryList($scope.businessId,$scope.categoryKey).then(function(response){
                         $scope.dirTree=ToolsService.convertArrayToTree(response, {
@@ -111,34 +184,98 @@ angular.module('pu.utils.directives')
                     })
                 };
                 $scope.appendToEl = angular.element(document.querySelector('#img-container'));
-                $scope.innerWidth = $window.innerWidth;
-                $scope.innerHeight = $window.innerHeight;
-                $scope.leftStyle = {
-                    width:$scope.innerWidth-200-0.25*$scope.innerWidth+'px',
-                    height:($scope.innerHeight - 220)+'px'
-                };
-                $scope.rightStyle = {
-                    position: 'relative',
-                    'overflow-x': 'hidden',
-                    width:200+'px',
-                    height:($scope.innerHeight - 220)+'px'
-                };
-                $scope.prevSlide = {
-                    'max-height':($scope.innerHeight - 220)+'px',
-                    'overflow-x': 'hidden',
-                    'overflow-y': 'auto',
-                    'margin-left':'-30px',
-                    'margin-right':'-30px'
-                };
+
                 /**点击图片进入查看模式**/
-                $scope.imgViewerWidth =  angular.element(document.querySelector('#img_box'));
                 $scope.zoomIn = function(item){
                     $scope.isViewModel = true;
+                    $scope.isInitViewModel = false;
+                    if(item.fileType =='.pdf'){
+                        $scope.srcType ='pdf';
+                    }else{
+                        $scope.srcType = 'img';
+                    }
+                    $scope.imgUrlOrigin = item.imgUrlOrigin;
+                   var contentEle = angular.element(document.querySelector('#contentDiv'));
+                   contentEle.remove();
+                    $scope.showOriginSrc(item);
                 };
+                $scope.clickShowOriginSrc = function(item){
+                    $scope.isInitViewModel = true;
+                    $scope.showOriginSrc(item);
+                }
                 /**图片查看模式查看大图**/
                 $scope.showOriginSrc = function(item){
+                    //移除子节点
+                    var contentEle = angular.element(document.querySelector('#contentDiv'));
+                    var pdfEle = angular.element(document.querySelector('#pdfEle'));
+                    var imgEle = angular.element(document.querySelector('#imgEle'));
+                    var wordEle = angular.element(document.querySelector('#wordEle'));
+                    pdfEle.remove();
+                    imgEle.remove();
+                    wordEle.remove();
+                    //重置CSS参数
+                    $scope.scale = 1;
+                    $scope.offsetX = 0;
+                    $scope.offsetY = 0;
+                    $scope.rotate = 0;
+                    $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                    $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
                     $scope.imgUrlOrigin = item.imgUrlOrigin;
+                    if(item.fileType =='.pdf'){
+                        $scope.srcType ='pdf';
+                        var pdfHtml = '<embed embed-src="{{imgUrlOrigin}}" id="pdfEle"  type="application/pdf" ng-style="pdfStyle"/>';
+                        var pdfTemplate = angular.element(pdfHtml);
+                        var pdfElement = $compile(pdfTemplate)($scope);
+                        contentEle.append(pdfElement);
+                    }else if(item.fileType =='.docx' ||
+                            item.fileType =='.doc' ||
+                            item.fileType =='.xlsx'||
+                            item.fileType =='.xls' ||
+                            item.fileType =='.pptx'||
+                            item.fileType =='.ppt'
+                    ){
+                        $scope.srcType ='mswd';
+                        $scope.imgUrlOrigin = 'https://view.officeapps.live.com/op/view.aspx?src='+$scope.imgUrlOrigin;
+                        var wordHtml = '<iframe src="'+$scope.imgUrlOrigin+'" ng-style="pdfStyle" id="wordEle"/>';
+                        var wordTemplate = angular.element(wordHtml);
+                        var wordElement = $compile(wordTemplate)($scope);
+                        contentEle.append(wordElement);
+                    }else{
+                        $scope.srcType ='img';
+                        var imgHtml = '<img  ng-src="{{imgUrlOrigin}}" id="imgEle" ng-style="imgStyle" class="img-responsive"/>';
+                        var imgTemplate = angular.element(imgHtml);
+                        var imgElement = $compile(imgTemplate)($scope);
+                        contentEle.append(imgElement);
+                    }
                 }
+                /**设置图片查看模式**/
+                $scope.setViewModel = function(model){
+                    if(model == 'grid'){
+                        $scope.isViewModel = false;
+                    }else{
+                        $scope.isViewModel = true;
+                    }
+                };
+                /**旋转图片**/
+                $scope.rotateLeft = function(){
+                    if($scope.rotate==0){
+                        $scope.rotate=270;
+                    }else{
+                        $scope.rotate -=90;
+                    }
+                    $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                    $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                }
+                $scope.rotateRight = function(){
+                    if($scope.rotate==360){
+                        $scope.rotate=90;
+                    }else{
+                        $scope.rotate+= 90;
+                    }
+                    $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                    $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
+                }
+                /**弹出框模式放大图片**/
                 $scope.zoomInImage = function(item,fileList){
                     var modalInstance = $uibModal.open({
                         animation: true,

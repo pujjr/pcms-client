@@ -5035,29 +5035,3 @@ ul{
 .console-step .step-active:before {
   border-color: #00a0c7
 }
-.rotate-90{
-  -moz-transform:rotate(-90deg);
-  -webkit-transform:rotate(-90deg);
-  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
-.rotate-180{
-  -moz-transform:rotate(-180deg);
-  -webkit-transform:rotate(-180deg);
-  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
-.rotate-270{
-  -moz-transform:rotate(-270deg);
-  -webkit-transform:rotate(-270deg);
-  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
-.div-enable{
-  width:100%;
-  height:100%;
-  position:absolute;
-  background-color:#000000;
-  z-index:1000;
-  float: left;
-  opacity:0.1;
-  /*兼容IE8及以下版本浏览器*/
-  filter: alpha(opacity=30);
-}

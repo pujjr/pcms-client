@@ -108,83 +108,66 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayCapital}}</p>
-                </div>
-            </div>
+    <div class="panel panel-default">
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width:150px">结清项目</th>
+                    <th style="width:100px"></th>
+                    <th>结清金额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>应还本金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayCapital}}</td>
+                </tr>
+                <tr>
+                    <td>应还利息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayInterest}}</td>
+                </tr>
+                <tr>
+                    <td>应还罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>挂账金额(-)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.stayAmount}}</td>
+                </tr>
+                <tr>
+                    <td>结清本金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.settleCapital}}</td>
+                </tr>
+                <tr>
+                    <td>提前结清违约金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.lateFee}}</td>
+                </tr>
+                <tr>
+                    <td>合计</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.settleTotalAmount}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还利息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayInterest}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还罚息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayOverdueAmount}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">其他费用：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.otherAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">其他费用罚息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.otherOverdueAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">应还违约金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.lateFee}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">挂账金额：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.stayAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">结清本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.settleCapital}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">结清总金额：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.settleTotalAmount}}</p>
-                </div>
-            </div>
-        </div>
+
     </div>
     <div class="row">
         <div class="col-md-12">
