@@ -64,7 +64,7 @@ angular.module('pu.publicrepay.services')
                 },
                 size:'lg',
                 templateUrl :'module_publicrepay/tpl/dialog-publicrepay-task-detail.html',
-                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,QueryService,item,$uibModalInstance){
+                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,QueryService,item,$uibModalInstance,$rootScope){
                     $scope.businessKey = item.id;
                     $scope.appId = item.appId;
                     $scope.procDefId = item.procDefId;
@@ -83,7 +83,7 @@ angular.module('pu.publicrepay.services')
                     $scope.openWorkflowDiagram = function(taskId ) {
                         var processDefinitionId = $scope.procDefId;
                         var processInstanceId = $scope.procInstId;
-                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
                     }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');

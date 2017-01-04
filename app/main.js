@@ -62,5 +62,9 @@ angular.module("app")
         $scope.sendSms = function(appId){
             SmsService.sendSms(appId);
         };
+        //公共方法-打开贷后客户详细资料
+        $scope.showCustomDetail = function(appId){
+            window.open("#/app/loanquery/loaninfo/detail/"+appId,"1111","height=900, width=1600, toolbar =no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+        }
 
     })
