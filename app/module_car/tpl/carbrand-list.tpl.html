@@ -2,7 +2,7 @@
     <form class="form-inline m-md" role="form" >
         <div class="form-group">
             <label class="sr-only" for="brandName">品牌名称</label>
-            <input type="text" class="form-control" id="brandName" ng-model="queryParams.brandName" placeholder="品牌名称">
+            <input type="text" class="form-control" id="brandName" ng-model="vm.brandName" placeholder="品牌名称">
         </div>
         <button type="submit" class="btn btn-default btn-sm" ng-click="init()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
     </form>
@@ -50,6 +50,7 @@
                         <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
                                         ng-model="paginationInfo.curPage"
                                         items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        max-size="paginationInfo.maxSize" boundary-link-numbers="true" rotate="false"
                                         previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
                                         last-text="&raquo;">
                         </uib-pagination>

@@ -15,4 +15,20 @@ angular.module('pu.apply.services')
         this.commitApplyTask = function(item){
             return RestApi.all("/apply/commitApplyTask").post(item);
         }
+        this.printApplyInfo = function(appId){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop: 'static',
+                size: 'lg',
+                resolve:{
+                  appId:function(){
+                      return appId;
+                  }
+                },
+                templateUrl: 'module_apply/tpl/dialog-apply-print.html',
+                controller:'ApplyController',
+                controllerAs:"$ctrl"
+
+            });
+        }
     });

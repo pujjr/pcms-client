@@ -61,5 +61,6 @@ angular.module("app")
         //公共方法-发送短信
         $scope.sendSms = function(appId){
             SmsService.sendSms(appId);
-        }
+        };
+
     })

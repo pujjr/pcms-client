@@ -53,7 +53,9 @@
             <table class="data-table">
                 <thead>
                 <tr>
+                    <th>申请单号</th>
                     <th>手机号码</th>
+                    <th>申请类型</th>
                     <th style="width: 60%">短信内容</th>
                     <th>发送时间</th>
                     <th>发送结果</th>
@@ -63,7 +65,9 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in historyList">
+                    <td>{{item.appId}}</td>
                     <td>{{item.mobile}}</td>
+                    <td>{{}}</td>
                     <td>{{item.content}}</td>
                     <td>{{item.sendTime |mysqlDatetime}}</td>
                     <td>{{item.sendStatus}}</td>

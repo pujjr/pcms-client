@@ -4751,31 +4751,9 @@ ul{
     line-height: 15px;
     font-weight: bold;
   }
-
-  #printapp {
-    width:900px;
-    font-size:12px;
-    margin-top: -290px;
-    margin-left: -40px;
-    -webkit-transform-origin-x: 0;
-    -webkit-transform: scale(0.75);
-  }
-  #printcheck {
-    width:900px;
-    font-size:12px;
-    margin-top: -180px;
-    margin-left: -40px;
-    -webkit-transform-origin-x: 0;
-    -webkit-transform: scale(0.75);
-  }
-  #printconfirm {
-    margin: -50px;
-  }
-  #printapprove {
-    margin: -50px;
-  }
   #print-content *{
     visibility: visible;
+    width:1000px;
   }
   .modal{
     position: inherit;

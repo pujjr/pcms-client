@@ -4,14 +4,14 @@
 // signin controllers
 angular.module("pu.car.controllers")
     .controller('CarBrandController',function ($scope, $rootScope, $state, toaster, $uibModal,CarService,SysDictService,ToolsService) {
-        $scope.queryParams={};
-
         $scope.init = function () {
-            $scope.queryCarBrandList($scope.queryParams);
+            $scope.queryCarBrandList();
         };
-
-        $scope.queryCarBrandList = function(queryParams){
-            $scope.carBrandList = CarService.queryCarBrandPageList(queryParams).$object;
+        $scope.pageChanged = function(){
+            $scope.queryCarBrandList();
+        }
+        $scope.queryCarBrandList = function(){
+            $scope.carBrandList = CarService.queryCarBrandPageList().$object;
         };
         $scope.addCarBrand = function(){
             var modalInstance = $uibModal.open({

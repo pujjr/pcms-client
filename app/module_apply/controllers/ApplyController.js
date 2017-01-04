@@ -60,7 +60,7 @@ angular.module("pu.apply.controllers")
                 //购置税
                 if($scope.finance1.isPurchaseTax){
                     if(parseFloat($scope.finance1.carStyle.displacement)>1.6){
-                        $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*(1-$scope.finance1.initPayPercent/100)).toFixed(2));
+                        $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1).toFixed(2));
                     }else{
                         $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*0.75).toFixed(2));
                     }
@@ -101,9 +101,9 @@ angular.module("pu.apply.controllers")
                 //购置税
                 if($scope.finance2.isPurchaseTax){
                     if(parseFloat($scope.finance2.carStyle.displacement)>1.6){
-                        $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1*(1-$scope.finance2.initPayPercent/100)).toFixed(2));
+                        $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1).toFixed(2));
                     }else{
-                        $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1*0.5).toFixed(2));
+                        $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1*0.75).toFixed(2));
                     }
                 };
                 //取融资手续费
@@ -141,9 +141,9 @@ angular.module("pu.apply.controllers")
                 //购置税
                 if($scope.finance3.isPurchaseTax){
                     if(parseFloat($scope.finance3.carStyle.displacement)>1.6){
-                        $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1*(1-$scope.finance3.initPayPercent/100)).toFixed(2));
+                        $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1).toFixed(2));
                     }else{
-                        $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1*0.5).toFixed(2));
+                        $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1*0.75).toFixed(2));
                     }
                 };
                 //取融资手续费
@@ -781,6 +781,17 @@ angular.module("pu.apply.controllers")
         };
         $scope.pageChanged = function(){
             $scope.initQueryUnCommitApplyInfoList();
-        }
+        };
+        $scope.printApplyInfo = function(appId){
+            ApplyService.printApplyInfo(appId);
+        };
+        $scope.initPrintData = function(){
+            $scope.doInitApplyEdit($scope.$resolve.appId);
+            console.log($scope);
+        };
+        $scope.print=function(){
+            window.print();
+            $uibModalInstance.close();
+        };
     })
 ;

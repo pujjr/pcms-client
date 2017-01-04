@@ -1,0 +1,15 @@
+<div ng-init="initPrintData();editable=false;">
+    <form name="form" class="container form-horizontal">
+        <div class="modal-header">
+            <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>打印申请单</h4>
+        </div>
+        <div class="modal-body" style="height:600px;overflow-y: auto" >
+            <div  ng-include="'module_apply/tpl/form-apply.html'"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+            <button class="btn btn-success" type="button" ng-click="print()">打印</button>
+            <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

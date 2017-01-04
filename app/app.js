@@ -15,6 +15,7 @@ angular.module('app', [
     'angularFileUpload',
     'angular-loading-bar',
     'cgBusy',
+    'ui.router.tabs',
     'ui.calendar',
     'pu.system',
     'pu.access',

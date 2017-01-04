@@ -3,6 +3,16 @@ angular.module('app')
     ['$rootScope', '$state', '$stateParams', '$cacheFactory', 'AuthService',
         function ($rootScope, $state, $stateParams, $cacheFactory, AuthService,QueryService) {
             $rootScope.$state = $state;
+            $rootScope.tabData   = [
+                {
+                    heading: '申请单查询',
+                    route:   'app.query.applylist'
+                },
+                {
+                    heading: 'Accounts',
+                    route:   'app.product'
+                }
+            ];
             $rootScope.$stateParams = $stateParams;
             $rootScope.cache = $cacheFactory('$rootScope');
             $rootScope.resetCache = function () {

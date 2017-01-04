@@ -25,7 +25,7 @@ angular.module('pu.sms.services')
             var modalInstance = $uibModal.open({
                 animation: false,
                 backdrop: false,
-                size: 'md',
+                size: 'lg',
                 templateUrl: 'module_sms/tpl/dialog-sendsms.html',
                 controller: function ($scope, RestApi, ToolsService, modal,SmsService,toaster) {
                     $scope.appId = appId;

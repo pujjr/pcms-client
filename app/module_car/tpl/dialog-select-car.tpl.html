@@ -6,8 +6,8 @@
         </div>
     </div>
     <div class="modal-body">
-        <div class="c_box"  style="height: 600px;overflow-y: auto">
-            <div class="c_left_box">
+        <div class="c_box" >
+            <div class="c_left_box"  >
                 <div class="panel_main">
                     <div class="panel-header">
                         <div class="panel-header-wrapper">
@@ -17,16 +17,17 @@
                     <div>
                         <input type="text" class="form-control" placeholder="过滤条件：车辆品牌" ng-model="filterBrand">
                     </div>
-                    <div  ng-repeat="item in carBrandList | filter:filterBrand" >
-                        <div ng-class="$getNodeCss(item)" ng-click="carBrandClicked(item)">
+                    <div style="height: 600px;overflow-y: auto">
+                        <div  ng-repeat="item in carBrandList | filter:filterBrand" >
+                            <div ng-class="$getNodeCss(item)" ng-click="carBrandClicked(item)">
                             <span >
                             {{item.prefixLetter}}-{{item.brandName}}
                             </span>
-                        </div>
-                        <div class="divider divider--dark">
+                            </div>
+                            <div class="divider divider--dark">
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="c_left_box">
@@ -39,13 +40,15 @@
                     <div>
                         <input type="text" class="form-control" placeholder="过滤条件：车辆型号" ng-model="filterSerial">
                     </div>
-                    <div  ng-repeat="item in carSerialList | filter:filterSerial" >
-                        <div ng-class="$getNodeCss(item)" ng-click="carSerialClicked(item)">
+                    <div   style="height: 600px;overflow-y: auto">
+                        <div  ng-repeat="item in carSerialList | filter:filterSerial" >
+                            <div ng-class="$getNodeCss(item)" ng-click="carSerialClicked(item)">
                             <span >
                             {{item.carSerialName}}
                             </span>
-                        </div>
-                        <div class="divider divider--dark">
+                            </div>
+                            <div class="divider divider--dark">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -57,7 +60,7 @@
                             <h2 class="panel-header-title">车型列表</h2>
                         </div>
                     </div>
-                    <div class="data-table-container" cg-busy="queryCarStyle">
+                    <div class="data-table-container" cg-busy="queryCarStyle"  style="height: 600px;overflow-y: auto">
                         <table class="data-table">
                             <thead>
                             <tr>
@@ -69,7 +72,7 @@
                                 <th style="width: 50px">操作</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 <tr ng-repeat="item in carStyleList">
                                     <td>{{item.carBrand.brandName}}</td>
                                     <td>{{item.carSerial.carSerialName}}</td>
@@ -103,6 +106,7 @@
                                                     ng-model="paginationInfo.curPage"
                                                     items-per-page="paginationInfo.pageSize"
                                                     ng-change="pageChanged()"
+                                                    max-size="paginationInfo.maxSize" boundary-link-numbers="true" rotate="false"
                                                     previous-text="&lsaquo;" next-text="&rsaquo;"
                                                     first-text="&laquo;"
                                                     last-text="&raquo;">
