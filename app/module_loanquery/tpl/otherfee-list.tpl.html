@@ -1,9 +1,9 @@
 <table class="data-table">
     <thead>
     <tr>
-        <th>费用总金额</th>
         <th>申请人</th>
         <th>申请日期</th>
+        <th>费用总金额</th>
         <th>还款状态</th>
         <th>结清日期</th>
         <th>剩余本金</th>
@@ -14,9 +14,9 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in otherFeeList">
-        <td>{{item.feeTotalAmount}}</td>
         <td>{{item.createName}}</td>
         <td>{{item.applyDate }}</td>
+        <td>{{item.feeTotalAmount}}</td>
         <td>{{item.repayStatus}}</td>
         <td>{{item.settleDate }}</td>
         <td>{{item.repayCapital}}</td>

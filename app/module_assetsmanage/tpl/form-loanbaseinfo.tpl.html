@@ -1,5 +1,5 @@
 <fieldset class="scheduler-border">
-    <legend class="scheduler-border">客户信息</legend>
+    <legend class="scheduler-border">客户基本信息</legend>
     <div class="row m-t-md">
         <div class="col-md-3">
             <div class="form-group form-group-sm">
@@ -63,7 +63,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-5 control-label">已还期数：</label>
                 <div class="col-sm-7">
-                    <p class="form-control-static">{{loanCustNeedRepayInfo.repayCapital+loanCustNeedRepayInfo.repayInterest+loanCustNeedRepayInfo.repayOverdueAmount}}</p>
+                    <p class="form-control-static">{{baseInfoVo.settlePeriod}}</p>
                 </div>
             </div>
         </div>
@@ -71,9 +71,9 @@
     <div class="row">
         <div class="col-md-3">
             <div class="form-group form-group-sm">
-                <label class="col-sm-5 control-label">逾期天数：</label>
+                <label class="col-sm-5 control-label">本次逾期天数：</label>
                 <div class="col-sm-7">
-                    <p class="form-control-static text-danger">{{baseInfoVo.overdueTime}}</p>
+                    <p class="form-control-static text-danger">{{baseInfoVo.overdueDay}}</p>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-5 control-label">累计逾期次数：</label>
                 <div class="col-sm-7">
-                    <p class="form-control-static text-danger">{{baseInfoVo.overdueDay}}</p>
+                    <p class="form-control-static text-danger">{{baseInfoVo.overdueTime}}</p>
                 </div>
             </div>
         </div>

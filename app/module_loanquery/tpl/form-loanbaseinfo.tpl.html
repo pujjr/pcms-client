@@ -1,5 +1,6 @@
 <!--还款信息-->
 <form  class="container-fluid m-t-md form-horizontal">
+    <div  ng-include="'module_assetsmanage/tpl/form-loanbaseinfo.html'"/>
     <fieldset class="scheduler-border">
         <legend class="scheduler-border">基本应还信息</legend>
         <div class="row m-t-md">
@@ -63,9 +64,9 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="period" class="col-sm-4 control-label">应还合计：</label>
+                    <label for="otherAmount" class="col-sm-4 control-label">其他费用：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{loanCustNeedRepayInfo.repayCapital+loanCustNeedRepayInfo.repayInterest+loanCustNeedRepayInfo.repayOverdueAmount}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.otherAmount}}</p>
                     </div>
                 </div>
             </div>
@@ -73,17 +74,23 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="otherAmount" class="col-sm-4 control-label">其他费用：</label>
+                    <label for="otherOverdueAmount" class="col-sm-4 control-label">其他费用罚息：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{loanCustNeedRepayInfo.otherAmount}}</p>
+                        <p class="form-control-static">{{loanCustNeedRepayInfo.otherOverdueAmount}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-sm">
-                    <label for="otherOverdueAmount" class="col-sm-4 control-label">其他费用罚息：</label>
+                    <label for="period" class="col-sm-4 control-label">应还合计：</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">{{loanCustNeedRepayInfo.otherOverdueAmount}}</p>
+                        <p class="form-control-static">
+                            {{(loanCustNeedRepayInfo.repayCapital+
+                            loanCustNeedRepayInfo.repayInterest+
+                            loanCustNeedRepayInfo.repayOverdueAmount+
+                            loanCustNeedRepayInfo.otherAmount+
+                            loanCustNeedRepayInfo.otherOverdueAmount
+                            ) | mathRound}}</p>
                     </div>
                 </div>
             </div>
