@@ -39,6 +39,7 @@
                             </ul>
                         </div>
                         <button class="btn btn-default btn-sm" type="button" ng-click="sendSms(appId)">发送短信</button>
+                        <button class="btn btn-default btn-sm" type="button" ng-click="showCustomDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>客户详细信息</button>
                         <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="applyReAssigneeTask()">申请调配任务</button>
                         <button class="btn btn-default btn-sm" type="button" ng-disabled="form.$invalid" ng-click="saveCollectionLog()"><i class="fa fa-save m-r-sm"></i>保存催收记录</button>
@@ -98,7 +99,7 @@
                         <uib-tab-heading>
                             <span>流程流转记录</span>
                         </uib-tab-heading>
-                        <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+                        <div ng-include="'module_loantask/tpl/form-workflow_process_result.html'"></div>
                     </uib-tab>
                 </uib-tabset>
         </div>

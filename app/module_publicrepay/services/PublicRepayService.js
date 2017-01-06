@@ -27,11 +27,11 @@ angular.module('pu.publicrepay.services')
 
                     PublicRepayService.getPublicRepayFeeItem($scope.appId).then(function(response){
                         $scope.applyPublicRepayVo.feeItem = response;
-                        $scope.applyPublicRepayVo.totalRepayAmount = response.repayCapital+
-                            response.repayInterest+
-                            response.repayOverdueAmount+
-                            response.otherAmount+
-                            response.otherOverdueAmount;
+                        $scope.applyPublicRepayVo.totalRepayAmount = ($scope.applyPublicRepayVo.feeItem.repayCapital+
+                        $scope.applyPublicRepayVo.feeItem.repayInterest+
+                        $scope.applyPublicRepayVo.feeItem.repayOverdueAmount+
+                        $scope.applyPublicRepayVo.feeItem.otherAmount+
+                        $scope.applyPublicRepayVo.feeItem.otherOverdueAmount).toFixed(2);
                         ToolsService.getServerDateTime().then(function(response){
                             $scope.applyPublicRepayVo.chargeDate= ToolsService.convertStr82Date(response).getTime();
                         })
@@ -71,11 +71,6 @@ angular.module('pu.publicrepay.services')
                     $scope.procInstId = item.procInstId;
                     PublicRepayService.getApplyPublicRepayInfo($scope.businessKey).then(function(response){
                         $scope.applyPublicRepayVo = response;
-                        $scope.applyPublicRepayVo.totalRepayAmount = $scope.applyPublicRepayVo.feeItem.repayCapital+
-                            $scope.applyPublicRepayVo.feeItem.repayInterest+
-                            $scope.applyPublicRepayVo.feeItem.repayOverdueAmount+
-                            $scope.applyPublicRepayVo.feeItem.otherAmount+
-                            $scope.applyPublicRepayVo.feeItem.otherOverdueAmount;
                     });
                     $scope.getWorkflowProcessResultByProcInstId = function(){
                         $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;

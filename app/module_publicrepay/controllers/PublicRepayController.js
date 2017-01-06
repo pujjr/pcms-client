@@ -21,11 +21,11 @@ angular.module("pu.publicrepay.controllers")
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
             PublicRepayService.getApplyPublicRepayInfo($scope.businessKey).then(function(response){
                  $scope.applyPublicRepayVo = response;
-                $scope.applyPublicRepayVo.totalRepayAmount = $scope.applyPublicRepayVo.feeItem.repayCapital+
+                $scope.applyPublicRepayVo.totalRepayAmount = ($scope.applyPublicRepayVo.feeItem.repayCapital+
                     $scope.applyPublicRepayVo.feeItem.repayInterest+
                     $scope.applyPublicRepayVo.feeItem.repayOverdueAmount+
                     $scope.applyPublicRepayVo.feeItem.otherAmount+
-                    $scope.applyPublicRepayVo.feeItem.otherOverdueAmount;
+                    $scope.applyPublicRepayVo.feeItem.otherOverdueAmount).toFixed(2);
             });
             $scope.approveVo={};
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;

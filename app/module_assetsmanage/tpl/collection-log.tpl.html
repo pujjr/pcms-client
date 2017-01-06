@@ -1,16 +1,16 @@
 <div class="m-t-md">
     <uib-tabset>
-        <uib-tab index="0">
-            <uib-tab-heading>
-                <span>催收重大项记录<span class="badge text-primary">{{importanCollectionLogList.length}}</span></span>
-            </uib-tab-heading>
-            <div ng-include="'module_assetsmanage/tpl/form-important-collection-log.html'"></div>
-        </uib-tab>
-        <uib-tab index="2"  select="getCollectionLog('csrwlx01')">
+        <uib-tab index="0"  select="getCollectionLog('csrwlx01')">
             <uib-tab-heading>
                 <span>电话催收记录<span class="badge text-primary">{{collectionLogCntMap.csrwlx01}}</span></span>
             </uib-tab-heading>
             <div ng-include="'module_assetsmanage/tpl/form-phone-collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="1" select="getImportantCollectionLog()">
+            <uib-tab-heading>
+                <span>催收重大项记录<span class="badge text-primary">{{importanCollectionLogList.length}}</span></span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/form-important-collection-log.html'"></div>
         </uib-tab>
         <uib-tab index="3" select="getCollectionLog('csrwlx02')">
             <uib-tab-heading>
