@@ -1,0 +1,67 @@
+<div>
+    <div class="panel_main">
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width: 10%">序号</th>
+                    <th>当前申请字段名称</th>
+                    <th>当前申请字段值</th>
+                    <th>历史申请字段名称</th>
+                    <th>历史申请字段值</th>
+                    <th>历史申请单ID</th>
+                    <th>是否黑名单</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in fraudHisResultList">
+                    <td>{{item.seq}}</td>
+                    <td>{{item.newFieldName}}</td>
+                    <td>{{item.newFieldValue}}</td>
+                    <td>{{item.oldFieldName}}</td>
+                    <td>{{item.oldFieldValue}}</td>
+                    <td>
+                        <a ng-href="#/app/query/apply/detail/{{item.oldAppId}}" target="_blank">{{item.oldAppId}}</a>
+                    </td>
+                    <td>
+                        <span ng-if="item.isBlack == true">
+                            是
+                        </span>
+                        <span ng-if="item.isBlack == false">
+                            否
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="has-divider has-divider--dark"></div>
+            <div class="toolbar" ng-if="false">
+                <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                    <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                    </div>
+                    <div>
+                        <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                        ng-model="paginationInfo.curPage"
+                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                        last-text="&raquo;">
+                        </uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

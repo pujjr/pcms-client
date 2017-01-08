@@ -17,5 +17,8 @@ angular.module('pu.query.services')
         };
         this.queryFraudInnerResult = function(appId){
             return RestApi.all("/query/queryFraudInnerResult").all(appId).getList();
+        };
+        this.queryFraudHisResult = function(appId,taskNodeName){
+            return RestApi.all("/query/queryFraudHisResult").all(appId).all(taskNodeName).getList();
         }
     });

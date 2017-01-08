@@ -13,6 +13,7 @@ angular.module("pu.task.controllers")
             $scope.approveRejectReasonList =  SysDictService.queryDictDataByTypeCode("spjjyy").$object;
             $scope.approveCancelReasonList =  SysDictService.queryDictDataByTypeCode("spqxyy").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
+            $scope.queryFraudHisInnerResult($stateParams.businessKey,"zlsh");
             $scope.approveVo = {};
         };
         $scope.commitApproveTask = function(){

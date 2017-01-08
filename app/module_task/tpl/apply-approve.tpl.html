@@ -55,6 +55,12 @@
                     </uib-tab-heading>
                     <div ng-include="'module_task/tpl/form-fraudinnerresult-list.html'"></div>
                 </uib-tab>
+                <uib-tab index="5">
+                    <uib-tab-heading>
+                        <span>申请历史数据反欺诈信息<span class="badge text-danger">{{fraudHisResultList.length}}</span></span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_task/tpl/form-fraudhisresult-list.html'"></div>
+                </uib-tab>
             </uib-tabset>
         </div>
         <div  class="check-footer">

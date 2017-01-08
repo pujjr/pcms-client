@@ -15,6 +15,7 @@ angular.module("pu.task.controllers")
             $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
             $scope.unionPayBankList = BankService.queryUnionPayBankInfoList().$object;
             $scope.signContractVo = TaskService.querySignInfo($stateParams.businessKey).$object;
+            $scope.queryFraudHisInnerResult($stateParams.businessKey,"jxsqy");
         };
         $scope.saveLoanCheckInfo = function(){
             TaskService.saveLoanCheckInfo($scope.signContractVo).then(function(response){

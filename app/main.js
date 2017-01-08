@@ -58,6 +58,10 @@ angular.module("app")
         $scope.queryFraudInnerResult = function(appId){
             $scope.fraudInnerResultList = QueryService.queryFraudInnerResult(appId).$object;
         }
+        //公共方法-查询历史反欺诈信息
+        $scope.queryFraudHisInnerResult =  function(appId,taskNodeName){
+            $scope.fraudHisResultList = QueryService.queryFraudHisResult(appId,taskNodeName).$object;
+        }
         //公共方法-发送短信
         $scope.sendSms = function(appId){
             SmsService.sendSms(appId);

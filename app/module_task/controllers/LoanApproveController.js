@@ -14,6 +14,7 @@ angular.module("pu.task.controllers")
             $scope.provinceList = SysAreaService.queryProvinceList().$object;
             $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
             $scope.signContractVo = TaskService.querySignInfo($stateParams.businessKey).$object;
+            $scope.queryFraudHisInnerResult($stateParams.businessKey,"fkfh");
         };
         $scope.initLoanApprove = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);

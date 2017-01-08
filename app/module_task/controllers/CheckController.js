@@ -14,6 +14,7 @@ angular.module("pu.task.controllers")
             $scope.checkRejectReasonList = SysDictService.queryDictDataByTypeCode("shjjyy").$object;
             $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
+            $scope.queryFraudHisInnerResult($stateParams.businessKey,"lrsqd");
             $scope.checkVo = {};
         };
         $scope.commitCheckTask = function(){

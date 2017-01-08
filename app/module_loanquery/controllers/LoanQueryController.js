@@ -24,7 +24,11 @@ angular.module("pu.loanquery.controllers")
         $scope.pageChanged = function(){
             $scope.queryLoanCustList();
         }
+        $scope.repayLogPageChanged = function(){
+            $scope.repayLogList =LoanQueryService.getLoanCustRepayLog($stateParams.appId).$object;
+        }
         $scope.queryRepayLog = function(){
+            $rootScope.resetCache();
             $scope.repayLogList =LoanQueryService.getLoanCustRepayLog($stateParams.appId).$object;
         };
 
