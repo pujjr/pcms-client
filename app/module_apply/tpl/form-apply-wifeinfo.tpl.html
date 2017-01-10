@@ -72,6 +72,7 @@
                 <div class="col-sm-8">
                     <select id="unitType" class="form-control" ng-model="applyInfo.spouse.unitType"
                             ng-disabled="editable==false"
+                            ng-change="unitRankCtrl.onSpouseUnitTypeChange()"
                             ng-options="item.dictDataCode as item.dictDataName for item in unitTypeList"  ng-required="requiredMap.spouse_unitType">
                         <option value="">请选择单位类型</option>
                     </select>
@@ -105,7 +106,7 @@
                 <label class="col-sm-4 control-label">职  级：</label>
                 <div class="col-sm-8">
                     <select id="rank" class="form-control"  ng-disabled="editable==false" ng-model="applyInfo.spouse.rank"
-                            ng-options="item.dictDataCode as item.dictDataName for item in rankList" ng-required="requiredMap.spouse_rank">
+                            ng-options="item.dictDataCode as item.dictDataName for item in spouseRankList" ng-required="requiredMap.spouse_rank">
                         <option value="">请选择所属职级</option>
                     </select>
                 </div>

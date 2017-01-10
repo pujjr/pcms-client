@@ -102,6 +102,7 @@
                     <select id="unitType" class="form-control" ng-model="applyInfo.cloessee.unitType"
                             ng-disabled="editable==false"
                             ng-options="item.dictDataCode as item.dictDataName for item in unitTypeList"
+                            ng-change="unitRankCtrl.onCloesseeUnitTypeChange()"
                             ng-required="requiredMap.cloessee_unitType && (applyInfo.cloessee.type.length>0)">
                         <option value="">请选择单位类型</option>
                     </select>
@@ -139,7 +140,7 @@
                 <div class="col-sm-8">
                     <select id="rank" class="form-control" ng-model="applyInfo.cloessee.rank"
                             ng-disabled="editable==false"
-                            ng-options="item.dictDataCode as item.dictDataName for item in rankList"
+                            ng-options="item.dictDataCode as item.dictDataName for item in cloesseeRankList"
                             ng-required="requiredMap.cloessee_rank && (applyInfo.cloessee.type.length>0)">
                         <option value="">请选择所属职级</option>
                     </select>

@@ -442,6 +442,32 @@ angular.module("pu.apply.controllers")
                 item.addrCounty="";
                 item.countyList = SysAreaService.queryCountyList(item.addrProvince,item.addrCity).$object;
             }
+        };
+        //单位类型可选职级
+        $scope.unitRankCtrl = {
+            onEditRefresh:function(){
+                if($scope.applyInfo.tenant.unitType !=''&& $scope.applyInfo.tenant.unitType!=undefined){
+                  $scope.tenantRankList = SysDictService.getUnitCanSelRank($scope.applyInfo.tenant.unitType);
+                };
+                if($scope.applyInfo.cloessee.unitType !=''&& $scope.applyInfo.cloessee.unitType!=undefined){
+                    $scope.cloesseeRankList = SysDictService.getUnitCanSelRank($scope.applyInfo.cloessee.unitType);
+                };
+                if($scope.applyInfo.spouse.unitType !=''&& $scope.applyInfo.spouse.unitType!=undefined){
+                    $scope.spouseRankList = SysDictService.getUnitCanSelRank($scope.applyInfo.spouse.unitType);
+                };
+            },
+            //承租人单位查询职级
+            onTenantUnitTypeChange:function(){
+                $scope.tenantRankList = SysDictService.getUnitCanSelRank($scope.applyInfo.tenant.unitType);
+            },
+            //共租人单位查询职级
+            onCloesseeUnitTypeChange:function(){
+                $scope.cloesseeRankList = SysDictService.getUnitCanSelRank($scope.applyInfo.cloessee.unitType);
+            },
+            //配偶单位查询职级
+            onSpouseUnitTypeChange:function(){
+                $scope.spouseRankList = SysDictService.getUnitCanSelRank($scope.applyInfo.spouse.unitType);
+            }
         }
         $scope.initSelectList = function(model){
             //可选产品
@@ -482,8 +508,6 @@ angular.module("pu.apply.controllers")
             $scope.unitTypeList = SysDictService.queryDictDataByTypeCode("dwlx").$object;
             //行业可选项
             $scope.unitIndustryList =SysDictService.queryDictDataByTypeCode("hy").$object;
-            //职位级别可选项
-            $scope.rankList = SysDictService.queryDictDataByTypeCode("zwjb").$object;
             //与本人关系可选项
             $scope.relateList = SysDictService.queryDictDataByTypeCode("gx").$object;
             //是否知道购车可选项
@@ -677,6 +701,7 @@ angular.module("pu.apply.controllers")
                 $scope.initLinkmans($scope.applyInfo.linkmans);
                 $scope.initSelectList("add");
                 $scope.addressCtrl.onEditRefresh();
+                $scope.unitRankCtrl.onEditRefresh();
                 $scope.initWatchTotalFinance();
                 $scope.refreshFormRequiredMap();
             })
@@ -706,6 +731,7 @@ angular.module("pu.apply.controllers")
                 $scope.initLinkmans($scope.applyInfo.linkmans);
                 $scope.initSelectList("edit");
                 $scope.addressCtrl.onEditRefresh();
+                $scope.unitRankCtrl.onEditRefresh();
                 $scope.initWatchTotalFinance();
                 $scope.refreshFormRequiredMap();
             })

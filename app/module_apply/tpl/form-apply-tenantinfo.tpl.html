@@ -484,6 +484,7 @@
                     <select id="unitType" class="form-control" ng-model="applyInfo.tenant.unitType"
                             ng-disabled="editable==false"
                             ng-required="requiredMap.tenant_unitType"
+                            ng-change="unitRankCtrl.onTenantUnitTypeChange()"
                             ng-options="item.dictDataCode as item.dictDataName for item in unitTypeList">
                         <option value="">请选择单位类型</option>
                     </select>
@@ -519,7 +520,7 @@
                 <div class="col-sm-8">
                     <select id="rank" class="form-control" ng-model="applyInfo.tenant.rank"
                             ng-disabled="editable==false"
-                            ng-options="item.dictDataCode as item.dictDataName for item in rankList"
+                            ng-options="item.dictDataCode as item.dictDataName for item in tenantRankList"
                             ng-required="requiredMap.tenant_rank">
                         <option value="">请选择所属职级</option>
                     </select>
