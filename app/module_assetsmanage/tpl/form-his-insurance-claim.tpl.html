@@ -1,4 +1,4 @@
-<uib-tabset>
+<uib-tabset active="0">
     <uib-tab index="$index" ng-repeat="item  in insHisList">
         <uib-tab-heading>
             <span>{{item.carVin}}</span>
@@ -14,6 +14,10 @@
                     <th>保险金额</th>
                     <th>保险开始日期</th>
                     <th>保险结束日期</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -26,6 +30,10 @@
                     <td>{{item.insAmount}}</td>
                     <td>{{item.insStartDate| mysqlDate}}</td>
                     <td>{{item.insEndDate| mysqlDate}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
                         <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
                     </td>
@@ -82,6 +90,11 @@
                     <th>保险金额</th>
                     <th>保险开始日期</th>
                     <th>保险结束日期</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -93,6 +106,11 @@
                     <td>{{item.insAmount}}</td>
                     <td>{{item.insStartDate| mysqlDate}}</td>
                     <td>{{item.insEndDate| mysqlDate}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>

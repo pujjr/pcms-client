@@ -38,7 +38,7 @@ angular.module('pu.assetsmanage.services')
         this.addTelIncomeInfo = function(appId){
             var modalInstance = $uibModal.open({
                 animation: false,
-                backdrop: 'static',
+                backdrop: false,
                 size: 'lg',
                 templateUrl: 'module_assetsmanage/tpl/dialog-tel-income-add.html',
                 controller: function ($scope, RestApi, SysDictService,modal,TelInterviewService) {

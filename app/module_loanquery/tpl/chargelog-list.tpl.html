@@ -1,48 +1,50 @@
-<table class="data-table">
-    <thead>
-    <tr>
-        <th>扣款方式</th>
-        <th>扣款日期</th>
-        <th>扣款金额</th>
-        <th>扣款卡号</th>
-        <th>扣款银行</th>
-        <th>扣款结果</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="item in chargeLogList">
-        <td>{{item.chargeModeDesc}}</td>
-        <td>{{item.tranDate}}</td>
-        <td>{{item.chargeAmount}}</td>
-        <td>{{item.cardNo}}</td>
-        <td>{{item.bankName}}</td>
-        <td>{{item.thirdPartResult}}</td>
-    </tr>
-    </tbody>
-</table>
-<div class="has-divider has-divider--dark"></div>
-<div class="toolbar">
-    <div class="toolbar__left mr++">
+<div class="panel panel-default">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>扣款方式</th>
+            <th>扣款日期</th>
+            <th>扣款金额</th>
+            <th>扣款卡号</th>
+            <th>扣款银行</th>
+            <th>扣款结果</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in chargeLogList">
+            <td>{{item.chargeModeDesc}}</td>
+            <td>{{item.tranDate}}</td>
+            <td>{{item.chargeAmount}}</td>
+            <td>{{item.cardNo}}</td>
+            <td>{{item.bankName}}</td>
+            <td>{{item.thirdPartResult}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="has-divider has-divider--dark"></div>
+    <div class="toolbar">
+        <div class="toolbar__left mr++">
                     <span ng-if="paginationInfo.totalItem==0">
                         无查询结果
                     </span>
-    </div>
+        </div>
                 <span class="toolbar__label fs-title">
 
                 </span>
-    <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
-        <div class="mr+++">
+        <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+            <div class="mr+++">
                     <span>
                         总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
                     </span>
-        </div>
-        <div>
-            <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
-                            ng-model="paginationInfo.curPage"
-                            items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
-                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-                            last-text="&raquo;">
-            </uib-pagination>
+            </div>
+            <div>
+                <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                ng-model="paginationInfo.curPage"
+                                items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;">
+                </uib-pagination>
+            </div>
         </div>
     </div>
 </div>
