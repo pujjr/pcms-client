@@ -92,11 +92,16 @@ angular.module('pu.settle.services')
                     LoanQueryService.getAfterCurrentPeriodRemainPeroidList($scope.appId).then(function (response) {
                         $scope.applyVo.beginPeriod = response[0];
                         $scope.applyVo.endPeriod = response[response.length - 1];
-                        //生成可选截止期数
+                        /**生成可选截止期数  业务要求直接选择结清期数
                         $scope.canSelSettlePeriod = [];
                         var startIndex = $scope.applyVo.beginPeriod>=3?$scope.applyVo.beginPeriod:3;
                         for(var i = startIndex ; i<=$scope.applyVo.endPeriod;i++){
                             $scope.canSelSettlePeriod.push({'key':i,'name':i+"期"}) ;
+                        }**/
+                        //生成结清可选期数，以3为倍数
+                        $scope.canSelSettlePeriod = [];
+                        for(var i = 1,j=1 ;i<=parseInt($scope.applyVo.endPeriod)-parseInt($scope.applyVo.beginPeriod)+1;i=i+3,j++){
+                            $scope.canSelSettlePeriod.push({key:j*3,name:j*3+'期'});
                         }
                     });
                     $scope.dateOptions = {};
@@ -107,11 +112,15 @@ angular.module('pu.settle.services')
                     //最大结清可选日期为当期结账日
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
                         $scope.dateOptions.maxDate = new Date(parseInt(response.closingDate));
+                        $scope.applyVo.applyEffectDate =  $scope.dateOptions.maxDate;
                     });
                     //监视选择日期动作
-                    $scope.$watch('applyVo.applyEffectDate', function (newVal, oldVal) {
+                    $scope.$watchGroup(['applyVo.applyEffectDate','applyVo.settlePeriod'], function (newVal, oldVal) {
                         if (newVal == oldVal || newVal == undefined)
                             return;
+                        if($scope.applyVo.applyEffectDate == undefined || $scope.applyVo.settlePeriod == undefined)
+                            return;
+                        $scope.applyVo.endPeriod = parseInt($scope.applyVo.beginPeriod + $scope.applyVo.settlePeriod)-1;
                         SettleService.getPartSettleFeeItem($scope.appId,$scope.applyVo.beginPeriod,$scope.applyVo.endPeriod, $scope.applyVo.applyEffectDate).then(function (response) {
                             $scope.applyVo.feeItem = response;
                             //保存总的剩余结清本金=结清本金+结清剩余本金

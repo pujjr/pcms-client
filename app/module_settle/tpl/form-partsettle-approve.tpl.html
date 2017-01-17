@@ -74,7 +74,7 @@
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">结清信息</legend>
     <div class="row m-t-md">
-        <div class="col-md-4">
+        <div class="col-md-4" ng-if="false">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">结清开始期数：</label>
                 <div class="col-sm-8">
@@ -82,11 +82,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4"  ng-if="false">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">结清截止期数：</label>
                 <div class="col-sm-8">
                     <p class="form-control-static">{{applyVo.endPeriod}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">结清期数：</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{{applyVo.endPeriod-applyVo.beginPeriod+1}}</p>
                 </div>
             </div>
         </div>

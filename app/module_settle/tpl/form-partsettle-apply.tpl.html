@@ -74,7 +74,7 @@
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">结清信息</legend>
     <div class="row m-t-md">
-        <div class="col-md-4">
+        <div class="col-md-4" ng-if="false">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">结清开始期数：</label>
                 <div class="col-sm-8">
@@ -82,13 +82,24 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4"  ng-if="false">
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">结清截止期数：</label>
                 <div class="col-sm-8">
                     <select id="endPeriod" class="form-control" ng-model="applyVo.endPeriod" required
                             ng-options="item.key as item.name for item in canSelSettlePeriod" >
                         <option value="">请选择结清截止期数</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">结清期数：</label>
+                <div class="col-sm-8">
+                    <select id="settlePeriod" class="form-control" ng-model="applyVo.settlePeriod" required
+                            ng-options="item.key as item.name for item in canSelSettlePeriod" >
+                        <option value="">请选择结清期数</option>
                     </select>
                 </div>
             </div>
