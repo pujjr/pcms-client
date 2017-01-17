@@ -6,11 +6,11 @@
             <span ng-if="creditResponse.riskLevel==2" class="text-danger">(风险等级：高风险)</span>
         </h4>
     </div>
-    <div class="modal-body" cg-busy="test">
+    <div class="modal-body" cg-busy="loading">
         <embed embed-src="{{pdfUrl}}" type="application/pdf" ng-style="pdfStyle" style="width: 100%;height:700px;" internalinstanceid="56"   title="">
     </div>
     <div class="modal-footer">
-        <button class="btn btn-default" type="button" ng-click="refresh()">刷新</button>
+        <button class="btn btn-default" type="button" ng-click="refreshReport()">刷新</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </form>

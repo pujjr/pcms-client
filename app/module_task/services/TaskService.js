@@ -147,6 +147,9 @@ angular.module('pu.task.services')
         };
         this.getCreditReport = function(appId){
             return RestApi.one("/task/getCreditReport",appId).get();
+        };
+        this.refreshCreditReport = function(appId){
+            return RestApi.one("/task/refreshCreditReport",appId).get();
         }
         this.showCreditReport = function(appId){
             var modalInstance = $uibModal.open({
@@ -155,14 +158,24 @@ angular.module('pu.task.services')
                 backdrop:'static',
                 templateUrl :'module_task/tpl/dialog-showCreditReport.html',
                 controller:function($scope,RestApi,TaskService){
-                    $scope.test=TaskService.getCreditReport(appId).then(function(response){
+                    $scope.loading=TaskService.getCreditReport(appId).then(function(response){
                         if(response.errStatus==1){
                             $scope.creditResponse = response;
-                            $scope.pdfUrl = SERVER_URL.OSS_URL+"resource/"+appId+"/"+$scope.creditResponse.ossKey;
+                            $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
                         }else{
 
                         }
                     });
+                    $scope.refreshReport = function(){
+                        $scope.loading=TaskService.refreshCreditReport(appId).then(function(response){
+                            if(response.errStatus==1){
+                                $scope.creditResponse = response;
+                                $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
+                            }else{
+
+                            }
+                        });
+                    }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };
