@@ -781,16 +781,18 @@ angular.module("pu.apply.controllers")
         };
         //保存申请信息
         $scope.saveApplyInfo = function(){
-            ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
-                console.log(response.appId);
-                $scope.refreshApplyInfoFromServer(response.appId);
-                toaster.pop('success', '操作提醒','保存申请信息成功');
-            });
+            modal.confirm("操作提醒","确认保存？").then(function(){
+                $scope.saving = ApplyService.saveApplyInfo($scope.applyInfo).then(function(response){
+                    console.log(response.appId);
+                    $scope.refreshApplyInfoFromServer(response.appId);
+                    toaster.pop('success', '操作提醒','保存申请信息成功');
+                });
+            })
         };
         //提交申请信息
         $scope.commitApplyTask = function(){
             modal.confirm("操作提醒","确认提交申请？").then(function(response){
-                TaskService.commitApplyTask($scope.applyInfo).then(function(response){
+                $scope.saving =  TaskService.commitApplyTask($scope.applyInfo).then(function(response){
                     $state.go('app.apply.list');
                     toaster.pop('success', '操作提醒','提交申请信息成功')
                 });
