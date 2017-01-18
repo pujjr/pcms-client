@@ -31,7 +31,7 @@
                     </ul>
                 </div>
                 <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
-                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
+                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle ng-disabled="loanCustApplyInfo.repayStatus=='hkzt02'">
                         发起催收<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
@@ -46,8 +46,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
-                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
+                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true">
+                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle  ng-disabled="loanCustApplyInfo.repayStatus=='hkzt02'">
                         账务处理<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">

@@ -6,14 +6,15 @@
             <th>应还本金</th>
             <th>应还利息</th>
             <th>应还总额</th>
+            <th>剩余本金</th>
             <th>起息日</th>
             <th>结账日</th>
             <th>还款日</th>
             <th>还款状态</th>
             <th>结清日期</th>
-            <th>剩余本金</th>
-            <th>剩余利息</th>
-            <th>剩余罚息</th>
+            <th>本期剩余本金</th>
+            <th>本期剩余利息</th>
+            <th>本期剩余罚息</th>
             <th style="width:90px">累计逾期天数</th>
             <th style="width:90px">累计逾期罚息</th>
         </tr>
@@ -24,6 +25,7 @@
             <td>{{item.repayCapital}}</td>
             <td>{{item.repayInterest}}</td>
             <td>{{item.repayTotalAmount}}</td>
+            <td>{{item.remainCapital}}</td>
             <td>{{item.valueDate |mysqlDate}}</td>
             <td>{{item.closingDate|mysqlDate}}</td>
             <td>{{item.watingCharge.repayDate|mysqlDate}}</td>

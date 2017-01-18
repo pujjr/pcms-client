@@ -16,6 +16,9 @@ angular.module("pu.assetsmanage.controllers")
                 $scope.initArchiveClear();
             })
         };
+        $scope.pageChanged = function(){
+
+        }
         $scope.printPostList = function(){
           console.log($scope.items);
         };
