@@ -22,7 +22,20 @@
                         <span>补充信息</span>
                     </uib-tab-heading>
                     <form class="container-fluid m-t-md form-horizontal">
-                        <div ng-include="'module_assetsmanage/tpl/form-archive-log-supply.html'"></div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span>已归档信息</span>
+                            </div>
+                            <fieldset disabled>
+                                <div ng-include="'module_assetsmanage/tpl/form-loan-archive-log.html'"></div>
+                            </fieldset>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span>补充信息</span>
+                            </div>
+                            <div ng-include="'module_assetsmanage/tpl/form-archive-log-supply.html'"></div>
+                        </div>
                     </form>
                 </uib-tab>
                 <uib-tab index="1">

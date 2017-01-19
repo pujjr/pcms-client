@@ -33,7 +33,7 @@
                 <div class="data-table-header__actions">
                 </div>
             </header>
-            <table class=" table  data-table">
+            <table class="table  data-table">
                 <thead>
                 <tr>
                     <th style="width: 10px"></th>
@@ -50,7 +50,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in toDoTaskList">
+                <tr ng-repeat="item in toDoTaskList" ng-class="{'danger':item.inJumpType=='BACK'}">
                     <td><span ng-if="item.processTime==undefined"><i class="fa fa-circle" aria-hidden="true" style="color: rgba(182, 30, 22, 0.98)"></i></span></td>
                     <td>{{item.businessKey}}</td>
                     <td>{{item.productName}}</td>
@@ -60,7 +60,12 @@
                     <td>{{item.createTime}}</td>
                     <td>{{item.branchName}}</td>
                     <td>{{item.startTime| mysqlDatetime}}</td>
-                    <td>{{item.inJumpType}}/{{item.parentTaskName}}/{{item.parentAssignee}}</td>
+                    <td>
+                        <span ng-switch="item.inJumpType">
+                            <p ng-switch-when="COMMIT">提交/{{item.parentTaskName}}/{{item.parentAssignee}}</p>
+                            <p ng-switch-when="BACK">退回/{{item.parentTaskName}}/{{item.parentAssignee}}</p>
+                        </span>
+                        </td>
                     <td ng-if="item.taskDefKey!='jxsqy'">
                         <a href="javascript:" ng-click="doTask(item)">{{item.taskName}}</a>
                     </td>

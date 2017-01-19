@@ -14,7 +14,24 @@ angular.module("pu.task.controllers")
             $scope.provinceList = SysAreaService.queryProvinceList().$object;
             $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
             $scope.unionPayBankList = BankService.queryUnionPayBankInfoList().$object;
-            $scope.signContractVo = TaskService.querySignInfo($stateParams.businessKey).$object;
+            TaskService.querySignInfo($stateParams.businessKey).then(function(response){
+                $scope.signContractVo = response;
+                $scope.signContractVo.loanCheck.otherCheckResult = "1";
+                $scope.signContractVo.loanCheck.gpsCheckResult = "1";
+                $scope.signContractVo.loanCheck.photoCheckResult = "1";
+                $scope.signContractVo.loanCheck.loanAddCheckResult = "1";
+                $scope.signContractVo.loanCheck.trustCheckResult = "1";
+                $scope.signContractVo.loanCheck.tenantCheckResult = "1";
+                $scope.signContractVo.loanCheck.pledgeContractCheckResult = "1";
+                $scope.signContractVo.loanCheck.leasingContractCheckResult = "1";
+                $scope.signContractVo.loanCheck.pledgeCheckResult = "1";
+                $scope.signContractVo.loanCheck.insuranceCheckResult = "1";
+                $scope.signContractVo.loanCheck.invoiceCheckResult = "1";
+                $scope.signContractVo.loanCheck.repayCardCheckResult = "1";
+                $scope.signContractVo.loanCheck.idnoCheckResult = "1";
+                $scope.signContractVo.loanCheck.applyFormCheckResult = "1";
+            });
+
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"jxsqy");
         };
         $scope.saveLoanCheckInfo = function(){

@@ -4,15 +4,18 @@ angular.module('pu.access.services')
         var isAuth = false;
         var authResource = {};
         var timer;
+        var doHeartBeat = function(){
+            BackgroundRestApi.all("/sysaccount/heartbeat").post().then(function(){
+                $rootScope.loginStatus = "在线";
+            },function(){
+                $rootScope.loginStatus = "离线";
+            });
+        }
         var uploadStatus  = function(){
             timer = $timeout(function(){
-                BackgroundRestApi.all("/sysaccount/heartbeat").post().then(function(){
-                    $rootScope.loginStatus = "在线";
-                },function(){
-                    $rootScope.loginStatus = "离线";
-                });
+                doHeartBeat();
                 uploadStatus();
-            },60000);
+            },30000);
         };
         this.login = function (id, passwd) {
             var user = {};
@@ -28,7 +31,9 @@ angular.module('pu.access.services')
                     //window.localStorage.account = angular.toJson(response.data.account);
                     $rootScope.Authorization = response.data.Authorization;
                     $rootScope.account = response.data.account;
-                    //启动心跳服务
+                    //先报一次心跳
+                    doHeartBeat();
+                    //再启动心跳服务
                     uploadStatus();
                     //获取用户授权功能
                     RestApi.all('sysaccount').all("authmenu").all(id).getList().then(function (response) {
@@ -113,6 +118,9 @@ angular.module('pu.access.services')
                         authResource[item.menuId] = 'all';
                     })
                     isAuth = true;
+                    //这里是刷新页面后要重新启动心跳检查
+                    doHeartBeat();
+                    uploadStatus();
                 });
             }
         };

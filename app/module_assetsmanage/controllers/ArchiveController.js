@@ -113,6 +113,7 @@ angular.module("pu.assetsmanage.controllers")
                 })
             });
         };
+        //归档环节申请补充归档资料
         $scope.archiveSupply = function(){
             ArchiveService.archiveSupply().then(function(response){
                 modal.confirm("操作提醒","确认提交？").then(function(){
@@ -151,6 +152,13 @@ angular.module("pu.assetsmanage.controllers")
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
             $scope.expressCompanyList = SysDictService.queryDictDataByTypeCode("kdgs").$object;
             $scope.archiveSupplyInfo = ArchiveService.getArchiveSupplyInfo($scope.taskId).$object;
+            //获取原始归档信息
+            ArchiveService.getArchiveApplyInfo($scope.businessKey).then(function(response){
+                $scope.archiveInfo = response;
+                angular.forEach($scope.archiveInfo.detailList,function(item){
+                    item.recvFileCnt = item.postFileCnt;
+                })
+            });
         };
         $scope.commitArchiveSupplyTask = function(){
             modal.confirm("操作提醒","确认提交任务").then(function(){
