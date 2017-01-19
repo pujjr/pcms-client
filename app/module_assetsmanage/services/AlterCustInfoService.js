@@ -15,6 +15,12 @@ angular.module('pu.assetsmanage.services')
         this.getAlterBankInfoHisList = function(appId){
             return RestApi.all("/altercustinfo/getAlterBankInfoHisList").all(appId).getList();
         }
+        this.getAlterInfoLogList = function(appId){
+            return RestApi.all("/altercustinfo/getAlterInfoLogList").all(appId).getList();
+        }
+        this.getAlterInfoDetailList = function(logId){
+            return RestApi.all("/altercustinfo/getAlterInfoDetailList").all(logId).getList();
+        }
         this.doAlterTenantInfo = function(appId,applyInfo){
             var modalInstance = $uibModal.open({
                 animation: false,
@@ -176,6 +182,22 @@ angular.module('pu.assetsmanage.services')
                             })
                         })
                     };
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            return modalInstance.result;
+        }
+        this.showAlterCustInfoLogDetail = function(logId){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop: false,
+                size: 'lg',
+                templateUrl: 'module_assetsmanage/tpl/dialog-alter-custinfo-his-detail.html',
+                controller: function ($scope, RestApi, SysDictService,modal,UnitInfoService,AlterCustInfoService,BankService,TaskService) {
+                    $scope.logId = logId;
+                    $scope.alterDetailList = AlterCustInfoService.getAlterInfoDetailList($scope.logId).$object;
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };

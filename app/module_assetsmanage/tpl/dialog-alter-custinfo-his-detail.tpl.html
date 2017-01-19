@@ -1,0 +1,28 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>客户信息变更明细</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:700px">
+        <div class="panel panel-default">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>变更字段名称</th>
+                    <th>变更前值</th>
+                    <th>变更后值</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in alterDetailList">
+                    <td>{{item.alterField}}</td>
+                    <td>{{item.alterBeforeValue}}</td>
+                    <td>{{item.alterAfterValue}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

@@ -79,21 +79,25 @@ angular.module("pu.loanquery.controllers")
         $scope.doAlterTenantInfo = function(){
             AlterCustInfoService.doAlterTenantInfo($stateParams.appId,$scope.applyInfo).then(function(response){
                 toaster.pop('success', '操作提醒', '提交变更成功');
+                $scope.initLoanDetail();
             })
         };
         $scope.doAlterColesseeInfo = function(){
             AlterCustInfoService.doAlterColesseeInfo($stateParams.appId,$scope.applyInfo).then(function(response){
                 toaster.pop('success', '操作提醒', '提交变更成功');
+                $scope.initLoanDetail();
             })
         };
         $scope.doAlterLinkmanInfo = function(){
             AlterCustInfoService.doAlterLinkmanInfo($stateParams.appId,$scope.applyInfo).then(function(response){
                 toaster.pop('success', '操作提醒', '提交变更成功');
+                $scope.initLoanDetail();
             })
         };
         $scope.doAlterBankInfo = function(){
             AlterCustInfoService.doAlterBankInfo($stateParams.appId).then(function(response){
                 toaster.pop('success', '操作提醒', '提交变更成功');
+                $scope.initLoanDetail();
             })
         };
         $scope.doInsuranceContinue = function(){
@@ -127,6 +131,14 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.getTelIncomeHisList = function(){
             $scope.telIncomeHisList = TelInterviewService.getTelIncomeLogList($scope.appId).$object;
+        }
+        //查询客户信息变更记录
+        $scope.getAlterInfoLogList = function(){
+            $scope.alterInfoLogList = AlterCustInfoService.getAlterInfoLogList($scope.appId).$object;
+        }
+        //查询客户信息变更明细
+        $scope.showAlterCustInfoLogDetail = function(logId){
+            AlterCustInfoService.showAlterCustInfoLogDetail(logId);
         }
     })
 ;

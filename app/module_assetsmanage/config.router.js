@@ -135,7 +135,13 @@ angular.module('app')
                     templateUrl: 'module_assetsmanage/tpl/tel-income-list.html',
                     controller:'TelInterviewController'
                 })
-                //保险理赔
+                //来电记录查看详细
+                .state('app.telincome.detail',{
+                    url:'/detail/:appId',
+                    templateUrl: 'module_assetsmanage/tpl/tel-income-detail.html',
+                    controller:'TelInterviewController'
+                })
+                //新增来电记录
                 .state('app.telincome.add',{
                     url:'/add/:appId',
                     templateUrl: 'module_assetsmanage/tpl/tel-income-add.html',

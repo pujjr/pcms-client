@@ -3,117 +3,133 @@
         <uib-tab-heading>
             <span>{{item.carVin}}</span>
         </uib-tab-heading>
-        <div class="data-table-container">
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th style="width:100px">序号</th>
-                    <th>保险类型</th>
-                    <th>保险公司</th>
-                    <th>保险单号</th>
-                    <th>保险金额</th>
-                    <th>保险开始日期</th>
-                    <th>保险结束日期</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in item.jqxHisList">
-                    <td>{{$index+1}}</td>
-                    <td>{{item.insTypeDesc}}</td>
-                    <td>{{item.insuranceCompanyName}}</td>
-                    <td>{{item.insPolicyNo}}</td>
-                    <td>{{item.insAmount}}</td>
-                    <td>{{item.insStartDate| mysqlDate}}</td>
-                    <td>{{item.insEndDate| mysqlDate}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span>交强险</span>
+            </div>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th style="width:100px">序号</th>
+                        <th>保险类型</th>
+                        <th>保险公司</th>
+                        <th>保险单号</th>
+                        <th>保险金额</th>
+                        <th>保险开始日期</th>
+                        <th>保险结束日期</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in item.jqxHisList">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.insTypeDesc}}</td>
+                        <td>{{item.insuranceCompanyName}}</td>
+                        <td>{{item.insPolicyNo}}</td>
+                        <td>{{item.insAmount}}</td>
+                        <td>{{item.insStartDate| mysqlDate}}</td>
+                        <td>{{item.insEndDate| mysqlDate}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="data-table-container">
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th style="width:100px">序号</th>
-                    <th>保险类型</th>
-                    <th>保险公司</th>
-                    <th>保险单号</th>
-                    <th>保险金额</th>
-                    <th>保险开始日期</th>
-                    <th>保险结束日期</th>
-                    <th>车损险金额</th>
-                    <th>第三者责任险金额</th>
-                    <th>盗抢险金额</th>
-                    <th>不计免赔险金额</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in item.syxHisList">
-                    <td>{{$index+1}}</td>
-                    <td>{{item.insTypeDesc}}</td>
-                    <td>{{item.insuranceCompanyName}}</td>
-                    <td>{{item.insPolicyNo}}</td>
-                    <td>{{item.insAmount}}</td>
-                    <td>{{item.insStartDate| mysqlDate}}</td>
-                    <td>{{item.insEndDate| mysqlDate}}</td>
-                    <td>{{item.damageAmount}}</td>
-                    <td>{{item.thirdAmount}}</td>
-                    <td>{{item.theftAmount}}</td>
-                    <td>{{item.avoidAmount}}</td>
-                    <td>
-                        <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span>商业险</span>
+            </div>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th style="width:100px">序号</th>
+                        <th>保险类型</th>
+                        <th>保险公司</th>
+                        <th>保险单号</th>
+                        <th>保险金额</th>
+                        <th>保险开始日期</th>
+                        <th>保险结束日期</th>
+                        <th>车损险金额</th>
+                        <th>第三者责任险金额</th>
+                        <th>盗抢险金额</th>
+                        <th>不计免赔险金额</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in item.syxHisList">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.insTypeDesc}}</td>
+                        <td>{{item.insuranceCompanyName}}</td>
+                        <td>{{item.insPolicyNo}}</td>
+                        <td>{{item.insAmount}}</td>
+                        <td>{{item.insStartDate| mysqlDate}}</td>
+                        <td>{{item.insEndDate| mysqlDate}}</td>
+                        <td>{{item.damageAmount}}</td>
+                        <td>{{item.thirdAmount}}</td>
+                        <td>{{item.theftAmount}}</td>
+                        <td>{{item.avoidAmount}}</td>
+                        <td>
+                            <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="data-table-container">
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th style="width:100px">序号</th>
-                    <th>保险类型</th>
-                    <th>保险公司</th>
-                    <th>保险单号</th>
-                    <th>保险金额</th>
-                    <th>保险开始日期</th>
-                    <th>保险结束日期</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in item.lyxHisList">
-                    <td>{{$index+1}}</td>
-                    <td>{{item.insTypeDesc}}</td>
-                    <td>{{item.insuranceCompanyName}}</td>
-                    <td>{{item.insPolicyNo}}</td>
-                    <td>{{item.insAmount}}</td>
-                    <td>{{item.insStartDate| mysqlDate}}</td>
-                    <td>{{item.insEndDate| mysqlDate}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span>履约险</span>
+            </div>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th style="width:100px">序号</th>
+                        <th>保险类型</th>
+                        <th>保险公司</th>
+                        <th>保险单号</th>
+                        <th>保险金额</th>
+                        <th>保险开始日期</th>
+                        <th>保险结束日期</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in item.lyxHisList">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.insTypeDesc}}</td>
+                        <td>{{item.insuranceCompanyName}}</td>
+                        <td>{{item.insPolicyNo}}</td>
+                        <td>{{item.insAmount}}</td>
+                        <td>{{item.insStartDate| mysqlDate}}</td>
+                        <td>{{item.insEndDate| mysqlDate}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </uib-tab>
 </uib-tabset>

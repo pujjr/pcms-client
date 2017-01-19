@@ -44,6 +44,7 @@ angular.module('pu.assetsmanage.services')
                 controller: function ($scope, RestApi, SysDictService,modal,TelInterviewService) {
                     $scope.appId = appId;
                     $scope.item = {};
+                    $scope.item.incomeTime = new Date();
                     $scope.incomeTypeList = SysDictService.queryDictDataByTypeCode("ldsylx").$object;
                     $scope.processStatusList = SysDictService.queryDictDataByTypeCode("ldclzt").$object;
                     $scope.ok = function () {

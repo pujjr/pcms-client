@@ -125,6 +125,12 @@
             </uib-tab-heading>
             <div  ng-include="'module_assetsmanage/tpl/form-tel-income-his.html'"/>
         </uib-tab>
+        <uib-tab index="7"  select="getAlterInfoLogList()">
+            <uib-tab-heading>
+                <span>客户信息变更记录</span>
+            </uib-tab-heading>
+            <div  ng-include="'module_loanquery/tpl/alterinfo-his.html'"/>
+        </uib-tab>
     </uib-tabset>
     <div ui-view=""></div>
 </div>
