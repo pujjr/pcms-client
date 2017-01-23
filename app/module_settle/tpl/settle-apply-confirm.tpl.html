@@ -7,6 +7,7 @@
                     </div>
                     <div class="data-table-header__actions">
                         <button class="btn btn-default btn-sm" type="button" ng-click="showCustomDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>客户详细信息</button>
+                        <button class="btn btn-danger btn-sm" type="button"  ng-click="cancelSettleTask()"><i class="fa fa-stop m-r-sm" aria-hidden="true"></i></i>取消任务</button>
                         <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                         <button class="btn btn-success btn-sm" type="submit"  ng-disabled="form.$invalid" ng-click="commitApplyConfirmSettleTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>

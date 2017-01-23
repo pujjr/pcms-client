@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.extendperiod.controllers")
-    .controller('ExtendPeriodController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,ExtendPeriodService,SysDictService,ProductService) {
+    .controller('ExtendPeriodController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,ExtendPeriodService,SysDictService,ProductService,modal) {
         $scope.initExtendPeriodHistoryTaskList = function(){
             $scope.taskList = ExtendPeriodService.getApplyExtendPeriodTaskList().$object;
         };
@@ -91,6 +91,13 @@ angular.module("pu.extendperiod.controllers")
                 $state.go("app.loantask.todolist")
             })
         };
-
+        $scope.cancelExtendPeriodTask = function(){
+            modal.prompt("取消展期任务","请输入取消备注").then(function(response){
+                ExtendPeriodService.cancelExtendPeriodTask($scope.taskId,response).then(function(){
+                    toaster.pop('success', '操作提醒', "取消任务成功");
+                    $state.go("app.loantask.todolist")
+                })
+            })
+        }
     })
 ;

@@ -24,6 +24,9 @@ angular.module('pu.extendperiod.services')
         this.commitConfirmExtendPeriodTask = function(taskId){
             return RestApi.all("/extendperiod/commitConfirmExtendPeriodTask").all(taskId).post();
         };
+        this.cancelExtendPeriodTask = function(taskId,cancelComment){
+            return RestApi.all("/extendperiod/cancelExtendPeriodTask").all(taskId).post(cancelComment);
+        }
         this.addExtendPeriodApply = function (appId) {
             var modalInstance = $uibModal.open({
                 animation: false,
@@ -45,7 +48,7 @@ angular.module('pu.extendperiod.services')
                     });
                     //获取申请有效截止日期
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
-                        $scope.applyVo.applyEndDate  = response.closingDate - 24*60*60*1000;
+                        $scope.applyVo.applyEndDate  = response.closingDate;
                     });
                     //监控选择新融资期限
                     $scope.$watch('applyVo.newPeriod', function (newVal, oldVal) {
@@ -86,7 +89,7 @@ angular.module('pu.extendperiod.services')
                 },
                 size:'lg',
                 templateUrl :'module_extendperiod/tpl/dialog-extendperiod-task-detail.html',
-                controller:function($scope,RestApi,ExtendPeriodService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService,SysDictService,ProductService){
+                controller:function($scope,$rootScope,RestApi,ExtendPeriodService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService,SysDictService,ProductService){
                     $scope.businessKey = item.id;
                     $scope.appId = item.appId;
                     $scope.procDefId = item.procDefId;
@@ -110,7 +113,7 @@ angular.module('pu.extendperiod.services')
                     $scope.openWorkflowDiagram = function(taskId ) {
                         var processDefinitionId = $scope.procDefId;
                         var processInstanceId = $scope.procInstId;
-                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
                     }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');

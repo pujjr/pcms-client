@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService,QueryService,modal) {
+    .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService,QueryService,modal,SettleService) {
         $scope.initSign = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;

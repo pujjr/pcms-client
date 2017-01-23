@@ -148,7 +148,7 @@ angular.module('app')
                     templateUrl:'module_alterrepaydate/tpl/alterrepaydatee-task-history.html',
                     controller:'AlterRepayDateController'
                 })
-                //还款任务查询
+                //退款任务查询
                 .state('app.loantask.history.refund', {
                     url: '/refund',
                     templateUrl:'module_refund/tpl/refund-task-history.html',

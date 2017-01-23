@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.alterrepaydate.controllers")
-    .controller('AlterRepayDateController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,AlterRepayDateService,SysDictService,ToolsService) {
+    .controller('AlterRepayDateController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,AlterRepayDateService,SysDictService,ToolsService,modal) {
         $scope.initAlterRepayDateHistoryTaskList = function(){
             $scope.taskList = AlterRepayDateService.getApplyAlterRepayDateTaskList().$object;
         };
@@ -46,7 +46,14 @@ angular.module("pu.alterrepaydate.controllers")
                 $state.go("app.loantask.todolist")
             })
         }
-
+        $scope.cancelAlterRepayDateTask = function(){
+            modal.prompt("取消变更还款日任务","请输入取消备注").then(function(response){
+                AlterRepayDateService.cancelAlterRepayDateTask($scope.taskId,response).then(function(){
+                    toaster.pop('success', '操作提醒', "取消任务成功");
+                    $state.go("app.loantask.todolist")
+                })
+            })
+        }
 
     })
 ;

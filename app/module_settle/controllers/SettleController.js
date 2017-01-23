@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.settle.controllers")
-    .controller('SettleController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,SettleService,SysDictService) {
+    .controller('SettleController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,SettleService,SysDictService,modal) {
         $scope.initSettleHistoryTaskList = function(){
             $scope.settleApplyList = SettleService.getApplySettleTaskList("").$object;
         };
@@ -70,6 +70,17 @@ angular.module("pu.settle.controllers")
                 toaster.pop('success', '操作提醒', "提交任务成功");
                 $state.go("app.loantask.todolist")
             })
+        };
+        $scope.cancelSettleTask = function(){
+            modal.prompt("取消结清任务","请输入取消备注").then(function(response){
+                SettleService.cancelSettleTask($scope.taskId,response).then(function(){
+                    toaster.pop('success', '操作提醒', "取消任务成功");
+                    $state.go("app.loantask.todolist")
+                })
+            })
+        };
+        $scope.showSettleTaskDetail = function(item){
+            SettleService.showSettleTaskDetail(item);
         }
 
 

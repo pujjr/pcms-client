@@ -18,6 +18,9 @@ angular.module('pu.alterrepaydate.services')
         this.commitConfirmAlterRepayDateTask = function(taskId){
             return RestApi.all("/alterrepaydate/commitConfirmAlterRepayDateTask").all(taskId).post();
         }
+        this.cancelAlterRepayDateTask = function(taskId,cancelComment){
+            return RestApi.all("/alterrepaydate/cancelAlterRepayDateTask").all(taskId).post(cancelComment);
+        }
         this.addAlterRepayDateApply = function (appId) {
             var modalInstance = $uibModal.open({
                 animation: false,
@@ -38,7 +41,7 @@ angular.module('pu.alterrepaydate.services')
                         $scope.applyVo.newClosingDate = response.closingDate;
                         $scope.dateOptions.minDate =  new Date(parseInt(response.closingDate));
                         //有效期为当期结账日前一天
-                        $scope.applyVo.applyEffectDate = response.closingDate-24*60*60*1000;
+                        $scope.applyVo.applyEffectDate = response.closingDate;
                         $scope.dateOptions.maxDate =  new Date(parseInt(ToolsService.addNumberMonth(response.closingDate,1)));
                         $scope.applyVo.oldClosingDate = response.closingDate;
                     });
@@ -78,7 +81,7 @@ angular.module('pu.alterrepaydate.services')
                 },
                 size:'lg',
                 templateUrl :'module_alterrepaydate/tpl/dialog-alterrepaydate-task-detail.html',
-                controller:function($scope,RestApi,AlterRepayDateService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService){
+                controller:function($scope,$rootScope,RestApi,AlterRepayDateService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService){
                     $scope.businessKey = item.id;
                     $scope.appId = item.appId;
                     $scope.procDefId = item.procDefId;
@@ -94,7 +97,7 @@ angular.module('pu.alterrepaydate.services')
                     $scope.openWorkflowDiagram = function(taskId ) {
                         var processDefinitionId = $scope.procDefId;
                         var processInstanceId = $scope.procInstId;
-                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
                     }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');

@@ -30,7 +30,9 @@ angular.module('pu.settle.services')
         this.genPartSettleRepayPlan = function(appId,settleCapital,settlePeriod,settleEffectDate){
             return RestApi.all("/settle/refreshRepayPlan/select").all(appId).getList({'settleCapital':settleCapital,'settlePeriod':settlePeriod,'settleEffectDateStr': settleEffectDate})
         }
-
+        this.cancelSettleTask = function(taskId,cancelComment){
+            return RestApi.all("/settle/cancelSettleTask").all(taskId).post(cancelComment);
+        }
         this.addSettleApply = function (appId) {
             var modalInstance = $uibModal.open({
                 animation: false,
@@ -173,5 +175,38 @@ angular.module('pu.settle.services')
             modalInstance.result.then(function (response) {
                 toaster.pop('success', '操作提醒', "提交任务成功");
             })
+        };
+        this.showSettleTaskDetail = function(item){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'static',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
+                size:'lg',
+                templateUrl :'module_settle/tpl/dialog-settle-task-detail.html',
+                controller:function($scope,RestApi,SettleService,ToolsService,modal,QueryService,item,$uibModalInstance,$rootScope){
+                    $scope.businessKey = item.id;
+                    $scope.appId = item.appId;
+                    $scope.procDefId = item.procDefId;
+                    $scope.procInstId = item.procInstId;
+                    SettleService.getApplySettleInfo($scope.businessKey).then(function(response){
+                        $scope.applyVo = response;
+                    })
+                    $scope.getWorkflowProcessResultByProcInstId = function(){
+                        $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;
+                    };
+                    $scope.openWorkflowDiagram = function(taskId ) {
+                        var processDefinitionId = $scope.procDefId;
+                        var processInstanceId = $scope.procInstId;
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     });
