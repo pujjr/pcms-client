@@ -36,10 +36,10 @@ angular.module('pu.alterrepaydate.services')
                     };
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
                         $scope.applyVo.newClosingDate = response.closingDate;
-                        $scope.dateOptions.minDate = ToolsService.convertStr82Date(response.closingDate);
+                        $scope.dateOptions.minDate =  new Date(parseInt(response.closingDate));
                         //有效期为当期结账日前一天
                         $scope.applyVo.applyEffectDate = response.closingDate-24*60*60*1000;
-                        $scope.dateOptions.maxDate = ToolsService.addNumberMonth(response.closingDate,1);
+                        $scope.dateOptions.maxDate =  new Date(parseInt(ToolsService.addNumberMonth(response.closingDate,1)));
                         $scope.applyVo.oldClosingDate = response.closingDate;
                     });
                     $scope.$watch('applyVo.newClosingDate', function (newVal, oldVal) {

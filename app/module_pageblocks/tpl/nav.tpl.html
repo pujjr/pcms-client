@@ -77,6 +77,12 @@
       <span class="font-bold">档案整理</span>
     </a>
   </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.telincome.list" >
+      <i class="fa fa-tty icon text-info-dker"></i>
+      <span class="font-bold">来电记录</span>
+    </a>
+  </li>
   <li ui-sref-active="active" ng-if="hasPrimission('app.archive.list')">
     <a ui-sref="app.archive.list" >
       <i class="fa fa-file-archive-o icon text-info-dker"></i>
@@ -85,7 +91,7 @@
   </li>
   <li ui-sref-active="active" ng-if="hasPrimission('app.sms')">
     <a ui-sref="app.sms" >
-      <i class="fa fa-file-archive-o icon text-info-dker"></i>
+      <i class="fa fa-mobile icon text-info-dker"></i>
       <span class="font-bold">短信管理</span>
     </a>
   </li>

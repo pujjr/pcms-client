@@ -9,588 +9,591 @@
             </div>
         </header>
     </div>
-   <div ng-repeat="item in signContractVo.signFinanceList">
-       <fieldset class="scheduler-border">
-           <legend class="scheduler-border">车辆信息{{item.applyFinance.seq | simpleChnUpperCase}}</legend>
-           <div class="m-t-md">
-               <fieldset class="scheduler-border">
-                   <legend class="scheduler-border">发票信息</legend>
-                   <div class="row m-t-md">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="invoiceCode" class="col-sm-4 control-label">购车发票代码：</label>
-                               <div class="col-sm-8">
-                                   <input type="text" id="invoiceCode" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.invoiceCode" required>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="invoiceNo" class="col-sm-4 control-label">购车发票号码：</label>
-                               <div class="col-sm-8">
-                                   <input type="text" id="invoiceNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.invoiceNo" required>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="invoiceAreaId" class="col-sm-4 control-label">发票开具地：</label>
-                               <div class="col-sm-8">
-                                   <select  class="form-control" id="invoiceAreaId" ng-model="item.signFinanceDetail.invoiceAreaId"
-                                            ng-disabled="loanCheckEditable==false"
-                                            ng-options="item.id as item.areaName for item in provinceList" required>
-                                       <option value="">请选择发票开具地</option>
-                                   </select>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="registerCode" class="col-sm-4 control-label">机动车登记证编码：</label>
-                               <div class="col-sm-8">
-                                   <input type="text" id="registerCode" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.registerCode" required>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </fieldset>
-               <fieldset class="scheduler-border">
-                   <legend class="scheduler-border">GPS信息</legend>
-                   <div class="row m-t-md">
-                       <div class="col-md-4 ">
-                           <div class="form-group form-group-sm">
-                               <label for="gpsSupplierId" class="col-sm-4 control-label">GPS供应商：</label>
-                               <div class="col-sm-8">
-                                   <select  class="form-control" id="gpsSupplierId" ng-model="item.signFinanceDetail.gpsSupplierId"
-                                            ng-disabled="loanCheckEditable==false"
-                                            ng-options="item.id as item.name for item in gpsSupplierList" required>
-                                       <option value="">请选择GPS供应商</option>
-                                   </select>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="gpsWiredNo" class="col-sm-4 control-label">有线GPS编码：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="gpsWiredNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.gpsWiredNo" required>
+    <div fix-div="" offset-y="50">
+        <div ng-repeat="item in signContractVo.signFinanceList">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">车辆信息{{item.applyFinance.seq | simpleChnUpperCase}}</legend>
+                <div class="m-t-md">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">发票信息</legend>
+                        <div class="row m-t-md">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="invoiceCode" class="col-sm-4 control-label">购车发票代码：</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="invoiceCode" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.invoiceCode" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="invoiceNo" class="col-sm-4 control-label">购车发票号码：</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="invoiceNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.invoiceNo" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="invoiceAreaId" class="col-sm-4 control-label">发票开具地：</label>
+                                    <div class="col-sm-8">
+                                        <select  class="form-control" id="invoiceAreaId" ng-model="item.signFinanceDetail.invoiceAreaId"
+                                                 ng-disabled="loanCheckEditable==false"
+                                                 ng-options="item.id as item.areaName for item in provinceList" required>
+                                            <option value="">请选择发票开具地</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="registerCode" class="col-sm-4 control-label">机动车登记证编码：</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="registerCode" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.registerCode" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">GPS信息</legend>
+                        <div class="row m-t-md">
+                            <div class="col-md-4 ">
+                                <div class="form-group form-group-sm">
+                                    <label for="gpsSupplierId" class="col-sm-4 control-label">GPS供应商：</label>
+                                    <div class="col-sm-8">
+                                        <select  class="form-control" id="gpsSupplierId" ng-model="item.signFinanceDetail.gpsSupplierId"
+                                                 ng-disabled="loanCheckEditable==false"
+                                                 ng-options="item.id as item.name for item in gpsSupplierList" required>
+                                            <option value="">请选择GPS供应商</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="gpsWiredNo" class="col-sm-4 control-label">有线GPS编码：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="gpsWiredNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.gpsWiredNo" required>
                                        <span class="input-group-addon">
                                            <a href="javascript:" ng-click="openGpsUrl($index,'yx')">查询</a>
                                        </span>
-                                   </div>
+                                        </div>
 
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="gpsWirelessNo" class="col-sm-4 control-label">无线GPS编码：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="gpsWirelessNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.gpsWirelessNo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="gpsWirelessNo" class="col-sm-4 control-label">无线GPS编码：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="gpsWirelessNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.gpsWirelessNo">
                                        <span class="input-group-addon">
                                            <a href="javascript:" ng-click="openGpsUrl($index,'wx')">查询</a>
                                        </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </fieldset>
-               <fieldset class="scheduler-border">
-                   <legend class="scheduler-border">交强险信息</legend>
-                   <div class="row m-t-md">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="insCompanyId" class="col-sm-4 control-label">保险公司：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <select  class="form-control" id="insCompanyId" ng-model="item.signFinanceDetail.insCompanyId"
-                                                ng-disabled="loanCheckEditable==false"
-                                                ng-options="item.id as item.name for item in insuranceCompanyList" >
-                                           <option value="">请选择保险公司</option>
-                                       </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">交强险信息</legend>
+                        <div class="row m-t-md">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="insCompanyId" class="col-sm-4 control-label">保险公司：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <select  class="form-control" id="insCompanyId" ng-model="item.signFinanceDetail.insCompanyId"
+                                                     ng-disabled="loanCheckEditable==false"
+                                                     ng-options="item.id as item.name for item in insuranceCompanyList" >
+                                                <option value="">请选择保险公司</option>
+                                            </select>
                                        <span class="input-group-addon">
                                            <a href="javascript:" ng-click="openInsuranceUrl($index,'jqx')">查询</a>
                                            </span>
-                                   </div>
+                                        </div>
 
 
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="insPolicyNo" class="col-sm-4 control-label">保单号：</label>
-                               <div class="col-sm-8">
-                                   <input type="text" id="insPolicyNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.insPolicyNo" >
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="insAmount" class="col-sm-4 control-label">保险金额：</label>
-                               <div class="col-sm-8">
-                                   <input type="number" step="0.01" id="insAmount" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.insAmount" >
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="insStartDate" class="col-sm-4 control-label">保险开始日期：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="insStartDate" class="form-control" uib-datepicker-popup   ng-disabled="loanCheckEditable==false" is-open="item.isopenSnsStartDate" ng-model="item.signFinanceDetail.insStartDate" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="insPolicyNo" class="col-sm-4 control-label">保单号：</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="insPolicyNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.insPolicyNo" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="insAmount" class="col-sm-4 control-label">保险金额：</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" step="0.01" id="insAmount" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.insAmount" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="insStartDate" class="col-sm-4 control-label">保险开始日期：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="insStartDate" class="form-control" uib-datepicker-popup   ng-disabled="loanCheckEditable==false" is-open="item.isopenSnsStartDate" ng-model="item.signFinanceDetail.insStartDate" >
                                        <span class="input-group-btn">
                                             <button type="button" class="form-control btn btn-default" ng-disabled="loanCheckEditable==false"  ng-click="item.isopenSnsStartDate=!item.isopenSnsStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
                                         </span>
-                                   </div>
-                               </div>
+                                        </div>
+                                    </div>
 
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="insEndDate" class="col-sm-4 control-label">保险结束日期：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="insEndDate" class="form-control" uib-datepicker-popup ng-disabled="loanCheckEditable==false"  is-open="item.isOpenSnsEndDate" ng-model="item.signFinanceDetail.insEndDate" >
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="insEndDate" class="col-sm-4 control-label">保险结束日期：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="insEndDate" class="form-control" uib-datepicker-popup ng-disabled="loanCheckEditable==false"  is-open="item.isOpenSnsEndDate" ng-model="item.signFinanceDetail.insEndDate" >
                                        <span class="input-group-btn">
                                             <button type="button" class="form-control btn btn-default"  ng-disabled="loanCheckEditable==false" ng-click="item.isOpenSnsEndDate=!item.isOpenSnsEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </fieldset>
-               <fieldset class="scheduler-border">
-                   <legend class="scheduler-border">商业险信息</legend>
-                   <div class="row m-t-md">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="busiCompanyId" class="col-sm-4 control-label">保险公司：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <select  class="form-control" id="busiCompanyId" ng-model="item.signFinanceDetail.busiCompanyId"
-                                                ng-disabled="loanCheckEditable==false"
-                                                ng-options="item.id as item.name for item in insuranceCompanyList" >
-                                           <option value="">请选择保险公司</option>
-                                       </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">商业险信息</legend>
+                        <div class="row m-t-md">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="busiCompanyId" class="col-sm-4 control-label">保险公司：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <select  class="form-control" id="busiCompanyId" ng-model="item.signFinanceDetail.busiCompanyId"
+                                                     ng-disabled="loanCheckEditable==false"
+                                                     ng-options="item.id as item.name for item in insuranceCompanyList" >
+                                                <option value="">请选择保险公司</option>
+                                            </select>
                                        <span class="input-group-addon">
                                            <a href="javascript:" ng-click="openInsuranceUrl($index,'sybx')">查询</a>
                                        </span>
-                                   </div>
+                                        </div>
 
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="busiPolicyNo" class="col-sm-4 control-label">保单号：</label>
-                               <div class="col-sm-8">
-                                   <input type="text" id="busiPolicyNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.busiPolicyNo" >
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="busiAmount" class="col-sm-4 control-label">保险金额：</label>
-                               <div class="col-sm-8">
-                                   <input type="number" step="0.01" id="busiAmount" class="form-control"  ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.busiAmount" >
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="gpsWiredNo" class="col-sm-4 control-label">车损险金额：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.damageAmount"
-                                              ng-disabled="item.signFinanceDetail.isDamage==false || item.signFinanceDetail.isDamage == undefined || loanCheckEditable==false" placeholder="车损险金额">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="busiPolicyNo" class="col-sm-4 control-label">保单号：</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="busiPolicyNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.busiPolicyNo" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="busiAmount" class="col-sm-4 control-label">保险金额：</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" step="0.01" id="busiAmount" class="form-control"  ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.busiAmount" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="gpsWiredNo" class="col-sm-4 control-label">车损险金额：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.damageAmount"
+                                                   ng-disabled="item.signFinanceDetail.isDamage==false || item.signFinanceDetail.isDamage == undefined || loanCheckEditable==false" placeholder="车损险金额">
                                         <span class="input-group-addon">
                                             <input type="checkbox" ng-click="item.signFinanceDetail.damageAmount=0" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.isDamage">是否购买
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="gpsWiredNo" class="col-sm-4 control-label">第三者责任险金额：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.thirdAmount"
-                                              ng-disabled="item.signFinanceDetail.isThird==false || item.signFinanceDetail.isThird == undefined ||loanCheckEditable==false" placeholder="第三者责任险金额">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="gpsWiredNo" class="col-sm-4 control-label">第三者责任险金额：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.thirdAmount"
+                                                   ng-disabled="item.signFinanceDetail.isThird==false || item.signFinanceDetail.isThird == undefined ||loanCheckEditable==false" placeholder="第三者责任险金额">
                                         <span class="input-group-addon">
                                             <input type="checkbox" ng-click="item.signFinanceDetail.thirdAmount=0" ng-disabled="loanCheckEditable==false"  ng-model="item.signFinanceDetail.isThird">是否购买
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="gpsWiredNo" class="col-sm-4 control-label">盗抢险金额：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.theftAmount"
-                                              ng-disabled="item.signFinanceDetail.isTheft==false || item.signFinanceDetail.isTheft == undefined || loanCheckEditable==false" placeholder="盗抢险金额">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="gpsWiredNo" class="col-sm-4 control-label">盗抢险金额：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.theftAmount"
+                                                   ng-disabled="item.signFinanceDetail.isTheft==false || item.signFinanceDetail.isTheft == undefined || loanCheckEditable==false" placeholder="盗抢险金额">
                                         <span class="input-group-addon">
                                             <input type="checkbox" ng-click="item.signFinanceDetail.theftAmount=0"  ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.isTheft">是否购买
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="gpsWiredNo" class="col-sm-4 control-label">不计免赔险金额：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.avoidAmount"
-                                              ng-disabled="item.signFinanceDetail.isAvoid==false || item.signFinanceDetail.isAvoid == undefined || loanCheckEditable==false" placeholder="不计免赔险金额">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="gpsWiredNo" class="col-sm-4 control-label">不计免赔险金额：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control input-sm"  ng-model="item.signFinanceDetail.avoidAmount"
+                                                   ng-disabled="item.signFinanceDetail.isAvoid==false || item.signFinanceDetail.isAvoid == undefined || loanCheckEditable==false" placeholder="不计免赔险金额">
                                         <span class="input-group-addon">
                                             <input type="checkbox" ng-click="item.signFinanceDetail.avoidAmount=0"  ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.isAvoid">是否购买
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="busiStartDate" class="col-sm-4 control-label">保险开始日期：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="busiStartDate" class="form-control" uib-datepicker-popup ng-disabled="loanCheckEditable==false" is-open="item.isopenBusiStartDate" ng-model="item.signFinanceDetail.busiStartDate" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="busiStartDate" class="col-sm-4 control-label">保险开始日期：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="busiStartDate" class="form-control" uib-datepicker-popup ng-disabled="loanCheckEditable==false" is-open="item.isopenBusiStartDate" ng-model="item.signFinanceDetail.busiStartDate" >
                                        <span class="input-group-btn">
                                             <button type="button" class="form-control btn btn-default"  ng-click="item.isopenBusiStartDate=!item.isopenBusiStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="busiEndDate" class="col-sm-4 control-label">保险结束日期：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="busiEndDate" class="form-control" uib-datepicker-popup ng-disabled="loanCheckEditable==false"  is-open="item.isopenBusiEndDate" ng-model="item.signFinanceDetail.busiEndDate" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="busiEndDate" class="col-sm-4 control-label">保险结束日期：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="busiEndDate" class="form-control" uib-datepicker-popup ng-disabled="loanCheckEditable==false"  is-open="item.isopenBusiEndDate" ng-model="item.signFinanceDetail.busiEndDate" >
                                        <span class="input-group-btn">
                                             <button type="button" class="form-control btn btn-default"  ng-click="item.isopenBusiEndDate=!item.isopenBusiEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </fieldset>
-               <fieldset class="scheduler-border">
-                   <legend class="scheduler-border">履约险信息</legend>
-                   <div class="row m-t-md">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="impCompanyId" class="col-sm-4 control-label">保险公司：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <select  class="form-control" id="impCompanyId" ng-model="item.signFinanceDetail.impCompanyId"
-                                                ng-disabled="loanCheckEditable==false"
-                                                ng-options="item.id as item.name for item in insuranceCompanyList" >
-                                           <option value="">请选择保险公司</option>
-                                       </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">履约险信息</legend>
+                        <div class="row m-t-md">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="impCompanyId" class="col-sm-4 control-label">保险公司：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <select  class="form-control" id="impCompanyId" ng-model="item.signFinanceDetail.impCompanyId"
+                                                     ng-disabled="loanCheckEditable==false"
+                                                     ng-options="item.id as item.name for item in insuranceCompanyList" >
+                                                <option value="">请选择保险公司</option>
+                                            </select>
                                        <span class="input-group-addon">
                                            <a href="javascript:" ng-click="openInsuranceUrl($index,'lyx')">查询</a>
                                        </span>
-                                   </div>
+                                        </div>
 
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="impPolicyNo" class="col-sm-4 control-label">保单号：</label>
-                               <div class="col-sm-8">
-                                   <input type="text" id="impPolicyNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.impPolicyNo" >
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="impAmount" class="col-sm-4 control-label">保险金额：</label>
-                               <div class="col-sm-8">
-                                   <input type="number" id="impAmount" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.impAmount" >
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="impStartDate" class="col-sm-4 control-label">保险开始日期：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="impStartDate" class="form-control" uib-datepicker-popup  ng-disabled="loanCheckEditable==false" is-open="item.isopenImpStartDate" ng-model="item.signFinanceDetail.impStartDate" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="impPolicyNo" class="col-sm-4 control-label">保单号：</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="impPolicyNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.impPolicyNo" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="impAmount" class="col-sm-4 control-label">保险金额：</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" id="impAmount" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.impAmount" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="impStartDate" class="col-sm-4 control-label">保险开始日期：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="impStartDate" class="form-control" uib-datepicker-popup  ng-disabled="loanCheckEditable==false" is-open="item.isopenImpStartDate" ng-model="item.signFinanceDetail.impStartDate" >
                                        <span class="input-group-btn">
                                             <button type="button" class="form-control btn btn-default"  ng-click="item.isopenImpStartDate=!item.isopenImpStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="col-md-4">
-                           <div class="form-group form-group-sm">
-                               <label for="impEndDate" class="col-sm-4 control-label">保险结束日期：</label>
-                               <div class="col-sm-8">
-                                   <div class="input-group">
-                                       <input type="text" id="impEndDate" class="form-control" uib-datepicker-popup  ng-disabled="loanCheckEditable==false" is-open="item.isopenImpEndDate" ng-model="item.signFinanceDetail.impEndDate" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm">
+                                    <label for="impEndDate" class="col-sm-4 control-label">保险结束日期：</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" id="impEndDate" class="form-control" uib-datepicker-popup  ng-disabled="loanCheckEditable==false" is-open="item.isopenImpEndDate" ng-model="item.signFinanceDetail.impEndDate" >
                                        <span class="input-group-btn">
                                             <button type="button" class="form-control btn btn-default"  ng-click="item.isopenImpEndDate=!item.isopenImpEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
                                         </span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </fieldset>
-           </div>
-       </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
 
-   </div>
-    <fieldset class="scheduler-border">
-        <legend class="scheduler-border">复核检查列表</legend>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">身份证：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.idnoCheckResult" required
-                                ng-disabled="loanCheckEditable==false">
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
+        </div>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">复核检查列表</legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">身份证：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.idnoCheckResult" required
+                                    ng-disabled="loanCheckEditable==false">
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <input type="text" id="idnoCheckComment" class="form-control" ng-model="signContractVo.loanCheck.idnoCheckComment" ng-disabled="loanCheckEditable==false" >
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">租赁申请表：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.applyFormCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
-                    </div>
+                <div class="col-md-8">
+                    <input type="text" id="idnoCheckComment" class="form-control" ng-model="signContractVo.loanCheck.idnoCheckComment" ng-disabled="loanCheckEditable==false" >
                 </div>
             </div>
-            <div class="col-md-8">
-                <input type="text" id="applyFormCheckComment" class="form-control" ng-model="signContractVo.loanCheck.applyFormCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">还款卡：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.repayCardCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">租赁申请表：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.applyFormCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <input type="text" id="repayCardCheckComment" class="form-control" ng-model="signContractVo.loanCheck.repayCardCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">汽车销售发票（新车）：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.invoiceCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
-                    </div>
+                <div class="col-md-8">
+                    <input type="text" id="applyFormCheckComment" class="form-control" ng-model="signContractVo.loanCheck.applyFormCheckComment" ng-disabled="loanCheckEditable==false">
                 </div>
             </div>
-            <div class="col-md-8">
-                <input type="text" id="invoiceCheckComment" class="form-control" ng-model="signContractVo.loanCheck.invoiceCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">车辆交强、商业保险单：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.insuranceCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">还款卡：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.repayCardCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <input type="text" id="insuranceCheckComment" class="form-control" ng-model="signContractVo.loanCheck.insuranceCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">车辆抵押登记证书（二手车融、全款再融）：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.pledgeCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
-                    </div>
+                <div class="col-md-8">
+                    <input type="text" id="repayCardCheckComment" class="form-control" ng-model="signContractVo.loanCheck.repayCardCheckComment" ng-disabled="loanCheckEditable==false">
                 </div>
             </div>
-            <div class="col-md-8">
-                <input type="text" id="pledgeCheckComment" class="form-control" ng-model="signContractVo.loanCheck.pledgeCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">融资租赁合同：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.leasingContractCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">汽车销售发票（新车）：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.invoiceCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <input type="text" id="leasingContractCheckComment" class="form-control" ng-model="signContractVo.loanCheck.leasingContractCheckComment" ng-disabled="loanCheckEditable==false" >
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">抵押合同：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.pledgeContractCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
-                    </div>
+                <div class="col-md-8">
+                    <input type="text" id="invoiceCheckComment" class="form-control" ng-model="signContractVo.loanCheck.invoiceCheckComment" ng-disabled="loanCheckEditable==false">
                 </div>
             </div>
-            <div class="col-md-8">
-                <input type="text" id="pledgeContractCheckCommet" class="form-control" ng-model="signContractVo.loanCheck.pledgeContractCheckCommet" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">共同还租承诺书（如有）：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.tenantCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">车辆交强、商业保险单：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.insuranceCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <input type="text" id="tenantCheckComment" class="form-control" ng-model="signContractVo.loanCheck.tenantCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">委托划款协议：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.trustCheckResult"  ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
-                    </div>
+                <div class="col-md-8">
+                    <input type="text" id="insuranceCheckComment" class="form-control" ng-model="signContractVo.loanCheck.insuranceCheckComment" ng-disabled="loanCheckEditable==false">
                 </div>
             </div>
-            <div class="col-md-8">
-                <input type="text" id="trustCheckComment" class="form-control" ng-model="signContractVo.loanCheck.trustCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">放款补充资料（如有）：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.loanAddCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">车辆抵押登记证书（二手车融、全款再融）：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.pledgeCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <input type="text" id="loanAddCheckComment" class="form-control" ng-model="signContractVo.loanCheck.loanAddCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">照片：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.photoCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
-                    </div>
+                <div class="col-md-8">
+                    <input type="text" id="pledgeCheckComment" class="form-control" ng-model="signContractVo.loanCheck.pledgeCheckComment" ng-disabled="loanCheckEditable==false">
                 </div>
             </div>
-            <div class="col-md-8">
-                <input type="text" id="photoCheckComment" class="form-control" ng-model="signContractVo.loanCheck.photoCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">GPS查询：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.gpsCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">融资租赁合同：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.leasingContractCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <input type="text" id="gpsCheckComment" class="form-control" ng-model="signContractVo.loanCheck.gpsCheckComment" ng-disabled="loanCheckEditable==false">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group form-group-sm">
-                    <label for="impEndDate" class="col-sm-4 control-label">其他资料：</label>
-                    <div class="col-sm-8">
-                        <select class="form-control"  ng-model="signContractVo.loanCheck.otherCheckResult" ng-disabled="loanCheckEditable==false"  required>
-                            <option value="1" selected>通过</option>
-                            <option value="2">不通过</option>
-                        </select>
-                    </div>
+                <div class="col-md-8">
+                    <input type="text" id="leasingContractCheckComment" class="form-control" ng-model="signContractVo.loanCheck.leasingContractCheckComment" ng-disabled="loanCheckEditable==false" >
                 </div>
             </div>
-            <div class="col-md-8">
-                <input type="text" id="otherCheckComment" class="form-control" ng-model="signContractVo.loanCheck.otherCheckComment" ng-disabled="loanCheckEditable==false">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">抵押合同：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.pledgeContractCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="pledgeContractCheckCommet" class="form-control" ng-model="signContractVo.loanCheck.pledgeContractCheckCommet" ng-disabled="loanCheckEditable==false">
+                </div>
             </div>
-        </div>
-    </fieldset>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">共同还租承诺书（如有）：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.tenantCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="tenantCheckComment" class="form-control" ng-model="signContractVo.loanCheck.tenantCheckComment" ng-disabled="loanCheckEditable==false">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">委托划款协议：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.trustCheckResult"  ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="trustCheckComment" class="form-control" ng-model="signContractVo.loanCheck.trustCheckComment" ng-disabled="loanCheckEditable==false">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">放款补充资料（如有）：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.loanAddCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="loanAddCheckComment" class="form-control" ng-model="signContractVo.loanCheck.loanAddCheckComment" ng-disabled="loanCheckEditable==false">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">照片：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.photoCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="photoCheckComment" class="form-control" ng-model="signContractVo.loanCheck.photoCheckComment" ng-disabled="loanCheckEditable==false">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">GPS查询：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.gpsCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="gpsCheckComment" class="form-control" ng-model="signContractVo.loanCheck.gpsCheckComment" ng-disabled="loanCheckEditable==false">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label for="impEndDate" class="col-sm-4 control-label">其他资料：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"  ng-model="signContractVo.loanCheck.otherCheckResult" ng-disabled="loanCheckEditable==false"  required>
+                                <option value="1" selected>通过</option>
+                                <option value="2">不通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="otherCheckComment" class="form-control" ng-model="signContractVo.loanCheck.otherCheckComment" ng-disabled="loanCheckEditable==false">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
 </form>

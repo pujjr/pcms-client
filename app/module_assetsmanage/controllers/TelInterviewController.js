@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.assetsmanage.controllers")
-    .controller('TelInterviewController',function ($scope, $rootScope, $state,$stateParams, toaster,modal, $uibModal,TelInterviewService,LoanQueryService,SysDictService,SysAreaService) {
+    .controller('TelInterviewController',function ($scope, $rootScope, $state,$stateParams, toaster,modal, $uibModal,TelInterviewService,LoanQueryService,SysDictService,SysAreaService,QueryService) {
         $scope.initTelInterview = function(){
             $scope.procInstId = $stateParams.procInstId;
             $scope.taskId = $stateParams.taskId;
@@ -48,5 +48,21 @@ angular.module("pu.assetsmanage.controllers")
                 $scope.telIncomeHisList = TelInterviewService.getTelIncomeLogList($scope.appId).$object;
             })
         };
+        $scope.initTelIncomeList = function(){
+            $scope.loggedTelIncomeList = TelInterviewService.getLoggedTelIncomeCustInfo().$object;
+        };
+        $scope.pageChangedTelIncomeList = function(){
+            $scope.loggedTelIncomeList = TelInterviewService.getLoggedTelIncomeCustInfo().$object;
+        };
+        $scope.createTelIncome = function(){
+            QueryService.selectApply().then(function(response){
+                $state.go(
+                    'app.telincome.add',
+                    {
+                        "appId":response
+                    }
+                )
+            })
+        }
     })
 ;

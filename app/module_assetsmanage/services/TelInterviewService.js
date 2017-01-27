@@ -84,4 +84,7 @@ angular.module('pu.assetsmanage.services')
             });
             return modalInstance.result;
         };
+        this.getLoggedTelIncomeCustInfo = function(){
+            return RestApi.all("/telinterview/getLoggedTelIncomeCustInfo").getList();
+        }
     });

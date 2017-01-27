@@ -1,20 +1,61 @@
-<div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
-    <a href class="navbar-brand block m-t">{{app.name}}</a>
-    <div class="m-b-lg">
-        <form name="form" class="form-validation">
-            <div class="text-danger wrapper text-center" ng-show="authError">
-                {{authError}}
-            </div>
-            <div class="list-group list-group-sm">
-                <div class="list-group-item">
-                    <input type="text" placeholder="用户名" class="form-control no-border" ng-model="user.accountId" required>
-                </div>
-                <div class="list-group-item">
-                    <input type="password" placeholder="密码" class="form-control no-border" ng-model="user.password" required>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()"  ng-disabled='form.$invalid'>登陆</button>
-        </form>
+<div>
+    <div class="panel" style="height: 70px;margin-top:-50px ">
+        <div class="pull-left m-t-sm m-l-lg">
+            <img src="img/logo.png" style="height:40px">
+            <span class="m-l-md" style="font-size: 20px;"><b>{{app.name}}</b></span>
+        </div>
     </div>
-    <div class="text-center" ng-include="'module_pageblocks/tpl/page_footer.html'"></div>
+    <div class="has-divider has-divider--dark"></div>
+    <div class="panel" fix-div="" offset-y="-77" style="margin-top:-20px">
+        <div class="container-fluid" ng-controller="SigninFormController" ng-init="app.settings.container = false;" style="margin-top:100px">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4"  style="height:350px">
+                    <div uib-carousel active="active" interval="myInterval" no-wrap="true">
+                        <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                            <img ng-src="{{slide.image}}" style="margin:auto;width:100%;height:350px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-offset-2 col-md-3">
+                    <div class="panel panel-default" style="width:300px;height:350px">
+                        <div class="panel-body">
+                            <form name="form" class="form-validation">
+                                <div class="m+">
+                                    <span style="color: rgba(0, 0, 0, 0.56);font-size: 20px"><b><i class="mdi mdi-login"></i>请登陆</b></span>
+                                </div>
+                                <div class="has-divider has-divider--dark"></div>
+                                <div class="form-group m-t-lg">
+                                    <label>用户名：</label>
+                                    <input type="text" placeholder="用户名" class="form-control no-border" ng-model="user.accountId" >
+                                </div>
+                                <div class="form-group">
+                                    <label>密码：</label>
+                                    <input type="password" placeholder="密码" class="form-control no-border" ng-model="user.password" >
+                                </div>
+                                <div class="m-t-lg">
+                                    <button type="submit" class="btn btn-md btn-info btn-block" ng-click="login()"  ng-disabled='form.$invalid'>登陆</button>
+                                </div>
+
+                                <div class="text-danger wrapper text-center" ng-show="authError">
+                                    {{authError}}
+                                </div>
+
+                                <div class="text-center" ng-include="'module_pageblocks/tpl/page_footer.html'"></div>
+                                <!--
+                                <div class="list-group list-group-sm">
+                                    <div class="list-group-item">
+                                        <input type="text" placeholder="用户名" class="form-control no-border" ng-model="user.accountId" required>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <input type="password" placeholder="密码" class="form-control no-border" ng-model="user.password" required>
+                                    </div>
+                                </div>
+                                -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

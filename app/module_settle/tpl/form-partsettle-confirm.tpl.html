@@ -239,34 +239,7 @@
             </table>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="data-table-container">
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th style="width:100px">期数</th>
-                    <th>本金</th>
-                    <th>利息</th>
-                    <th>应还总额</th>
-                    <th>起息日</th>
-                    <th>结账日</th>
-                    <th>剩余本金</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in applyVo.repayPlanList">
-                    <td>{{item.period}}</td>
-                    <td>{{item.repayCapital}}</td>
-                    <td>{{item.repayCnterest}}</td>
-                    <td>{{item.repayTotalAmount}}</td>
-                    <td>{{item.valueDate | mysqlDate}}</td>
-                    <td>{{item.closingDate | mysqlDate}}</td>
-                    <td>{{item.remainCapital}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="form-group form-group-sm">
@@ -286,4 +259,32 @@
         </div>
     </div>
 </fieldset>
+<div class="panel panel-default">
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th style="width:100px">期数</th>
+                <th>本金</th>
+                <th>利息</th>
+                <th>应还总额</th>
+                <th>起息日</th>
+                <th>结账日</th>
+                <th>剩余本金</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in applyVo.repayPlanList">
+                <td>{{item.period}}</td>
+                <td>{{item.repayCapital}}</td>
+                <td>{{item.repayCnterest}}</td>
+                <td>{{item.repayTotalAmount}}</td>
+                <td>{{item.valueDate | mysqlDate}}</td>
+                <td>{{item.closingDate | mysqlDate}}</td>
+                <td>{{item.remainCapital}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 

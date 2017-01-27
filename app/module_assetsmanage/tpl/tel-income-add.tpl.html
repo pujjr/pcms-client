@@ -6,6 +6,7 @@
                         <span class="fs-title"><i class="fa fa-tasks mr"></i>电话来电记录：{{appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
+                        <button class="btn btn-default btn-sm" type="button" ng-click="showCustomDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>客户详细信息</button>
                         <button class="btn btn-m btn-default btn-sm" type="button"  ng-click="addTelIncomeInfo()"><i class="fa fa-plus m-r-sm"></i>新增</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
                     </div>
@@ -28,6 +29,7 @@
                                         <th>来电时间</th>
                                         <th>来电事项类型</th>
                                         <th>来电备注</th>
+                                        <th>创建人</th>
                                         <th>处理情况</th>
                                         <th>处理时间</th>
                                         <th>处理备注</th>
@@ -41,6 +43,7 @@
                                         <td>{{item.incomeTime | mysqlDatetime}}</td>
                                         <td>{{item.incomeTypeDesc}}</td>
                                         <td>{{item.incomeComment}}</td>
+                                        <td>{{item.createName}}</td>
                                         <td>{{item.processStatusDesc}}</td>
                                         <td>{{item.processTime | mysqlDatetime}}</td>
                                         <td>{{item.processComment}}</td>

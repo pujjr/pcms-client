@@ -1,0 +1,205 @@
+<div ng-init="queryApplyList()">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>选择处理客户</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:700px">
+        <div class="panel panel-default">
+            <div class="container-fluid">
+                <div class="row m-t-sm">
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <input type="text" class="form-control" id="appId" ng-model="vm.appId" placeholder="申请单号">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <input type="text" class="form-control" id="name" ng-model="vm.name" placeholder="客户姓名">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <select id="productCode" class="form-control" ng-model="vm.productCode"
+                                    ng-options="item.productCode as item.productName group by item.productTypeName  for item in productList track by item.id" >
+                                <option value="">请选择产品</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <input type="text" class="form-control" id="idNo" ng-model="vm.idNo" placeholder="证件号码">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <input type="text" class="form-control" id="mobile" ng-model="vm.mobile" placeholder="承租人电话号码">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <input type="text" class="form-control" id="contractNo" ng-model="vm.contractNo" placeholder="合同编号">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <input type="text" class="form-control" id="sysBranchCode" ng-model="vm.sysBranchCode" placeholder="经销商编码">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group form-group-sm">
+                            <p class="input-group">
+                                <input type="text" id="applyStartDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup="yyyy-MM-dd"
+                                       placeholder="申请开始日期"
+                                       is-open="isopenApplyStartDate"
+                                       ng-model="vm.applyStartDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default m-b-ms"   ng-click="isopenApplyStartDate=!isopenApplyStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group">
+                                <input type="text" id="applyEndDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                       placeholder="申请截止日期"
+                                       is-open="isopenApplyeEndDate"
+                                       ng-model="vm.applyEndDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenApplyeEndDate=!isopenApplyeEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group">
+                                <input type="text" id="approveStartDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                       placeholder="审批通过开始日期"
+                                       is-open="isopenApproveStartDate"
+                                       ng-model="vm.approveStartDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenApproveStartDate=!isopenApproveStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group">
+                                <input type="text" id="approveEndDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                       placeholder="审核通过结束日期"
+                                       is-open="isopenApproveEndDate"
+                                       ng-model="vm.approveEndDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenApproveEndDate=!isopenApproveEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group">
+                                <input type="text" id="loanStartDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                       placeholder="放款完成开始日期"
+                                       is-open="isopenLoanStartDate"
+                                       ng-model="vm.loanStartDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenLoanStartDate=!isopenLoanStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group">
+                                <input type="text" id="loanEndDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                       placeholder="放款完成结束日期"
+                                       is-open="isopenLoanEndDate"
+                                       ng-model="vm.loanEndDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenLoanEndDate=!isopenLoanEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group form-group-sm">
+                            <select ng-model="vm.applyStatus"  class="form-control m-b-sm m-r-xs"
+                                    ng-options="item.dictDataCode as item.dictDataName for item in appStatusList" >
+                                <option value="">请选择申请单状态</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="queryApplyList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                    </div>
+                </div>
+            </div>
+            <div class="data-table-container">
+                <table class="data-table" style="overflow-x: auto">
+                    <thead>
+                    <tr>
+                        <th style="width:150px">案件编号</th>
+                        <th>客户姓名</th>
+                        <th style="width:150px">身份证号</th>
+                        <th>申请日期</th>
+                        <th>案件状态</th>
+                        <th>经销商</th>
+                        <th>批核金额</th>
+                        <th>期数</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in applyList">
+                        <td>{{item.appId}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.idNo}}</td>
+                        <td>{{item.createTime|mysqlDate}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.branchName}}</td>
+                        <td>{{item.totalFinanceAmt}}</td>
+                        <td>{{item.period}}</td>
+                        <td>
+                            <a href="javascript:" ng-click="select(item)">选择</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="has-divider has-divider--dark"></div>
+                <div class="toolbar">
+                    <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                    </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                    <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                        <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                        </div>
+                        <div>
+                            <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                            ng-model="paginationInfo.curPage"
+                                            items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                            last-text="&raquo;">
+                            </uib-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</div>

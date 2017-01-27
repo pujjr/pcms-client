@@ -12,7 +12,7 @@ angular.module("app")
             return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
         }
         $scope.app = {
-            name: '信贷审批管理系统',
+            name: '信贷管理系统',
             version: 'beta 0.0.1',
             // for chart colors
             color: {
@@ -45,7 +45,9 @@ angular.module("app")
                 $scope.app.settings.headerFixed = true;
             }
         }, true);
-
+        $scope.app.settings.navbarHeaderColor='bg-info dker';
+        $scope.app.settings.navbarCollapseColor='bg-info dk';
+        $scope.app.settings.asideColor='bg-black';
         $scope.signup = function () {
             modal.confirm("操作提醒", "确认登出系统？").then(function () {
                 AuthService.signup();

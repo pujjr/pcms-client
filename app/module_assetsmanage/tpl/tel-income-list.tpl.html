@@ -1,8 +1,8 @@
-<div ng-init="initArchiveClear()">
+<div ng-init="initTelIncomeList()">
     <div class="panel_main">
         <div class="panel-header">
             <div class="panel-header-wrapper">
-                <h2 class="panel-header-title">已放款档案整理</h2>
+                <h2 class="panel-header-title">来电记录</h2>
             </div>
         </div>
         <div class="data-table-container">
@@ -11,46 +11,29 @@
                     <span class="fs-title"></span>
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="archivePost()">档案邮寄</button>
-                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="printPostList()">打印邮寄清单</button>
-                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="applyArchiveLog()">提交档案归档</button>
+                    <button class="btn btn-m btn-default btn-sm" type="button" ng-click="createTelIncome()"><i class="fa fa-plus m-r-sm"></i>创建来电记录</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
-                    <th style="width:60px"><input type="checkbox" ng-model="selectall" ng-click="selectAll()"></th>
-                    <th style="width:60px">档案编号</th>
                     <th>申请单号</th>
                     <th>客户姓名</th>
-                    <th>合同编号</th>
-                    <th>档案状态</th>
-                    <th>归档截止日期</th>
-                    <th>是否延期</th>
-                    <th>延期截止日期</th>
-                    <th>快递公司</th>
-                    <th>快递编号</th>
+                    <th>来电记录总数</th>
+                    <th>未处理笔数</th>
+                    <th>我提交未处理笔数</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in taskList">
-                    <td><input type="checkbox" ng-model="item.checked" ng-click="addToSelected(item)"></td>
-                    <td>{{item.archiveNo}}</td>
+                <tr ng-repeat="item in loggedTelIncomeList">
                     <td>{{item.appId}}</td>
                     <td>{{item.custName}}</td>
-                    <td>{{item.contractNo}}</td>
-                    <td>{{item.archiveStatusDesc}}</td>
-                    <td>{{item.archiveEndDate}}</td>
+                    <td>{{item.totalCnt}}</td>
+                    <td>{{item.notProcessCnt}}</td>
+                    <td>{{item.myNotProcessCnt}}</td>
                     <td>
-                        <span ng-if="item.isDelay==true">是</span>
-                        <span ng-if="item.isDelay==false">否</span>
-                    </td>
-                    <td>{{item.delayEndDate}}</td>
-                    <td>{{item.expressCompanyDesc}}</td>
-                    <td>{{item.expressNo}}</td>
-                    <td>
-                        <a href="javascript:" ng-click="printArchiveCheckInfo(item)">打印核对归档信息</a>
+                        <a href="javascript:" ui-sref="app.telincome.add({appId:item.appId})">详细信息</a>
                     </td>
                 </tr>
                 </tbody>
@@ -75,7 +58,7 @@
                         <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
                                         ng-model="paginationInfo.curPage"
                                         max-size="paginationInfo.maxSize"
-                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        items-per-page="paginationInfo.pageSize" ng-change="pageChangedTelIncomeList()"
                                         previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
                                         last-text="&raquo;">
                         </uib-pagination>

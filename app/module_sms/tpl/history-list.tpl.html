@@ -97,6 +97,7 @@
                     <div>
                         <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
                                         ng-model="paginationInfo.curPage"
+                                        max-size="paginationInfo.maxSize"
                                         items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
                                         previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
                                         last-text="&raquo;">

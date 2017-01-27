@@ -177,7 +177,7 @@
                     <td>{{item.period}}</td>
                     <td>
                         <a href="javascript:" ui-sref="app.query.apply.detail({appId:item.appId})">详细</a>
-                        <a href="javascript:" ui-sref="app.telincome.add({appId:item.appId})">来电记录</a>
+
                     </td>
                 </tr>
                 </tbody>
@@ -201,6 +201,7 @@
                     <div>
                         <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
                                         ng-model="paginationInfo.curPage"
+                                        max-size="paginationInfo.maxSize"
                                         items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
                                         previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
                                         last-text="&raquo;">

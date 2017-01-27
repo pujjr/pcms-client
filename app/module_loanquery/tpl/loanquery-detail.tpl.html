@@ -107,11 +107,23 @@
             </uib-tab-heading>
             <div  ng-include="'module_assetsmanage/tpl/form-his-insurance-claim.html'"/>
         </uib-tab>
-        <uib-tab index="4"  select="getTelInterviewHisList()">
+        <uib-tab index="4"  select="getImportantCollectionLog()">
+            <uib-tab-heading>
+                <span>催收记录</span>
+            </uib-tab-heading>
+            <div ng-include="'module_assetsmanage/tpl/collection-log.html'"></div>
+        </uib-tab>
+        <uib-tab index="5"  select="getTelInterviewHisList()">
             <uib-tab-heading>
                 <span>电话回访记录</span>
             </uib-tab-heading>
             <div  ng-include="'module_assetsmanage/tpl/form-tel-interview-his.html'"/>
+        </uib-tab>
+        <uib-tab index="6"  select="getTelIncomeHisList()">
+            <uib-tab-heading>
+                <span>来电记录</span>
+            </uib-tab-heading>
+            <div  ng-include="'module_assetsmanage/tpl/form-tel-income-his.html'"/>
         </uib-tab>
     </uib-tabset>
     <div ui-view=""></div>

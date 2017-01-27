@@ -80,18 +80,7 @@ angular.module('app')
                     templateUrl: 'module_assetsmanage/tpl/insurance-claims.html',
                     controller:'InsManageController'
                 })
-                //电话记录
-                .state('app.telincome',{
-                    abstract:true,
-                    url:'/telincome',
-                    template: '<div ui-view=""></div>'
-                })
-                //保险理赔
-                .state('app.telincome.add',{
-                    url:'/add/:appId',
-                    templateUrl: 'module_assetsmanage/tpl/tel-income-add.html',
-                    controller:'TelInterviewController'
-                })
+
                 //档案管理
                 .state('app.archive',{
                     abstract:true,
@@ -133,6 +122,24 @@ angular.module('app')
                     url: '/archive-borrow-back/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
                     templateUrl:'module_assetsmanage/tpl/archive-borrow-back.html',
                     controller:'ArchiveController'
+                })
+                //电话来电记录管理
+                .state('app.telincome',{
+                    abstract:true,
+                    url:'/telincome',
+                    template: '<div ui-view=""></div>'
+                })
+                //来电记录列表查询
+                .state('app.telincome.list',{
+                    url:'/list',
+                    templateUrl: 'module_assetsmanage/tpl/tel-income-list.html',
+                    controller:'TelInterviewController'
+                })
+                //保险理赔
+                .state('app.telincome.add',{
+                    url:'/add/:appId',
+                    templateUrl: 'module_assetsmanage/tpl/tel-income-add.html',
+                    controller:'TelInterviewController'
                 })
         }
     ]
