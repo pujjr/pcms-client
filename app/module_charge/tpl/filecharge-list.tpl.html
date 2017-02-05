@@ -1,11 +1,11 @@
-<div ng-init="initFileCharge()">
+<div ng-init="initFileCharge()" cg-busy="loading">
     <div class="panel_main">
         <div class="data-table-container">
             <header class="data-table-header">
                 <div class="data-table-header__label">
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="confirmManualOffer()"><i class="fa fa-plus m-r-sm"></i>确认手工报盘</button>
+                    <button class="btn btn-sm btn-default" type="button" ng-click="exportOfferFile()"><i class="fa fa-plus m-r-sm"></i>导出报盘文件</button>
                 </div>
             </header>
             <table class="data-table">
@@ -14,23 +14,17 @@
                     <th>序号</th>
                     <th>申请单号</th>
                     <th>姓名</th>
-                    <th>身份证号</th>
-                    <th>报盘来源</th>
-                    <th>费用类型</th>
                     <th>扣款金额</th>
                     <th>报盘时间</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in manualOfferList">
-                    <td>{{$index+1}}</td>
+                    <td>{{item.seq}}</td>
                     <td>{{item.appId}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.idNo}}</td>
-                    <td>{{item.offerSourceDesc}}</td>
-                    <td>{{item.feeTypeDesc}}</td>
+                    <td>{{item.custName}}</td>
                     <td>{{item.offerAmount}}</td>
-                    <td>{{item.offerTime| mysqlDatetime}}</td>
+                    <td>{{item.genTime| mysqlDatetime}}</td>
                 </tr>
                 </tbody>
             </table>

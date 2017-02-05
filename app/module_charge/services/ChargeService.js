@@ -1,25 +1,28 @@
 angular.module('pu.charge.services')
     .service("ChargeService",function($window,RestApi){
-        this.getEnableChargeList = function(){
-            return RestApi.all("/charge/getEnableChargeList").getList();
+        this.generatorOfferChargeList = function(){
+            return RestApi.all("/charge/generatorOfferChargeList").post();
         };
-        this.setChargeMode = function(chargeIds,chargeMode){
-            return RestApi.all("/charge/setChargeMode").all(chargeMode).post(chargeIds);
+        this.getNotSelOfferModeList = function(){
+            return RestApi.all("/charge/getNotSelOfferModeList").getList();
         };
-        this.confirmManualOffer = function(merchantNo){
-            return RestApi.one("/charge/confirmManualOffer",merchantNo).get();
+        this.getSelOfferModeList = function(chargeMode){
+            return RestApi.all("/charge/getSelOfferModeList").all(chargeMode).getList();
         };
-        this.getWatingOfferChargeList = function(chargeMode){
-            return RestApi.all("/charge/getWatingOfferChargeList").all(chargeMode).getList();
+        this.setOfferChargeMode = function(chargeIds,chargeMode){
+            return RestApi.all("/charge/setOfferChargeMode").all(chargeMode).post(chargeIds);
         };
-        this.getManualOfferHisList = function(){
-            return RestApi.all("/charge/getManualOfferHisList").getList();
+        this.exportOfferFile = function(merchantNo){
+            return RestApi.one("/charge/exportOfferFile",merchantNo).get();
         };
         this.doFileRetOffer = function(filedata){
             return RestApi.all("/charge/doFileRetOffer").withHttpConfig({transformRequest: angular.identity})
                 .post(filedata, {}, {'Content-Type': undefined});
         };
-        this.getManualOfferBatchDetail = function(offerBatchId){
-            return RestApi.all("/charge/getManualOfferBatchDetail").all(offerBatchId).getList();
+        this.getOfferBatchList = function(){
+            return RestApi.all("/charge/getOfferBatchList").getList();
+        };
+        this.getOfferBatchDetail = function(offerBatchId){
+            return RestApi.all("/charge/getOfferBatchDetail").all(offerBatchId).getList();
         }
     });

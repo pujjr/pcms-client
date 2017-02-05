@@ -2,22 +2,18 @@
     <table class="data-table">
         <thead>
         <tr>
-            <th>扣款方式</th>
             <th>扣款日期</th>
             <th>扣款金额</th>
             <th>扣款卡号</th>
-            <th>扣款银行</th>
             <th>扣款结果</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="item in chargeLogList">
-            <td>{{item.chargeModeDesc}}</td>
-            <td>{{item.tranDate}}</td>
+            <td>{{item.tranDate |mysqlDate }}</td>
             <td>{{item.chargeAmount}}</td>
             <td>{{item.cardNo}}</td>
-            <td>{{item.bankName}}</td>
-            <td>{{item.thirdPartResult}}</td>
+            <td>{{item.chargeResult}}</td>
         </tr>
         </tbody>
     </table>

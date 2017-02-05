@@ -17,36 +17,41 @@ angular.module("pu.charge.controllers")
             $state.go('app.charge.retoffer');
         };
         $scope.pageChangedWaitingCharge = function(){
-            $scope.enableChargeList = ChargeService.getEnableChargeList().$object;
+            $scope.enableChargeList = ChargeService.getNotSelOfferModeList().$object;
         }
         $scope.initWaitingCharge = function(){
-            $scope.enableChargeList = ChargeService.getEnableChargeList().$object;
+            $scope.enableChargeList = ChargeService.getNotSelOfferModeList().$object;
+        }
+        $scope.generatorOfferChargeList = function(){
+            ChargeService.generatorOfferChargeList().then(function(){
+                toaster.pop('success', '操作提醒',"生成报盘成功");
+                $scope.enableChargeList = ChargeService.getNotSelOfferModeList().$object;
+            })
         }
         $scope.setAllToFileCharge = function(){
-            ChargeService.setChargeMode(null,"kkfs01").then(function(response){
+            ChargeService.setOfferChargeMode(null,"kkfs01").then(function(response){
                 toaster.pop('success', '操作提醒',"加入批量文件报盘成功");
                 $scope.initWaitingCharge();
             })
         };
         $scope.pageChangedFileCharge = function(){
-            $scope.manualOfferList = ChargeService.getWatingOfferChargeList("kkfs01").$object;
+            $scope.manualOfferList = ChargeService.getSelOfferModeList("kkfs01").$object;
         }
         $scope.initFileCharge = function(){
-            $scope.manualOfferList = ChargeService.getWatingOfferChargeList("kkfs01").$object;
+            $scope.manualOfferList = ChargeService.getSelOfferModeList("kkfs01").$object;
         };
         $scope.initRealtimeCharge = function(){
-            $scope.realtimeOfferList = ChargeService.getWatingOfferChargeList("kkfs02").$object;
+            $scope.realtimeOfferList = ChargeService.getSelOfferModeList("kkfs02").$object;
         };
-        $scope.confirmManualOffer = function(){
+        $scope.exportOfferFile = function(){
             MerchantService.selectMerchant().then(function(response){
-                ChargeService.confirmManualOffer(response.merchantNo).then(function(response){
+                $scope.loading = ChargeService.exportOfferFile(response.merchantNo).then(function(response){
                     $scope.initFileCharge();
                     var ossKey = response.ossKey;
                     var link = document.createElement('a');
                     link.href=SERVER_URL.OSS_URL+ossKey;
                     link.click();
                     window.URL.revokeObjectURL(link.href);
-
                 })
             })
         };
@@ -54,7 +59,7 @@ angular.module("pu.charge.controllers")
             $scope.offerBatchList = ChargeService.getManualOfferHisList().$object;
         }
         $scope.initRetofferCharge = function(){
-            $scope.offerBatchList = ChargeService.getManualOfferHisList().$object;
+            $scope.offerBatchList = ChargeService.getOfferBatchList().$object;
         };
         $scope.doFileRetOffer = function(){
             var modalInstance = $uibModal.open({
@@ -76,7 +81,7 @@ angular.module("pu.charge.controllers")
             modalInstance.result.then(function(response){
                 var filedata = new FormData();
                 filedata.append('file', file.files[0]);
-                ChargeService.doFileRetOffer(filedata).then(function(response){
+                $scope.loading = ChargeService.doFileRetOffer(filedata).then(function(response){
                     toaster.pop('success', '操作提醒',"回盘成功");
                     $scope.initRetofferCharge();
                 });
@@ -90,7 +95,7 @@ angular.module("pu.charge.controllers")
                 templateUrl :'module_charge/tpl/dialog-offerBatchDetail-list.html',
                 controller:function($scope,RestApi,$q){
                     $scope.offerBatchId=item.id;
-                    $scope.offerBatchDetailList = ChargeService.getManualOfferBatchDetail($scope.offerBatchId).$object;
+                    $scope.offerBatchDetailList = ChargeService.getOfferBatchDetail($scope.offerBatchId).$object;
                     $scope.cancel=function(){
                         modalInstance.dismiss('cancel');
                     }
