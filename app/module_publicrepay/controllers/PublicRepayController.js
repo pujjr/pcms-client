@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.publicrepay.controllers")
-    .controller('PublicRepayController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,PublicRepayService,SysDictService) {
+    .controller('PublicRepayController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,PublicRepayService,SysDictService,ApplyService) {
         $scope.initPublicRepayHistoryTaskList = function(){
             $scope.publicRepayApplyList = PublicRepayService.getApplyPublicRepayTaskList().$object;
         };
@@ -16,7 +16,8 @@ angular.module("pu.publicrepay.controllers")
             $scope.businessKey = $stateParams.businessKey;
             $scope.appId = $stateParams.appId;
             $scope.workflowKey = $stateParams.workflowKey;
-            $scope.doInitApplyEdit($stateParams.appId);
+            $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+            $scope.applyInfo = ApplyService.queryApplyInfoByAppId($scope.appId).$object;
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
             PublicRepayService.getApplyPublicRepayInfo($scope.businessKey).then(function(response){
                  $scope.applyPublicRepayVo = response;

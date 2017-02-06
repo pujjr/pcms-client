@@ -1,0 +1,70 @@
+<div class="data-table-container">
+    <header class="data-table-header">
+        <div class="data-table-header__label">
+            <span class="fs-title"></span>
+        </div>
+        <div class="data-table-header__actions">
+            <button class="btn btn-default btn-sm" type="button" ng-click="openLoanWorkflowDiagram(taskId,workflowKey)">查看图形模式</button>
+        </div>
+    </header>
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th style="width:15%">任务名称</th>
+            <th style="width:15%">任务执行人</th>
+            <th>处理意见</th>
+            <th style="width:15%">分配时间</th>
+            <th style="width:15%">处理时间</th>
+            <th style="width:15%">完成时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in workflowProcessResultList">
+            <td>{{item.actName}}</td>
+            <td>{{item.assigneeName}}</td>
+            <td>
+                <div ng-switch="item.outJumpType">
+                    <div ng-switch-when="BACK">
+                        <span>提交方式：回退</span>
+                        <br>
+                        <span>回退原因：{{item.message}}</span>
+                    </div>
+                    <div ng-switch-when="COMMIT">
+                        <div ng-if="item.multiAct==true">
+                            <div ng-repeat="itemDetail in item.multiTask">
+                                <span>提交方式：提交</span>
+                                <br/>
+                                <span>提交人：{{itemDetail.processUserid}}</span>
+                                <br/>
+                                <span>处理结果：{{itemDetail.processResult}}</span>
+                                <br>
+                                <span>处理意见：{{itemDetail.processDesc}}</span>
+                                <br>
+                                <span>备注：{{itemDetail.comment}}</span>
+                            </div>
+                        </div>
+                        <div ng-if="item.multiAct==false">
+                            <span>提交方式：提交</span>
+                            <br/>
+                            <span>处理结果：{{item.processResult}}</span>
+                            <br>
+                            <span>处理意见：{{item.processDesc}}</span>
+                            <br>
+                            <span>备注：{{item.comment}}</span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <span>{{item.startTime|mysqlDatetime}}</span>
+            </td>
+            <td>
+                <span>{{item.processTime|mysqlDatetime}}</span>
+            </td>
+            <td>
+                <span>{{item.endTime|mysqlDatetime}}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

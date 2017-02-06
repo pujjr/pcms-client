@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.refund.controllers")
-    .controller('RefundController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,RefundService,SysDictService,ToolsService) {
+    .controller('RefundController',function ($scope, $rootScope, $state,$stateParams ,toaster, modal,$uibModal,LoanQueryService,RefundService,SysDictService,ToolsService) {
         $scope.initRefundHistoryTaskList = function(){
             $scope.taskList = RefundService.getApplyRefundTaskList().$object;
         };
@@ -26,9 +26,11 @@ angular.module("pu.refund.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApproveRefundTask = function(){
-            RefundService.commitApproveRefundTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                RefundService.commitApproveRefundTask($scope.taskId,$scope.approveVo).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
         $scope.initConfirm = function(){
@@ -47,9 +49,11 @@ angular.module("pu.refund.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitConfirmRefundTask = function(){
-            RefundService.commitConfirmRefundTask($scope.taskId).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            modal.confirm("操作提醒","确认提交任务？").then(function() {
+                RefundService.commitConfirmRefundTask($scope.taskId).then(function (response) {
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         }
 

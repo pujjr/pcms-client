@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('TaskController',function ($scope, $rootScope, $state, toaster, $uibModal,TaskService,QueryService) {
+    .controller('TaskController',function ($scope, $rootScope, $state, toaster, $uibModal,TaskService,QueryService,LoanQueryService) {
         $scope.backTask = function(taskId){
             TaskService.backTask(taskId).then(function(response){
                 $state.go('app.task.todolist');
@@ -24,6 +24,13 @@ angular.module("pu.task.controllers")
         }
         $scope.openWorkflowDiagram = function(taskId ) {
             TaskService.queryTaskByTaskId(taskId).then(function (response) {
+                var processDefinitionId = response.procDefId;
+                var processInstanceId = response.procInstId;
+                window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
+            });
+        }
+        $scope.openLoanWorkflowDiagram = function(taskId,workflowKey) {
+            LoanQueryService.getTaskByTaskId(taskId,workflowKey).then(function (response) {
                 var processDefinitionId = response.procDefId;
                 var processInstanceId = response.procInstId;
                 window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);

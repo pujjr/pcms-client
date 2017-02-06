@@ -16,6 +16,9 @@ angular.module("pu.charge.controllers")
         $scope.goRetoffer = function(){
             $state.go('app.charge.retoffer');
         };
+        $scope.pageChangedWaitingCharge = function(){
+            $scope.enableChargeList = ChargeService.getEnableChargeList().$object;
+        }
         $scope.initWaitingCharge = function(){
             $scope.enableChargeList = ChargeService.getEnableChargeList().$object;
         }
@@ -25,6 +28,9 @@ angular.module("pu.charge.controllers")
                 $scope.initWaitingCharge();
             })
         };
+        $scope.pageChangedFileCharge = function(){
+            $scope.manualOfferList = ChargeService.getWatingOfferChargeList("kkfs01").$object;
+        }
         $scope.initFileCharge = function(){
             $scope.manualOfferList = ChargeService.getWatingOfferChargeList("kkfs01").$object;
         };
@@ -44,6 +50,9 @@ angular.module("pu.charge.controllers")
                 })
             })
         };
+        $scope.pageChangedRetofferCharge = function(){
+            $scope.offerBatchList = ChargeService.getManualOfferHisList().$object;
+        }
         $scope.initRetofferCharge = function(){
             $scope.offerBatchList = ChargeService.getManualOfferHisList().$object;
         };

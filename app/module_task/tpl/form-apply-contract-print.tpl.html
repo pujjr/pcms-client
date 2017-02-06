@@ -8,7 +8,13 @@
                     </div>
                 </div>
                 <div ng-repeat="item in contractList">
-                    <button type="button" class="btn btn-default btn-lg btn-block" ng-click="generateContract(item.contractKey)">{{item.contractName}}</button>
+                    <div class="treeNode" ng-click="generateContract(item.contractKey)">
+                            <span >
+                            {{item.contractName}}
+                            </span>
+                    </div>
+                    <div class="divider divider--dark">
+                    </div>
                 </div>
             </div>
         </div>

@@ -60,6 +60,7 @@ angular.module('app')
             $rootScope.resetCache();
             //重cookie验证用户
             AuthService.initUserFormCookie();
+
         }
     ])
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
