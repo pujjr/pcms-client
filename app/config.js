@@ -24,6 +24,14 @@ angular.module('app')
                 };
                 $rootScope.vm = {};
             };
+            $rootScope.resetPage = function(){
+                $rootScope.paginationInfo = {
+                    totalItem: 0,
+                    pageSize: 10,
+                    curPage: 1,
+                    maxSize: 5
+                };
+            }
             //注册路由变更成功处理方法
             $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
                 var data = {};
@@ -64,13 +72,13 @@ angular.module('app')
         }
     ])
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-        //cfpLoadingBarProvider.includeSpinner = true;
-        //cfpLoadingBarProvider.includeBar = true;
-        //cfpLoadingBarProvider.spinnerTemplate = "<span>Loading...</span>";
+        cfpLoadingBarProvider.includeSpinner = true;
+        cfpLoadingBarProvider.includeBar = true;
+        cfpLoadingBarProvider.spinnerTemplate = "<span>Loading...</span>";
     }])
     //加载进度条提示消息
     .value('cgBusyDefaults',{
-        message:'正在加载'
+        message:'正在加载数据，请稍候'
     })
     //配置iframe跨域访问白名单
     .config(function($sceDelegateProvider) {

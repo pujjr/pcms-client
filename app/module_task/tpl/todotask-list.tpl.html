@@ -1,11 +1,11 @@
-<div ng-init="init()">
+<div ng-init="init()"  cg-busy="loading">
     <div class="panel_main">
         <div class="panel-header">
             <div class="panel-header-wrapper">
                 <h2 class="panel-header-title">代办任务</h2>
             </div>
         </div>
-        <div class="data-table-container">
+        <div class="data-table-container" >
             <header class="data-table-header">
                 <button class="btn btn-primary btn-sm m-r-md" type="button" ng-click="queryToDoTaskFilterByDefKey(item)" ng-repeat="item in taskDefinGroupList">
                     {{item.taskName}} <span class="badge">{{item.count}}</span>
@@ -33,7 +33,7 @@
                 <div class="data-table-header__actions">
                 </div>
             </header>
-            <table class="table  data-table">
+            <table class="table  data-table" >
                 <thead>
                 <tr>
                     <th style="width: 10px"></th>
@@ -57,7 +57,7 @@
                     <td>{{item.tenantName}}</td>
                     <td>{{item.totalFinanceAmount}}</td>
                     <td>{{item.period}}</td>
-                    <td>{{item.createTime}}</td>
+                    <td>{{item.createTime | mysqlDatetime}}</td>
                     <td>{{item.branchName}}</td>
                     <td>{{item.startTime| mysqlDatetime}}</td>
                     <td>

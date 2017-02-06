@@ -13,13 +13,16 @@ angular.module("pu.task.controllers")
         }
         $scope.queryToDoTaskList = function(params){
             angular.extend(params, {outTaskDefKeys:'sgfd,fk'});
-            $scope.toDoTaskList = TaskService.queryToDoTaskList(params).$object;
+            $scope.loading = TaskService.queryToDoTaskList(params).then(function(response){
+               $scope.toDoTaskList = response
+           });
             $scope.taskDefinGroupList = TaskService.getUserTaskDefineGroupInfo({outTaskDefKeys:'sgfd,fk'}).$object;
         };
         $scope.queryToDoTaskFilterByDefKey = function(item){
             $scope.queryToDoTaskList({inTaskDefKeys:item.taskDefKey});
         };
         $scope.queryToDoTaskListByFilter = function(){
+            $rootScope.resetPage();
             $scope.queryToDoTaskList($scope.queryParam);
         }
         $scope.doTask = function(item){
