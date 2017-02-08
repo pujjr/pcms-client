@@ -12,8 +12,20 @@ angular.module("pu.task.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("sprwjglx").$object;
             $scope.approveRejectReasonList =  SysDictService.queryDictDataByTypeCode("spjjyy").$object;
             $scope.approveCancelReasonList =  SysDictService.queryDictDataByTypeCode("spqxyy").$object;
+            $scope.loanConditionList = SysDictService.queryDictDataByTypeCode("fktj").$object;
+            $scope.checkList = SysDictService.queryDictDataByTypeCode("shrwjglx").$object;
+            $scope.checkRejectReasonList = SysDictService.queryDictDataByTypeCode("shjjyy").$object;
+            $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"zlsh");
+            //审批显示审核结果，如果审核未建议有条件放款则设置审批意见为条件放款
+            TaskService.getLastestCheckVo($stateParams.taskId).then(function(response){
+                if(response==null){
+                    $scope.checkVo = {};
+                }else{
+                    $scope.checkVo = response;
+                }
+            })
             $scope.approveVo = {};
         };
         $scope.commitApproveTask = function(){

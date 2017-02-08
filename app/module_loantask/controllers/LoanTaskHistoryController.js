@@ -25,6 +25,9 @@ angular.module("pu.loantask.controllers")
         $scope.showOtherFeeTask = function(){
             $state.go("app.loantask.history.otherfee");
         };
+        $scope.showOfferTask = function(){
+            $state.go("app.loantask.history.offer");
+        }
 
     })
 ;

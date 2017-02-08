@@ -4658,9 +4658,13 @@ select.ng-invalid {
 select.ng-valid {
   border: 1px solid green;
 }
-textarea{
+textarea.ng-invalid{
   border: 1px solid red;
- color: yellow;
+  color: yellow;
+  background-color: yellow;!important
+}
+textarea.ng-valid{
+  border: 1px solid green;
 }
 ul{
   list-style: none;

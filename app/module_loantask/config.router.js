@@ -33,6 +33,12 @@ angular.module('app')
                     templateUrl:'module_publicrepay/tpl/publicrepay-approve.html',
                     controller:'PublicRepayController'
                 })
+                //人手报盘审批
+                .state('app.loantask.process.offer-approve', {
+                    url: '/offer-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_offer/tpl/offer-approve.html',
+                    controller:'OfferController'
+                })
                 //提前结清审批
                 .state('app.loantask.process.settle-approve', {
                     url: '/settle-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
@@ -171,6 +177,12 @@ angular.module('app')
                     url: '/otherfee',
                     templateUrl:'module_otherfee/tpl/otherfee-task-history.html',
                     controller:'OtherFeeController'
+                })
+                //人手报盘任务查询
+                .state('app.loantask.history.offer', {
+                    url: '/offer',
+                    templateUrl:'module_offer/tpl/offer-task-history.html',
+                    controller:'OfferController'
                 })
                 .state('app.loantask.detail', {
                     url: '/process',

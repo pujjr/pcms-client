@@ -1,5 +1,5 @@
 angular.module('pu.assetsmanage.services')
-    .service("AlterCustInfoService",function($window,RestApi,$uibModal,toaster){
+    .service("AlterCustInfoService",function($window,RestApi,$uibModal,toaster,modal){
         this.alterTenantInfo = function(params){
             return RestApi.all("/altercustinfo/alterTenantInfo").post(params);
         };
@@ -99,9 +99,9 @@ angular.module('pu.assetsmanage.services')
                     //复制原值到新对象
                     $scope.newApplyInfo.appId = appId;
                     if(applyInfo.colessee!=undefined){
-                        $scope.newApplyInfo.mobile = applyInfo.colessee.mobile;
-                        $scope.newApplyInfo.qq = applyInfo.colessee.qq;
-                        $scope.newApplyInfo.weixin = applyInfo.colessee.weixin;
+                        $scope.newApplyInfo.mobile = applyInfo.cloessee.mobile;
+                        $scope.newApplyInfo.qq = applyInfo.cloessee.qq;
+                        $scope.newApplyInfo.weixin = applyInfo.cloessee.weixin;
                     }
                     $scope.ok = function () {
                         modal.confirm("操作提醒", "确认提交变更?").then(function () {

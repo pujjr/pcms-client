@@ -15,7 +15,14 @@ angular.module("pu.task.controllers")
             $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"lrsqd");
-            $scope.checkVo = {};
+            //默认审核获取上一次审核结果显示
+            TaskService.getLastestCheckVo($stateParams.taskId).then(function(response){
+                if(response==null){
+                    $scope.checkVo = {};
+                }else{
+                    $scope.checkVo = response;
+                }
+            })
         };
         $scope.commitCheckTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){

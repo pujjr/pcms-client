@@ -3,8 +3,8 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.loanquery.controllers")
-    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,
-                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService,SmsService,ProductService,SysDictService) {
+    .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,modal,
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService,SmsService,ProductService,SysDictService,OfferService) {
         $scope.initList = function(){
             $scope.productList = ProductService.queryAllProductList().$object;
             $scope.repayStatusList = SysDictService.queryDictDataByTypeCode("hkzt").$object;
@@ -66,6 +66,9 @@ angular.module("pu.loanquery.controllers")
         $scope.doPartSettle = function(){
             SettleService.addPartSettleApply($stateParams.appId);
         };
+        $scope.doOffer = function(){
+            OfferService.addOfferApply($stateParams.appId);
+        }
         $scope.doPhoneCollection = function(){
             CollectionService.createPhoneCollectionTask($stateParams.appId,"test").then(function(response){
                 toaster.pop('success', '操作提醒', '提交任务成功');
@@ -83,6 +86,10 @@ angular.module("pu.loanquery.controllers")
             })
         };
         $scope.doAlterColesseeInfo = function(){
+            if($scope.applyInfo.cloessee.type ==null){
+                modal.error("申请单未录入共租人");
+                return;
+            }
             AlterCustInfoService.doAlterColesseeInfo($stateParams.appId,$scope.applyInfo).then(function(response){
                 toaster.pop('success', '操作提醒', '提交变更成功');
                 $scope.initLoanDetail();

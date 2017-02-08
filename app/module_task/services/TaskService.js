@@ -200,5 +200,8 @@ angular.module('pu.task.services')
                 }
             });
         };
+        this.getLastestCheckVo = function(taskId){
+            return RestApi.one("/task/getLastestCheckVo",taskId).get();
+        }
 
     });
