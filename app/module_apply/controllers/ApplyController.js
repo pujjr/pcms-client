@@ -306,6 +306,9 @@ angular.module("pu.apply.controllers")
                 item.gpsFee = 0;
             }
         };
+        $scope.familySelect = function(item){
+            console.log(item);
+        };
         //选择是否加融GPS费用
         $scope.onIsFinanceGpsCheck = function(item){
             $scope.onGpsLvlSelected(item);

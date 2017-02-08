@@ -24,7 +24,8 @@ angular.module('pu.utils.directives')
                 ngRequired:'=',
                 ngDisabled:'=',
                 placeholder:'@',
-                groupBy:'@'
+                groupBy:'@',
+                onItemClick:'='
             },
             transclude:true,
             templateUrl:'module_utils/tpl/ui-multiselect.html',
@@ -115,6 +116,9 @@ angular.module('pu.utils.directives')
                     item.checked = !item.checked;
                     $scope.setViewValue();
                     $scope.setModelValue();
+                    if($scope.onItemClick!=undefined){
+                        $scope.onItemClick(item);
+                    }
                 };
                 $scope.setModelValue = function(){
                     if($scope.modelFormat =="string"){
