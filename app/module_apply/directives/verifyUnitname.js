@@ -18,10 +18,8 @@ angular.module("app").
                     $timeout(function () {
                         if ($scope.verifyFunc(modelVal)) {
                             defer.resolve();
-                            console.log("resolve");
                         } else {
                             defer.reject();
-                            console.log("reject");
                         }
                     }, 300,true);
                     return defer.promise;
@@ -30,7 +28,6 @@ angular.module("app").
                     ngModelController.$validate();
                 });
                 $scope.verifyFunc=function(val){
-                    console.log(val);
                     if(val==undefined || val == ''){
                         return true;
                     }

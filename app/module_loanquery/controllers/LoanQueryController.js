@@ -17,7 +17,29 @@ angular.module("pu.loanquery.controllers")
             $scope.appId = $stateParams.appId;
             $scope.loanCustApplyInfo = LoanQueryService.getLoanCustApplyInfo($stateParams.appId).$object;
             $scope.loanCustNeedRepayInfo = LoanQueryService.getLoanCustNeedRepayInfo($stateParams.appId).$object;
-            $scope.repayPlanList = LoanQueryService.getLoanCustRepayPlanList($stateParams.appId).$object;
+            LoanQueryService.getLoanCustRepayPlanList($stateParams.appId).then(function(response){
+                $scope.repayPlanList = response;
+                $scope.totalCapital=0.00;
+                $scope.totalInterest=0.00;
+                $scope.repayingCapital=0.00;
+                $scope.repayingInterest=0.00;
+                $scope.repayingOverdue=0.00;
+                for(var i = 0 ; i<$scope.repayPlanList.length;i++){
+                    var item = $scope.repayPlanList[i];
+                    $scope.totalCapital+= item.repayCapital;
+                    $scope.totalInterest+=item.repayInterest;
+                    if(item.watingCharge!=null){
+                        $scope.repayingCapital+=item.watingCharge.repayCapital;
+                        $scope.repayingInterest+=item.watingCharge.repayInterest;
+                        $scope.repayingOverdue+=item.watingCharge.repayOverdueAmount;
+                    }
+                }
+                $scope.totalCapital = $scope.totalCapital.toFixed(2);
+                $scope.totalInterest = $scope.totalInterest.toFixed(2);
+                $scope.repayingCapital = $scope.repayingCapital.toFixed(2);
+                $scope.repayingInterest = $scope.repayingInterest.toFixed(2);
+                $scope.repayingOverdue = $scope.repayingOverdue.toFixed(2);
+            });
             $scope.doInitApplyEdit($stateParams.appId);
             $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
         };

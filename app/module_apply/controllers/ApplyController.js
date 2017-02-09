@@ -26,7 +26,7 @@ angular.module("pu.apply.controllers")
         };
         $scope.refreshFormRequiredMap = function(){
             $scope.requiredMap = ProductService.queryProductFormRequiredMap($scope.applyInfo.product.id).$object;
-        }
+        };
         /**一堆watch变量**/
         var watchFinance1Gps;
         var watchFinance1;
@@ -349,6 +349,8 @@ angular.module("pu.apply.controllers")
             tmpStr = tmpStr.replace(/-/g,"/");
             var date = new Date(tmpStr );
             $scope.applyInfo.tenant.birthday = date.getTime();
+            //驾照发放最小可选日期
+            $scope.driverLicenseDateOptions.minDate = new Date(ToolsService.addYear(date,18));
         }
         $scope.addressCtrl = {
             onEditRefresh : function(){
@@ -821,22 +823,12 @@ angular.module("pu.apply.controllers")
         $scope.initApplyFileComponent = function(fileInterface){
             $scope.applyFileInterface = fileInterface;
         };
-        $scope.printForm = function(){
-            console.log($scope.form);
-        };
         $scope.pageChanged = function(){
             $scope.initQueryUnCommitApplyInfoList();
         };
-        $scope.printApplyInfo = function(appId){
-            ApplyService.printApplyInfo(appId);
-        };
-        $scope.initPrintData = function(){
-            $scope.doInitApplyEdit($scope.$resolve.appId);
-            console.log($scope);
-        };
-        $scope.print=function(){
-            window.print();
-            $uibModalInstance.close();
-        };
+        //驾照发放最大日期
+        $scope.driverLicenseDateOptions={
+                maxDate : new Date()
+            };
     })
 ;

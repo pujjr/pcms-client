@@ -81,5 +81,20 @@ angular.module('pu.utils.services')
             var dd = newYear+"/"+newMonth+"/"+days;
             var newDt = new Date(dd)
             return newDt.getTime()-24*60*60*1000;
+        };
+        this.addYear = function(value,i){
+            var dt = value;
+            if(!angular.isDate(dt))
+            {
+                console.error("参数不为日期类型");
+                return;
+            }
+            var year = dt.getFullYear()+i;
+            var month = dt.getMonth()+1;
+            var days = dt.getDate();
+            var dd = year+"/"+month+"/"+days;
+            var newDt = new Date(dd);
+            return newDt.getTime();
         }
+
     });

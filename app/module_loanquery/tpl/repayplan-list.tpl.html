@@ -1,8 +1,8 @@
 <div  class="panel panel-default">
-    <table class="data-table">
+    <table class="table data-table">
         <thead>
         <tr>
-            <th style="width:70px">期数</th>
+            <th style="width:80px">期数</th>
             <th>应还本金</th>
             <th>应还利息</th>
             <th>应还总额</th>
@@ -20,6 +20,23 @@
         </tr>
         </thead>
         <tbody>
+        <tr class="info">
+            <td style="width:80px">合计</td>
+            <td>{{totalCapital}}</td>
+            <td>{{totalInterest}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{repayingCapital}}</td>
+            <td>{{repayingInterest}}</td>
+            <td></td>
+            <td style="width:90px"></td>
+            <td style="width:90px">{{repayingOverdue}}</td>
+        </tr>
         <tr ng-repeat="item in repayPlanList">
             <td>{{item.period}}</td>
             <td>{{item.repayCapital}}</td>

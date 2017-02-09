@@ -122,7 +122,7 @@
                 <label for="netCheckResult" class="col-sm-2 control-label">网查结果：</label>
                 <div class="col-sm-10">
                     <select id="netCheckResult" class="form-control" ng-model="checkVo.netCheckResult"
-                            ng-options="item.dictDataCode as item.dictDataName for item in netCheckResultList">
+                            ng-options="item.dictDataCode as item.dictDataName for item in netCheckResultList" required>
                         <option value="">请选择网查结果</option>
                     </select>
                 </div>
@@ -156,7 +156,7 @@
                 <label for="telCheckResult" class="col-sm-2 control-label">电审结果：</label>
                 <div class="col-sm-10">
                     <select id="telCheckResult" class="form-control" ng-model="checkVo.telCheckResult"
-                            ng-options="item.dictDataCode as item.dictDataName for item in telCheckResultList">
+                            ng-options="item.dictDataCode as item.dictDataName for item in telCheckResultList" required>
                         <option value="">请选择电审结果</option>
                     </select>
                 </div>

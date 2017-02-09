@@ -85,7 +85,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">手机号码2：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-disabled="editable==false" minlength="11" maxlength="11" verify-mobile ng-required="requiredMap.mobile2" ng-model="applyInfo.tenant.mobile2" placeholder="手机号码2">
+                    <input type="text" class="form-control" ng-disabled="editable==false" minlength="11" maxlength="11" verify-mobile2="applyInfo.tenant.mobile" ng-required="requiredMap.mobile2" ng-model="applyInfo.tenant.mobile2" placeholder="手机号码2">
                 </div>
             </div>
         </div>
@@ -178,22 +178,6 @@
         </div>
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">驾照发证日期：</label>
-                <div class="col-sm-8">
-                    <div class="input-group">
-                        <input type="text" id="driverLicenseDate" class="form-control" uib-datepicker-popup
-                               ng-disabled="editable==false"
-                               ng-required="requiredMap.driverLicenseDate"
-                               is-open="applyInfo.tenant.isOpenDriverLicenseDate" ng-model="applyInfo.tenant.driverLicenseDate" >
-                        <span class="input-group-btn">
-                            <button type="button" class="form-control btn btn-default" ng-disabled="editable==false"  ng-click="applyInfo.tenant.isOpenDriverLicenseDate=!applyInfo.tenant.isOpenDriverLicenseDate" ><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">驾照类型：</label>
                 <div class="col-sm-8">
                     <select id="driverLicenseType" class="form-control" ng-model="applyInfo.tenant.driverLicenseType"
@@ -201,6 +185,24 @@
                             ng-options="item.dictDataCode as item.dictDataName for item in driverLicenseTypeList" ng-required="requiredMap.driverLicenseType">
                         <option value="">请选择来驾照类型</option>
                     </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-group-sm">
+                <label class="col-sm-4 control-label">驾照发证日期：</label>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <input type="text" id="driverLicenseDate" class="form-control" uib-datepicker-popup
+                               ng-disabled="editable==false || applyInfo.tenant.driverLicenseType =='jzlx04'"
+                               ng-required="requiredMap.driverLicenseDate"
+                               datepicker-options="driverLicenseDateOptions"
+                               show-button-bar="false"
+                               is-open="applyInfo.tenant.isOpenDriverLicenseDate" ng-model="applyInfo.tenant.driverLicenseDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default" ng-disabled="editable==false"  ng-click="applyInfo.tenant.isOpenDriverLicenseDate=!applyInfo.tenant.isOpenDriverLicenseDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
