@@ -6,7 +6,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">姓名：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.name"  ng-required="requiredMap.tenantName"  placeholder="姓名">
+                    <input type="text" class="form-control" ng-disabled="editable==false" verify-chn-name="" ng-model="applyInfo.tenant.name"  ng-required="requiredMap.tenantName"  placeholder="姓名">
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">QQ号码(如有)：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.qq" ng-required="requiredMap.qq" placeholder="QQ号码">
+                    <input type="text" class="form-control" ng-disabled="editable==false"  verify-number="" ng-model="applyInfo.tenant.qq" ng-required="requiredMap.qq" placeholder="QQ号码">
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">微信(如有)：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.weixin" ng-required="requiredMap.weixin" placeholder="微信(如有)">
+                    <input type="text" class="form-control" ng-disabled="editable==false"  verify-all-char="" ng-model="applyInfo.tenant.weixin" ng-required="requiredMap.weixin" placeholder="微信(如有)">
                 </div>
             </div>
         </div>
@@ -171,7 +171,7 @@
                 <div class="col-sm-8">
                     <select id="childCount" class="form-control" ng-model="applyInfo.tenant.childCount" ng-required="requiredMap.childCount"
                             ng-disabled="editable==false"
-                            ng-options="o.key as o.val for o in [{key:1,val:'1'},{key:2,val:'2'},{key:3,val:'3'},{key:4,val:'4'},{key:5,val:'5'}]">
+                            ng-options="o.key as o.val for o in [{key:0,val:'0'},{key:1,val:'1'},{key:2,val:'2'},{key:3,val:'3'},{key:4,val:'4'},{key:5,val:'5'}]">
                     </select>
                 </div>
             </div>
@@ -337,9 +337,9 @@
     <div class="row" ng-repeat="item in applyInfo.tenant.tenantCars">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}品牌：</label>
+                <label class="col-sm-4 control-label">车产{{item.seq | simpleChnUpperCase}}车型：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.carBrand" ng-required="requiredMap.tenantCars_carBrand" placeholder="车产一品牌">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="item.carBrand" ng-required="requiredMap.tenantCars_carBrand" placeholder="车产一车型">
                 </div>
             </div>
         </div>
@@ -375,7 +375,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label">单位名称：</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.unitName"  ng-required="requiredMap.tenant_unitName" placeholder="单位名称">
+                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.unitName" verify-unitname=""   ng-required="requiredMap.tenant_unitName" placeholder="单位名称">
                 </div>
             </div>
         </div>
@@ -412,7 +412,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">单位电话：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.unitTel"  ng-required="requiredMap.tenant_unitTel" placeholder="单位电话">
+                    <input type="text" class="form-control" ng-disabled="editable==false" verify-number="" ng-model="applyInfo.tenant.unitTel"  ng-required="requiredMap.tenant_unitTel" placeholder="单位电话">
                 </div>
             </div>
         </div>
@@ -435,7 +435,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">职位名称：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.ranName"  ng-required="requiredMap.tenant_ranName" placeholder="职位名称">
+                    <input type="text" class="form-control" ng-disabled="editable==false" verify-chn ng-model="applyInfo.tenant.ranName"  ng-required="requiredMap.tenant_ranName" placeholder="职位名称">
                 </div>
             </div>
         </div>
@@ -443,7 +443,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">月收入：</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.montyIncome" ng-required="requiredMap.tenant_montyIncome" placeholder="月收入">
+                    <input type="text" class="form-control" ng-disabled="editable==false"  verify-amount-p="" ng-model="applyInfo.tenant.montyIncome" ng-required="requiredMap.tenant_montyIncome" placeholder="月收入">
                 </div>
             </div>
         </div>
@@ -451,7 +451,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">年收入：</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" ng-disabled="editable==false" ng-model="applyInfo.tenant.yearIncome" ng-required="requiredMap.tenant_yearIncome" placeholder="年收入">
+                    <input type="text" class="form-control" ng-disabled="editable==false"  verify-amount-p="" ng-model="applyInfo.tenant.yearIncome" ng-required="requiredMap.tenant_yearIncome" placeholder="年收入">
                 </div>
             </div>
         </div>

@@ -76,6 +76,24 @@ angular.module('app')
         cfpLoadingBarProvider.includeBar = true;
         cfpLoadingBarProvider.spinnerTemplate = "<span>Loading...</span>";
     }])
+    //表单验证中文提示
+    .run([
+        'defaultErrorMessageResolver',
+        function (defaultErrorMessageResolver) {
+            // passing a culture into getErrorMessages('fr-fr') will get the culture specific messages
+            // otherwise the current default culture is returned.
+            defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
+                errorMessages['date'] = '请输入合法的日期';
+                errorMessages['email'] = '请输入合法的邮箱地址';
+                errorMessages['max'] = '请输入的最大数值 {0}';
+                errorMessages['min'] = '请输入的最小数值 {0}';
+                errorMessages['maxlength'] = '请输入的最大长度 {0}';
+                errorMessages['minlength'] = '请输入的最小长度 {0}';
+                errorMessages['number'] = '请输入的合法的数值';
+                errorMessages['required'] = '必填项';
+            });
+        }
+    ])
     //加载进度条提示消息
     .value('cgBusyDefaults',{
         message:'正在加载数据，请稍候'

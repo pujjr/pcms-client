@@ -26,6 +26,9 @@ angular.module('pu.gps.services')
         };
 
         this.queryEnableGpsLvlList = function(appId,salePrice,initPayPercent,product){
+            if(product==undefined){
+                return [];
+            }
             var amt =0.00;
             if(product.productRule.isTotalRefinance==true){
                 amt = salePrice*(initPayPercent/100);

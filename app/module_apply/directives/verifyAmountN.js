@@ -1,34 +1,33 @@
-/**验证裸车价**/
+/**验证是否为金额并且小于0**/
 angular.module("app").
-    directive('verifyMobile',function(defaultErrorMessageResolver){
+    directive('verifyAmountN',function(defaultErrorMessageResolver){
     return {
         restrict:'A',
         require:'ngModel',
         scope : {},
         link: function ($scope, ele, attributes, ngModelController) {
-            ngModelController.$validators.verifyMobile = function(modelVal){
+            ngModelController.$validators.verifyAmountN = function(modelVal){
                 if(modelVal==undefined || modelVal == 0){
                     return true;
                 }
-                if( $scope.mobileCheck(modelVal)){
+                if( $scope.verifyFunc(modelVal)){
                     return true;
                 }else{
                     defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
-                        errorMessages['verifyMobile'] ='手机号码格式错误';
+                        errorMessages['verifyAmountN'] =$scope.errmsg;
                     });
                     return false;
                 }
             };
-            $scope.$watch('verifyMobile', function() {
+            $scope.$watch('verifyAmountN', function() {
                 ngModelController.$validate();
             });
-            $scope.mobileCheck=function(inputString){
-                var partten = /^1[3,5,8,4,7]\d{9}$/;
-                if(partten.test(inputString)) {
-                    return true;
-                }
-                else {
+            $scope.verifyFunc=function(num){
+                if (!(/^-([1-9]{1}$|[1-9]{1}[0-9]*$|[1-9]{1}[0-9]*[.]{1}[0-9]{1,2}$|0[.]{1}[0-9]{1,2}$)/.test(num))) {
+                    $scope.errmsg='请输入正确的金额';
                     return false;
+                }else{
+                    return true;
                 }
             }
         }

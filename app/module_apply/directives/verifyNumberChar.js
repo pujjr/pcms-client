@@ -1,34 +1,33 @@
-/**验证裸车价**/
+/**验证是否全数字、字母**/
 angular.module("app").
-    directive('verifyMobile',function(defaultErrorMessageResolver){
+    directive('verifyNumberChar',function(defaultErrorMessageResolver){
     return {
         restrict:'A',
         require:'ngModel',
         scope : {},
         link: function ($scope, ele, attributes, ngModelController) {
-            ngModelController.$validators.verifyMobile = function(modelVal){
+            ngModelController.$validators.verifyNumberChar = function(modelVal){
                 if(modelVal==undefined || modelVal == 0){
                     return true;
                 }
-                if( $scope.mobileCheck(modelVal)){
+                if( $scope.verifyFunc(modelVal)){
                     return true;
                 }else{
                     defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
-                        errorMessages['verifyMobile'] ='手机号码格式错误';
+                        errorMessages['verifyNumberChar'] =$scope.errmsg;
                     });
                     return false;
                 }
             };
-            $scope.$watch('verifyMobile', function() {
+            $scope.$watch('verifyNumberChar', function() {
                 ngModelController.$validate();
             });
-            $scope.mobileCheck=function(inputString){
-                var partten = /^1[3,5,8,4,7]\d{9}$/;
-                if(partten.test(inputString)) {
-                    return true;
-                }
-                else {
+            $scope.verifyFunc=function(num){
+                if (!(/^[0-9a-zA-Z]+$/.test(num))) {
+                    $scope.errmsg='输入格式错误，只能输入数字[0-9]、字母[a-zA-Z]';
                     return false;
+                }else{
+                    return true;
                 }
             }
         }

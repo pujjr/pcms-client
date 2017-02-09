@@ -55,6 +55,8 @@ angular.module('pu.utils.directives')
                 });
                 //对模型值进行转换操作
                 $scope.convertModelValue = function(modelValue){
+                    if(modelValue==undefined)
+                        return;
                     var modelValArray=[];
                     if(angular.isArray($scope.choicesItems) && $scope.choicesItems.length>0){
                         if($scope.modelFormat=='string'){

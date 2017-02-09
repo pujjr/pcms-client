@@ -46,34 +46,38 @@ angular.module("pu.apply.controllers")
                 var product = $scope.applyInfo.product;
 
                 //计算融资金额如果为全款再融
-                if($scope.applyInfo.product.productRule.isTotalRefinance){
-                    $scope.finance1.financeAmount = Math.round((parseFloat($scope.finance1.salePrice)*parseFloat($scope.finance1.initPayPercent)/100+
+                if($scope.applyInfo.product!=undefined)
+                {
+                    if( $scope.applyInfo.product.productRule.isTotalRefinance){
+                        $scope.finance1.financeAmount = Math.round((parseFloat($scope.finance1.salePrice)*parseFloat($scope.finance1.initPayPercent)/100+
                         parseFloat($scope.finance1.gpsFee)+parseFloat($scope.finance1.purchaseTax)+parseFloat($scope.finance1.serviceFee)+
                         parseFloat($scope.finance1.insuranceFee)+parseFloat($scope.finance1.delayInsuranceFee)+parseFloat($scope.finance1.transferFee)
                         +parseFloat($scope.finance1.addonFee)).toFixed(2));
-                }else{
-                    $scope.finance1.financeAmount = Math.round((parseFloat($scope.finance1.salePrice)*(1-parseFloat($scope.finance1.initPayPercent)/100)+
-                        parseFloat($scope.finance1.gpsFee)+parseFloat($scope.finance1.purchaseTax)+parseFloat($scope.finance1.serviceFee)+
-                        parseFloat($scope.finance1.insuranceFee)+parseFloat($scope.finance1.delayInsuranceFee)+parseFloat($scope.finance1.transferFee)
-                        +parseFloat($scope.finance1.addonFee)).toFixed(2));
-                };
-                //购置税
-                if($scope.finance1.isPurchaseTax){
-                    if(parseFloat($scope.finance1.carStyle.displacement)>1.6){
-                        $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1).toFixed(2));
                     }else{
-                        $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*0.75).toFixed(2));
+                        $scope.finance1.financeAmount = Math.round((parseFloat($scope.finance1.salePrice)*(1-parseFloat($scope.finance1.initPayPercent)/100)+
+                        parseFloat($scope.finance1.gpsFee)+parseFloat($scope.finance1.purchaseTax)+parseFloat($scope.finance1.serviceFee)+
+                        parseFloat($scope.finance1.insuranceFee)+parseFloat($scope.finance1.delayInsuranceFee)+parseFloat($scope.finance1.transferFee)
+                        +parseFloat($scope.finance1.addonFee)).toFixed(2));
+                    };
+                    //购置税
+                    if($scope.finance1.isPurchaseTax){
+                        if(parseFloat($scope.finance1.carStyle.displacement)>1.6){
+                            $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1).toFixed(2));
+                        }else{
+                            $scope.finance1.purchaseTax = Math.round(parseFloat($scope.finance1.salePrice/1.17*0.1*0.75).toFixed(2));
+                        }
+                    };
+                    //取融资手续费
+                    var financeFee = 0;
+                    for(var i = 0 ; i<product.productPeriodList.length;i++){
+                        if($scope.applyInfo.period==product.productPeriodList[i].period){
+                            financeFee = ($scope.finance1.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                            break;
+                        }
                     }
-                };
-                //取融资手续费
-                var financeFee = 0;
-                for(var i = 0 ; i<product.productPeriodList.length;i++){
-                    if($scope.applyInfo.period==product.productPeriodList[i].period){
-                        financeFee = ($scope.finance1.financeAmount/10000)*product.productPeriodList[i].financeFee;
-                        break;
-                    }
+                    $scope.finance1.financeFee=financeFee;
                 }
-                $scope.finance1.financeFee=financeFee;
+
             },true);
         };
 
@@ -87,35 +91,38 @@ angular.module("pu.apply.controllers")
                 var product = $scope.applyInfo.product;
 
                 //计算融资金额，如果为全款再融
-                if($scope.applyInfo.product.productRule.isTotalRefinance){
-                    $scope.finance2.financeAmount = Math.round((parseFloat($scope.finance2.salePrice)*parseFloat($scope.finance2.initPayPercent)/100+
+                if($scope.applyInfo.product!=undefined)
+                {
+                    if( $scope.applyInfo.product.productRule.isTotalRefinance){
+                        $scope.finance2.financeAmount = Math.round((parseFloat($scope.finance2.salePrice)*parseFloat($scope.finance2.initPayPercent)/100+
                         parseFloat($scope.finance2.gpsFee)+parseFloat($scope.finance2.purchaseTax)+parseFloat($scope.finance2.serviceFee)+
                         parseFloat($scope.finance2.insuranceFee)+parseFloat($scope.finance2.delayInsuranceFee)+parseFloat($scope.finance2.transferFee)
                         +parseFloat($scope.finance2.addonFee)).toFixed(2));
-                }else{
-                    $scope.finance2.financeAmount = Math.round((parseFloat($scope.finance2.salePrice)*(1-parseFloat($scope.finance2.initPayPercent)/100)+
-                        parseFloat($scope.finance2.gpsFee)+parseFloat($scope.finance2.purchaseTax)+parseFloat($scope.finance2.serviceFee)+
-                        parseFloat($scope.finance2.insuranceFee)+parseFloat($scope.finance2.delayInsuranceFee)+parseFloat($scope.finance2.transferFee)
-                        +parseFloat($scope.finance2.addonFee)).toFixed(2));
-                };
-                //购置税
-                if($scope.finance2.isPurchaseTax){
-                    if(parseFloat($scope.finance2.carStyle.displacement)>1.6){
-                        $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1).toFixed(2));
                     }else{
-                        $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1*0.75).toFixed(2));
-                    }
-                };
-                //取融资手续费
-                var financeFee = 0;
+                        $scope.finance2.financeAmount = Math.round((parseFloat($scope.finance2.salePrice)*(1-parseFloat($scope.finance2.initPayPercent)/100)+
+                        parseFloat($scope.finance2.gpsFee)+parseFloat($scope.finance2.purchaseTax)+parseFloat($scope.finance2.serviceFee)+
+                        parseFloat($scope.finance2.insuranceFee)+parseFloat($scope.finance2.delayInsuranceFee)+parseFloat($scope.finance2.transferFee)
+                        +parseFloat($scope.finance2.addonFee)).toFixed(2));
+                    };
+                    //购置税
+                    if($scope.finance2.isPurchaseTax){
+                        if(parseFloat($scope.finance2.carStyle.displacement)>1.6){
+                            $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1).toFixed(2));
+                        }else{
+                            $scope.finance2.purchaseTax = Math.round(parseFloat($scope.finance2.salePrice/1.17*0.1*0.75).toFixed(2));
+                        }
+                    };
+                    //取融资手续费
+                    var financeFee = 0;
 
-                for(var i = 0 ; i<product.productPeriodList.length;i++){
-                    if($scope.applyInfo.period==product.productPeriodList[i].period){
-                        financeFee = ($scope.finance2.financeAmount/10000)*product.productPeriodList[i].financeFee;
-                        break;
+                    for(var i = 0 ; i<product.productPeriodList.length;i++){
+                        if($scope.applyInfo.period==product.productPeriodList[i].period){
+                            financeFee = ($scope.finance2.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                            break;
+                        }
                     }
+                    $scope.finance2.financeFee=financeFee;
                 }
-                $scope.finance2.financeFee=financeFee;
             },true);
         };
 
@@ -127,34 +134,38 @@ angular.module("pu.apply.controllers")
             watchFinance3 = $scope.$watch('finance3',function(newVal,oldVal){
                 var product = $scope.applyInfo.product;
                 //计算融资金额，如果为全款再融
-                if($scope.applyInfo.product.productRule.isTotalRefinance){
-                    $scope.finance3.financeAmount = Math.round((parseFloat($scope.finance3.salePrice)*parseFloat($scope.finance3.initPayPercent)/100+
+                if($scope.applyInfo.product!=undefined)
+                {
+                    if( $scope.applyInfo.product.productRule.isTotalRefinance){
+                        $scope.finance3.financeAmount = Math.round((parseFloat($scope.finance3.salePrice)*parseFloat($scope.finance3.initPayPercent)/100+
                         parseFloat($scope.finance3.gpsFee)+parseFloat($scope.finance3.purchaseTax)+parseFloat($scope.finance3.serviceFee)+
                         parseFloat($scope.finance3.insuranceFee)+parseFloat($scope.finance3.delayInsuranceFee)+parseFloat($scope.finance3.transferFee)
                         +parseFloat($scope.finance3.addonFee)).toFixed(2));
-                }else{
-                    $scope.finance3.financeAmount = Math.round((parseFloat($scope.finance3.salePrice)*(1-parseFloat($scope.finance3.initPayPercent)/100)+
-                        parseFloat($scope.finance3.gpsFee)+parseFloat($scope.finance3.purchaseTax)+parseFloat($scope.finance3.serviceFee)+
-                        parseFloat($scope.finance3.insuranceFee)+parseFloat($scope.finance3.delayInsuranceFee)+parseFloat($scope.finance3.transferFee)
-                        +parseFloat($scope.finance3.addonFee)).toFixed(2));
-                };
-                //购置税
-                if($scope.finance3.isPurchaseTax){
-                    if(parseFloat($scope.finance3.carStyle.displacement)>1.6){
-                        $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1).toFixed(2));
                     }else{
-                        $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1*0.75).toFixed(2));
+                        $scope.finance3.financeAmount = Math.round((parseFloat($scope.finance3.salePrice)*(1-parseFloat($scope.finance3.initPayPercent)/100)+
+                        parseFloat($scope.finance3.gpsFee)+parseFloat($scope.finance3.purchaseTax)+parseFloat($scope.finance3.serviceFee)+
+                        parseFloat($scope.finance3.insuranceFee)+parseFloat($scope.finance3.delayInsuranceFee)+parseFloat($scope.finance3.transferFee)
+                        +parseFloat($scope.finance3.addonFee)).toFixed(2));
+                    };
+                    //购置税
+                    if($scope.finance3.isPurchaseTax){
+                        if(parseFloat($scope.finance3.carStyle.displacement)>1.6){
+                            $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1).toFixed(2));
+                        }else{
+                            $scope.finance3.purchaseTax = Math.round(parseFloat($scope.finance3.salePrice/1.17*0.1*0.75).toFixed(2));
+                        }
+                    };
+                    //取融资手续费
+                    var financeFee = 0;
+                    for(var i = 0 ; i<product.productPeriodList.length;i++){
+                        if($scope.applyInfo.period==product.productPeriodList[i].period){
+                            financeFee = ($scope.finance3.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                            break;
+                        }
                     }
-                };
-                //取融资手续费
-                var financeFee = 0;
-                for(var i = 0 ; i<product.productPeriodList.length;i++){
-                    if($scope.applyInfo.period==product.productPeriodList[i].period){
-                        financeFee = ($scope.finance3.financeAmount/10000)*product.productPeriodList[i].financeFee;
-                        break;
-                    }
+                    $scope.finance3.financeFee=financeFee;
                 }
-                $scope.finance3.financeFee=financeFee;
+
             },true);
         };
         //计算还款月租金，需根据融资金额，期数，产品进行计算， 放款金额=融资金额-GPS费用-评估费-融资手续费 应watch这些变量
@@ -175,7 +186,10 @@ angular.module("pu.apply.controllers")
                 'applyInfo.product',
                 'applyInfo.period'
             ],function(newVal,oldVal){
-                //获取总的融资金额
+                //获取总的融资金额,没选产品直接返回
+                if($scope.applyInfo.product==undefined){
+                    return;
+                }
                 var monthRate = $scope.applyInfo.product.yearRate/12;
                 var period = $scope.applyInfo.period;
                 var repayMode = $scope.applyInfo.product.repayMode;

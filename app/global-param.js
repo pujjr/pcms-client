@@ -1,7 +1,7 @@
 /**
  * Created by dengpan on 2016/10/16.
  */
-var BASE_URL='http://om.pujjr.com:8082/pcms-web';
+var BASE_URL='http://127.0.0.1:8080/pcms-web';
 var SERVER_URL = {
     /**认证地址**/
     AUTH_SERVER_URL:BASE_URL,

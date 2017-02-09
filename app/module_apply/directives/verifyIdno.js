@@ -4,6 +4,7 @@ angular.module("app").
     return {
         restrict:'A',
         require:'ngModel',
+        scope : {},
         link: function ($scope, ele, attributes, ngModelController) {
             ngModelController.$validators.verifyIdno = function(modelVal){
                 if(modelVal==undefined || modelVal == 0){
