@@ -14,186 +14,244 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="minSalePrice" class="col-sm-4 control-label">裸车价最小额度：</label>
-                    <div class="col-sm-8">
+                    <label for="minSalePrice" class="col-sm-6 control-label">裸车价最小额度：</label>
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" id="minSalePrice" placeholder="裸车价最小额度" ng-model="item.minSalePrice" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <label for="maxSalePrice" class="col-sm-4 control-label">裸车价最大额度：</label>
-                    <div class="col-sm-8">
+                    <label for="maxSalePrice" class="col-sm-6 control-label">裸车价最大额度：</label>
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" id="maxSalePrice" placeholder="裸车价最大额度" ng-model="item.maxSalePrice" required>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="minInitPayPercent" class="col-sm-4 control-label">首付最小比例：</label>
-                    <div class="col-sm-8">
+                    <label for="minInitPayPercent" class="col-sm-6 control-label">首付最小比例：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"   id="minInitPayPercent" placeholder="首付最小比例" ng-model="item.minInitPayPercent" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <label for="maxInitPayPercent" class="col-sm-4 control-label">首付最大比例：</label>
-                    <div class="col-sm-8">
+                    <label for="maxInitPayPercent" class="col-sm-6 control-label">首付最大比例：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control" id="maxInitPayPercent" placeholder="首付最大比例" ng-model="item.maxInitPayPercent" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="enableAssessFee" class="col-sm-6 control-label">是否可选评估费：</label>
+                    <div class="col-sm-6">
+                        <input type="checkbox"  id="enableAssessFee" placeholder="是否可选评估费" ng-model="item.enableAssessFee" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="isTotalRefinance" class="col-sm-6 control-label">是否全款再融：</label>
+                    <div class="col-sm-6">
+                        <input type="checkbox" id="isTotalRefinance" placeholder="是否全款再融" ng-model="item.isTotalRefinance" >
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4"  ng-if="false">
                 <div class="form-group">
-                    <label for="minServiceFee" class="col-sm-4 control-label">服务费最小额度：</label>
-                    <div class="col-sm-8">
+                    <label for="hasServiceFee" class="col-sm-6 control-label">是否有服务费：</label>
+                    <div class="col-sm-6">
+                        <input type="checkbox" id="hasServiceFee" placeholder="是否有服务费" ng-model="item.hasServiceFee" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="carType" class="col-sm-6 control-label">车辆来源：</label>
+                    <div class="col-sm-6">
+                        <select  class="form-control" id="carType"  ng-model="item.carType" required >
+                            <option value="clly01" selected>新车</option>
+                            <option value="clly02">二手车</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="hasPurchaseTax" class="col-sm-6 control-label">是否有购置税：</label>
+                    <div class="col-sm-6">
+                        <input type="checkbox" id="hasPurchaseTax" placeholder="是否有购置税" ng-model="item.hasPurchaseTax" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="enabledServiceFee" class="col-sm-6 control-label">是否融服务费：</label>
+                    <div class="col-sm-6">
+                        <select  class="form-control" id="enabledServiceFee"  ng-model="item.enabledServiceFee" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                            <option value="">是否启用</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="minServiceFee" class="col-sm-6 control-label">服务费最小额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="minServiceFee" placeholder="服务费最小额度" ng-model="item.minServiceFee" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="maxServiceFee" class="col-sm-4 control-label">服务费最大额度：</label>
-                    <div class="col-sm-8">
+                    <label for="maxServiceFee" class="col-sm-6 control-label">服务费最大额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control" id="maxServiceFee" placeholder="服务费最大额度" ng-model="item.maxServiceFee" required>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="minInsuranceFee" class="col-sm-4 control-label">保险费最小额度：</label>
-                    <div class="col-sm-8">
+                    <label for="enabledInsuranceFee" class="col-sm-6 control-label">是否融保险费：</label>
+                    <div class="col-sm-6">
+                        <select  class="form-control" id="enabledInsuranceFee"  ng-model="item.enabledInsuranceFee" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                            <option value="">是否启用</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="minInsuranceFee" class="col-sm-6 control-label">保险费最小额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="minInsuranceFee" placeholder="保险费最小额度" ng-model="item.minInsuranceFee" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="maxInsuranceFee" class="col-sm-4 control-label">保险费最大额度：</label>
-                    <div class="col-sm-8">
+                    <label for="maxInsuranceFee" class="col-sm-6 control-label">保险费最大额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control" id="maxInsuranceFee" placeholder="保险费最大额度" ng-model="item.maxInsuranceFee" required>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="minDelayInsuranceFee" class="col-sm-4 control-label">延保费最小额度：</label>
-                    <div class="col-sm-8">
+                    <label for="enabledDelayInsuranceFee" class="col-sm-6 control-label">是否融延保费：</label>
+                    <div class="col-sm-6">
+                        <select  class="form-control" id="enabledDelayInsuranceFee"  ng-model="item.enabledDelayInsuranceFee" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                            <option value="">是否启用</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="minDelayInsuranceFee" class="col-sm-6 control-label">延保费最小额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="minDelayInsuranceFee" placeholder="延保费最小额度" ng-model="item.minDelayInsuranceFee" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="maxDelayInsuranceFee" class="col-sm-4 control-label">延保费最大额度：</label>
-                    <div class="col-sm-8">
+                    <label for="maxDelayInsuranceFee" class="col-sm-6 control-label">延保费最大额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control" id="maxDelayInsuranceFee" placeholder="延保费最大额度" ng-model="item.maxDelayInsuranceFee" required>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="minTransferFee" class="col-sm-4 control-label">过户费最小额度：</label>
-                    <div class="col-sm-8">
+                    <label for="enabledTransferFee" class="col-sm-6 control-label">是否融过户费：</label>
+                    <div class="col-sm-6">
+                        <select  class="form-control" id="enabledTransferFee"  ng-model="item.enabledTransferFee" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                            <option value="">是否启用</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="minTransferFee" class="col-sm-6 control-label">过户费最小额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="minTransferFee" placeholder="过户费最小额度" ng-model="item.minTransferFee" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="maxTransferFee" class="col-sm-4 control-label">过户费最大额度：</label>
-                    <div class="col-sm-8">
+                    <label for="maxTransferFee" class="col-sm-6 control-label">过户费最大额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="maxTransferFee" placeholder="过户费最大额度" ng-model="item.maxTransferFee" required>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="minAddonFee" class="col-sm-4 control-label">加装费最小额度：</label>
-                    <div class="col-sm-8">
+                    <label for="enabledAddonFee" class="col-sm-6 control-label">是否融加装费：</label>
+                    <div class="col-sm-6">
+                        <select  class="form-control" id="enabledAddonFee"  ng-model="item.enabledAddonFee" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                            <option value="">是否启用</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="minAddonFee" class="col-sm-6 control-label">加装费最小额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="minAddonFee" placeholder="加装费最小额度" ng-model="item.minAddonFee" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="maxAddonFee" class="col-sm-4 control-label">加装费最大额度：</label>
-                    <div class="col-sm-8">
+                    <label for="maxAddonFee" class="col-sm-6 control-label">加装费最大额度：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="maxAddonFee" placeholder="加装费最大额度" ng-model="item.maxAddonFee" required>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="serviceFeePercent" class="col-sm-4 control-label">服务费小于裸车价比例：</label>
-                    <div class="col-sm-8">
+                    <label for="serviceFeePercent" class="col-sm-6 control-label">服务费小于裸车价比例：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="serviceFeePercent" placeholder="服务费小于裸车价比例" ng-model="item.serviceFeePercent" required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-4" >
                 <div class="form-group">
-                    <label for="insuranceFeePercent" class="col-sm-4 control-label">保险费小于裸车价比例：</label>
-                    <div class="col-sm-8">
+                    <label for="insuranceFeePercent" class="col-sm-6 control-label">保险费小于裸车价比例：</label>
+                    <div class="col-sm-6">
                         <input type="number" class="form-control"  id="insuranceFeePercent" placeholder="保险费小于裸车价比例" ng-model="item.insuranceFeePercent" required>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6" >
-                <div class="form-group">
-                    <label for="enableAssessFee" class="col-sm-4 control-label">是否可选评估费：</label>
-                    <div class="col-sm-8">
-                        <input type="checkbox"  id="enableAssessFee" placeholder="是否可选评估费" ng-model="item.enableAssessFee" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" >
-                <div class="form-group">
-                    <label for="isTotalRefinance" class="col-sm-4 control-label">是否全款再融：</label>
-                    <div class="col-sm-8">
-                        <input type="checkbox" id="isTotalRefinance" placeholder="是否全款再融" ng-model="item.isTotalRefinance" required>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6"  ng-if="false">
-                <div class="form-group">
-                    <label for="hasServiceFee" class="col-sm-4 control-label">是否有服务费：</label>
-                    <div class="col-sm-8">
-                        <input type="checkbox" id="hasServiceFee" placeholder="是否有服务费" ng-model="item.hasServiceFee" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" >
-                <div class="form-group">
-                    <label for="hasPurchaseTax" class="col-sm-4 control-label">是否有购置税：</label>
-                    <div class="col-sm-8">
-                        <input type="checkbox" id="hasPurchaseTax" placeholder="是否有购置税" ng-model="item.hasPurchaseTax" required>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" type="button" ng-click="ok()">确定</button>

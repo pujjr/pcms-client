@@ -121,7 +121,22 @@ angular.module("pu.system.controllers")
                                 modalInstance.close('删除机构成功');
                             })
                         })
-                    }
+                    };
+                    $scope.$watch('item.sysBranchDealer.dealerLevel',function(newVal,oldVal){
+                        if(newVal == undefined || newVal ==''){
+                            return true;
+                        }
+                        if(newVal =='jxsjb02' && $scope.item.sysBranchDealer ==null){
+                            //如果为二级则联动查询一级信息
+                            SysBranchService.querySysBranchByBranchId(item.parentId).then(function(response){
+                                $scope.lvl1val = response;
+                                response.sysBranchDealer.dealerLevel = newVal;
+                                $scope.item.sysBranchDealer = response.sysBranchDealer;
+                                $scope.item.gpsRuleVoList = response.gpsRuleVoList;
+                                $scope.item.productList = response.productList;
+                            });
+                        }
+                    })
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };

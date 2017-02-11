@@ -5,6 +5,9 @@
                 <span class="fs-title">
                     <i class="fa fa-globe mr"></i>贷款详细信息-{{applyInfo.appId}}-{{applyInfo.tenant.name}}-{{loanCustApplyInfo.repayStatusDesc}}
                 </span>
+                <span>
+                <a href="javascript:" ng-click="showRunTaskList()">(正在执行任务： <span class="badge text-danger">{{runTaskCnt}}</span></a>)
+                </span>
             </div>
             <div class="data-table-header__actions">
                 <button class="btn btn-default btn-sm" type="button" ng-click="sendSms(applyInfo.appId)">发送短信</button>

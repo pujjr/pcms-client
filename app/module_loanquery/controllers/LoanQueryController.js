@@ -42,6 +42,9 @@ angular.module("pu.loanquery.controllers")
             });
             $scope.doInitApplyEdit($stateParams.appId);
             $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+            LoanQueryService.getRunningTaskCntByAppId($scope.appId).then(function(response){
+                $scope.runTaskCnt = response;
+            });
         };
         $scope.pageChanged = function(){
             $scope.queryLoanCustList();
@@ -168,6 +171,10 @@ angular.module("pu.loanquery.controllers")
         //查询客户信息变更明细
         $scope.showAlterCustInfoLogDetail = function(logId){
             AlterCustInfoService.showAlterCustInfoLogDetail(logId);
+        }
+        //查看正在执行任务信息
+        $scope.showRunTaskList = function(){
+            LoanQueryService.showRunTaskList($scope.appId);
         }
     })
 ;

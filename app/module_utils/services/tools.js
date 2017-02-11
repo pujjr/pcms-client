@@ -95,6 +95,14 @@ angular.module('pu.utils.services')
             var dd = year+"/"+month+"/"+days;
             var newDt = new Date(dd);
             return newDt.getTime();
-        }
+        };
+        this.isValidAmount = function(val){
+            if (!(/^[0-9]{1}$|^[1-9]{1}[0-9]*$|^[1-9]{1}[0-9]*[.]{1}[0-9]{1,2}$|^0[.]{1}[0-9]{1,2}$/.test(val))) {
+                return false;
+            }else{
+                return true;
+            }
+        };
+
 
     });

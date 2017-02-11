@@ -59,18 +59,18 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="salePrice" class="col-sm-4 control-label">裸车价:</label>
+            <label class="col-sm-4 control-label">裸车价:</label>
             <div class="col-sm-8">
-                <input type="number" id="salePrice" class="form-control input-sm"  ng-disabled="editable==false" ng-model="item.salePrice" verify-sale-price="applyInfo.product.productRule"   ng-required="requiredMap.salePrice"   placeholder="裸车价">
+                <input type="number"  class="form-control input-sm"  ng-disabled="editable==false" ng-model="item.salePrice" verify-sale-price="applyInfo.product.productRule"   ng-required="requiredMap.salePrice"   placeholder="裸车价">
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group  form-group-sm">
-            <label for="initPayPercent"  class="col-sm-4 control-label">首付/抵押比例：</label>
+            <label   class="col-sm-4 control-label">首付/抵押比例：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number" id="initPayPercent" class="form-control" ng-disabled="editable==false"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule"  placeholder="首付/抵押比例"
+                    <input type="number"  class="form-control" ng-disabled="editable==false"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule"  placeholder="首付/抵押比例"
                            ng-required="requiredMap.initPayPercent" >
                     <span class="input-group-addon">
                         <b>%</b>
@@ -82,10 +82,10 @@
     </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="gpsLvl" class="col-sm-4 control-label">GPS档位：</label>
+            <label  class="col-sm-4 control-label">GPS档位：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <select  class="form-control" id="gpsLvl" ng-model="item.gpsLvl"  ng-change="onGpsLvlSelected(item)"
+                    <select  class="form-control"  ng-model="item.gpsLvl"  ng-change="onGpsLvlSelected(item)"
                              ng-disabled="editable==false"
                              ng-options="lvl.lvlName for lvl in item.gpsLvlList track by lvl.id" ng-required="requiredMap.gpsLvl">
                         <option value="">请选择GPS档位</option>
@@ -111,15 +111,15 @@
     </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="purchaseTax" class="col-sm-4 control-label">购置税：</label>
+            <label class="col-sm-4 control-label">购置税：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number" id="purchaseTax" class="form-control input-sm"  ng-model="item.purchaseTax"
+                    <input type="number" class="form-control input-sm"  ng-model="item.purchaseTax"
                            ng-disabled="item.isPurchaseTax ==false || item.isPurchaseTax ==undefined || editable==false"
                            ng-required="requiredMap.purchaseTax"
                            placeholder="购置税">
                     <span class="input-group-addon">
-                        <input type="checkbox" ng-click="item.purchaseTax=0" ng-disabled="editable==false" ng-model="item.isPurchaseTax">是否融
+                        <input type="checkbox" ng-click="item.purchaseTax=0" ng-disabled="editable==false|| applyInfo.product.productRule.hasPurchaseTax==false " ng-model="item.isPurchaseTax">是否融
                     </span>
                 </div>
             </div>
@@ -127,16 +127,16 @@
     </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="serviceFee" class="col-sm-4 control-label">服务费：</label>
+            <label  class="col-sm-4 control-label">服务费：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number" id="serviceFee" class="form-control input-sm"  ng-model="item.serviceFee"
+                    <input type="text"  class="form-control input-sm"  ng-model="item.serviceFee"
                            verify-service-fee="applyInfo.product.productRule" sale-price="item.salePrice"
                            ng-disabled="item.isServiceFee==false || item.isServiceFee == undefined || editable==false"
                            ng-required="requiredMap.serviceFee"
                            placeholder="服务费">
                     <span class="input-group-addon">
-                        <input type="checkbox" ng-click="item.serviceFee=0" ng-disabled="editable==false"  ng-model="item.isServiceFee">是否融
+                        <input type="checkbox" ng-click="item.isServiceFee?item.serviceFee='':item.serviceFee=0" ng-disabled="editable==false  || applyInfo.product.productRule.enabledServiceFee==false "  ng-model="item.isServiceFee">是否融
                     </span>
                 </div>
             </div>
@@ -146,17 +146,17 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="insuranceFee"  class="col-sm-4 control-label">保险费：</label>
+            <label   class="col-sm-4 control-label">保险费：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number" id="insuranceFee" class="form-control input-sm"  ng-model="item.insuranceFee"
+                    <input type="text"  class="form-control input-sm"  ng-model="item.insuranceFee"
                            verify-insurance-fee="applyInfo.product.productRule"
                            sale-price="item.salePrice"
                            purchase-tax="item.purchaseTax"
                            ng-required="requiredMap.insuranceFee"
                            ng-disabled="item.isInsuranceFee==false || item.isInsuranceFee == undefined || editable ==false" placeholder="保险费">
                     <span class="input-group-addon">
-                        <input type="checkbox" ng-click="item.insuranceFee=0" ng-disabled="editable==false" ng-model="item.isInsuranceFee">是否融
+                        <input type="checkbox" ng-click="item.isInsuranceFee?item.insuranceFee='':item.insuranceFee=0" ng-disabled="editable==false  || applyInfo.product.productRule.enabledInsuranceFee==false " ng-model="item.isInsuranceFee">是否融
                     </span>
                 </div>
             </div>
@@ -164,16 +164,16 @@
     </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label  for="delayInsuranceFee" class="col-sm-4 control-label">延保费：</label>
+            <label   class="col-sm-4 control-label">延保费：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number" id="delayInsuranceFee" class="form-control input-sm"  ng-model="item.delayInsuranceFee"
+                    <input type="text"  class="form-control input-sm"  ng-model="item.delayInsuranceFee"
                            verify-delay-insurance-fee="applyInfo.product.productRule"
                            ng-disabled="item.isDelayInsuranceFee==false || item.isDelayInsuranceFee == undefined || editable==false"
                            ng-required="requiredMap.delayInsuranceFee"
                            placeholder="延保费">
                     <span class="input-group-addon">
-                        <input type="checkbox" ng-click="item.delayInsuranceFee=0" ng-disabled="editable==false"  ng-model="item.isDelayInsuranceFee">是否融
+                        <input type="checkbox" ng-click="item.isDelayInsuranceFee?item.delayInsuranceFee='':item.delayInsuranceFee=0" ng-disabled="editable==false|| applyInfo.product.productRule.enabledDelayInsuranceFee==false"  ng-model="item.isDelayInsuranceFee">是否融
                     </span>
                 </div>
             </div>
@@ -181,16 +181,16 @@
     </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="transferFee"  class="col-sm-4 control-label">过户费：</label>
+            <label   class="col-sm-4 control-label">过户费：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number" id="transferFee" class="form-control input-sm"  ng-model="item.transferFee"
+                    <input type="text"  class="form-control input-sm"  ng-model="item.transferFee"
                            verify-transfer-fee="applyInfo.product.productRule"
                            ng-disabled="item.isTransferFee==false || item.isTransferFee == undefined||eidtable==false"
                            ng-required="requiredMap.transferFee"
                            placeholder="过户费">
                     <span class="input-group-addon">
-                        <input type="checkbox" ng-click="item.transferFee=0" ng-disabled="editable==false" ng-model="item.isTransferFee">是否融
+                        <input type="checkbox" ng-click="item.isTransferFee?item.transferFee='':item.transferFee=0" ng-disabled="editable==false|| applyInfo.product.productRule.enabledTransferFee==false" ng-model="item.isTransferFee">是否融
                     </span>
                 </div>
 
@@ -201,16 +201,16 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="addonFee"  class="col-sm-4 control-label">加装费：</label>
+            <label   class="col-sm-4 control-label">加装费：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number" id="addonFee" class="form-control input-sm"  ng-model="item.addonFee"
+                    <input type="text"  class="form-control input-sm"  ng-model="item.addonFee"
                            verify-addon-fee="applyInfo.product.productRule"
                            ng-disabled="item.isAddonFee==false || item.isAddonFee == undefined||editable==false"
                            ng-required="requiredMap.addonFee"
                            placeholder="加装费">
                     <span class="input-group-addon">
-                        <input type="checkbox" ng-click="item.addonFee=0" ng-disabled="editable==false" ng-model="item.isAddonFee">是否融
+                        <input type="checkbox" ng-click="item.isAddonFee?item.addonFee='':item.addonFee=0" ng-disabled="editable==false|| applyInfo.product.productRule.enabledAddonFee==false" ng-model="item.isAddonFee">是否融
                     </span>
                 </div>
             </div>
@@ -218,18 +218,18 @@
     </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="carColor"  class="col-sm-4 control-label">车辆颜色：</label>
+            <label   class="col-sm-4 control-label">车辆颜色：</label>
             <div class="col-sm-8">
-                <input type="text" id="carColor" class="form-control input-sm"  ng-disabled="editable==false" verify-chn=""
+                <input type="text"  class="form-control input-sm"  ng-disabled="editable==false" verify-chn=""
                        ng-required="requiredMap.carColor"  ng-model="item.carColor"  placeholder="车辆颜色">
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
-            <label for="carManu" class="col-sm-4 control-label">生产商：</label>
+            <label  class="col-sm-4 control-label">生产商：</label>
             <div class="col-sm-8">
-                <input type="text" id="carManu" class="form-control input-sm" ng-disabled="editable==false"  ng-model="item.carManu" ng-required="requiredMap.carManu"   placeholder="生产商">
+                <input type="text"  class="form-control input-sm" ng-disabled="editable==false"  ng-model="item.carManu" ng-required="requiredMap.carManu"   placeholder="生产商">
             </div>
         </div>
     </div>
@@ -274,7 +274,7 @@
             <label  class="col-sm-4 control-label">评估费：</label>
             <div class="col-sm-8">
                 <select  class="form-control"  ng-model="item.assessFee" ng-required="requiredMap.assessFee"
-                         ng-disabled="editable==false"
+                         ng-disabled="editable==false || applyInfo.product.productRule.enableAssessFee == false"
                          ng-options="o.key as o.val for o in [{key:0,val:'0'},{key:300,val:'300元'}]">
                 </select>
             </div>

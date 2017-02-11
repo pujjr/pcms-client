@@ -45,7 +45,7 @@
             <td>{{item.remainCapital}}</td>
             <td>{{item.valueDate |mysqlDate}}</td>
             <td>{{item.closingDate|mysqlDate}}</td>
-            <td>{{item.watingCharge.repayDate|mysqlDate}}</td>
+            <td>{{item.reserver4|mysqlDate}}</td>
             <td>
                 <span ng-if="item.repayStatus =='hkzt01'">还款中</span>
                 <span ng-if="item.repayStatus =='hkzt02'">已结清</span>

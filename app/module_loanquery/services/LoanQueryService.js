@@ -1,5 +1,5 @@
 angular.module('pu.loanquery.services')
-    .service("LoanQueryService",function($window,RestApi){
+    .service("LoanQueryService",function($window,RestApi,$uibModal){
         this.getLoanCustList = function(){
             return RestApi.all("/loanquery/getLoanCustList").getList();
         };
@@ -29,5 +29,26 @@ angular.module('pu.loanquery.services')
         };
         this.getOtherFeeList = function(appId){
             return RestApi.all("/loanquery/getOtherFeeList").all(appId).getList();
+        };
+        this.getRunningTaskCntByAppId = function(appId){
+            return RestApi.one("loanquery/getRunningTaskCntByAppId",appId).get();
+        };
+        this.getRunningTaskByAppId = function(appId){
+            return RestApi.all("loanquery/getRunningTaskByAppId").all(appId).getList();
+        };
+        this.showRunTaskList = function (appId) {
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop: false,
+                size: 'lg',
+                templateUrl: 'module_loanquery/tpl/dialog-runtask-list.html',
+                controller: function ($scope, RestApi, LoanQueryService) {
+                    $scope.appId = appId;
+                    $scope.runTaskList = LoanQueryService.getRunningTaskByAppId($scope.appId).$object;
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     });
