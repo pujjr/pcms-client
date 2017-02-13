@@ -45,6 +45,12 @@ angular.module('app')
                     templateUrl:'module_task/tpl/apply-supplycheckinfo.html',
                     controller:'SupplyCheckInfoController'
                 })
+                //一级经销商审核二级经销商申请
+                .state('app.task.process.checklevel2apply',{
+                    url:'/checklevel2apply/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-checklevel2.html',
+                    controller:'CheckController'
+                })
                 //初审
                 .state('app.task.process.precheck',{
                     url:'/precheck/:procInstId/:taskId/:businessKey',
@@ -73,6 +79,12 @@ angular.module('app')
                 .state('app.task.process.sign',{
                     url:'/sign/:procInstId/:taskId/:businessKey',
                     templateUrl:'module_task/tpl/apply-sign.html',
+                    controller:'SignController'
+                })
+                //一级审批二级签约
+                .state('app.task.process.checklevel2sign',{
+                    url:'/checklevel2sign/:procInstId/:taskId/:businessKey',
+                    templateUrl:'module_task/tpl/apply-signlevel2.html',
                     controller:'SignController'
                 })
                 //批核签约回访

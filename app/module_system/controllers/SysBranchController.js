@@ -126,7 +126,7 @@ angular.module("pu.system.controllers")
                         if(newVal == undefined || newVal ==''){
                             return true;
                         }
-                        if(newVal =='jxsjb02' && $scope.item.sysBranchDealer ==null){
+                        if(newVal =='jxsjb02' && $scope.item.sysBranchDealer.dealerType ==undefined){
                             //如果为二级则联动查询一级信息
                             SysBranchService.querySysBranchByBranchId(item.parentId).then(function(response){
                                 $scope.lvl1val = response;

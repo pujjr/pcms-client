@@ -10,6 +10,15 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="carSerialName" class="col-sm-3 control-label">车辆类型：</label>
+            <div class="col-sm-8">
+                <select id="brandType" class="form-control" ng-model="item.carSerialGroup" required
+                        ng-options="item.dictDataCode as item.dictDataName for item in carTypeList">
+                    <option value="">请选择车辆类型</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="carBrandId" class="col-sm-3 control-label">所属品牌：</label>
             <div class="col-sm-8">
                 <select id="carBrandId" class="form-control" ng-model="item.carBrandId"

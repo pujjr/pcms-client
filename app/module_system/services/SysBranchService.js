@@ -108,6 +108,9 @@ angular.module('pu.system.services')
         };
         this.getDealerList = function(){
             return RestApi.all("/sysbranch/getDealerList").getList();
+        };
+        this.getDealerTreeList = function(){
+            return RestApi.all("/sysbranch/getDealerTreeList").getList();
         }
 
     });

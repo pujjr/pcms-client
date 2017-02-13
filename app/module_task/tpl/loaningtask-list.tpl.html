@@ -1,32 +1,36 @@
-<div ng-init="init()">
+<div ng-init="init()" cg-busy="loading">
     <div class="panel_main">
-        <div class="data-table-container">
-            <header class="data-table-header">
-                <div class="data-table-header__label">
-                    <div class="row m-t-sm">
-                        <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <input type="text" class="form-control m-b-sm m-r-xs" id="appId" ng-model="vm.appId" placeholder="申请单号">
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <input type="text" class="form-control m-b-sm m-r-xs" id="name" ng-model="vm.name" placeholder="客户姓名">
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <button type="submit" class="btn btn-default btn-sm" ng-click="queryWaitLoanFilter()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
-                        </div>
+        <div class="container-fluid">
+            <div class="row m-t-sm">
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <ui-combotree id="parentType" choices="branchList"
+                                      convert-tree-option="{idKey:'id',parentKey:'parentId',childrenKey:'children'}"
+                                      ng-model="vm.branchCode"
+                                      checked="false" label="branchName" ></ui-combotree>
                     </div>
-                    <span class="fs-title"></span>
                 </div>
-                <div class="data-table-header__actions">
-                    <button class="btn btn-m btn-default btn-sm" type="button" ng-click="batchDoLoanTask()"><i class="fa fa-plus m-r-sm"></i>导出放款明细</button>
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <input type="text" class="form-control m-b-sm m-r-xs" id="appId" ng-model="vm.appId" placeholder="申请单号">
+                    </div>
                 </div>
-            </header>
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <input type="text" class="form-control m-b-sm m-r-xs" id="name" ng-model="vm.name" placeholder="客户姓名">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-default btn-sm" ng-click="queryLoaningTaskList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                    <button class="btn btn-m btn-default btn-sm" type="button" ng-click="batchConfirmLoanTask()"><i class="fa fa-plus m-r-sm"></i>批量确认放款</button>
+                </div>
+            </div>
+        </div>
+        <div class="data-table-container">
             <table class="data-table">
                 <thead>
                 <tr>
+                    <th style="width:20px"><input type="checkbox" ng-model="selectAllStatus"  ng-click="checkLoanningAll()"></th>
                     <th>申请单号</th>
                     <th>产品名称</th>
                     <th>客户姓名</th>
@@ -34,22 +38,19 @@
                     <th>期数</th>
                     <th>进件日期</th>
                     <th>所属经销商</th>
-                    <th>分配时间</th>
-                    <th>任务来源</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in loaningTaskList">
+                    <td><input type="checkbox" ng-checked="item.checked" ng-click="item.checked = !item.checked"></td>
                     <td>{{item.businessKey}}</td>
                     <td>{{item.productName}}</td>
                     <td>{{item.tenantName}}</td>
                     <td>{{item.totalFinanceAmount}}</td>
                     <td>{{item.period}}</td>
-                    <td>{{item.createTime}}</td>
+                    <td>{{item.createTime |mysqlDatetime}}</td>
                     <td>{{item.branchName}}</td>
-                    <td>{{item.startTime| mysqlDatetime}}</td>
-                    <td>{{item.inJumpType}}/{{item.parentTaskName}}/{{item.parentAssignee}}</td>
                     <td><a href="javascript:" ng-click="commitLoanTask(item)">确认放款</a></td>
                 </tr>
                 </tbody>

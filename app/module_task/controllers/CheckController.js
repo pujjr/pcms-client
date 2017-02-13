@@ -13,6 +13,8 @@ angular.module("pu.task.controllers")
             $scope.checkList = SysDictService.queryDictDataByTypeCode("shrwjglx").$object;
             $scope.checkRejectReasonList = SysDictService.queryDictDataByTypeCode("shjjyy").$object;
             $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
+            $scope.netCheckResultList = SysDictService.queryDictDataByTypeCode("wsjg").$object;
+            $scope.telCheckResultList = SysDictService.queryDictDataByTypeCode("dsjg").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"lrsqd");
             //默认审核获取上一次审核结果显示
@@ -21,7 +23,7 @@ angular.module("pu.task.controllers")
                     $scope.checkVo = {};
                 }else{
                     $scope.checkVo = response;
-                }
+                };
             })
         };
         $scope.commitCheckTask = function(){
@@ -33,9 +35,11 @@ angular.module("pu.task.controllers")
             })
         };
         $scope.commitPreCheckTask = function(){
-            TaskService.commitPreCheckTask($stateParams.taskId).then(function(response){
-                $state.go('app.task.todolist');
-                toaster.pop('success', '操作提醒','提交初审任务成功')
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                TaskService.commitPreCheckTask($stateParams.taskId).then(function(response){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交初审任务成功')
+                })
             })
         };
         $scope.supplyCheckInfo = function(){
@@ -47,6 +51,20 @@ angular.module("pu.task.controllers")
                 TaskService.commitCheckTask(null,checkVo,$stateParams.taskId).then(function(response){
                     $state.go('app.task.todolist');
                     toaster.pop('success', '操作提醒','提交补充审核资料任务成功')
+                })
+            })
+        };
+        //审核二级经销商申请
+        $scope.initCheckLevel2Apply = function(){
+            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
+        };
+        //一级提交二级申请
+        $scope.commitLevel2ApplyTask = function(){
+            modal.confirm("操作提醒","确认提交任务").then(function(){
+                TaskService.commitLevel2ApplyTask($stateParams.taskId).then(function(){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交审批二级申请任务成功');
                 })
             })
         }

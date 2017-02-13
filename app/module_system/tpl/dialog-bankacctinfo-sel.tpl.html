@@ -1,0 +1,71 @@
+<div ng-init="queryApplyList()">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>选择放款账号</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:700px">
+        <div class="panel panel-default">
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>用途</th>
+                        <th>开户银行</th>
+                        <th>支行名称</th>
+                        <th>账号</th>
+                        <th>户名</th>
+                        <th>是否启用</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in bankAcctInfoList">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.purposeDesc}}</td>
+                        <td>{{item.bankName}}</td>
+                        <td>{{item.subbranchName}}</td>
+                        <td>{{item.acctNo}}</td>
+                        <td>{{item.acctName}}</td>
+                        <td>
+                            <span ng-if="item.enabled==true">是</span>
+                            <span ng-if="item.enabled!=true">否</span>
+                        </td>
+                        <td>
+                            <a href="javascript:" ng-click="select(item)">选择</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="has-divider has-divider--dark"></div>
+                <div class="toolbar" ng-if="false">
+                    <div class="toolbar__left mr++">
+                    <span ng-if="paginationInfo.totalItem==0">
+                        无查询结果
+                    </span>
+                    </div>
+                <span class="toolbar__label fs-title">
+
+                </span>
+                    <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                        <div class="mr+++">
+                    <span>
+                        总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
+                    </span>
+                        </div>
+                        <div>
+                            <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                            ng-model="paginationInfo.curPage"
+                                            items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                            last-text="&raquo;">
+                            </uib-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div ng-init="initSign();editable=false;signEditable=false">
+    <div class="check-header">
+        <div class="data-table-container" >
+            <header class="data-table-header" style="min-height:72px !important;">
+                <div class="data-table-header__label">
+                    <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
+                </div>
+                <div class="data-table-header__actions">
+                    <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
+                    <button class="btn btn-success btn-sm" type="button"  ng-disabled="CallBackForm.$invalid" ng-click="commitLevel2SignTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                    <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
+                </div>
+            </header>
+        </div>
+    </div>
+    <div class="check-body-full">
+        <uib-tabset>
+            <uib-tab index="0">
+                <uib-tab-heading>
+                    <span>签约信息</span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-apply-sign.html'"></div>
+            </uib-tab>
+            <uib-tab index="1"  select="initSignFileManage(applyInfo.appId)">
+                <uib-tab-heading>
+                    <span>签约资料</span>
+                </uib-tab-heading>
+                <ng-file-manage on-init="initSignFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
+            </uib-tab>
+            <uib-tab index="2">
+                <uib-tab-heading>
+                    <span>申请信息</span>
+                </uib-tab-heading>
+                <div ng-include="'module_apply/tpl/form-apply.html'"></div>
+            </uib-tab>
+            <uib-tab index="3"  select="initApplyFileManage()">
+                <uib-tab-heading>
+                    <span>申请资料</span>
+                </uib-tab-heading>
+                <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:true,enableMove:false,enableDelete:false}"></ng-file-manage>
+            </uib-tab>
+            <uib-tab index="4">
+                <uib-tab-heading>
+                    <span>放款条件<span class="badge text-danger">{{conditionLoanCommentList.length}}</span></span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-conditionloancomment-list.html'"></div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

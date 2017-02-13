@@ -547,6 +547,7 @@ angular.module("pu.apply.controllers")
             CarService.selectCar(item.appId).then(function(response){
                 item.carStyle={};
                 angular.copy(response,item.carStyle);
+                item.carType = item.carStyle.carSerial.carSerialGroup;
             });
         };
        //查询未提交申请单列表

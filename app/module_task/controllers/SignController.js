@@ -5,6 +5,7 @@
 angular.module("pu.task.controllers")
     .controller('SignController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService,QueryService,modal,SettleService) {
         $scope.initSign = function(){
+            $scope.taskId = $stateParams.taskId;
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.gpsSupplierList = GpsService.queryGpsSupplierList(true).$object;
@@ -18,7 +19,6 @@ angular.module("pu.task.controllers")
                     $scope.signContractVo = response;
                     toaster.pop('success', '操作提醒','保存签约信息成功');
                 });
-
             })
         }
         $scope.commitSignContractTask = function(){
@@ -45,6 +45,14 @@ angular.module("pu.task.controllers")
         $scope.generateContract = function(contractKey){
             $scope.processGenContract = TaskService.getContractOSSKey($stateParams.businessKey,contractKey).then(function(response){
                 $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
+            })
+        };
+        $scope.commitLevel2SignTask = function(){
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                TaskService.commitLevel2SignTask($scope.taskId).then(function(){
+                    $state.go('app.task.todolist');
+                    toaster.pop('success', '操作提醒','提交任务成功')
+                })
             })
         }
     })

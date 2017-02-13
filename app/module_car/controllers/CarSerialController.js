@@ -22,9 +22,10 @@ angular.module("pu.car.controllers")
                 animation: true,
                 backdrop:'false',
                 templateUrl :'module_car/tpl/dialog-carserial-add.html',
-                controller:function($scope,RestApi){
+                controller:function($scope,RestApi,SysDictService){
                     $scope.item={};
                     $scope.carBrandList = CarService.queryCarBrandList({}).$object;
+                    $scope.carTypeList = SysDictService.queryDictDataByTypeCode("cllx").$object;
                     $scope.ok=function(){
                         modalInstance.close($scope.item);
                     };
@@ -53,6 +54,7 @@ angular.module("pu.car.controllers")
                 controller:function($scope,RestApi){
                     $scope.item=item;
                     $scope.carBrandList = CarService.queryCarBrandList({}).$object;
+                    $scope.carTypeList = SysDictService.queryDictDataByTypeCode("cllx").$object;
                     $scope.ok=function(){
                         CarService.modifyCarSerial($scope.item).then(function(){
                             modalInstance.close('修改成功');

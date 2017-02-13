@@ -157,6 +157,18 @@ angular.module('app')
                     url: '/data-list',
                     templateUrl: 'module_system/tpl/sysrole-list-data.html'
                 })
+                //银行账号管理
+                .state('app.bankacctinfo',{
+                    abstract: true,
+                    url:'/bankacctinfo',
+                    template:'<div ui-view=""></div>',
+                    controller: 'BankAcctController'
+                })
+                //银行信息管理-查询列表
+                .state('app.bankacctinfo.list',{
+                    url:'/list',
+                    templateUrl:'module_system/tpl/bankacctinfo-list.html'
+                })
         }
     ]
 );

@@ -139,9 +139,12 @@ angular.module('pu.task.services')
         this.batchDoLoanTask = function(params){
             return RestApi.all("/task/batchDoLoanTask").post(params);
         };
-        this.commitLoanTask = function(taskId,appId){
-            return RestApi.all("/task/commitLoanTask").all(taskId).all(appId).post();
+        this.commitLoanTask = function(bankAcctId,taskId,appId){
+            return RestApi.all("/task/commitLoanTask").all(taskId).all(appId).all(bankAcctId).post();
         };
+        this.batchCommitLoanTask = function(bankAcctId,voList){
+            return RestApi.all("/task/batchCommitLoanTask").all(bankAcctId).post(voList);
+        }
         this.commitCounterSignApprove = function(taskId,params){
             return RestApi.all("/task/commitCounterSignApprove").all(taskId).post(params);
         };
@@ -200,8 +203,14 @@ angular.module('pu.task.services')
                 }
             });
         };
-        this.getLastestCheckVo = function(taskId){
-            return RestApi.one("/task/getLastestCheckVo",taskId).get();
+        this.getLastestCheckVo = function(taskId) {
+            return RestApi.one("/task/getLastestCheckVo", taskId).get();
+        };
+        this.commitLevel2ApplyTask = function(taskId){
+            return RestApi.all("/task/commitLevel2ApplyTask").all(taskId).post();
+        };
+        this.commitLevel2SignTask = function(taskId){
+            return RestApi.all("/task/commitLevel2SignTask").all(taskId).post();
         }
 
     });

@@ -16,6 +16,8 @@ angular.module("pu.task.controllers")
             $scope.checkList = SysDictService.queryDictDataByTypeCode("shrwjglx").$object;
             $scope.checkRejectReasonList = SysDictService.queryDictDataByTypeCode("shjjyy").$object;
             $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
+            $scope.netCheckResultList = SysDictService.queryDictDataByTypeCode("wsjg").$object;
+            $scope.telCheckResultList = SysDictService.queryDictDataByTypeCode("dsjg").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"zlsh");
             //审批显示审核结果，如果审核未建议有条件放款则设置审批意见为条件放款
