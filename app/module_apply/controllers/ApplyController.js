@@ -544,7 +544,7 @@ angular.module("pu.apply.controllers")
         }
         //选择车辆
         $scope.selectCar = function(item){
-            CarService.selectCar(item.appId).then(function(response){
+            CarService.selectCar(item.appId,$scope.applyInfo.product.isLcv).then(function(response){
                 item.carStyle={};
                 angular.copy(response,item.carStyle);
                 item.carType = item.carStyle.carSerial.carSerialGroup;

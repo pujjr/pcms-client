@@ -46,7 +46,7 @@ angular.module('pu.car.services')
         this.queryCarStylePageList = function(param){
             return RestApi.all("/car/style/pagelist").getList(param);
         }
-        this.selectCar = function(appId){
+        this.selectCar = function(appId,isLcvProduct){
             var modalInstance = $uibModal.open({
                 animation: false,
                 backdrop:'false',
@@ -60,12 +60,13 @@ angular.module('pu.car.services')
                 controller:function($scope,RestApi,CarService,$timeout,$rootScope){
                     $rootScope.resetCache();
                     $scope.appId = appId;
+                    $scope.isLcvProduct  = isLcvProduct;
                     $scope.queryParam = {};
                     $scope.init = function(){
                         $scope.carBrand ={};
                         $scope.carSerial = {};
                         $scope.carStyle = {};
-                        $scope.carBrandList = CarService.queryCurrentApplyEnabledCarBrand($scope.appId).$object;
+                        $scope.carBrandList = CarService.queryCurrentApplyEnabledCarBrand($scope.appId,$scope.isLcvProduct).$object;
                     };
                     $scope.$getNodeCss = function(item){
                         if( $scope.treeData !=undefined && item.isSelected){
@@ -76,7 +77,7 @@ angular.module('pu.car.services')
                     }
                     $scope.carBrandClicked = function(item){
                         $scope.carBrand = item;
-                        $scope.carSerialList = CarService.queryCurrentApplyEnabledCarSerial($scope.appId,$scope.carBrand.id).$object;
+                        $scope.carSerialList = CarService.queryCurrentApplyEnabledCarSerial($scope.appId,$scope.carBrand.id,$scope.isLcvProduct).$object;
                     };
                     $scope.carSerialClicked = function(item){
                         $scope.carSerial = item;
@@ -140,10 +141,14 @@ angular.module('pu.car.services')
         this.saveCarTemplateChoice = function(templateId,params){
             return RestApi.all("/car/saveCarTemplateChoice").all(templateId).post(params);
         };
-        this.queryCurrentApplyEnabledCarBrand = function(appId){
-            return RestApi.all("/car/getCurrentApplyEnabledCarBrand").all(appId).getList();
+        this.queryCurrentApplyEnabledCarBrand = function(appId,isLcvProduct){
+            if(isLcvProduct ==undefined || isLcvProduct==null || isLcvProduct=='')
+                isLcvProduct = false;
+            return RestApi.all("/car/getCurrentApplyEnabledCarBrand").all(appId).getList({'isLcv':isLcvProduct});
         };
-        this.queryCurrentApplyEnabledCarSerial = function(appId,carBrandId){
-            return RestApi.all("/car/getCurrentApplyEnabledCarSerial").all(appId).all(carBrandId).getList();
+        this.queryCurrentApplyEnabledCarSerial = function(appId,carBrandId,isLcvProduct){
+            if(isLcvProduct ==undefined || isLcvProduct==null || isLcvProduct=='')
+                isLcvProduct = false;
+            return RestApi.all("/car/getCurrentApplyEnabledCarSerial").all(appId).all(carBrandId).getList({'isLcv':isLcvProduct});
         }
     });
