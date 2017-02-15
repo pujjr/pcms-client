@@ -103,4 +103,4 @@ angular.module('app')
     $sceDelegateProvider.resourceUrlWhitelist([
         'self',
         'https://view.officeapps.live.com/**']);
-});
+    });

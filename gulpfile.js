@@ -71,6 +71,11 @@ gulp.task('copy:html',function(){
     return gulp.src(src.html)
         .pipe(gulp.dest(app.dist))
 })
+gulp.task('copy:cfg',function(){
+    return gulp.src('app/global-param.cfg')
+        .pipe(rename('global-param.js'))
+        .pipe(gulp.dest(app.dist+'/js'))
+})
 gulp.task('clean',function(){
     return gulp.src(app.dist)
         .pipe(clean());
@@ -87,7 +92,7 @@ gulp.task('rev',function(){
         .pipe(gulp.dest(app.dist))
 })
 gulp.task('build', function(cb) {
-    runSequence('clean',['concat:js','copy:lib','concat:css','copy:font','copy:img','copy:html'], cb);
+    runSequence('clean',['concat:js','copy:lib','concat:css','copy:font','copy:img','copy:html','copy:cfg'], cb);
 });
 gulp.task('default',function(cb) {
   // 将你的默认的任务代码放在这

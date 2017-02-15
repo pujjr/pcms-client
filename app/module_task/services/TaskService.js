@@ -185,24 +185,8 @@ angular.module('pu.task.services')
                 }
             });
         };
-        this.printSignCheckPdf = function(appId){
-            var modalInstance = $uibModal.open({
-                animation: false,
-                size:'lg',
-                backdrop:'static',
-                templateUrl :'module_utils/tpl/dialog-print-pdf.html',
-                controller:function($scope,RestApi,TaskService){
-                    $scope.appId = appId;
-                    $scope.printTitle = "打印核准函";
-                    $scope.loading = TaskService.getContractOSSKey($scope.appId,"hzh").then(function(response){
-                        $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
-                    })
-                    $scope.cancel = function () {
-                        modalInstance.dismiss('cancel');
-                    };
-                }
-            });
-        };
+
+
         this.getLastestCheckVo = function(taskId) {
             return RestApi.one("/task/getLastestCheckVo", taskId).get();
         };

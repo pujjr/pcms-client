@@ -225,7 +225,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" ng-if="false">
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">生产商：</label>
             <div class="col-sm-8">
@@ -233,16 +233,16 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-md-4">
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">车架号：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control input-sm" ng-disabled="editable==false"  verify-number-char="" ng-model="item.carVin" ng-required="requiredMap.carVin"   placeholder="车架号">
+                <input type="text" class="form-control input-sm" ng-disabled="editable==false"  verify-number-char="" ng-maxlength="17" ng-model="item.carVin" ng-required="requiredMap.carVin"   placeholder="车架号">
             </div>
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-md-4">
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">发动机号：</label>
@@ -255,20 +255,20 @@
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">售价/评估价：</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-model="item.assessPrice"  ng-required="requiredMap.assessPrice"  placeholder="售价/评估价">
+                <input type="text" class="form-control input-sm" ng-disabled="editable==false" verify-amount-p ng-model="item.assessPrice"  ng-required="requiredMap.assessPrice"  placeholder="售价/评估价">
             </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group form-group-sm">
+        <label  class="col-sm-4 control-label">保证金：</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control input-sm" ng-disabled="editable==false"  verify-amount-p  ng-model="item.collateral"  ng-required="requiredMap.collateral" placeholder="保证金">
         </div>
     </div>
 </div>
+</div>
 <div class="row">
-    <div class="col-md-4">
-        <div class="form-group form-group-sm">
-            <label  class="col-sm-4 control-label">保证金：</label>
-            <div class="col-sm-8">
-                <input type="number" class="form-control input-sm" ng-disabled="editable==false"  ng-model="item.collateral"  ng-required="requiredMap.collateral" placeholder="保证金">
-            </div>
-        </div>
-    </div>
     <div class="col-md-4">
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">评估费：</label>
@@ -288,8 +288,6 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-md-4">
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">融资手续费：</label>

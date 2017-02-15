@@ -1,5 +1,5 @@
 angular.module("app")
-    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService,SmsService) {
+    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService,SmsService,$uibModal) {
 
         var isIE = !!navigator.userAgent.match(/MSIE/i);
         isIE && angular.element($window.document.body).addClass('ie');
@@ -72,5 +72,25 @@ angular.module("app")
         $scope.showCustomDetail = function(appId){
             window.open("#/app/loanquery/loaninfo/detail/"+appId);
         };
+        //打印PDF文件
+        $scope.printPdf = function(appId,key,title){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                size:'lg',
+                backdrop:'static',
+                templateUrl :'module_utils/tpl/dialog-print-pdf.html',
+                controller:function($scope,RestApi,TaskService){
+                    $scope.appId = appId;
+                    $scope.printTitle = title;
+                    $scope.loading = TaskService.getContractOSSKey($scope.appId,key).then(function(response){
+                        $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
+                    })
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        };
+
 
     })

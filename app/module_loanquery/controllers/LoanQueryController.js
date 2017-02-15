@@ -43,7 +43,7 @@ angular.module("pu.loanquery.controllers")
             $scope.doInitApplyEdit($stateParams.appId);
             $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
             LoanQueryService.getRunningTaskCntByAppId($scope.appId).then(function(response){
-                $scope.runTaskCnt = response;
+                $scope.runTaskCnt = response.taskCnt;
             });
         };
         $scope.pageChanged = function(){

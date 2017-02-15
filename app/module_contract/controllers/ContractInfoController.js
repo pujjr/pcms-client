@@ -70,7 +70,7 @@ angular.module("pu.contract.controllers")
                     $scope.uploader = new FileUploader({
                         url:SERVER_URL.API_SERVER_URL+"/contract/uploadContractFile/"+$scope.item.id,
                         headers:{
-                            'Authorization': window.localStorage.Authorization
+                            'Authorization': $rootScope.Authorization
                         },
                         removeAfterUpload:true
                     });

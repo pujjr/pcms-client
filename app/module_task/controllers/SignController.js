@@ -39,9 +39,6 @@ angular.module("pu.task.controllers")
         $scope.printContract = function(){
             $scope.contractList = TaskService.getContractInfoListByAppId($stateParams.businessKey).$object;
         };
-        $scope.printSignCheck = function(){
-            TaskService.printSignCheckPdf($stateParams.businessKey);
-        }
         $scope.generateContract = function(contractKey){
             $scope.processGenContract = TaskService.getContractOSSKey($stateParams.businessKey,contractKey).then(function(response){
                 $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;

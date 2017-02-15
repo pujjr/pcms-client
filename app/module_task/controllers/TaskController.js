@@ -67,7 +67,7 @@ angular.module("pu.task.controllers")
         /**显示征信报告**/
         $scope.showCreditReport = function(appId){
             TaskService.showCreditReport(appId);
-        }
+        };
 
     })
 ;
