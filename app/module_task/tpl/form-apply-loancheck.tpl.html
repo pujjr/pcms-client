@@ -85,7 +85,7 @@
                                         <div class="input-group">
                                             <input type="text" id="gpsWiredNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.gpsWiredNo" required>
                                        <span class="input-group-addon">
-                                           <a href="javascript:" ng-click="openGpsUrl($index,'yx')">查询</a>
+                                           <a href="javascript:" ng-click="openGpsWireUrl(gpsSupplierList,item.signFinanceDetail.gpsSupplierId)">查询</a>
                                        </span>
                                         </div>
 
@@ -99,7 +99,7 @@
                                         <div class="input-group">
                                             <input type="text" id="gpsWirelessNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.gpsWirelessNo">
                                        <span class="input-group-addon">
-                                           <a href="javascript:" ng-click="openGpsUrl($index,'wx')">查询</a>
+                                           <a href="javascript:" ng-click="openGpsWirelessUrl(gpsSupplierList,item.signFinanceDetail.gpsSupplierId)">查询</a>
                                        </span>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
                                                 <option value="">请选择保险公司</option>
                                             </select>
                                        <span class="input-group-addon">
-                                           <a href="javascript:" ng-click="openInsuranceUrl($index,'jqx')">查询</a>
+                                           <a href="javascript:" ng-click="openInsuranceUrl(insuranceCompanyList,item.signFinanceDetail.insCompanyId)">查询</a>
                                            </span>
                                         </div>
 
@@ -190,7 +190,7 @@
                                                 <option value="">请选择保险公司</option>
                                             </select>
                                        <span class="input-group-addon">
-                                           <a href="javascript:" ng-click="openInsuranceUrl($index,'sybx')">查询</a>
+                                           <a href="javascript:" ng-click="openInsuranceUrl(insuranceCompanyList,item.signFinanceDetail.busiCompanyId)">查询</a>
                                        </span>
                                         </div>
 
@@ -315,7 +315,7 @@
                                                 <option value="">请选择保险公司</option>
                                             </select>
                                        <span class="input-group-addon">
-                                           <a href="javascript:" ng-click="openInsuranceUrl($index,'lyx')">查询</a>
+                                           <a href="javascript:" ng-click="openInsuranceUrl(insuranceCompanyList,item.signFinanceDetail.impCompanyId)">查询</a>
                                        </span>
                                         </div>
 

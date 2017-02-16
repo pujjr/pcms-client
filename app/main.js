@@ -91,6 +91,7 @@ angular.module("app")
                 }
             });
         };
+        //打开发票查询地址
         $scope.openInvoiceUrl = function(provinceList,areaId){
             var url;
             for(var i = 0 ;i<provinceList.length;i++){
@@ -99,8 +100,55 @@ angular.module("app")
                     break;
                 }
             }
-            window.open(url);
+            if(url==undefined){
+                modal.error("未配置发票地址")
+            }else{
+                window.open(url);
+            }
+        };
+        //打开保险公司查询地址
+        $scope.openInsuranceUrl = function(companyList,companyId){
+            var url;
+            for(var i = 0 ;i<companyList.length;i++){
+                if(companyId == companyList[i].id){
+                    url = companyList[i].url;
+                    break;
+                }
+            }
+            if(url==undefined){
+                modal.error("未配置保险公司地址")
+            }else{
+                window.open(url);
+            }
+        };
+        //打开GPS有线网站地址
+        $scope.openGpsWireUrl = function(companyList,companyId){
+            var url;
+            for(var i = 0 ;i<companyList.length;i++){
+                if(companyId == companyList[i].id){
+                    url = companyList[i].wiredUrl;
+                    break;
+                }
+            }
+            if(url==undefined){
+                modal.error("未配置有线地址")
+            }else{
+                window.open(url);
+            }
+        };
+        //打开GPS无线网站地址
+        $scope.openGpsWirelessUrl = function(companyList,companyId){
+            var url;
+            for(var i = 0 ;i<companyList.length;i++){
+                if(companyId == companyList[i].id){
+                    url = companyList[i].wirelessUrl;
+                    break;
+                }
+            }
+            if(url==undefined){
+                modal.error("未配置无线地址")
+            }else{
+                window.open(url);
+            }
         }
-
-
     })
