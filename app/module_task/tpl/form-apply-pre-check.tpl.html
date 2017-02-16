@@ -1,0 +1,72 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">初审核对信息</legend>
+    <div class="row m-t-md">
+        <div class="col-md-6">
+            <div class="form-group form-group-sm">
+                <label for="isValidApply" class="col-sm-4 control-label">申请表（信息完整且本人是签字加盖手印）：</label>
+                <div class="col-sm-8">
+                    <select  class="form-control" id="isValidApply"  ng-model="checkVo.isValidApply" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                        <option value="">请选择</option>`
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group form-group-sm">
+                <label for="isValidIdcard" class="col-sm-4 control-label">申请表（信息完整且本人是签字加盖手印）：</label>
+                <div class="col-sm-8">
+                    <select  class="form-control" id="isValidIdcard"  ng-model="checkVo.isValidIdcard" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                        <option value="">请选择</option>`
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group form-group-sm">
+                <label for="isValidJsz" class="col-sm-4 control-label">驾驶证（有效期内或有替代资料）：</label>
+                <div class="col-sm-8">
+                    <select  class="form-control" id="isValidJsz"  ng-model="checkVo.isValidJsz" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                        <option value="">请选择</option>`
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group form-group-sm">
+                <label for="isValidJsz" class="col-sm-4 control-label">照片（手持身份证申请表全身站立拍照）：</label>
+                <div class="col-sm-8">
+                    <select  class="form-control" id="isValidPhoto"  ng-model="checkVo.isValidPhoto" ng-options="o.key as o.val for o in [{key:true,val:'是'},{key:false,val:'否'}]" required >
+                        <option value="">请选择</option>`
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group form-group-sm">
+                <label for="checkType" class="col-sm-4 control-label">审核结果：</label>
+                <div class="col-sm-8">
+                    <select id="checkType" class="form-control" ng-model="checkVo.result" required>
+                        <option value="">请选择审核结果</option>
+                        <option value="tjlx101">建议通过</option>
+                        <option value="tjlx104">建议拒绝</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <label for="comment" class="col-sm-2 control-label">备注：</label>
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control" id="comment" ng-model="checkVo.comment" placeholder="备注"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+

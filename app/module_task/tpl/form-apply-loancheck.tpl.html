@@ -37,11 +37,17 @@
                                 <div class="form-group form-group-sm">
                                     <label for="invoiceAreaId" class="col-sm-4 control-label">发票开具地：</label>
                                     <div class="col-sm-8">
-                                        <select  class="form-control" id="invoiceAreaId" ng-model="item.signFinanceDetail.invoiceAreaId"
-                                                 ng-disabled="loanCheckEditable==false"
-                                                 ng-options="item.id as item.areaName for item in provinceList" required>
-                                            <option value="">请选择发票开具地</option>
-                                        </select>
+                                        <div class="input-group">
+                                            <select  class="form-control" id="invoiceAreaId" ng-model="item.signFinanceDetail.invoiceAreaId"
+                                                     ng-disabled="loanCheckEditable==false"
+                                                     ng-options="item.id as item.areaName for item in provinceList" required>
+                                                <option value="">请选择发票开具地</option>
+                                            </select>
+                                       <span class="input-group-addon">
+                                           <a href="javascript:" ng-click="openInvoiceUrl(provinceList,item.signFinanceDetail.invoiceAreaId)">查询</a>
+                                       </span>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

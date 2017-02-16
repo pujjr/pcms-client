@@ -95,7 +95,7 @@ angular.module('pu.car.services')
                                     $scope.carStyleList =[];
                                 }else{
                                     $rootScope.resetCache();
-                                    $scope.queryParam = {'indexStr':$scope.indexStr,'appId':$scope.appId};
+                                    $scope.queryParam = {'indexStr':$scope.indexStr,'appId':$scope.appId,'lcvCar':$scope.isLcvProduct};
                                     $scope.queryCarStyle =  CarService.queryCarStylePageList( $scope.queryParam).then(function(response){
                                         $scope.carStyleList = response;
                                     });

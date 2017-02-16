@@ -33,7 +33,7 @@ angular.module("app").
                 }else{
                     if(parseFloat(modelVal)>0){
                         if($scope.rule.hasOwnProperty('minInsuranceFee') && $scope.rule.hasOwnProperty('maxInsuranceFee')){
-                            if( modelVal >= $scope.rule.minInsuranceFee && modelVal<=$scope.rule.maxInsuranceFee&&((modelVal+$scope.purchaseTax)<=$scope.rule.insuranceFeePercent/100*$scope.salePrice)){
+                            if( modelVal >= $scope.rule.minInsuranceFee && modelVal<=$scope.rule.maxInsuranceFee&&((parseFloat(modelVal)+parseFloat($scope.purchaseTax))<=$scope.rule.insuranceFeePercent/100*$scope.salePrice)){
                                 return true;
                             }else{
                                 $scope.errmsg=$scope.rule.minInsuranceFee+'<=保险费<='+$scope.rule.maxInsuranceFee+',并且（购置税+保险费）不大于裸车价'+$scope.rule.insuranceFeePercent+"%";

@@ -91,6 +91,16 @@ angular.module("app")
                 }
             });
         };
+        $scope.openInvoiceUrl = function(provinceList,areaId){
+            var url;
+            for(var i = 0 ;i<provinceList.length;i++){
+                if(areaId == provinceList[i].id){
+                    url = InvoiceAreaUrl[provinceList[i].areaName]
+                    break;
+                }
+            }
+            window.open(url);
+        }
 
 
     })

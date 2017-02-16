@@ -1,4 +1,4 @@
-<div ng-init="initCheck();editable=false">
+<div ng-init="initPreCheck();editable=false">
         <div class="check-header">
             <div class="data-table-container" >
                 <header class="data-table-header" style="min-height:72px !important;">
@@ -6,8 +6,8 @@
                         <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
-                        <button class="btn btn-default btn-sm" type="button"  ng-click="printApplyPdf(applyInfo.appId)"><i class="fa fa-print m-r-sm"></i>打印申请单</button>
-                        <button class="btn btn-default btn-sm" type="button"  ng-click="showCreditReport(applyInfo.appId)"><i class="fa fa-search m-r-sm"></i>查询征信报告</button>
+                        <button class="btn btn-default btn-sm" type="button"  ng-click="printPdf(applyInfo.appId,'sqd','打印申请单')"><i class="fa fa-print m-r-sm"></i>打印申请单</button>
+                        <button class="btn btn-default btn-sm" type="button" ng-disabled="checkVo.result!='tjlx101'"  ng-click="showCreditReport(applyInfo.appId)"><i class="fa fa-search m-r-sm"></i>查询征信报告</button>
                         <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                         <button class="btn btn-success btn-sm" type="submit"  ng-click="commitPreCheckTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
@@ -15,14 +15,13 @@
                 </header>
             </div>
         </div>
-        <div class="check-body-full">
+        <div class="check-body">
             <uib-tabset>
                 <uib-tab index="0">
                     <uib-tab-heading>
                         <span>申请信息</span>
                     </uib-tab-heading>
-
-                    <div  ng-include="'module_apply/tpl/form-apply.html'">
+                    <div fix-div offset-y="190" ng-include="'module_apply/tpl/form-apply-notfix-notnew.html'">
 
                     </div>
                 </uib-tab>
@@ -51,6 +50,10 @@
                     <div ng-include="'module_task/tpl/form-fraudhisresult-list.html'"></div>
                 </uib-tab>
             </uib-tabset>
-
+        </div>
+        <div  class="check-footer">
+            <form class="container-fluid m-t-md form-horizontal" name="checkForm">
+                <div ng-include="'module_task/tpl/form-apply-pre-check.html'"></div>
+            </form>
         </div>
 </div>

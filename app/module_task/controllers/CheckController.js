@@ -26,6 +26,15 @@ angular.module("pu.task.controllers")
                 };
             })
         };
+        //初始化初审
+        $scope.initPreCheck = function(){
+            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
+            $scope.loanConditionList = SysDictService.queryDictDataByTypeCode("fktj").$object;
+            $scope.queryFraudInnerResult($stateParams.businessKey);
+            $scope.queryFraudHisInnerResult($stateParams.businessKey,"lrsqd");
+            $scope.checkVo = {};
+        }
         $scope.commitCheckTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){
                 TaskService.commitCheckTask($scope.applyInfo,$scope.checkVo,$stateParams.taskId).then(function(response){
@@ -36,7 +45,7 @@ angular.module("pu.task.controllers")
         };
         $scope.commitPreCheckTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){
-                TaskService.commitPreCheckTask($stateParams.taskId).then(function(response){
+                TaskService.commitPreCheckTask($stateParams.taskId,$scope.businessKey,$scope.checkVo).then(function(response){
                     $state.go('app.task.todolist');
                     toaster.pop('success', '操作提醒','提交初审任务成功')
                 })

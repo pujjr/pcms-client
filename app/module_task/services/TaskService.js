@@ -15,8 +15,8 @@ angular.module('pu.task.services')
         this.commitSupplyCheckTask = function(applyVo,taskId){
             return RestApi.all("/task/commitSupplyCheckTask").all(taskId).post(applyVo);
         };
-        this.commitPreCheckTask = function(taskId){
-            return RestApi.all("/task/commitPreCheckTask").all(taskId).post();
+        this.commitPreCheckTask = function(taskId,appId,checkVo){
+            return RestApi.all("/task/commitPreCheckTask").all(taskId).all(appId).post(checkVo);
         };
         this.commitCheckTask = function(applyVo,checkVo,taskId){
             return RestApi.all("/task/commitCheckTask").all(taskId).post({"applyVo":applyVo,"checkVo":checkVo});
