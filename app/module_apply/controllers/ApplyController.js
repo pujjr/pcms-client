@@ -666,6 +666,18 @@ angular.module("pu.apply.controllers")
             $scope.cloesseeTypeList = SysDictService.queryDictDataByTypeCode("gzrlx").$object;
             //车辆类型
             $scope.carTypeList = SysDictService.queryDictDataByTypeCode("cllx").$object;
+            //初始化最小驾照日期
+            try{
+                var tmpStr = $scope.applyInfo.tenant.idNo.substring(6, 14);
+                tmpStr = tmpStr.substring(0, 4) + "-" + tmpStr.substring(4, 6) + "-" + tmpStr.substring(6);
+                tmpStr = tmpStr.replace(/-/g,"/");
+                var date = new Date(tmpStr );
+                //驾照发放最小可选日期
+                $scope.driverLicenseDateOptions.minDate = new Date(ToolsService.addYear(date,18));
+            }catch(e){
+
+            }
+
         }
         //选择车辆
         $scope.selectCar = function(item){

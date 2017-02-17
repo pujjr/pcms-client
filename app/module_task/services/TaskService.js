@@ -196,5 +196,7 @@ angular.module('pu.task.services')
         this.commitLevel2SignTask = function(taskId){
             return RestApi.all("/task/commitLevel2SignTask").all(taskId).post();
         }
-
+        this.getCheckVoByPathId = function(pathId) {
+            return RestApi.one("/task/getCheckVoByPathId", pathId).get();
+        };
     });

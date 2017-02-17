@@ -24,7 +24,7 @@ var InvoiceAreaUrl = {
 
 
 angular.module("app")
-    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService,SmsService,$uibModal) {
+    .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService,SmsService,$uibModal,$location) {
 
         var isIE = !!navigator.userAgent.match(/MSIE/i);
         isIE && angular.element($window.document.body).addClass('ie');
@@ -80,7 +80,7 @@ angular.module("app")
             })
         };
         $scope.screenHeight = $window.innerHeight;
-
+        $scope.screentWidth = $window.innerWidth;
         //公共方法-查询申请单反欺诈信息
         $scope.queryFraudInnerResult = function(appId){
             $scope.fraudInnerResultList = QueryService.queryFraudInnerResult(appId).$object;
@@ -176,4 +176,28 @@ angular.module("app")
                 window.open(url);
             }
         };
+        //查看审核结果
+        $scope.showApplyCheckResult = function(pathId){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                size:'lg',
+                backdrop:false,
+                templateUrl :'module_task/tpl/dialog-showApplyCheckResult.html',
+                controller:function($scope,RestApi,TaskService,SysDictService){
+                    $scope.pathId = pathId;
+                    $scope.loanConditionList = SysDictService.queryDictDataByTypeCode("fktj").$object;
+                    $scope.checkList = SysDictService.queryDictDataByTypeCode("shrwjglx").$object;
+                    $scope.checkRejectReasonList = SysDictService.queryDictDataByTypeCode("shjjyy").$object;
+                    $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
+                    $scope.netCheckResultList = SysDictService.queryDictDataByTypeCode("wsjg").$object;
+                    $scope.telCheckResultList = SysDictService.queryDictDataByTypeCode("dsjg").$object;
+                    $scope.checkVo = TaskService.getCheckVoByPathId($scope.pathId).$object;
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        };
+        $scope.app.settings.asideFolded = $location.search().hiddenAsideFolded=='true'?true:false;
+
     })

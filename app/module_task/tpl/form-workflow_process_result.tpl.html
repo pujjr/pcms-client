@@ -20,7 +20,14 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in workflowProcessResultList">
-            <td>{{item.actName}}</td>
+            <td>
+                {{item.actName}}
+                <span ng-switch="item.actId">
+                    <span ng-switch-when="zlsh">
+                        <a href="javascript:" ng-if="item.outJumpType!='BACK'" ng-click="showApplyCheckResult(item.pathId)">(查看)</a>
+                    </span>
+                </span>
+            </td>
             <td>{{item.assigneeName}}</td>
             <td>
                 <div ng-switch="item.outJumpType">

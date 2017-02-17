@@ -196,7 +196,7 @@
                         <input type="text" id="driverLicenseDate" class="form-control" uib-datepicker-popup
                                ng-disabled="editable==false || applyInfo.tenant.driverLicenseType =='jzlx04'"
                                ng-required="requiredMap.driverLicenseDate"
-                               datepicker-options="dateOptions"
+                               datepicker-options="driverLicenseDateOptions"
                                is-open="applyInfo.tenant.isOpenDriverLicenseDate" ng-model="applyInfo.tenant.driverLicenseDate" >
                         <span class="input-group-btn">
                             <button type="button" class="form-control btn btn-default" ng-disabled="editable==false"  ng-click="applyInfo.tenant.isOpenDriverLicenseDate=!applyInfo.tenant.isOpenDriverLicenseDate" ><i class="glyphicon glyphicon-calendar"></i></button>
