@@ -51,4 +51,10 @@ angular.module('pu.loanquery.services')
                 }
             });
         };
+        this.getMyDoTaskList = function(){
+            return RestApi.all("/loanquery/getMyDoTaskList").getList();
+        }
+        this.getAllLoanApplyTaskList = function(){
+            return RestApi.all("/loanquery/getAllLoanApplyTaskList").getList();
+        }
     });

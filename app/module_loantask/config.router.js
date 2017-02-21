@@ -184,6 +184,12 @@ angular.module('app')
                     templateUrl:'module_offer/tpl/offer-task-history.html',
                     controller:'OfferController'
                 })
+                //催收任务查询
+                .state('app.loantask.history.collection', {
+                    url: '/collection',
+                    templateUrl:'module_assetsmanage/tpl/collection-task-history.html',
+                    controller:'CollectionController'
+                })
                 .state('app.loantask.detail', {
                     url: '/process',
                     abstract: true,

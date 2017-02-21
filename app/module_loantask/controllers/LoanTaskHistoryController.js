@@ -27,6 +27,9 @@ angular.module("pu.loantask.controllers")
         };
         $scope.showOfferTask = function(){
             $state.go("app.loantask.history.offer");
+        };
+        $scope.showCollectionTask = function(){
+            $state.go("app.loantask.history.collection");
         }
 
     })

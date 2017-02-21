@@ -100,5 +100,71 @@ angular.module('pu.assetsmanage.services')
         };
         this.commitSettleApprove = function(taskId){
             return RestApi.all("/collection/commitSettleApprove").all(taskId).post();
+        };
+        this.showCollectionTaskDetail = function(item){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'static',
+                resolve:{
+                    item:function(){
+                        return item;
+                    }
+                },
+                size:'lg',
+                templateUrl :'module_assetsmanage/tpl/dialog-collection-apply-info.html',
+                controller:function($scope,$rootScope,RestApi,CollectionService,SysDictService,UnitInfoService){
+                    $scope.businessKey = item.businessKey;
+                    $scope.appId = item.appId;
+                    $scope.procDefId = item.procDefId;
+                    $scope.procInstId = item.procInstId;
+                    CollectionService.getCollectionAppyInfo($scope.businessKey).then(function(response){
+                        $scope.applyVo = response;
+                        var taskType = response.taskType;
+                        if(taskType=='csrwlx02'){
+                            $scope.taskName = '上门催收';
+                            $scope.visitReasonList = SysDictService.queryDictDataByTypeCode("smcsyy").$object;
+                        }
+                        if(taskType =='csrwlx03'){
+                            $scope.taskName = '委外催收';
+                            $scope.outReasonList =  SysDictService.queryDictDataByTypeCode("wycsyy").$object;
+                            $scope.outUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx01').$object;
+                        }
+                        if(taskType =='csrwlx04'){
+                            $scope.taskName = '委外收车';
+                            $scope.recoverReasonList = SysDictService.queryDictDataByTypeCode("wwscyy").$object;
+                            $scope.recoverUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                        }
+                        if(taskType =='csrwlx05'){
+                            $scope.taskName = '车辆退回';
+                            $scope.backReasonList = SysDictService.queryDictDataByTypeCode("clthyy").$object;
+                        }
+                        if(taskType =='csrwlx06'){
+                            $scope.taskName = '资产处置';
+                            $scope.disposeReasonList = SysDictService.queryDictDataByTypeCode("zcczyy").$object;
+                            $scope.disposeUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                        }
+                        if(taskType =='csrwlx07'){
+                            $scope.taskName = '诉讼';
+                            $scope.lawsuitReasonList = SysDictService.queryDictDataByTypeCode("ssyy").$object;
+                            $scope.lawsuitUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx03').$object;
+                        }
+                    });
+                    $scope.getWorkflowProcessResultByProcInstId = function(){
+                        $scope.workflowProcessResultList = QueryService.getWorkflowProcessResultByProcInstId($scope.procInstId).$object;
+                    };
+                    $scope.openWorkflowDiagram = function(taskId ) {
+                        var processDefinitionId = $scope.procDefId;
+                        var processInstanceId = $scope.procInstId;
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        };
+        //查询已申请催收任务
+        this.getApplyCollectionTaskListByOperId = function(){
+            return RestApi.all("/collection/getApplyCollectionTaskListByOperId").getList();
         }
     });

@@ -176,5 +176,39 @@ angular.module("pu.loanquery.controllers")
         $scope.showRunTaskList = function(){
             LoanQueryService.showRunTaskList($scope.appId);
         }
+        //查询我办理的任务
+        $scope.initMyDoTaskList = function(){
+            $scope.taskTypeList=[];
+            SysDictService.queryDictDataByTypeCode("dhsqlx").then(function(response){
+                $scope.taskTypeList = response;
+                SysDictService.queryDictDataByTypeCode("csrwlx").then(function(response){
+                    $scope.taskTypeList=$scope.taskTypeList.concat(response);
+                    SysDictService.queryDictDataByTypeCode("darwlx").then(function(response){
+                        $scope.taskTypeList=$scope.taskTypeList.concat(response);
+                    })
+                })
+            });
+            $scope.myDoTaskList = LoanQueryService.getMyDoTaskList().$object;
+        };
+        $scope.queryMyDoTaskList = function(){
+            $scope.myDoTaskList = LoanQueryService.getMyDoTaskList().$object;
+        }
+        //查询所有贷后办理的任务
+        $scope.initAllApplyTaskList = function(){
+            $scope.taskTypeList=[];
+            SysDictService.queryDictDataByTypeCode("dhsqlx").then(function(response){
+                $scope.taskTypeList = response;
+                SysDictService.queryDictDataByTypeCode("csrwlx").then(function(response){
+                    $scope.taskTypeList=$scope.taskTypeList.concat(response);
+                    SysDictService.queryDictDataByTypeCode("darwlx").then(function(response){
+                        $scope.taskTypeList=$scope.taskTypeList.concat(response);
+                    })
+                })
+            });
+            $scope.taskList = LoanQueryService.getAllLoanApplyTaskList().$object;
+        };
+        $scope.queryAllApplyTaskList = function(){
+            $scope.taskList = LoanQueryService.getAllLoanApplyTaskList().$object;
+        }
     })
 ;

@@ -21,10 +21,10 @@ angular.module('pu.publicrepay.services')
                 backdrop:'static',
                 size:'lg',
                 templateUrl :'module_publicrepay/tpl/dialog-publicrepay-add.html',
-                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal){
+                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,BankService){
                     $scope.appId = appId;
                     $scope.applyPublicRepayVo = {};
-
+                    $scope.bankAcctInfoList = BankService.getBankAcctInfoList("yhzhyt02",true).$object;
                     PublicRepayService.getPublicRepayFeeItem($scope.appId).then(function(response){
                         $scope.applyPublicRepayVo.feeItem = response;
                         $scope.applyPublicRepayVo.totalRepayAmount = ($scope.applyPublicRepayVo.feeItem.repayCapital+
@@ -64,11 +64,12 @@ angular.module('pu.publicrepay.services')
                 },
                 size:'lg',
                 templateUrl :'module_publicrepay/tpl/dialog-publicrepay-task-detail.html',
-                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,QueryService,item,$uibModalInstance,$rootScope){
+                controller:function($scope,RestApi,PublicRepayService,ToolsService,modal,QueryService,item,$uibModalInstance,$rootScope,BankService){
                     $scope.businessKey = item.id;
                     $scope.appId = item.appId;
                     $scope.procDefId = item.procDefId;
                     $scope.procInstId = item.procInstId;
+                    $scope.bankAcctInfoList = BankService.getBankAcctInfoList("yhzhyt02",true).$object;
                     PublicRepayService.getApplyPublicRepayInfo($scope.businessKey).then(function(response){
                         $scope.applyPublicRepayVo = response;
                     });

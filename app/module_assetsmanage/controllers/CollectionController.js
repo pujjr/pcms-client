@@ -17,7 +17,7 @@ angular.module("pu.assetsmanage.controllers")
         };
         $scope.initCollection = function(){
             $scope.initCollectionData();
-            //鏍规嵁涓嶅悓鐨勭被鍨嬭姹備笉鍚屾暟鎹?
+            //根据流程定义ID初始化数据
             if($scope.workflowKey =='DHCS' || $scope.workflowKey =='WWCS'||$scope.workflowKey =='SMCS'){
                 $scope.collectionStatusList = SysDictService.queryDictDataByTypeCode("cszt").$object;
                 $scope.overdueReasonList  =  SysDictService.queryDictDataByTypeCode("yqyy").$object;
@@ -341,6 +341,12 @@ angular.module("pu.assetsmanage.controllers")
             ArchiveService.doCreateCollectionArchiveTask($scope.appId,archiveType).then(function(){
                 toaster.pop('success', '操作提醒', '创建任务成功 ');
             })
+        };
+        $scope.initCollectionHistoryTaskList = function(){
+            $scope.taskList = CollectionService.getApplyCollectionTaskListByOperId().$object;
+        };
+        $scope.showCollectionTaskDetail = function(item){
+            CollectionService.showCollectionTaskDetail(item);
         }
     })
 ;

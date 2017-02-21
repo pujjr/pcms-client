@@ -33,6 +33,18 @@ angular.module('app')
                     templateUrl:'module_loanquery/tpl/loanquery-detail.html',
                     controller:'LoanQueryController'
                 })
+                //查询我办理的任务
+                .state('app.loanquery.mydotask',{
+                    url:'/mydotask',
+                    templateUrl:'module_loanquery/tpl/mydotask-list.html',
+                    controller:'LoanQueryController'
+                })
+                //查询所有贷后所有流程
+                .state('app.loanquery.alltask',{
+                    url:'/alltask',
+                    templateUrl:'module_loanquery/tpl/allapplytask-list.html',
+                    controller:'LoanQueryController'
+                })
         }
     ]
 );

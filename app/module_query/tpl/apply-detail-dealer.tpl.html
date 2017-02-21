@@ -5,6 +5,8 @@
                 <span class="fs-title"><i class="fa fa-globe mr"></i>申请单详细信息-{{applyInfo.appId}}</span>
             </div>
             <div class="data-table-header__actions">
+                <button class="btn btn-default btn-sm" type="button"  ng-if="nodeMap.fkfh"  ng-click="printPdf(applyInfo.appId,'hzh','打印核准涵')"><i class="fa fa-print m-r-sm"></i>打印核准函</button>
+                <button class="btn btn-default btn-sm" type="button"  ng-click="printPdf(applyInfo.appId,'sqd','打印申请单')"><i class="fa fa-print m-r-sm"></i>打印申请单</button>
                 <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
             </div>
         </header>
@@ -33,6 +35,12 @@
                 <span>签约资料</span>
             </uib-tab-heading>
             <ng-file-manage on-init="initSignFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
+        </uib-tab>
+        <uib-tab index="4" select="printContract()"  ng-if="nodeMap.fkfh">
+            <uib-tab-heading >
+                <span>合同补打</span>
+            </uib-tab-heading>
+            <div ng-include="'module_task/tpl/form-apply-contract-print.html'"></div>
         </uib-tab>
     </uib-tabset>
 </div>

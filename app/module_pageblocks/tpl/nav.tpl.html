@@ -65,6 +65,18 @@
       <span class="font-bold">我发起的任务</span>
     </a>
   </li>
+  <li ui-sref-active="active" ng-if="hasPrimission('app.loanquery.mydotask')">
+    <a ui-sref="app.loanquery.mydotask" >
+      <i class="fa fa-tasks icon text-info-dker"></i>
+      <span class="font-bold">我办理的任务</span>
+    </a>
+  </li>
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.loanquery.alltask')">
+    <a ui-sref="app.loanquery.alltask">
+      <i class="fa fa-tasks icon text-info-dker"></i>
+      <span class="font-bold">贷后任务监控</span>
+    </a>
+  </li>
   <li ui-sref-active="active" ng-if="hasPrimission('app.charge')">
     <a ui-sref="app.charge" >
       <i class="fa fa-jpy icon text-info-dker"></i>
@@ -77,7 +89,7 @@
       <span class="font-bold">档案整理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.telincome.list')">
     <a ui-sref="app.telincome.list" >
       <i class="fa fa-tty icon text-info-dker"></i>
       <span class="font-bold">来电记录</span>
@@ -147,7 +159,7 @@
       <span class="font-bold">银行参数管理</span>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="hasPrimission('app.bankacctinfo.list')">
     <a ui-sref="app.bankacctinfo.list">
       <i class="fa fa-bank icon text-info-dker"></i>
       <span class="font-bold">银行账号管理</span>
