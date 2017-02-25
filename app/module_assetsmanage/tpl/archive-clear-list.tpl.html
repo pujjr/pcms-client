@@ -1,26 +1,54 @@
 <!--档案整理-->
 <div ng-init="initArchiveClear()">
-    <div class="panel_main">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-header-title">已放款档案整理</h3></div>
+        <!--
         <div class="panel-header">
             <div class="panel-header-wrapper">
                 <h2 class="panel-header-title">已放款档案整理</h2>
             </div>
         </div>
+        -->
         <div class="data-table-container">
             <header class="data-table-header">
                 <div class="data-table-header__label">
+                    <div class="row m-t-md">
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <input type="text" class="form-control" id="appId" ng-model="vm.appId" placeholder="申请单号">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <input type="text" class="form-control" id="contractNo" ng-model="vm.contractNo" placeholder="合同编号">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <select  class="form-control" ng-model="vm.archiveStatus">
+                                    <option value="" selected>全部</option>
+                                    <option value="dazt01">待打印</option>
+                                    <option value="dazt02">待邮寄</option>
+                                    <option value="dazt09">待打印汇总清单</option>
+                                    <option value="dazt03">待提交归档</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="queryArchiveToDoTaskList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                        </div>
+                    </div>
                     <span class="fs-title"></span>
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="archivePost()">档案邮寄</button>
-                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="printPostList()">打印邮寄清单</button>
+                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="archivePost()"><i class="fa fa-modx" aria-hidden="true"></i>档案邮寄</button>
+                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="printPostSummaryList()"><i class="fa fa-print" aria-hidden="true"></i> 打印邮寄清单</button>
                     <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="applyArchiveLog()">提交档案归档</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
-                    <th style="width:60px"><input type="checkbox" ng-model="selectall" ng-click="selectAll()"></th>
                     <th style="width:60px">档案编号</th>
                     <th>申请单号</th>
                     <th>客户姓名</th>
@@ -36,7 +64,6 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in taskList">
-                    <td><input type="checkbox" ng-model="item.checked" ng-click="addToSelected(item)"></td>
                     <td>{{item.archiveNo}}</td>
                     <td>{{item.appId}}</td>
                     <td>{{item.custName}}</td>
@@ -51,41 +78,38 @@
                     <td>{{item.expressCompanyDesc}}</td>
                     <td>{{item.expressNo}}</td>
                     <td>
-                        <a href="javascript:" ng-click="printArchiveCheckInfo(item)">打印核对归档信息</a>
+                        <a href="javascript:"  ng-click="printArchiveCheckInfo(item)">打印核对归档信息</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
             <div class="has-divider has-divider--dark"></div>
-            <div class="toolbar">
-                <div class="toolbar__left mr++">
+        </div>
+        <div class="toolbar">
+            <div class="toolbar__left mr++">
                     <span ng-if="paginationInfo.totalItem==0">
                         无查询结果
                     </span>
-                </div>
+            </div>
                 <span class="toolbar__label fs-title">
 
                 </span>
-                <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
-                    <div class="mr+++">
+            <div class="toolbar__right" ng-if="paginationInfo.totalItem>0">
+                <div class="mr+++">
                     <span>
                         总共{{paginationInfo.totalItem}}条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每页显示：{{paginationInfo.pageSize}}条
                     </span>
-                    </div>
-                    <div>
-                        <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
-                                        ng-model="paginationInfo.curPage"
-                                        max-size="paginationInfo.maxSize"
-                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
-                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-                                        last-text="&raquo;">
-                        </uib-pagination>
-                    </div>
+                </div>
+                <div>
+                    <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
+                                    ng-model="paginationInfo.curPage"
+                                    max-size="paginationInfo.maxSize"
+                                    items-per-page="paginationInfo.pageSize" ng-change="queryArchiveToDoTaskList()"
+                                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                    last-text="&raquo;">
+                    </uib-pagination>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-
-
 </div>

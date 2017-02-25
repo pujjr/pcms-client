@@ -218,6 +218,9 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.openInsuranceClaimsHis = function(insuranceId){
             InsManageService.showInsuranceClaimsHis(insuranceId);
+        };
+        $scope.queryRepayQueueList = function(){
+            $scope.repayQueueList = LoanQueryService.getRepayQueueByAppId($stateParams.appId).$object;
         }
 
     })

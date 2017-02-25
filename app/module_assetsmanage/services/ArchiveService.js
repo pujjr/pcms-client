@@ -1,7 +1,7 @@
 angular.module('pu.assetsmanage.services')
     .service("ArchiveService",function($window,RestApi,$uibModal,$q,toaster,modal){
-        this.getArchiveToDoTaskList = function(appId,params){
-            return RestApi.all("/archive/getArchiveToDoTaskList").getList();
+        this.getArchiveToDoTaskList = function(params){
+            return RestApi.all("/archive/getArchiveToDoTaskList").getList(params);
         };
         this.getArchiveTaskDetail = function(archiveTaskId,archiveTaskType){
             return RestApi.all("/archive/getArchiveTaskDetail").all(archiveTaskId).all(archiveTaskType).getList();
@@ -82,19 +82,50 @@ angular.module('pu.assetsmanage.services')
                 }
             });
         };
-        this.archivePost = function(selItems){
+        //档案邮寄处理服务
+        this.archivePost = function(){
             var modalInstance = $uibModal.open({
                 animation: false,
                 backdrop:'false',
+                size:'lg',
                 templateUrl :'module_assetsmanage/tpl/dialog-archive-post.html',
                 controller:function($scope,RestApi,modal,ArchiveService,SysDictService){
-                    $scope.item = {};
-                    $scope.item.selArchives = selItems;
-                    $scope.expressCompanyList = SysDictService.queryDictDataByTypeCode("kdgs").$object;
+                    $scope.leftList =  ArchiveService.getArchiveToDoTaskList({'archiveStatus':'dazt02','pageSize':100}).$object;
+                    $scope.rightList = [];
+                    $scope.addToRight = function(item){
+                        for(var i = 0 ;i<$scope.leftList.length ; i++){
+                            if($scope.leftList[i].archiveTaskId == item.archiveTaskId){
+                                $scope.leftList.splice(i,1);
+                                break;
+                            }
+                        };
+                        $scope.rightList.push(item);
+                    };
+                    $scope.removeFromRight =  function(item){
+                        for(var i = 0 ;i<$scope.rightList.length ; i++){
+                            if($scope.rightList[i].archiveTaskId == item.archiveTaskId){
+                                $scope.rightList.splice(i,1);
+                                break;
+                            }
+                        };
+                        $scope.leftList.push(item);
+                    };
                     $scope.ok = function(){
-                        ArchiveService.saveArchivePost($scope.item).then(function(response){
-                            modalInstance.close();
-                        })
+                        if($scope.rightList.length==0){
+                            modal.error("请至少选择一个邮寄客户");
+                        }else {
+                            ArchiveService.inputArchivePostInfo().then(function(response){
+                                console.log(response);
+                                var selArchives = [];
+                                angular.forEach($scope.rightList,function(item){
+                                    selArchives.push(item.archiveTaskId);
+                                })
+                                response.selArchives = selArchives;
+                                ArchiveService.saveArchivePost(response).then(function(response){
+                                    modalInstance.close();
+                                })
+                            })
+                        }
                     }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
@@ -103,6 +134,144 @@ angular.module('pu.assetsmanage.services')
             });
             return modalInstance.result;
         };
+        //打印邮寄汇总清单
+        this.archivePrintPostSummary = function(){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'false',
+                size:'lg',
+                templateUrl :'module_assetsmanage/tpl/dialog-archive-post-print-summary.html',
+                controller:function($scope,RestApi,modal,ArchiveService,SysDictService){
+                    $scope.leftList =  ArchiveService.getArchiveToDoTaskList({'archiveStatus':'dazt09','pageSize':100}).$object;
+                    $scope.rightList = [];
+                    $scope.addToRight = function(item){
+                        for(var i = 0 ;i<$scope.leftList.length ; i++){
+                            if($scope.leftList[i].archiveTaskId == item.archiveTaskId){
+                                $scope.leftList.splice(i,1);
+                                break;
+                            }
+                        };
+                        $scope.rightList.push(item);
+                    };
+                    $scope.removeFromRight =  function(item){
+                        for(var i = 0 ;i<$scope.rightList.length ; i++){
+                            if($scope.rightList[i].archiveTaskId == item.archiveTaskId){
+                                $scope.rightList.splice(i,1);
+                                break;
+                            }
+                        };
+                        $scope.leftList.push(item);
+                    };
+                    $scope.ok = function(){
+                        if($scope.rightList.length==0){
+                            modal.error("请至少选择一个打印客户");
+                        }else {
+                            var selArchives = [];
+                            angular.forEach($scope.rightList,function(item){
+                                selArchives.push(item.archiveTaskId);
+                            })
+                            RestApi.all("/archive/printArchivePostSummary").post(selArchives).then(function(response){
+                                modalInstance.close(selArchives);
+                            })
+                        }
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            return modalInstance.result;
+        };
+        //打印PDF文件
+        this.printArchivePostSummaryPdf = function(detailList){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                size:'lg',
+                backdrop:'static',
+                templateUrl :'module_utils/tpl/dialog-print-pdf.html',
+                controller:function($scope,RestApi,ArchiveService){
+                    $scope.param =detailList;
+                    $scope.printTitle = "核对邮寄汇总清单";
+                    $scope.loading = RestApi.all("/print/generateContract/yjhzqd").post($scope.param).then(function(response){
+                        $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
+                    })
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        };
+        //提交档案归档
+        this.applyArchiveLog = function(){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'false',
+                size:'lg',
+                templateUrl :'module_assetsmanage/tpl/dialog-apply-archive-log.html',
+                controller:function($scope,RestApi,modal,ArchiveService,SysDictService){
+                    $scope.leftList =  ArchiveService.getArchiveToDoTaskList({'archiveStatus':'dazt03','pageSize':100}).$object;
+                    $scope.rightList = [];
+                    $scope.addToRight = function(item){
+                        for(var i = 0 ;i<$scope.leftList.length ; i++){
+                            if($scope.leftList[i].archiveTaskId == item.archiveTaskId){
+                                $scope.leftList.splice(i,1);
+                                break;
+                            }
+                        };
+                        $scope.rightList.push(item);
+                    };
+                    $scope.removeFromRight =  function(item){
+                        for(var i = 0 ;i<$scope.rightList.length ; i++){
+                            if($scope.rightList[i].archiveTaskId == item.archiveTaskId){
+                                $scope.rightList.splice(i,1);
+                                break;
+                            }
+                        };
+                        $scope.leftList.push(item);
+                    };
+                    $scope.ok = function(){
+                        if($scope.rightList.length==0){
+                            modal.error("请至少选择一个打印客户");
+                        }else {
+                            var selArchives = [];
+                            angular.forEach($scope.rightList,function(item){
+                                selArchives.push({'taskId':item.taskId,'archiveTaskId':item.archiveTaskId});
+                            });
+                            modal.confirm("操作提醒","确认提交归档?").then(function(){
+                                RestApi.all("/archive/applyArchiveLog").post(selArchives).then(function(response){
+                                    modalInstance.close();
+                                })
+                            })
+                        }
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            return modalInstance.result;
+        };
+        //输入档案邮寄信息
+        this.inputArchivePostInfo = function(){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'false',
+                size:'md',
+                templateUrl :'module_assetsmanage/tpl/dialog-input-postinfo.html',
+                controller:function($scope,RestApi,modal,ArchiveService,SysDictService){
+                    $scope.item = {};
+                    $scope.expressCompanyList = SysDictService.queryDictDataByTypeCode("kdgs").$object;
+                    $scope.ok = function(){
+                        modalInstance.close($scope.item);
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            return modalInstance.result;
+        };
+        //档案补充资料
         this.archiveSupply = function(){
             var modalInstance = $uibModal.open({
                 animation: false,
@@ -146,9 +315,6 @@ angular.module('pu.assetsmanage.services')
                 }
             });
             return modalInstance.result;
-        };
-        this.applyArchiveLog = function(params){
-            return RestApi.all("/archive/applyArchiveLog").post(params);
         };
         this.getArchiveApplyInfo = function(archiveTaskId){
             return RestApi.one("/archive/getArchiveApplyInfo",archiveTaskId).get();
@@ -232,5 +398,5 @@ angular.module('pu.assetsmanage.services')
         };
         this.getHisSupplyInfo = function(archiveTaskId){
             return RestApi.all("/archive/getHisSupplyInfo").all(archiveTaskId).getList();
-        }
+        };
     });

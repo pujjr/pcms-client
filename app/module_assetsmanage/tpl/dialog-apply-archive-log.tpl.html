@@ -1,6 +1,6 @@
 <div ng-init="init()" >
     <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>档案邮寄</h4>
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>提交档案归档</h4>
     </div>
     <div class="modal-body" >
         <div class="panel-body">
@@ -9,7 +9,7 @@
                     <div class="panel_main">
                         <div class="panel-header">
                             <div class="panel-header-wrapper">
-                                <h2 class="panel-header-title">待邮寄客户(每次最多返回100个客户)(剩余：{{leftList.length}})</h2>
+                                <h2 class="panel-header-title">待归档客户(每次最多返回100个客户)(剩余：{{leftList.length}})</h2>
                                 <input type="text"  ng-model="filterLeftStr" stype="max-width:100px;heigth:10px" placeholder="申请单/合同编号/客户姓名" >
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                     <div class="panel_main">
                         <div class="panel-header">
                             <div class="panel-header-wrapper">
-                                <h2 class="panel-header-title">已选邮寄客户({{rightList.length}})</h2>
+                                <h2 class="panel-header-title">已选归档客户({{rightList.length}})</h2>
                                 <input type="text"  ng-model="filterRightStr" stype="max-width:100px;heigth:10px" placeholder="申请单/合同编号/客户姓名" >
                             </div>
                         </div>
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success" type="button" ng-click="ok()">确认邮寄</button>
+        <button class="btn btn-success" type="button" ng-click="ok()">确认归档</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
     </div>
 </div>

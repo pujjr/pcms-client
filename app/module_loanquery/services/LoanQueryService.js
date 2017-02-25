@@ -57,4 +57,7 @@ angular.module('pu.loanquery.services')
         this.getAllLoanApplyTaskList = function(){
             return RestApi.all("/loanquery/getAllLoanApplyTaskList").getList();
         }
+        this.getRepayQueueByAppId = function(appId){
+            return RestApi.all("/loanquery/getRepayQueueByAppId").all(appId).getList();
+        }
     });
