@@ -116,7 +116,7 @@ angular.module("app")
                     $scope.appId = appId;
                     $scope.printTitle = title;
                     $scope.loading = TaskService.getContractOSSKey($scope.appId,key).then(function(response){
-                        $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
+                        $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey+"?v="+new Date();
                     })
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');

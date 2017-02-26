@@ -6,7 +6,7 @@
                         <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
-                        <button class="btn btn-default btn-sm" type="button"  ng-click="printPdf(appId,'hkrbg','打印还款日变更协议')"><i class="fa fa-print m-r-sm"></i>打印还款日变更协议</button>
+                        <button class="btn btn-default btn-sm" type="button"  ng-click="printPdf(businessKey,'hkrbg','打印还款日变更协议')"><i class="fa fa-print m-r-sm"></i>打印还款日变更协议</button>
                         <button class="btn btn-default btn-sm" type="button" ng-click="showCustomDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>客户详细信息</button>
                         <button class="btn btn-danger btn-sm" type="button"  ng-click="cancelAlterRepayDateTask()"><i class="fa fa-stop m-r-sm" aria-hidden="true"></i></i>取消任务</button>
                         <button class="btn btn-success btn-sm" type="submit"  ng-disabled="form.$invalid" ng-click="commitConfirmAlterRepayDateTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>

@@ -14,7 +14,7 @@
         <tr ng-repeat="item in repayQueueList">
             <td>{{$index+1}}</td>
             <td>{{item.applyTime | mysqlDatetime}}</td>
-            <td>{{item.queueTaskType }}</td>
+            <td>{{item.queueTaskTypeDesc }}</td>
             <td>{{item.execDate |mysqlDate}}</td>
             <td>{{item.amount}}</td>
             <td>{{item.queueTaskStatusDesc}}</td>

@@ -48,7 +48,7 @@ angular.module("pu.query.controllers")
         };
         $scope.generateContract = function(contractKey){
             $scope.processGenContract = TaskService.getContractOSSKey($scope.applyInfo.appId,contractKey).then(function(response){
-                $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
+                $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey+"?v="+new Date();
             })
         };
         /**初始化重新申请文件目录**/
