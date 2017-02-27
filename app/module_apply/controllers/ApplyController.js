@@ -458,7 +458,7 @@ angular.module("pu.apply.controllers")
         };
         //共组人身份证输入完毕如果与配偶为同一人则自动同步配偶信息到共租人
         $scope.inputCloesseeIdNoComplete = function(){
-            if($scope.applyInfo.tenant.idNo == $scope.applyInfo.spouse.idNo){
+            if($scope.applyInfo.cloessee.idNo == $scope.applyInfo.spouse.idNo){
                 $scope.applyInfo.cloessee.mobile = $scope.applyInfo.spouse.mobile;
                 $scope.applyInfo.cloessee.unitName = $scope.applyInfo.spouse.unitName;
                 $scope.applyInfo.cloessee.unitType = $scope.applyInfo.spouse.unitType;

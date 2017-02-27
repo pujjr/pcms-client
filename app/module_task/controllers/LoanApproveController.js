@@ -36,7 +36,7 @@ angular.module("pu.task.controllers")
         };
         $scope.commitLoanApproveTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){
-                TaskService.commitLoanApproveTask($scope.loanApproveVo,$stateParams.taskId).then(function(response){
+                TaskService.commitLoanApproveTask($scope.loanApproveVo,$stateParams.businessKey,$stateParams.taskId).then(function(response){
                     $state.go('app.task.todolist');
                     toaster.pop('success', '操作提醒','提交放款审批任务成功')
                 })

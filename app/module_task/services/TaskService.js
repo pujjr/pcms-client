@@ -51,8 +51,8 @@ angular.module('pu.task.services')
         this.commitPrevLoanApproveTask = function(taskId){
             return RestApi.all("/task/commitPrevLoanApproveTask").all(taskId).post();
         };
-        this.commitLoanApproveTask = function(loanApproveVo,taskId){
-            return RestApi.all("/task/commitLoanApproveTask").all(taskId).post(loanApproveVo);
+        this.commitLoanApproveTask = function(loanApproveVo,appId,taskId){
+            return RestApi.all("/task/commitLoanApproveTask").all(appId).all(taskId).post(loanApproveVo);
         };
         this.queryReconsiderApplyInfo = function(taskId){
             return RestApi.one("/task/getReconsiderInfo",taskId).get();
@@ -199,4 +199,7 @@ angular.module('pu.task.services')
         this.getCheckVoByPathId = function(pathId) {
             return RestApi.one("/task/getCheckVoByPathId", pathId).get();
         };
+        this.exportWaitingLoanReport = function(){
+            return RestApi.one("/query","exportWaitingLoanReport").get();
+        }
     });

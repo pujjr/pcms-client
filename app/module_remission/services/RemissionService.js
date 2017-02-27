@@ -22,7 +22,10 @@ angular.module('pu.remission.services')
                     $scope.appId = appId;
                     $scope.applyVo = {};
                     $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
-                    $scope.applyVo.remissionDate = (new Date()).getTime();
+                    //最小结清可选日期为当前日期
+                    ToolsService.getServerDateTime().then(function(response){
+                        $scope.applyVo.remissionDate = ToolsService.convertStr82Date(response);
+                    })
                     LoanQueryService.getLoanCustNeedRepayInfo($scope.appId).then(function(response){
                         $scope.applyVo.feeItem = response;
                     })

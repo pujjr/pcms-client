@@ -14,6 +14,7 @@ angular.module("pu.task.controllers")
             var params={inTaskDefKeys:'fk',appStatus:'sqdzt11'}
            $scope.waitLoanTaskList = TaskService.queryToDoTaskList(params).$object;
         };
+        //通过过滤条件查询目前待放款的任务
         $scope.queryWaitLoanFilter = function(){
             var params={inTaskDefKeys:'fk',appStatus:'sqdzt11'}
             angular.extend($scope.queryParam,params);
@@ -83,6 +84,15 @@ angular.module("pu.task.controllers")
                     })
 
                 })
+            })
+        };
+        $scope.exportWaitingLoanReport = function(){
+            TaskService.exportWaitingLoanReport().then(function(response){
+                var ossKey = response.ossKey;
+                var link = document.createElement('a');
+                link.href=SERVER_URL.OSS_URL+ossKey;
+                link.click();
+                window.URL.revokeObjectURL(link.href);
             })
         }
 
