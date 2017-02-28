@@ -164,7 +164,7 @@
                             <div class="form-group form-group-sm">
                                 <label for="repayAcctNo" class="col-sm-6 control-label">默认还款银行账号：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="repayAcctNo" class="form-control" ng-disabled="signEditable==false" ng-model="signContractVo.repayAcctNo" required>
+                                    <input type="text" id="repayAcctNo" class="form-control" ng-disabled="signEditable==false" verify-number="" ng-minlength="16" ng-maxlength="32" ng-model="signContractVo.repayAcctNo" required>
                                 </div>
                             </div>
                         </div>

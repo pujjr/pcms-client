@@ -206,6 +206,5 @@ angular.module("app")
                 }
             });
         };
-        $scope.app.settings.asideFolded = $location.search().hiddenAsideFolded=='true'?true:false;
 
     })
