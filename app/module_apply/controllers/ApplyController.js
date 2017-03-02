@@ -72,7 +72,7 @@ angular.module("pu.apply.controllers")
                     var financeFee = 0;
                     for(var i = 0 ; i<product.productPeriodList.length;i++){
                         if($scope.applyInfo.period==product.productPeriodList[i].period){
-                            financeFee = ($scope.finance1.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                            financeFee = Math.round(($scope.finance1.financeAmount/10000)*product.productPeriodList[i].financeFee);
                             break;
                         }
                     }
@@ -122,7 +122,7 @@ angular.module("pu.apply.controllers")
 
                     for(var i = 0 ; i<product.productPeriodList.length;i++){
                         if($scope.applyInfo.period==product.productPeriodList[i].period){
-                            financeFee = ($scope.finance2.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                            financeFee =  Math.round(($scope.finance2.financeAmount/10000)*product.productPeriodList[i].financeFee);
                             break;
                         }
                     }
@@ -168,7 +168,7 @@ angular.module("pu.apply.controllers")
                     var financeFee = 0;
                     for(var i = 0 ; i<product.productPeriodList.length;i++){
                         if($scope.applyInfo.period==product.productPeriodList[i].period){
-                            financeFee = ($scope.finance3.financeAmount/10000)*product.productPeriodList[i].financeFee;
+                            financeFee =  Math.round(($scope.finance3.financeAmount/10000)*product.productPeriodList[i].financeFee);
                             break;
                         }
                     }
@@ -206,7 +206,7 @@ angular.module("pu.apply.controllers")
                 for(var i = 1 ;i<=3; i++){
                     if(i==1){
                         var finance1={};
-                        var finance1 = {seq:1,select:true,salePrice:0,initPayPercent:0,
+                        var finance1 = {seq:1,select:true,
                             gpsFee:0, isFinanceGps:false,
                             purchaseTax:0,isPurchaseTax:false,
                             serviceFee:0,isServiceFee:false,
@@ -215,11 +215,17 @@ angular.module("pu.apply.controllers")
                             transferFee:0,isTransferFee:false,
                             addonFee:0,isAddonFee:false,
                             assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
+                        //选择产品后如果为二手车则评估价为300
+                        if($scope.applyInfo.product.productRule.enableAssessFee==true){
+                            finance1.assessFee = 300;
+                        }else{
+                            finance1.assessFee = 0;
+                        }
                         $scope.applyInfo.finances.push(finance1);
                     }
                     if(i==2){
                         var finance2={};
-                        var finance2 = {seq:2,select:false,salePrice:0,initPayPercent:0,
+                        var finance2 = {seq:2,select:false,
                             gpsFee:0, isFinanceGps:false,
                             purchaseTax:0,isPurchaseTax:false,
                             serviceFee:0,isServiceFee:false,
@@ -227,12 +233,13 @@ angular.module("pu.apply.controllers")
                             delayInsuranceFee:0,isDelayInsuranceFee:false,
                             transferFee:0,isTransferFee:false,
                             addonFee:0,isAddonFee:false,
+                            assessFee:0,
                             assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
                         $scope.applyInfo.finances.push(finance2);
                     }
                     if(i==3){
                         var finance3={};
-                        var finance3 = {seq:3,select:false,salePrice:0,initPayPercent:0,
+                        var finance3 = {seq:3,select:false,
                             gpsFee:0, isFinanceGps:false,
                             purchaseTax:0,isPurchaseTax:false,
                             serviceFee:0,isServiceFee:false,
@@ -240,6 +247,7 @@ angular.module("pu.apply.controllers")
                             delayInsuranceFee:0,isDelayInsuranceFee:false,
                             transferFee:0,isTransferFee:false,
                             addonFee:0,isAddonFee:false,
+                            assessFee:0,
                             assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
                         $scope.applyInfo.finances.push(finance3);
                     }
@@ -382,6 +390,12 @@ angular.module("pu.apply.controllers")
             }else{
                 $scope.initWatchFinance3();
             }
+            //激活车辆后产品如果为二手车则评估价为300
+            if($scope.applyInfo.product.productRule.enableAssessFee==true){
+                item.assessFee = 300;
+            }else{
+                item.assessFee = 0;
+            }
         };
         //清除融资信息
         $scope.deActiveFinance = function(item){
@@ -395,6 +409,7 @@ angular.module("pu.apply.controllers")
                         delayInsuranceFee:0,isDelayInsuranceFee:false,
                         transferFee:0,isTransferFee:false,
                         addonFee:0,isAddonFee:false,
+                        assessFee:0,
                         assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
                     angular.copy(obj,item);
                     watchFinance2Gps() ;
@@ -409,6 +424,7 @@ angular.module("pu.apply.controllers")
                         delayInsuranceFee:0,isDelayInsuranceFee:false,
                         transferFee:0,isTransferFee:false,
                         addonFee:0,isAddonFee:false,
+                        assessFee:0,
                         assessPrice:0,collateral:0,financeAmount:0,financeFee:0};
                     angular.copy(obj,item);
                     watchFinance3Gps() ;
@@ -688,7 +704,9 @@ angular.module("pu.apply.controllers")
                 //判断产品是否二手车，如果不是则评估价/售价=车辆指导价
                 if($scope.applyInfo.product.productRule.carType!='clly02'){
                     item.assessPrice = response.guidePrice;
-                }
+                };
+                item.salePrice = undefined;
+                item.initPayPercent = undefined;
             });
         };
        //查询未提交申请单列表

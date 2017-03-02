@@ -225,6 +225,13 @@ angular.module("pu.system.controllers")
             SysBranchService.setAccountRole(item).then(function(response){
                 toaster.pop('success', '操作提醒',response );
             });
+        };
+        $scope.resetPassword = function(accountId){
+            modal.confirm("操作提醒","确认重置"+accountId+"密码？重置后默认密码为6个1").then(function(){
+                SysAccountService.resetPassword(accountId).then(function(){
+                    toaster.pop('success', '操作提醒', "重置密码成功");
+                })
+            })
         }
     })
 ;

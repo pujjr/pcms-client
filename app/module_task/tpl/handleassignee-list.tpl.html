@@ -1,13 +1,34 @@
-<div ng-init="queryToAssigneeList()">
+<div ng-init="initToAssigneeList()">
     <div class="panel_main">
         <div class="panel-header">
             <div class="panel-header-wrapper">
                 <h2 class="panel-header-title">待分单任务</h2>
             </div>
         </div>
-        <div class="data-table-container">
+        <div class="data-table-container"  fix-div-sub-head=""  offset-y="50">
             <header class="data-table-header">
                 <div class="data-table-header__label">
+                    <div class="row m-t-sm">
+                        <div class="col-sm-3">
+                            <select id="branchId" class="form-control" ng-model="vm.branchId"
+                                    ng-options="item.id as (item.branchCode+'-'+item.branchName) for item in branchList" >
+                                <option value="">请选择经销商</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <input type="text" class="form-control" id="appId" ng-model="vm.appId" placeholder="申请单号">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <input type="text" class="form-control" id="name" ng-model="vm.name" placeholder="客户姓名">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="queryToAssigneeList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                        </div>
+                    </div>
                     <span class="fs-title"></span>
                     </div>
                 <div class="data-table-header__actions">
@@ -27,10 +48,11 @@
                 <thead>
                 <tr>
                     <th style="width:20px"><input type="checkbox" ng-model="selectAllStatus"  ng-click="checkAll()"></th>
-                    <th>任务名称</th>
+                    <th style="width:110px">任务名称</th>
                     <th>申请单号</th>
                     <th>产品名称</th>
                     <th>客户姓名</th>
+                    <th style="width:110px">客户类别</th>
                     <th>进件日期</th>
                     <th>所属经销商</th>
                     <th>分配时间</th>
@@ -39,18 +61,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in toDoTaskList">
+                <tr ng-repeat="item in toDoTaskList"  ng-class="{'danger':item.inJumpType=='BACK'}">
                     <td><input type="checkbox" ng-checked="item.checked" ng-click="item.checked = !item.checked"></td>
                     <td>{{item.taskName}}</td>
                     <td>{{item.businessKey}}</td>
                     <td>{{item.productName}}</td>
                     <td>{{item.tenantName}}</td>
-                    <td>{{item.createTime}}</td>
+                    <td>{{item.custType}}</td>
+                    <td>{{item.createTime | mysqlDatetime}}</td>
                     <td>{{item.branchName}}</td>
                     <td>{{item.startTime| mysqlDatetime}}</td>
                     <td>{{item.inJumpType}}/{{item.parentTaskName}}/{{item.parentAssignee}}</td>
                     <td>
-                        <a href="javascript:" ng-click="doTask(item)">查看任务</a>
+                        <a href="javascript:" ng-click="doTask(item)">查看任务
+                            <span ng-if="item.applyNodeCnt>1 &&
+                            (item.taskDefKey !='lrsqd' && item.taskDefKey !='bcsfzl' && item.taskDefKey != 'fysq' && item.taskDefKey!='jxsqy' && item.taskDefKey !='bcfkzl')">
+                                (经销商退回提交)</span></a></a>
                     </td>
                 </tr>
                 </tbody>
@@ -75,7 +101,7 @@
                         <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
                                         ng-model="paginationInfo.curPage"
                                         max-size="paginationInfo.maxSize"
-                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        items-per-page="paginationInfo.pageSize" ng-change="queryToAssigneeList()"
                                         previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
                                         last-text="&raquo;">
                         </uib-pagination>

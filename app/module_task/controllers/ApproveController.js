@@ -6,6 +6,7 @@ angular.module("pu.task.controllers")
     .controller('ApproveController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService,modal) {
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
+        $scope.appendToEl = angular.element(document.querySelector('#check-header'));
         $scope.initApprove = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
@@ -21,13 +22,12 @@ angular.module("pu.task.controllers")
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"zlsh");
             $scope.approveVo = {};
-            //审批显示审核结果，如果审核未建议有条件放款则设置审批意见为条件放款
             TaskService.getLastestCheckVo($stateParams.taskId).then(function(response){
                 if(response==null){
                     $scope.checkVo = {};
                 }else{
                     $scope.checkVo = response;
-                    if(response.result!=undefined && response.result=='tjlx102'){
+                    if(response.result!=undefined &&( response.result=='tjlx102'|| response.result == 'tjlx202')){
                         $scope.approveVo.result = 'tjlx202';
                         $scope.approveVo.loanExtConditon = response.loanExtConditon;
                     }

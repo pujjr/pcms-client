@@ -49,7 +49,10 @@ angular.module('app')
                         $state.go('access.signin');
                     }
 
-                } else {
+                }else if(response.status ==404){
+
+                }
+                else {
                     modal.error("查询数据错误，请重试！");
                 }
                 ;

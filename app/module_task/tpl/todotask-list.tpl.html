@@ -67,7 +67,10 @@
                         </span>
                         </td>
                     <td ng-if="item.taskDefKey!='jxsqy'">
-                        <a href="javascript:" ng-click="doTask(item)">{{item.taskName}}</a>
+                        <a href="javascript:" ng-click="doTask(item)">{{item.taskName}}
+                            <span ng-if="item.applyNodeCnt>1 &&
+                            (item.taskDefKey !='lrsqd' && item.taskDefKey !='bcsfzl' && item.taskDefKey != 'fysq' && item.taskDefKey!='jxsqy' && item.taskDefKey !='bcfkzl')">
+                                (经销商退回提交)</span></a>
                     </td>
                     <td ng-if="item.taskDefKey=='jxsqy'">
                         <a href="javascript:" ng-click="doTask(item)">签约</a>

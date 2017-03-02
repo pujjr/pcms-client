@@ -21,6 +21,9 @@ angular.module('pu.task.services')
         this.commitCheckTask = function(applyVo,checkVo,taskId){
             return RestApi.all("/task/commitCheckTask").all(taskId).post({"applyVo":applyVo,"checkVo":checkVo});
         };
+        this.saveCheckTask = function(applyVo,checkVo,taskId){
+            return RestApi.all("/task/saveCheckTask").all(taskId).post({"applyVo":applyVo,"checkVo":checkVo});
+        }
         this.commitApproveTask = function(applyVo,approveVo,taskId){
             return RestApi.all("/task/commitApproveTask").all(taskId).post({"applyVo":applyVo,"approveVo":approveVo});
         };
@@ -185,7 +188,37 @@ angular.module('pu.task.services')
                 }
             });
         };
+        this.showCloesseeCreditReport = function(appId){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                size:'lg',
+                backdrop:'static',
+                templateUrl :'module_task/tpl/dialog-showCreditReport.html',
+                controller:function($scope,RestApi,TaskService){
+                    $scope.loading=TaskService.getColesseeCreditReport(appId).then(function(response){
+                        if(response.errStatus==1){
+                            $scope.creditResponse = response;
+                            $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
+                        }else{
 
+                        }
+                    });
+                    $scope.refreshReport = function(){
+                        $scope.loading=TaskService.refreshColesseeCreditReport(appId).then(function(response){
+                            if(response.errStatus==1){
+                                $scope.creditResponse = response;
+                                $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
+                            }else{
+
+                            }
+                        });
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        };
 
         this.getLastestCheckVo = function(taskId) {
             return RestApi.one("/task/getLastestCheckVo", taskId).get();
@@ -201,5 +234,14 @@ angular.module('pu.task.services')
         };
         this.exportWaitingLoanReport = function(){
             return RestApi.one("/query","exportWaitingLoanReport").get();
+        };
+        this.getColesseeCreditReport = function(appId){
+            return RestApi.one("/task/getCloesseeCreditReport",appId).get();
+        };
+        this.refreshColesseeCreditReport = function(appId){
+            return RestApi.one("/task/refreshColesseeCreditReport",appId).get();
+        };
+        this.getLvlOneNearestApproveResult = function(taskId){
+            return RestApi.one("/task/getLvlOneNearestApproveResult",taskId).get();
         }
     });

@@ -48,7 +48,7 @@ angular.module('pu.extendperiod.services')
                     });
                     //获取申请有效截止日期
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
-                        $scope.applyVo.applyEndDate  = response.closingDate;
+                        $scope.applyVo.applyEndDate  = response.closingDate-1000*60*60*24*4;;
                     });
                     //监控选择新融资期限
                     $scope.$watch('applyVo.newPeriod', function (newVal, oldVal) {

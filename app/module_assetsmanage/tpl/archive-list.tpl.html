@@ -8,6 +8,21 @@
         <div class="data-table-container">
             <header class="data-table-header">
                 <div class="data-table-header__label">
+                    <div class="row m-t-sm">
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <input type="text" class="form-control" id="appId" ng-model="vm.appId" placeholder="申请单号">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <input type="text" class="form-control" id="contractNo" ng-model="vm.contractNo" placeholder="合同编号">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="initArchiveList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                        </div>
+                    </div>
                     <span class="fs-title"></span>
                 </div>
                 <div class="data-table-header__actions">
@@ -18,6 +33,7 @@
                 <thead>
                 <tr>
                     <th style="width:100px">档案编号</th>
+                    <th>归档类型</th>
                     <th>申请单号</th>
                     <th>客户姓名</th>
                     <th>合同编号</th>
@@ -33,6 +49,7 @@
                 <tbody>
                 <tr ng-repeat="item in archiveList">
                     <td>{{item.archiveNo}}</td>
+                    <td>{{item.archiveTypeDesc}}</td>
                     <td>{{item.appId}}</td>
                     <td>{{item.custName}}</td>
                     <td>{{item.contractNo}}</td>

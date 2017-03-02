@@ -23,7 +23,7 @@ angular.module("pu.charge.controllers")
             $scope.enableChargeList = ChargeService.getNotSelOfferModeList().$object;
         }
         $scope.generatorOfferChargeList = function(){
-            ChargeService.generatorOfferChargeList().then(function(){
+            $scope.loading = ChargeService.generatorOfferChargeList().then(function(){
                 toaster.pop('success', '操作提醒',"生成报盘成功");
                 $scope.enableChargeList = ChargeService.getNotSelOfferModeList().$object;
             })

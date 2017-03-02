@@ -17,5 +17,8 @@ angular.module('pu.system.services')
         };
         this.getAccountQueryAuthList = function(accountId){
             return RestApi.one("/sysaccount/getAccountQueryAuthList",accountId).get();
+        };
+        this.resetPassword = function(accountId){
+            return RestApi.all("sysaccount/resetPassword").all(accountId).post();
         }
     });

@@ -51,9 +51,6 @@ angular.module("pu.assetsmanage.controllers")
         $scope.initTelIncomeList = function(){
             $scope.loggedTelIncomeList = TelInterviewService.getLoggedTelIncomeCustInfo().$object;
         };
-        $scope.pageChangedTelIncomeList = function(){
-            $scope.loggedTelIncomeList = TelInterviewService.getLoggedTelIncomeCustInfo().$object;
-        };
         $scope.createTelIncome = function(){
             QueryService.selectApply().then(function(response){
                 $state.go(
@@ -62,6 +59,8 @@ angular.module("pu.assetsmanage.controllers")
                         "appId":response
                     }
                 )
+            },function(){
+                $scope.initTelIncomeList();
             })
         }
     })

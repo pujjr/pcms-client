@@ -54,7 +54,7 @@ angular.module('pu.settle.services')
                     })
                     //最大结清可选日期为当期结账日
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
-                        $scope.dateOptions.maxDate = new Date(parseInt(response.closingDate));
+                        $scope.dateOptions.maxDate = new Date(parseInt(response.closingDate)-1000*60*60*24*4);
                     });
                     $scope.$watch('applyVo.applyEffectDate', function (newVal, oldVal) {
                         if (newVal == oldVal || newVal == undefined)
@@ -113,7 +113,7 @@ angular.module('pu.settle.services')
                     })
                     //最大结清可选日期为当期结账日
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
-                        $scope.dateOptions.maxDate = new Date(parseInt(response.closingDate));
+                        $scope.dateOptions.maxDate = new Date(parseInt(response.closingDate)-1000*60*60*24*4);
                         $scope.applyVo.applyEffectDate =  $scope.dateOptions.maxDate;
                     });
                     //监视选择日期动作

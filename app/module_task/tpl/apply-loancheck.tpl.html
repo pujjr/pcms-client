@@ -73,6 +73,12 @@
                     </uib-tab-heading>
                     <div ng-include="'module_task/tpl/form-fraudhisresult-list.html'"></div>
                 </uib-tab>
+                <uib-tab index="10">
+                    <uib-tab-heading>
+                        <span>放款条件<span class="badge text-danger">{{conditionLoanCommentList.length}}</span></span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_task/tpl/form-conditionloancomment-list.html'"></div>
+                </uib-tab>
             </uib-tabset>
         </div>
     </ng-form>

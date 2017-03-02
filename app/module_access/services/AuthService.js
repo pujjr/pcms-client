@@ -63,7 +63,7 @@ angular.module('pu.access.services')
             user.oldPasswd = oldPasswd;
             user.newPasswd = newPasswd;
             var defered = $q.defer();
-            RestApi.all('accounts').all('modifyPasswd').post(user).then(function (response) {
+            RestApi.all('sysaccount').all('modifyPasswd').post(user).then(function (response) {
                 defered.resolve();
             }, function (response) {
                 defered.reject(response.message);

@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.task.controllers")
     .controller('LoanCheckController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,
-                                                BankService,SysAreaService,InsuranceService,modal) {
+                                                BankService,SysAreaService,InsuranceService,modal,QueryService) {
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
         $scope.initLoanCheck = function(){
@@ -34,7 +34,7 @@ angular.module("pu.task.controllers")
                     $scope.signContractVo.loanCheck.applyFormCheckResult = "1";
                 }
             });
-
+            $scope.conditionLoanCommentList = QueryService.queryApplyConditionLoanCommentList($stateParams.businessKey).$object;
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"jxsqy");
         };
         $scope.saveLoanCheckInfo = function(){

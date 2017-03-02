@@ -11,10 +11,15 @@ angular.module("pu.query.controllers")
             $scope.queryApplyList();
         };
         $scope.queryApplyList = function(){
-            $scope.applyList= QueryService.queryApplyList().$object;
+            $rootScope.resetPage();
+            $scope.loading = QueryService.queryApplyList().then(function(response){
+                $scope.applyList = response;
+            });
         };
         $scope.pageChanged = function(){
-            $scope.queryApplyList();
+            $scope.loading = QueryService.queryApplyList().then(function(response){
+                $scope.applyList = response;
+            });
         }
         $scope.initApplyDetail = function(){
             $scope.doInitApplyEdit($stateParams.appId);

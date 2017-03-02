@@ -68,6 +68,10 @@ angular.module("pu.task.controllers")
         $scope.showCreditReport = function(appId){
             TaskService.showCreditReport(appId);
         };
+        /**显示共租人报告**/
+        $scope.showCloesseeCreditReport = function(appId){
+            TaskService.showCloesseeCreditReport(appId);
+        };
 
     })
 ;

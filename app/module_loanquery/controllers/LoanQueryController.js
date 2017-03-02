@@ -8,10 +8,15 @@ angular.module("pu.loanquery.controllers")
         $scope.initList = function(){
             $scope.productList = ProductService.queryAllProductList().$object;
             $scope.repayStatusList = SysDictService.queryDictDataByTypeCode("hkzt").$object;
-            $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
+            $scope.loading = LoanQueryService.getLoanCustList().then(function(response){
+                $scope.loanCustList = response;
+            });
         };
         $scope.queryLoanCustList = function(){
-            $scope.loanCustList = LoanQueryService.getLoanCustList().$object;
+            $rootScope.resetPage();
+            $scope.loading = LoanQueryService.getLoanCustList().then(function(response){
+                $scope.loanCustList = response
+            });
         }
         $scope.initLoanDetail = function(){
             $scope.appId = $stateParams.appId;
@@ -48,7 +53,9 @@ angular.module("pu.loanquery.controllers")
             });
         };
         $scope.pageChanged = function(){
-            $scope.queryLoanCustList();
+            $scope.loading = LoanQueryService.getLoanCustList().then(function(response){
+                $scope.loanCustList = response
+            });
         }
         $scope.repayLogPageChanged = function(){
             $scope.repayLogList =LoanQueryService.getLoanCustRepayLog($stateParams.appId).$object;

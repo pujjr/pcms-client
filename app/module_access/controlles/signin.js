@@ -18,7 +18,7 @@ angular.module('pu.access.controllers')
                 $scope.authError = null;
                 AuthService.login($scope.user.accountId, $scope.user.password).then(function (response) {
                     $state.go('app.index');
-                    /*
+/*
                     if (AuthService.isWeakPasswd($scope.user.password)) {
                         $state.go('access.modifyweakpasswd');
                     } else {

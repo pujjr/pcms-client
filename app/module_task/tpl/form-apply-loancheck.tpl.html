@@ -21,7 +21,8 @@
                                 <div class="form-group form-group-sm">
                                     <label for="invoiceCode" class="col-sm-4 control-label">购车发票代码：</label>
                                     <div class="col-sm-8">
-                                        <input type="text" id="invoiceCode" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.invoiceCode" required>
+                                        <input type="text" id="invoiceCode" class="form-control" ng-disabled="loanCheckEditable==false"  ng-model="item.signFinanceDetail.invoiceCode"
+                                               ng-required="applyInfo.product.productRule.carType=='clly01'">
                                     </div>
                                 </div>
                             </div>
@@ -29,7 +30,8 @@
                                 <div class="form-group form-group-sm">
                                     <label for="invoiceNo" class="col-sm-4 control-label">购车发票号码：</label>
                                     <div class="col-sm-8">
-                                        <input type="text" id="invoiceNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.invoiceNo" required>
+                                        <input type="text" id="invoiceNo" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.invoiceNo"
+                                               ng-required="applyInfo.product.productRule.carType=='clly01'">
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +42,8 @@
                                         <div class="input-group">
                                             <select  class="form-control" id="invoiceAreaId" ng-model="item.signFinanceDetail.invoiceAreaId"
                                                      ng-disabled="loanCheckEditable==false"
-                                                     ng-options="item.id as item.areaName for item in provinceList" required>
+                                                     ng-required="applyInfo.product.productRule.carType=='clly01'"
+                                                     ng-options="item.id as item.areaName for item in provinceList" >
                                                 <option value="">请选择发票开具地</option>
                                             </select>
                                        <span class="input-group-addon">
@@ -57,7 +60,8 @@
                                 <div class="form-group form-group-sm">
                                     <label for="registerCode" class="col-sm-4 control-label">机动车登记证编码：</label>
                                     <div class="col-sm-8">
-                                        <input type="text" id="registerCode" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.registerCode" required>
+                                        <input type="text" id="registerCode" class="form-control" ng-disabled="loanCheckEditable==false" ng-model="item.signFinanceDetail.registerCode"
+                                               ng-required="applyInfo.product.productRule.carType=='clly02'">
                                     </div>
                                 </div>
                             </div>

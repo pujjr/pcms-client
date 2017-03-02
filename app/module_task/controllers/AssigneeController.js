@@ -3,11 +3,15 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.task.controllers")
-    .controller('AssigneeController',function ($scope, $rootScope, $state,$stateParams,modal, toaster, $uibModal,TaskService,SysDictService) {
-        $scope.queryToAssigneeList = function(){
+    .controller('AssigneeController',function ($scope, $rootScope, $state,$stateParams,modal, toaster, $uibModal,TaskService,SysDictService,SysBranchService) {
+        $scope.initToAssigneeList = function(){
             $scope.toDoTaskList =  TaskService.queryToDoTaskList({inTaskDefKeys:'sgfd'}).$object;
             $scope.autoAssigneeConfig = TaskService.queryAutoAssigneeConfigInfo().$object;
+            $scope.branchList = SysBranchService.getEffectDealerList().$object;
         };
+        $scope.queryToAssigneeList = function(){
+            $scope.toDoTaskList =  TaskService.queryToDoTaskList({inTaskDefKeys:'sgfd'}).$object;
+        }
         $scope.checkAll = function(){
             angular.forEach($scope.toDoTaskList,function(item){
                 item.checked = $scope.selectAllStatus;
@@ -106,8 +110,5 @@ angular.module("pu.task.controllers")
                 $scope.autoAssigneeConfig = TaskService.queryAutoAssigneeConfigInfo().$object;
             })
         };
-        $scope.pageChanged = function(){
-            $scope.queryToAssigneeList();
-        }
     })
 ;

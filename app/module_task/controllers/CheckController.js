@@ -6,6 +6,7 @@ angular.module("pu.task.controllers")
     .controller('CheckController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService,modal) {
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
+        $scope.appendToEl = angular.element(document.querySelector('#check-header'));
         $scope.initCheck = function(){
             $scope.doInitApplyEdit($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
@@ -14,7 +15,9 @@ angular.module("pu.task.controllers")
             $scope.checkRejectReasonList = SysDictService.queryDictDataByTypeCode("shjjyy").$object;
             $scope.checkCancelReasonList = SysDictService.queryDictDataByTypeCode("shqxyy").$object;
             $scope.netCheckResultList = SysDictService.queryDictDataByTypeCode("wsjg").$object;
+            $scope.netCheckNotPassReasonList =  SysDictService.queryDictDataByTypeCode("WSYC").$object;
             $scope.telCheckResultList = SysDictService.queryDictDataByTypeCode("dsjg").$object;
+            $scope.telCheckNotPassReasonList =  SysDictService.queryDictDataByTypeCode("DSYC").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"lrsqd");
             //默认审核获取上一次审核结果显示
@@ -34,13 +37,33 @@ angular.module("pu.task.controllers")
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"lrsqd");
             $scope.checkVo = {};
+            $scope.checkVo.isValidApply = true;
+            $scope.checkVo.isValidIdcard = true;
+            $scope.checkVo.isValidJsz = true;
+            $scope.checkVo.isValidPhoto = true;
+            $scope.$watchGroup(['checkVo.isValidApply','checkVo.isValidIdcard','checkVo.isValidJsz','checkVo.isValidPhoto'],function(newVal,oldVal){
+                if($scope.checkVo.isValidApply && $scope.checkVo.isValidIdcard && $scope.checkVo.isValidJsz  &&$scope.checkVo.isValidPhoto ){
+                    $scope.enableQueryCredit = true;
+                }else{
+                    $scope.enableQueryCredit = false;
+                }
+            })
         }
         $scope.commitCheckTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){
-                TaskService.commitCheckTask($scope.applyInfo,$scope.checkVo,$stateParams.taskId).then(function(response){
+                $scope.saving = TaskService.commitCheckTask($scope.applyInfo,$scope.checkVo,$stateParams.taskId).then(function(response){
                     $state.go('app.task.todolist');
                     toaster.pop('success', '操作提醒','提交审核任务成功')
                 })
+            })
+        };
+        //保存申请信息和审核
+        $scope.saveCheckTask = function(){
+            modal.confirm("操作提醒","确认保存？").then(function(){
+                $scope.saving = TaskService.saveCheckTask($scope.applyInfo,$scope.checkVo,$stateParams.taskId).then(function(response){
+                    toaster.pop('success', '操作提醒','保存审核信息成功');
+                    $scope.refreshApplyInfoFromServer(response.appId);
+                });
             })
         };
         $scope.commitPreCheckTask = function(){

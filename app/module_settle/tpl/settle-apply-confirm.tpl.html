@@ -7,7 +7,7 @@
                     </div>
                     <div class="data-table-header__actions">
                         <button class="btn btn-default btn-sm" type="button" ng-if="applyVo.settleType=='jqlx01'"  ng-click="printPdf(businessKey,'tqjq','打印提前结清通知书')"><i class="fa fa-print m-r-sm"></i>打印提前结清通知书</button>
-                        <button class="btn btn-default btn-sm" type="button" ng-if="applyVo.settleType=='jqlx02'"  ng-click="printPdf(appId,'bftqjq','打印部分提前结清通知书')"><i class="fa fa-print m-r-sm"></i>打印部分提前结清通知书</button>
+                        <button class="btn btn-default btn-sm" type="button" ng-if="applyVo.settleType=='jqlx02'"  ng-click="printPdf(businessKey,'bftqjq','打印部分提前结清通知书')"><i class="fa fa-print m-r-sm"></i>打印部分提前结清通知书</button>
                         <button class="btn btn-default btn-sm" type="button" ng-click="showCustomDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>客户详细信息</button>
                         <button class="btn btn-danger btn-sm" type="button"  ng-click="cancelSettleTask()"><i class="fa fa-stop m-r-sm" aria-hidden="true"></i></i>取消任务</button>
                         <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>

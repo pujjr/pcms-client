@@ -41,8 +41,8 @@ angular.module('pu.alterrepaydate.services')
                         $scope.applyVo.newClosingDate = response.closingDate;
                         $scope.dateOptions.minDate =  new Date(parseInt(response.closingDate));
                         //有效期为当期结账日前一天
-                        $scope.applyVo.applyEffectDate = response.closingDate;
-                        $scope.dateOptions.maxDate =  new Date(parseInt(ToolsService.addNumberMonth(response.closingDate,1)));
+                        $scope.applyVo.applyEffectDate = response.closingDate-1000*60*60*24*4;
+                        $scope.dateOptions.maxDate =  new Date(parseInt(ToolsService.addNumberMonth(response.closingDate,1))-1000*60*60*24*4);
                         $scope.applyVo.oldClosingDate = response.closingDate;
                     });
                     $scope.$watch('applyVo.newClosingDate', function (newVal, oldVal) {

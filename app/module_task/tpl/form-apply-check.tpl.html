@@ -133,6 +133,7 @@
                 <label for="netCheckNotPassReason" class="col-sm-2 control-label">网查未通过原因：</label>
                 <div class="col-sm-10">
                     <select id="netCheckNotPassReason" class="form-control" ng-model="checkVo.netCheckNotPassReason"
+                            ng-required="checkVo.telCheckResult =='WANGSYC'"
                             ng-options="item.dictDataCode as item.dictDataName for item in netCheckNotPassReasonList"  >
                         <option value="">请选择网查未通过原因</option>
                     </select>
@@ -167,6 +168,7 @@
                 <label for="telCheckNotPassReason" class="col-sm-2 control-label">电审未通过原因：</label>
                 <div class="col-sm-10">
                     <select id="telCheckNotPassReason" class="form-control" ng-model="checkVo.telCheckNotPassReason"
+                            ng-required="checkVo.telCheckResult =='DSHEYC'"
                             ng-options="item.dictDataCode as item.dictDataName for item in telCheckNotPassReasonList" >
                         <option value="">请选择电审未通过原因</option>
                     </select>
