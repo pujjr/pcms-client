@@ -93,7 +93,7 @@ angular.module("pu.charge.controllers")
             }
         };
         $scope.pageChangedRetofferCharge = function(){
-            $scope.offerBatchList = ChargeService.getManualOfferHisList().$object;
+            $scope.offerBatchList = ChargeService.getOfferBatchList().$object;
         }
         $scope.initRetofferCharge = function(){
             $scope.offerBatchList = ChargeService.getOfferBatchList().$object;

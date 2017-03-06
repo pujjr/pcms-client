@@ -27,11 +27,20 @@ angular.module("pu.task.controllers")
                     $scope.checkVo = {};
                 }else{
                     $scope.checkVo = response;
-                    if(response.result!=undefined &&( response.result=='tjlx102'|| response.result == 'tjlx202')){
-                        $scope.approveVo.result = 'tjlx202';
-                        $scope.approveVo.loanExtConditon = response.loanExtConditon;
-                    }
-
+                    if(response.result!=undefined ){
+                        if(response.result=='tjlx102'|| response.result == 'tjlx202'){
+                            $scope.approveVo.result = 'tjlx202';
+                            $scope.approveVo.loanExtConditon = response.loanExtConditon;
+                        }else if(response.result=='tjlx101'|| response.result == 'tjlx201'){
+                            $scope.approveVo.result = 'tjlx201';
+                        }else if(response.result=='tjlx103'|| response.result == 'tjlx203'){
+                            $scope.approveVo.result = 'tjlx203';
+                            $scope.approveVo.cancelReason = response.cancelReason;
+                        }else{
+                            $scope.approveVo.result = 'tjlx204';
+                            $scope.approveVo.rejectReason = response.rejectReason;
+                        }
+                    };
                 }
             })
         };

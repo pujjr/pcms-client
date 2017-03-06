@@ -22,7 +22,7 @@ angular.module("pu.query.controllers")
             });
         }
         $scope.initApplyDetail = function(){
-            $scope.doInitApplyEdit($stateParams.appId);
+            $scope.doInitApplyReadOnly($stateParams.appId);
             $scope.nodeMap = QueryService.queryApplyRunPathNodeMap($stateParams.appId).$object;
         };
         $scope.getSignInfo = function(){

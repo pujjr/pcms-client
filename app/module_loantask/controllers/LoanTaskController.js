@@ -7,6 +7,12 @@ angular.module("pu.loantask.controllers")
         $scope.initList = function(){
             $scope.toDoTaskList  = LoanTaskService.getLoanToDoTaskList().$object;
         };
+        $scope.queryToDoTaskList = function(){
+            $rootScope.resetPage();
+            $scope.loading = LoanTaskService.getLoanToDoTaskList().then(function(response){
+                $scope.toDoTaskList = response;
+            });
+        }
         $scope.doTask = function(item){
             $state.go(
                 item.taskRouter,

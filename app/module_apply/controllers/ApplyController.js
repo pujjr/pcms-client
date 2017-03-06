@@ -86,7 +86,6 @@ angular.module("pu.apply.controllers")
             },true);
         };
 
-
         $scope.initWatchFinance2 = function(){
             //监视融资信息变化查询GPS档位
             watchFinance2Gps = $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
@@ -918,6 +917,42 @@ angular.module("pu.apply.controllers")
                 $scope.refreshFormRequiredMap();
             })
         };
+        $scope.doInitApplyReadOnly = function(appId){
+            // 获取订单数据
+            ApplyService.queryApplyInfoByAppId(appId).then(function(response){
+                $scope.applyInfo =  response;
+                //启动融资金额watch  GPS档位操作
+                for(var i = 1 ;i<=$scope.applyInfo.finances.length;i++){
+                    if($scope.applyInfo.finances[i-1].select == true){
+                        if(i == 1){
+                            $scope.finance1={};
+                            $scope.finance1 =$scope.applyInfo.finances[0];
+                            $scope.$watchGroup(['finance1.salePrice','finance1.initPayPercent'],function(newVal,oldVal){
+                                $scope.finance1.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance1.salePrice,$scope.finance1.initPayPercent,$scope.applyInfo.product).$object;
+                            },true);
+                        }
+                        if(i==2){
+                            $scope.finance2 =$scope.applyInfo.finances[1];
+                            $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
+                                $scope.finance2.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance2.salePrice,$scope.finance2.initPayPercent,$scope.applyInfo.product).$object;
+                            },true);
+                        }
+                        if(i==3){
+                            $scope.finance3 =$scope.applyInfo.finances[2];
+                            $scope.$watchGroup(['finance3.salePrice','finance3.initPayPercent'],function(newVal,oldVal){
+                                $scope.finance3.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance3.salePrice,$scope.finance3.initPayPercent,$scope.applyInfo.product).$object;
+                            },true);
+                        }
+                    }
+                }
+                $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
+                $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
+                $scope.initLinkmans($scope.applyInfo.linkmans);
+                $scope.initSelectList("edit");
+                $scope.addressCtrl.onEditRefresh();
+                $scope.unitRankCtrl.onEditRefresh();
+            })
+        }
         $scope.refreshApplyInfoFromServer= function (appId){
             //关闭watch
             if(watchFinance1Gps!=undefined)

@@ -7,7 +7,7 @@ angular.module("pu.task.controllers")
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
         $scope.initReconsiderApply = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.reconsiderApplyVo = TaskService.queryReconsiderApplyInfo($stateParams.taskId).$object;
             $scope.reconsiderReasonList = SysDictService.queryDictDataByTypeCode("fyyy").$object;

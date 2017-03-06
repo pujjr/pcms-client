@@ -8,7 +8,7 @@ angular.module("pu.task.controllers")
         $scope.taskId = $stateParams.taskId;
         $scope.businessKey = $stateParams.businessKey;
         $scope.initLoanCheck = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.gpsSupplierList = GpsService.queryGpsSupplierList(true).$object;
             $scope.provinceList = SysAreaService.queryProvinceList().$object;

@@ -5,7 +5,7 @@
 angular.module("pu.task.controllers")
     .controller('SupplyLoanCheckInfoController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,GpsService,BankService,modal) {
         $scope.initSupplyLoanCheckInfo = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.gpsSupplierList = GpsService.queryGpsSupplierList(true).$object;
             $scope.unionPayBankList = BankService.queryUnionPayBankInfoList().$object;

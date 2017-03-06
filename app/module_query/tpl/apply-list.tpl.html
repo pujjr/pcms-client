@@ -144,7 +144,7 @@
             <table class="data-table table table-hover" style="overflow-x: auto">
                 <thead>
                 <tr>
-                    <th style="width: 8%">案件编号</th>
+                    <th style="width: 100px">案件编号</th>
                     <th style="width: 5%">产品名称</th>
                     <th style="width: 5%">合同编号</th>
                     <th style="width: 5%">客户姓名</th>
@@ -156,13 +156,14 @@
                     <th style="width: 5%">审核员</th>
                     <th style="width: 5%">批核时间</th>
                     <th style="width: 4%">批核金额</th>
+                    <th style="width: 4%">放款金额</th>
+                    <th style="width: 4%">放款日期</th>
                     <th style="width: 2%">期数</th>
-                    <th style="width: 5%">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in applyList">
-                    <td>{{item.appId}}</td>
+                    <td><a href="javascript:" ng-click="showCustomApplyDetail(item.appId)">{{item.appId}}</a></td>
                     <td>{{item.productName}}</td>
                     <td>{{item.contractNo}}</td>
                     <td>{{item.name}}</td>
@@ -174,11 +175,10 @@
                     <td>{{item.assignee}}</td>
                     <td>{{item.approveDate}}</td>
                     <td>{{item.totalFinanceAmt}}</td>
-                    <td>{{item.period}}</td>
-                    <td>
-                        <a href="javascript:" ng-click="showCustomApplyDetail(item.appId)">详细</a>
 
-                    </td>
+                    <td>{{item.totalLoanAmount}}</td>
+                    <td>{{item.loanDate}}</td>
+                    <td>{{item.period}}</td>
                 </tr>
                 </tbody>
             </table>

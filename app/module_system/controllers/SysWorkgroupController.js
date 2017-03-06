@@ -20,6 +20,9 @@ angular.module("pu.system.controllers")
             $scope.selNode=event.targetScope.treeData;
             $scope.workgroupAccountsList = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selNode.id).$object;
         });
+        $scope.pageChangeAcctList = function(){
+            $scope.workgroupAccountsList = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selNode.id).$object;
+        }
         $scope.addSysWorkgroup = function(){
             var modalInstance = $uibModal.open({
                 animation: true,

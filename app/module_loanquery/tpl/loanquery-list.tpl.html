@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="data-table-container">
-            <table class="data-table">
+            <table class="data-table  table table-hover">
                 <thead>
                 <tr>
                     <th>申请单号</th>
@@ -99,6 +99,7 @@
                     <th>融资期限</th>
                     <th>剩余本金</th>
                     <th>还款状态</th>
+                    <th>逾期天数</th>
                     <th>当前处理状态</th>
                     <th>操作</th>
                 </tr>
@@ -113,6 +114,7 @@
                     <td>{{item.period}}</td>
                     <td>{{item.remainCapital}}</td>
                     <td>{{item.repayStatusDesc}}</td>
+                    <td>{{item.addupOverdueDay}}</td>
                     <td>{{item.processStatusDesc}}</td>
                     <td>
                         <a href="javascript:" ui-sref="app.loanquery.loaninfo.detail({appId:item.appId})">详细</a>

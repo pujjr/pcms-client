@@ -5,7 +5,7 @@
 angular.module("pu.task.controllers")
     .controller('ChangeApplyController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,TaskService,SysDictService,modal) {
         $scope.initChangeApply = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.changeReasonList = SysDictService.queryDictDataByTypeCode("bgyy").$object;
             $scope.changeApplyInfoVo ={};
             //$scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
@@ -19,7 +19,7 @@ angular.module("pu.task.controllers")
             })
         };
         $scope.initApproveChangeApply = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.changeReasonList = SysDictService.queryDictDataByTypeCode("bgyy").$object;
             $scope.changeApplyInfoVo = TaskService.queryLatestChangeApplyInfo($stateParams.taskId).$object;
             $scope.approveResultList =  SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
@@ -36,7 +36,7 @@ angular.module("pu.task.controllers")
             })
         };
         $scope.initCancelApplyInfoTask = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.cancelReasonList = SysDictService.queryDictDataByTypeCode("qxsqyy").$object;
             $scope.cancelApplyInfoVo ={};
         };
@@ -49,7 +49,7 @@ angular.module("pu.task.controllers")
             })
         }
         $scope.initApproveCancelApply = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.cancelReasonList = SysDictService.queryDictDataByTypeCode("qxsqyy").$object;
             $scope.cancelApplyInfoVo = TaskService.queryLatestCancelApplyInfo($stateParams.taskId).$object;
             $scope.approveResultList =  SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
