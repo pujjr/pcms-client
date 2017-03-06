@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="data-table-container">
-            <table class="data-table" style="overflow-x: auto">
+            <table class="data-table table table-hover" style="overflow-x: auto">
                 <thead>
                 <tr>
                     <th style="width: 8%">案件编号</th>
@@ -176,7 +176,7 @@
                     <td>{{item.totalFinanceAmt}}</td>
                     <td>{{item.period}}</td>
                     <td>
-                        <a href="javascript:" ui-sref="app.query.apply.detail({appId:item.appId})">详细</a>
+                        <a href="javascript:" ng-click="showCustomApplyDetail(item.appId)">详细</a>
 
                     </td>
                 </tr>

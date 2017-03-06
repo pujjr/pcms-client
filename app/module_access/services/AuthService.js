@@ -59,7 +59,7 @@ angular.module('pu.access.services')
         };
         this.modifyPasswd = function (oldPasswd, newPasswd) {
             var user = {};
-            user.accountId = angular.fromJson(window.localStorage.account).id;
+            //user.accountId = angular.fromJson(window.localStorage.account).id;
             user.oldPasswd = oldPasswd;
             user.newPasswd = newPasswd;
             var defered = $q.defer();
@@ -91,7 +91,7 @@ angular.module('pu.access.services')
             });
         };
         this.isWeakPasswd = function (val) {
-            var regx = /^[0-9]+$|^[a-z]+$|^[A-Z]+$/;
+            var regx = /^[0-9]+$|^[a-z]+$/;
             return regx.test(val) || val.length < 8;
         };
         //用户登出

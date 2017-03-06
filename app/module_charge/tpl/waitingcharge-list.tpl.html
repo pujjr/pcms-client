@@ -6,12 +6,14 @@
                 </div>
                 <div class="data-table-header__actions">
                     <button class="btn btn-sm btn-default" type="button" ng-click="generatorOfferChargeList()"><i class="fa fa-plus m-r-sm"></i>生成报盘</button>
+                    <button class="btn btn-sm btn-default" type="button" ng-click="setCheckedToFileCharge()"><i class="fa fa-plus m-r-sm"></i>勾选行文件报盘</button>
                     <button class="btn btn-sm btn-default" type="button" ng-click="setAllToFileCharge()"><i class="fa fa-plus m-r-sm"></i>全部加入文件报盘</button>
                 </div>
             </header>
             <table class="data-table">
                 <thead>
                 <tr>
+                    <th style="width:20px"><input type="checkbox" ng-model="selectAllStatus"  ng-click="selectAllStatus = !selectAllStatus ;checkAll()"></th>
                     <th>序号</th>
                     <th>申请单号</th>
                     <th>报盘来源</th>
@@ -21,6 +23,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in enableChargeList">
+                    <td><input type="checkbox" ng-checked="item.checked" ng-click="item.checked = !item.checked"></td>
                     <td>{{item.seq}}</td>
                     <td>{{item.appId}}</td>
                     <td>

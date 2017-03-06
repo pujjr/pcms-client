@@ -29,7 +29,7 @@
                         <li role="menuitem" ng-if="hasPrimission('app.loanquery.detail.alertcustinfo.cardno')">
                             <a href="javascript:" ng-click="doAlterBankInfo()">银行卡信息变更</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem" ng-if="false">
                             <a href="javascript:" ng-click="doInsuranceContinue()">发起保险续保(测试)</a>
                         </li>
                     </ul>
@@ -42,10 +42,10 @@
                         <li role="menuitem"  ng-if="hasPrimission('app.loanquery.detail.collectiontask.wwsc')">
                             <a href="javascript:" ng-click="doRecoverCollectionTask()">发起委外收车</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem" ng-if="false">
                             <a href="javascript:" ng-click="doPhoneCollection()">电话催收（测试）</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem" ng-if="false">
                             <a href="javascript:" ng-click="createTelInterviewTask()">电话回访（测试）</a>
                         </li>
                     </ul>

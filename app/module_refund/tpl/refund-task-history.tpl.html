@@ -54,7 +54,8 @@
                     <div>
                         <uib-pagination boundary-links="true" total-items="paginationInfo.totalItem"
                                         ng-model="paginationInfo.curPage"
-                                        items-per-page="paginationInfo.pageSize" ng-change="pageChanged()"
+                                        max-size="paginationInfo.maxSize"
+                                        items-per-page="paginationInfo.pageSize" ng-change="initRefundHistoryTaskList()"
                                         previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
                                         last-text="&raquo;">
                         </uib-pagination>

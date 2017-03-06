@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.charge.controllers")
-    .controller('ChargeController',function ($scope, $rootScope, $state, toaster, $uibModal,ChargeService,MerchantService,RestApi) {
+    .controller('ChargeController',function ($scope, $rootScope, $state, toaster, $uibModal,ChargeService,MerchantService,RestApi,modal) {
         $scope.goWaitingCharge = function(){
             $state.go('app.charge.waitingcharge');
         };
@@ -20,6 +20,7 @@ angular.module("pu.charge.controllers")
             $scope.enableChargeList = ChargeService.getNotSelOfferModeList().$object;
         }
         $scope.initWaitingCharge = function(){
+            $scope.selectAllStatus = false;
             $scope.enableChargeList = ChargeService.getNotSelOfferModeList().$object;
         }
         $scope.generatorOfferChargeList = function(){
@@ -32,6 +33,31 @@ angular.module("pu.charge.controllers")
             ChargeService.setOfferChargeMode(null,"kkfs01").then(function(response){
                 toaster.pop('success', '操作提醒',"加入批量文件报盘成功");
                 $scope.initWaitingCharge();
+            })
+        };
+        $scope.setCheckedToFileCharge = function(){
+            var checkList = [];
+            angular.forEach($scope.enableChargeList,function(item){
+                if(item.checked){
+                    checkList.push(item.id);
+                }
+            });
+            if(checkList.length==0){
+                modal.error("未选择记录");
+            }else{
+                modal.confirm("操作提醒","确认加入报盘？").then(function(){
+                    ChargeService.setOfferChargeMode(checkList,"kkfs01").then(function(response){
+                        toaster.pop('success', '操作提醒',"加入批量文件报盘成功");
+                        $scope.initWaitingCharge();
+                    })
+                })
+            }
+        }
+        $scope.checkAll = function(){
+            $scope.selectAllStatus = $scope.selectAllStatus==true?false:true;
+            var itemStatus = $scope.selectAllStatus;
+            angular.forEach($scope.enableChargeList,function(item){
+                item.checked = itemStatus;
             })
         };
         $scope.pageChangedFileCharge = function(){
@@ -109,6 +135,9 @@ angular.module("pu.charge.controllers")
                     $scope.offerBatchDetailList = ChargeService.getOfferBatchChargeLog($scope.offerBatchId).$object;
                     $scope.cancel=function(){
                         modalInstance.dismiss('cancel');
+                    };
+                    $scope.pageChanged = function(){
+                        $scope.offerBatchDetailList = ChargeService.getOfferBatchChargeLog($scope.offerBatchId).$object;
                     }
                 }
             });

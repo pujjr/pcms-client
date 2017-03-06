@@ -44,7 +44,7 @@ angular.module("pu.alterrepaydate.controllers")
         };
         $scope.commitConfirmAlterRepayDateTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){
-                AlterRepayDateService.commitConfirmAlterRepayDateTask($scope.taskId).then(function(response){
+                $scope.loading = AlterRepayDateService.commitConfirmAlterRepayDateTask($scope.taskId).then(function(response){
                     toaster.pop('success', '操作提醒', "提交任务成功");
                     $state.go("app.loantask.todolist")
                 })

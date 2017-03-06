@@ -14,7 +14,7 @@ angular.module("pu.task.controllers")
             $scope.conditionLoanCommentList = QueryService.queryApplyConditionLoanCommentList($stateParams.businessKey).$object;
         };
         $scope.saveSignContractInfo = function(){
-            TaskService.saveSignContractInfo($scope.signContractVo).then(function(response){
+            $scope.loading = TaskService.saveSignContractInfo($scope.signContractVo).then(function(response){
                 TaskService.querySignInfo($stateParams.businessKey).then(function(response){
                     $scope.signContractVo = response;
                     toaster.pop('success', '操作提醒','保存签约信息成功');
@@ -23,7 +23,7 @@ angular.module("pu.task.controllers")
         }
         $scope.commitSignContractTask = function(){
             modal.confirm("操作提醒","确认提交签约？").then(function(response){
-                TaskService.commitSignContractTask($stateParams.businessKey,$stateParams.taskId).then(function(response){
+                $scope.loading =  TaskService.commitSignContractTask($stateParams.businessKey,$stateParams.taskId).then(function(response){
                     $state.go('app.task.todolist');
                     toaster.pop('success', '操作提醒','提交签约任务成功')
                 })

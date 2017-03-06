@@ -90,7 +90,7 @@ angular.module("pu.extendperiod.controllers")
         };
         $scope.commitConfirmExtendPeriodTask = function(){
             LoanTaskService.inputApproveResult().then(function(response){
-                ExtendPeriodService.commitConfirmExtendPeriodTask($scope.taskId,response).then(function(response){
+                $scope.loading = ExtendPeriodService.commitConfirmExtendPeriodTask($scope.taskId,response).then(function(response){
                     toaster.pop('success', '操作提醒', "提交任务成功");
                     $state.go("app.loantask.todolist")
                 })

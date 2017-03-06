@@ -959,6 +959,7 @@ angular.module("pu.apply.controllers")
                 $scope.initTenantHouses($scope.applyInfo.tenant.tenantHouses);
                 $scope.initTenantCars($scope.applyInfo.tenant.tenantCars);
                 $scope.initLinkmans($scope.applyInfo.linkmans);
+                $scope.addressCtrl.onEditRefresh();
                 $scope.initWatchTotalFinance();
                 $scope.initWatchDebitInfo();
                 $scope.initWatchProduct();

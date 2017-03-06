@@ -67,7 +67,7 @@ angular.module("pu.settle.controllers")
         };
         $scope.commitConfirmSettleTask = function(){
             LoanTaskService.inputApproveResult().then(function(response){
-                SettleService.commitConfirmSettleTask($scope.taskId,response).then(function(response){
+                $scope.loading = SettleService.commitConfirmSettleTask($scope.taskId,response).then(function(response){
                     toaster.pop('success', '操作提醒', "提交任务成功");
                     $state.go("app.loantask.todolist")
                 })

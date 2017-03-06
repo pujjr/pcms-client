@@ -172,7 +172,7 @@
                     <td>{{item.totalFinanceAmt}}</td>
                     <td>{{item.period}}</td>
                     <td>
-                        <a href="javascript:" ui-sref="app.query.apply.detail-dealer({appId:item.appId})">详细</a>
+                        <a href="javascript:" ng-click="showCustomDetailByDealer(item.appId)">详细</a>
                     </td>
                 </tr>
                 </tbody>

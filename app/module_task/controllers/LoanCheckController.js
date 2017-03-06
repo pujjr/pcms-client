@@ -38,7 +38,7 @@ angular.module("pu.task.controllers")
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"jxsqy");
         };
         $scope.saveLoanCheckInfo = function(){
-            TaskService.saveLoanCheckInfo($scope.signContractVo).then(function(response){
+            $scope.loading = TaskService.saveLoanCheckInfo($scope.signContractVo).then(function(response){
                 toaster.pop('success', '操作提醒','保存放款复核信息成功')
             })
         }
@@ -51,14 +51,14 @@ angular.module("pu.task.controllers")
             if(commitType=='bcfkzl'){
                 modal.prompt("备注","请输入放款补充资料备注").then(function(response){
                     $scope.signContractVo.supplyLoanInfoComment=response
-                    TaskService.commitLoanCheckTask($scope.signContractVo,commitType,$stateParams.taskId).then(function(response){
+                    $scope.loading = TaskService.commitLoanCheckTask($scope.signContractVo,commitType,$stateParams.taskId).then(function(response){
                         $state.go('app.task.todolist');
                         toaster.pop('success', '操作提醒','提交补充放款资料任务成功')
                     })
                 })
             }else{
                 modal.confirm("操作提醒","确认提交任务？").then(function(){
-                    TaskService.commitLoanCheckTask($scope.signContractVo,commitType,$stateParams.taskId).then(function(response){
+                    $scope.loading = TaskService.commitLoanCheckTask($scope.signContractVo,commitType,$stateParams.taskId).then(function(response){
                         $state.go('app.task.todolist');
                         toaster.pop('success', '操作提醒','提交放款复核任务成功')
                     })
