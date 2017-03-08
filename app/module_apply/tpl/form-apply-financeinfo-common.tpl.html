@@ -61,7 +61,7 @@
         <div class="form-group form-group-sm">
             <label class="col-sm-4 control-label">裸车价:</label>
             <div class="col-sm-8">
-                <input type="number"  class="form-control input-sm"  ng-disabled="editable==false" ng-model="item.salePrice" verify-sale-price="applyInfo.product.productRule"   ng-required="requiredMap.salePrice"   placeholder="裸车价">
+                <input type="number"  class="form-control input-sm"  ng-disabled="editable==false" ng-model="item.salePrice" verify-sale-price="applyInfo.product.productRule"   ng-required="requiredMap.salePrice"  >
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             <label   class="col-sm-4 control-label">首付/抵押比例：</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="number"  class="form-control" ng-disabled="editable==false"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule"  placeholder="首付/抵押比例"
+                    <input type="number"  class="form-control" ng-disabled="editable==false"   ng-model="item.initPayPercent" verify-init-percent="applyInfo.product.productRule"
                            ng-required="requiredMap.initPayPercent" >
                     <span class="input-group-addon">
                         <b>%</b>
@@ -233,7 +233,7 @@
             <label   class="col-sm-4 control-label">车辆颜色：</label>
             <div class="col-sm-8">
                 <input type="text"  class="form-control input-sm"  ng-disabled="editable==false" verify-chn=""
-                       ng-required="requiredMap.carColor"  ng-model="item.carColor"  placeholder="车辆颜色">
+                       ng-required="requiredMap.carColor"  ng-model="item.carColor"  >
             </div>
         </div>
     </div>
@@ -241,7 +241,7 @@
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">生产商：</label>
             <div class="col-sm-8">
-                <input type="text"  class="form-control input-sm" ng-disabled="editable==false"  ng-model="item.carManu" ng-required="requiredMap.carManu"   placeholder="生产商">
+                <input type="text"  class="form-control input-sm" ng-disabled="editable==false"  ng-model="item.carManu" ng-required="requiredMap.carManu"  >
             </div>
         </div>
     </div>
@@ -249,7 +249,7 @@
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">车架号：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control input-sm" ng-disabled="editable==false"  verify-number-char="" ng-minlength="17" ng-maxlength="17" ng-model="item.carVin" ng-required="requiredMap.carVin"   placeholder="车架号">
+                <input type="text" class="form-control input-sm" ng-disabled="editable==false"  verify-number-char="" ng-minlength="17" ng-maxlength="17" ng-model="item.carVin" ng-required="requiredMap.carVin"   >
             </div>
         </div>
     </div>
@@ -259,7 +259,7 @@
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">发动机号：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control input-sm" ng-disabled="editable==false" verify-all-char=""  ng-model="item.carEngineNo" ng-required="requiredMap.carEngineNo"  placeholder="发动机号">
+                <input type="text" class="form-control input-sm" ng-disabled="editable==false" verify-all-char=""  ng-model="item.carEngineNo" ng-required="requiredMap.carEngineNo"  >
             </div>
         </div>
     </div>
@@ -267,7 +267,7 @@
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">售价/评估价：</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control input-sm" ng-disabled="true" verify-amount-p ng-model="item.assessPrice"  ng-required="requiredMap.assessPrice"  placeholder="售价/评估价">
+                <input type="text" class="form-control input-sm" ng-disabled="true" verify-amount-p ng-model="item.assessPrice"  ng-required="requiredMap.assessPrice"  >
             </div>
         </div>
     </div>
@@ -275,7 +275,7 @@
         <div class="form-group form-group-sm">
         <label  class="col-sm-4 control-label">保证金：</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control input-sm" ng-disabled="editable==false"  verify-amount-p  ng-model="item.collateral"  ng-required="requiredMap.collateral" placeholder="保证金">
+            <input type="text" class="form-control input-sm" ng-disabled="editable==false"  verify-amount-p  ng-model="item.collateral"  ng-required="requiredMap.collateral" >
         </div>
     </div>
 </div>
@@ -296,7 +296,7 @@
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">融资金额：</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control input-sm"  ng-model="item.financeAmount" disabled placeholder="融资金额">
+                <input type="number" class="form-control input-sm"  ng-model="item.financeAmount" disabled >
             </div>
         </div>
     </div>
@@ -304,7 +304,7 @@
         <div class="form-group form-group-sm">
             <label  class="col-sm-4 control-label">融资手续费：</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control input-sm"  ng-model="item.financeFee" disabled placeholder="融资手续费">
+                <input type="number" class="form-control input-sm"  ng-model="item.financeFee" disabled >
             </div>
         </div>
     </div>

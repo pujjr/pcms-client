@@ -9,8 +9,8 @@
                     <span class="fs-title">
                         <button type="button" class="btn btn-default"  ng-click="setViewModel('grid')"><i class="fa fa-th-large"></i></button>
                         <button type="button" class="btn btn-default"  ng-click="setViewModel('list')"><i class="fa fa-align-justify"></i></button>
-                        <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="rotateLeft()"><i class="fa fa-undo"></i></button>
-                        <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="rotateRight()"><i class="fa fa-repeat"></i></button>
+                        <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="rotateLeft()"><i class="fa fa-repeat"></i></button>
+                        <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="rotateRight()"><i class="fa fa-undo"></i></button>
                          <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img'" ng-click="zoomOutHandle()"><i class="fa fa-search-plus" aria-hidden="true"></i></button>
                         <button class="btn btn-default" type="button" ng-if="isViewModel==true && srcType=='img' " ng-click="zoomInHandle()"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
                     </span>
@@ -31,7 +31,7 @@
                             </a>
                             <div>
                                 <div class="caption">
-                                    <input type="checkbox"  ng-model="item.selected"><span>选择文件</span>
+                                    <input type="checkbox"  ng-model="item.selected"><span>{{item.fileName}}</span>
                                     <div class="pull-right">
                                         <button type="button" ng-click="deleteFile(item.id)" class="btn btn-default btn-xs"  ng-if="enableDelete"  style="min-height: 20px"><i class="glyphicon glyphicon-trash text-danger"></i></button>
                                     </div>

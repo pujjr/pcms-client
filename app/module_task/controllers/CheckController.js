@@ -41,6 +41,7 @@ angular.module("pu.task.controllers")
             $scope.checkVo.isValidIdcard = true;
             $scope.checkVo.isValidJsz = true;
             $scope.checkVo.isValidPhoto = true;
+            $scope.checkVo.result = 'tjlx101';
             $scope.$watchGroup(['checkVo.isValidApply','checkVo.isValidIdcard','checkVo.isValidJsz','checkVo.isValidPhoto'],function(newVal,oldVal){
                 if($scope.checkVo.isValidApply && $scope.checkVo.isValidIdcard && $scope.checkVo.isValidJsz  &&$scope.checkVo.isValidPhoto ){
                     $scope.enableQueryCredit = true;

@@ -160,10 +160,11 @@ angular.module('pu.assetsmanage.services')
                     $scope.unionPayBankList = BankService.queryUnionPayBankInfoList().$object;
                     $scope.newInfo = {};
                     $scope.newInfo.appId = appId;
-                    TaskService.querySignInfo(appId).then(function(response){
+                    AlterCustInfoService.getSignContractInfo(appId).then(function(response){
                         $scope.signContractVo = response;
                         $scope.newInfo.repayBankId = response.repayBankId;
                         $scope.newInfo.repayAcctNo = response.repayAcctNo;
+                        $scope.newInfo.repayAcctName = response.repayAcctName;
                     });
                     $scope.bankInfoHisList = AlterCustInfoService.getAlterBankInfoHisList(appId).$object;
                     $scope.setDefault = function(item){
@@ -204,5 +205,8 @@ angular.module('pu.assetsmanage.services')
                 }
             });
             return modalInstance.result;
+        };
+        this.getSignContractInfo = function(appId){
+            return RestApi.one("/altercustinfo/getSignContractInfo",appId).get();
         }
     });

@@ -23,10 +23,25 @@
                         <input type="text" class="form-control" id="mobile" ng-model="vm.mobile" placeholder="承租人电话号码1或号码2">
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="queryToDoTaskList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                <div class="col-sm-1">
+                    <div class="form-group form-group-sm">
+                        <select ng-model="vm.repayStatus"  class="form-control m-b-sm m-r-xs"
+                                ng-options="item.dictDataCode as item.dictDataName for item in repayStatusList" >
+                            <option value="">还款状态</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+                <div class="col-sm-1">
+                    <div class="form-group form-group-sm">
+                        <input type="text" class="form-control" id="overdueDay" ng-model="vm.overdueDay" placeholder="逾期天数">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="queryToDoTaskList()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                    </div>
+                </div>
+             </div>
         </div>
         <div class="data-table-container">
             <table class="data-table  table table-hover">

@@ -3,8 +3,9 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.loantask.controllers")
-    .controller('LoanTaskController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanTaskService) {
+    .controller('LoanTaskController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanTaskService,SysDictService) {
         $scope.initList = function(){
+            $scope.repayStatusList = SysDictService.queryDictDataByTypeCode("hkzt").$object;
             $scope.toDoTaskList  = LoanTaskService.getLoanToDoTaskList().$object;
         };
         $scope.queryToDoTaskList = function(){
