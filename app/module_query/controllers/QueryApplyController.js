@@ -56,33 +56,40 @@ angular.module("pu.query.controllers")
                 $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey+"?v="+new Date();
             })
         };
-        /**³õÊ¼»¯ÖØĞÂÉêÇëÎÄ¼şÄ¿Â¼**/
+        /**åˆå§‹åŒ–é‡æ–°ç”³è¯·æ–‡ä»¶ç›®å½•**/
         $scope.initReApplyFileManage=function(appId){
             $scope.reApplyFileInterface.init(appId,"apply");
         };
         $scope.initReApplyFileComponent = function(fileInterface){
             $scope.reApplyFileInterface = fileInterface;
         };
-        /**³õÊ¼»¯ÉóºËÎÄ¼şÄ¿Â¼**/
+        /**åˆå§‹åŒ–å®¡æ ¸æ–‡ä»¶ç›®å½•**/
         $scope.initCheckFileManage=function(appId){
             $scope.checkFileInterface.init(appId,"check");
         };
         $scope.initCheckFileComponent = function(fileInterface){
             $scope.checkFileInterface = fileInterface;
         };
-        /*³õÊ¼»¯Ç©Ô¼ÎÄ¼şÄ¿Â¼*/
+        /*åˆå§‹åŒ–ç­¾çº¦æ–‡ä»¶ç›®å½•*/
         $scope.initSignFileManage=function(appId){
             $scope.signFileInterface.init(appId,"sign");
         };
         $scope.initSignFileComponent = function(fileInterface){
             $scope.signFileInterface = fileInterface;
         };
-        /**³õÊ¼»¯·Å¿î¸´ºËÎÄ¼şÄ¿Â¼**/
+        /**åˆå§‹åŒ–æ”¾æ¬¾å¤æ ¸æ–‡ä»¶ç›®å½•**/
         $scope.initLoanCheckFileManage=function(appId){
             $scope.loanCheckFileInterface.init(appId,"loancheck");
         };
         $scope.initLoanCheckFileComponent = function(fileInterface){
             $scope.loanCheckFileInterface = fileInterface;
         };
+        $scope.queryRefuseReason = function(appId){
+            $scope.refuseReasonList = QueryService.getTaskRefuseReasonList(appId).$object;
+        };
+        $scope.queryCancelReason = function(appId){
+            $scope.cancelReasonList = QueryService.getTaskCancelReasonList(appId).$object;
+        };
+        $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
     })
 ;

@@ -24,6 +24,8 @@ angular.module("pu.task.controllers")
             $scope.insuranceCompanyList = InsuranceService.queryInsuranceCompanyList(true).$object;
             $scope.signContractVo = TaskService.querySignInfo($stateParams.businessKey).$object;
             $scope.loanApproveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
+            $scope.queryFraudHisInnerResult($stateParams.businessKey,"fkfh");
+            $scope.queryFraudHisInnerResult($stateParams.businessKey,"jxsqy");
             $scope.loanApproveVo={};
         };
         $scope.commitPrevLoanApproveTask = function(){

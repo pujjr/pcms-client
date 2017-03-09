@@ -6,6 +6,7 @@
                     <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{applyInfo.appId}}</span>
                 </div>
                 <div class="data-table-header__actions">
+                    <button class="btn btn-default btn-sm" type="button"  ng-click="printPdf(applyInfo.appId,'hzh','打印核准涵')"><i class="fa fa-print m-r-sm"></i>打印核准函</button>
                     <button class="btn btn-danger btn-sm" type="button"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
                     <!--
                     <button class="btn btn-success btn-sm" type="button"  ng-disabled="loanApproveForm.$invalid" ng-click="commitLoanApproveTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
@@ -67,6 +68,18 @@
                     <span>流程流转记录</span>
                 </uib-tab-heading>
                 <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+            </uib-tab>
+            <uib-tab index="9">
+                <uib-tab-heading>
+                    <span>签约历史数据反欺诈信息<span class="badge text-danger">{{fraudHisResultList.length}}</span></span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-fraudhisresult-list.html'"></div>
+            </uib-tab>
+            <uib-tab index="10">
+                <uib-tab-heading>
+                    <span>放款复核历史数据反欺诈信息<span class="badge text-danger">{{fraudHisResultList.length}}</span></span>
+                </uib-tab-heading>
+                <div ng-include="'module_task/tpl/form-fraudhisresult-list.html'"></div>
             </uib-tab>
         </uib-tabset>
     </div>

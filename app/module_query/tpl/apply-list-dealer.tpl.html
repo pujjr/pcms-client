@@ -1,4 +1,4 @@
-<div ng-init="init()" cg-busy="loading">
+<div ng-init="init()" cg-busy="loading" >
     <div class="panel_main">
         <div class="panel-header">
             <div class="panel-header-wrapper">
@@ -140,7 +140,7 @@
                 </div>
             </div>
         </div>
-        <div class="data-table-container">
+        <div class="data-table-container" >
             <table class="data-table  table table-hover" style="overflow-x: auto">
                 <thead>
                 <tr>
@@ -164,8 +164,56 @@
                     <td>{{item.productName}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.idNo}}</td>
-                    <td>{{item.createTime|mysqlDate}}</td>
-                    <td>{{item.status}}</td>
+                    <td>{{item.createTime|mysqlDatetime}}</td>
+                    <td>
+                        {{item.status}}
+                        <span ng-if="item.applyStatus == 'sqdzt07' || item.applyStatus == 'sqdzt16'" >
+                                <div class="btn-group" uib-dropdown dropdown-append-to-body="true">
+                                    <a href="javascirpt:"  uib-dropdown-toggle ng-click="queryRefuseReason(item.appId)">
+                                        (原因)
+                                    </a>
+                                    <table class="dropdown-menu data-table" style="width: 500px" uib-dropdown-menu>
+                                        <thead>
+                                        <tr>
+                                            <th style="width:100px">处理节点</th>
+                                            <th style="width:100px">处理时间</th>
+                                            <th style="width:300px">原因</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="item in refuseReasonList">
+                                            <td>{{item.taskNodeName}}</td>
+                                            <td>{{item.processTime |mysqlDatetime}}</td>
+                                            <td>{{item.processDesc+item.comment}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </span>
+                        <span ng-if="item.applyStatus == 'sqdzt21'" >
+                                <div class="btn-group" uib-dropdown dropdown-append-to-body="true">
+                                    <a href="javascirpt:"  uib-dropdown-toggle ng-click="queryCancelReason(item.appId)">
+                                        (原因)
+                                    </a>
+                                    <table class="dropdown-menu data-table" style="width: 500px" uib-dropdown-menu>
+                                        <thead>
+                                        <tr>
+                                            <th style="width:100px">处理节点</th>
+                                            <th style="width:100px">处理时间</th>
+                                            <th style="width:300px">原因</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="item in cancelReasonList">
+                                            <td>{{item.taskNodeName}}</td>
+                                            <td>{{item.processTime |mysqlDatetime}}</td>
+                                            <td>{{item.processDesc+item.comment}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </span>
+                    </td>
                     <td>{{item.branchName}}</td>
                     <td>{{item.approveDate}}</td>
                     <td>{{item.totalFinanceAmt}}</td>

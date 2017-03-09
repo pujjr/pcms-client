@@ -46,4 +46,10 @@ angular.module('pu.query.services')
             });
             return modalInstance.result;
         };
+        this.getTaskRefuseReasonList = function(appId){
+            return RestApi.all("/query/getTaskRefuseReasonList").all(appId).getList();
+        }
+        this.getTaskCancelReasonList = function(appId){
+            return RestApi.all("/query/getTaskCancelReasonList").all(appId).getList();
+        }
     });
