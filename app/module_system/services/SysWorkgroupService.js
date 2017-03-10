@@ -12,8 +12,8 @@ angular.module('pu.system.services')
         this.deleteSysWorkgroup = function(id){
             return RestApi.one("/sysworkgroup",id).remove();
         }
-        this.querySysAccountListByWorkgroupId = function(workgroupId){
-            return RestApi.one("/sysworkgroup",workgroupId).all("/accounts").getList();
+        this.querySysAccountListByWorkgroupId = function(workgroupId,param){
+            return RestApi.one("/sysworkgroup",workgroupId).all("/accounts").getList(param);
         };
         this.removeSysAccountFromWorkgroup = function(workgroupId,accountId){
             return RestApi.all("/sysworkgroup").one(workgroupId,accountId).remove();
@@ -36,7 +36,7 @@ angular.module('pu.system.services')
                     $scope.selWorkgroup = selNode;
                     $scope.init = function(){
                         $scope.querySysBranchList();
-                        $scope.workgroupAccounts = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selWorkgroup.id).$object;
+                        $scope.workgroupAccounts = SysWorkgroupService.querySysAccountListByWorkgroupId($scope.selWorkgroup.id,{pageSize:1000}).$object;
                     };
                     $scope.querySysAccountListByBranchId = function(branchId){
                         $scope.sysAccountList = SysBranchService.querySysAccountListByBranchId(branchId,{pageSize:1000}).$object;

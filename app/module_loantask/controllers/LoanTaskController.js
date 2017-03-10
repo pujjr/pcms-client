@@ -27,7 +27,7 @@ angular.module("pu.loantask.controllers")
             )
         };
         $scope.pageChanged = function(){
-            $scope.initList();
+            $scope.toDoTaskList  = LoanTaskService.getLoanToDoTaskList().$object;
         }
     })
 ;
