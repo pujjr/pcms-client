@@ -5,6 +5,7 @@
 angular.module("pu.task.controllers")
     .controller('AssigneeController',function ($scope, $rootScope, $state,$stateParams,modal, toaster, $uibModal,TaskService,SysDictService,SysBranchService) {
         $scope.initToAssigneeList = function(){
+            //$rootScope.resetCache();
             $scope.toDoTaskList =  TaskService.queryToDoTaskList({inTaskDefKeys:'sgfd'}).$object;
             $scope.autoAssigneeConfig = TaskService.queryAutoAssigneeConfigInfo().$object;
             $scope.branchList = SysBranchService.getEffectDealerList().$object;

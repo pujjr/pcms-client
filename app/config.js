@@ -40,10 +40,10 @@ angular.module('app')
                 $rootScope.cache.put(fromState.name, data);
                 $rootScope.cache.put("previousStateName", fromState.name);
                 $rootScope.cache.put("previousStateParams",fromParams);
-                /*
+
                 if ($rootScope.stateConvertType != "toback") {
                     $rootScope.resetCache();
-                }*/
+                }
                 $rootScope.stateConvertType = "";
             });
             //注册路由变更开始处理方法
