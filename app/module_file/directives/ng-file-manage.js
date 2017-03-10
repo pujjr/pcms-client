@@ -106,7 +106,6 @@ angular.module('pu.utils.directives')
                     $scope.offsetY += heightNum*0.1;
                     $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
                     $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
-
                 };
                 $scope.zoomInHandle = function(){
                     if($scope.scale-0<0.0001) {

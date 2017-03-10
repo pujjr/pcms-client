@@ -47,7 +47,7 @@
                         <div ng-style="contentDivStyle" id ="contentDiv">
                             <embed embed-src="{{imgUrlOrigin}}" id="pdfEle"  type="application/pdf" ng-style="pdfStyle" ng-if="srcType=='pdf' && isInitViewModel==false"/>
                             <iframe ng-src="{{imgUrlOrigin}}" ng-style="pdfStyle" id="wordEle" ng-if="srcType=='mswd'&& isInitViewModel==false"/>
-                            <img  ng-src="{{imgUrlOrigin}}" id="imgEle" ng-style="imgStyle" class="img-responsive"  ng-if="srcType=='img'&& isInitViewModel==false"/>
+                            <img  ng-src="{{imgUrlOrigin}}" id="imgEle" ng-style="imgStyle" ng-mouse-wheel-up="zoomInHandle()" ng-mouse-wheel-down="zoomOutHandle()" class="img-responsive"  ng-if="srcType=='img'&& isInitViewModel==false"/>
                         </div>
                     </div>
                     <div class="img_right_box" ng-style="rightStyle" >
