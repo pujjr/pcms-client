@@ -40,6 +40,18 @@ angular.module("app").
                         $scope.errmsg='身份证号码校验错误';
                         return false;
                     }
+                    //强制判断身份证初始日期
+                    var tmpStr = num.substring(6, 14);
+                    var month = tmpStr.substring(4, 6);
+                    if(parseInt(month)>12 || parseInt(month)<=0){
+                        $scope.errmsg='身份证号码出生月份应为1-12';
+                        return false;
+                    }
+                    var day = tmpStr.substring(6);
+                    if(parseInt(day)>31 || parseInt(day)<=0){
+                        $scope.errmsg='身份证号码出生日期应为1-31';
+                        return false;
+                    }
                     return true;
                 }
             }

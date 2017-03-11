@@ -75,15 +75,15 @@ angular.module('pu.utils.directives')
                 };
                 $scope.contentDivStyle = {
                     height: height,
-                    'overflow-y': 'auto',
-                    'overflow-x': 'auto'
+                    'overflow-y': 'hidden',
+                    'overflow-x': 'hidden'
                 };
                 $scope.scale = 1;
                 $scope.offsetX = 0;
                 $scope.offsetY = 0;
                 $scope.rotate = 0;
                 $scope.imgStyle = {
-                    width:$scope.innerWidth-200-0.25*$scope.innerWidth-100+'px',
+                    //width:$scope.innerWidth-200-0.25*$scope.innerWidth-100+'px',
                     'padding-bottom':10+'px',
                     'padding-left':10+'px',
                     'padding-right':10+'px',
@@ -102,8 +102,8 @@ angular.module('pu.utils.directives')
                 };
                 $scope.zoomOutHandle = function(){
                     $scope.scale+=0.1;
-                    $scope.offsetX += ($scope.innerWidth-200-0.25*$scope.innerWidth-100)*0.05;
-                    $scope.offsetY += heightNum*0.1;
+                    //$scope.offsetX += ($scope.innerWidth-200-0.25*$scope.innerWidth-100)*0.05;
+                    //$scope.offsetY += heightNum*0.1;
                     $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
                     $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
                 };
@@ -112,8 +112,8 @@ angular.module('pu.utils.directives')
                         return;
                     }
                     $scope.scale-=0.1;
-                    $scope.offsetX -= ($scope.innerWidth-200-0.25*$scope.innerWidth-100)*0.05;
-                    $scope.offsetY -= heightNum*0.1;
+                    //$scope.offsetX -= ($scope.innerWidth-200-0.25*$scope.innerWidth-100)*0.05;
+                    //$scope.offsetY -= heightNum*0.1;
                     $scope.imgStyle['transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
                     $scope.imgStyle['-webkit-transform']='scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)';
                 }
@@ -204,6 +204,10 @@ angular.module('pu.utils.directives')
                 }
                 /**图片查看模式查看大图**/
                 $scope.showOriginSrc = function(item){
+                    angular.forEach($scope.fileList,function(item){
+                        item.selected=false;
+                    })
+                    item.selected =true;
                     //移除子节点
                     var contentEle = angular.element(document.querySelector('#contentDiv'));
                     var pdfEle = angular.element(document.querySelector('#pdfEle'));
@@ -241,10 +245,15 @@ angular.module('pu.utils.directives')
                         contentEle.append(wordElement);
                     }else{
                         $scope.srcType ='img';
-                        var imgHtml = '<img  ng-src="{{imgUrlOrigin}}" id="imgEle" ng-style="imgStyle" class="img-responsive"/>';
+                        var imgHtml = '<div draggable-div=""  ng-mouse-wheel-up="zoomInHandle()" ng-mouse-wheel-down="zoomOutHandle()"><img  ng-src="{{imgUrlOrigin}}"   id="imgEle" ng-style="imgStyle" class="img-responsive"/></div>';
                         var imgTemplate = angular.element(imgHtml);
                         var imgElement = $compile(imgTemplate)($scope);
                         contentEle.append(imgElement);
+                    }
+                }
+                $scope.$getNodeCss = function(item){
+                    if( item.selected){
+                        return 'img-select';
                     }
                 }
                 /**设置图片查看模式**/

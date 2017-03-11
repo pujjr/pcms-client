@@ -5026,3 +5026,6 @@ ul{
 .console-step .step-active:before {
   border-color: #00a0c7
 }
+.img-select{
+  border: 5px solid;
+}

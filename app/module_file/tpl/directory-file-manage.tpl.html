@@ -30,8 +30,8 @@
                                 <img ng-src="{{item.imgUrlPrev}}">
                             </a>
                             <div>
-                                <div class="caption">
-                                    <input type="checkbox"  ng-model="item.selected"><span>{{item.fileName}}</span>
+                                <div class="caption" >
+                                    <input type="checkbox"  ng-model="item.selected"><span ng-click="item.selected=!item.selected">{{item.fileName}}</span>
                                     <div class="pull-right">
                                         <button type="button" ng-click="deleteFile(item.id)" class="btn btn-default btn-xs"  ng-if="enableDelete"  style="min-height: 20px"><i class="glyphicon glyphicon-trash text-danger"></i></button>
                                     </div>
@@ -44,17 +44,19 @@
             <div ng-if="isViewModel==true">
                 <div id="img_box" class="img_box">
                     <div class="img_left_box" ng-style="leftStyle">
-                        <div ng-style="contentDivStyle" id ="contentDiv">
+                        <div ng-style="contentDivStyle" id ="contentDiv" >
                             <embed embed-src="{{imgUrlOrigin}}" id="pdfEle"  type="application/pdf" ng-style="pdfStyle" ng-if="srcType=='pdf' && isInitViewModel==false"/>
                             <iframe ng-src="{{imgUrlOrigin}}" ng-style="pdfStyle" id="wordEle" ng-if="srcType=='mswd'&& isInitViewModel==false"/>
-                            <img  ng-src="{{imgUrlOrigin}}" id="imgEle" ng-style="imgStyle" ng-mouse-wheel-up="zoomInHandle()" ng-mouse-wheel-down="zoomOutHandle()" class="img-responsive"  ng-if="srcType=='img'&& isInitViewModel==false"/>
+                            <div  draggable-div=""  ng-mouse-wheel-up="zoomInHandle()" ng-mouse-wheel-down="zoomOutHandle()"  >
+                                <img  ng-src="{{imgUrlOrigin}}" id="imgEle" ng-style="imgStyle"  class="img-responsive"  ng-if="srcType=='img'&& isInitViewModel==false"/>
+                            </div>
                         </div>
                     </div>
                     <div class="img_right_box" ng-style="rightStyle" >
                         <div ng-style="prevSlide">
                             <ul>
-                                <li ng-repeat="item in  fileList" style="border-bottom: #dedede 2px solid;padding:5px" >
-                                    <a id="thumb_xixi-01" ng-click="clickShowOriginSrc(item)" style="padding:5px" ><img ng-src="{{item.imgUrlPrev}}" width="140" height="100" ></a>
+                                <li ng-repeat="item in  fileList" style="border-bottom: #dedede 2px solid;padding:5px"  >
+                                    <a id="thumb_xixi-01" ng-click="clickShowOriginSrc(item)" style="padding:5px" ><img ng-src="{{item.imgUrlPrev}}" ng-class="$getNodeCss(item)" width="140" height="100" ></a>
                                 </li>
                             </ul>
                         </div>
