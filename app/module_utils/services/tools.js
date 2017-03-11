@@ -65,7 +65,7 @@ angular.module('pu.utils.services')
             tmpStr = tmpStr.replace(/-/g,"/");
             var date = new Date(tmpStr );
             return date;
-        }
+        };
         this.addNumberMonth = function(value,i){
             var dt = new Date(parseInt(value));
             if(!angular.isDate(dt))

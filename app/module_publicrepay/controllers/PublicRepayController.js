@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.publicrepay.controllers")
-    .controller('PublicRepayController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,PublicRepayService,SysDictService,ApplyService) {
+    .controller('PublicRepayController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,PublicRepayService,SysDictService,ApplyService,modal) {
         $scope.initPublicRepayHistoryTaskList = function(){
             $scope.publicRepayApplyList = PublicRepayService.getApplyPublicRepayTaskList().$object;
         };
@@ -31,9 +31,11 @@ angular.module("pu.publicrepay.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApprovePublicRepayTask = function(){
-            PublicRepayService.commitApprovePublicRepayTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            modal.confirm("操作提醒","确认提交申请？").then(function(){
+                PublicRepayService.commitApprovePublicRepayTask($scope.taskId,$scope.approveVo).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         }
     });

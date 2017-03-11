@@ -1,4 +1,4 @@
-<div ng-init="initCollectionApprove();editable=false">
+<div ng-init="initCollectionSettleApprove();editable=false">
         <div id ="check-header" class="check-header">
             <div class="data-table-container" >
                 <header class="data-table-header" style="min-height:72px !important;">
@@ -35,25 +35,13 @@
                             </fieldset>
                         </form>
                     </uib-tab>
-                    <uib-tab index="2"  select="getImportantCollectionLog()">
+                    <uib-tab index="1"  select="getImportantCollectionLog()">
                         <uib-tab-heading>
                             <span>催收记录</span>
                         </uib-tab-heading>
                         <div ng-include="'module_assetsmanage/tpl/collection-log.html'"></div>
                     </uib-tab>
-                    <uib-tab index="3">
-                        <uib-tab-heading>
-                            <span>申请信息</span>
-                        </uib-tab-heading>
-                        <div ng-include="'module_apply/tpl/form-apply.html'"></div>
-                    </uib-tab>
-                    <uib-tab index="4"  select="initApplyFileManage()">
-                        <uib-tab-heading>
-                            <span>申请资料</span>
-                        </uib-tab-heading>
-                        <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
-                    </uib-tab>
-                    <uib-tab index="5"  select="queryWorkflowProcessResult(taskId)">
+                    <uib-tab index="2"  select="queryWorkflowProcessResult(taskId)">
                         <uib-tab-heading>
                             <span>流程流转记录</span>
                         </uib-tab-heading>

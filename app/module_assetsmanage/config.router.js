@@ -32,10 +32,10 @@ angular.module('app')
                     templateUrl:'module_assetsmanage/tpl/collection-assignee.html',
                     controller:'CollectionController'
                 })
-                //人手结案
-                .state('app.loantask.process.collection-handle-approve', {
+                //人手结案审批
+                .state('app.loantask.process.collection-settle-approve', {
                     url: '/collection-handle-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
-                    templateUrl:'module_assetsmanage/tpl/collection-handle-approve.html',
+                    templateUrl:'module_assetsmanage/tpl/collection-settle-approve.html',
                     controller:'CollectionController'
                 })
                 //电话回访

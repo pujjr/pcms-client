@@ -265,6 +265,45 @@ angular.module("pu.assetsmanage.controllers")
                 })
             })
         }
+        $scope.initCollectionSettleApprove = function(){
+            $scope.initCollectionData();
+            CollectionService.getCollectionAppyInfo($scope.businessKey).then(function(response){
+                $scope.applyVo = response;
+                var taskType = response.taskType;
+                $scope.approveVo = {};
+                if(taskType=='csrwlx01'){
+                    $scope.taskName = '电话催收';
+                }
+                if(taskType=='csrwlx02'){
+                    $scope.taskName = '上门催收';
+                    $scope.visitReasonList = SysDictService.queryDictDataByTypeCode("smcsyy").$object;
+                }
+                if(taskType =='csrwlx03'){
+                    $scope.taskName = '委外催收';
+                    $scope.outReasonList =  SysDictService.queryDictDataByTypeCode("wycsyy").$object;
+                    $scope.outUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx01').$object;
+                }
+                if(taskType =='csrwlx04'){
+                    $scope.taskName = '委外收车';
+                    $scope.recoverReasonList = SysDictService.queryDictDataByTypeCode("wwscyy").$object;
+                    $scope.recoverUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                }
+                if(taskType =='csrwlx05'){
+                    $scope.taskName = '车辆退回';
+                    $scope.backReasonList = SysDictService.queryDictDataByTypeCode("clthyy").$object;
+                }
+                if(taskType =='csrwlx06'){
+                    $scope.taskName = '资产处置';
+                    $scope.disposeReasonList = SysDictService.queryDictDataByTypeCode("zcczyy").$object;
+                    $scope.disposeUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx02').$object;
+                }
+                if(taskType =='csrwlx07'){
+                    $scope.taskName = '诉讼';
+                    $scope.lawsuitReasonList = SysDictService.queryDictDataByTypeCode("ssyy").$object;
+                    $scope.lawsuitUnitList = UnitInfoService.getUnitInfoList(true,'csdwlx03').$object;
+                }
+            });
+        };
         $scope.commitSettleApprove = function(){
             modal.confirm("操作提醒", "确认提交任务？").then(function () {
                 CollectionService.commitSettleApprove($scope.taskId).then(function () {

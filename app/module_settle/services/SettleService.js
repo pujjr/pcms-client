@@ -45,11 +45,14 @@ angular.module('pu.settle.services')
                         $scope.applyVo.beginPeriod = response[0];
                         $scope.applyVo.endPeriod = response[response.length - 1];
                     });
-                    $scope.dateOptions = {
-                        minDate: new Date()
-                    };
+                    $scope.dateOptions = {};
+                    //最小结清可选日期为当前日期
+                    ToolsService.getServerDateTime().then(function(response){
+                        $scope.dateOptions.minDate = ToolsService.convertStr82Date(response);
+                    })
+                    //最大结清可选日期为当期结账日
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
-                        $scope.dateOptions.maxDate = response.closingDate;
+                        $scope.dateOptions.maxDate = new Date(parseInt(response.closingDate));
                     });
                     $scope.$watch('applyVo.applyEffectDate', function (newVal, oldVal) {
                         if (newVal == oldVal || newVal == undefined)
@@ -96,13 +99,14 @@ angular.module('pu.settle.services')
                             $scope.canSelSettlePeriod.push({'key':i,'name':i+"期"}) ;
                         }
                     });
-                    //最小可选日期
-                    $scope.dateOptions = {
-                        minDate: new Date()
-                    };
-                    //最大可选截止日期为当期结账日前一天
+                    $scope.dateOptions = {};
+                    //最小结清可选日期为当前日期
+                    ToolsService.getServerDateTime().then(function(response){
+                        $scope.dateOptions.minDate = ToolsService.convertStr82Date(response);
+                    })
+                    //最大结清可选日期为当期结账日
                     LoanQueryService.getCurrentPeriodRepayPlan($scope.appId).then(function(response){
-                        $scope.dateOptions.maxDate = response.closingDate;
+                        $scope.dateOptions.maxDate = new Date(parseInt(response.closingDate));
                     });
                     //监视选择日期动作
                     $scope.$watch('applyVo.applyEffectDate', function (newVal, oldVal) {
