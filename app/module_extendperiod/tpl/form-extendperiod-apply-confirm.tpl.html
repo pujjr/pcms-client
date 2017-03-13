@@ -86,10 +86,7 @@
             <div class="form-group form-group-sm">
                 <label class="col-sm-4 control-label">新融资期限：</label>
                 <div class="col-sm-8">
-                    <select id="period" class="form-control" ng-model="applyVo.newPeriod"
-                            ng-options="item.period as (item.period+'期') for item in extendPeriods" required>
-                        <option value="">新融资期数</option>
-                    </select>
+                    <p class="form-control-static">{{applyVo.newPeriod}}</p>
                 </div>
             </div>
         </div>
@@ -108,112 +105,113 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayCapital}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还利息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayInterest}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">应还罚息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.repayOverdueAmount}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">其他费用：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.otherAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">其他费用罚息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.otherOverdueAmount}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">剩余本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.remainCapital}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">新旧还款日利息：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.newOldInterest}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">新计息本金：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.newCapital}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">展期费用：</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">{{applyVo.feeItem.extendFee}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
                 <label  class="col-sm-4 control-label">申请有效日期：</label>
                 <div class="col-sm-8">
                     <p class="form-control-static">{{applyVo.applyEndDate | mysqlDate}}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group form-group-sm">
-                <label  class="col-sm-4 control-label">减免展期费：</label>
-                <div class="col-sm-8">
-                    <input  type="number" class="form-control" ng-model="applyVo.remissionFeeItemVo.lateFee" >
-                </div>
-            </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="data-table-container">
+            <table class="table data-table">
+                <thead>
+                <tr>
+                    <th style="width:150px">展期项目</th>
+                    <th style="width:100px"></th>
+                    <th style="width:150px">展期金额</th>
+                    <th style="width:100px"></th>
+                    <th style="width:300px">减免金额</th>
+                    <th>展期项总额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>应还本金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayCapital}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.repayCapital}}</td>
+                </tr>
+                <tr>
+                    <td>应还利息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayInterest}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.repayInterest}}</td>
+                </tr>
+                <tr>
+                    <td>应还罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherAmount}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherOverdueAmount}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.otherOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>剩余本金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.remainCapital}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.remainCapital}}</td>
+                </tr>
+                <tr>
+                    <td>新旧还款日利息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.newOldInterest}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.newOldInterest}}</td>
+                </tr>
+                <tr class="info">
+                    <td>新计息本金(=)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.newCapital}}</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>{{applyVo.feeItem.newCapital}}</td>
+                </tr>
+                <tr>
+                    <td>展期费用</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.extendFee}}</td>
+                    <td>-</td>
+                    <td>
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                        <input type="number" class="form-control"  style="width:150px" id="interest" ng-model="applyVo.remissionFeeItemVo.lateFee"
+                               verify-remission-amount="applyVo.feeItem.extendFee" step="0.01" placeholder="减免展期费">
+                        </div>
+                    </td>
+                    <td>{{applyVo.feeItem.extendFee-applyVo.remissionFeeItemVo.lateFee}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-4">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">减免日期：</label>
-                <div class="col-sm-8">
-                    <p class="input-group">
-                        <input type="text" id="remissionDate" class="form-control" uib-datepicker-popup="yyyy-MM-dd"
-                               placeholder="减免日期"
-                               is-open="isopenRemissionDate"
-                               datepicker-options="dateOptions"
-                               ng-model="applyVo.remissionFeeItemVo.remissionDate" >
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"   ng-click="isopenRemissionDate=!isopenRemissionDate" ><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </p>
+                <div class="col-sm-12">
+                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" disabled ></textarea>
                 </div>
             </div>
         </div>
@@ -222,7 +220,7 @@
         <div class="col-md-12">
             <div class="form-group form-group-sm">
                 <div class="col-sm-12">
-                    <textarea  type="text" class="form-control" id="comment" ng-model="applyVo.applyComment" placeholder="申请备注"  rows="5" ></textarea>
+                    <textarea  type="text"  class="form-control" id="remissionComment" ng-model="applyVo.remissionFeeItemVo.remissionComment" placeholder="减免备注"  rows="5" ></textarea>
                 </div>
             </div>
         </div>

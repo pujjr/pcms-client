@@ -126,7 +126,22 @@ angular.module('pu.settle.services')
                     var watchSettleCapital;
                     $scope.initWatchSettleCapital = function(){
                         watchSettleCapital = $scope.$watch('applyVo.feeItem.settleCapital',function(newVal,oldVal){
+                            //更新结清后剩余本金
                             $scope.applyVo.feeItem.settleAfterAmount =parseFloat(( $scope.totalSettleCaptial-$scope.applyVo.feeItem.settleCapital).toFixed(2));
+                            //更新结清金额合计 = 逾期本金 + 逾期利息 + 逾期罚息 + 其他费用 + 其他费用罚息 + 提前还款违约金 - 挂账金额
+                            $scope.applyVo.feeItem.settleTotalAmount =
+                                parseFloat(
+                                (
+                                    $scope.applyVo.feeItem.repayCapital+
+                                    $scope.applyVo.feeItem.repayInterest+
+                                    $scope.applyVo.feeItem.repayOverdueAmount+
+                                    $scope.applyVo.feeItem.otherAmount+
+                                    $scope.applyVo.feeItem.otherOverdueAmount-
+                                    $scope.applyVo.feeItem.stayAmount+
+                                    $scope.applyVo.feeItem.settleCapital+
+                                    $scope.applyVo.feeItem.lateFee
+                                ).toFixed(2)
+                            )
                         })
                     }
                     $scope.ok = function () {
