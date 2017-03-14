@@ -1,7 +1,7 @@
 angular.module('app')
     .run(
     ['$rootScope', function ($rootScope) {
-            $rootScope.version = '1.0.22.20170314'
+            $rootScope.version = '1.0.23.20170314'
         }
     ])
 

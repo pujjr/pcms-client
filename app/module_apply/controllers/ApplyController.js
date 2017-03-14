@@ -95,6 +95,11 @@ angular.module("pu.apply.controllers")
             //监视融资信息变化查询GPS档位
             watchFinance2Gps = $scope.$watchGroup(['finance2.salePrice','finance2.initPayPercent'],function(newVal,oldVal){
                 $scope.finance2.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance2.salePrice,$scope.finance2.initPayPercent,$scope.applyInfo.product).$object;
+                $scope.finance2.insuranceFee = 0;
+                $scope.finance2.serviceFee = 0;
+                $scope.finance2.delayInsuranceFee = 0;
+                $scope.finance2.addonFee = 0;
+                $scope.finance2.transferFee =0;
             },true);
             watchFinance2 = $scope.$watch('finance2',function(newVal,oldVal){
                 var product = $scope.applyInfo.product;
@@ -143,6 +148,11 @@ angular.module("pu.apply.controllers")
             //监视融资信息变化查询GPS档位
             watchFinance3Gps = $scope.$watchGroup(['finance3.salePrice','finance3.initPayPercent'],function(newVal,oldVal){
                 $scope.finance3.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance3.salePrice,$scope.finance3.initPayPercent,$scope.applyInfo.product).$object;
+                $scope.finance3.insuranceFee = 0;
+                $scope.finance3.serviceFee = 0;
+                $scope.finance3.delayInsuranceFee = 0;
+                $scope.finance3.addonFee = 0;
+                $scope.finance3.transferFee =0;
             },true);
             watchFinance3 = $scope.$watch('finance3',function(newVal,oldVal){
                 var product = $scope.applyInfo.product;
