@@ -174,7 +174,7 @@ angular.module('pu.task.services')
                     });
                     $scope.refreshReport = function(){
                         $scope.loading=TaskService.refreshCreditReport(appId).then(function(response){
-                            if(response.errStatus==1){
+                            if(response.creditResponse.ossKey!=undefined){
                                 $scope.creditResponse = response;
                                 $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
                             }else{
@@ -196,7 +196,7 @@ angular.module('pu.task.services')
                 templateUrl :'module_task/tpl/dialog-showCreditReport.html',
                 controller:function($scope,RestApi,TaskService){
                     $scope.loading=TaskService.getColesseeCreditReport(appId).then(function(response){
-                        if(response.errStatus==1){
+                        if(response.creditResponse.ossKey!=undefined){
                             $scope.creditResponse = response;
                             $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
                         }else{
@@ -205,7 +205,7 @@ angular.module('pu.task.services')
                     });
                     $scope.refreshReport = function(){
                         $scope.loading=TaskService.refreshColesseeCreditReport(appId).then(function(response){
-                            if(response.errStatus==1){
+                            if(response.creditResponse.ossKey!=undefined){
                                 $scope.creditResponse = response;
                                 $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
                             }else{
