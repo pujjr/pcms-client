@@ -31,6 +31,7 @@ angular.module("pu.task.controllers")
             }
             var modalInstance = $uibModal.open({
                 animation: true,
+                size:'md',
                 backdrop:'false',
                 templateUrl :'module_task/tpl/dialog-selectassignee.html',
                 controller:function($scope,RestApi,modal,TaskService){

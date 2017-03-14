@@ -1,6 +1,6 @@
 /**验证裸车价**/
 angular.module("app").
-    directive('verifyIdnoAndCheckValid',function(defaultErrorMessageResolver){
+    directive('verifyIdnoAndCheckValid',function(defaultErrorMessageResolver,ApplyService){
     return {
         restrict:'A',
         require:'ngModel',
@@ -40,6 +40,26 @@ angular.module("app").
                         $scope.errmsg='身份证号码校验错误';
                         return false;
                     }
+                    //强制判断身份证初始日期
+                    var tmpStr = num.substring(6, 14);
+                    var month = tmpStr.substring(4, 6);
+                    if(parseInt(month)>12 || parseInt(month)<=0){
+                        $scope.errmsg='身份证号码出生月份应为1-12';
+                        return false;
+                    }
+                    var day = tmpStr.substring(6);
+                    if(parseInt(day)>31 || parseInt(day)<=0){
+                        $scope.errmsg='身份证号码出生日期应为1-31';
+                        return false;
+                    }
+                    //检查是否存在两个月被拒绝单子
+                    ApplyService.checkIdNoHas2MRefuseApply(num).then(function(response){
+                        var isRefuse = response.isRefuse;
+                        if(isRefuse == true){
+                            $scope.errmsg='客户在两个月内存在被拒绝申请，暂时无法申请';
+                            return false;
+                        }
+                    })
                     return true;
                 }
             }

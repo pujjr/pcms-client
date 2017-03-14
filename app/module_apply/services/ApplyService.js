@@ -30,5 +30,8 @@ angular.module('pu.apply.services')
                 controllerAs:"$ctrl"
 
             });
+        };
+        this.checkIdNoHas2MRefuseApply = function(idNo){
+            return RestApi.one("/apply/checkIdNoHas2MRefuseApply",idNo).get();
         }
     });
