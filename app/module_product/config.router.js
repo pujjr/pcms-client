@@ -19,6 +19,9 @@ angular.module('app')
                         $scope.productRuleConfig = function(){
                             $state.go('app.product.rule');
                         }
+                        $scope.productServiceFeeTemplateConfig = function(){
+                            $state.go('app.product.servicefee-rule')
+                        }
                     }
                 })
                 //产品管理-查询产品列表
@@ -32,6 +35,12 @@ angular.module('app')
                     url: '/rule',
                     templateUrl: 'module_product/tpl/product-rule-list.html',
                     controller: 'ProductRuleController'
+                })
+                //产品管理-服务费规则模板管理
+                .state('app.product.servicefee-rule', {
+                    url: '/servicefee-rule',
+                    templateUrl: 'module_product/tpl/product-servicefee-rule-list.html',
+                    controller: 'ProductServiceRuleController'
                 })
 
         }

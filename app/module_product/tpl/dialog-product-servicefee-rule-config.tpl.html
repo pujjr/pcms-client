@@ -1,0 +1,47 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑服务费规则</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">规则明细</div>
+            <div class="data-table-container">
+                <header class="data-table-header">
+                    <div class="data-table-header__label">
+                    </div>
+                    <div class="data-table-header__actions">
+                        <button class="btn btn-sm btn-default" type="button" ng-click="addDetail()"><i class="fa fa-plus m-r-sm"></i>增加</button>
+                    </div>
+                </header>
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>规则名称</th>
+                        <th>最小裸车价</th>
+                        <th>最大裸车价</th>
+                        <th>最小服务费</th>
+                        <th>最大服务费</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in ruleList">
+                        <td>{{item.ruleDesc}}</td>
+                        <td>{{item.minSalePrice}}</td>
+                        <td>{{item.maxSalePrice}}</td>
+                        <td>{{item.minServiceFee}}</td>
+                        <td>{{item.maxServiceFee}}</td>
+                        <td>
+                            <a href="javascript:" ng-click="removeDetailItem($index)">移除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

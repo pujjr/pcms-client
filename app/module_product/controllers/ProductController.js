@@ -106,6 +106,7 @@ angular.module("pu.product.controllers")
                     $scope.productRuleList = ProductService.queryProductRuleList({pageSize:1000}).$object;
                     $scope.dirTemplateList = TemplateService.queryTemplateList(true).$object;
                     $scope.formTemplateList = FormService.queryFormFieldTemplateList().$object;
+
                     $scope.ok=function(){
                         ProductService.addProduct($scope.item).then(function(){
                             modalInstance.close('增加产品成功');

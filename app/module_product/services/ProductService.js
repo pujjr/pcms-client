@@ -68,5 +68,23 @@ angular.module('pu.product.services')
         };
         this.getProductExtendPeriodList = function(productCode,curPeriod){
             return RestApi.all("/product/getProductExtendPeriodList").all(productCode).all(curPeriod).getList();
+        };
+        this.getProductServiceFeeTemplateList = function(){
+            return RestApi.all("/product/getProductServiceFeeTemplateList").getList();
+        };
+        this.addProductServiceFeeTemplate = function(param){
+            return RestApi.all("/product/addProductServiceFeeTemplate").post(param);
+        };
+        this.modifyProductServiceFeeTemplate = function(item){
+            return RestApi.one("/product/modifyProductServiceFeeTemplate",item.id).customPUT(item);
+        };
+        this.deleteProductServiceFeeTemplate = function(id){
+            return RestApi.one("/product/deleteProductServiceFeeTemplate",id).remove();
+        };
+        this.getProductServiceFeeRuleListByTplId = function(tplId){
+            return RestApi.all("/product/getProductServiceFeeRuleListByTplId").all(tplId).getList();
+        };
+        this.addProductServiceFeeRule = function(tplId,param){
+            return RestApi.all("/product/addProductServiceFeeRule").all(tplId).post(param);
         }
     });

@@ -105,6 +105,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-8" >
+                <div class="form-group">
+                    <label for="serviceFeeTpl" class="col-sm-3 control-label">服务费规则模板：</label>
+                    <div class="col-sm-9">
+                        <select  class="form-control" id="serviceFeeTpl"  ng-model="item.serviceFeeTplid" ng-options="o.id as o.tplName for o in serviceFeeTplList"   required>
+                            <option value="">服务费规则模板</option>`
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--
             <div class="col-md-4" >
                 <div class="form-group">
                     <label for="minServiceFee" class="col-sm-6 control-label">服务费最小额度：</label>
@@ -121,6 +133,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
         <div class="row">
             <div class="col-md-4" >
@@ -235,6 +248,7 @@
             </div>
         </div>
         <div class="row">
+            <!--
             <div class="col-md-4" >
                 <div class="form-group">
                     <label for="serviceFeePercent" class="col-sm-6 control-label">服务费小于裸车价比例：</label>
@@ -248,6 +262,15 @@
                     <label for="insuranceFeePercent" class="col-sm-6 control-label">保险费小于裸车价比例：</label>
                     <div class="col-sm-6">
                         <input type="number" class="form-control"  id="insuranceFeePercent" placeholder="保险费小于裸车价比例" ng-model="item.insuranceFeePercent" required>
+                    </div>
+                </div>
+            </div>
+            -->
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label for="maxTotalFeePercent" class="col-sm-6 control-label">购置税+保险费+服务费+过户费+安装费+延保费≤裸车价比例：</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control"  id="maxTotalFeePercent"  ng-model="item.maxTotalFeePercent" required>
                     </div>
                 </div>
             </div>

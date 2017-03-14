@@ -21,6 +21,7 @@ angular.module("pu.product.controllers")
                 templateUrl :'module_product/tpl/dialog-productrule-add.html',
                 controller:function($scope,RestApi){
                     $scope.item={};
+                    $scope.serviceFeeTplList = ProductService.getProductServiceFeeTemplateList().$object;
                     $scope.ok=function(){
                         ProductService.addProductRule($scope.item).then(function(){
                             modalInstance.close('增加产品规则成功');
@@ -49,6 +50,7 @@ angular.module("pu.product.controllers")
                 templateUrl :'module_product/tpl/dialog-productrule-edit.html',
                 controller:function($scope,RestApi){
                     $scope.item=item;
+                    $scope.serviceFeeTplList = ProductService.getProductServiceFeeTemplateList().$object;
                     $scope.ok=function(){
                         ProductService.modifyProductRule($scope.item).then(function(){
                             modalInstance.close('修改产品规则类别');
