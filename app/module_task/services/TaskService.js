@@ -165,7 +165,7 @@ angular.module('pu.task.services')
                 templateUrl :'module_task/tpl/dialog-showCreditReport.html',
                 controller:function($scope,RestApi,TaskService){
                     $scope.loading=TaskService.getCreditReport(appId).then(function(response){
-                        if(response.errStatus==1){
+                        if(response.creditResponse.ossKey!=undefined){
                             $scope.creditResponse = response;
                             $scope.pdfUrl = SERVER_URL.OSS_URL+$scope.creditResponse.ossKey;
                         }else{
