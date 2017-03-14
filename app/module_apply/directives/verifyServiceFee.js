@@ -5,7 +5,7 @@ angular.module("app").
         restrict:'A',
         require:'ngModel',
         scope : {
-            salePrice:'=',
+            financeFee:'=',
             rule : '=verifyServiceFee'
         },
         link: function ($scope, ele, attributes, ngModelController) {
@@ -31,12 +31,42 @@ angular.module("app").
                     return false;
                 }else{
                     if(parseFloat(modelVal)>0){
-                        if($scope.rule.hasOwnProperty('minServiceFee') && $scope.rule.hasOwnProperty('maxServiceFee')){
-                            if( modelVal >= $scope.rule.minServiceFee && modelVal<=$scope.rule.maxServiceFee&&(modelVal<=$scope.rule.serviceFeePercent/100*$scope.salePrice)){
-                                return true;
-                            }else{
-                                $scope.errmsg= $scope.rule.minServiceFee+'<=服务费<='+$scope.rule.maxServiceFee+',并不大于裸车价'+$scope.rule.serviceFeePercent+"%";
+                        //根据裸车价验证服务费规则
+                        var salePrice = $scope.financeFee.salePrice;
+                        var serviceFeeRule = $scope.rule.serviceFeeRuleList;
+                        for(var i=0;i<serviceFeeRule.length;i++){
+                            var ruleItem = serviceFeeRule[i];
+                            if(salePrice>ruleItem.minSalePrice && salePrice<=ruleItem.maxSalePrice){
+                                if(modelVal<ruleItem.minServiceFee || modelVal >ruleItem.maxServiceFee ){
+                                    $scope.errmsg= '裸车价在'+ruleItem.minSalePrice+'-'+ruleItem.maxSalePrice+'区间时，'+ruleItem.minServiceFee+'<=服务费<='+ruleItem.maxServiceFee;
+                                    return false;
+                                }
+                            }
+                        }
+                        //验证购置税+保险费+服务费+过户费+安装费+延保费≤裸车价*比例
+                        if($scope.rule.hasOwnProperty('maxTotalFeePercent') && $scope.rule.hasOwnProperty('maxTotalFeePercent')){
+                            var totalFee = 0.00;
+                            if(!isNaN(parseFloat($scope.financeFee.purchaseTax))&& $scope.financeFee.purchaseTax!=""&& $scope.financeFee.purchaseTax!=undefined && $scope.financeFee.purchaseTax !=null){
+                                totalFee += parseFloat($scope.financeFee.purchaseTax);
+                            }
+                            if(!isNaN(parseFloat($scope.financeFee.addonFee))&& $scope.financeFee.addonFee!=""&& $scope.financeFee.addonFee!=undefined&& $scope.financeFee.addonFee !=null){
+                                totalFee += parseFloat($scope.financeFee.addonFee);
+                            }
+                            if(!isNaN(parseFloat($scope.financeFee.insuranceFee))&& $scope.financeFee.insuranceFee!=""&& $scope.financeFee.insuranceFee!=undefined&& $scope.financeFee.insuranceFee !=null){
+                                totalFee += parseFloat($scope.financeFee.insuranceFee);
+                            }
+                            if(!isNaN(parseFloat($scope.financeFee.delayInsuranceFee))&& $scope.financeFee.delayInsuranceFee!=""&& $scope.financeFee.delayInsuranceFee!=undefined&& $scope.financeFee.delayInsuranceFee !=null){
+                                totalFee += parseFloat($scope.financeFee.delayInsuranceFee);
+                            }
+                            if(!isNaN(parseFloat($scope.financeFee.transferFee))&& $scope.financeFee.transferFee!=""&& $scope.financeFee.transferFee!=undefined&& $scope.financeFee.transferFee !=null){
+                                totalFee += parseFloat($scope.financeFee.transferFee);
+                            }
+                            totalFee+=parseFloat(modelVal);
+                            if(totalFee>$scope.financeFee.salePrice*$scope.rule.maxTotalFeePercent/100){
+                                $scope.errmsg= '产品购置税+保险费+服务费+过户费+安装费+延保费≤裸车价*'+$scope.rule.maxTotalFeePercent+"%";
                                 return false;
+                            }else{
+                                return true;
                             }
                         }else{
                             return false;

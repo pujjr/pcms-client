@@ -83,11 +83,12 @@ angular.module('pu.utils.directives')
                 $scope.offsetY = 0;
                 $scope.rotate = 0;
                 $scope.imgStyle = {
-                    //width:$scope.innerWidth-200-0.25*$scope.innerWidth-100+'px',
+                    'max-width':$scope.innerWidth-200-0.25*$scope.innerWidth-100+'px',
+                    'max-height':height,
                     'padding-bottom':10+'px',
                     'padding-left':10+'px',
                     'padding-right':10+'px',
-                    'overflow-y': 'auto',
+                    'overflow-y': 'hidden',
                     'transform':'scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)',
                     '-webkit-transform':'scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)',
                     'filter':'progid:DXImageTransform.Microsoft.BasicImage(rotation=3)'
