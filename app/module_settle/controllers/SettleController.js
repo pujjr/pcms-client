@@ -43,9 +43,61 @@ angular.module("pu.settle.controllers")
             })
 
         };
+        $scope.hasNoRemission = function(){
+            if($scope.task.actId=='cwqrrz'){
+                return true;
+            }
+            var total = 0.00;
+            if(!isNaN($scope.applyVo.remissionFeeItemVo.capital)&& $scope.applyVo.remissionFeeItemVo.capital!=undefined){
+                total  += $scope.applyVo.remissionFeeItemVo.capital;
+            }
+
+            if(!isNaN($scope.applyVo.remissionFeeItemVo.interest)&&  $scope.applyVo.remissionFeeItemVo.interest!=undefined){
+                total  += $scope.applyVo.remissionFeeItemVo.interest;
+            }
+
+            if(!isNaN($scope.applyVo.remissionFeeItemVo.overdueAmount)&& $scope.applyVo.remissionFeeItemVo.overdueAmount!=undefined){
+                total  += $scope.applyVo.remissionFeeItemVo.overdueAmount;
+            }
+            if(!isNaN($scope.applyVo.remissionFeeItemVo.otherFee)&& $scope.applyVo.remissionFeeItemVo.otherFee!=undefined){
+                total  += $scope.applyVo.remissionFeeItemVo.otherFee;
+            }
+            if(!isNaN($scope.applyVo.remissionFeeItemVo.otherOverdueAmount)&&  $scope.applyVo.remissionFeeItemVo.otherOverdueAmount!=undefined){
+                total  += $scope.applyVo.remissionFeeItemVo.otherOverdueAmount;
+            }
+            if(!isNaN($scope.applyVo.remissionFeeItemVo.lateFee)&& $scope.applyVo.remissionFeeItemVo.lateFee!=undefined){
+                total  += $scope.applyVo.remissionFeeItemVo.lateFee;
+            }
+            if(total>0){
+                return false;
+            }else{
+                return true;
+            }
+        }
         $scope.commitApplyConfirmSettleTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){
-                SettleService.commitApplyConfirmSettleTask($scope.taskId,$scope.applyVo.remissionFeeItemVo).then(function(response){
+                SettleService.commitApplyConfirmSettleTask($scope.taskId,{'remissionVo':$scope.applyVo.remissionFeeItemVo,'settleRepayAmount':$scope.applyVo.settleRepayAmount}).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
+            })
+        };
+        $scope.initRemissionConfirm = function(){
+            $scope.procInstId = $stateParams.procInstId;
+            $scope.taskId = $stateParams.taskId;
+            $scope.businessKey = $stateParams.businessKey;
+            $scope.appId = $stateParams.appId;
+            $scope.workflowKey = $stateParams.workflowKey;
+            $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
+            $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+            SettleService.getApplySettleInfo($scope.businessKey).then(function(response){
+                $scope.applyVo = response;
+                $scope.applyVo.settleRepayAmount=undefined;
+            })
+        };
+        $scope.commitRemissionConfirmSettleTask = function(){
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                SettleService.commitRemissionConfirmSettleTask($scope.taskId,{'settleRepayAmount':$scope.applyVo.settleRepayAmount}).then(function(response){
                     toaster.pop('success', '操作提醒', "提交任务成功");
                     $state.go("app.loantask.todolist")
                 })

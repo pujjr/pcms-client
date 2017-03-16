@@ -18,6 +18,9 @@ angular.module('pu.settle.services')
         this.commitApplyConfirmSettleTask = function(taskId,params){
             return RestApi.all("/settle/commitApplyConfirmSettleTask").all(taskId).post(params);
         };
+        this.commitRemissionConfirmSettleTask = function(taskId,params){
+            return RestApi.all("/settle/commitRemissionConfirmSettleTask").all(taskId).post(params);
+        };
         this.commitRemissionApprove = function(taskId,params){
             return RestApi.all("/settle/commitApproveRemissionTask").all(taskId).post(params);
         };

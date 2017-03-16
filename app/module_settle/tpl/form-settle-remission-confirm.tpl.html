@@ -128,10 +128,13 @@
                     <td>{{applyVo.feeItem.repayCapital}}</td>
                     <td>-</td>
                     <td>
+                        {{applyVo.remissionFeeItemVo.capital}}
+                        <!--
                         <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
                             <input type="number" class="form-control" style="width:150px" id="capital" ng-model="applyVo.remissionFeeItemVo.capital"
                                    verify-remission-amount="applyVo.feeItem.repayCapital" step="0.01" placeholder="减免本金">
                         </div>
+                        -->
                     </td>
                     <td>{{(applyVo.feeItem.repayCapital-applyVo.remissionFeeItemVo.capital).toFixed(2)}}</td>
                 </tr>
@@ -141,10 +144,13 @@
                     <td>{{applyVo.feeItem.repayInterest}}</td>
                     <td>-</td>
                     <td>
+                        {{applyVo.remissionFeeItemVo.interest}}
+                        <!--
                         <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
                             <input type="number" class="form-control"  style="width:150px" id="interest" ng-model="applyVo.remissionFeeItemVo.interest"
                                    verify-remission-amount="applyVo.feeItem.repayInterest" step="0.01" placeholder="减免利息">
                         </div>
+                        -->
                     </td>
                     <td>{{(applyVo.feeItem.repayInterest-applyVo.remissionFeeItemVo.interest).toFixed(2)}}</td>
                 </tr>
@@ -154,10 +160,13 @@
                     <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
                     <td>-</td>
                     <td>
+                        {{applyVo.remissionFeeItemVo.overdueAmount}}
+                        <!--
                         <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
                             <input type="number" class="form-control"  style="width:150px" id="overdueAmount" ng-model="applyVo.remissionFeeItemVo.overdueAmount"
                                    verify-remission-amount="applyVo.feeItem.repayOverdueAmount" step="0.01" placeholder="减免罚息">
                         </div>
+                        -->
                     </td>
                     <td>{{(applyVo.feeItem.repayOverdueAmount-applyVo.remissionFeeItemVo.overdueAmount).toFixed(2)}}</td>
                 </tr>
@@ -167,10 +176,13 @@
                     <td>{{applyVo.feeItem.otherAmount}}</td>
                     <td>-</td>
                     <td>
+                        {{applyVo.remissionFeeItemVo.otherFee}}
+                        <!--
                         <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
                             <input type="number" class="form-control"  style="width:150px"  id="otherFee" ng-model="applyVo.remissionFeeItemVo.otherFee"
                                    verify-remission-amount="applyVo.feeItem.otherAmount" step="0.01"  placeholder="减免其他费用">
                         </div>
+                        -->
                     </td>
                     <td>{{(applyVo.feeItem.otherAmount-applyVo.remissionFeeItemVo.otherFee).toFixed(2)}}</td>
                 </tr>
@@ -180,10 +192,13 @@
                     <td>{{applyVo.feeItem.otherOverdueAmount}}</td>
                     <td>-</td>
                     <td>
+                        {{applyVo.remissionFeeItemVo.otherOverdueAmount}}
+                        <!--
                         <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
                             <input type="number" class="form-control"  style="width:150px"   id="otherOverdueAmount" ng-model="applyVo.remissionFeeItemVo.otherOverdueAmount"
                                    verify-remission-amount="applyVo.feeItem.otherOverdueAmount" step="0.01"  placeholder="减免其他费用罚息">
                         </div>
+                        -->
                     </td>
                     <td>{{(applyVo.feeItem.otherOverdueAmount-applyVo.remissionFeeItemVo.otherOverdueAmount).toFixed(2)}}</td>
                 </tr>
@@ -209,10 +224,13 @@
                     <td>{{applyVo.feeItem.lateFee}}</td>
                     <td>-</td>
                     <td>
+                        {{applyVo.remissionFeeItemVo.lateFee}}
+                        <!--
                         <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
                             <input type="number" class="form-control"  style="width:150px"  id="lateFee" ng-model="applyVo.remissionFeeItemVo.lateFee"
                                    verify-remission-amount="applyVo.feeItem.lateFee" step="0.01"  placeholder="减免提前结清违约金">
                         </div>
+                        -->
                     </td>
                     <td>{{(applyVo.feeItem.lateFee-applyVo.remissionFeeItemVo.lateFee).toFixed(2)}}</td>
                 </tr>
@@ -239,12 +257,12 @@
                         applyVo.remissionFeeItemVo.lateFee)).toFixed(2)}}
                     </td>
                 </tr>
-                <tr ng-if="hasNoRemission()">
+                <tr>
                     <td>入账金额</td>
                     <td>=</td>
                     <td colspan="4">
                         <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
-                            <input type="number" class="form-control"  style="width:150px"   id="settleRepayAmount"  min="0.01"  ng-model="applyVo.settleRepayAmount" required
+                            <input type="number" class="form-control"  style="width:150px"  min="0.01"  id="settleRepayAmount" ng-model="applyVo.settleRepayAmount" required
                                    verify-settle-repay-amount  apply-vo="applyVo" step="0.01"  placeholder="入账金额">
                         </div>
                     </td>
@@ -267,7 +285,7 @@
         <div class="col-md-12">
             <div class="form-group form-group-sm">
                 <div class="col-sm-12">
-                    <textarea  type="text"  class="form-control" id="remissionComment" ng-model="applyVo.remissionFeeItemVo.remissionComment" placeholder="减免备注"  rows="5" ></textarea>
+                    <textarea  type="text"  disabled class="form-control" id="remissionComment" ng-model="applyVo.remissionFeeItemVo.remissionComment" placeholder="减免备注"  rows="5" ></textarea>
                 </div>
             </div>
         </div>
