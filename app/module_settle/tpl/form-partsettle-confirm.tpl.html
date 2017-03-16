@@ -243,6 +243,16 @@
                     <td>=</td>
                     <td>{{applyVo.feeItem.settleAfterAmount}}</td>
                 </tr>
+                <tr  ng-if="hasNoRemission()">
+                    <td>入账金额</td>
+                    <td>=</td>
+                    <td colspan="4">
+                        <div class="form-group form-group-sm" style="margin-bottom: 0px;!important;">
+                            <input type="number" class="form-control"  style="width:150px"   id="settleRepayAmount"  min="0.01"  ng-model="applyVo.settleRepayAmount" required
+                                   verify-settle-repay-amount  apply-vo="applyVo" step="0.01"  placeholder="入账金额">
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>

@@ -63,6 +63,12 @@ angular.module('app')
                     templateUrl:'module_settle/tpl/settle-confirm.html',
                     controller:'SettleController'
                 })
+                //提前结清减免确认入账
+                .state('app.loantask.process.settle-remission-confirm', {
+                    url: '/settley-remission-confirm/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_settle/tpl/settle-remission-confirm.html',
+                    controller:'SettleController'
+                })
                 //变更还款日审批
                 .state('app.loantask.process.alterrepaydate-approve', {
                     url: '/alterrepaydate-approve/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
