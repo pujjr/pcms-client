@@ -28,6 +28,11 @@ angular.module("pu.loantask.controllers")
         };
         $scope.pageChanged = function(){
             $scope.toDoTaskList  = LoanTaskService.getLoanToDoTaskList().$object;
+        };
+        $scope.getClass = function(item){
+            if(item.printCnt !=undefined && parseInt(item.printCnt)>0 && item.workflowKey=='TQJQ'){
+                return 'info';
+            }
         }
     })
 ;

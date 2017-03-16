@@ -61,7 +61,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in toDoTaskList">
+                <tr ng-repeat="item in toDoTaskList" ng-class="getClass(item)">
                     <td>{{item.workflowName}}</td>
                     <td>{{item.appId}}</td>
                     <td>{{item.custName}}</td>
