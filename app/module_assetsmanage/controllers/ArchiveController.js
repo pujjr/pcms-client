@@ -78,6 +78,9 @@ angular.module("pu.assetsmanage.controllers")
         $scope.initArchiveList = function(){
             $scope.archiveList = ArchiveService.getArchiveList().$object;
         };
+        $scope.pageChangedArchiveList = function(){
+            $scope.archiveList = ArchiveService.getArchiveList().$object;
+        }
         $scope.archiveDelay = function(item){
             ArchiveService.archiveDelay(item.archiveTaskId).then(function(){
                 toaster.pop('success', '操作提醒', "保存延期信息成功");

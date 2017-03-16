@@ -56,6 +56,12 @@ angular.module('app')
                     templateUrl:'module_assetsmanage/tpl/collection-archive-log.html',
                     controller:'ArchiveController'
                 })
+                //结清、展期、变更还款日档案归档
+                .state('app.loantask.process.archive-auto-log', {
+                    url: '/archive-auto-log/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
+                    templateUrl:'module_assetsmanage/tpl/archive-auto-log.html',
+                    controller:'ArchiveController'
+                })
                 //补充归档资料
                 .state('app.loantask.process.archive-supply', {
                     url: '/archive-supply/:workflowKey/:procInstId/:taskId/:businessKey/:appId',
