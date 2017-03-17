@@ -24,5 +24,8 @@ angular.module('pu.charge.services')
         };
         this.getOfferBatchDetail = function(offerBatchId){
             return RestApi.all("/charge/getOfferBatchDetail").all(offerBatchId).getList();
+        };
+        this.getOfferBatchChargeLog = function(offerBatchId){
+            return RestApi.all("/charge/getOfferBatchChargeLog").all(offerBatchId).getList();
         }
     });

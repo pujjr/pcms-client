@@ -3,13 +3,34 @@
         <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>{{taskName}}申请信息</h4>
     </div>
     <div class="modal-body">
-        <div ng-if="applyVo.taskType=='csrwlx01'"  ng-include="'module_assetsmanage/tpl/form-apply-phone-collection.html'"></div>
-        <div ng-if="applyVo.taskType=='csrwlx02'"  ng-include="'module_assetsmanage/tpl/form-apply-visit-collection.html'"></div>
-        <div ng-if="applyVo.taskType=='csrwlx03'"  ng-include="'module_assetsmanage/tpl/form-apply-out-collection.html'"></div>
-        <div ng-if="applyVo.taskType=='csrwlx04'"  ng-include="'module_assetsmanage/tpl/form-apply-recover-collection.html'"></div>
-        <div ng-if="applyVo.taskType=='csrwlx05'"  ng-include="'module_assetsmanage/tpl/form-apply-refund-collection.html'"></div>
-        <div ng-if="applyVo.taskType=='csrwlx06'"  ng-include="'module_assetsmanage/tpl/form-apply-dispose-collection.html'"></div>
-        <div ng-if="applyVo.taskType=='csrwlx07'"  ng-include="'module_assetsmanage/tpl/form-apply-lawsuit-collection.html'"></div>
+        <ng-form  name="form" novalidate ng-cloak="" >
+            <uib-tabset>
+                <uib-tab index="0">
+                    <uib-tab-heading>
+                        <span>申请信息</span>
+                    </uib-tab-heading>
+                    <form class="container-fluid m-t-md form-horizontal">
+                        <fieldset class="scheduler-border" disabled>
+                            <legend class="scheduler-border">申请信息</legend>
+                            <div ng-if="applyVo.taskType=='csrwlx01'"  ng-include="'module_assetsmanage/tpl/form-apply-phone-collection.html'"></div>
+                            <div ng-if="applyVo.taskType=='csrwlx02'"  ng-include="'module_assetsmanage/tpl/form-apply-visit-collection.html'"></div>
+                            <div ng-if="applyVo.taskType=='csrwlx03'"  ng-include="'module_assetsmanage/tpl/form-apply-out-collection.html'"></div>
+                            <div ng-if="applyVo.taskType=='csrwlx04'"  ng-include="'module_assetsmanage/tpl/form-apply-recover-collection.html'"></div>
+                            <div ng-if="applyVo.taskType=='csrwlx05'"  ng-include="'module_assetsmanage/tpl/form-apply-refund-collection.html'"></div>
+                            <div ng-if="applyVo.taskType=='csrwlx06'"  ng-include="'module_assetsmanage/tpl/form-apply-dispose-collection.html'"></div>
+                            <div ng-if="applyVo.taskType=='csrwlx07'"  ng-include="'module_assetsmanage/tpl/form-apply-lawsuit-collection.html'"></div>
+                        </fieldset>
+                    </form>
+                </uib-tab>
+                <uib-tab index="1"  select="getWorkflowProcessResultByProcInstId()">
+                    <uib-tab-heading>
+                        <span>流程流转记录</span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_task/tpl/form-workflow_process_result.html'"></div>
+                </uib-tab>
+            </uib-tabset>
+        </ng-form>
+
     </div>
     <div class="modal-footer">
         <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>

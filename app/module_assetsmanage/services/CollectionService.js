@@ -112,7 +112,7 @@ angular.module('pu.assetsmanage.services')
                 },
                 size:'lg',
                 templateUrl :'module_assetsmanage/tpl/dialog-collection-apply-info.html',
-                controller:function($scope,$rootScope,RestApi,CollectionService,SysDictService,UnitInfoService){
+                controller:function($scope,$rootScope,RestApi,CollectionService,SysDictService,UnitInfoService,QueryService){
                     $scope.businessKey = item.businessKey;
                     $scope.appId = item.appId;
                     $scope.procDefId = item.procDefId;

@@ -83,37 +83,35 @@
 </fieldset>
 <div class="panel panel-default">
     <div class="panel-heading">其他费用明细</div>
-    <div class="panel-body">
-        <div class="data-table-container">
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th>序号</th>
-                    <th>明细项目</th>
-                    <th>明细金额</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in applyVo.detailList">
-                    <td>{{$index+1}}</td>
-                    <td>{{item.itemNameDesc}}</td>
-                    <td>{{item.itemAmount}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="has-divider has-divider--dark"></div>
-            <div class="toolbar">
-                <div class="toolbar__left mr++">
-                </div>
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>明细项目</th>
+                <th>明细金额</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in applyVo.detailList">
+                <td>{{$index+1}}</td>
+                <td>{{item.itemNameDesc}}</td>
+                <td>{{item.itemAmount}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="has-divider has-divider--dark"></div>
+        <div class="toolbar">
+            <div class="toolbar__left mr++">
+            </div>
                 <span class="toolbar__label fs-title">
 
                 </span>
-                <div class="toolbar__right">
-                    <div class="mr+++">
+            <div class="toolbar__right">
+                <div class="mr+++">
                     <span>
                         总金额：{{applyVo.feeTotalAmount}}
                     </span>
-                    </div>
                 </div>
             </div>
         </div>

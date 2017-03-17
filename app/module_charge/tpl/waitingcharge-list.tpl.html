@@ -14,6 +14,7 @@
                 <tr>
                     <th>序号</th>
                     <th>申请单号</th>
+                    <th>报盘来源</th>
                     <th>姓名</th>
                     <th>扣款金额</th>
                 </tr>
@@ -22,6 +23,10 @@
                 <tr ng-repeat="item in enableChargeList">
                     <td>{{item.seq}}</td>
                     <td>{{item.appId}}</td>
+                    <td>
+                        <span ng-if="item.offerSource =='bply01'">系统报盘</span>
+                        <span ng-if="item.offerSource =='bply02'">人手报盘</span>
+                    </td>
                     <td>{{item.custName}}</td>
                     <td>{{item.offerAmount}}</td>
                 </tr>

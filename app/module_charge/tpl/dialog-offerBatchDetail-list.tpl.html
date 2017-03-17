@@ -2,14 +2,15 @@
     <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>报盘明细</h4>
 </div>
 <div class="modal-body" style="height: 600px;overflow-y: auto">
-    <div class="data-table-container">
+    <div class="panel panel-default data-table-container">
         <table class="data-table">
             <thead>
             <tr>
                 <th style="width:200px">申请单号</th>
                 <th>姓名</th>
-                <th>身份证号</th>
                 <th>卡号</th>
+                <th>交易日期</th>
+                <th>订单号</th>
                 <th>扣款状态</th>
                 <th>扣款金额</th>
                 <th>返回结果</th>
@@ -18,12 +19,17 @@
             <tbody>
             <tr ng-repeat="item in offerBatchDetailList">
                 <td>{{item.appId}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.idNo}}</td>
+                <td>{{item.custName}}</td>
                 <td>{{item.cardNo}}</td>
-                <td>{{item.chargeStatusDesc}}</td>
+                <td>{{item.tranDate}}</td>
+                <td>{{item.orderNo}}</td>
+                <td>
+                    <span ng-if="item.chargeStatus=='kkzt01'">待扣款</span>
+                    <span ng-if="item.chargeStatus=='kkzt02'">扣款中</span>
+                    <span ng-if="item.chargeStatus=='kkzt03'">扣款完成</span>
+                </td>
                 <td>{{item.chargeAmount}}</td>
-                <td>{{item.thirdPartResult}}</td>
+                <td>{{item.chargeResult}}</td>
             </tr>
             </tbody>
         </table>

@@ -106,7 +106,7 @@ angular.module("pu.charge.controllers")
                 templateUrl :'module_charge/tpl/dialog-offerBatchDetail-list.html',
                 controller:function($scope,RestApi,$q){
                     $scope.offerBatchId=item.id;
-                    $scope.offerBatchDetailList = ChargeService.getOfferBatchDetail($scope.offerBatchId).$object;
+                    $scope.offerBatchDetailList = ChargeService.getOfferBatchChargeLog($scope.offerBatchId).$object;
                     $scope.cancel=function(){
                         modalInstance.dismiss('cancel');
                     }
