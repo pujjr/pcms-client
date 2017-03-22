@@ -177,6 +177,7 @@ angular.module("pu.workflow.controllers")
                     $scope.counterSignModeList = SysDictService.queryDictDataByTypeCode("hqfs").$object;
                     $scope.recommitModes = SysDictService.queryDictDataByTypeCode("cxtjfs").$object;
                     $scope.userTaskNodes = WorkflowService.queryProcessUserTaskNodes(node.workflowVersionId).$object;
+                    $scope.assigneeModeList = SysDictService.queryDictDataByTypeCode("ryfpms").$object;
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
                     };

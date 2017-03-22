@@ -8,7 +8,7 @@
                     <button class="btn btn-sm btn-default" type="button" ng-click="addContractInfo()"><i class="fa fa-plus m-r-sm"></i>增加</button>
                 </div>
             </header>
-            <table class="data-table">
+            <table class="data-table table table-hover ">
                 <thead>
                 <tr>
                     <th>合同名称</th>
@@ -17,6 +17,8 @@
                     <th>是否启用</th>
                     <th>创建人员</th>
                     <th>创建时间</th>
+                    <th>更新人员</th>
+                    <th>更新时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -31,6 +33,8 @@
                     </td>
                     <td>{{item.createId}}</td>
                     <td>{{item.createTime|mysqlDatetime}}</td>
+                    <td>{{item.updateId}}</td>
+                    <td>{{item.updateTime|mysqlDatetime}}</td>
                     <td>
                         <a href="javascript:" ng-click="editContractInfo(item)">编辑</a>
                         <a href="javascript:" ng-click="uploadContractFile(item)">上传模板</a>

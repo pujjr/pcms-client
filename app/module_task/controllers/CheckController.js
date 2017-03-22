@@ -31,7 +31,7 @@ angular.module("pu.task.controllers")
         };
         //初始化初审
         $scope.initPreCheck = function(){
-            $scope.doInitApplyEdit($stateParams.businessKey);
+            $scope.doInitApplyReadOnly($stateParams.businessKey);
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
             $scope.loanConditionList = SysDictService.queryDictDataByTypeCode("fktj").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
