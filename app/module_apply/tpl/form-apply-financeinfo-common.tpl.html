@@ -289,7 +289,7 @@
             <label  class="col-sm-4 control-label">评估费：</label>
             <div class="col-sm-8">
                 <select  class="form-control"  ng-model="item.assessFee" ng-required="requiredMap.assessFee"
-                         ng-disabled="editable==false || applyInfo.product.productRule.enableAssessFee == false"
+                         ng-disabled="editable==false || applyInfo.product.productRule.enableAssessFee ==false"
                          ng-options="o.key as o.val for o in [{key:0,val:'0'},{key:300,val:'300元'}]">
                 </select>
             </div>
