@@ -108,6 +108,16 @@
     </a>
   </li>
   <li class="line dk"></li>
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs"  ng-if="hasPrimission('app.data')">
+    <span >数据管理</span>
+  </li>
+  <li ui-sref-active="active"  ng-if="hasPrimission('app.report')">
+    <a ui-sref="app.report.list" >
+      <i class="fa fa-mobile icon text-info-dker"></i>
+      <span class="font-bold">报表管理</span>
+    </a>
+  </li>
+  <li class="line dk"></li>
   <li class="hidden-folded padder m-t m-b-sm text-muted text-xs" ng-if="hasPrimission('app.system')">
     <span >系统管理</span>
   </li>

@@ -1,0 +1,44 @@
+<div ng-init="init()" cg-busy="loading">
+    <div class="panel_main">
+        <div class="panel-header">
+            <div class="panel-header-wrapper">
+                <h2 class="panel-header-title">征信报表</h2>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row m-t-sm">
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <p class="input-group">
+                            <input type="text" id="startDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup="yyyy-MM-dd"
+                                   placeholder="开始日期"
+                                   is-open="isopenApplyStartDate"
+                                   ng-model="vm.startDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default m-b-ms"   ng-click="isopenApplyStartDate=!isopenApplyStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group">
+                            <input type="text" id="endDate" class="form-control m-b-sm m-r-xs" uib-datepicker-popup
+                                   placeholder="截止日期"
+                                   is-open="isopenApplyeEndDate"
+                                   ng-model="vm.endDate" >
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default btn-md m-b-ms"   ng-click="isopenApplyeEndDate=!isopenApplyeEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-default btn-sm m-b-sm m-r-xs" ng-click="exportCreditReport()"><i class="fa fa-search" aria-hidden="true"></i>导出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
