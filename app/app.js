@@ -43,5 +43,6 @@ angular.module('app', [
     'pu.otherfee',
     'pu.assetsmanage',
     'pu.sms',
-    'pu.offer'
+    'pu.offer',
+    'pu.report'
 ])

@@ -43,11 +43,6 @@ angular.module("pu.apply.controllers")
             //监视融资信息变化查询GPS档位
             watchFinance1Gps = $scope.$watchGroup(['finance1.salePrice','finance1.initPayPercent'],function(newVal,oldVal){
                 $scope.finance1.gpsLvlList = GpsService.queryEnableGpsLvlList($scope.applyInfo.appId,$scope.finance1.salePrice,$scope.finance1.initPayPercent,$scope.applyInfo.product).$object;
-                $scope.finance1.insuranceFee = 0;
-                $scope.finance1.serviceFee = 0;
-                $scope.finance1.delayInsuranceFee = 0;
-                $scope.finance1.addonFee = 0;
-                $scope.finance1.transferFee =0;
             },true);
             watchFinance1 = $scope.$watch('finance1',function(newVal,oldVal){
                 var product = $scope.applyInfo.product;
