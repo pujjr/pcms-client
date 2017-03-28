@@ -17,12 +17,15 @@ angular.module('pu.utils.directives')
             templateUrl:'module_file/tpl/directory-file-manage.html',
             link:function($scope,element,attrs){
                 $scope.options = $scope.options || {};
+                //是否激活目录转移
                 if($scope.options.enableMove == undefined){
                     $scope.options.enableMove = true;
                 };
+                //是否激活文件上传
                 if($scope.options.enableUpload == undefined){
                     $scope.options.enableUpload = true;
                 };
+                //是否激活文件删除
                 if($scope.options.enableDelete == undefined){
                     $scope.options.enableDelete = true;
                 }
@@ -48,6 +51,7 @@ angular.module('pu.utils.directives')
                 /**初始化界面高度和宽度**/
                 $scope.innerWidth = $window.innerWidth;
                 $scope.innerHeight = $window.innerHeight;
+                //初始化图片容器CSS掩饰
                 $scope.imgContainerCss = {
                     height:($scope.innerHeight - 190)+'px',
                     top: 0+'px',
@@ -85,9 +89,7 @@ angular.module('pu.utils.directives')
                 $scope.imgStyle = {
                     'max-width':$scope.innerWidth-200-0.25*$scope.innerWidth-100+'px',
                     'max-height':height,
-                    'padding-bottom':10+'px',
-                    'padding-left':10+'px',
-                    'padding-right':10+'px',
+                    'margin':'10px auto',
                     'overflow-y': 'hidden',
                     'transform':'scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)',
                     '-webkit-transform':'scale('+$scope.scale+') translate('+$scope.offsetX+'px,'+$scope.offsetY+'px)'+'rotate(-'+$scope.rotate+'deg)',

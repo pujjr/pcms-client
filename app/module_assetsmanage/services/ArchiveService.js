@@ -355,6 +355,9 @@ angular.module('pu.assetsmanage.services')
         this.getArchiveSupplyInfo = function(taskId){
             return RestApi.one("/archive/getArchiveSupplyInfo",taskId).get();
         };
+        this.saveArchiveSupplyInfo = function(taskId,params){
+            return RestApi.all("/archive/saveArchiveSupplyInfo").all(taskId).post(params);
+        }
         this.commitArchiveSupplyTask = function(taskId,params){
             return RestApi.all("/archive/commitArchiveSupplyTask").all(taskId).post(params);
         };
@@ -398,5 +401,58 @@ angular.module('pu.assetsmanage.services')
         };
         this.getHisSupplyInfo = function(archiveTaskId){
             return RestApi.all("/archive/getHisSupplyInfo").all(archiveTaskId).getList();
+        };
+        this.editCarSignInfo = function(signId,signInfo){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                backdrop:'false',
+                size:'lg',
+                templateUrl :'module_assetsmanage/tpl/dialog-car-signinfo-edit.html',
+                controller:function($scope,RestApi,modal,ArchiveService,SysDictService,SysAreaService){
+                    $scope.signId = signId;
+                    $scope.oldSignInfo = {};
+                    $scope.newSignInfo = {};
+                    angular.copy(signInfo,$scope.oldSignInfo);
+                    angular.copy(signInfo,$scope.newSignInfo);
+
+                    //可选省份
+                    $scope.provinceList = SysAreaService.queryProvinceList().$object;
+                    //可选市
+                    SysAreaService.queryCityList($scope.oldSignInfo.platenoRegProvince).then(function(response){
+                        $scope.cityList = response;
+                        $scope.newCityList = response;
+                    });
+                    //可选区
+                    SysAreaService.queryCountyList($scope.oldSignInfo.platenoRegProvince,$scope.oldSignInfo.platenoRegCity).then(function(response){
+                        $scope.countyList = response;
+                        $scope.newCountyList = response;
+                    });
+                    //省市变化刷新处理
+                    $scope.addressCtrl = {
+                        //现详细地址省
+                        onProvinceChange : function(){
+                            $scope.newSignInfo.platenoRegCity="";
+                            $scope.newCityList = SysAreaService.queryCityList($scope.newSignInfo.platenoRegProvince).$object;
+                            $scope.newSignInfo.platenoRegCounty="";
+                        },
+                        //现详细地址市
+                        onCityChange:function(){
+                            $scope.newSignInfo.platenoRegCounty="";
+                            $scope.newCountyList = SysAreaService.queryCountyList($scope.newSignInfo.platenoRegProvince,$scope.newSignInfo.platenoRegCity).$object;
+                        }
+                    }
+                    $scope.ok = function(){
+                        modal.confirm("操作提醒","确认提交？").then(function(){
+                            RestApi.all("/archive/updateCarSignInfo").post($scope.newSignInfo).then(function(){
+                                modalInstance.close();
+                            })
+                        })
+                    }
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            return modalInstance.result;
         };
     });

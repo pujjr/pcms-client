@@ -8,6 +8,7 @@ angular.module("pu.sms.controllers")
             $scope.getSmsHistoryList();
         };
         $scope.getSmsHistoryList = function(){
+            $rootScope.resetPage();
             $scope.historyList= SmsService.getSmsHistoryList().$object;
         };
         $scope.resend = function(item){
@@ -19,7 +20,7 @@ angular.module("pu.sms.controllers")
             })
         };
         $scope.pageChanged = function(){
-            $scope.getSmsHistoryList();
+            $scope.historyList= SmsService.getSmsHistoryList().$object;
         }
     })
 ;

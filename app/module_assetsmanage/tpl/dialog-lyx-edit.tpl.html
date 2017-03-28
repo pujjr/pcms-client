@@ -1,0 +1,80 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>编辑履约险</h4>
+    </div>
+    <div class="modal-body" style="min-height: 500px;">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">保险信息</legend>
+            <div class="row m-t-md">
+                <div class="col-md-6">
+                    <div class="form-group form-group-sm">
+                        <label for="busiCompanyId" class="col-sm-4 control-label">保险公司：</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <select  class="form-control" id="busiCompanyId" ng-model="applyVo.insCompanyId"
+                                         ng-options="item.id as item.name for item in insuranceCompanyList" required>
+                                    <option value="">请选择保险公司</option>
+                                </select>
+                        <span class="input-group-addon">
+                            <a href="javascript:" ng-click="openInsuranceUrl()">查询</a>
+                        </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-sm">
+                        <label for="busiPolicyNo" class="col-sm-4 control-label">保单号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="busiPolicyNo" class="form-control" ng-model="applyVo.insPolicyNo" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-sm">
+                        <label for="busiAmount" class="col-sm-4 control-label">保险金额：</label>
+                        <div class="col-sm-8">
+                            <input type="number" step="0.01" id="busiAmount" class="form-control"   ng-model="applyVo.insAmount" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-sm">
+                        <label for="busiStartDate" class="col-sm-4 control-label">保险开始日期：</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="busiStartDate" class="form-control" uib-datepicker-popup  is-open="applyVo.isopenBusiStartDate" ng-model="applyVo.insStartDate" required>
+                                       <span class="input-group-btn">
+                                            <button type="button" class="form-control btn btn-default"  ng-click="applyVo.isopenBusiStartDate=!applyVo.isopenBusiStartDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-sm">
+                        <label for="busiEndDate" class="col-sm-4 control-label">保险结束日期：</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="busiEndDate" class="form-control" uib-datepicker-popup   is-open="applyVo.isopenBusiEndDate" ng-model="applyVo.insEndDate" required>
+                                       <span class="input-group-btn">
+                                            <button type="button" class="form-control btn btn-default"  ng-click="applyVo.isopenBusiEndDate=!applyVo.isopenBusiEndDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-disabled="form.$invalid" ng-click="ok()">提交</button>
+        <button class="btn btn-danger btn-modal-left"  type="button" ng-click="delete()">删除</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

@@ -72,6 +72,7 @@ angular.module("pu.assetsmanage.controllers")
                 })
             });
         };
+
         //归档环节申请补充归档资料
         $scope.archiveSupply = function(){
             ArchiveService.archiveSupply().then(function(response){
@@ -81,6 +82,22 @@ angular.module("pu.assetsmanage.controllers")
                         $state.go('app.loantask.todolist');
                     })
                 })
+            })
+        }
+        //初始化放款完成归档信息补录
+        $scope.initLoanArchiveInfoSupply = function(){
+            $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
+            InsManageService.getInsuranceHisList($scope.appId).then(function(response){
+                $scope.insHisList = response;
+            });
+        }
+        //编辑车辆签约信息
+        $scope.editCarSignInfo = function(item){
+            ArchiveService.editCarSignInfo(item.signId,item).then(function(){
+                toaster.pop('success', '操作提醒', '修改车辆签约信息成功 ');
+                InsManageService.getInsuranceHisList($scope.appId).then(function(response){
+                    $scope.insHisList = response;
+                });
             })
         }
         //初始化保险续保信息
@@ -95,6 +112,42 @@ angular.module("pu.assetsmanage.controllers")
                 $scope.insHisList = InsManageService.getInsuranceHisList($scope.appId).$object;
             })
         };
+        //编辑商业险
+        $scope.editSYX = function(item){
+            InsManageService.editSYX(item).then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.insHisList = InsManageService.getInsuranceHisList($scope.appId).$object;
+            })
+        }
+        //新增交强险
+        $scope.addJQX = function(item){
+            InsManageService.addJQX($scope.appId,item.signId,"bxlx01").then(function(response){
+                toaster.pop('success', '操作提醒', '新增保险信息成功 ');
+                $scope.insHisList = InsManageService.getInsuranceHisList($scope.appId).$object;
+            })
+        };
+
+        //编辑交强险
+        $scope.editJQX = function(item){
+            InsManageService.editJQX(item).then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.insHisList = InsManageService.getInsuranceHisList($scope.appId).$object;
+            })
+        }
+        //新增履约险
+        $scope.addLYX = function(item){
+            InsManageService.addLYX($scope.appId,item.signId,"bxlx03").then(function(response){
+                toaster.pop('success', '操作提醒', '新增保险信息成功 ');
+                $scope.insHisList = InsManageService.getInsuranceHisList($scope.appId).$object;
+            })
+        }
+        //编辑履约险
+        $scope.editLYX = function(item){
+            InsManageService.editLYX(item).then(function(response){
+                toaster.pop('success', '操作提醒', response);
+                $scope.insHisList = InsManageService.getInsuranceHisList($scope.appId).$object;
+            })
+        }
         //提交档案归档
         $scope.commitArchiveLog = function(){
             modal.confirm("操作提醒","确认提交").then(function(){
@@ -125,6 +178,11 @@ angular.module("pu.assetsmanage.controllers")
                 })
             });
         };
+        $scope.saveArchiveSupplyInfo = function(){
+            ArchiveService.saveArchiveSupplyInfo($scope.taskId,$scope.archiveSupplyInfo).then(function(){
+                toaster.pop('success', '操作提醒', '保存补充归档资料任务成功');
+            })
+        }
         //提交档案补充资料任务
         $scope.commitArchiveSupplyTask = function(){
             modal.confirm("操作提醒","确认提交任务").then(function(){

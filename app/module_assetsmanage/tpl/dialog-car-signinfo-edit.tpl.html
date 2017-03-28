@@ -1,0 +1,183 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>变更车辆签约信息</h4>
+    </div>
+    <div class="modal-body"  style="overflow:auto;height:700px">
+        <fieldset class="scheduler-border" disabled>
+            <legend class="scheduler-border">原车辆签约信息</legend>
+            <div class="row m-t-md">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">车牌号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"  ng-model="oldSignInfo.plateNo">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">车架号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="oldSignInfo.carVin">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">初次上牌日期：</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="firstRegDate" class="form-control" uib-datepicker-popup  ng-model="oldSignInfo.firstRegDate">
+                                <span class="input-group-btn">
+                                    <button type="button" class="form-control btn btn-default"  ><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">发动机号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"  ng-model="oldSignInfo.carEngineNo" >
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">车辆颜色：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"  ng-model="oldSignInfo.carColor">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-2 control-label">上牌地：</label>
+                        <div class="col-sm-2">
+                            <select  class="form-control"  ng-model="oldSignInfo.platenoRegProvince"
+                                     ng-options="item.id as item.areaName for item in provinceList">
+                                <option value="">省</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2" >
+                            <select  class="form-control"  ng-model="oldSignInfo.platenoRegCity"
+                                     ng-options="item.id as item.areaName for item in cityList">
+                                <option value="">市</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2" >
+                            <select  class="form-control"  ng-model="oldSignInfo.platenoRegCounty"
+                                     ng-options="item.id as item.areaName for item in countyList">
+                                <option value="">县</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4" >
+                            <input type="checkbox"    ng-model="oldSignInfo.isFitDealer">经销商上牌省市是否一致
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">新车辆签约信息</legend>
+            <div class="row m-t-md">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">车牌号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"  ng-model="newSignInfo.plateNo">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">车架号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="newSignInfo.carVin" ng-minlength="17" ng-maxlength="17">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">初次上牌日期：</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="firstRegDate" class="form-control" uib-datepicker-popup  is-open="isopenFirstRegDate" ng-model="newSignInfo.firstRegDate">
+                                <span class="input-group-btn">
+                                    <button type="button" class="form-control btn btn-default"  ng-click="isopenFirstRegDate=!isopenFirstRegDate" ><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">发动机号：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"  ng-model="newSignInfo.carEngineNo" >
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-4 control-label">车辆颜色：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"  ng-model="newSignInfo.carColor">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group form-group-sm">
+                        <label class="col-sm-2 control-label">上牌地：</label>
+                        <div class="col-sm-2">
+                            <select  class="form-control"  ng-model="newSignInfo.platenoRegProvince"
+                                     ng-change="addressCtrl.onProvinceChange()"
+                                     ng-options="item.id as item.areaName for item in provinceList">
+                                <option value="">省</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2" >
+                            <select  class="form-control"  ng-model="newSignInfo.platenoRegCity"
+                                     ng-change="addressCtrl.onCityChange()"
+                                     ng-options="item.id as item.areaName for item in newCityList">
+                                <option value="">市</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2" >
+                            <select  class="form-control"  ng-model="newSignInfo.platenoRegCounty"
+                                     ng-options="item.id as item.areaName for item in newCountyList">
+                                <option value="">县</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4" >
+                            <input type="checkbox"     ng-model="newSignInfo.isFitDealer">经销商上牌省市是否一致
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group form-group-sm">
+                        <label for="archiveComment" class="col-sm-2 control-label">变更备注：</label>
+                        <div class="col-sm-10">
+                            <textarea  type="text" class="form-control" id="" ng-model="newSignInfo.archiveComment" placeholder="变更备注"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-disabled="form.$invalid" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</form>

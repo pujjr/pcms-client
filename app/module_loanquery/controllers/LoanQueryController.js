@@ -213,10 +213,14 @@ angular.module("pu.loanquery.controllers")
                     })
                 })
             });
-            $scope.taskList = LoanQueryService.getAllLoanApplyTaskList().$object;
+           $scope.loading = LoanQueryService.getAllLoanApplyTaskList().then(function(response){
+               $scope.taskList = response;
+           });
         };
         $scope.queryAllApplyTaskList = function(){
-            $scope.taskList = LoanQueryService.getAllLoanApplyTaskList().$object;
+            $scope.loading = LoanQueryService.getAllLoanApplyTaskList().then(function(response){
+                $scope.taskList = response ;
+            });
         };
         $scope.openInsuranceClaims = function(item){
             window.open("#/app/insurancemanage/claims/"+item.appId+"/"+item.insuranceId+"/"+item.insuranceType+'?hiddenAsideFolded=true',
