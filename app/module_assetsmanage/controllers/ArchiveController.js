@@ -188,6 +188,7 @@ angular.module("pu.assetsmanage.controllers")
         $scope.saveArchiveSupplyInfoAndPrint = function(){
             ArchiveService.saveArchiveSupplyInfo($scope.taskId,$scope.archiveSupplyInfo).then(function(){
                 toaster.pop('success', '操作提醒', '保存补充归档资料任务成功');
+                $scope.printPdf($scope.archiveSupplyInfo.supplyInfo.id,'bczljhd','补充资料检核单');
             })
         }
         //提交档案补充资料任务
