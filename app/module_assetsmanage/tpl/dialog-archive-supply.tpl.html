@@ -19,7 +19,7 @@
                             <td>{{$index+1}}</td>
                             <td>{{item.fileNameDesc}}</td>
                             <td>
-                                <input type="number" class="form-control" ng-model="item.supplyFileCnt">
+                                <input type="number" class="form-control" min="0" verify-number=""  ng-model="item.supplyFileCnt">
                             </td>
                             <td>
                                 <input type="text" class="form-control" ng-model="item.comment">

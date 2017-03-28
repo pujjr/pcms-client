@@ -6,13 +6,13 @@ angular.module("pu.assetsmanage.controllers")
         //初始化档案整理任务查询
         $scope.initArchiveClear = function(){
             $rootScope.resetCache()
-            ArchiveService.getArchiveToDoTaskList().then(function(response){
+            $scope.loading = ArchiveService.getArchiveToDoTaskList().then(function(response){
                $scope.taskList = response;
            });
         };
         //查询档案整理任务信息
         $scope.queryArchiveToDoTaskList = function(){
-            ArchiveService.getArchiveToDoTaskList().then(function(response){
+            $scope.loading = ArchiveService.getArchiveToDoTaskList().then(function(response){
                 $scope.taskList = response;
             });
         }
@@ -178,7 +178,14 @@ angular.module("pu.assetsmanage.controllers")
                 })
             });
         };
+        //保存补充信息
         $scope.saveArchiveSupplyInfo = function(){
+            ArchiveService.saveArchiveSupplyInfo($scope.taskId,$scope.archiveSupplyInfo).then(function(){
+                toaster.pop('success', '操作提醒', '保存补充归档资料任务成功');
+            })
+        }
+        //保存补充信息并打印核对清单
+        $scope.saveArchiveSupplyInfoAndPrint = function(){
             ArchiveService.saveArchiveSupplyInfo($scope.taskId,$scope.archiveSupplyInfo).then(function(){
                 toaster.pop('success', '操作提醒', '保存补充归档资料任务成功');
             })

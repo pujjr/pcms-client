@@ -1,5 +1,5 @@
 <!--归档补充资料（补充后）-->
-<div ng-init="initArchiveSupply();editable=false">
+<div ng-init="initArchiveSupply();editable=false;canAddInsurance=true">
     <div id ="check-header" class="check-header">
         <div class="data-table-container" >
             <header class="data-table-header" style="min-height:72px !important;">
@@ -44,6 +44,15 @@
                         <span>历史补充资料信息</span>
                     </uib-tab-heading>
                     <div ng-include="'module_assetsmanage/tpl/form-archive-log-supply-his.html'"></div>
+                </uib-tab>
+                <uib-tab index="3" select="initLoanArchiveInfoSupply()">
+                    <uib-tab-heading>
+                        <span>录入归档及保险信息</span>
+                    </uib-tab-heading>
+                    <form class="container-fluid m-t-md form-horizontal">
+                        <div  ng-include="'module_assetsmanage/tpl/form-loanbaseinfo.html'"/>
+                        <div  ng-include="'module_assetsmanage/tpl/form-loan-archive-infosupply.html'"/>
+                    </form>
                 </uib-tab>
                 <!--
                 <uib-tab index="3">

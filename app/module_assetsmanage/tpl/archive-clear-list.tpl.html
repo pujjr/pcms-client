@@ -1,5 +1,5 @@
 <!--档案整理-->
-<div ng-init="initArchiveClear()">
+<div ng-init="initArchiveClear()" cg-busy="loading">
     <div class="panel panel-default">
         <div class="panel-heading"><h3 class="panel-header-title">已放款档案整理</h3></div>
         <!--
@@ -41,7 +41,7 @@
                     <span class="fs-title"></span>
                 </div>
                 <div class="data-table-header__actions">
-                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="archivePost()"><i class="fa fa-modx" aria-hidden="true"></i>档案邮寄</button>
+                    <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="archivePost()"><i class="fa fa-print" aria-hidden="true"></i>档案邮寄</button>
                     <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="printPostSummaryList()"><i class="fa fa-print" aria-hidden="true"></i> 打印邮寄清单</button>
                     <button class="btn btn-default btn-sm m-r-md" type="button"  ng-click="applyArchiveLog()">提交档案归档</button>
                 </div>
