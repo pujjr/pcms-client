@@ -168,6 +168,7 @@ angular.module("pu.assetsmanage.controllers")
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
             $scope.expressCompanyList = SysDictService.queryDictDataByTypeCode("kdgs").$object;
             $scope.archiveSupplyInfo = ArchiveService.getArchiveSupplyInfo($scope.taskId).$object;
+            $scope.isPrint = false;
             //获取原始归档信息
             ArchiveService.getArchiveApplyInfo($scope.businessKey).then(function(response){
                 $scope.archiveInfo = response;
@@ -189,6 +190,7 @@ angular.module("pu.assetsmanage.controllers")
             ArchiveService.saveArchiveSupplyInfo($scope.taskId,$scope.archiveSupplyInfo).then(function(){
                 toaster.pop('success', '操作提醒', '保存补充归档资料任务成功');
                 $scope.printPdf($scope.archiveSupplyInfo.supplyInfo.id,'bczljhd','补充资料检核单');
+                $scope.isPrint = true;
             })
         }
         //提交档案补充资料任务
