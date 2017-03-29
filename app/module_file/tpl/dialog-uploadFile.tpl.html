@@ -9,10 +9,10 @@
             </button>
         </div>
     </div>
-    <div class="modal-body">
+    <div class="modal-body"  nv-file-copy  uploader="uploader">
         <div class="container-fluid">
-            <div nv-file-drop nv-file-over  uploader="uploader" over-class="another-file-over-class"  class="well-lg" style="overflow-y: auto; overflow-x:hidden; border: dotted 3px lightgray;height:400px">
-                <div clas="row" ng-repeat="item in fileGrid">
+            <div nv-file-drop nv-file-over  uploader="uploader"  over-class="another-file-over-class"  class="well-lg" style="overflow-y: auto; overflow-x:hidden; border: dotted 3px lightgray;height:400px" >
+                <div clas="row" ng-repeat="item in fileGrid" >
                     <div class="col-xs-3 col-md-3" ng-repeat="fileItem in item.fileGridCol">
                         <div  class="thumbnail" >
                             <div ng-thumb="{file:fileItem._file,width:150,height:150}">
