@@ -26,6 +26,18 @@ angular.module('app')
                     templateUrl: 'module_report/tpl/credit_report.html',
                     controller: 'ReportController',
                 })
+                //催收记录
+                .state('app.report.collection-log', {
+                    url: '/collection-log',
+                    templateUrl: 'module_report/tpl/collection-log.html',
+                    controller: 'ReportController',
+                })
+                //逾期催收数据
+                .state('app.report.overdue-collection', {
+                    url: '/overdue-collection',
+                    templateUrl: 'module_report/tpl/overdue-collection.html',
+                    controller: 'ReportController',
+                })
 
         }
     ]

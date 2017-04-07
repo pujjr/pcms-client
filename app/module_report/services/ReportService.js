@@ -1,6 +1,12 @@
 angular.module('pu.report.services')
     .service("ReportService",function($window,RestApi,$uibModal){
-        this.exportCreditReport = function(){
-            return RestApi.one("/query","exportNeedQueryCreditReport").get();
+        this.exportCreditInfo = function(){
+            return RestApi.one("/report","exportCreditInfo").get();
+        };
+        this.exportCollectionLog = function(){
+            return RestApi.one("/report","exportCollectionLog").get();
+        };
+        this.exportOverdueCollection = function(){
+            return RestApi.one("/report","exportOverdueCollection").get();
         };
     });
