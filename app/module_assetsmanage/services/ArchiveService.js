@@ -31,7 +31,7 @@ angular.module('pu.assetsmanage.services')
                     $scope.archiveTaskId = archiveTaskId;
                     $scope.archiveTaskDetail = ArchiveService.getArchiveTaskDetail($scope.archiveTaskId,"fkwcgd").$object;
                     $scope.ok = function(item){
-                       // window.print();
+                        window.print();
                         ArchiveService.saveArchiveTaskDetail($scope.archiveTaskId,$scope.archiveTaskDetail).then(function(response){
                             modalInstance.close();
                         })

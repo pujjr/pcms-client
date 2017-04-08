@@ -1,9 +1,31 @@
-<form name="form" class="form-horizontal">
+<form name="form" class="form-horizontal ">
     <div class="modal-header">
         <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>打印核对归档信息</h4>
     </div>
+    <div class="modal-body visible-print-block">
+        <div id="print-content">
+            <table class="print-table" style="margin-left:-25px;margin-left:-200px;" >
+                <tr>
+                    <td style="width: 40px">申请单号</td>
+                    <td style="width: 100px"></td>
+                    <td style="width: 70px"></td>
+                    <td style="width:400px"></td>
+                </tr>
+                <tr ng-repeat=" item in archiveTaskDetail">
+                    <td style="width: 40px">{{$index+1}}</td>
+                    <td style="width: 100px">{{item.fileNameDesc}}</td>
+                    <td style="width: 70px">
+                        {{item.postFileCnt}}
+                    </td>
+                    <td style="width:400px">
+                        {{item.comment}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     <div class="modal-body"  style="overflow:auto;height:700px">
-        <div class="panel panel-default"  id="print-content">
+        <div class="panel panel-default" >
             <div class="data-table-container">
                 <table class="data-table">
                     <thead>

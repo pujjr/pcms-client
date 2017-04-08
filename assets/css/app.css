@@ -4665,8 +4665,17 @@ textarea{
 ul{
   list-style: none;
 }
+#printapp {
+  width:900px;
+  font-size:12px;
+  margin-top: -290px;
+  margin-left: -40px;
+  -webkit-transform-origin-x: 0;
+  -webkit-transform: scale(0.75);
+}
+
 .print-table{
-  width:100%;
+  width:900px;
   border: 1px;
   font-size:10px;
 
