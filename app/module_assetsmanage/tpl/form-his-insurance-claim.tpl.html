@@ -41,7 +41,10 @@
                         <td></td>
                         <td></td>
                         <td>
+                            <!--
                             <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                            -->
+                            <a href="javascript:" ng-click="openInsuranceClaims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
                         </td>
                     </tr>
                     </tbody>
@@ -86,7 +89,10 @@
                         <td>{{item.theftAmount}}</td>
                         <td>{{item.avoidAmount}}</td>
                         <td>
+                            <!--
                             <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                            -->
+                            <a href="javascript:" ng-click="openInsuranceClaims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
                         </td>
                     </tr>
                     </tbody>

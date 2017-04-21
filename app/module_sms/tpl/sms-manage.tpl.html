@@ -7,12 +7,12 @@
         </header>
     </div>
     <uib-tabset>
-        <uib-tab index="0" select="historyManage()">
+        <uib-tab index="0" select="historyManage()" ng-if="hasPrimission('app.sms.history')" >
             <uib-tab-heading>
                 <span>短信发送记录</span>
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab index="1" select="templateManage()">
+        <uib-tab index="1" select="templateManage()"  ng-if="hasPrimission('app.sms.template')" >
             <uib-tab-heading>
                 <span>短信模板管理</span>
             </uib-tab-heading>

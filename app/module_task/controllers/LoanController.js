@@ -64,8 +64,8 @@ angular.module("pu.task.controllers")
             if(checkList.length==0){
                 modal.error("未选择记录");
             }else{
-                modal.confirm("操作提醒","确认提交放款").then(function(){
-                    BankService.selectBankAcct("yhzhyt01").then(function(response){
+                BankService.selectBankAcct("yhzhyt01").then(function(response){
+                    modal.confirm("操作提醒","确认提交放款").then(function(){
                         TaskService.batchCommitLoanTask(response.id,checkList).then(function(response){
                             toaster.pop('success', '操作提醒','确认放款成功');
                             $scope.queryLoaningTaskList();
@@ -75,12 +75,13 @@ angular.module("pu.task.controllers")
             }
         };
         $scope.commitLoanTask = function(item){
-            modal.confirm("操作提醒","确认提交放款").then(function(){
-                BankService.selectBankAcct("yhzhyt01").then(function(response){
+            BankService.selectBankAcct("yhzhyt01").then(function(response){
+                modal.confirm("操作提醒","确认提交放款").then(function(){
                     $scope.loading = TaskService.commitLoanTask(response.id,item.taskId,item.businessKey).then(function(response){
                         toaster.pop('success', '操作提醒','确认放款成功');
                         $scope.queryLoaningTaskList();
                     })
+
                 })
             })
         }

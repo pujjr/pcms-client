@@ -10,22 +10,22 @@
                 </span>
             </div>
             <div class="data-table-header__actions">
-                <button class="btn btn-default btn-sm" type="button" ng-click="sendSms(applyInfo.appId)">发送短信</button>
-                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
+                <button class="btn btn-default btn-sm" type="button"  ng-if="hasPrimission('app.loanquery.detail.sendsms')"  ng-click="sendSms(applyInfo.appId)">发送短信</button>
+                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" ng-if="hasPrimission('app.loanquery.detail.alertcustinfo')" >
                     <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
                          客户信息变更<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-                        <li role="menuitem" >
+                        <li role="menuitem" ng-if="hasPrimission('app.loanquery.detail.alertcustinfo.tenant')" >
                             <a href="javascript:" ng-click="doAlterTenantInfo()">承租人信息变更</a>
                         </li>
-                        <li role="menuitem">
+                        <li role="menuitem"  ng-if="hasPrimission('app.loanquery.detail.alertcustinfo.colessee')">
                             <a href="javascript:" ng-click="doAlterColesseeInfo()" >共租人信息变更</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem" ng-if="hasPrimission('app.loanquery.detail.alertcustinfo.linkman')">
                             <a href="javascript:" ng-click="doAlterLinkmanInfo()">联系人信息变更</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem" ng-if="hasPrimission('app.loanquery.detail.alertcustinfo.cardno')">
                             <a href="javascript:" ng-click="doAlterBankInfo()">银行卡信息变更</a>
                         </li>
                         <li role="menuitem" >
@@ -33,12 +33,12 @@
                         </li>
                     </ul>
                 </div>
-                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
+                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" ng-if="hasPrimission('app.loanquery.detail.collectiontask')" >
                     <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle ng-disabled="loanCustApplyInfo.repayStatus=='hkzt02'">
                         发起催收<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-                        <li role="menuitem" >
+                        <li role="menuitem"  ng-if="hasPrimission('app.loanquery.detail.collectiontask.wwsc')">
                             <a href="javascript:" ng-click="doRecoverCollectionTask()">发起委外收车</a>
                         </li>
                         <li role="menuitem" >
@@ -49,36 +49,36 @@
                         </li>
                     </ul>
                 </div>
-                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true">
+                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true"  ng-if="hasPrimission('app.loanquery.detail.accounting')">
                     <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle  ng-disabled="loanCustApplyInfo.repayStatus=='hkzt02'">
                         账务处理<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-                        <li role="menuitem" >
+                        <li role="menuitem"  ng-if="hasPrimission('app.loanquery.detail.accounting.publicrepay')">
                             <a href="javascript:" ng-click="doPublicRepay()">对公还款</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"  ng-if="hasPrimission('app.loanquery.detail.accounting.refund')">
                             <a href="javascript:" ng-click="doRefund()">退款</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"  ng-if="hasPrimission('app.loanquery.detail.accounting.remission')">
                             <a href="javascript:" ng-click="doRemission()">减免</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"  ng-if="hasPrimission('app.loanquery.detail.accounting.partsettle')">
                             <a href="javascript:" ng-click="doSettle()">提前结清</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"   ng-if="hasPrimission('app.loanquery.detail.accounting')">
                             <a href="javascript:" ng-click="doPartSettle()">部分提前结清</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"   ng-if="hasPrimission('app.loanquery.detail.accounting.alterrepaydate')">
                             <a href="javascript:" ng-click="doAlterRepayDate()">变更还款日</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"   ng-if="hasPrimission('app.loanquery.detail.accounting.extendperiod')">
                             <a href="javascript:" ng-click="doExtendPeriod()">展期</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"   ng-if="hasPrimission('app.loanquery.detail.accounting.otherfee')">
                             <a href="javascript:" ng-click="doOtherFee()">新增其他费用</a>
                         </li>
-                        <li role="menuitem" >
+                        <li role="menuitem"   ng-if="hasPrimission('app.loanquery.detail.accounting.offer')">
                             <a href="javascript:" ng-click="doOffer()">人手报盘</a>
                         </li>
                     </ul>

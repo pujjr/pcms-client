@@ -24,6 +24,8 @@ angular.module("pu.task.controllers")
             $scope.changeApplyInfoVo = TaskService.queryLatestChangeApplyInfo($stateParams.taskId).$object;
             $scope.approveResultList =  SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
+            $scope.taskId = $stateParams.taskId;
+
         };
         $scope.commitApproveChangeApplyInfoTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){
@@ -52,6 +54,7 @@ angular.module("pu.task.controllers")
             $scope.cancelApplyInfoVo = TaskService.queryLatestCancelApplyInfo($stateParams.taskId).$object;
             $scope.approveResultList =  SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
             $scope.task = TaskService.queryTaskByTaskId($stateParams.taskId).$object;
+            $scope.taskId = $stateParams.taskId;
         };
         $scope.commitApproveCancelApplyInfoTask = function(){
             modal.confirm("操作提醒","确认提交任务？").then(function(){

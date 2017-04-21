@@ -20,8 +20,9 @@ angular.module('pu.assetsmanage.services')
         };
         this.applyArchiveSupply = function(taskId,params){
             return RestApi.all("/archive/applyArchiveSupply").all(taskId).post(params);
-        }
-        this.printArchiveCheckInfo = function(archiveTaskId){
+        };
+
+        this.printArchiveCheckInfo = function(archiveTaskId,archiveItem){
             var modalInstance = $uibModal.open({
                 animation: false,
                 backdrop:'false',
@@ -29,13 +30,13 @@ angular.module('pu.assetsmanage.services')
                 templateUrl :'module_assetsmanage/tpl/print-archive-check-info.html',
                 controller:function($scope,RestApi,modal,ArchiveService){
                     $scope.archiveTaskId = archiveTaskId;
+                    $scope.archiveItem = archiveItem;
                     $scope.archiveTaskDetail = ArchiveService.getArchiveTaskDetail($scope.archiveTaskId,"fkwcgd").$object;
                     $scope.ok = function(item){
-                        window.print();
                         ArchiveService.saveArchiveTaskDetail($scope.archiveTaskId,$scope.archiveTaskDetail).then(function(response){
+                            ArchiveService.printArchiveCheckPdf($scope.archiveItem,$scope.archiveTaskDetail)
                             modalInstance.close();
                         })
-                        //;
                     }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');
@@ -43,6 +44,43 @@ angular.module('pu.assetsmanage.services')
                 }
             });
             return modalInstance.result;
+        };
+        this.generateArchiveCheckPdf = function(param){
+            return RestApi.all("/print/generateContract/archiveCheck").post(param);
+        }
+        //打印PDF文件
+        this.printArchiveCheckPdf = function(param,detailList){
+            var modalInstance = $uibModal.open({
+                animation: false,
+                size:'lg',
+                backdrop:'static',
+                templateUrl :'module_utils/tpl/dialog-print-pdf.html',
+                controller:function($scope,RestApi,ArchiveService){
+                    $scope.param =param;
+                    $scope.printTitle = "核对归档清单";
+                    $scope.archiveCheckVo = {};
+                    $scope.archiveCheckVo.userName = $scope.param.custName;
+                    $scope.archiveCheckVo.contractNo = $scope.param.contractNo;
+                    $scope.archiveCheckVo.contractKey ="hdgdqd";
+                    $scope.archiveCheckVo.dataList = [];
+                    var i =1;
+                    angular.forEach(detailList,function(item){
+                        var obj = {};
+                        obj.seq = i;
+                        obj.fileName = item.fileNameDesc;
+                        obj.amt = item.postFileCnt;
+                        obj.comment = item.comment
+                        $scope.archiveCheckVo.dataList.push(obj);
+                        i++;
+                    })
+                    $scope.loading = ArchiveService.generateArchiveCheckPdf($scope.archiveCheckVo).then(function(response){
+                        $scope.pdfUrl = SERVER_URL.OSS_URL+response.osskey;
+                    })
+                    $scope.cancel = function () {
+                        modalInstance.dismiss('cancel');
+                    };
+                }
+            });
         };
         this.archivePost = function(selItems){
             var modalInstance = $uibModal.open({

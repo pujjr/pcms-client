@@ -209,6 +209,12 @@ angular.module("pu.loanquery.controllers")
         };
         $scope.queryAllApplyTaskList = function(){
             $scope.taskList = LoanQueryService.getAllLoanApplyTaskList().$object;
+        };
+        $scope.openInsuranceClaims = function(item){
+            window.open("#/app/insurancemanage/claims/"+item.appId+"/"+item.insuranceId+"/"+item.insuranceType+'?hiddenAsideFolded=true',
+                '保险续保',
+                'height='+$scope.screenHeight*0.8+',width='+$scope.screentWidth*0.8+',top='+$scope.screenHeight*0.1+',left='+$scope.screentWidth*0.1+',toolbar=no,menubar=no,, resizable=no,location=no, status=no');
         }
+
     })
 ;

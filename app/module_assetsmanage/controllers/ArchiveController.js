@@ -11,7 +11,7 @@ angular.module("pu.assetsmanage.controllers")
            });
         };
         $scope.printArchiveCheckInfo = function(item){
-            ArchiveService.printArchiveCheckInfo(item.archiveTaskId).then(function(){
+            ArchiveService.printArchiveCheckInfo(item.archiveTaskId,item).then(function(){
                 toaster.pop('success', '操作提醒', "保存明细成功");
                 $scope.initArchiveClear();
             })
