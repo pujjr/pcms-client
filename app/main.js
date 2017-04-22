@@ -80,7 +80,7 @@ angular.module("app")
             })
         };
         $scope.screenHeight = $window.innerHeight;
-        $scope.screentWidth = $window.innerWidth;
+        $scope.screenWidth = $window.innerWidth;
         //公共方法-查询申请单反欺诈信息
         $scope.queryFraudInnerResult = function(appId){
             $scope.fraudInnerResultList = QueryService.queryFraudInnerResult(appId).$object;
@@ -96,6 +96,14 @@ angular.module("app")
         //公共方法-打开贷后客户详细资料
         $scope.showCustomDetail = function(appId){
             window.open("#/app/loanquery/loaninfo/detail/"+appId+'?hiddenAsideFolded=true');
+        };
+        //公共方法-经销商打开客户详细资料
+        $scope.showCustomDetailByDealer = function(appId){
+            window.open("#/app/query/apply/detail-dealer/"+appId+'?hiddenAsideFolded=true', "客户申请资料", "height="+$scope.screenHeight+",width="+$scope.screenWidth+", toolbar =no, menubar=no,   location=no, status=no");
+        };
+        //公共方法-经销商打开客户详细资料
+        $scope.showCustomApplyDetail = function(appId){
+            window.open("#/app/query/apply/detail/"+appId+'?hiddenAsideFolded=true', "客户申请资料", "height="+$scope.screenHeight+",width="+$scope.screenWidth+", toolbar =no, menubar=no,   location=no, status=no");
         };
         //打印PDF文件
         $scope.printPdf = function(appId,key,title){

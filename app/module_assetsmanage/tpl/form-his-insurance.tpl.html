@@ -1,30 +1,16 @@
-<uib-tabset>
+<!--保险历史信息-->
+<uib-tabset active="0">
     <uib-tab index="$index" ng-repeat="item  in insHisList">
         <uib-tab-heading>
             <span>{{item.carVin}}</span>
         </uib-tab-heading>
-        <header class="data-table-header" ng-if="canAddInsurance==true">
-            <div class="data-table-header__label">
-                <span class="fs-title"></span>
-            </div>
-            <div class="data-table-header__actions" >
-                <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" >
-                    <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
-                        <i class="fa fa-plus m-r-sm"></i> 增加保险<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-                        <li role="menuitem" >
-                            <a href="javascript:" ng-click="addBusinessInsurance(item)">增加商业险</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span>交强险</span>
-            </div>
+        <div class="panel">
             <div class="data-table-container">
+                <header class="data-table-header">
+                    <div class="data-table-header__label">
+                        <span class="glyphicon glyphicon-align-justify">&nbsp;交强险</span>
+                    </div>
+                </header>
                 <table class="data-table">
                     <thead>
                     <tr>
@@ -39,6 +25,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,16 +41,25 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td>
+                            <!--
+                            <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                            -->
+                            <a href="javascript:" ng-click="openInsuranceClaimsHis(item.id)">理赔记录</a>
+                            <a href="javascript:" ng-click="openInsuranceClaims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span>商业险</span>
-            </div>
+        <div class="panel">
             <div class="data-table-container">
+                <header class="data-table-header">
+                    <div class="data-table-header__label">
+                        <span class="glyphicon glyphicon-align-justify">&nbsp;商业险</span>
+                    </div>
+                </header>
                 <table class="data-table">
                     <thead>
                     <tr>
@@ -78,6 +74,7 @@
                         <th>第三者责任险金额</th>
                         <th>盗抢险金额</th>
                         <th>不计免赔险金额</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -93,16 +90,25 @@
                         <td>{{item.thirdAmount}}</td>
                         <td>{{item.theftAmount}}</td>
                         <td>{{item.avoidAmount}}</td>
+                        <td>
+                            <!--
+                            <a ui-sref="app.insurancemanage.claims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                            -->
+                            <a href="javascript:" ng-click="openInsuranceClaimsHis(item.id)">理赔记录</a>
+                            <a href="javascript:" ng-click="openInsuranceClaims({'appId':appId,'insuranceId':item.id,'insuranceType':item.insType})">保险理赔</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span>履约险</span>
-            </div>
+        <div class="panel">
             <div class="data-table-container">
+                <header class="data-table-header">
+                    <div class="data-table-header__label">
+                        <span class="glyphicon glyphicon-align-justify">&nbsp;履约险</span>
+                    </div>
+                </header>
                 <table class="data-table">
                     <thead>
                     <tr>
@@ -113,6 +119,7 @@
                         <th>保险金额</th>
                         <th>保险开始日期</th>
                         <th>保险结束日期</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -128,6 +135,7 @@
                         <td>{{item.insAmount}}</td>
                         <td>{{item.insStartDate| mysqlDate}}</td>
                         <td>{{item.insEndDate| mysqlDate}}</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

@@ -4,7 +4,7 @@
 // signin controllers
 angular.module("pu.loanquery.controllers")
     .controller('LoanQueryController',function ($scope, $rootScope, $state,$stateParams, toaster, $uibModal,LoanQueryService,PublicRepayService,SettleService,AlterRepayDateService,RefundService,modal,
-                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService,SmsService,ProductService,SysDictService,OfferService) {
+                                                RemissionService,ExtendPeriodService,OtherFeeService,CollectionService,AlterCustInfoService,InsManageService,TelInterviewService,SmsService,ProductService,SysDictService,OfferService,ApplyService) {
         $scope.initList = function(){
             $scope.productList = ProductService.queryAllProductList().$object;
             $scope.repayStatusList = SysDictService.queryDictDataByTypeCode("hkzt").$object;
@@ -40,7 +40,8 @@ angular.module("pu.loanquery.controllers")
                 $scope.repayingInterest = $scope.repayingInterest.toFixed(2);
                 $scope.repayingOverdue = $scope.repayingOverdue.toFixed(2);
             });
-            $scope.doInitApplyEdit($stateParams.appId);
+            //$scope.doInitApplyEdit($stateParams.appId);
+            $scope.applyInfo = ApplyService.queryApplyInfoByAppId($scope.appId).$object;
             $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
             LoanQueryService.getRunningTaskCntByAppId($scope.appId).then(function(response){
                 $scope.runTaskCnt = response.taskCnt;
@@ -214,6 +215,9 @@ angular.module("pu.loanquery.controllers")
             window.open("#/app/insurancemanage/claims/"+item.appId+"/"+item.insuranceId+"/"+item.insuranceType+'?hiddenAsideFolded=true',
                 '保险续保',
                 'height='+$scope.screenHeight*0.8+',width='+$scope.screentWidth*0.8+',top='+$scope.screenHeight*0.1+',left='+$scope.screentWidth*0.1+',toolbar=no,menubar=no,, resizable=no,location=no, status=no');
+        };
+        $scope.openInsuranceClaimsHis = function(insuranceId){
+            InsManageService.showInsuranceClaimsHis(insuranceId);
         }
 
     })

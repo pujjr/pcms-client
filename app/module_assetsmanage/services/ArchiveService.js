@@ -229,5 +229,8 @@ angular.module('pu.assetsmanage.services')
         };
         this.reApplyArchiveBorrow = function(taskId,params){
             return RestApi.all("/archive/reApplyArchiveBorrow").all(taskId).post(params);
+        };
+        this.getHisSupplyInfo = function(archiveTaskId){
+            return RestApi.all("/archive/getHisSupplyInfo").all(archiveTaskId).getList();
         }
     });

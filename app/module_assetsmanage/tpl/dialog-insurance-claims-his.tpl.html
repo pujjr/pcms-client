@@ -1,30 +1,28 @@
 <form name="form" class="form-horizontal">
     <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>新增商业保险</h4>
+        <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>保险理赔记录</h4>
     </div>
     <div class="modal-body" style="min-height: 500px;">
-        <div class="data-table-container">
+        <div class="panel panel-default data-table-container">
             <table class="data-table">
                 <thead>
                 <tr>
                     <th style="width:100px">序号</th>
-                    <th>保险类型</th>
-                    <th>保险公司</th>
-                    <th>保险单号</th>
-                    <th>保险金额</th>
-                    <th>保险开始日期</th>
-                    <th>保险结束日期</th>
+                    <th>出险日期</th>
+                    <th>理赔时间</th>
+                    <th>理赔人</th>
+                    <th>查看详细</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in item.lyxHisList">
+                <tr ng-repeat="item in claimsList">
                     <td>{{$index+1}}</td>
-                    <td>{{item.insTypeDesc}}</td>
-                    <td>{{item.insuranceCompanyName}}</td>
-                    <td>{{item.insPolicyNo}}</td>
-                    <td>{{item.insAmount}}</td>
-                    <td>{{item.insStartDate| mysqlDate}}</td>
-                    <td>{{item.insEndDate| mysqlDate}}</td>
+                    <td>{{item.acciDate | mysqlDate}}</td>
+                    <td>{{item.createTime | mysqlDatetime}}</td>
+                    <td>{{item.createId}}</td>
+                    <td>
+                        <a href="javascript:" ng-click="showDetail(item)">查看理赔详细</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

@@ -151,7 +151,7 @@ angular.module("pu.assetsmanage.controllers")
             $scope.businessKey = $stateParams.businessKey;
             $scope.appId = $stateParams.appId;
             $scope.workflowKey = $stateParams.workflowKey;
-            $scope.doInitApplyEdit($stateParams.appId);
+            //$scope.doInitApplyEdit($stateParams.appId);
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
             $scope.expressCompanyList = SysDictService.queryDictDataByTypeCode("kdgs").$object;
             $scope.archiveSupplyInfo = ArchiveService.getArchiveSupplyInfo($scope.taskId).$object;
@@ -159,7 +159,9 @@ angular.module("pu.assetsmanage.controllers")
             ArchiveService.getArchiveApplyInfo($scope.businessKey).then(function(response){
                 $scope.archiveInfo = response;
                 angular.forEach($scope.archiveInfo.detailList,function(item){
-                    item.recvFileCnt = item.postFileCnt;
+                    if(item.recvFileCnt ==null){
+                        item.recvFileCnt = item.postFileCnt;
+                    }
                 })
             });
         };
@@ -179,6 +181,9 @@ angular.module("pu.assetsmanage.controllers")
                 })
             })
         };
+        $scope.getHisSupplyInfo = function(){
+            $scope.hisSupplyList = ArchiveService.getHisSupplyInfo($scope.businessKey).$object;
+        }
         $scope.reArchiveSupply = function(){
             ArchiveService.archiveSupply().then(function(response){
                 modal.confirm("操作提醒","确认提交？").then(function(){

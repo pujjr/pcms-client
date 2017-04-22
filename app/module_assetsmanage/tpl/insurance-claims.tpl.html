@@ -54,7 +54,7 @@
                                         <div class="form-group form-group-sm">
                                             <label class="col-sm-4 control-label">保险开始日期：</label>
                                             <div class="col-sm-8">
-                                                <p class="form-control-static">{{insuranceInfo.insStartDate}}</p>
+                                                <p class="form-control-static">{{insuranceInfo.insStartDate |mysqlDate}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                         <div class="form-group form-group-sm">
                                             <label class="col-sm-4 control-label">保险结束日期：</label>
                                             <div class="col-sm-8">
-                                                <p class="form-control-static">{{insuranceInfo.insEndDate}}</p>
+                                                <p class="form-control-static">{{insuranceInfo.insEndDate |mysqlDate}}</p>
                                             </div>
                                         </div>
                                     </div>

@@ -10,6 +10,7 @@
                 </span>
             </div>
             <div class="data-table-header__actions">
+                <button class="btn btn-default btn-sm" type="button" ng-click="showCustomApplyDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>申请详细资料</button>
                 <button class="btn btn-default btn-sm" type="button"  ng-if="hasPrimission('app.loanquery.detail.sendsms')"  ng-click="sendSms(applyInfo.appId)">发送短信</button>
                 <div class="btn-group"  uib-dropdown dropdown-append-to-body="true" ng-if="hasPrimission('app.loanquery.detail.alertcustinfo')" >
                     <button  type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
@@ -95,6 +96,7 @@
             </uib-tab-heading>
             <div ng-include="'module_loanquery/tpl/form-loanbaseinfo.html'"></div>
         </uib-tab>
+        <!--
         <uib-tab index="1">
             <uib-tab-heading>
                 <span>申请信息</span>
@@ -107,11 +109,12 @@
             </uib-tab-heading>
             <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
         </uib-tab>
+        -->
         <uib-tab index="3"  select="getInsuranceHisList()">
             <uib-tab-heading>
                 <span>保险信息</span>
             </uib-tab-heading>
-            <div  ng-include="'module_assetsmanage/tpl/form-his-insurance-claim.html'"/>
+            <div  ng-include="'module_assetsmanage/tpl/form-his-insurance.html'"/>
         </uib-tab>
         <uib-tab index="4"  select="getImportantCollectionLog()">
             <uib-tab-heading>

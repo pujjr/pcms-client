@@ -1,3 +1,4 @@
+<!--归档补充资料（补充后）-->
 <div ng-init="initArchiveSupply();editable=false">
     <div id ="check-header" class="check-header">
         <div class="data-table-container" >
@@ -38,19 +39,27 @@
                         </div>
                     </form>
                 </uib-tab>
-                <uib-tab index="1">
+                <uib-tab index="2" select="getHisSupplyInfo()">
+                    <uib-tab-heading>
+                        <span>历史补充资料信息</span>
+                    </uib-tab-heading>
+                    <div ng-include="'module_assetsmanage/tpl/form-archive-log-supply-his.html'"></div>
+                </uib-tab>
+                <!--
+                <uib-tab index="3">
                     <uib-tab-heading>
                         <span>申请信息</span>
                     </uib-tab-heading>
                     <div ng-include="'module_apply/tpl/form-apply.html'"></div>
                 </uib-tab>
-                <uib-tab index="2"  select="initApplyFileManage()">
+                <uib-tab index="4"  select="initApplyFileManage()">
                     <uib-tab-heading>
                         <span>申请资料</span>
                     </uib-tab-heading>
                     <ng-file-manage on-init="initApplyFileComponent(interface)" options="{enableUpload:false,enableMove:false,enableDelete:false}"></ng-file-manage>
                 </uib-tab>
-                <uib-tab index="3"  select="queryWorkflowProcessResult(taskId)">
+                -->
+                <uib-tab index="5"  select="queryWorkflowProcessResult(taskId)">
                     <uib-tab-heading>
                         <span>流程流转记录</span>
                     </uib-tab-heading>

@@ -9,7 +9,7 @@ angular.module("pu.assetsmanage.controllers")
             $scope.businessKey = $stateParams.businessKey;
             $scope.appId = $stateParams.appId;
             $scope.workflowKey = $stateParams.workflowKey;
-            $scope.doInitApplyEdit($stateParams.appId);
+           // $scope.doInitApplyEdit($stateParams.appId);
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
             $scope.baseInfoVo = LoanQueryService.getLoanCustApplyInfo($scope.appId).$object;
             $scope.telInterviewHisList = TelInterviewService.getTelInterviewHisList($scope.appId).$object;

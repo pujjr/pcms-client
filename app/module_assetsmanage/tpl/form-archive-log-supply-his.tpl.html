@@ -1,0 +1,46 @@
+<form class="container-fluid m-t-md form-horizontal">
+    <div ng-repeat="item in hisSupplyList">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-4">
+                        补充发起日期： <span>{{item.supplyInfo.createTime | mysqlDatetime}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th style="width:60px">序号</th>
+                        <th style="width: 350px">资料名称</th>
+                        <th >需补充份数</th>
+                        <th >邮寄份数</th>
+                        <th >实际收到份数</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat=" item in item.supplyDetailList">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.fileNameDesc}}</td>
+                        <td>
+                            <span>{{item.supplyFileCnt}}</span>
+                        </td>
+                        <td>
+                            <span>{{item.postFileCnt}}</span>
+                        </td>
+                        <td>
+                            <span>{{item.recvFileCnt}}</span>
+                        </td>
+                        <td>
+                            <span>{{item.comment}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
