@@ -193,6 +193,67 @@
             </div>
         </div>
     </div>
+    <div class="panel panel-default">
+        <div class="data-table-container">
+            <table class="table data-table">
+                <thead>
+                <tr>
+                    <th style="width:150px">展期项目</th>
+                    <th style="width:100px"></th>
+                    <th>展期金额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>应还本金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayCapital}}</td>
+                </tr>
+                <tr>
+                    <td>应还利息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayInterest}}</td>
+                </tr>
+                <tr>
+                    <td>应还罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.repayOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherAmount}}</td>
+                </tr>
+                <tr>
+                    <td>其他费用罚息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.otherOverdueAmount}}</td>
+                </tr>
+                <tr>
+                    <td>剩余本金(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.remainCapital}}</td>
+                </tr>
+                <tr>
+                    <td>新旧还款日利息(+)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.newOldInterest}}</td>
+                </tr>
+                <tr class="info">
+                    <td>新计息本金(=)</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.newCapital}}</td>
+                </tr>
+                <tr>
+                    <td>展期费用</td>
+                    <td>=</td>
+                    <td>{{applyVo.feeItem.extendFee}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="form-group form-group-sm">
