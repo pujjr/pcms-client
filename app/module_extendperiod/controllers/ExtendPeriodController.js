@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.extendperiod.controllers")
-    .controller('ExtendPeriodController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,ExtendPeriodService,SysDictService,ProductService,modal) {
+    .controller('ExtendPeriodController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,LoanTaskService,ExtendPeriodService,SysDictService,ProductService,modal) {
         $scope.initExtendPeriodHistoryTaskList = function(){
             $scope.taskList = ExtendPeriodService.getApplyExtendPeriodTaskList().$object;
         };
@@ -32,13 +32,14 @@ angular.module("pu.extendperiod.controllers")
         }
         $scope.initApplyApprove = function(){
             $scope.initData();
-            $scope.approveVo={};
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApproveExtendPeriodTask = function(){
-            ExtendPeriodService.commitApproveExtendPeriodTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            LoanTaskService.inputApproveResult().then(function(response){
+                ExtendPeriodService.commitApproveExtendPeriodTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
+
             })
         } ;
         $scope.initApplyConfirm = function(){
@@ -66,29 +67,34 @@ angular.module("pu.extendperiod.controllers")
 
         };
         $scope.commitApplyConfirmExtendPeriodTask = function(){
-            ExtendPeriodService.commitApplyConfirmExtendPeriodTask($scope.taskId,$scope.applyVo.remissionFeeItemVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            modal.confirm("操作提醒","确认提交任务？").then(function(response){
+                ExtendPeriodService.commitApplyConfirmExtendPeriodTask($scope.taskId,$scope.applyVo.remissionFeeItemVo).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
         $scope.initRemissionApprove = function(){
            $scope.initData();
-            $scope.approveVo={};
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitRemissionApprove = function(){
-            ExtendPeriodService.commitApproveRemissionTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            LoanTaskService.inputApproveResult().then(function(response){
+                ExtendPeriodService.commitApproveRemissionTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
         $scope.initConfirm = function(){
             $scope.initData();
         };
         $scope.commitConfirmExtendPeriodTask = function(){
-            ExtendPeriodService.commitConfirmExtendPeriodTask($scope.taskId).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            LoanTaskService.inputApproveResult().then(function(response){
+                ExtendPeriodService.commitConfirmExtendPeriodTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
+
             })
         };
         $scope.cancelExtendPeriodTask = function(){

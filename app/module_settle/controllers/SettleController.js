@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.settle.controllers")
-    .controller('SettleController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,SettleService,SysDictService,modal) {
+    .controller('SettleController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,LoanTaskService,SettleService,SysDictService,modal) {
         $scope.initSettleHistoryTaskList = function(){
             $scope.settleApplyList = SettleService.getApplySettleTaskList("").$object;
         };
@@ -19,14 +19,14 @@ angular.module("pu.settle.controllers")
         }
         $scope.initApplyApprove = function(){
             $scope.initData();
-            $scope.approveVo={};
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApproveSettleTask = function(){
-            SettleService.commitApproveSettleTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
-            })
+            LoanTaskService.inputApproveResult().then(function(response){
+                SettleService.commitApproveSettleTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
+            });
         } ;
         $scope.initApplyConfirm = function(){
             $scope.procInstId = $stateParams.procInstId;
@@ -44,31 +44,33 @@ angular.module("pu.settle.controllers")
 
         };
         $scope.commitApplyConfirmSettleTask = function(){
-            SettleService.commitApplyConfirmSettleTask($scope.taskId,$scope.applyVo.remissionFeeItemVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                SettleService.commitApplyConfirmSettleTask($scope.taskId,$scope.applyVo.remissionFeeItemVo).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
         $scope.initRemissionApprove = function(){
             $scope.initData();
-            $scope.approveVo={};
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitRemissionApprove = function(){
-            SettleService.commitRemissionApprove($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            LoanTaskService.inputApproveResult().then(function(response){
+                SettleService.commitRemissionApprove($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
         $scope.initConfirm = function(){
             $scope.initData();
-            $scope.approveVo={};
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitConfirmSettleTask = function(){
-            SettleService.commitConfirmSettleTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            LoanTaskService.inputApproveResult().then(function(response){
+                SettleService.commitConfirmSettleTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
         $scope.cancelSettleTask = function(){

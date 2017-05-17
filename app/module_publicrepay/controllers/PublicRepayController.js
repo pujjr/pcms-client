@@ -3,10 +3,12 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.publicrepay.controllers")
-    .controller('PublicRepayController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,PublicRepayService,SysDictService,ApplyService,modal) {
+    .controller('PublicRepayController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,LoanTaskService,PublicRepayService,SysDictService,ApplyService,modal) {
         $scope.initPublicRepayHistoryTaskList = function(){
             $scope.publicRepayApplyList = PublicRepayService.getApplyPublicRepayTaskList().$object;
         };
+        //任务界面顶部放置下拉按钮
+        $scope.appendToEl = angular.element(document.querySelector('.check-header'));
         $scope.showPublicRepayTaskDetail = function(item){
             PublicRepayService.showPublicRepayTaskDetail(item);
         }
@@ -31,8 +33,8 @@ angular.module("pu.publicrepay.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApprovePublicRepayTask = function(){
-            modal.confirm("操作提醒","确认提交申请？").then(function(){
-                PublicRepayService.commitApprovePublicRepayTask($scope.taskId,$scope.approveVo).then(function(response){
+            LoanTaskService.inputApproveResult().then(function(response){
+                PublicRepayService.commitApprovePublicRepayTask($scope.taskId,response).then(function(response){
                     toaster.pop('success', '操作提醒', "提交任务成功");
                     $state.go("app.loantask.todolist")
                 })

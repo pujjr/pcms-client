@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.remission.controllers")
-    .controller('RemissionController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,RemissionService,SysDictService,ToolsService) {
+    .controller('RemissionController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,LoanTaskService,RemissionService,SysDictService,ToolsService) {
         $scope.initRemissionHistoryTaskList = function(){
             $scope.taskList = RemissionService.getApplyRemissionTaskList().$object;
         };
@@ -22,13 +22,13 @@ angular.module("pu.remission.controllers")
             LoanQueryService.getLoanCustNeedRepayInfo($scope.appId).then(function(response){
                 $scope.applyVo.feeItem = response;
             })
-            $scope.approveVo={};
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
-        $scope.commitApproveRefundTask = function(){
-            RemissionService.commitApproveRemissionTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+        $scope.commitApproveRemissionTask = function(){
+            LoanTaskService.inputApproveResult().then(function(response){
+                RemissionService.commitApproveRemissionTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
 

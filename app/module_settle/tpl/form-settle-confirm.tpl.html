@@ -133,7 +133,7 @@
                                    verify-remission-amount="applyVo.feeItem.repayCapital" step="0.01" placeholder="减免本金">
                         </div>
                     </td>
-                    <td>{{applyVo.feeItem.repayCapital-applyVo.remissionFeeItemVo.capital}}</td>
+                    <td>{{(applyVo.feeItem.repayCapital-applyVo.remissionFeeItemVo.capital).toFixed(2)}}</td>
                 </tr>
                 <tr>
                     <td>应还利息(+)</td>
@@ -146,7 +146,7 @@
                                    verify-remission-amount="applyVo.feeItem.repayInterest" step="0.01" placeholder="减免利息">
                         </div>
                     </td>
-                    <td>{{applyVo.feeItem.repayInterest-applyVo.remissionFeeItemVo.interest}}</td>
+                    <td>{{(applyVo.feeItem.repayInterest-applyVo.remissionFeeItemVo.interest).toFixed(2)}}</td>
                 </tr>
                 <tr>
                     <td>应还罚息(+)</td>
@@ -159,7 +159,7 @@
                                    verify-remission-amount="applyVo.feeItem.repayOverdueAmount" step="0.01" placeholder="减免罚息">
                         </div>
                     </td>
-                    <td>{{applyVo.feeItem.repayOverdueAmount-applyVo.remissionFeeItemVo.overdueAmount}}</td>
+                    <td>{{(applyVo.feeItem.repayOverdueAmount-applyVo.remissionFeeItemVo.overdueAmount).toFixed(2)}}</td>
                 </tr>
                 <tr>
                     <td>其他费用(+)</td>
@@ -172,7 +172,7 @@
                                    verify-remission-amount="applyVo.feeItem.otherAmount" step="0.01"  placeholder="减免其他费用">
                         </div>
                     </td>
-                    <td>{{applyVo.feeItem.otherAmount-applyVo.remissionFeeItemVo.otherFee}}</td>
+                    <td>{{(applyVo.feeItem.otherAmount-applyVo.remissionFeeItemVo.otherFee).toFixed(2)}}</td>
                 </tr>
                 <tr>
                     <td>其他费用罚息(+)</td>
@@ -185,7 +185,7 @@
                                    verify-remission-amount="applyVo.feeItem.otherOverdueAmount" step="0.01"  placeholder="减免其他费用罚息">
                         </div>
                     </td>
-                    <td>{{applyVo.feeItem.otherOverdueAmount-applyVo.remissionFeeItemVo.otherOverdueAmount}}</td>
+                    <td>{{(applyVo.feeItem.otherOverdueAmount-applyVo.remissionFeeItemVo.otherOverdueAmount).toFixed(2)}}</td>
                 </tr>
                 <tr>
                     <td>挂账金额(-)</td>
@@ -214,7 +214,7 @@
                                    verify-remission-amount="applyVo.feeItem.lateFee" step="0.01"  placeholder="减免提前结清违约金">
                         </div>
                     </td>
-                    <td>{{applyVo.feeItem.lateFee-applyVo.remissionFeeItemVo.lateFee}}</td>
+                    <td>{{(applyVo.feeItem.lateFee-applyVo.remissionFeeItemVo.lateFee).toFixed(2)}}</td>
                 </tr>
                 <tr>
                     <td>合计</td>
@@ -222,21 +222,21 @@
                     <td>{{applyVo.feeItem.settleTotalAmount}}</td>
                     <td>-</td>
                     <td>{{
-                        applyVo.remissionFeeItemVo.capital+
+                        (applyVo.remissionFeeItemVo.capital+
                         applyVo.remissionFeeItemVo.interest+
                         applyVo.remissionFeeItemVo.overdueAmount+
                         applyVo.remissionFeeItemVo.otherFee+
                         applyVo.remissionFeeItemVo.otherOverdueAmount+
-                        applyVo.remissionFeeItemVo.lateFee
+                        applyVo.remissionFeeItemVo.lateFee).toFixed(2)
                         }}
                     </td>
                     <td>
-                        {{applyVo.feeItem.settleTotalAmount - (applyVo.remissionFeeItemVo.capital+
+                        {{(applyVo.feeItem.settleTotalAmount - (applyVo.remissionFeeItemVo.capital+
                         applyVo.remissionFeeItemVo.interest+
                         applyVo.remissionFeeItemVo.overdueAmount+
                         applyVo.remissionFeeItemVo.otherFee+
                         applyVo.remissionFeeItemVo.otherOverdueAmount+
-                        applyVo.remissionFeeItemVo.lateFee)}}
+                        applyVo.remissionFeeItemVo.lateFee).toFixed(2))}}
                     </td>
                 </tr>
                 </tbody>

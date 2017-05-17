@@ -20,15 +20,20 @@ angular.module("pu.task.controllers")
             $scope.telCheckResultList = SysDictService.queryDictDataByTypeCode("dsjg").$object;
             $scope.queryFraudInnerResult($stateParams.businessKey);
             $scope.queryFraudHisInnerResult($stateParams.businessKey,"zlsh");
+            $scope.approveVo = {};
             //审批显示审核结果，如果审核未建议有条件放款则设置审批意见为条件放款
             TaskService.getLastestCheckVo($stateParams.taskId).then(function(response){
                 if(response==null){
                     $scope.checkVo = {};
                 }else{
                     $scope.checkVo = response;
+                    if(response.result!=undefined && response.result=='tjlx102'){
+                        $scope.approveVo.result = 'tjlx202';
+                        $scope.approveVo.loanExtConditon = response.loanExtConditon;
+                    }
+
                 }
             })
-            $scope.approveVo = {};
         };
         $scope.commitApproveTask = function(){
             modal.confirm("操作提醒","确认提交申请？").then(function(){

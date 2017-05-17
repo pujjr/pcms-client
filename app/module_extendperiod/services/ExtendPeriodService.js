@@ -21,8 +21,8 @@ angular.module('pu.extendperiod.services')
         this.commitApplyConfirmExtendPeriodTask = function(taskId,params){
             return RestApi.all("/extendperiod/commitApplyConfirmExtendPeriodTask").all(taskId).post(params);
         };
-        this.commitConfirmExtendPeriodTask = function(taskId){
-            return RestApi.all("/extendperiod/commitConfirmExtendPeriodTask").all(taskId).post();
+        this.commitConfirmExtendPeriodTask = function(taskId,params){
+            return RestApi.all("/extendperiod/commitConfirmExtendPeriodTask").all(taskId).post(params);
         };
         this.cancelExtendPeriodTask = function(taskId,cancelComment){
             return RestApi.all("/extendperiod/cancelExtendPeriodTask").all(taskId).post(cancelComment);

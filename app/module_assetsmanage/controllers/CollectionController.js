@@ -259,9 +259,12 @@ angular.module("pu.assetsmanage.controllers")
         };
         $scope.commitSettleLawsuitTask = function(){
             modal.confirm("操作提醒","确认提交结案?").then(function(){
-                CollectionService.commitSettleLawsuitTask($scope.taskId).then(function(){
+                CollectionService.commitSettleLawsuitTask($scope.taskId).then(function(response){
                     toaster.pop('success', '操作提醒', '提交任务成功 ');
                     $state.go('app.loantask.todolist');
+                    if(response.reason!=null){
+                        modal.info("操作提醒",response.reason);
+                    }
                 })
             })
         }

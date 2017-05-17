@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.alterrepaydate.controllers")
-    .controller('AlterRepayDateController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,AlterRepayDateService,SysDictService,ToolsService,modal) {
+    .controller('AlterRepayDateController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,LoanTaskService,AlterRepayDateService,SysDictService,ToolsService,modal) {
         $scope.initAlterRepayDateHistoryTaskList = function(){
             $scope.taskList = AlterRepayDateService.getApplyAlterRepayDateTaskList().$object;
         };
@@ -23,9 +23,11 @@ angular.module("pu.alterrepaydate.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApproveAlterRepayDateTask = function(){
-            AlterRepayDateService.commitApproveAlterRepayDateTask($scope.taskId,$scope.approveVo).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            LoanTaskService.inputApproveResult().then(function(response){
+                AlterRepayDateService.commitApproveAlterRepayDateTask($scope.taskId,response).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         };
         $scope.initConfirm = function(){
@@ -41,9 +43,11 @@ angular.module("pu.alterrepaydate.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitConfirmAlterRepayDateTask = function(){
-            AlterRepayDateService.commitConfirmAlterRepayDateTask($scope.taskId).then(function(response){
-                toaster.pop('success', '操作提醒', "提交任务成功");
-                $state.go("app.loantask.todolist")
+            modal.confirm("操作提醒","确认提交任务？").then(function(){
+                AlterRepayDateService.commitConfirmAlterRepayDateTask($scope.taskId).then(function(response){
+                    toaster.pop('success', '操作提醒', "提交任务成功");
+                    $state.go("app.loantask.todolist")
+                })
             })
         }
         $scope.cancelAlterRepayDateTask = function(){

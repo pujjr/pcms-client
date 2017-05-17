@@ -201,7 +201,7 @@
                                verify-remission-amount="applyVo.feeItem.extendFee" step="0.01" placeholder="减免展期费">
                         </div>
                     </td>
-                    <td>{{applyVo.feeItem.extendFee-applyVo.remissionFeeItemVo.lateFee}}</td>
+                    <td>{{(applyVo.feeItem.extendFee-applyVo.remissionFeeItemVo.lateFee).toFixed(2)}}</td>
                 </tr>
                 </tbody>
             </table>

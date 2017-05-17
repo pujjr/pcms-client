@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.offer.controllers")
-    .controller('OfferController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,OfferService,SysDictService,ApplyService,modal) {
+    .controller('OfferController',function ($scope, $rootScope, $state,$stateParams ,toaster, $uibModal,LoanQueryService,LoanTaskService,OfferService,SysDictService,ApplyService,modal) {
         $scope.initOfferHistoryTaskList = function(){
             $scope.offerApplyList = OfferService.getApplyOfferTaskList().$object;
         };
@@ -31,11 +31,11 @@ angular.module("pu.offer.controllers")
             $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
         };
         $scope.commitApproveOfferTask = function(){
-            modal.confirm("操作提醒","确认提交申请？").then(function(){
-                OfferService.commitApproveOfferTask($scope.taskId,$scope.approveVo).then(function(response){
+            LoanTaskService.inputApproveResult().then(function(response){
+                OfferService.commitApproveOfferTask($scope.taskId,response).then(function(response){
                     toaster.pop('success', '操作提醒', "提交任务成功");
                     $state.go("app.loantask.todolist")
                 })
-            })
+            });
         }
     });

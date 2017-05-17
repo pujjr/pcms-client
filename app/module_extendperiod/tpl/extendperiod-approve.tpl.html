@@ -8,7 +8,7 @@
                     <div class="data-table-header__actions">
                         <button class="btn btn-default btn-sm" type="button" ng-click="showCustomDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>客户详细信息</button>
                         <button class="btn btn-danger btn-sm" type="button"  ng-if="false" ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>
-                        <button class="btn btn-success btn-sm" type="submit"  ng-disabled="form.$invalid" ng-click="commitApproveExtendPeriodTask()"><i class="fa fa-check m-r-sm"></i>提交任务</button>
+                        <button class="btn btn-success btn-sm" type="submit"  ng-click="commitApproveExtendPeriodTask()"><i class="fa fa-check m-r-sm"></i>审批任务</button>
                         <button class="btn btn-default btn-sm" type="button"  ng-click="back()"><i class="fa fa-level-up m-r-sm"></i>返回上级</button>
                     </div>
                 </header>
@@ -25,7 +25,6 @@
                             <fieldset disabled>
                                 <div  ng-include="'module_extendperiod/tpl/form-extendperiod-apply.html'"/>
                             </fieldset>
-                            <div  ng-include="'module_loantask/tpl/form-approve-result.html'"/>
                         </form>
                     </uib-tab>
                     <uib-tab index="1"  select="queryWorkflowProcessResult(taskId)">

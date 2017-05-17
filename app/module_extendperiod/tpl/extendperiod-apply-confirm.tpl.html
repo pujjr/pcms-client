@@ -6,7 +6,7 @@
                         <span class="fs-title"><i class="fa fa-tasks mr"></i>任务名称：{{task.name}}-{{appId}}</span>
                     </div>
                     <div class="data-table-header__actions">
-                        <button class="btn btn-default btn-sm" type="button"  ng-click="printPdf(applyInfo.appId,'zq','打印展期协议')"><i class="fa fa-print m-r-sm"></i>打印展期协议</button>
+                        <button class="btn btn-default btn-sm" type="button"  ng-click="printPdf(appId,'zq','打印展期协议')"><i class="fa fa-print m-r-sm"></i>打印展期协议</button>
                         <button class="btn btn-default btn-sm" type="button" ng-click="showCustomDetail(appId)"><i class="fa fa-file-text m-r-sm" ></i>客户详细信息</button>
                         <button class="btn btn-danger btn-sm" type="button"  ng-click="cancelExtendPeriodTask()"><i class="fa fa-stop m-r-sm" aria-hidden="true"></i></i>取消任务</button>
                         <button class="btn btn-danger btn-sm" type="button" ng-if="false"  ng-click="backTask(taskId)"><i class="glyphicon glyphicon-arrow-left m-r-sm"></i>退回任务</button>

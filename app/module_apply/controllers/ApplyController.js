@@ -455,6 +455,27 @@ angular.module("pu.apply.controllers")
             $scope.applyInfo.tenant.birthday = date.getTime();
             //驾照发放最小可选日期
             $scope.driverLicenseDateOptions.minDate = new Date(ToolsService.addYear(date,18));
+        };
+        //共组人身份证输入完毕如果与配偶为同一人则自动同步配偶信息到共租人
+        $scope.inputCloesseeIdNoComplete = function(){
+            if($scope.applyInfo.tenant.idNo == $scope.applyInfo.spouse.idNo){
+                $scope.applyInfo.cloessee.mobile = $scope.applyInfo.spouse.mobile;
+                $scope.applyInfo.cloessee.unitName = $scope.applyInfo.spouse.unitName;
+                $scope.applyInfo.cloessee.unitType = $scope.applyInfo.spouse.unitType;
+                $scope.applyInfo.cloessee.unitIndustry = $scope.applyInfo.spouse.unitIndustry;
+                $scope.applyInfo.cloessee.unitTel = $scope.applyInfo.spouse.unitTel;
+                $scope.cloesseeRankList = SysDictService.getUnitCanSelRank($scope.applyInfo.cloessee.unitType);
+                $scope.applyInfo.cloessee.rank = $scope.applyInfo.spouse.rank;
+                $scope.applyInfo.cloessee.rankName = $scope.applyInfo.spouse.rankName;
+                $scope.applyInfo.cloessee.monthIncome = $scope.applyInfo.spouse.monthIncome;
+                $scope.applyInfo.cloessee.yearIncome = $scope.applyInfo.spouse.yearIncome;
+                $scope.applyInfo.cloessee.unitAddrProvince = $scope.applyInfo.spouse.unitAddrProvince;
+                $scope.applyInfo.cloessee.unitAddrCity = $scope.applyInfo.spouse.unitAddrCity;
+                $scope.applyInfo.cloessee.unitAddrCounty = $scope.applyInfo.spouse.unitAddrCounty;
+                $scope.applyInfo.cloessee.unitAddrExt = $scope.applyInfo.spouse.unitAddrExt;
+                $scope.cloesseeUnitCountyList = SysAreaService.queryCountyList($scope.applyInfo.cloessee.unitAddrProvince,$scope.applyInfo.cloessee.unitAddrCity).$object;
+                $scope.cloesseeUnitCityList = SysAreaService.queryCityList($scope.applyInfo.cloessee.unitAddrProvince).$object;
+            }
         }
         $scope.addressCtrl = {
             onEditRefresh : function(){

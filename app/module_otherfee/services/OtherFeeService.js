@@ -93,7 +93,7 @@ angular.module('pu.otherfee.services')
                 },
                 size:'lg',
                 templateUrl :'module_otherfee/tpl/dialog-otherfee-task-detail.html',
-                controller:function($scope,RestApi,OtherFeeService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService){
+                controller:function($scope,RestApi,OtherFeeService,ToolsService,modal,QueryService,item,$uibModalInstance,LoanQueryService,$rootScope){
                     $scope.businessKey = item.id;
                     $scope.appId = item.appId;
                     $scope.procDefId = item.procDefId;
@@ -106,7 +106,7 @@ angular.module('pu.otherfee.services')
                     $scope.openWorkflowDiagram = function(taskId ) {
                         var processDefinitionId = $scope.procDefId;
                         var processInstanceId = $scope.procInstId;
-                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + window.localStorage.Authorization);
+                        window.open(BASE_URL + "/diagram-viewer/index.html?processDefinitionId=" + processDefinitionId + "&processInstanceId=" + processInstanceId + "&token=" + $rootScope.Authorization);
                     }
                     $scope.cancel = function () {
                         modalInstance.dismiss('cancel');

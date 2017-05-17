@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module("pu.assetsmanage.controllers")
-    .controller('ArchiveController',function ($scope, $rootScope, $state,$stateParams, toaster,modal, $uibModal,ArchiveService,LoanQueryService,SysDictService,SysAreaService,InsManageService) {
+    .controller('ArchiveController',function ($scope, $rootScope, $state,$stateParams, toaster,modal, $uibModal,ArchiveService,LoanQueryService,LoanTaskService,SysDictService,SysAreaService,InsManageService) {
         $scope.initArchiveClear = function(){
             ArchiveService.getArchiveToDoTaskList().then(function(response){
                $scope.taskList = response;
@@ -208,15 +208,13 @@ angular.module("pu.assetsmanage.controllers")
             $scope.appId = $stateParams.appId;
             $scope.workflowKey = $stateParams.workflowKey;
             $scope.task = LoanQueryService.getTaskByTaskId($stateParams.taskId,$stateParams.workflowKey).$object;
-            $scope.approveList = SysDictService.queryDictDataByTypeCode("fkspjglx").$object;
             $scope.fileTypeList = SysDictService.queryDictDataByTypeCode("jyzllx").$object;
-            $scope.approveVo={};
             $scope.applyBorrwoVo = ArchiveService.getArchiveBorrowInfo($scope.businessKey).$object;
         };
 
         $scope.commitApproveArchiveBorrowTask = function(){
-            modal.confirm("操作提醒","确认提交？").then(function(response){
-                ArchiveService.commitApproveArchiveBorrowTask($scope.taskId,$scope.approveVo).then(function(){
+            LoanTaskService.inputApproveResult().then(function(response){
+                ArchiveService.commitApproveArchiveBorrowTask($scope.taskId,response).then(function(){
                     toaster.pop('success', '操作提醒', '提交任务成功');
                     $state.go('app.loantask.todolist');
                 })

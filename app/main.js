@@ -1,3 +1,28 @@
+var InvoiceAreaUrl = {
+    '上海市':'https://inv-veri.chinatax.gov.cn/',
+    '内蒙古省':'http://www.nm-n-tax.gov.cn:8000/fpcx/nmgsfpcx/wlfpcybd_lscx.jsp',
+    '北京市':'http://www.bjtax.gov.cn/ptfp/fpindex.jsp',
+    '吉林省':'http://222.168.33.117:4001/wlfpcx/wlfp/fpcx.do',
+    '四川省':'http://wsbs.sc-n-tax.gov.cn/fpcy/index.htm',
+    '宁夏省':'http://61.133.192.35:8006/fpcx/fpcx.jsp',
+    '安徽省':'http://www.ah-l-tax.gov.cn/portal/bsfu/sscx/fpzwcx/index.htm',
+    '山东省':'http://www.sd-n-tax.gov.cn/col/col47487/index.html',
+    '山西省':'http://202.99.207.241:7005/fpcx/fpzwQuerySubmit.do',
+    '广西省':'http://www.gxgs.gov.cn/col/col123081/index.html#http://www.gxgs.gov.cn:9600/fpcxweb/fpcxPage.action',
+    '新疆省':'http://www.xj-n-tax.gov.cn/zxbs/sscx/fpzwch/',
+    '贵州省':'http://etax.gzgs12366.gov.cn:8080/',
+    '河南省':'http://www.12366.ha.cn/003/bsfw_302/bszt_30209/ptfphb_3020905/index.html?NVG=2&LM_ID=30209',
+    '湖北省':'https://swcx.hb-n-tax.gov.cn:7013/',
+    '甘肃省':'http://61.178.20.153:81/BsfwtWeb/pages/cx/cxtj_fpxxcx.html',
+    '云南省':'http://www.yngs.gov.cn/newWeb/template/index.jsp',
+    '重庆市':'http://218.70.65.72:5000/PortalWeb/pages/sscx/cx_fplx.html',
+    '黑龙江省':'http://221.212.153.203/fpcx/qtptfpcxjs.jsp',
+    '辽宁省':'http://218.25.58.87:7006/wlfpcy/wlfp/fpcy_gz/index.jsp',
+    '河北省':'http://dzfp.he-n-tax.gov.cn/dzfpFpywQuery.do;jsessionid=Yk_qQymJsjPWZkbkKYTWDbya9JcamBDDfds-i5dsTrgjPS6Vlh_L!-220334468',
+    '海南省':'http://www.hitax.gov.cn/'
+};
+
+
 angular.module("app")
     .controller("AppController", function ($scope,$window, AuthService, $rootScope, modal,$timeout,TaskService,QueryService,SmsService,$uibModal) {
 
@@ -150,5 +175,5 @@ angular.module("app")
             }else{
                 window.open(url);
             }
-        }
+        };
     })

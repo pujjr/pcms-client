@@ -1,5 +1,5 @@
 <!--联系人信息-->
-<fieldset class="scheduler-border" ng-repeat="item in applyInfo.linkmans">
+<fieldset class="scheduler-border" ng-repeat="item in applyInfo.linkmans"  ng-disabled="approveEditable==false">
     <legend class="scheduler-border">联系人{{item.seq | simpleChnUpperCase}}信息</legend>
     <div>
         <div class="row m-t-md">

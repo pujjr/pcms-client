@@ -1,5 +1,5 @@
 <!--担保人信息-->
-<fieldset class="scheduler-border">
+<fieldset class="scheduler-border"  ng-disabled="approveEditable==false">
     <legend class="scheduler-border">共租人/担保人信息</legend>
 
     <div class="row  m-t-md">
@@ -45,6 +45,7 @@
                 <label class="col-sm-4 control-label">证件号码：</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" ng-disabled="editable==false" minlength="15" maxlength="18" verify-idno ng-model="applyInfo.cloessee.idNo"
+                           ng-blur="inputCloesseeIdNoComplete()"
                            ng-required="requiredMap.cloessee_idNo && (applyInfo.cloessee.type.length>0)" placeholder="证件号码">
                 </div>
             </div>
