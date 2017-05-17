@@ -3,7 +3,7 @@
 /* Controllers */
 // signin controllers
 angular.module("pu.charge.controllers")
-    .controller('ChargeController',function ($scope, $rootScope, $state, toaster, $uibModal,ChargeService,MerchantService) {
+    .controller('ChargeController',function ($scope, $rootScope, $state, toaster, $uibModal,ChargeService,MerchantService,RestApi) {
         $scope.goWaitingCharge = function(){
             $state.go('app.charge.waitingcharge');
         };
@@ -43,6 +43,7 @@ angular.module("pu.charge.controllers")
         $scope.initRealtimeCharge = function(){
             $scope.realtimeOfferList = ChargeService.getSelOfferModeList("kkfs02").$object;
         };
+        /*
         $scope.exportOfferFile = function(){
             MerchantService.selectMerchant().then(function(response){
                 $scope.loading = ChargeService.exportOfferFile(response.merchantNo).then(function(response){
@@ -54,6 +55,26 @@ angular.module("pu.charge.controllers")
                     window.URL.revokeObjectURL(link.href);
                 })
             })
+        };*/
+        $scope.exportOfferFile = function(){
+            MerchantService.selectMerchant().then(function(response){
+                RestApi.one("/charge/exportOfferFile",response.merchantNo).withHttpConfig({responseType: 'arraybuffer'}).get().then(function(response){
+                    console.log(response);
+                    var blob = new Blob([response.data], {type: "text/plain"});
+                    $scope.saveAs(blob, response.ossKey + '.txt');
+                });;
+            })
+        }
+        $scope.saveAs=function(blob,fileName){
+            if (window.navigator.msSaveOrOpenBlob) {
+                navigator.msSaveBlob(blob, fileName);
+            } else {
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = fileName;
+                link.click();
+                window.URL.revokeObjectURL(link.href);
+            }
         };
         $scope.pageChangedRetofferCharge = function(){
             $scope.offerBatchList = ChargeService.getManualOfferHisList().$object;
