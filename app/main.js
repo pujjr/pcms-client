@@ -95,7 +95,7 @@ angular.module("app")
         };
         //公共方法-打开贷后客户详细资料
         $scope.showCustomDetail = function(appId){
-            window.open("#/app/loanquery/loaninfo/detail/"+appId);
+            window.open("#/app/loanquery/loaninfo/detail/"+appId+'?hiddenAsideFolded=true');
         };
         //打印PDF文件
         $scope.printPdf = function(appId,key,title){

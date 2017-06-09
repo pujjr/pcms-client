@@ -15,8 +15,8 @@ angular.module('pu.refund.services')
         this.getApplyRefundTaskList = function () {
             return RestApi.all("/refund/getApplyRefundTaskList").getList();
         };
-        this.commitConfirmRefundTask = function(taskId){
-            return RestApi.all("/refund/commitConfirmRefundTask").all(taskId).post();
+        this.commitConfirmRefundTask = function(taskId,params){
+            return RestApi.all("/refund/commitConfirmRefundTask").all(taskId).post(params);
         }
         this.addRefundApply = function (appId) {
             var modalInstance = $uibModal.open({
